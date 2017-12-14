@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Proenfar::..</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <!-- bootstrap 3.3.7 -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <!-- font Awesome -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+  <link href="css/estiloslistas.css" rel="stylesheet">
+  <!-- Angular Librerías -->
+  <script src="js/angular.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-animate.js"></script>
+  <script src="js/angular-sanitize.js"></script>
+  <script src="js/angular-bootstrap-toggle.min.js"></script>
+  <!-- Librería de controlador principal -->
+  <script src="js/controller.js"></script>
+  <!-- Lists -->
+  <script src="js/Lists.js"></script>
+  <!-- JQuery -->
+  <script src="js/jquery.js"></script>
+  <!-- Angular Librerías -->
+  <script src="js/angular-drag-and-drop-lists.js"></script>
+  <!--Boostrap Angular Librerías-->
+  <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+  <!-- Código de Select Boostrap Angular -->
+  <!-- Código de Select Boostrap Angular -->
+  <script src="js/select.js"></script>
+  <link rel="stylesheet" href="css/select.css">
+
+  <script src="./demo.js"></script>
+  <!-- Librería de angular loading-->
+  <script src="js/spin.min.js"></script>
+  <script src="js/angular-loading.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+  <!--Librería de angular tags inputs -->
+  <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+  <script src="js/ng-tags-input.min.js"></script>
+  <!-- Librería de file upload -->
+  <script src="js/angular-file-upload.min.js"></script>
+  <!-- Librería de boostrap toogle -->
+  <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="js/angular-bootstrap-toggle.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+  <!-- Librería para los msgs  de alerta -->
+  <link href="css/sweetalert.css" rel="stylesheet">
+  <script src="js/sweetalert.min.js"></script>
+  <!--Librería para xlsx -->
+  <script type="text/javascript" src="js/xlsx.core.min.js"></script>
+  <script type="text/javascript" src="js/angular-js-xlsx.js"></script>
+  <!--Librería para máscara números -->
+  <script type="text/javascript" src="js/mask.js"></script>
+</head>
+<body class="skin-blue"  ng-controller="ctrlEditarProveedor">
+  <header>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand logo" href="#"><img src="img/logo-proenfar.png" class="img-responsive" alt="logo-proenfar" width="150" height="150" style="margin-top:-12px;"/></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class=" active">
+              <a href="cuenta_proveedor.html">
+                <i class="fa fa-user-o" aria-hidden="true"></i><span> Mi Cuenta</span>
+              </a>
+            </li>
+            <li class="dropdown" >
+              <a href="licitacion.html" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                <span>Licitación</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li  class="active"><a href="licitacion.html"><i class="fa fa-angle-double-right"></i> Digilenciar Modalidades</a></li>
+                <li><a href="contactos_modalidad.html"><i class="fa fa-angle-double-right"></i> Contactos por Modalidad</a></li>
+              </ul>
+            </li>
+            <li >
+              <a href="politicas.html">
+                <i class="fa fa-folder-open-o" aria-hidden="true"></i><span> Políticas de Datos personales</span>
+              </a>
+            </li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <button href="#requisitos" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+                <i class="fa fa-tasks" aria-hidden="true"></i><span>
+              </button>
+
+            </li>
+            <li>
+                <button href="#preguntas" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i><span>
+                </button>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
+  <div class="wrapper row-offcanvas row-offcanvas-left">
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Mi cuenta
+        </h1>
+        <ol class="breadcrumb">
+          <li class="active"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> Mi cuenta</a></li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+       <form name="bookmarkFormProv">
+      <section class="content">
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+          <!-- Right side column. Contains the navbar and content of the page -->
+          <aside class="">
+            <section class="content">
+              <div class="box box-solid" style="padding: 10px;">
+                <div class="">
+                  <div class="box box-solid background-well">
+                    <div class="row">
+                      <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Básica</b></h5>
+                      </div>
+                      <hr>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label" for="name">Razón Social:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input ng-model="Proveedor.RazonSocial" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Razón Social">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label" for="name">NIT:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.Nit" class="form-control" type="number" placeholder="NIT">
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label" for="name">Nombre Contacto:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.Name" class="form-control" type="text" placeholder="Nombre contacto">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group" >
+                          <label class="control-label" for="name">Núm Teléfono fijo:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.Phone" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" name="Phone" >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.NroCelular.$invalid && bookmarkFormProv.NroCelular.$dirty}">
+                          <label class="control-label" for="name">Núm Celular:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.NroCelular" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label" for="name">Correo eletrónico:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.Email" class="form-control" type="text" placeholder="correo electrónico">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.Ciudad.$invalid && bookmarkFormProv.Ciudad.$dirty}">
+                          <label class="control-label" for="name">Ciudad:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input ng-model="Proveedor.Ciudad" type="text" class="form-control" name="Ciudad" placeholder="Ciudad" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.Direccion.$invalid && bookmarkFormProv.Direccion.$dirty}">
+                          <label class="control-label" for="name">Dirección:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.Direccion" type="text" class="form-control" name="Direccion" placeholder="Dirección" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box box-solid background-well">
+                    <div class="row">
+                      <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Representante Legal</b></h5>
+                      </div>
+                      <hr>
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.PagWeb.$invalid && bookmarkFormProv.PagWeb.$dirty}">
+                          <label class="control-label" for="name">Página Web:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.PagWeb" type="text" class="form-control" name="PagWeb" placeholder="Página" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.RepLegal.$invalid && bookmarkFormProv.RepLegal.$dirty}">
+                          <label class="control-label" for="name">Representante Legal:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input ng-model="Proveedor.RepLegal" type="text" class="form-control" name="RepLegal" placeholder="Nombre Representante legal" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.CedRepLegal.$invalid && bookmarkFormProv.CedRepLegal.$dirty}">
+                          <label class="control-label" for="name">Cedula Representante Legal:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.CedRepLegal" type="number" class="form-control" name="CedRepLegal" placeholder="Cedula Representante legal" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.TlfRepLegal.$invalid && bookmarkFormProv.TlfRepLegal.$dirty}">
+                          <label class="control-label" for="name">Telefono Representante Legal:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.TlfRepLegal" ui-mask="(999) 999-9999" type="text" class="form-control" name="TlfRepLegal">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.email.$invalid && bookmarkFormProv.email.$dirty}">
+                          <label class="control-label" for="name">Email Representante Legal:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input  ng-model="Proveedor.EmailRepLegal" type="email" class="form-control" name="email" placeholder="Email Representante legal" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box box-solid background-well">
+                    <div class="row">
+                      <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Representante Comercial</b></h5>
+                      </div>
+                      <hr>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.RepComercial.$invalid && bookmarkFormProv.RepComercial.$dirty}">
+                          <label class="control-label" for="name">Representante Comercial:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input ng-model="Proveedor.RepComercial"  type="text" class="form-control" name="RepComercial" placeholder="Representante Comercial" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.EmailRepComercial.$invalid && bookmarkFormProv.EmailRepComercial.$dirty}">
+                          <label class="control-label" for="name">Email Representante Comercial:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.EmailRepComercial" type="email" class="form-control" name="EmailRepComercial" placeholder="Email Representante Comercial" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.TlfRepComercial.$invalid && bookmarkFormProv.TlfRepComercial.$dirty}">
+                          <label class="control-label" for="name">Telefono Representante Comercial:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <input  ng-model="Proveedor.TlfRepComercialnombre" ui-mask="(999) 999-9999" type="text" class="form-control" name="TlfRepComercialnombre" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.CelularRepComerciall.$invalid && bookmarkFormProv.CelularRepComercial.$dirty}">
+                          <label class="control-label" for="name">Celular Representante Comercial:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.CelularRepComercial" ui-mask="(999) 999-9999" type="text" class="form-control" name="CelularRepComercial" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box box-solid background-well">
+                    <div class="row">
+                      <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Coordinador Operaciones</b></h5>
+                      </div>
+                      <hr>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.CoordinadorOperacion.$invalid && bookmarkFormProv.CoordinadorOperacion.$dirty}">
+                          <label class="control-label" for="name">Coordinador Operación:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input ng-model="Proveedor.CoordinadorOperacion" id="Nombre" type="text" class="form-control" name="CoordinadorOperacion" placeholder="Cordinador de operacion" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.EmailCoordinadorOperacion.$invalid && bookmarkFormProv.EmailCoordinadorOperacion.$dirty}">
+                          <label class="control-label" for="name">Email Coordinador de Operación:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.EmailCoordinadorOperacion" type="email" class="form-control" name="EmailCoordinadorOperacion" placeholder="Email coordinador de operaciones" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.TelefonoCoordinadorOpe.$invalid && bookmarkFormProv.TelefonoCoordinadorOpe.$dirty}">
+                          <label class="control-label" for="name">Telefono Coordinador de Operaciones:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.TelefonoCoordinadorOpe" id="Nombre" ui-mask="(999) 999-9999" type="text" class="form-control" name="TelefonoCoordinadorOpe" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.CelularCoordinadorOper.$invalid && bookmarkFormProv.CelularCoordinadorOper.$dirty}">
+                          <label class="control-label" for="name">Celular Coordinador de Operaciones:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                            <input ng-model="Proveedor.CelularCoordinadorOper" id="Nombre" ui-mask="(999) 999-9999" type="text" class="form-control" name="CelularCoordinadorOper" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="titulo">
+                    <h4><i class="fa fa-clipboard" aria-hidden="true"></i><b> Archivos</b></h4>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="row margen-colup">
+                        <div class="col-md-12 file-input">
+                          <p>Seleccione archivos...</p>
+                          <!--<a href="#" class="btn btn-default btn-sm "><i class="fa fa-cloud-upload fa-3x"></i> Upload File</a>-->
+                          <span class="btn-file btn btn-default btn-sm" style=""><i class="fa fa-cloud-upload fa-3x"></i> Subir Archivos
+                            <input type="file" nv-file-select uploader="uploader" multiple hidden>
+                          </span>
+                        </div>
+                        <div class="col-md-12">
+                          <br>
+                          <table class="table table-striped table-responsive">
+                            <thead>
+                              <tr>
+                                <th style="width: 10%;text-align:center;"><i class="fa fa-cogs" ></i></th>
+                                <th>Nombre</th>
+                              </tr>
+                            </thead>
+                            <tr ng-repeat="item in uploader.queue">
+                              <td class="text-center"><a ng-click="item.remove()" href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Eliminar</a></td>
+                              <td>{{ item.file.name }}</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div><!--fin col 2-->
+                  </div>
+                </div>
+                <hr>
+
+                <div class="modal-footer">
+                  <button ng-click="SaveUsuarioComplete();" class="btn btn-green"><i class="glyphicon glyphicon-floppy-save"></i> Guardar</button>
+                </div><!--fin modal footer-->
+              </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+          </div><!-- ./wrapper -->
+        </section><!-- /.content -->
+
+      </form>
+      <!-- Modales -->
+      <div class="modal fade" id="requisitos" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="margin-top: 10px;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            <div class="pull-right" style="margin-right:30px;">
+                       <label class="input-checkbox checkbox-lightBlue">
+                         <input type="checkbox" id="checkbox-1" checked>
+                         <span class="checkbox"></span>
+                       </label>
+                       <label for="checkbox-1" class=""> Ya lo leí</label>
+                     </div><!-- @end Checkbox-1 -->
+            <div class="titulo-modal">
+              <h5 class="modal-title"><i class="fa fa-tasks" aria-hidden="true"></i><b> Requisitos mínimos</b></h5>
+
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="callout callout-info">
+                <table class="table table-bordered">
+                    <tr>
+                        <th><h5><strong>Requisitos mínimos para aceptar la licitación</strong></h5></th>
+                        <th><h5><strong>Soportes Anexar</strong></h5></th>
+
+                    </tr>
+                    <tr>
+                        <td> Todo proveedor de servicios debe tener su proceso de seguridad certificado puede ser BASC o por otro ente certificador. Los demás procesos es opcional (ISO 9001,OSHAS 18001,ISO 14001,BPM 15373) etc.</td>
+                        <td> Anexar las certificaciones obtenidas</td>
+
+                    </tr>
+                    <tr>
+                      <td>Debe estar Legalmente Constituido </td>
+                      <td>Anexar los siguientes documentos: <br>1. Certificado de camara y comercio no mayor a 30 días <br>2. Rut <br>3. Copia de la Cédula de Ciudanía del Representante Legal </td>
+
+                    </tr>
+                    <tr>
+                      <td>Experiencia en el mercado 10 años                       </td>
+                      <td>Describir cuantos años lleva en el mercado</td>
+
+                    </tr>
+                    <tr>
+                      <td> Oficinas directas(Cartagena/Buenaaventura) demás ciudades principalesde Colombia puede ser representaciones </td>
+                      <td> Anexar: Documento Legal que acredite </td>
+                    </tr>
+                    <tr>
+                      <td> Debe tener oficinas directas o representaciones en los países de la licitación </td>
+                        <td> Anexar: Documento Legal que acredite </td>
+                    </tr>
+                    <tr>
+                      <td> Debe contar minimo con 5 referencia comerciales  </td>
+                        <td> Anexar: Referencias comerciales </td>
+                    </tr>
+                    <tr>
+                      <td> Debe contar minimo con 2 referencia Bancarias</td>
+                      <td> Anexar: Referencias Bancarias </td>
+                    </tr>
+                </table>
+                <h6>Si NO cumple con los requisitos minimos por favor abstengase de realizar el proceso de licitación.</h6>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <div class="modal-footer">
+
+                <button ng-click="AddBanco();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
+            </div><!--fin modal footer-->
+          </div><!--end modal footer-->
+        </div>
+
+      </div>
+    </div>
+    <div class="modal fade" id="preguntas" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="margin-top: 10px;">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          <div class="pull-right" style="margin-right:30px;">
+                     <label class="input-checkbox checkbox-lightBlue">
+                       <input type="checkbox" id="checkbox-1" checked>
+                       <span class="checkbox"></span>
+                     </label>
+                     <label for="checkbox-1" class=""> Ya lo leí</label>
+                   </div><!-- @end Checkbox-1 -->
+          <div class="titulo-modal">
+            <h5 class="modal-title"><i class="fa fa-question-circle" aria-hidden="true"></i><b> Preguntas Frecuentes</b></h5>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                        1.Puedo licitar uno o dos procesos solamente</a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                      <div class="panel-body">
+
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                          2.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                            3.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsefor"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                              4.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                            </h4>
+                          </div>
+                          <div id="collapsefor" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                            </div>
+                          </div>
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                  5.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                </h4>
+                              </div>
+                              <div id="collapsefive" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                </div>
+                              </div>
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsesix"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                      6.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapsesix" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                    </div>
+                                  </div>
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                      <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseseven"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                          7.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapseseven" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                            <!--
+                            <div class="callout callout-info">
+                            <h4>1.Puedo licitar uno o dos procesos solamente</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+
+                            <h4>2.Si hay un costo adicional que no esté involucrado en los cuadros?</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+
+                          </div> -->
+                          <div class="modal-footer">
+
+                            <button class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
+                          </div><!--fin modal footer-->
+        </div>
+
+    </div>
+  </div>
+      </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+    <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}">
+    </div>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- AdminLTE App -->
+    <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  </body>
+</html>

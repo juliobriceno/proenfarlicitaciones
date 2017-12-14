@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Proentar::..</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.3.7 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/estiloslistas.css" rel="stylesheet">
+
+        <!-- Angular Librerías -->
+        <script src="js/angular.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.js"></script>
+        <script src="js/angular-sanitize.js"></script>
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+        <!-- Librería de controlador principal -->
+        <script src="js/controller.js"></script>
+
+        <!-- Lists -->
+        <script src="js/Lists.js"></script>
+        <!-- JQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Angular Librerías -->
+
+        <script src="js/angular-drag-and-drop-lists.js"></script>
+
+
+        <!-- *****************************************Boostrap Angular Librerías***************************************** -->
+        <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+
+        <!-- *****************************************Código de Select Boostrap Angular***************************************** -->
+        <script src="./select.js"></script>
+        <link rel="stylesheet" href="./select.css">
+        <script src="./demo.js"></script>
+
+                <!-- *****************************************Librería de angular loading***************************************** -->
+        <script src="js/spin.min.js"></script>
+        <script src="js/angular-loading.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+
+        <!-- *****************************************Librería de angular tags inputs***************************************** -->
+        <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+        <script src="js/ng-tags-input.min.js"></script>
+        <!-- *****************************************Librería de file upload***************************************** -->
+        <script src="js/angular-file-upload.min.js"></script>
+        <!-- *****************************************Librería de boostrap toogle ***************************************** -->
+        <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+    </head>
+    <body class="skin-blue"  ng-controller="ctrlWarrantyLogin">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+
+            <a href="index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                <img src="img/logo-proenfar.png" width="180" height="80" style="margin-top:-14px;">
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                            </ul>
+                          </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li  class="active">
+                            <a href="perfil_proveedor.html">
+                              <i class="fa fa-tasks" aria-hidden="true"></i><span>Requisitos mínimos</span>
+                            </a>
+                        </li>
+                        <li  >
+                            <a href="preguntas_frecuentes.html">
+                              <i class="fa fa-question-circle" aria-hidden="true"></i><span>Preguntas Frecuentes</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <span>Licitación</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="licitacion.html"><i class="fa fa-angle-double-right"></i> Digilenciar Modalidades</a></li>
+                                <li><a href="nuevo_contacto.html"><i class="fa fa-angle-double-right"></i> Contactos por Modalidad</a></li>
+                            </ul>
+                        </li>
+                        <li >
+                            <a href="politicas.html">
+                              <i class="fa fa-folder-open-o" aria-hidden="true"></i><span>Políticas de Datos personales</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cuenta_proveedor.html">
+                              <i class="fa fa-user-o" aria-hidden="true"></i><span>Mi Cuenta</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Requisitos mínimos
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i> Requisitos mínimos</a></li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                  <div class="wrapper row-offcanvas row-offcanvas-left">
+
+                      <!-- Right side column. Contains the navbar and content of the page -->
+                      <aside class="">
+                          <!-- Content Header (Page header) -->
+
+                          <!-- Main content -->
+                          <section class="content">
+
+                            <div class="callout callout-info">
+                              <table class="table table-bordered">
+                                  <tr>
+                                      <th><h5><strong>Requisitos mínimos para aceptar la licitación</strong></h5></th>
+                                      <th><h5><strong>Soportes Anexar</strong></h5></th>
+
+                                  </tr>
+                                  <tr>
+                                      <td> Todo proveedor de servicios debe tener su proceso de seguridad certificado puede ser BASC o por otro ente certificador. Los demás procesos es opcional (ISO 9001,OSHAS 18001,ISO 14001,BPM 15373) etc.</td>
+                                      <td> Anexar las certificaciones obtenidas</td>
+
+                                  </tr>
+                                  <tr>
+                                    <td>Debe estar Legalmente Constituido </td>
+                                    <td>Anexar los siguientes documentos: <br>1. Certificado de camara y comercio no mayor a 30 días <br>2. Rut <br>3. Copia de la Cédula de Ciudanía del Representante Legal </td>
+
+                                  </tr>
+                                  <tr>
+                                    <td>Experiencia en el mercado 10 años                       </td>
+                                    <td>Describir cuantos años lleva en el mercado</td>
+
+                                  </tr>
+                                  <tr>
+                                    <td> Oficinas directas(Cartagena/Buenaaventura) demás ciudades principalesde Colombia puede ser representaciones </td>
+                                    <td> Anexar: Documento Legal que acredite </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Debe tener oficinas directas o representaciones en los países de la licitación </td>
+                                      <td> Anexar: Documento Legal que acredite </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Debe contar minimo con 5 referencia comerciales  </td>
+                                      <td> Anexar: Referencias comerciales </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Debe contar minimo con 2 referencia Bancarias</td>
+                                    <td> Anexar: Referencias Bancarias </td>
+                                  </tr>
+                              </table>
+                              <h6>Si NO cumple con los requisitos minimos por favor abstengase de realizar el proceso de licitación.</h6>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button ng-click="AddBanco();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
+                            </div><!--fin modal footer-->
+
+                          </section><!-- /.content -->
+                      </aside><!-- /.right-side -->
+                  </div><!-- ./wrapper -->
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+    </body>
+</html>

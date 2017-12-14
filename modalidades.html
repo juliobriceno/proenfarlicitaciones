@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Proentar::..</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.3.7 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/estiloslistas.css" rel="stylesheet">
+    <!-- Angular Librerías -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/angular-bootstrap-toggle.min.js"></script>
+    <!-- Librería de controlador principal -->
+    <script src="js/controller.js"></script>
+    <!-- Lists -->
+    <script src="js/Lists.js"></script>
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Angular Librerías -->
+    <script src="js/angular-drag-and-drop-lists.js"></script>
+    <!-- Boostrap Angular Librerías -->
+    <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+    <!-- Código de Select Boostrap Angular-->
+    <script src="./select.js"></script>
+    <link rel="stylesheet" href="./select.css">
+    <script src="./demo.js"></script>
+    <!--Librería de angular loading -->
+    <script src="js/spin.min.js"></script>
+    <script src="js/angular-loading.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+    <!--Librería de angular tags inputs -->
+    <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+    <script src="js/ng-tags-input.min.js"></script>
+    <!-- Librería de file upload -->
+    <script src="js/angular-file-upload.min.js"></script>
+    <!--Librería de boostrap toogle -->
+    <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+  </head>
+  <body class="skin-blue"  ng-controller="ctrlWarrantyLogin">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+      <a href="index.html" class="logo">
+        <!-- Add the class icon to your logo image or logo icon to add the margining -->
+        <img src="img/logo-proenfar.png" width="180" height="80" style="margin-top:-14px;">
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="navbar-right">
+          <ul class="nav navbar-nav">
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="left-side sidebar-offcanvas">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li >
+              <a href="index.html">
+                <i class="fa fa-envelope" aria-hidden="true"></i><span>Notificación a proveedores</span>
+              </a>
+            </li>
+            <li >
+              <a href="proveedores.html">
+                <i class="fa fa-handshake-o" ></i><span>Proveedores</span>
+              </a>
+            </li>
+            <li  class="active" >
+              <a  href="modalidades.html">
+                <i class="fa fa-bar-chart-o"></i>
+                <span>Proveedores a modalidades</span>
+
+              </a>
+
+            </li>
+            <li >
+              <a href="usuarios.html">
+                <i class="fa fa-id-card" ></i>
+                <span>Usuarios</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+      <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Proveedores a Modalidades
+          </h1>
+          <ol class="breadcrumb">
+            <li class="active"><a href="#"><i class="fa fa-bar-chart-o"></i>Proveedores a Modalidades</a></li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="row" >
+            <div class="col-xs-12">
+              <div class="box box-solid" style="padding: 10px;">
+                <div class="box-header">
+                  <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Modalidad</label>
+                        <select class="form-control">
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                          <option>option 5</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="row">
+                  <div class="">
+                    <div class="">
+                      <div class="col-xs-12 col-md-3 col-md-offset-1" >
+                        <div class="row" style="margin-top:10px;">
+                          <div class="input-group">
+                            <span class="input-group-addon "><span class="glyphicon glyphicon-search"></span></span>
+                            <input type="text" name="SearchDualList" class="form-control" placeholder="Buscar" />
+                          </div>
+                          <br>
+                          <select multiple class="col-xs-12 col-md-12" style="border-width: 1px; border-style: solid;min-height: 100px;">
+                            <option>Proveedor 1</option>
+                            <option>Proveedor 2</option>
+                            <option>Proveedor 3</option>
+                            <option>Proveedor 4</option>
+                            <option>Proveedor 5</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1 text-center" style="vertical-align: middle; margin-top: 50px; margin-left: 20px;">
+                      <div class="row">
+                        <button class="btn btn-default btn-sm move-left">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                        </button>
+                        <button class="btn btn-default btn-sm move-right">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3  col-md-offset-1 " >
+                      <div class="row" style="margin-top:10px;">
+                        <div class="input-group">
+                          <span class="input-group-addon "><span class="glyphicon glyphicon-search"></span></span>
+                          <input type="text" name="SearchDualList" class="form-control" placeholder="Buscar" />
+                        </div>
+                        <br>
+                        <select multiple class="col-xs-12 col-md-12" style="border-width: 1px; border-style: solid;min-height: 100px;"  >
+                          <option>Proveedor 6</option>
+                          <option>Proveedor 7</option>
+                        </select>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div><!-- /.box-body -->
+                <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="widget-header">
+                     <label style="margin-left:10px;"> Consolidación de Datos</label>
+
+                   </div> <!-- /widget-header -->
+                    <div class="box-body table-responsive no-padding">
+                      <table class="table table-bordered" >
+                        <tr>
+                          <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                          <th><h5><b>Proveedor</b></h5></th>
+                          <th><h5><b>Vía</b></h5></th>
+                          <th><h5><b>% ADVALOREM</b></h5></th>
+                          <th><h5><b>Mínima</b></h5></th>
+                          <th><h5><b>Gastos Adicionales</b></h5></th>
+                          <th><h5><b>Conceptos Adicionales</b></h5></th>
+                          <th><h5><b>Planificación Caja</b></h5></th>
+                          <th><h5><b>Otro</b></h5></th>
+                          <th><h5><b>Gastos Adicionales</b></h5></th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="btn-group">
+                              <button class="btn btn-default" type="button">Acciones</button>
+                              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                                <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                                <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                                <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td>Agencia de Carga Aviatur S.A  </td>
+                          <td>Aereo</td>
+                          <td>0.15</td>
+                          <td>150000.0</td>
+                          <td>32000.0</td>
+                          <td>C Origen</td>
+                          <td>1650.0</td>
+                          <td>0.0</td>
+                          <td>45000.0</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="btn-group">
+                              <button class="btn btn-default" type="button">Acciones</button>
+                              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                                <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                                <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                                <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td>Panalpina Colombia</td>
+                          <td>Aereo</td>
+                          <td>0.15</td>
+                          <td>150000.0</td>
+                          <td>41500.0</td>
+                          <td>C Origen</td>
+                          <td>2500.0</td>
+                          <td>0.0</td>
+                          <td>45000.0</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="btn-group">
+                              <button class="btn btn-default" type="button">Acciones</button>
+                              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                                <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                                <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                                <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td>El dorado Air Cargo SAS</td>
+                          <td>Aereo</td>
+                          <td>0.15</td>
+                          <td>18500.0</td>
+                          <td>10000.0</td>
+                          <td>Certificado de Origen</td>
+                          <td>0.0</td>
+                          <td>0.0</td>
+                          <td>0.0</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="btn-group">
+                              <button class="btn btn-default" type="button">Acciones</button>
+                              <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                                <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                                <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                                <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td>Jas Forwaring de Colombia S.A.S</td>
+                          <td>Maritimo</td>
+                          <td>0.15</td>
+                          <td>300000.0</td>
+                          <td >10000.0</td>
+                          <td>Traslado</td>
+                          <td>0.0</td>
+                          <td>0.0</td>
+                          <td>40000.0</td>
+                        </tr>
+                      </table>
+                       <div class="" style="height: 150px;"><div class="row" ></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /.box -->
+            </div>
+          </div>
+        </section><!-- /.content -->
+      </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.0.2 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- AdminLTE App -->
+    <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+  </body>
+</html>

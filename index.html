@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Proenfar::..</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.3.7 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="css/estiloslistas.css" rel="stylesheet">
+    <!-- Angular Librerías -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/angular-bootstrap-toggle.min.js"></script>
+    <!-- Librería de controlador principal -->
+    <script src="js/controller.js"></script>
+    <!-- Lists -->
+    <script src="js/Lists.js"></script>
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Angular Librerías -->
+    <script src="js/angular-drag-and-drop-lists.js"></script>
+    <!--Boostrap Angular Librerías-->
+    <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+    <!-- Código de Select Boostrap Angular -->
+    <script src="js/select.js"></script>
+    <link rel="stylesheet" href="css/select.css">
+    <script src="./demo.js"></script>
+    <!-- Librería de angular loading-->
+    <script src="js/spin.min.js"></script>
+    <script src="js/angular-loading.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+    <!--Librería de angular tags inputs -->
+    <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+    <script src="js/ng-tags-input.min.js"></script>
+    <!-- Librería de file upload -->
+    <script src="js/angular-file-upload.min.js"></script>
+    <!-- Librería de boostrap toogle -->
+    <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="js/angular-bootstrap-toggle.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+    <!-- *****************************************Librerías Sweetalert*********************************************** -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <script src="js/sweetalert.min.js"></script>
+
+    <!--Librería para xlsx -->
+    <script type="text/javascript" src="js/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="js/angular-js-xlsx.js"></script>
+
+    <!--Librería para xlsx -->
+    <script type="text/javascript" src="js/mask.js"></script>
+  </head>
+  <body>
+    <div ng-controller="ctrlLogin">
+      <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}">
+
+        <div class="container">
+          <div class="form col-md-6 col-md-offset-1 col-lg-6 col-lg-offset-1" style="margin-top:10%;">
+            <div class="">
+            <img src="img/logo-proenfar.png" class="img-responsive center-block" alt="Logo-in-corp" width="150" height="150" />
+            <br>
+            <form >
+              <div class="form-group space-input">
+                <input ng-model="Usuario" type="text" placeholder="usuario"/>
+              </div>
+              <div class="form-group ">
+                <input ng-model="Contrasena" type="password" placeholder="contraseña"/>
+              </div>
+              <div class="footer-login pull-right">
+                <a href="#"> Forgot password?</a>
+              </div>
+              <br>
+              <div class="margen-input" >
+                <button ng-click="Login();">login</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin  loading-->
+    </div>
+    <!--Fin controller angular-->
+  </body>
+</html>

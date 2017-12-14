@@ -1,0 +1,101 @@
+{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4f5a68;
+}
+
+.login__container{
+  background-color: #EFEFEF;
+  width: 350px;
+  height: auto;
+}
+
+.login__top{
+  background-color: #fff;
+  border-top: solid .5rem #f39b53;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 0;
+}
+
+.login__img{
+  width: 50%;
+  border-right: 1rem;
+}
+
+.login__title {
+  color: #C8C8C8;
+}
+
+.login__title span{
+  color: #f39b53;
+}
+
+.login__form{
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem 2rem 2rem;
+  text-align: center;
+}
+
+input[type=text],[type=password]{
+  margin: .4rem 0;
+  padding: .5rem;
+  border: none;
+  border-bottom: solid 0.2rem #c8c8c8;
+  background: #efefef;
+  transition: all .4s;
+}
+
+input[type=text]:focus,[type=password]:focus{
+  outline: none;
+  border-bottom: solid 0.2rem #e67e22;
+}
+
+.btn__submit{
+  background-color: #337ab7;
+  color: white;
+}
+
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+.recuperar{
+  margin-bottom: 10px;
+}

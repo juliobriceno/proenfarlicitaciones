@@ -1,0 +1,118 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+
+.notifications-badge {
+  border-radius: 50%;
+   font-size: 9px;
+   left: 20px;
+   position: absolute;
+   top: 3px;
+   background: blue;
+   color:#fff;
+  padding: 3px 5px;
+}
+
+
+.label.label-primary {
+    border-radius: 50%;
+    font-size: 9px;
+    left: 23px;
+    position: absolute;
+    top: 10px;
+}
+
+.icon-info .label {
+    border: 2px solid #ffffff;
+    font-weight: 500;
+    padding: 3px 5px;
+    text-align: center;
+}
+.margin-well{
+  border-style:none;
+  border-color:transparent;
+}
+.titulo{
+  margin: -12px 15px;
+}
+
+.tabla-contenedor{
+  background: transparent;
+  border: none;
+}
+.color-menu{
+  background-color: #4f5a68;
+  /*background-color: #006389;*/
+  border-color: none;
+  border-radius: 0;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color: #c9c5c5;
+}
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover{
+  color: #639ed1;
+}
+
+.contenedor-indice{
+  background: transparent;
+}
+
+.btn-clear{
+  background: transparent;
+}
+
+.btn-orange{
+  color: #f39c12;
+}
+.btn-cancelar {
+  color: #333 !important;
+  border-radius: 0px !important;
+  border-color: #828186 !important;
+  padding: 10px 20px  !important;
+}
+
+/**botones guardar*/
+.btn-guardar{
+  color: #fff !important;
+  padding: 10px 20px  !important;
+  border-radius: 0px !important;
+
+}
+
+.btn-cancelar:hover {
+    color: #fff;
+    background-color: #ccc !important;
+    border-color: #985f0d;
+}
+
+.pie-pagina{
+  margin-top: 100px;
+  margin-bottom: 80px;
+}
+
+.opciones{ width: 5%;}
+.titulo-tabla{
+  margin-top: 30px;
+}
+
+
+.background-well{
+  position: relative;
+  background: #ffffff;
+  border-top: 2px solid #c1c1c1;
+  padding: 15px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  width: 100%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #4e43501a !important;
+}
+
+.table-encabezado th{
+  font-size: 10px !important;
+}

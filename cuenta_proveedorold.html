@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Proentar::..</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.3.7 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Theme style -->
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/estiloslistas.css" rel="stylesheet">
+
+
+        <!-- Angular Librerías -->
+        <script src="js/angular.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.js"></script>
+        <script src="js/angular-sanitize.js"></script>
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+        <!-- Librería de controlador principal -->
+        <script src="js/controller.js"></script>
+
+        <!-- Lists -->
+        <script src="js/Lists.js"></script>
+        <!-- JQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Angular Librerías -->
+
+        <script src="js/angular-drag-and-drop-lists.js"></script>
+
+        <!-- *****************************************Boostrap Angular Librerías***************************************** -->
+        <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+
+        <!-- *****************************************Código de Select Boostrap Angular***************************************** -->
+        <script src="./select.js"></script>
+        <link rel="stylesheet" href="./select.css">
+        <script src="./demo.js"></script>
+
+                <!-- *****************************************Librería de angular loading***************************************** -->
+        <script src="js/spin.min.js"></script>
+        <script src="js/angular-loading.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+
+        <!-- *****************************************Librería de angular tags inputs***************************************** -->
+        <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+        <script src="js/ng-tags-input.min.js"></script>
+        <!-- *****************************************Librería de file upload***************************************** -->
+        <script src="js/angular-file-upload.min.js"></script>
+        <!-- *****************************************Librería de boostrap toogle ***************************************** -->
+        <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+
+    </head>
+    <body class="skin-blue"  ng-controller="ctrlEditarProveedor">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+
+            <a href="index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                <img src="img/logo-proenfar.png" width="180" height="80" style="margin-top:-14px;">
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                            </ul>
+                          </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="perfil_proveedor.html">
+                              <i class="fa fa-tasks" aria-hidden="true"></i><span>Requisitos mínimos</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="preguntas_frecuentes.html">
+                              <i class="fa fa-question-circle" aria-hidden="true"></i><span>Preguntas Frecuentes</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="licitacion.html">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                <span>Licitación</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="licitacion.html"><i class="fa fa-angle-double-right"></i> Digilenciar Modalidades</a></li>
+                                <li><a href="contactos_modalidad.html"><i class="fa fa-angle-double-right"></i> Contactos por Modalidad</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="politicas.html">
+                              <i class="fa fa-folder-open-o" aria-hidden="true"></i><span>Políticas de Datos personales</span>
+                            </a>
+                        </li>
+                        <li   class="active">
+                            <a href="cuenta_proveedor.html">
+                              <i class="fa fa-user-o" aria-hidden="true"></i><span>Mi Cuenta</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Mi cuenta
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> Mi cuenta</a></li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                  <div class="wrapper row-offcanvas row-offcanvas-left">
+
+                      <!-- Right side column. Contains the navbar and content of the page -->
+                      <aside class="">
+                          <!-- Content Header (Page header) -->
+
+                          <!-- Main content -->
+                          <section class="content">
+
+                            <div class="box box-solid" style="padding: 10px;">
+                              <div class="margin-well fondomodal">
+                              <div class="titulo">
+                                    <h4><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Personal</b></h4>
+                                  </div>
+                                    <hr>
+                                <div class="row">
+
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label class="control-label" for="name">NIT:</label>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
+                                        <input ng-model="Proveedor.Nit" class="form-control" type="text" placeholder="NIT">
+                                      </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-5">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Razón Social:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                          <input ng-model="Proveedor.RazonSocial" type="text" class="form-control" name="nombre" placeholder="Razón Social">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label class="control-label" for="name">Nombre Contacto:</label>
+                                    <div class="input-group">
+                                      <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                      <input ng-model="Proveedor.Name" class="form-control" type="text" placeholder="Nombre contacto">
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="row">
+
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">N° Teléfono:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                          <input ng-model="Proveedor.Phone" type="text" class="form-control" name="nombre" placeholder="Número telefono">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">N° Celular:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                          <input ng-model="Proveedor.Celular" type="text" class="form-control" name="nombre" placeholder="Número celular">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label class="control-label" for="name">Correo eletrónico:</label>
+                                    <div class="input-group">
+                                      <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                      <input ng-model="Proveedor.Email" class="form-control" type="text" placeholder="correo electrónico">
+                                    </div>
+                                  </div>
+
+                              </div>
+                                </div>
+                                <div class="row">
+
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Ciudad:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Ciudad">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Dirección:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Dirección">
+                                      </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="row">
+
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Celular Representante Comercial:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Celular">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Coordinador Operación:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Nombre coordinador de operaciones">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Email Coordinador de Operación:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="email">
+                                      </div>
+                                  </div>
+                                </div>
+                                </div>
+                                <div class="row">
+
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Telefono Coordinador de Operaciones:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="teléfono">
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label class="control-label" for="name">Celular Coordinador de Operaciones:</label>
+                                      <div class="input-group">
+                                          <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                          <input ng-model="" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Celular">
+                                      </div>
+                                  </div>
+                                </div>
+
+                                </div>
+                                <div class="titulo">
+                                    <h4><i class="fa fa-clipboard" aria-hidden="true"></i><b> Archivos</b></h4>
+                                  </div>
+                                  <hr>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 1:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 2:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 3:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 4:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 5:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 6:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 7:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 8:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 9:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                   <label class="control-label" for="name">Anexo 10:</label>
+                                    <div class="input-group image-preview">
+                                      <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                      <span class="input-group-btn">
+                                          <!-- image-preview-clear button -->
+                                          <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                              <span class="glyphicon glyphicon-remove"></span> Clear
+                                          </button>
+                                          <!-- image-preview-input -->
+                                          <div class="btn btn-default image-preview-input">
+                                              <span class="glyphicon glyphicon-folder-open"></span>
+                                              <span class="image-preview-input-title">Subir Archivo</span>
+                                              <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                          </div>
+                                      </span>
+                                    </div><!-- /input-group image-preview [TO HERE]-->
+                                  </div>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="modal-footer">
+                              <button ng-click="AddBanco();" class="btn btn-green"><i class="glyphicon glyphicon-floppy-save"></i> Guardar</button>
+                            </div><!--fin modal footer-->
+                          </section><!-- /.content -->
+                      </aside><!-- /.right-side -->
+                  </div><!-- ./wrapper -->
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+          </div><!-- ./wrapper -->
+
+
+        <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}">
+        </div>
+
+
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+    </body>
+</html>

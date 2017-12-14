@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Proenfar::..</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- bootstrap 3.3.7 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- font Awesome -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/estiloslistas.css" rel="stylesheet">
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Angular Librerías -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-animate.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+    <!-- Lists -->
+    <script src="js/Lists.js"></script>
+
+    <!-- Angular Librerías -->
+
+    <script src="js/angular-drag-and-drop-lists.js"></script>
+
+    <!-- *****************************************Boostrap Angular Librerías***************************************** -->
+    <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+
+    <!-- *****************************************Código de Select Boostrap Angular***************************************** -->
+    <script src="./select.js"></script>
+    <link rel="stylesheet" href="./select.css">
+    <script src="./demo.js"></script>
+
+    <!-- *****************************************Librería de angular loading***************************************** -->
+    <script src="js/spin.min.js"></script>
+    <script src="js/angular-loading.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+
+    <!-- *****************************************Librería de angular tags inputs***************************************** -->
+    <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+    <script src="js/ng-tags-input.min.js"></script>
+    <!-- *****************************************Librería de file upload***************************************** -->
+    <script src="js/angular-file-upload.min.js"></script>
+    <!-- *****************************************Librería de boostrap toogle ***************************************** -->
+    <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+    <!--Librería para xlsx -->
+    <script type="text/javascript" src="js/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="js/angular-js-xlsx.js"></script>
+    <!--Librería para xlsx -->
+    <script type="text/javascript" src="js/mask.js"></script>
+  </head>
+  <body class="skin-blue"  ng-controller="ctrlLicitacion">
+    <!-- header logo: style can be found in header.less -->
+    <header>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#"><img src="img/logo-proenfar.png" class="img-responsive" alt="logo-proenfar" width="150" height="150" style="margin-top:-12px;"/></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="cuenta_proveedor.html">
+                  <i class="fa fa-user-o" aria-hidden="true"></i><span> Mi Cuenta</span>
+                </a>
+              </li>
+              <li class="dropdown active" >
+                <a href="licitacion.html" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  <span>Licitación</span>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li  class="active"><a href="licitacion.html"><i class="fa fa-angle-double-right"></i> Digilenciar Modalidades</a></li>
+                  <li><a href="contactos_modalidad.html"><i class="fa fa-angle-double-right"></i> Contactos por Modalidad</a></li>
+                </ul>
+              </li>
+              <li >
+                <a href="politicas.html">
+                  <i class="fa fa-folder-open-o" aria-hidden="true"></i><span> Políticas de Datos personales</span>
+                </a>
+              </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <button title="Ver requisitos" href="#requisitos" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+                  <i class="fa fa-tasks" aria-hidden="true"></i><span>
+                  </button>
+
+                </li>
+                <li>
+                  <button title="Ver preguntas frecuentes" href="#preguntas" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i><span>
+                    </button>
+                  </li>
+                  <li>
+                    <button href="#modal-tips" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+                      <i class="fa fa-question-circle" aria-hidden="true"></i><span>
+                      </button>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+          <!-- Right side column. Contains the navbar and content of the page -->
+          <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+              <h1>
+                Licitación
+              </h1>
+              <ol class="breadcrumb">
+                <li class="active"><a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> Licitación</a></li>
+                <li class="active"><a href="#"> Digilenciar Modalidades</a></li>
+              </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+              <aside class="">
+                <!-- Main content -->
+                <section class="content">
+
+                  <div class="row">
+                    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                      <li ng-click="CambiarVisionModalidades('Bodegajes');" class="active"><a href="#bodegajes" data-toggle="tab">Bodegajes</a></li>
+                      <li ng-click="CambiarVisionModalidades('Aduanas');"><a href="#aduana" data-toggle="tab">Aduana</a></li>
+                      <li ng-click="CambiarVisionModalidades('OTM');"><a href="#OTM" data-toggle="tab">OTM</a></li>
+                      <li ng-click="CambiarVisionModalidades('MaritimasFcl');"><a href="#maritima-fcl" data-toggle="tab">Marítimas FCL</a></li>
+                      <li ng-click="CambiarVisionModalidades('MaritimasLcl');"><a href="#maritima-lcl" data-toggle="tab">Marítimas LCL</a></li>
+                      <li ng-click="CambiarVisionModalidades('TerrestreNacional');"><a href="#terrestre" data-toggle="tab">Terrestre Nacional</a></li>
+                      <li ng-click="CambiarVisionModalidades('TerrestreUrbano');"><a href="#terrestreurbano" data-toggle="tab">Terrestre Urbano</a></li>
+                      <li ng-click="CambiarVisionModalidades('Areas');"><a href="#aerea" data-toggle="tab">Aéreas</a></li>
+                      <div class="pull-right">
+                        <h6>  Está diligenciando la <strong style="color:red;">Versión 1</strong> de esta modalidad</h6>
+                      </div>
+                    </ul>
+                    <div id="my-tab-content" class="tab-content">
+                      <div class="tab-pane active" id="bodegajes">
+
+                        <div class="well fondo-blanco">
+                          <div class="wrapper row-offcanvas row-offcanvas-left">
+                            <div class="col-md-12 file-input">
+                              <button title="Descarga plantilla de ésta modalidad" class="btn btn-green" ng-click="GetTemplateBodegaje();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+
+                              <span title="Cargar plantilla de modalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                <js-xls onread="read" onerror="error" ></js-xls>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div ng-show="!ModalidadesMostrar.Bodegajes" class="row">
+                            <div class="col-md-12">
+                              <div class="pull-right">
+                                <button title="Mostrar las consideraciones" ng-click="ModalidadesMostrar.Bodegajes = true" href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div ng-show="ModalidadesMostrar.Bodegajes" class="callout callout-warning ">
+                            <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            * Las estibas se deben armar de 40 bultos cada una<br>
+                            * Las estibas deben ser paletizadas con papel Stres<br>
+                            * Las tarifas deben estar dadas en pesos colombianos (COP) y por toneladas.<br>
+                            * NO DIGITAR puntos ni comas en las tarifas, excepto FOB<br>
+                            * Las tarfias FOB son valores en DECIMALES (ejemplo: 0.20,0.10)<br>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                      <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-industry" aria-hidden="true"></i> Aduanero</a>
+                                      </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse in">
+                                      <div class="panel-body">
+                                        <div class="row">
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label class="control-label" for="name">Tarifa Valor/FOB:</label>
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                                <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor" type="text" angular-currency="options2" variable-options="true" class="form-control">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label class="control-label" for="name">Tarifa Mínima:</label>
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                                <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima" type="text" angular-currency="options2" variable-options="true" type="text" class="form-control" placeholder="COP">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label class="control-label" for="name">Otros:</label>
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                                                <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Aduanero.Otros" type="text" angular-currency="options2" variable-options="true" class="form-control" placeholder="COP">
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                      <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-industry" aria-hidden="true"></i> Máquinaria</a>
+                                      </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                      <div class="panel-body">
+                                        <div class="row">
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label class="control-label" for="name">Tarifa:</label>
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                                <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa" type="text" angular-currency="options2" variable-options="true" class="form-control" type="text" placeholder="%(0.00)">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label class="control-label" for="name">Tarifa Mínima:</label>
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                                <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima" type="text" angular-currency="options2" variable-options="true" type="text" class="form-control" placeholder="COP">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <div class="form-group">
+                                              <label class="control-label" for="name">FMM:</label>
+                                              <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                                                <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Maquinaria.Fmm" type="text" angular-currency="options2" variable-options="true" type="text" class="form-control" placeholder="COP">
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-industry" aria-hidden="true"></i> Materia Prima</a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      <div class="row">
+                                        <div class="col-md-4">
+                                          <div class="form-group">
+                                            <label class="control-label" for="name">Tarifa:</label>
+                                            <div class="input-group">
+                                              <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                              <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.MateriaPrima.Tarifa" type="text" angular-currency="options2" variable-options="true" class="form-control" type="text" placeholder="%(0.00)">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <div class="form-group">
+                                            <label class="control-label" for="name">Tarifa Mínima:</label>
+                                            <div class="input-group">
+                                              <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
+                                              <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima" type="text" angular-currency="options2" variable-options="true" type="text" class="form-control" placeholder="COP">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                          <div class="form-group">
+                                            <label class="control-label" for="name">FMM:</label>
+                                            <div class="input-group">
+                                              <span class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                                              <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.MateriaPrima.Fmm" type="text" angular-currency="options2" variable-options="true" type="text" class="form-control" placeholder="COP">
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div><!-- fin well bodegajes-->
+                      </div><!-- fin tab-pane bodegajes-->
+                      <div class="tab-pane " id="aduana">
+                        <div class="well fondo-blanco">
+                          <!-- Cargar plantilla y subir en Excel -->
+                          <div class="wrapper row-offcanvas row-offcanvas-left">
+                            <div class="col-md-12 file-input">
+                              <button class="btn btn-green" ng-click="GetTemplateAduana();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+                              <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                <js-xls onread="read" onerror="error" ></js-xls>
+                              </span>
+                            </div>
+                          </div>
+                          <div ng-show="!ModalidadesMostrar.Aduanas" class="row">
+                            <div class="col-md-12">
+                              <div class="pull-right">
+                                <button ng-click="ModalidadesMostrar.Aduanas=true" href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div ng-show="ModalidadesMostrar.Aduanas" class="callout callout-warning " style="padding-top:30px;">
+                            <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            *<strong> Tarifas en pesos colombianos.</strong><br>
+                            * NO DIGITAR puntos ni comas en las tarifas<br>
+                            * Si va usar decimales, use PUNTO (Ejm: 0.00)
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class=" table-responsive no-padding">
+                                <table class="table table-bordered"  style=" table-layout: fixed;">
+                                  <tr class="width-table2">
+                                    <th class="text-center"><h6><b>Vía</b></h6></th>
+                                    <th class="text-center"><h6><b>Tarifa % Advalorem/ FOB</b></h6></th>
+                                    <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
+                                    <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Adicionales dos</b></h6></th>
+                                    <th class="text-center"><h6><b>Conceptos Adicionales dos</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Adicionales tres</b></h6></th>
+                                    <th class="text-center"><h6><b>Conceptos Adicionales tres</b></h6></th>
+                                    <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
+                                    <th class="text-center"><h6><b>Otros</b></h6></th>
+                                  </tr>
+                                  <tr ng-repeat="Aduana in ModalidadesProveedor.Aduana.Aduanas">
+                                    <td>{{Aduana.Via}}</td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Tarifa" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Gastos_Adicionales" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Conceptos_Adicionales" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Gastos_Adicionales_dos" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Conceptos_Adicionales_dos" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Gastos_Adicionales_tres" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Conceptos_Adicionales_tres" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Costo_Planificacion_Caja" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Otros" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- fin tab-pane aduana-->
+                      <div class="tab-pane" id="aerea">
+                        <div class="well fondo-blanco">
+                          <!-- Cargar plantilla y subir en Excel -->
+                          <div class="wrapper row-offcanvas row-offcanvas-left">
+                            <div class="col-md-12 file-input">
+                              <button class="btn btn-green" ng-click="GetTemplateAerea();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+
+                              <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                <js-xls onread="read" onerror="error" ></js-xls>
+                              </span>
+                            </div>
+                          </div>
+                          <div ng-show="!ModalidadesMostrar.Areas" class="row">
+                            <div class="col-md-12">
+                              <div class="pull-right">
+                                <button ng-click="ModalidadesMostrar.Areas=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div ng-show="ModalidadesMostrar.Areas" class="callout callout-warning ">
+                            <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            *<strong> Tarifas en dólares.</strong><br>
+                            * Diligenciar solamente los campos que apliquen para la licitación<br>
+                            * Para decimales, solamente usar PUNTOS (Ejm:0.00)<br>
+                            * El campo Vía No es obligatorio<br>
+                            * Para valores en miles o millones, NO USAR PUNTOS NI COMAS (Ejm:2000,1000000)<br>
+                            * La FRECUENCIA se debe diligenciar de la siguiente forma: (1,2,3,4,5,6,7)<br>
+                            Cada número representa el día de la semana (Lunes=1,Martes=2,Miércoles=3,etc)<br>
+                            Llenar según corresponda. <br>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class=" table-responsive no-padding">
+                                <div class="widget-header">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Carguero</label>
+                                </div> <!-- /widget-header -->
+                                 <table class="table table-bordered"  style=" table-layout: fixed;">
+                                  <tr>
+                                    <th class="text-center"><h6><b>País</b></h6></th>
+                                    <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
+                                    <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                    <th class="text-center"><h6><b>45</b></h6></th>
+                                    <th class="text-center"><h6><b>'+100</b></h6></th>
+                                    <th class="text-center"><h6><b>'+300</b></h6></th>
+                                    <th class="text-center"><h6><b>'+500</b></h6></th>
+                                    <th class="text-center"><h6><b>'+1000</b></h6></th>
+                                    <th class="text-center"><h6><b>FS min</b></h6></th>
+                                    <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
+                                    <th class="text-center"><h6><b>Observaciones</b></h6></th>
+                                    <th class="text-center"><h6><b>Lead Time (días)</b></h6></th>
+                                    <th class="text-center"><h6><b>Vía</b></h6></th>
+                                    <th class="text-center"><h6><b>Frecuencia</b></h6></th>
+                                    <th class="text-center"><h6><b>T 100 + FS/Kg + Ge</b></h6></th>
+                                    <th class="text-center"><h6><b>T 300 + FS/Kg + Ge</b></h6></th>
+                                    <th class="text-center"><h6><b>T 500 + FS/Kg + Ge</b></h6></th>
+                                    <th class="text-center"><h6><b>T 1000 + FS/Kg + Ge</b></h6></th>
+                                  </tr>
+                                  <tr ng-repeat="Aerea in ModalidadesProveedor.Aerea.Aereas">
+                                    <td>{{Aerea.Pais}}</td>
+                                    <td>{{Aerea.Aeropuerto}}</td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_45" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_100" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_300" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_500" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_1000" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.FSmin" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Fskg" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Gastos_Embarque" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Observaciones" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="Aereas.Lead_Time_Dias">
+                                      <select class="form-control">
+                                        <option>2-3</option>
+                                        <option>3-4</option>
+                                        <option>4-5</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                      </select>
+                                    </div></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Via" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasLunes" type="checkbox" ng-true-value="true" ng-false-value="false">L<input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasMartes" type="checkbox" ng-true-value="true" ng-false-value="false">M<input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasMiercoles" type="checkbox" ng-true-value="true" ng-false-value="false">M<input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasJueves" type="checkbox" ng-true-value="true" ng-false-value="false">J<input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasViernes" type="checkbox" ng-true-value="true" ng-false-value="false">V<input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasSabado" type="checkbox" ng-true-value="true" ng-false-value="false">S<input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasDomingo" type="checkbox" ng-true-value="true" ng-false-value="false">D</td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T100_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T300_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T500_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T1000_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class=" table-responsive no-padding">
+                                <div class="widget-header">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Pasajero</label>
+                                </div> <!-- /widget-header -->
+                            <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                  <tr>
+                                    <th class="text-center"><h6><b>País</b></h6></th>
+                                    <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
+                                    <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                    <th class="text-center"><h6><b>45</b></h6></th>
+                                    <th class="text-center"><h6><b>'+100</b></h6></th>
+                                    <th class="text-center"><h6><b>'+300</b></h6></th>
+                                    <th class="text-center"><h6><b>'+500</b></h6></th>
+                                    <th class="text-center"><h6><b>'+1000</b></h6></th>
+                                    <th class="text-center"><h6><b>FS min</b></h6></th>
+                                    <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
+                                    <th class="text-center"><h6><b>Observaciones</b></h6></th>
+                                    <th class="text-center"><h6><b>Lead Time (días)</b></h6></th>
+                                    <th class="text-center"><h6><b>Vía</b></h6></th>
+                                    <th class="text-center"><h6><b>Frecuencia</b></h6></th>
+                                    <th class="text-center"><h6><b>T 100 + FS/Kg </b></h6></th>
+                                    <th class="text-center"><h6><b>T 300 + FS/Kg </b></h6></th>
+                                    <th class="text-center"><h6><b>T 500 + FS/Kg </b></h6></th>
+                                    <th class="text-center"><h6><b>T 1000 + FS/Kg </b></h6></th>
+
+                                  </tr>
+                                  <tr ng-repeat="AereaPasajero in ModalidadesProveedor.AereaPasajero.AereasPasajeros">
+                                    <td>{{AereaPasajero.Pais}}</td>
+                                    <td>{{AereaPasajero.Aeropuerto}}</td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_45" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_100" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_300" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_500" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_1000" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.FSmin" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Fskg" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Gastos_Embarque" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Observaciones" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Lead_Time_Dias">
+                                      <select class="form-control">
+                                        <option>2-3</option>
+                                        <option>3-4</option>
+                                        <option>4-5</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                      </select>
+                                    </div></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Via" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasLunes" type="checkbox" ng-true-value="true" ng-false-value="false">L<input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasMartes" type="checkbox" ng-true-value="true" ng-false-value="false">M<input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasMiercoles" type="checkbox" ng-true-value="true" ng-false-value="false">M<input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasJueves" type="checkbox" ng-true-value="true" ng-false-value="false">J<input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasViernes" type="checkbox" ng-true-value="true" ng-false-value="false">V<input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasSabado" type="checkbox" ng-true-value="true" ng-false-value="false">S<input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasDomingo" type="checkbox" ng-true-value="true" ng-false-value="false">D</td>
+
+
+
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T100_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T300_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T500_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T1000_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- fin tab-pane OTM-->
+                      <div class="tab-pane" id="OTM">
+                        <div class=" well fondo-blanco">
+                          <!-- Cargar plantilla y subir en Excel -->
+                          <div class="wrapper row-offcanvas row-offcanvas-left">
+                            <div class="col-md-12 file-input">
+                              <button class="btn btn-green" ng-click="GetTemplateOTM();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+
+                              <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                <js-xls onread="read" onerror="error" ></js-xls>
+                              </span>
+                            </div>
+                          </div>
+                          <div ng-show="!ModalidadesMostrar.OTM" class="row">
+                            <div class="col-md-12">
+                              <div class="pull-right">
+                                <button ng-click="ModalidadesMostrar.OTM=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div ng-show="ModalidadesMostrar.OTM" class="callout callout-warning ">
+                            <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            * Contenedores de 20 pies con neto de 18 Ton x bultos de 25 Kg cada uno.<br>
+                            * Contenedores de 20 pies con neto de 21 Ton en Big Bag x 1 ton<br>
+                            *<strong> Tarifas en pesos colombianos.</strong><br>
+                            * NO DIGITAR puntos ni comas en las tarifas.<br>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="box-body table-responsive">
+                                <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                  <tr>
+                                    <th class="text-center"><h6><b>Origen</b></h6></th>
+                                    <th class="text-center"><h6><b>Destino</b></h6></th>
+                                    <th class="text-center"><h6><b>C 20 hasta 4.5 Ton</b></h6></th>
+                                    <th class="text-center"><h6><b>C 20 hasta 8 Ton</b></h6></th>
+                                    <th class="text-center"><h6><b>C 20 hasta 10 Ton</b></h6></th>
+                                    <th class="text-center"><h6><b>C 20 hasta 17 Ton</b></h6></th>
+                                    <th class="text-center"><h6><b>C 20 hasta 19 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 20 hasta 20 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 20 hasta 21 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 20 hasta 25 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 15 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 16 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 17 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 17-18 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 20 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 21 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 22 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>C 40 hasta 30 Ton</b></h6> </th>
+                                    <th class="text-center"><h6><b>Devolución 20$ estándar</b></h6> </th>
+                                    <th class="text-center"><h6><b>Devolución 40$ estándar </th>
+                                      <th class="text-center"><h6><b>Devolución 20$ expreso</b></h6> </th>
+                                      <th class="text-center"><h6><b>Devolución 40$ expreso</b></h6> </th>
+                                    </tr>
+                                    <tr ng-repeat="Otm in ModalidadesProveedor.Otm.Otms">
+                                      <td>{{Otm.Origen}}</td>
+                                      <td>{{Otm.Destino}}</td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_4_5_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_8_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_10_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_17_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_19_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_20_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_21_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_25_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_15_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_16_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_17_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_17_18_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_20_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_21_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_22_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_30_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_20$_estandar" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_40$_estandar" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_20$_expreso" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_40$_expreso" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    </tr>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- fin tab-pane OTM-->
+                        <div class="tab-pane " id="maritima-fcl">
+                          <div class="well fondo-blanco">
+                            <!-- Cargar plantilla y subir en Excel -->
+                            <div class="wrapper row-offcanvas row-offcanvas-left">
+                              <div class="col-md-12 file-input">
+                                <button class="btn btn-green" ng-click="GetTemplateMariFcl();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+
+                                <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                  <js-xls onread="read" onerror="error" ></js-xls>
+                                </span>
+                              </div>
+                            </div>
+                            <div ng-show="!ModalidadesMostrar.MaritimasFcl"  class="row">
+                              <div class="col-md-12">
+                                <div class="pull-right">
+                                  <button ng-click="ModalidadesMostrar.MaritimasFcl=true" href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <div ng-show="ModalidadesMostrar.MaritimasFcl" class="callout callout-warning ">
+                              <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                              *<strong> Tarifas en dólares.</strong><br>
+                              * Diligenciar solamente los campos que apliquen para la licitación<br>
+                              * Para decimales, solamente usar PUNTOS (Ejm:0.00)<br>
+                              * El campo Vía No es obligatorio<br>
+                              * Para valores en miles o millones, NO USAR PUNTOS NI COMAS (Ejm:2000,1000000)<br>
+                              * La FRECUENCIA se debe diligenciar de la siguiente forma: (1,2,3,4,5,6,7)<br>
+                              Cada número representa el día de la semana (Lunes=1,Martes=2,Miércoles=3,etc)<br>
+                              Llenar según corresponda. <br>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-md-12">
+                              <div class="box-body table-responsive">
+                                <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                    <tr> <!-- class="width-table">-->
+                                      <th class="text-center"><h6><b>País Destino</b></h6></th>
+                                      <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
+                                      <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
+                                      <th class="text-center"><h6><b>C 20</b></h6></th>
+                                      <th class="text-center"><h6><b>Baf 20</b></h6></th>
+                                      <th class="text-center"><h6><b>C 40</b></h6></th>
+                                      <th class="text-center"><h6><b>Baf 40</b></h6></th>
+                                      <th class="text-center"><h6><b>C 40HC</b></h6></th>
+                                      <th class="text-center"><h6><b>Baf 40HC</b></h6></th>
+                                      <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
+                                      <th class="text-center"><h6><b>Observaciones</b></h6></th>
+                                      <th class="text-center"><h6><b>Lead Time(d&iacute;as)</b></h6></th>
+                                      <th class="text-center"><h6><b>Naviera</b></h6></th>
+                                      <th class="text-center"><h6><b>Frecuencia</b></h6></th>
+                                      <th class="text-center"><h6><b>C20 + Baf 20 + Ge</b></h6></th>
+                                      <th class="text-center"><h6><b>C40 + Baf 40 + Ge</b></h6></th>
+                                      <th class="text-center"><h6><b>C40 HC + Baf 40 HC + Ge</b></h6></th>
+
+                                    </tr>
+                                    <tr ng-repeat="MaritimaFcl in ModalidadesProveedor.MaritimaFcl.MaritimasFcl">
+                                      <td>{{MaritimaFcl.PaisDestino}}</td>
+                                      <td>{{MaritimaFcl.PuertoOrigen}}</td>
+                                      <td>{{MaritimaFcl.PuertoDestino}}</td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.C20" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Baf20" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.C40" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Baf40" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.C40HC" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Baf40HC" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.GastosEmbarque" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Observaciones" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Lead_TimeDias" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Naviera" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-change="UpdateModalidades();" ng-model="MaritimaFcl.FrecuenciaSemanal" type="checkbox" ng-true-value="true" ng-false-value="false">S<input ng-change="UpdateModalidades();" ng-model="MaritimaFcl.FrecuenciaQuincenal"  type="checkbox" ng-true-value="true" ng-false-value="false">Q<input ng-change="UpdateModalidades();" ng-model="MaritimaFcl.FrecuenciaMensual" type="checkbox" ng-true-value="true" ng-false-value="false">M</td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Sumatoria_C40_Baf40_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Sumatoria_C40HC_Baf40HC_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- fin tab-pane FCL-->
+                      <div class="tab-pane" id="maritima-lcl">
+                        <div class="well fondo-blanco">
+                          <!-- Cargar plantilla y subir en Excel -->
+                          <div class="wrapper row-offcanvas row-offcanvas-left">
+                            <div class="col-md-12 file-input">
+                              <button class="btn btn-green" ng-click="GetTemplateMariLcl();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+                              <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                <js-xls onread="read" onerror="error" ></js-xls>
+                              </span>
+                            </div>
+                          </div>
+                          <div ng-show="!ModalidadesMostrar.MaritimasLcl"  class="row">
+                            <div class="col-md-12">
+                              <div class="pull-right">
+                                <button ng-click="ModalidadesMostrar.MaritimasLcl=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div ng-show="ModalidadesMostrar.MaritimasLcl" class="callout callout-warning ">
+                            <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            *<strong> Tarifas en dólares.</strong><br>
+                            *Si va usar decimales, separelos con PUNTOS<br>
+                            * La FRECUENCIA se debe diligenciar de la siguiente forma: (1,2,3,4,5,6,7)<br>
+                            Cada número representa el día de la semana (Lunes=1,Martes=2,Miércoles=3,etc)<br>
+                            Llenar según corresponda. <br>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="box-body table-responsive no-padding">
+                                <table class="table table-bordered"  style=" table-layout: fixed;">
+                                  <tr class="width-table">
+                                    <th class="text-center"><h6><b>País Destino</b></h6></th>
+                                    <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
+                                    <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
+                                    <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                    <th class="text-center"><h6><b>1-5 ton/M3</b></h6></th>
+                                    <th class="text-center"><h6><b>5-8 ton/M3</b></h6></th>
+                                    <th class="text-center"><h6><b>8-12 Ton/M3</b></h6></th>
+                                    <th class="text-center"><h6><b>12-18 Ton/M3</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
+                                    <th class="text-center"><h6><b>Observaciones</b></h6></th>
+                                    <th class="text-center"><h6><b>Lead time(días)</b></h6></th>
+                                    <th class="text-center"><h6><b>Naviera</b></h6></th>
+                                    <th class="text-center"><h6><b>Frecuencia(d&iacute;as)</b></h6></th>
+                                  </tr>
+                                  <tr ng-repeat="MaritimaLcl in ModalidadesProveedor.MaritimaLcl.MaritimasLcl">
+                                    <td>{{MaritimaLcl.PaisDestino}}</td>
+                                    <td>{{MaritimaLcl.PuertoOrigen}}</td>
+                                    <td>{{MaritimaLcl.PuertoDestino}}</td>
+                                    <td><input ng-change="suma(MaritimaLcl);" ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._1_5_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._5_8_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._8_12_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._12_18_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Gastos_Embarque" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Observaciones" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Lead_Time_Dias">
+                                      <select class="form-control">
+                                        <option>2-3</option>
+                                        <option>3-4</option>
+                                        <option>4-5</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                      </select>
+                                    </div></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Naviera" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td>
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasLunes" type="checkbox" ng-true-value="true" ng-false-value="false">L
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasMartes" type="checkbox" ng-true-value="true" ng-false-value="false">M
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasMiercoles" type="checkbox" ng-true-value="true" ng-false-value="false">M
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasJueves" type="checkbox" ng-true-value="true" ng-false-value="false">J
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasViernes" type="checkbox" ng-true-value="true" ng-false-value="false">V
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasSabado" type="checkbox" ng-true-value="true" ng-false-value="false">S
+                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasDomingo" type="checkbox" ng-true-value="true" ng-false-value="false">D
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- fin tab-pane LCL-->
+                      <div class="tab-pane" id="terrestre">
+                        <div class="well fondo-blanco">
+                          <!-- Cargar plantilla y subir en Excel -->
+                          <div class="wrapper row-offcanvas row-offcanvas-left">
+                            <div class="col-md-12 file-input">
+                              <button class="btn btn-green" ng-click="GetTemplateTerreNacional();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+
+                              <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                <js-xls onread="read" onerror="error" ></js-xls>
+                              </span>
+                            </div>
+                          </div>
+                          <div ng-show="!ModalidadesMostrar.TerrestreNacional" class="row">
+                            <div class="col-md-12">
+                              <div class="pull-right">
+                                <button ng-click="ModalidadesMostrar.TerrestreNacional=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                  <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <div ng-show="ModalidadesMostrar.TerrestreNacional" class="callout callout-warning ">
+                            <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            *<strong> Tarifas en pesos colombianos.</strong><br>
+                            * NO DIGITAR puntos ni comas en las tarifas<br>
+                            * La tarifa debe incluir cargue y descargue
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="box-body table-responsive no-padding">
+                                <div class="widget-header">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Turbo</label>
+                                </div>
+                                <table class="table table-bordered">
+                                  <tr>
+                                    <th class="text-center"><h6><b>Origen<b></h5></th>
+                                      <th class="text-center"><h6><b>Destino</b></h5></th>
+                                        <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h5></th>
+                                          <th class="text-center"><h6><b>Turbo Especial</b></h5></th>
+                                          </tr>
+                                          <tr ng-repeat="TerreNacional in ModalidadesProveedor.TerreNacional.TerresNacional">
+                                            <td>{{TerreNacional.PaisOrigen}}</td>
+                                            <td>{{TerreNacional.PuertoDestino}}</td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacional.Turbo_Standar_150Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacional.Turbo_Especial" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                              <div class="box-body table-responsive no-padding">
+                                <div class="widget-header">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Sencillo</label>
+                                </div>
+                                <table class="table table-bordered">
+                                  <tr>
+                                    <th class="text-center"><h6><b>Origen<b></h5></th>
+                                      <th class="text-center"><h6><b>Destino</b></h5></th>
+                                        <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h5></th>
+                                          <th class="text-center"><h6><b>Sencillo Especial</b></h5></th>
+                                          </tr>
+                                          <tr ng-repeat="TerreNacionalSencillo in ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo">
+                                            <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
+                                            <td>{{TerreNacionalSencillo.PuertoDestino}}</td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalSencillo.Sencillo_240Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalSencillo.Sencillo_Especial" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                  <div class="col-md-12">
+                              <div class="box-body table-responsive no-padding">
+                                <div class="widget-header">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Patineta</label>
+                                </div>
+                                <table class="table table-bordered">
+                                  <tr>
+                                    <th class="text-center"><h6><b>Origen<b></h5></th>
+                                      <th class="text-center"><h6><b>Destino</b></h5></th>
+                                        <th class="text-center"><h6><b>Minimula</b></h5></th>
+                                          <th class="text-center"><h6><b>Gran Danes</b></h5></th>
+                                          </tr>
+                                          <tr ng-repeat="TerreNacionalPatineta in ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta">
+                                            <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
+                                            <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalPatineta.Minimula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalPatineta.GranDanes" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div><!-- fin tab-pane terrestre-->
+                              <div class="tab-pane" id="terrestreurbano">
+                                <div class="well fondo-blanco">
+                                  <!-- Cargar plantilla y subir en Excel -->
+                                  <div class="wrapper row-offcanvas row-offcanvas-left">
+                                    <div class="col-md-12 file-input">
+                                      <button class="btn btn-green" ng-click="GetTemplateTerreUrbano();"><i class="fa fa-download" aria-hidden="true"></i> Descargar Plantilla</button>
+                                      <span class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivos
+                                        <js-xls onread="read" onerror="error" ></js-xls>
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div ng-show="!ModalidadesMostrar.TerrestreUrbano" class="row">
+                                    <div class="col-md-12">
+                                      <div class="pull-right">
+                                        <button ng-click="ModalidadesMostrar.TerrestreUrbano=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                          <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <br>
+                                  <div ng-show="ModalidadesMostrar.TerrestreUrbano" class="callout callout-warning ">
+                                    <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                                    *<strong> Tarifas en pesos colombianos.</strong><br>
+                                    * NO DIGITAR puntos ni comas en las tarifas<br>
+                                    * La tarifa debe incluir cargue y descargue
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="box-body table-responsive no-padding">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</label>
+                                        <table class="table table-bordered">
+                                          <tr>
+                                            <th class="text-center"><h6><b>Origen<b></h5></th>
+                                              <th class="text-center"><h6><b>Destino</b></h5></th>
+                                                <th class="text-center"><h6><b>Turbo (150 cajas) </b></h5></th>
+                                                  <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h5></th>
+                                                  <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h5></th>
+                                                  <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h5></th>
+                                                  <th class="text-center"><h6><b>Minimula</b></h5></th>
+                                                  <th class="text-center"><h6><b>Gran Danes</b></h5></th>
+                                                  </tr>
+                                                  <tr ng-repeat="TerreUrbano in ModalidadesProveedor.TerreUrbano.TerresUrbano">
+                                                    <td>{{TerreUrbano.PaisOrigen}}</td>
+                                                    <td>{{TerreUrbano.PuertoDestino}}</td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Turbo_150Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Turbo_Especial_200Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Sencillo_240Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Sencillo_Especial_300Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Minimula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.GranDanes" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                  </tr>
+                                                </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                           <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="box-body table-responsive no-padding">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Urbano Viaje</label>
+                                        <table class="table table-bordered">
+                                          <tr>
+                                            <th class="text-center"><h6><b>Origen<b></h5></th>
+                                              <th class="text-center"><h6><b>Destino</b></h5></th>
+                                                <th class="text-center"><h6><b>Turbo (150 cajas) </b></h5></th>
+                                                  <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h5></th>
+                                                  <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h5></th>
+                                                  <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h5></th>
+                                                  <th class="text-center"><h6><b>Minimula</b></h5></th>
+                                                  <th class="text-center"><h6><b>Gran Danes</b></h5></th>
+                                                  </tr>
+                                                  <tr ng-repeat="TerreUrbanoViaje in ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje">
+                                                    <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
+                                                    <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Turbo_150Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Turbo_Especial_200Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Sencillo_240Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Sencillo_Especial_300Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Minimula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.GranDanes" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                  </tr>
+                                                </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                           <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="box-body table-responsive no-padding">
+                                  <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Tonelada</label>
+                                        <table class="table table-bordered">
+                                          <tr>
+                                            <th class="text-center"><h6><b>Origen<b></h5></th>
+                                              <th class="text-center"><h6><b>Destino</b></h5></th>
+                                                <th class="text-center"><h6><b>Turbo></h5></th>
+                                                  <th class="text-center"><h6><b>Sencillo</b></h5></th>
+                                                  <th class="text-center"><h6><b>Tractomula</b></h5></th>
+
+                                                  </tr>
+                                                  <tr ng-repeat="TerreUrbanoTonelada in ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada">
+                                                    <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
+                                                    <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoTonelada.Turbo" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoTonelada.Sencillo" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoTonelada.Tractomula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+
+                                                  </tr>
+                                                </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div><!-- fin tab-pane terrestre-->
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-default btn-opciones "><span class="glyphicon glyphicon-floppy-remove"></span> Finalizar</button>
+                                  </div><!--fin modal footer-->
+                                </section><!-- /.content -->
+                              </aside><!-- /.right-side -->
+                            </div><!-- ./wrapper -->
+                          </section><!-- /.content -->
+                          <!-- Modales -->
+                          <div class="modal fade" id="requisitos" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal-dialog  modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header" style="margin-top: 10px;">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                  <div class="titulo-modal">
+                                    <h5 class="modal-title"><i class="fa fa-tasks" aria-hidden="true"></i><b> Requisitos mínimos</b></h5>
+                                  </div>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="callout callout-info">
+                                      <table class="table table-bordered">
+                                        <tr>
+                                          <th><h5><strong>Requisitos mínimos para aceptar la licitación</strong></h5></th>
+                                          <th><h5><strong>Soportes Anexar</strong></h5></th>
+                                        </tr>
+                                        <tr>
+                                          <td> Todo proveedor de servicios debe tener su proceso de seguridad certificado puede ser BASC o por otro ente certificador. Los demás procesos es opcional (ISO 9001,OSHAS 18001,ISO 14001,BPM 15373) etc.</td>
+                                          <td> Anexar las certificaciones obtenidas</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Debe estar Legalmente Constituido </td>
+                                          <td>Anexar los siguientes documentos: <br>1. Certificado de camara y comercio no mayor a 30 días <br>2. Rut <br>3. Copia de la Cédula de Ciudanía del Representante Legal </td>
+                                        </tr>
+                                        <tr>
+                                          <td>Experiencia en el mercado 10 años</td>
+                                          <td>Describir cuantos años lleva en el mercado</td>
+                                        </tr>
+                                        <tr>
+                                          <td> Oficinas directas(Cartagena/Buenaaventura) demás ciudades principalesde Colombia puede ser representaciones </td>
+                                          <td> Anexar: Documento Legal que acredite </td>
+                                        </tr>
+                                        <tr>
+                                          <td> Debe tener oficinas directas o representaciones en los países de la licitación </td>
+                                          <td> Anexar: Documento Legal que acredite </td>
+                                        </tr>
+                                        <tr>
+                                          <td> Debe contar minimo con 5 referencia comerciales  </td>
+                                          <td> Anexar: Referencias comerciales </td>
+                                        </tr>
+                                        <tr>
+                                          <td> Debe contar minimo con 2 referencia Bancarias</td>
+                                          <td> Anexar: Referencias Bancarias </td>
+                                        </tr>
+                                      </table>
+                                      <h6>Si NO cumple con los requisitos minimos por favor abstengase de realizar el proceso de licitación.</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <div class="modal-footer">
+                                    <button ng-click="AddBanco();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Acepto</button>
+                                    <button  class="btn btn-default"><i class="fa fa-times" aria-hidden="true"></i> No Acepto</button>
+                                  </div><!--fin modal footer-->
+                                </div><!--end modal footer-->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal fade" id="preguntas" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal-dialog  modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header" style="margin-top: 10px;">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                  <div class="titulo-modal">
+                                    <h5 class="modal-title"><i class="fa fa-question-circle" aria-hidden="true"></i><b> Preguntas Frecuentes</b></h5>
+                                  </div>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                1.Puedo licitar uno o dos procesos solamente</a>
+                                              </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                              <div class="panel-body">
+
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                              <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                  2.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                                </h4>
+                                              </div>
+                                              <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                    3.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                                  </h4>
+                                                </div>
+                                                <div id="collapseThree" class="panel-collapse collapse">
+                                                  <div class="panel-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsefor"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                      4.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                                    </h4>
+                                                  </div>
+                                                  <div id="collapsefor" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+
+                                                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="panel panel-default">
+                                                  <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                        5.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                                      </h4>
+                                                    </div>
+                                                    <div id="collapsefive" class="panel-collapse collapse">
+                                                      <div class="panel-body">
+
+                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                      <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsesix"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                          6.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                                        </h4>
+                                                      </div>
+                                                      <div id="collapsesix" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+
+                                                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="panel panel-default">
+                                                      <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseseven"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                            7.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
+                                                          </h4>
+                                                        </div>
+                                                        <div id="collapseseven" class="panel-collapse collapse">
+                                                          <div class="panel-body">
+
+                                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button ng-click="AddBanco();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Acepto</button>
+                                                <button  class="btn btn-default"><i class="fa fa-times" aria-hidden="true"></i> No Acepto</button>
+                                              </div><!--end modal footer-->
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </aside><!-- /.right-side -->
+                                    </div><!-- ./wrapper -->
+
+                                    <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}"></div>
+                                    <!-- Zona de modales -->
+                                    <!-- Modal de errores de importacion -->
+                                    <div class="modal fade" id="error-importacion-excel" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                      <div class="modal-dialog  modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header" style="margin-top: 10px;">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+
+                                            <div class="titulo-modal">
+                                              <h5 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><b> Errores Importación</b></h5>
+                                            </div>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div class="box-body table-responsive">
+                                                  <table class="table table-bordered">
+                                                    <tr>
+                                                      <th class="widht:2%;"><h5><strong>Fila</strong></h5></th>
+                                                      <th><h5><strong>Campo</strong></h5></th>
+                                                      <th><h5><strong>Error</strong></h5></th>
+
+                                                    </tr>
+                                                    <tr ng-repeat="errorimportacion in erroresimportacion">
+                                                      <td>{{errorimportacion.fila}}</td>
+                                                      <td>{{errorimportacion.campo}}</td>
+                                                      <td>{{errorimportacion.error}}</td>
+                                                    </tr>
+                                                  </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!-- Fin Modal de errores de importacion -->
+                                    <div class="modal fade" id="modal-tips" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                      <div class="modal-dialog  modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header" style="margin-top: 10px;">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+
+                                            <div class="titulo-modal">
+                                              <h5 class="modal-title"><i class="fa fa-info-circle" aria-hidden="true"></i><b> Opciones para cargar los valores de modalidades.</b></h5>
+                                            </div>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="row">
+                                              <div class="col-md-6">
+                                                <img src="img/tip_boton.png" class="img-responsive" alt="logo-proenfar" width="300" height="300" style="margin-top:-12px;"/>
+                                              </div>
+                                              <div class="col-md-6" style="padding-top:5px;">
+                                                <h5><i class="fa fa-info-circle" aria-hidden="true"></i> Opción 1- Puede usar las opciones de "Descargar plantilla" y "Subir plantilla" en excel para cargar masivamente sus registros por cada modalidad.</h5>
+
+                                              </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                              <div class="col-md-6" >
+                                                <img src="img/tip_input.png" class="img-responsive" alt="logo-proenfar" width="350" height="350" style="margin-top:-12px;"/>
+                                              </div>
+                                              <div class="col-md-6" style="padding-top:15px;">
+                                                <h5><i class="fa fa-info-circle" aria-hidden="true"></i> Opción 2- Puede llenar manualmente cada valor en cada modalidad sin usar la plantilla o usando la plantilla opción 1.</h5>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!-- Fin Zona de modales -->
+
+                                    <!-- Bootstrap -->
+                                    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+                                    <!--Librería para validar números -->
+                                    <script src="js/autoNumeric.js"></script>
+
+                                    <!-- Librería de controlador principal -->
+                                    <script src="js/controller.js"></script>
+  </body>
+</html>

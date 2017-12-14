@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Proentar::..</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.3.7 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <!-- <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" /> -->
+        <!-- Theme style -->
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/estiloslistas.css" rel="stylesheet">
+
+
+        <!-- Angular Librerías -->
+        <script src="js/angular.js"></script>
+        <script src="js/angular-animate.js"></script>
+        <script src="js/angular-sanitize.js"></script>
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+        <!-- Librería de controlador principal -->
+        <script src="js/controller.js"></script>
+
+        <!-- Lists -->
+        <script src="js/Lists.js"></script>
+        <!-- JQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Angular Librerías -->
+
+        <script src="js/angular-drag-and-drop-lists.js"></script>
+
+
+        <!-- *****************************************Boostrap Angular Librerías***************************************** -->
+        <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+
+        <!-- *****************************************Código de Select Boostrap Angular***************************************** -->
+        <script src="./select.js"></script>
+        <link rel="stylesheet" href="./select.css">
+
+                <!-- *****************************************Librería de angular loading***************************************** -->
+        <script src="js/spin.min.js"></script>
+        <script src="js/angular-loading.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+
+        <!-- *****************************************Librería de angular tags inputs***************************************** -->
+        <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+        <script src="js/ng-tags-input.min.js"></script>
+        <!-- *****************************************Librería de file upload***************************************** -->
+        <script src="js/angular-file-upload.min.js"></script>
+        <!-- *****************************************Librería de boostrap toogle ***************************************** -->
+        <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+        <script src="js/ui-bootstrap-tpls-2.4.0.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+        <script src="js/sweetalert.min.js"></script>
+
+        <!--Librería para xlsx -->
+        <script type="text/javascript" src="js/xlsx.core.min.js"></script>
+        <script type="text/javascript" src="js/angular-js-xlsx.js"></script>
+
+        <!--Librería para xlsx -->
+        <script type="text/javascript" src="js/mask.js"></script>
+
+    </head>
+    <body class="skin-blue"  ng-controller="ctrlWarrantyLogin">
+        <!-- header logo: style can be found in header.less -->
+        <header>
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logo" href="#">  <img src="img/logo-proenfar.png" width="180" height="80" style="margin-top:-30px;"></a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li  class="active">
+                    <a href="index.html">
+                      <i class="fa fa-envelope" aria-hidden="true"></i><span> Notificación a proveedores</span>
+                    </a>
+                  </li>
+                  <li >
+                    <a href="proveedores.html">
+                      <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
+                    </a>
+                  </li>
+                  <li >
+                    <a href="modalidades.html">
+                      <i class="fa fa-bar-chart-o"></i>
+                      <span>Proveedores a modalidades</span>
+                    </a>
+                  </li>
+                  <li >
+                    <a href="usuarios.html">
+                      <i class="fa fa-id-card" ></i>
+                      <span>Usuarios</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Notificación Proveedores
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active"><a href="#"><i class="fa fa-envelope" ></i> Notificación a proveedores</a></li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                  <div class="wrapper row-offcanvas row-offcanvas-left">
+
+                      <!-- Right side column. Contains the navbar and content of the page -->
+                      <aside class="">
+                          <!-- Content Header (Page header) -->
+
+                          <!-- Main content -->
+                          <section class="content">
+
+                              <!-- MAILBOX BEGIN -->
+                              <div class="mailbox row">
+                                  <div class="col-xs-12">
+                                      <div class="box box-solid">
+                                          <div class="box-body">
+
+                                            <div class="row">
+                                              <div class="col-md-7 ">
+                                                <div class="col-md-8">
+                                                <div class="form-group">
+                                                  <br>
+                                                  <ui-select  ng-model="Usuario.selected" theme="bootstrap" title="Escoge un proveedor">
+                                                    <ui-select-match placeholder="Escoge o busca un Proveedor...">{{$select.selected.Name}}</ui-select-match>
+                                                    <ui-select-choices repeat="usuario in Usuarios | filter: { Name: $select.search } "
+                                                    refresh="refreshUsuarios($select.search)"
+                                                    refresh-delay="0">
+                                                    <span ng-bind-html="usuario.Name | highlight: $select.search"></span>
+                                                  </ui-select-choices>
+                                                </ui-select>
+
+                                              </div>
+
+
+                                                </div>
+                                                <div class="col-md-4 pull-right">
+                                                  <br>
+                                                  <button ng-click="bkproveedor();"  type="button" class="btn btn-sm btn-default btn-flat " ><i class="fa fa-plus" ></i></button>
+                                                  <button ng-click="cargarproveedoresTodos();"  type="button" class="btn btn-sm btn-default btn-flat " ><i class="fa fa-navicon" ></i></button>
+                                              </div>
+                                              <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                  <!-- THE MESSAGES -->
+                                                  <table class="table table-mailbox">
+                                                    <tbody  ng-repeat="Usuario in Proveedores">
+                                                      <tr class="">
+                                                        <td class="small-col"> <button ng-click="dtproveedor(Usuario);" class="btn btn-clear btn-rojo btn-xs" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                                        <td>{{Usuario.Name}}</td>
+                                                        <td>{{Usuario.Email}}</td>
+                                                      </tr>
+                                                    </table>
+                                                  </div><!-- /.table-responsive -->
+                                              </div>
+                                              </div>
+                                                  <div class="col-md-5 col-sm-4">
+                                                      <!-- BOXES are complex enough to move the .box-header around.
+                                                           This is an example of having the box header within the box body -->
+                                                      <div class="box-header">
+                                                          <i class="fa fa-inbox"></i>
+                                                          <h3 class="box-title">Mensaje:</h3>
+                                                      </div>
+
+                                                      <div class="col-md-12 file-input">
+                                                        <p>Seleccione archivos...</p>
+                                                        <!--<a href="#" class="btn btn-default btn-sm "><i class="fa fa-cloud-upload fa-3x"></i> Upload File</a>-->
+                                                        <span class="btn-file btn btn-default btn-sm" style=""><i class="fa fa-cloud-upload fa-3x"></i> Subir Archivos
+                                                          <input type="file" nv-file-select uploader="uploader" multiple hidden>
+                                                        </span>
+                                                      </div>
+
+                                                      <div class="form-group">
+                                                          <textarea ng-model="Mensaje" name="message" id="email_message" rows="10" class="form-control" placeholder="Ingrese mensaje..." ></textarea>
+                                                      </div>
+                                                      <div class="pull-right">
+                                                      <button ng-click="EnviarEmailProveedores();"  class="btn btn-green" type="button" >Enviar <i class="fa fa-paper-plane" ></i></button>
+                                                    </div>
+                                                  </div><!-- /.col (LEFT) -->
+
+                                              </div><!-- /.row -->
+                                          </div><!-- /.box-body -->
+                                      </div><!-- /.box -->
+                                  </div><!-- /.col (MAIN) -->
+                              </div>
+                              <!-- MAILBOX END -->
+
+                          </section><!-- /.content -->
+                      </aside><!-- /.right-side -->
+                  </div><!-- ./wrapper -->
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+        <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}">
+        </div>
+
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+    </body>
+</html>

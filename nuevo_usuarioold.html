@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta charset="UTF-8">
+        <title>Proentar::..</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+               <link rel="stylesheet" type="text/css" href="https://ptreesys.mx/sharedfiles/src/sweetalert.css"> 
+
+                <link rel="stylesheet" type="text/css" href="https://ptreesys.mx/sharedfiles/src/sweetalert.css">
+
+                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Lato:400,900,900i" rel="stylesheet">
+
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+
+         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+
+
+
+                 <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css">
+      <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+                 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.js"></script>
+
+
+    
+        <script src="https://ptreesys.mx/sharedfiles/src/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+        <script src="https://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+        
+        <!-- bootstrap 3.3.7 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/estiloslistas.css" rel="stylesheet">
+
+
+        <!-- Angular Librerías -->
+        <script src="js/angular.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-animate.js"></script>
+        <script src="js/angular-sanitize.js"></script>
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+        <!-- Librería de controlador principal -->
+        <script src="js/controller.js"></script>
+
+        <!-- Lists -->
+        <script src="js/Lists.js"></script>
+        <!-- JQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Angular Librerías -->
+
+        <script src="js/angular-drag-and-drop-lists.js"></script>
+
+
+        <!-- *****************************************Boostrap Angular Librerías***************************************** -->
+        <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+
+        <!-- *****************************************Código de Select Boostrap Angular***************************************** -->
+        <script src="./select.js"></script>
+        <link rel="stylesheet" href="./select.css">
+
+                <!-- *****************************************Librería de angular loading***************************************** -->
+        <script src="js/spin.min.js"></script>
+        <script src="js/angular-loading.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+
+        <!-- *****************************************Librería de angular tags inputs***************************************** -->
+        <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+        <script src="js/ng-tags-input.min.js"></script>
+        <!-- *****************************************Librería de file upload***************************************** -->
+        <script src="js/angular-file-upload.min.js"></script>
+        <!-- *****************************************Librería de boostrap toogle ***************************************** -->
+        <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="js/angular-bootstrap-toggle.min.js"></script>
+
+
+    </head>
+    <body class="skin-blue"  ng-controller="ctrlNuevoUsuario">
+   
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+              <img src="img/logo-proenfar.png" width="180" height="80" style="margin-top:-14px;">
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less -->
+                         <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hello, Julio Briceño </span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                            </ul>
+                          </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li >
+                            <a href="index.html">
+                                <i class="fa fa-envelope" aria-hidden="true"></i><span>Notificación a proveedores</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="proveedores.html">
+                              <i class="fa fa-handshake-o" ></i><span>Proveedores</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="modalidades.html">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span>Proveedores a modalidades</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="usuarios.html">
+                                <i class="fa fa-id-card" ></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Nuevo Usuario
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li ><a href="usuarios.html"><i class="fa fa-id-card" ></i>Usuarios</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-pencil"></i>Nuevo Usuario</a></li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                  <div class="modal-body ">
+                    <div class="well">
+                      <div class="margin-well fondomodal">
+                        <div class="row">
+                          <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Personal</b></h5>
+                      </div>
+                      <hr>
+                      <div class="col-md-4">
+
+                        <div class="form-group">
+                          <label class="control-label" for="name">Nombre:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i></span>
+                             <input ng-model="username" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Nombre">
+                          </div><!--Fin input-group nombre-->
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                           <label class="control-label" for="name">Correo:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input ng-disabled="DisableEmail" ng-model="email" class="form-control" type="text" placeholder="Correo">
+                          </div><!--Fin input-group nombre-->
+                        </div>
+                      </div>
+                                   <div class="col-md-4" >
+                                   <div class="form-group">
+                              <label class="control-label" for="name">Perfil:</label>
+                              <div class="dropdown">
+                                  <select  ng-change="Searchperfil();" class="form-control" id="sel1"
+                                          ng-model="selectedPerfil"
+                                          ng-options="Perfil as Perfil.Name for Perfil in Perfiles"></select>
+                              </div>
+                            </div>
+
+                           </div>
+
+                            <div class="col-md-4">
+                        <div ng-show="Show2" class="form-group">
+                           <label class="control-label" for="name">Nit:</label>
+                          <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
+                                <input ng-model="nit" name="nit" class="form-control" type="text" placeholder="NIT">
+                          </div><!--Fin input-group nombre-->
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div ng-show="Show2" class="form-group">
+                           <label class="control-label" for="name">Contacto:</label>
+                          <div class="input-group">
+                           <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                <input ng-model="phone"  type="text" class="form-control" name="phone" placeholder="Contacto"><!--Fin input-group nombre-->
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                     <div class="well">
+                      <div class="margin-well fondomodal">
+                        <div class="row">
+                          <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información de la Cuenta</b></h5>
+                      </div>
+                        <hr>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label class="control-label" for="name">Usuario:</label>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                              <input ng-model="user" class="form-control" type="text" name="user" placeholder="Usuario">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label class="control-label" for="name">Contraseña:</label>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                              <input  ng-model="password" name="password" type="password" class="form-control" placeholder="Contraseña">
+                            </div>
+                          </div>
+                        </div>
+                      </div>    
+                    </div>
+                </div>               
+
+ <div class="modal-footer">
+                      <button  ng-click="GoCancell();" dismiss="modal" class="btn btn-default btn-opciones "><span class="glyphicon glyphicon-floppy-remove"></span> Cancelar</button>
+                      <button ng-click="SaveUser();" dismiss="modal" class="btn btn-green"><i class="glyphicon glyphicon-floppy-save"></i> Guardar</button>
+                  </div>
+
+                    <!-- MAILBOX END -->
+
+                  </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+
+
+        </div><!-- ./wrapper -->
+
+         <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}"></div>
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+    </body>
+</html>
