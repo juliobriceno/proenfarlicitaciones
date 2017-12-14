@@ -67,7 +67,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand logo" href="#">  <img src="img/logo-proenfar.png" width="180" height="80" style="margin-top:-30px;"></a>
+          <a class="navbar-brand logo" href="#"><img src="img/logo-proenfar.png" class="img-responsive" alt="logo-proenfar" width="150" height="150" style="margin-top:-12px;"/></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -125,12 +125,13 @@
       </section>
 
       <section class="content">
-        <div class="box box-solid">
+          <div class="wrapper row-offcanvas row-offcanvas-left">
+        <div class="box box-solid" >
           <div class="row" >
             <div class="col-xs-12" >
               <div class="" style="padding: 10px;">
                 <div class="box-header">
-                  <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
+                  <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:black;padding-top: 10px;">
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>Nuevo usuario</label>
@@ -156,14 +157,14 @@
               <div class="box-body table-responsive no-padding">
                 <table class="table table-bordered">
                   <tr class="table-encabezado">
-                    <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                    <th><h6><b>Nombre</b></h6></th>
-                    <th><h6><b>E-mail</b></h6></th>
-                    <th><h6><b>Perfil</b></h6></th>
+                    <th class="text-center" style="width:6%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                    <th class="text-center"><h6><b>Nombre</b></h6></th>
+                    <th class="text-center"><h6><b>E-mail</b></h6></th>
+                    <th class="text-center"><h6><b>Perfil</b></h6></th>
                   </tr>
                   <tbody  ng-repeat="Usuario in Usuarios">
                     <tr>
-                      <td>
+                      <td  class="text-center">
                         <button title="Editar usuario" ng-click="GotoUser(Usuario.User);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
                         <button title="Eliminar usuario" ng-click="DeleteUser(Usuario.User);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
                       </td>
@@ -176,6 +177,7 @@
                 </div>
               </div>
             </div><!-- /.box-body -->
+          </div>
           </div>
           <!-- MAILBOX END -->
         </section><!-- /.content -->

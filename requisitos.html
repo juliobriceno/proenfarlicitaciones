@@ -167,8 +167,8 @@
                           <div class="form-group">
                             <label class="control-label" for="preg">Requisitos Mínimos:</label>
                             <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
-                              <textarea ng-model="requisitos" type="text"  rows="1" class="form-control" placeholder="ingrese requisitos..."></textarea>
+                              <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                              <textarea ng-model="requisitos" type="text"  rows="3" class="form-control" placeholder="ingrese requisitos..."></textarea>
                             </div>
                           </div>
                         </div>
@@ -176,26 +176,27 @@
                           <div class="form-group">
                             <label class="control-label" for="name">Soportes Anexar:</label>
                             <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
-                              <textarea ng-model="soportes" type="text"   rows="1" class="form-control" placeholder="ingrese soportes..."></textarea>
+                              <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                              <textarea ng-model="soportes" type="text"   rows="3" class="form-control" placeholder="ingrese soportes..."></textarea>
                             </div>
                           </div>
                         </div>
                         <div class="col-md-2">
-                          <br>
-                          <div class="form-group">
-                            <button ng-click="SaveRequisitos();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Agregar</button>
-                          </div><!--end modal footer-->
+                            <button ng-click="SaveRequisitos();" class="btn btn-green"  style="margin-top:35%;margin-left:10%;"><i class="fa fa-check-circle" aria-hidden="true"></i> Agregar</button>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div class="widget-header">
+                   <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Requisitos y Soportes</label>
+
+                  </div> <!-- /widget-header -->
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-bordered">
                       <tr>
-                        <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                        <th><h6><b>Requisitos</b></h6></th>
-                        <th><h6><b>Soportes</b></h6></th>
+                        <th class="text-center" style="width:4%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                        <th class="text-center"><h6><b>Requisitos</b></h6></th>
+                        <th class="text-center"><h6><b>Soportes</b></h6></th>
                       </tr>
                       <tbody  ng-repeat="Requisito in Requisitos">
                         <tr>
