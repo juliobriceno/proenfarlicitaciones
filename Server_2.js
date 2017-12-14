@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
       next();
     }
     // Si el usuario no está log in vuelve al login
-    else if (req.path.indexOf('/Login') >= 0){
+    else if (req.path.indexOf('/Login') >= 0 || req.path.indexOf('/RecoverPassword') >= 0){
       next();
     }
     // Si el usuario no está log in vuelve al login
@@ -663,12 +663,17 @@ app.post('/GetContactosPorModalidades', function (req, res) {
 app.post('/RecoverPassword', function (req, res) {
 
     MyMongo.Find('Usuarios', { User: req.body.Usuario }, function (result) {
+
+        var myUser = result[0];
+
         if (result.length == 0) {
             var Data = {};
             Data.Result = 'No';
             res.end(JSON.stringify(Data))
         }
         else {
+
+          console.log('tres');
 
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -677,12 +682,15 @@ app.post('/RecoverPassword', function (req, res) {
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
             }
 
-            MyMongo.UpdateCriteria('Usuarios', { 'User': req.body.User }, { 'Password': text }, function (result) {
+            MyMongo.UpdateCriteria('Usuarios', { 'User': req.body.Usuario }, { 'Password': text }, function (result) {
                 if (result == 'Ok') {
 
-                    var msg = "<table style='max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;'><tr><td style='background-color: #fff; text-align: left; padding: 0;'><img width='20%' style='display:block; margin: 2% 3%' src=''></a></td></tr><tr><td style='padding: 0'></td></tr><tr><td style='background-color: #fff'><div style='color: #34495e; text-align: justify;font-family: sans-serif'><div style='color: #fff; margin: 0 0 5%; text-align:center; height: 120px; background-color: #3498db; padding: 4% 10% 2%; font-size: 23px;'><b>La nueva clave de su usuario para acceso al portal Incorp es: <label>" + text + "</label> </b> <br><br><a href=''></a></b></div><p style='margin: 2%px; font-size: 15px; margin: 4% 10% 2%;'><br></p><div style='width: 100%;margin:20px 0; display: inline-block;text-align: center'></div><div style='width: 100%; text-align: center'><a style='text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db' href='http://vps-1299884-x.dattaweb.com:8081'>Ir al <b>Portal</b></a></div><p style='color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0; padding:20px 0 0;  background-color:#3498db; height: 30px'>Portal del cliente Incorp.</p></div></td></tr></table>";
+                  console.log('cuatro');
 
-                    MyMail.SendEmail(msg, req.body.Email, "Se generó una nueva clave para su cuenta en el portal Incorp.");
+
+                    var msg = "<table style='max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;'><tr><td style='background-color: #fff; text-align: left; padding: 0;'><img width='20%' style='display:block; margin: 2% 3%' src=''></a></td></tr><tr><td style='padding: 0'></td></tr><tr><td style='background-color: #fff'><div style='color: #34495e; text-align: justify;font-family: sans-serif'><div style='color: #fff; margin: 0 0 5%; text-align:center; height: 120px; background-color: #3498db; padding: 4% 10% 2%; font-size: 23px;'><b>La nueva clave de su usuario para acceso al portal Licitaciones Proenfar es: <label>" + text + "</label> </b> <br><br><a href=''></a></b></div><p style='margin: 2%px; font-size: 15px; margin: 4% 10% 2%;'><br></p><div style='width: 100%;margin:20px 0; display: inline-block;text-align: center'></div><div style='width: 100%; text-align: center'><a style='text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db' href='http://vps-1299884-x.dattaweb.com:9099'>Ir al <b>Portal</b></a></div><p style='color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0; padding:20px 0 0;  background-color:#3498db; height: 30px'>Portal Licitaciones Proenfar.</p></div></td></tr></table>";
+
+                    MyMail.SendEmail(msg, myUser.Email, "Se generó una nueva clave para su cuenta en el portal Licitaciones Proenfar.");
 
                     var Data = {};
                     Data.Result = 'Ok';

@@ -381,7 +381,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }).then(function successCallback(response) {
                 $loading.finish('myloading');
                 console.log(response.data.Result);
-                if (response.data.Result == 'no') {
+                if (response.data.Result == 'No') {
                   swal("Licitaciones Proenfar", "No existe el usuario suministrado.");
                   return 0;
                 }
