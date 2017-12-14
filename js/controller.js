@@ -361,6 +361,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlLogin', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          $scope.Usuario = '' ;
+          $scope.Contrasena = '';
+
+          $scope.RecoverPassword = function () {
+            if ($scope.Usuario.trim() == '') {
+                swal("Licitaciones Proenfar", "Coloque el usuario al que desea recuperar la clave.");
+                return 0;
+            };
+            var Data = {};
+            Data.Usuario = $scope.Usuario;
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/RecoverPassword',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+                $loading.finish('myloading');
+                console.log(response.data.Result);
+                if (response.data.Result == 'no') {
+                  swal("Licitaciones Proenfar", "No existe el usuario suministrado.");
+                  return 0;
+                }
+                if (response.data.Result == 'Ok') {
+                  swal("Licitaciones Proenfar", "Se ha generado una nueva clave y se ha enviado al email.");
+                  return 0;
+                }
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
           $scope.Login = function () {
               if ($scope.Usuario.trim() == '' || $scope.Contrasena.trim() == '') {
                   swal("", "Combinaci\u00f3n de usuario y/o contrase\u00f1a incorrectas.");
@@ -475,7 +507,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         if ($scope.ModalidadesMostrarActual == 'Areas'){
                           $scope.ModalidadesMostrar.Areas = false;
                         }
-
                         if (ModalidadesMostrar == 'Bodegajes'){
                           if ($scope.ModalidadesMostrar.BodegajesP == true){
                             // Carga las pantallas de preguntas frecuentes y requisitos para Bodegajes
