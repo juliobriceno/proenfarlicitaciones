@@ -4373,8 +4373,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             $scope.Proveedores= [];
 
             $scope.bkproveedor= function() {
+              if (typeof $scope.Usuario.selected == 'undefined'){
+                swal("Licitaciones Proenfar", "Debe buscar un proveedor con algunas letras del nombre.");
+                return 0;
+              }
+              var tmpProveedores = $scope.Proveedores.filter(function(el){
+                return el.Name == $scope.Usuario.selected.Name
+              })
+              if (tmpProveedores.length > 0){
+                swal("Licitaciones Proenfar", "Ya el proveedor fue agregado.");
+                return 0;
+              }
               $scope.Proveedores.push($scope.Usuario.selected);
-              $scope.Usuario.selected='';
+              $scope.Usuario.selected=undefined;
             }
 
             $scope.dtproveedor= function(dato) {
