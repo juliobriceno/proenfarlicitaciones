@@ -4257,6 +4257,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ModalInstanceCtrlChangePassword', function ($uibModalInstance, ActiveUserModal, $http, $loading) {
             var $ctrl = this;
+            $ctrl.NewPassword = '';
+            $ctrl.RepeatPassword = '';
+
             $ctrl.ActiveUserModal = ActiveUserModal;
             $ctrl.ok = function () {
                 $uibModalInstance.close();
@@ -4265,10 +4268,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 $uibModalInstance.dismiss('cancel');
             };
             $ctrl.ChangePassword = function () {
-                if ($ctrl.NewPassword.trim() != $ctrl.RepeatPassword.trim()) {
-                    swal("Licitaciones Proenfar", "No coinciden los password.");
-                    return 0;
-                }
+              if ($ctrl.NewPassword.trim() == '') {
+                  swal("Licitaciones Proenfar", "Debe colocar un password.");
+                  return 0;
+              }
+              if ($ctrl.NewPassword.trim() != $ctrl.RepeatPassword.trim()) {
+                  swal("Licitaciones Proenfar", "No coinciden los password.");
+                  return 0;
+              }
+                $loading.start('myloading');
                 var Data = {};
                 Data.Password = $ctrl.NewPassword.trim();
                 $http({
@@ -4553,7 +4561,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
        }])
 
-        .controller('ctrlWarrantyLogin', ['$scope', '$http', '$loading', 'FileUploader',  function ($scope, $http, $loading, FileUploader) {
+        .controller('ctrlWarrantyLogin', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 

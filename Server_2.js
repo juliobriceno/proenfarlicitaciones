@@ -352,7 +352,7 @@ app.post('/updatePassword', function (req, res) {
         return 0;
     }
 
-    MyMongo.UpdateCriteria('Usuarios', { 'Email': req.session.user[0].Email }, { 'Password': req.body.Password }, function (result) {
+    MyMongo.UpdateCriteria('Usuarios', { 'User': req.session.user.User }, { 'Password': req.body.Password }, function (result) {
         if (result == 'Ok') {
             Data.Result = 'Ok';
             res.end(JSON.stringify(Data))
@@ -1840,7 +1840,7 @@ app.post('/ReadGoogleSheet', function (req, res) {
                     msgBody += table;
 
                     msg = msg.replace('@@Body', msgBody);
-                    msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:8086">Portal SmartJobs</a>');
+                    msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:8086">Portal Licitaciones Proenfar</a>');
                     msg = msg.replace('@@Pie', "href='http://vps-1299884-x.dattaweb.com:8086'>Ir al <b>Portal</b>");
 
                     var subject = "Se produjeron errores al tratar de importar una plantilla de empleados.";
@@ -1911,7 +1911,7 @@ app.post('/ReadGoogleSheet', function (req, res) {
                       msgBody += table;
 
                       msg = msg.replace('@@Body', msgBody);
-                      msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:8086">Portal SmartJobs</a>');
+                      msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:8086">Portal de Licitaciones Proenfar</a>');
                       msg = msg.replace('@@Pie', "href='http://vps-1299884-x.dattaweb.com:8086'>Ir al <b>Portal</b>");
 
                       var subject = "Se produjeron errores al tratar de importar una plantilla de empleados.";
