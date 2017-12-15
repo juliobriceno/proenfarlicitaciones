@@ -123,9 +123,10 @@
                           </button>
                       </li>
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hola, Julio Briceño </span> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hola, {{UserNameConnected}} </span> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                          <li ng-click="openChangePassword();"><a href="#"><i class="fa fa-key" aria-hidden="true"></i> Cambiar contraseña</a></li>
+                          <li ng-click="closeSession();"><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
                         </ul>
                       </li>
                     </ul>
@@ -496,6 +497,9 @@
         </form>
 
          <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}"></div>
-
+         <!-- Bootstrap -->
+         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+         <!-- AdminLTE App -->
+         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
     </body>
 </html>
