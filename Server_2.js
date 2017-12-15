@@ -2874,6 +2874,43 @@ app.post('/Deleterequisito', function (req, res) {
 
 });
 
+////////////////////////Requiitos  Preguntas  y Ayuda Cargar en Cuentas proveedor y licitacion
+
+app.post('/GetFormularioVisto', function (req, res) {
+
+     MyMongo.Find('FormularioVisto', { Formulario: req.body.Formulario}, function (result) {
+        console.log(result.length);
+        var Data = {};
+        Data.Formularios = result;
+        res.end(JSON.stringify(Data));
+    }
+    );
+
+});
+
+app.post('/GetAceptarRequisitocuenta', function (req, res) {
+
+     MyMongo.Find('Requisitos', { Modalidad: req.body.Modalidad }, function (result) {
+        console.log(result.length);
+           if (result.length > 0){
+            console.log('paso por aqui GetAceptarRequisitocuenta');
+              MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X"}, function (result) {
+              var Data = {};
+              res.end(JSON.stringify(Data))
+               });   
+            }
+       });
+
+});
+
+app.post('/GetAceptarAyudacarga', function (req, res) {
+
+              MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X"}, function (result) {
+              var Data = {};
+              res.end(JSON.stringify(Data))
+               });   
+  });
+
 app.get('/downloadanybyname', function (req, res) {
 
   var filename = req.query.filename;

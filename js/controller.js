@@ -834,7 +834,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         if ($scope.ModalidadesMostrarActual == 'Areas'){
                           $scope.ModalidadesMostrar.Areas = false;
                         }
-                        if (ModalidadesMostrar == 'Bodegajes'){
+                        /*if (ModalidadesMostrar == 'Bodegajes'){
                           if ($scope.ModalidadesMostrar.BodegajesP == true){
                             // Carga las pantallas de preguntas frecuentes y requisitos para Bodegajes
                             $scope.PreguntasLicitacion = $scope.PreguntasLicitacionSaved;
@@ -1010,9 +1010,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             $('#requisitos').modal('show');
                             $scope.RequisitosMostrando = 'Aereas';
                           }
-                        }
-
-
+                        }*/
 
                           $scope.ModalidadesMostrarActual = ModalidadesMostrar;
                         }
@@ -3163,13 +3161,35 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               $scope.RequisitosLicitacion = $scope.RequisitosLicitacion.filter(function (el){
                                 return el.Modalidad == 'Bodegajes'
                               })
-                              $('#requisitos').modal('show');
-                              $scope.PreguntasLicitacion = $scope.PreguntasLicitacion.filter(function (el){
-                                return el.Modalidad == 'Bodegajes'
-                              })
-                              $('#preguntas').modal('show');
+                             // $('#requisitos').modal('show');
+                             // $scope.PreguntasLicitacion = $scope.PreguntasLicitacion.filter(function (el){
+                              //  return el.Modalidad == 'Bodegajes'
+                             // })
+                             // $('#preguntas').modal('show');
                               // Carga modal de ayuda de forma de cargar
-                              $('#modal-tips').modal('show');
+                             // $('#modal-tips').modal('show');
+
+                          $scope.GetFormularioVisto = function () {
+                             var Data = {};
+                             $loading.start('myloading');
+                             Data.Formulario = 'AyudaCargar'; 
+                            $http({
+                            method: 'POST',
+                            url: '/GetFormularioVisto',
+                            headers: { 'Content-Type': 'application/json' },
+                            data: Data
+                            }).then(function successCallback(response) {
+                            $loading.finish('myloading');
+                            $scope.Formulario = response.data.Formularios;
+                           console.log($scope.Formulario.length);
+                              if ($scope.Formulario.length == 0){
+                                 $('#modal-tips').modal('show');
+                               }
+                           }, function errorCallback(response) {
+                           alert(response.statusText);
+                            });
+                          }
+                     $scope.GetFormularioVisto(); 
 
                               $scope.PreguntasMostrando = 'Bodegajes';
                               $scope.RequisitosMostrando = 'Bodegajes';
@@ -3179,6 +3199,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             console.log(response);
                           });
                         }
+
+                        $scope.GetModalidadesProveedor();
+     
+
+                ////////// Menu Ayuda//////////////////
+                     
+
+                      $scope.CloseAyudaCarga = function(){
+                         $('#modal-tips').modal('hide');
+                           }
+
+                       $scope.AceptarAyudacarga = function(){                   
+                       var Data={};  
+                        $loading.start('myloading');
+                        Data.Formulario = 'AyudaCargar';  
+                        // Data.Modalidad= 'Bodegajes';                       
+                         $http({
+                         method: 'POST',
+                         url: '/GetAceptarAyudacarga',
+                         headers: { 'Content-Type': 'application/json' },
+                         data: Data
+                        }).then(function successCallback(response) {
+                         $('#modal-tips').modal('hide');
+                         $loading.finish('myloading');
+                         }, function errorCallback(response) {
+                         alert(response.statusText);
+                });
+            }   
+
+                        
                         // Cerrar requisitos y preguntas sin aceptar
                         $scope.CloseRequisito = function(){
                           $('#requisitos').modal('hide');
@@ -3189,7 +3239,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         // Fin Cerrar requisitos y preguntas sin aceptar
                         // Cerrar requisitos y preguntas aceptando
                         $scope.AceptarRequisito = function(){
-                          if ($scope.RequisitosMostrando == 'Bodegajes'){
+                         /* if ($scope.RequisitosMostrando == 'Bodegajes'){
                             $scope.ModalidadesMostrar.BodegajesR = false;
                           }
                           if ($scope.RequisitosMostrando == 'Aduanas'){
@@ -3212,11 +3262,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                           if ($scope.RequisitosMostrando == 'Aereas'){
                             $scope.ModalidadesMostrar.AreasR = false;
-                          }
+                          }*/
                           $('#requisitos').modal('hide');
                         }
                         $scope.AceptarPregunta = function(){
-                          if ($scope.PreguntasMostrando == 'Bodegajes'){
+                         /* if ($scope.PreguntasMostrando == 'Bodegajes'){
                             $scope.ModalidadesMostrar.BodegajesP = false;
                           }
                           if ($scope.PreguntasMostrando == 'Aduanas'){
@@ -3239,11 +3289,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                           if ($scope.PreguntasMostrando == 'Aereas'){
                             $scope.ModalidadesMostrar.AreasP = false;
-                          }
+                          }*/
                           $('#preguntas').modal('hide');
-                        }
+                        }                                               
+                  
+                    
                         // Fin Cerrar requisitos y preguntas aceptando
-                        $scope.GetModalidadesProveedor();
+                       
                         $scope.SaveUsuarioComplete = function () {
                           if (!$scope.bookmarkFormProv.$valid)
                           {
@@ -3354,6 +3406,110 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             });
           }
           $scope.GetUsuario();
+
+
+       ///////////// /// Menu Ayuda//////////////////
+                      $scope.FormularioVisto = function () {
+                      var Data = {};
+                      $loading.start('myloading');                       
+                      Data.Formulario = 'Requisitos';
+                       $http({
+                       method: 'POST',
+                      url: '/GetFormularioVisto',
+                      headers: { 'Content-Type': 'application/json' },
+                       data: Data
+                      }).then(function successCallback(response) {
+                       $loading.finish('myloading');
+                       $scope.Formulario = response.data.Formularios;
+                        if ($scope.Formulario.length == 0){
+                          $('#requisitos').modal('show');
+                          }
+                        }, function errorCallback(response) {
+                       alert(response.statusText);
+                        });
+                        }
+                     $scope.FormularioVisto();  
+
+         ////////////////////Requisitos////////////////////////////
+
+                  $scope.GetRequisitos = function () {
+                    var Data={};
+                $loading.start('myloading');
+                console.log('Pasaporaquivale');
+                Data.Modalidad= 'Bodegajes';
+                $http({
+                    method: 'POST',
+                    url: '/GetRequisitos',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: Data
+                }).then(function successCallback(response) {
+                    $loading.finish('myloading');
+                    $scope.Requisitoscuenta = response.data.Requisitos;
+                 }, function errorCallback(response) {
+                    alert(response.statusText);
+                });
+            }
+                $scope.GetRequisitos();  
+
+        ///////////////Preguntas/////////////////////////////////  
+
+         $scope.GetPreguntas = function () {
+                    var Data={};
+                $loading.start('myloading');
+                Data.Modalidad='Bodegajes';
+                $http({
+                    method: 'POST',
+                    url: '/GetPreguntas',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: Data
+                }).then(function successCallback(response) {
+                    $loading.finish('myloading');
+                    $scope.Preguntascuenta = response.data.Preguntas;
+                }, function errorCallback(response) {
+                    alert(response.statusText);
+                });
+            }
+                $scope.GetPreguntas();
+
+            ///////////////////Boton Aceptar y No Aceptar Requisiciones /////////////////////     
+
+                   $scope.CloseRequisitocuenta = function(){
+                         $('#requisitos').modal('hide');
+                         $scope.mostrarmenulicitaciones = false;
+                           }
+
+                       $scope.AceptarRequisitocuenta = function(){                   
+                       var Data={};  
+                        $loading.start('myloading');
+                        Data.Formulario = 'Requisitos';  
+                         Data.Modalidad= 'Bodegajes';                       
+                         $http({
+                         method: 'POST',
+                         url: '/GetAceptarRequisitocuenta',
+                         headers: { 'Content-Type': 'application/json' },
+                         data: Data
+                        }).then(function successCallback(response) {
+                         $('#requisitos').modal('hide');                    
+                         $loading.finish('myloading');
+                         }, function errorCallback(response) {
+                         alert(response.statusText);
+                });
+            } 
+                  $scope.botoncerrar = function(){
+                    $scope.mostrarmenulicitaciones = false;
+                  }
+
+                  $scope.AceptarRequisitoboton = function(){
+                         $('#requisitoss').modal('hide');               
+                   } 
+
+                  $scope.AceptarPreguntaboton = function(){
+                         $('#preguntas').modal('hide');               
+                   } 
+
+              $scope.mostrarmenulicitaciones=true;
+
+          //////////////////////////////////////////////////////////////////////
           $scope.SaveUsuarioComplete = function () {
             if (!$scope.bookmarkFormProv.$valid)
             {

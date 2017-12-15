@@ -80,7 +80,7 @@
               </a>
             </li>
             <li class="dropdown" >
-              <a href="licitacion.html" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="licitacion.html" ng-show="mostrarmenulicitaciones;" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-file-text-o" aria-hidden="true"></i>
                 <span>Licitación</span>
                 <span class="caret"></span>
@@ -99,7 +99,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <button href="#requisitos" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+              <button href="#requisitoss" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
                 <i class="fa fa-tasks" aria-hidden="true"></i><span>
               </button>
 
@@ -417,199 +417,120 @@
 
       </form>
       <!-- Modales -->
-      <div class="modal fade" id="requisitos" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog  modal-lg">
-        <div class="modal-content">
-          <div class="modal-header" style="margin-top: 10px;">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-            <div class="pull-right" style="margin-right:30px;">
-                       <label class="input-checkbox checkbox-lightBlue">
-                         <input type="checkbox" id="checkbox-1" checked>
-                         <span class="checkbox"></span>
-                       </label>
-                       <label for="checkbox-1" class=""> Ya lo leí</label>
-                     </div><!-- @end Checkbox-1 -->
-            <div class="titulo-modal">
-              <h5 class="modal-title"><i class="fa fa-tasks" aria-hidden="true"></i><b> Requisitos mínimos</b></h5>
-
-            </div>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="callout callout-info">
-                <table class="table table-bordered">
-                    <tr>
-                        <th><h5><strong>Requisitos mínimos para aceptar la licitación</strong></h5></th>
-                        <th><h5><strong>Soportes Anexar</strong></h5></th>
-
-                    </tr>
-                    <tr>
-                        <td> Todo proveedor de servicios debe tener su proceso de seguridad certificado puede ser BASC o por otro ente certificador. Los demás procesos es opcional (ISO 9001,OSHAS 18001,ISO 14001,BPM 15373) etc.</td>
-                        <td> Anexar las certificaciones obtenidas</td>
-
-                    </tr>
-                    <tr>
-                      <td>Debe estar Legalmente Constituido </td>
-                      <td>Anexar los siguientes documentos: <br>1. Certificado de camara y comercio no mayor a 30 días <br>2. Rut <br>3. Copia de la Cédula de Ciudanía del Representante Legal </td>
-
-                    </tr>
-                    <tr>
-                      <td>Experiencia en el mercado 10 años                       </td>
-                      <td>Describir cuantos años lleva en el mercado</td>
-
-                    </tr>
-                    <tr>
-                      <td> Oficinas directas(Cartagena/Buenaaventura) demás ciudades principalesde Colombia puede ser representaciones </td>
-                      <td> Anexar: Documento Legal que acredite </td>
-                    </tr>
-                    <tr>
-                      <td> Debe tener oficinas directas o representaciones en los países de la licitación </td>
-                        <td> Anexar: Documento Legal que acredite </td>
-                    </tr>
-                    <tr>
-                      <td> Debe contar minimo con 5 referencia comerciales  </td>
-                        <td> Anexar: Referencias comerciales </td>
-                    </tr>
-                    <tr>
-                      <td> Debe contar minimo con 2 referencia Bancarias</td>
-                      <td> Anexar: Referencias Bancarias </td>
-                    </tr>
-                </table>
-                <h6>Si NO cumple con los requisitos minimos por favor abstengase de realizar el proceso de licitación.</h6>
-              </div>
-
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <div class="modal-footer">
-
-                <button ng-click="AddBanco();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
-            </div><!--fin modal footer-->
-          </div><!--end modal footer-->
-        </div>
-
-      </div>
-    </div>
-    <div class="modal fade" id="preguntas" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-    <div class="modal-dialog  modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" style="margin-top: 10px;">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-          <div class="pull-right" style="margin-right:30px;">
-                     <label class="input-checkbox checkbox-lightBlue">
-                       <input type="checkbox" id="checkbox-1" checked>
-                       <span class="checkbox"></span>
-                     </label>
-                     <label for="checkbox-1" class=""> Ya lo leí</label>
-                   </div><!-- @end Checkbox-1 -->
-          <div class="titulo-modal">
-            <h5 class="modal-title"><i class="fa fa-question-circle" aria-hidden="true"></i><b> Preguntas Frecuentes</b></h5>
-          </div>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                        1.Puedo licitar uno o dos procesos solamente</a>
-                      </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                      <div class="panel-body">
-
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                          2.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
-                        </h4>
-                      </div>
-                      <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-
-                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                            3.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
-                          <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsefor"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                              4.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
-                            </h4>
-                          </div>
-                          <div id="collapsefor" class="panel-collapse collapse">
-                            <div class="panel-body">
-
-                              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
-                            </div>
-                          </div>
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                                  5.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
-                                </h4>
-                              </div>
-                              <div id="collapsefive" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-                                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
-                                </div>
-                              </div>
-                              <div class="panel panel-default">
-                                <div class="panel-heading">
-                                  <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsesix"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                                      6.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
-                                    </h4>
+       <div class="modal fade" id="requisitos" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal-dialog  modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header" style="margin-top: 10px;">
+                                  <button type="button" class="close" ng-click="botoncerrar();" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                  <div class="titulo-modal">
+                                    <h5 class="modal-title"><i class="fa fa-tasks" aria-hidden="true"></i><b> Requisitos mínimos</b></h5>
                                   </div>
-                                  <div id="collapsesix" class="panel-collapse collapse">
-                                    <div class="panel-body">
-
-                                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="callout callout-info">
+                                      <table class="table table-bordered">
+                                        <tr>
+                                          <th><h5><strong>Requisitos mínimos para aceptar la licitación</strong></h5></th>
+                                          <th><h5><strong>Soportes Anexar</strong></h5></th>
+                                        </tr>
+                                        <tr ng-repeat="Requisitocuenta in Requisitoscuenta">
+                                          <td> {{Requisitocuenta.Requisitos}}</td>
+                                          <td> {{Requisitocuenta.Soportes}}</td>
+                                        </tr>
+                                      </table>
+                                      <h6>Si NO cumple con los requisitos minimos por favor abstengase de realizar el proceso de licitación.</h6>
                                     </div>
                                   </div>
-                                  <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                      <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseseven"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                                          7.Si hay un costo adicional que no esté involucrado en los cuadros?</a>
-                                        </h4>
-                                      </div>
-                                      <div id="collapseseven" class="panel-collapse collapse">
-                                        <div class="panel-body">
+                                </div>
+                                <div class="modal-footer">
+                                  <div class="modal-footer">
+                                    <button ng-click="AceptarRequisitocuenta();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Acepto</button>
+                                    <button ng-click="CloseRequisitocuenta();" class="btn btn-default"><i class="fa fa-times" aria-hidden="true"></i> No Acepto</button>
+                                  </div><!--fin modal footer-->
+                                </div><!--end modal footer-->
+                              </div>
+                            </div>
+                          </div>
+<!-- Boton Requisitos-->
+           <div class="modal fade" id="requisitoss" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal-dialog  modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header" style="margin-top: 10px;">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                  <div class="titulo-modal">
+                                    <h5 class="modal-title"><i class="fa fa-tasks" aria-hidden="true"></i><b> Requisitos mínimos</b></h5>
+                                  </div>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="callout callout-info">
+                                      <table class="table table-bordered">
+                                        <tr>
+                                          <th><h5><strong>Requisitos mínimos para aceptar la licitación</strong></h5></th>
+                                          <th><h5><strong>Soportes Anexar</strong></h5></th>
+                                        </tr>
+                                        <tr ng-repeat="Requisitocuenta in Requisitoscuenta">
+                                          <td> {{Requisitocuenta.Requisitos}}</td>
+                                          <td> {{Requisitocuenta.Soportes}}</td>
+                                        </tr>
+                                      </table>
+                                      <h6>Si NO cumple con los requisitos minimos por favor abstengase de realizar el proceso de licitación.</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <div class="modal-footer">
+                                    <button ng-click="AceptarRequisitoboton();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Acepto</button>
+                                     </div><!--fin modal footer-->
+                                </div><!--end modal footer-->
+                              </div>
+                            </div>
+                          </div>
+        <!--Preguntas-->
+        <div class="modal fade" id="preguntas" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal-dialog  modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header" style="margin-top: 10px;">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                  <div class="titulo-modal">
+                                    <h5 class="modal-title"><i class="fa fa-question-circle" aria-hidden="true"></i><b> Preguntas Frecuentes</b></h5>
+                                  </div>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="panel-group" id="accordion">
 
-                                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </p>
+
+                                        <div class="panel panel-default" ng-repeat="Preguntacuenta in Preguntascuenta">
+                                          <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                              <a data-toggle="collapse" data-parent="#accordion" href="#myButton{{$index}}"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                {{Preguntacuenta.Preguntas}}</a>
+                                              </h4>
+                                            </div>
+                                            <div id="myButton{{$index}}" class="panel-collapse collapse in">
+                                              <div class="panel-body">
+
+                                                <p>{{Preguntacuenta.Respuestas}}</p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button ng-click="AceptarPreguntaboton();" class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Acepto</button>
+                                               </div><!--end modal footer-->
+                                            </div>
+                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
+                                      </aside><!-- /.right-side -->
+                                    </div><!-- ./wrapper -->
+                            <!--
+      
                             <!--
                             <div class="callout callout-info">
                             <h4>1.Puedo licitar uno o dos procesos solamente</h4>
