@@ -541,7 +541,7 @@ app.post('/SaveUser', function (req, res) {
 
                     msg = msg.replace('@@Encabezado', 'Acceso a plataforma de proveedores de Proenfar.');
 
-                    var msgBody = 'Puede ingresar a la plataforma de recibos de Proenfar con el usuario: ' + req.body.User +  ' y clave: ' + text;
+                    var msgBody = 'Puede ingresar a la plataforma de Licitaciones de Proenfar con el usuario: ' + req.body.User +  ' y clave: ' + text;
 
                     msg = msg.replace('@@Body', msgBody);
                     msg = msg.replace('@@boton', '<a href="http://www.google.com">Portal Proenfar</a>');
@@ -651,7 +651,7 @@ app.post('/SaveUserProveedor', function (req, res) {
 });
 
 app.post('/GetContactosPorModalidades', function (req, res) {
-    MyMongo.Find('contactomodalidad', {}, function (result) {
+    MyMongo.Find('contactomodalidad', { Proveedor: req.body.Proveedor }, function (result) {
       var Data = {};
       Data.Result = 'ok';
       Data.contactosmodalidades = result;
@@ -997,6 +997,7 @@ app.post('/Login', function (req, res) {
           Data.Result = 'Ok';
           Data.Login = true;
           Data.Perfil = result[0].Perfil;
+          Data.Name = result[0].Name;
 
           req.session.user = result[0];
 

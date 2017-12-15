@@ -75,6 +75,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ctrlPreguntas', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
 
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
+
+              $scope.UserNameConnected = localStorage.UserNameConnected;
+
               ///////////////Preguntas y Respuestas ///////////////
 
                  $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
@@ -85,8 +103,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   $scope.GetPreguntas = function () {
                     var Data={};
                 $loading.start('myloading');
-                console.log($scope.selectedModalidad.Name);
-                Data.Modalidad=$scope.selectedModalidad.Name;
+                Data.Modalidad='Bodegajes';
                 $http({
                     method: 'POST',
                     url: '/GetPreguntas',
@@ -95,18 +112,29 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }).then(function successCallback(response) {
                     $loading.finish('myloading');
                     $scope.Preguntas = response.data.Preguntas;
-                    $scope.preguntas= null;
-                    $scope.respuestas= null;
+                    $scope.preguntas= '';
+                    $scope.respuestas= '';
                 }, function errorCallback(response) {
                     alert(response.statusText);
                 });
             }
                 $scope.GetPreguntas();
 
+
               $scope.SavePreguntas = function () {
+                if ($scope.preguntas.trim() == '')
+                {
+                  swal("Licitaciones Proenfar", "Debe colocar la pregunta.");
+                  return 0
+                }
+                if ($scope.respuestas.trim() == '')
+                {
+                  swal("Licitaciones Proenfar", "Debe colocar la respuesta.");
+                  return 0
+                }
                  $loading.start('myloading');
                  var Data = {};
-                 Data.Modalidad = $scope.selectedModalidad.Name;
+                 Data.Modalidad = 'Bodegajes';
                  Data.Preguntas = $scope.preguntas;
                  Data.Respuestas=$scope.respuestas;
                  console.log($scope.selectedModalidad.Name);
@@ -127,28 +155,58 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
              }
 
             $scope.Deletepregunta = function (Modalidad, Pregunta) {
-                   $loading.start('myloading');
-                  var Data = {};
+
+
+              swal({
+                title: "Seguro de  eliminar la pregunta?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Aceptar",
+                closeOnConfirm: true
+              },
+              function () {
+
+                $loading.start('myloading');
+                var Data = {};
                 Data.Modalidad = Modalidad;
                 Data.Preguntas = Pregunta;
-                 console.log(Modalidad);
-                  console.log(Pregunta);
-               $http({
-                   method: 'POST',
-                   url: '/DeletePregunta',
-                   headers: { 'Content-Type': 'application/json' },
-                   data: Data
-               }).then(function successCallback(response) {
-                  $loading.finish('myloading');
-                   $scope.GetPreguntas();
-               }, function errorCallback(response) {
-                   alert(response.statusText);
-               });
+                 $http({
+                     method: 'POST',
+                     url: '/DeletePregunta',
+                     headers: { 'Content-Type': 'application/json' },
+                     data: Data
+                 }).then(function successCallback(response) {
+                    $loading.finish('myloading');
+                     $scope.GetPreguntas();
+                 }, function errorCallback(response) {
+                     alert(response.statusText);
+                 });
+
+              });
 
            }
+
               }])
 
           .controller('ctrlRequisitos', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+            $scope.UserNameConnected = localStorage.UserNameConnected;
+
+            $scope.closeSession = function () {
+                $http({
+                    method: 'POST',
+                    url: '/closeSession',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {}
+                }).then(function successCallback(response) {
+                    window.location.href = '/index.html';
+                }, function errorCallback(response) {
+                    alert(response.statusText);
+                });
+            }
+
 
               ///////////////Preguntas y Respuestas ///////////////
 
@@ -160,8 +218,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   $scope.GetRequisitos = function () {
                     var Data={};
                 $loading.start('myloading');
-                console.log($scope.selectedModalidad.Name);
-                Data.Modalidad=$scope.selectedModalidad.Name;
+                Data.Modalidad='Bodegajes';
                 $http({
                     method: 'POST',
                     url: '/GetRequisitos',
@@ -170,8 +227,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }).then(function successCallback(response) {
                     $loading.finish('myloading');
                     $scope.Requisitos = response.data.Requisitos;
-                    $scope.requisitos= null;
-                    $scope.soportes= null;
+                    $scope.requisitos = '';
+                    $scope.soportes = '';
                 }, function errorCallback(response) {
                     alert(response.statusText);
                 });
@@ -179,9 +236,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 $scope.GetRequisitos();
 
               $scope.SaveRequisitos = function () {
+                if ($scope.requisitos.trim() == '')
+                {
+                  swal("Licitaciones Proenfar", "Debe colocar los requisitos.");
+                  return 0
+                }
+                if ($scope.soportes.trim() == '')
+                {
+                  swal("Licitaciones Proenfar", "Debe colocar los soportes.");
+                  return 0
+                }
                  $loading.start('myloading');
                  var Data = {};
-                 Data.Modalidad = $scope.selectedModalidad.Name;
+                 Data.Modalidad = 'Bodegajes';
                  Data.Requisitos = $scope.requisitos;
                  Data.Soportes=$scope.soportes;
                  console.log($scope.selectedModalidad.Name);
@@ -202,32 +269,68 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
              }
 
             $scope.Deleterequisito = function (Modalidad, Requisito) {
-                   $loading.start('myloading');
-                  var Data = {};
+
+              swal({
+                title: "Seguro de  eliminar el requisito?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Aceptar",
+                closeOnConfirm: true
+              },
+              function () {
+
+                $loading.start('myloading');
+                var Data = {};
                 Data.Modalidad = Modalidad;
                 Data.Requisitos = Requisito;
-                 console.log(Modalidad);
-                  console.log(Requisito);
-               $http({
-                   method: 'POST',
-                   url: '/DeleteRequisito',
-                   headers: { 'Content-Type': 'application/json' },
-                   data: Data
-               }).then(function successCallback(response) {
-                  $loading.finish('myloading');
-                   $scope.GetRequisitos();
-               }, function errorCallback(response) {
-                   alert(response.statusText);
-               });
+                 $http({
+                     method: 'POST',
+                     url: '/DeleteRequisito',
+                     headers: { 'Content-Type': 'application/json' },
+                     data: Data
+                 }).then(function successCallback(response) {
+                    $loading.finish('myloading');
+                     $scope.GetRequisitos();
+                 }, function errorCallback(response) {
+                     alert(response.statusText);
+                 });
+
+              });
 
            }
+
+
               }])
 
         .controller('ctrlContactoModalidad', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
           $scope.Modalidades = [{name: 'Bodegaje'}, {name: 'Aduana'}, {name: 'OTM'}, {name: 'Maritimas FCL'}, {name: 'Maritimas LCL'}, {name: 'Terrestre Nacional'}, {name: 'Terrestre Urbano'}, {name: 'Aéreas'}];
           $scope.AgregarModalidad = function(){
+            var tmpContactoModalidad = $scope.contactomodalidad.modalidades.filter(function(el){
+              return el.modalidad == $scope.contactomodalidad.modalidad;
+            })
+            if (tmpContactoModalidad.length > 0){
+              swal("Licitaciones Proenfar", "Ya agregó ésta modalidad.");
+              return 0
+            }
             $scope.contactomodalidad.modalidades.push({modalidad: $scope.contactomodalidad.modalidad});
-            console.log($scope.contactomodalidad.modalidades);
           }
           $scope.EliminarModalidad = function(modalidad){
             $scope.contactomodalidad.modalidades = $scope.contactomodalidad.modalidades.filter(function(el){
@@ -247,6 +350,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               $scope.contactomodalidad.telefonofijo = '';
               $scope.contactomodalidad.celular = '';
               $scope.contactomodalidad.cargo = '';
+              $scope.contactomodalidad.Proveedor = localStorage.UserConnected;
             }
             else {
               var Data = {};
@@ -271,11 +375,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             window.location.href = '/contactos_modalidad.html';
           }
           $scope.SaveContactoModalidad = function () {
-              if (!$scope.bookmarkFormProv.$valid)
-              {
-                swal("Licitaciones Proenfar", "Hay valores inválidos. Por favor revisar el formulario.");
-                return 0
-              }
+            if (!$scope.bookmarkFormProv.$valid)
+            {
+              swal("Licitaciones Proenfar", "Hay valores inválidos. Por favor revisar el formulario.");
+              return 0
+            }
+            if ($scope.contactomodalidad.modalidades.length == 0)
+            {
+              swal("Licitaciones Proenfar", "El contacto debe tener a menos una modalidad.");
+              return 0
+            }
               var Data = {};
               Data.contactomodalidad = $scope.contactomodalidad;
               Data.ContactoPorModalidadEmail = localStorage.ContactoPorModalidadEmail;
@@ -306,16 +415,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlContactosModalidad', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
           $scope.GotoContacto = function (email) {
             localStorage.ContactoPorModalidadEmail = email;
             window.location.href = '/nuevo_contacto.html';
           }
           $scope.GetContactosPorModalidades = function () {
+            var Data = {};
+            Data.Proveedor = localStorage.UserConnected;
             $http({
                 method: 'POST',
                 url: '/GetContactosPorModalidades',
                 headers: { 'Content-Type': 'application/json' },
-                data: {}
+                data: Data
             }).then(function successCallback(response) {
               $scope.contactosmodalidades = response.data.contactosmodalidades;
               $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades
@@ -361,6 +488,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlLogin', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
 
           $scope.Usuario = '' ;
           $scope.Contrasena = '';
@@ -410,7 +552,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               }).then(function successCallback(response) {
                   $loading.finish('myloading');
                   if (response.data.Login == true) {
-                      localStorage.UserConnected = $scope.Usuario;
+                    localStorage.UserConnected = $scope.Usuario;
+                    localStorage.UserNameConnected = response.data.Name;
                       if (response.data.Perfil == 1) {
                         window.location.href = '/notificaciones.html';
                       }
@@ -433,6 +576,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
         .controller('ctrlLicitacion', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
                         // S�lo para validar n�meros
                         $scope.options = {
                             aSign: '',
@@ -2969,6 +3128,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }])
 
         .controller('ctrlEditarProveedor', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
           $scope.GetUsuario = function () {
             var Data = {};
             $loading.start('myloading');
@@ -3036,6 +3210,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('MyController', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
             $scope.Perfil = JSON.parse(localStorage.Perfil);
             $scope.$on('handleBroadcast', function () {
                 $scope.GetSolicitudes();
@@ -3206,6 +3396,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     }
                 });
             };
+
+            // Llama a HTML Modal que permite cambiar passwor de la app
             $scope.ActiveUserModal = {};
             $scope.openChangePassword = function (size, parentSelector) {
                 $scope.ActiveUserModal = $scope.User;
@@ -3227,10 +3419,27 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     }
                 });
             };
+            // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
         }])
 
         .controller('CtrlSubirFile', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
           $scope.txtUrl = '';
           $scope.txtUrlValidacion = '';
           // Data de carga selects
@@ -3284,7 +3493,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.uploader3.onSuccessItem = function (item, response) {
               $loading.finish('myloading');
               $scope.uploader3.clearQueue();
-              swal("Mensaje de la aplicacion de recibos", "Tu archivo fue cargado con exito.");
+              swal("Licitaciones Proenfar", "Tu archivo fue cargado con exito.");
           };
 
 
@@ -3299,7 +3508,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           };
           $scope.uploader2.onAfterAddingFile = function (item /*{File|FileLikeObject}*/, filter, options) {
             if (typeof $scope.selectedPeriodo == 'undefined'){
-              swal("Mensaje de la aplicacion de recibos", "Debe seleccionar nómina y período.");
+              swal("Licitaciones Proenfar", "Debe seleccionar nómina y período.");
               return 0;
             }
               $scope.uploader2.uploadAll();
@@ -3308,15 +3517,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               $loading.finish('myloading');
               $scope.uploader2.clearQueue();
               if (response.Result == 'norfc'){
-                swal("Mensaje de la aplicacion de recibos", "No existe empleado con el rfc del archivo para la nómina y el periodo seleccionado.");
+                swal("Licitaciones Proenfar", "No existe empleado con el rfc del archivo para la nómina y el periodo seleccionado.");
                 return 0;
               }
-              swal("Mensaje de la aplicacion de recibos", "Tu archivo fue cargado con exito.");
+              swal("Licitaciones Proenfar", "Tu archivo fue cargado con exito.");
           };
           // Fin cargar file Txt
           $scope.ReadGoogleSheet = function(){
             if ($scope.txtUrl.trim() == '' || $scope.txtUrlValidacion.trim() == ''){
-              swal("Mensaje de la aplicacion de recibos", "Debe llenar las URL de plantillas.");
+              swal("Licitaciones Proenfar", "Debe llenar las URL de plantillas.");
               return 0;
             }
             var Data = {};
@@ -3331,11 +3540,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }).then(function successCallback(response) {
               $loading.finish('myloading');
               if (response.data.Result == 'sd'){
-                swal("Mensaje de la aplicacion de recibos", "El archivo que subió no tiene data.");
+                swal("Licitaciones Proenfar", "El archivo que subió no tiene data.");
                 return 0;
               }
               if (response.data.Result == 'notxt'){
-                swal("Mensaje de la aplicacion de recibos", "Falta subir archivo txt.");
+                swal("Licitaciones Proenfar", "Falta subir archivo txt.");
                 return 0;
               }
               if (response.data.Result == 'err'){
@@ -3364,7 +3573,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 return 0;
               }
               if (response.data.EmpleadosErrores.length == 0){
-                swal("Mensaje de la aplicacion de recibos", "La data fue cargada exito.");
+                swal("Licitaciones Proenfar", "La data fue cargada exito.");
               }
               else{
                 $scope.Errores = {};
@@ -3410,7 +3619,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               $scope.uploader.clearQueue();
 
               if (response.Result == 'sd'){
-                swal("Mensaje de la aplicacion de recibos", "El archivo que subió no tiene data.");
+                swal("Licitaciones Proenfar", "El archivo que subió no tiene data.");
                 return 0;
               }
 
@@ -3440,11 +3649,27 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 return 0;
               }
 
-              swal("Mensaje de la aplicacion de recibos", "Tu archivo fue cargado con exito.");
+              swal("Licitaciones Proenfar", "Tu archivo fue cargado con exito.");
           };
         }])
 
         .controller('MyController2', ['$scope', '$http', '$loading', function ($scope, $http, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
           $scope.GetEmpleadosData = function () {
               $loading.start('myloading');
               $http({
@@ -3540,11 +3765,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             // $scope.NewSolicitud();
             $scope.AddSolicitud = function () {
                 if ($scope.txtComentarios.trim() == '') {
-                    swal("Mensaje de la aplicacion de recibos", "Debe llenar el campo de comentarios.");
+                    swal("Licitaciones Proenfar", "Debe llenar el campo de comentarios.");
                     return 0;
                 }
                 if (typeof $scope.selectedEmpleado == 'undefined') {
-                    swal("Mensaje de la aplicacion de recibos", "Debe seleccionar un(1) empleado.");
+                    swal("Licitaciones Proenfar", "Debe seleccionar un(1) empleado.");
                     return 0;
                 }
                 var Data = {};
@@ -3560,7 +3785,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     headers: { 'Content-Type': 'application/json' },
                     data: Data
                 }).then(function successCallback(response) {
-                    swal("Mensaje de la aplicacion de recibos", "Tu solicitud fue generada.");
+                    swal("Licitaciones Proenfar", "Tu solicitud fue generada.");
                     window.location.href = '/Solicitudes';
                 }, function errorCallback(response) {
                     alert(response.statusText);
@@ -3569,6 +3794,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('MyController3', ['$scope', '$http', '$loading', '$location', function ($scope, $http, $loading, $location) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
           var url = $location.absUrl();
           if (url.search("error") > 0) {
               swal("", "El usuario google conectado no es un usuario del sistema.");
@@ -3594,7 +3835,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         window.location.href = '/Solicitudes';
                     }
                     else {
-                        swal("Mensaje de la aplicacion de recibos", "Datos de acceso incorrectos.");
+                        swal("Licitaciones Proenfar", "Datos de acceso incorrectos.");
                     }
                 }, function errorCallback(response) {
                     alert(response.statusText);
@@ -3606,7 +3847,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
             $scope.ForgotPassword = function () {
                 if ($scope.ValidateEmail($scope.Usuario) == false) {
-                    swal("Mensaje de la aplicacion de recibos", "Coloca un correo valido.");
+                    swal("Licitaciones Proenfar", "Coloca un correo valido.");
                     return 0;
                 }
                 var Data = {};
@@ -3620,10 +3861,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }).then(function successCallback(response) {
                     $loading.finish('myloading');
                     if (response.data.Result == 'Ok') {
-                        swal("Mensaje de la aplicacion de recibos", "Una nueva clave fue generada y enviada a tu correo electronico.");
+                        swal("Licitaciones Proenfar", "Una nueva clave fue generada y enviada a tu correo electronico.");
                     }
                     else {
-                        swal("Mensaje de la aplicacion de recibos", "No se pudo generar nueva clave. Usuario no encontrado");
+                        swal("Licitaciones Proenfar", "No se pudo generar nueva clave. Usuario no encontrado");
                     }
                 }, function errorCallback(response) {
                     alert(response.statusText);
@@ -3632,6 +3873,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlRecibosAsimilados', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
             $scope.GetEmpleadosData = function () {
                 $loading.start('myloading');
                 $http({
@@ -3694,7 +3951,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
             $scope.findfile = function (PeriodoFile, RfcValido) {
               if (RfcValido == false){
-                swal("Mensaje de la aplicacion de recibos", "El empleado seleccionado tiene un RFC invalido.");
+                swal("Licitaciones Proenfar", "El empleado seleccionado tiene un RFC invalido.");
                 return 0;
               }
               var iFileName = PeriodoFile;
@@ -3703,6 +3960,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('MyController4', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
             $scope.GetEmpleadosData = function () {
                 $loading.start('myloading');
                 $http({
@@ -3775,6 +4048,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlRights', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
             $scope.optionRights = ['E', 'A', 'V', 'N'];
             $scope.GetRights = function () {
                 $loading.start('myloading');
@@ -3809,6 +4098,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlNuevoUsuario', ['$scope', '$http', '$loading', function ($scope, $http, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
 
            $scope.DeleteNomina = function(Name){
              $scope.NominasEmpleado = $scope.NominasEmpleado.filter(function(el){
@@ -3951,11 +4255,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             };
         })
 
-        .controller('ModalInstanceCtrlChangePassword', function ($uibModalInstance, ActiveUserModal, $http, FileUploader, $loading, mySharedService) {
+        .controller('ModalInstanceCtrlChangePassword', function ($uibModalInstance, ActiveUserModal, $http, $loading) {
             var $ctrl = this;
             $ctrl.ActiveUserModal = ActiveUserModal;
-            $ctrl.uploader = new FileUploader();
-            $ctrl.uploader.url = "/upload";
             $ctrl.ok = function () {
                 $uibModalInstance.close();
             };
@@ -3964,7 +4266,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             };
             $ctrl.ChangePassword = function () {
                 if ($ctrl.NewPassword.trim() != $ctrl.RepeatPassword.trim()) {
-                    swal("Mensaje de la aplicacion de recibos", "No coinciden los password.");
+                    swal("Licitaciones Proenfar", "No coinciden los password.");
                     return 0;
                 }
                 var Data = {};
@@ -3977,10 +4279,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }).then(function successCallback(response) {
                     $loading.finish('myloading');
                     if (response.data.Result == 'Ok') {
-                        swal("Mensaje de la aplicacion de recibos", "Tu password fue cambiado.");
+                        swal("Licitaciones Proenfar", "Su password fue cambiado.");
                     }
                     else {
-                        swal("Mensaje de la aplicacion de recibos", "Tu usuario fue actualizado.");
+                        swal("Licitaciones Proenfar", "Su usuario fue actualizado.");
                     }
                 }, function errorCallback(response) {
                     alert(response.statusText);
@@ -4002,7 +4304,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             };
             $ctrl.uploader.onSuccessItem = function (item, response) {
                 $loading.finish('myloading');
-                swal("Mensaje de la aplicacion de recibos", "Tu archivo fue cargado con exito.");
+                swal("Licitaciones Proenfar", "Tu archivo fue cargado con exito.");
             };
             $ctrl.ok = function () {
                 $uibModalInstance.close();
@@ -4056,6 +4358,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         })
 
         .controller('ctrlProveedor', ['$scope', '$http', '$loading',  function ($scope, $http, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
 
          var editform= 0;
 
@@ -4238,6 +4555,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ctrlWarrantyLogin', ['$scope', '$http', '$loading', 'FileUploader',  function ($scope, $http, $loading, FileUploader) {
 
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
             //Sólo para fechas boostrap Datepicker
             $scope.today = function () {
                 $scope.dt = new Date();
@@ -4343,6 +4675,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             $scope.Show2 = false;
             $scope.Show3 = true;
           };
+          $scope.Mensaje = '';
           // Uploader de files para el email
           $scope.uploader = new FileUploader();
           $scope.uploader.url = "/api/uploadFileNotificationEmail";
@@ -4377,6 +4710,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.EnviarEmailProveedores = function () {
             if ($scope.Proveedores.length == 0){
               swal("Licitaciones Proenfar", "Debe escoger a menos un proveedor.");
+              return 0;
+            }
+            if ($scope.uploader.queue.length == 0){
+              swal("Licitaciones Proenfar", "Debe escoger a menos un archivo anexo de la licitación para el proveedor.");
+              return 0;
+            }
+            if ($scope.Mensaje.trim() == ''){
+              swal("Licitaciones Proenfar", "Debe colocar un mensaje para los proveedores de la licitación.");
               return 0;
             }
             $loading.start('myloading');
@@ -4460,28 +4801,28 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             $scope.SaveUserProveedor = function () {
 
                 if ($scope.ValidateEmail($scope.email) == false) {
-                    swal("Mensaje de la aplicacion de recibos", "Debe ingresar un email valido.");
+                    swal("Licitaciones Proenfar", "Debe ingresar un email valido.");
                     return 0;
                 }
 
                   if ($scope.username.trim() == '') {
-                    swal("Mensaje de la aplicacion de recibos", "Debe colocar un nombre de contacto.");
+                    swal("Licitaciones Proenfar", "Debe colocar un nombre de contacto.");
                     return 0;
                 }
 
                 if ($scope.phone.length == 0) {
-                    swal("Mensaje de la aplicacion de recibos", "Debe ingresar un numero contacto.");
+                    swal("Licitaciones Proenfar", "Debe ingresar un numero contacto.");
                     return 0;
                 }
 
 
                 if ($scope.user.trim() == '') {
-                    swal("Mensaje de la aplicacion de recibos", "Debe ingresar usuario.");
+                    swal("Licitaciones Proenfar", "Debe ingresar usuario.");
                     return 0;
                 }
 
                 if ($scope.password.trim() == '') {
-                    swal("Mensaje de la aplicacion de recibos", "Debe ingresar un password.");
+                    swal("Licitaciones Proenfar", "Debe ingresar un password.");
                     return 0;
                 }
             }
@@ -4489,6 +4830,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlUsuarioAdmin', ['$scope', '$http', '$loading', function ($scope, $http, $loading) {
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
 
           $scope.read = function (workbook) {
             console.log(workbook);
