@@ -75,6 +75,54 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ctrlPreguntas', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
 
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -192,6 +240,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
           .controller('ctrlRequisitos', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
 
+            // Llama a HTML Modal que permite cambiar passwor de la app
+            $scope.ActiveUserModal = {};
+            $scope.openChangePassword = function (size, parentSelector) {
+                $scope.ActiveUserModal = $scope.User;
+                var parentElem = parentSelector ?
+                  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    animation: $scope.animationsEnabled,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'modalchangepassword.html',
+                    controller: 'ModalInstanceCtrlChangePassword',
+                    controllerAs: '$ctrl',
+                    size: size,
+                    appendTo: parentElem,
+                    resolve: {
+                        ActiveUserModal: function () {
+                            return $scope.ActiveUserModal;
+                        }
+                    }
+                });
+            };
+            // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
             $scope.UserNameConnected = localStorage.UserNameConnected;
 
             $scope.closeSession = function () {
@@ -306,6 +378,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ctrlContactoModalidad', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
 
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -416,6 +512,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ctrlContactosModalidad', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
 
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -488,6 +608,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlLogin', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -576,6 +720,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
         .controller('ctrlLicitacion', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -3128,6 +3296,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }])
 
         .controller('ctrlEditarProveedor', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -3210,6 +3403,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('MyController', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -3424,6 +3641,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('CtrlSubirFile', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -3655,6 +3896,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('MyController2', ['$scope', '$http', '$loading', function ($scope, $http, $loading) {
 
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -3795,6 +4060,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('MyController3', ['$scope', '$http', '$loading', '$location', function ($scope, $http, $loading, $location) {
 
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -3873,6 +4162,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('ctrlRecibosAsimilados', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -3960,6 +4273,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
         .controller('MyController4', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -4049,6 +4386,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         .controller('ctrlRights', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', function ($scope, $http, $uibModal, $log, $document, $loading) {
 
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
           $scope.closeSession = function () {
@@ -4097,7 +4458,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             $scope.GetRights();
         }])
 
-        .controller('ctrlNuevoUsuario', ['$scope', '$http', '$loading', function ($scope, $http, $loading) {
+        .controller('ctrlNuevoUsuario', ['$scope', '$http', '$loading', '$uibModal', function ($scope, $http, $loading, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -4288,6 +4673,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     $loading.finish('myloading');
                     if (response.data.Result == 'Ok') {
                         swal("Licitaciones Proenfar", "Su password fue cambiado.");
+                        $ctrl.NewPassword = '';
+                        $ctrl.RepeatPassword = '';
+                        $uibModalInstance.dismiss('cancel');
                     }
                     else {
                         swal("Licitaciones Proenfar", "Su usuario fue actualizado.");
@@ -4365,7 +4753,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
         })
 
-        .controller('ctrlProveedor', ['$scope', '$http', '$loading',  function ($scope, $http, $loading) {
+        .controller('ctrlProveedor', ['$scope', '$http', '$loading', '$uibModal',  function ($scope, $http, $loading, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
@@ -4562,6 +4974,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
        }])
 
         .controller('ctrlWarrantyLogin', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           // Llama a HTML Modal que permite cambiar passwor de la app
           $scope.ActiveUserModal = {};
@@ -4861,7 +5297,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
         }])
 
-        .controller('ctrlUsuarioAdmin', ['$scope', '$http', '$loading', function ($scope, $http, $loading) {
+        .controller('ctrlUsuarioAdmin', ['$scope', '$http', '$loading', '$uibModal', function ($scope, $http, $loading, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
 
           $scope.UserNameConnected = localStorage.UserNameConnected;
 
