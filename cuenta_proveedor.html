@@ -99,13 +99,13 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <button href="#requisitoss" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+              <button title="Ver requisitos" href="#requisitoss" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
                 <i class="fa fa-tasks" aria-hidden="true"></i><span>
               </button>
 
             </li>
             <li>
-                <button href="#preguntas" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
+                <button title="Ver preguntas" href="#preguntas" class="btn btn-success" style="margin-top:8px;" data-toggle="modal">
                   <i class="fa fa-question-circle" aria-hidden="true"></i><span>
                 </button>
             </li>
@@ -193,7 +193,7 @@
                           <label class="control-label" for="name">Núm Celular:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.NroCelular" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" ng-required="true">
+                            <input ng-model="Proveedor.NroCelular" ui-mask="(999) 999-9999" type="text" class="form-control" ng-required="true">
                           </div>
                         </div>
                       </div>
@@ -227,13 +227,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="box box-solid background-well">
                     <div class="row">
-                      <div class="titulo">
-                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Representante Legal</b></h5>
-                      </div>
-                      <hr>
                       <div class="col-md-4">
                         <div class="form-group" ng-class="{'has-error':bookmarkFormProv.PagWeb.$invalid && bookmarkFormProv.PagWeb.$dirty}">
                           <label class="control-label" for="name">Página Web:</label>
@@ -243,6 +237,15 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div class="box box-solid background-well">
+                    <div class="row">
+                      <div class="titulo">
+                        <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Representante Legal</b></h5>
+                      </div>
+                      <hr>
+
                       <div class="col-md-4">
                         <div class="form-group" ng-class="{'has-error':bookmarkFormProv.RepLegal.$invalid && bookmarkFormProv.RepLegal.$dirty}">
                           <label class="control-label" for="name">Representante Legal:</label>
@@ -261,6 +264,18 @@
                           </div>
                         </div>
                       </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.email.$invalid && bookmarkFormProv.email.$dirty}">
+                          <label class="control-label" for="name">Email Representante Legal:</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                            <input  ng-model="Proveedor.EmailRepLegal" type="email" class="form-control" name="email" placeholder="Email Representante legal" ng-required="true">
+                          </div>
+                        </div>
+                      </div>
+
+
                     </div>
                     <div class="row">
                       <div class="col-md-4">
@@ -268,16 +283,7 @@
                           <label class="control-label" for="name">Telefono Representante Legal:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.TlfRepLegal" ui-mask="(999) 999-9999" type="text" class="form-control" name="TlfRepLegal">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.email.$invalid && bookmarkFormProv.email.$dirty}">
-                          <label class="control-label" for="name">Email Representante Legal:</label>
-                          <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-                            <input  ng-model="Proveedor.EmailRepLegal" type="email" class="form-control" name="email" placeholder="Email Representante legal" ng-required="true">
+                            <input ng-model="Proveedor.TlfRepLegal" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" name="TlfRepLegal">
                           </div>
                         </div>
                       </div>
@@ -312,7 +318,7 @@
                           <label class="control-label" for="name">Telefono Representante Comercial:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                            <input  ng-model="Proveedor.TlfRepComercialnombre" ui-mask="(999) 999-9999" type="text" class="form-control" name="TlfRepComercialnombre" ng-required="true">
+                            <input  ng-model="Proveedor.TlfRepComercialnombre" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" name="TlfRepComercialnombre">
                           </div>
                         </div>
                       </div>
@@ -356,7 +362,7 @@
                           <label class="control-label" for="name">Telefono Coordinador de Operaciones:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.TelefonoCoordinadorOpe" id="Nombre" ui-mask="(999) 999-9999" type="text" class="form-control" name="TelefonoCoordinadorOpe" ng-required="true">
+                            <input ng-model="Proveedor.TelefonoCoordinadorOpe" id="Nombre" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -530,7 +536,7 @@
                                       </aside><!-- /.right-side -->
                                     </div><!-- ./wrapper -->
                             <!--
-      
+
                             <!--
                             <div class="callout callout-info">
                             <h4>1.Puedo licitar uno o dos procesos solamente</h4>
@@ -542,7 +548,6 @@
                           </div> -->
                           <div class="modal-footer">
 
-                            <button class="btn btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
                           </div><!--fin modal footer-->
         </div>
 

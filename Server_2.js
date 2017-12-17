@@ -544,8 +544,8 @@ app.post('/SaveUser', function (req, res) {
                     var msgBody = 'Puede ingresar a la plataforma de Licitaciones de Proenfar con el usuario: ' + req.body.User +  ' y clave: ' + text;
 
                     msg = msg.replace('@@Body', msgBody);
-                    msg = msg.replace('@@boton', '<a href="http://www.google.com">Portal Proenfar</a>');
-                    msg = msg.replace('@@Pie', "href='http://www.google.com'>Ir al <b>Portal</b>");
+                    msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:9099">Portal Proenfar</a>');
+                    msg = msg.replace('@@Pie', "href='http://vps-1299884-x.dattaweb.com:9099'>Ir al <b>Portal</b>");
 
                     var subject = "Acceso a plataforma de proveedores Proenfar.";
 
@@ -707,9 +707,7 @@ app.post('/RecoverPassword', function (req, res) {
 
 app.post('/GetBuscarUsuario', function (req, res) {
 
-    console.log(req.body);
-
-    MyMongo.Find('Usuarios', { $and: [{ Name: { '$regex': req.body.params.usuario, '$options': 'i' }}, { "Perfil": 3 }, {'RazonSocial': { $exists: true }}] }, function (result) {
+    MyMongo.Find('Usuarios', { $and: [{ Name: { '$regex': req.body.params.usuario, '$options': 'i' }}, { "Perfil": 3 }] }, function (result) {
 
         if (result.length > 0) {
             var Data = {};
@@ -772,7 +770,7 @@ app.post('/EnviarEmailProveedores', function (req, res) {
       '                <b>Link de acceso</b>'+
       '              </td>'+
       '              <td style="background: #f7f8fa; padding:7px; font-size:12px;" >'+
-      '                http://intra.proenfar.com:8080/LicitacionTransporte/'+
+      '                http://vps-1299884-x.dattaweb.com:9099'+
       '              </td>'+
       '            </tr>'+
       '            <tr>'+
@@ -2878,7 +2876,7 @@ app.post('/Deleterequisito', function (req, res) {
 
 app.post('/GetFormularioVisto', function (req, res) {
 
-     MyMongo.Find('FormularioVisto', { Formulario: req.body.Formulario}, function (result) {
+     MyMongo.Find('FormularioVisto', { Formulario: req.body.Formulario, User: req.body.User }, function (result) {
         console.log(result.length);
         var Data = {};
         Data.Formularios = result;
@@ -2894,10 +2892,10 @@ app.post('/GetAceptarRequisitocuenta', function (req, res) {
         console.log(result.length);
            if (result.length > 0){
             console.log('paso por aqui GetAceptarRequisitocuenta');
-              MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X"}, function (result) {
+              MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X", User: req.body.User }, function (result) {
               var Data = {};
               res.end(JSON.stringify(Data))
-               });   
+               });
             }
        });
 
@@ -2905,10 +2903,10 @@ app.post('/GetAceptarRequisitocuenta', function (req, res) {
 
 app.post('/GetAceptarAyudacarga', function (req, res) {
 
-              MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X"}, function (result) {
+              MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X", User: req.body.User}, function (result) {
               var Data = {};
               res.end(JSON.stringify(Data))
-               });   
+               });
   });
 
 app.get('/downloadanybyname', function (req, res) {

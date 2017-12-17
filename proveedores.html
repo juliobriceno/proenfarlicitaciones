@@ -74,6 +74,9 @@
         <!--Librería para xlsx -->
         <script type="text/javascript" src="js/mask.js"></script>
 
+        <!--Librería para máscara números -->
+        <script type="text/javascript" src="js/mask.js"></script>
+
 
     </head>
     <body class="skin-blue"  ng-controller="ctrlProveedor">
@@ -541,7 +544,7 @@
                               <label class="control-label" for="name">Contacto:</label>
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                <input ng-model="phone" id="Nombre" type="number" class="form-control" name="phone" placeholder="Phone" ng-required="true">
+                                <input ng-model="phone" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" name="phone" ng-required="true">
                               </div>
                             </div>
                           </div>

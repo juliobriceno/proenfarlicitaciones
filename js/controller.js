@@ -565,7 +565,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
               $scope.contactosmodalidades = response.data.contactosmodalidades;
-              $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades
+              $scope.contactosmodalidades.forEach(function(element) {
+                if (typeof element.modalidades != 'undefined'){
+                  element.modalidadestext = '';
+                  element.modalidades.forEach(function(modalidadinterna) {
+                    element.modalidadestext += modalidadinterna.modalidad.name + ' '
+                  });
+                }
+              });
+              $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
             }, function errorCallback(response) {
               alert(response.statusText);
             });
@@ -3172,7 +3180,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.GetFormularioVisto = function () {
                              var Data = {};
                              $loading.start('myloading');
-                             Data.Formulario = 'AyudaCargar'; 
+                             Data.Formulario = 'AyudaCargar';
+                             Data.User = localStorage.UserConnected;
+
                             $http({
                             method: 'POST',
                             url: '/GetFormularioVisto',
@@ -3189,7 +3199,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            alert(response.statusText);
                             });
                           }
-                     $scope.GetFormularioVisto(); 
+                     $scope.GetFormularioVisto();
 
                               $scope.PreguntasMostrando = 'Bodegajes';
                               $scope.RequisitosMostrando = 'Bodegajes';
@@ -3201,20 +3211,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                         $scope.GetModalidadesProveedor();
-     
+
 
                 ////////// Menu Ayuda//////////////////
-                     
+
 
                       $scope.CloseAyudaCarga = function(){
                          $('#modal-tips').modal('hide');
                            }
 
-                       $scope.AceptarAyudacarga = function(){                   
-                       var Data={};  
+                       $scope.AceptarAyudacarga = function(){
+                       var Data={};
                         $loading.start('myloading');
-                        Data.Formulario = 'AyudaCargar';  
-                        // Data.Modalidad= 'Bodegajes';                       
+                        Data.Formulario = 'AyudaCargar';
+                        Data.User = localStorage.UserConnected;
+
+                        // Data.Modalidad= 'Bodegajes';
                          $http({
                          method: 'POST',
                          url: '/GetAceptarAyudacarga',
@@ -3226,9 +3238,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          }, function errorCallback(response) {
                          alert(response.statusText);
                 });
-            }   
+            }
 
-                        
+
                         // Cerrar requisitos y preguntas sin aceptar
                         $scope.CloseRequisito = function(){
                           $('#requisitos').modal('hide');
@@ -3291,11 +3303,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             $scope.ModalidadesMostrar.AreasP = false;
                           }*/
                           $('#preguntas').modal('hide');
-                        }                                               
-                  
-                    
+                        }
+
+
                         // Fin Cerrar requisitos y preguntas aceptando
-                       
+
                         $scope.SaveUsuarioComplete = function () {
                           if (!$scope.bookmarkFormProv.$valid)
                           {
@@ -3411,8 +3423,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
        ///////////// /// Menu Ayuda//////////////////
                       $scope.FormularioVisto = function () {
                       var Data = {};
-                      $loading.start('myloading');                       
+                      $loading.start('myloading');
                       Data.Formulario = 'Requisitos';
+                      Data.User = localStorage.UserConnected;
+
                        $http({
                        method: 'POST',
                       url: '/GetFormularioVisto',
@@ -3428,7 +3442,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        alert(response.statusText);
                         });
                         }
-                     $scope.FormularioVisto();  
+                     $scope.FormularioVisto();
 
          ////////////////////Requisitos////////////////////////////
 
@@ -3449,9 +3463,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     alert(response.statusText);
                 });
             }
-                $scope.GetRequisitos();  
+                $scope.GetRequisitos();
 
-        ///////////////Preguntas/////////////////////////////////  
+        ///////////////Preguntas/////////////////////////////////
 
          $scope.GetPreguntas = function () {
                     var Data={};
@@ -3471,41 +3485,42 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
                 $scope.GetPreguntas();
 
-            ///////////////////Boton Aceptar y No Aceptar Requisiciones /////////////////////     
+            ///////////////////Boton Aceptar y No Aceptar Requisiciones /////////////////////
 
                    $scope.CloseRequisitocuenta = function(){
                          $('#requisitos').modal('hide');
                          $scope.mostrarmenulicitaciones = false;
                            }
 
-                       $scope.AceptarRequisitocuenta = function(){                   
-                       var Data={};  
+                       $scope.AceptarRequisitocuenta = function(){
+                       var Data={};
                         $loading.start('myloading');
-                        Data.Formulario = 'Requisitos';  
-                         Data.Modalidad= 'Bodegajes';                       
+                         Data.Formulario = 'Requisitos';
+                         Data.Modalidad= 'Bodegajes';
+                         Data.User = localStorage.UserConnected;
                          $http({
                          method: 'POST',
                          url: '/GetAceptarRequisitocuenta',
                          headers: { 'Content-Type': 'application/json' },
                          data: Data
                         }).then(function successCallback(response) {
-                         $('#requisitos').modal('hide');                    
+                         $('#requisitos').modal('hide');
                          $loading.finish('myloading');
                          }, function errorCallback(response) {
                          alert(response.statusText);
                 });
-            } 
+            }
                   $scope.botoncerrar = function(){
                     $scope.mostrarmenulicitaciones = false;
                   }
 
                   $scope.AceptarRequisitoboton = function(){
-                         $('#requisitoss').modal('hide');               
-                   } 
+                         $('#requisitoss').modal('hide');
+                   }
 
                   $scope.AceptarPreguntaboton = function(){
-                         $('#preguntas').modal('hide');               
-                   } 
+                         $('#preguntas').modal('hide');
+                   }
 
               $scope.mostrarmenulicitaciones=true;
 
@@ -4741,7 +4756,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                if (!$scope.bookmarkFormProv.$valid)
                {
-                 swal("Licitaciones Proenfar", "Hay valores inválidos. Por favor revisar el formulario.");
                  return 0
                }
 
@@ -5385,8 +5399,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
 
             $scope.dtproveedor= function(dato) {
-              var pos = $scope.Proveedores.indexOf(dato);
-              $scope.Proveedores.splice(pos);
+              $scope.Proveedores = $scope.Proveedores.filter(function(el){
+                return el.User != dato.User
+              })
             }
 
            $scope.cargarproveedoresTodos = function () {
@@ -5407,7 +5422,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
             $scope.refreshUsuarios = function (usuario) {
                  // swal("por aqui");
-              if (usuario.length < 3) return 0;
               var params = { usuario: usuario };
               $loading.start('myloading');
               return $http.post('/GetBuscarUsuario', { params: params })

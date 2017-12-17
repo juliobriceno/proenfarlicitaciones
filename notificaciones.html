@@ -166,7 +166,7 @@
                                                 <div class="form-group">
                                                   <br>
                                                   <ui-select  ng-model="Usuario.selected" theme="bootstrap" title="Escoge un proveedor">
-                                                    <ui-select-match placeholder="Escoge o busca un Proveedor...">{{$select.selected.Name}}</ui-select-match>
+                                                    <ui-select-match placeholder="Escoge o busca un Proveedor escribiendo algunas letras...">{{$select.selected.Name}}</ui-select-match>
                                                     <ui-select-choices repeat="usuario in Usuarios | filter: { Name: $select.search } "
                                                     refresh="refreshUsuarios($select.search)"
                                                     refresh-delay="0">
@@ -203,6 +203,8 @@
                                                       <div class="box-header">
                                                           <i class="fa fa-inbox"></i>
                                                           <h3 class="box-title">Mensaje:</h3>
+                                                          <br></br>
+                                                          <h4 class="">Licitación:</h4>
                                                       </div>
                                                       <div class="row">
                                                         <div class="col-md-6">
