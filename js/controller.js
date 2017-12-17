@@ -1130,24 +1130,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       if($scope.ModalidadesMostrarActual=='Bodegajes'){
                           angular.forEach(data.Aduanero, function(aduanero) {
                         ////////////////////////////valida si es numerico o null ///////////////
-                               if(pattern.test(aduanero.TarifaValor)){
-                                  $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor = aduanero.TarifaValor;
+                               if(pattern.test(aduanero["Tarifa Valor/FOB"])){
+                                  $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor = aduanero["Tarifa Valor/FOB"];
                                   //$scope.$apply();
                                 }
                                 else
                                 {
-                                  var valor='Aduanero_TarifaValor';
+                                  var valor='Aduanero_Tarifa Valor/FOB';
                                   $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(aduanero.TarifaMinima)){
-                                  $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima = aduanero.TarifaMinima;
+                               if(pattern.test(aduanero["Tarifa Minima"])){
+                                  $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima = aduanero["Tarifa Minima"];
                                   //$scope.$apply();
                                 }
                                 else
                                 {
-                                  var valor='Aduanero_TarifaMinima';
+                                  var valor='Aduanero_Tarifa Minima';
                                   $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
@@ -1179,13 +1179,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(maquinaria.TarifaMinima)){
-                                  $scope.ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima = maquinaria.TarifaMinima;
+                               if(pattern.test(maquinaria["Tarifa Minima"])){
+                                  $scope.ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima = maquinaria["Tarifa Minima"];
                                   //$scope.$apply();
                                 }
                                 else
                                 {
-                                  var valor='Maquinaria_TarifaMinima';
+                                  var valor='Maquinaria_Tarifa Minima';
                                   $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
@@ -1217,13 +1217,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(materiaprima.TarifaMinima)){
-                                 $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima = materiaprima.TarifaMinima;
+                               if(pattern.test(materiaprima["Tarifa Minima"])){
+                                 $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima = materiaprima["Tarifa Minima"];
                                   //$scope.$apply();
                                 }
                                 else
                                 {
-                                  var valor='MateriaPrima_TarifaMinima';
+                                  var valor='MateriaPrima_Tarifa Minima';
                                  $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
@@ -1262,7 +1262,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Aduanas , function(aduana) {
                              /////////////Tarifa////////////////////////////////////
-                                if(pattern.test(aduana.Tarifa)){
+                                if(pattern.test(aduana["Tarifa % Advalorem/ FOB"])){
                                    filaTarifa=filaTarifa +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                   // $scope.$apply();
@@ -1271,7 +1271,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
 
                                 filaTarifa=filaTarifa +1;
-                                  var valor='Tarifa';
+                                  var valor='Tarifa % Advalorem/ FOB';
                                   $scope.erroresimportacion.push({fila: filaTarifa, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
 
@@ -1290,7 +1290,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////GastosAdicionales//////////////////////////
-                                if(pattern.test(aduana.Gastos_Adicionales)){
+                                if(pattern.test(aduana["Gastos Adicionales"])){
                                   filaGastosAdicionales=filaGastosAdicionales +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1298,12 +1298,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosAdicionales=filaGastosAdicionales +1;
-                                  var valor='Gastos_Adicionales';
+                                  var valor='Gastos Adicionales';
                                   $scope.erroresimportacion.push({fila: filaGastosAdicionales, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionales//////////////////////////
-                                if(pattern.test(aduana.Conceptos_Adicionales)){
+                                if(pattern.test(aduana["Conceptos Adicionales"])){
                                   filaConceptosAdicionales=filaConceptosAdicionales +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                   //$scope.$apply();
@@ -1311,12 +1311,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaConceptosAdicionales=filaConceptosAdicionales +1;
-                                  var valor='Conceptos_Adicionales';
+                                  var valor='Conceptos Adicionales';
                                   $scope.erroresimportacion.push({fila: filaConceptosAdicionales, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                         //////////////////GastosAdicionalesdos//////////////////////////
-                                if(pattern.test(aduana.Gastos_Adicionales_dos)){
+                                if(pattern.test(aduana["Gastos Adicionales dos"])){
                                   filaGastosAdicionalesdos=filaGastosAdicionalesdos +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1324,12 +1324,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosAdicionalesdos=filaGastosAdicionalesdos +1;
-                                  var valor='Gastos_Adicionales_dos';
+                                  var valor='Gastos Adicionales dos';
                                   $scope.erroresimportacion.push({fila: filaGastosAdicionalesdos, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionales2//////////////////////////
-                                if(pattern.test(aduana.Conceptos_Adicionales_dos)){
+                                if(pattern.test(aduana["Conceptos Adicionales dos"])){
                                   filaConceptosAdicionalesdos=filaConceptosAdicionalesdos +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1337,12 +1337,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaConceptosAdicionalesdos=filaConceptosAdicionalesdos +1;
-                                  var valor='Conceptos_Adicionales_dos';
+                                  var valor='Conceptos Adicionales dos';
                                   $scope.erroresimportacion.push({fila: filaConceptosAdicionalesdos, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           //////////////////GastosAdicionalestres//////////////////////////
-                                if(pattern.test(aduana.Gastos_Adicionales_tres)){
+                                if(pattern.test(aduana["Gastos Adicionales tres"])){
                                   filaGastosAdicionalestres=filaGastosAdicionalestres +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1350,12 +1350,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosAdicionalestres=filaGastosAdicionalestres +1;
-                                  var valor='Gastos_Adicionales_tres';
+                                  var valor='Gastos Adicionales tres';
                                   $scope.erroresimportacion.push({fila: filaGastosAdicionalestres, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionalestres//////////////////////////
-                                if(pattern.test(aduana.Conceptos_Adicionales_tres)){
+                                if(pattern.test(aduana["Conceptos Adicionales tres"])){
                                   filaConceptosAdicionalestres=filaConceptosAdicionalestres +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1363,12 +1363,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaConceptosAdicionalestres=filaConceptosAdicionalestres +1;
-                                  var valor='Conceptos_Adicionales_tres';
+                                  var valor='Conceptos Adicionales tres';
                                   $scope.erroresimportacion.push({fila: filaConceptosAdicionalestres, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////CostoPlanificacionCaja//////////////////////////
-                                if(pattern.test(aduana.Costo_Planificacion_Caja)){
+                                if(pattern.test(aduana["Costo Planificacion Caja"])){
                                   filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1376,7 +1376,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
-                                  var valor='Costo_Planificacion_Caja';
+                                  var valor='Costo Planificacion Caja';
                                   $scope.erroresimportacion.push({fila: filaCostoPlanificacionCaja, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -1425,7 +1425,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.OTM , function(otm) {
                              /////////////C_20_hasta_4_5_Ton////////////////////////////////////
-                                if(pattern.test(otm.C_20_hasta_4_5_Ton)){
+                                if(pattern.test(otm["C 20 hasta 4-5 Ton"])){
                                    filacveintecuatroconcinco=filacveintecuatroconcinco +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1433,12 +1433,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveintecuatroconcinco=filacveintecuatroconcinco +1;
-                                  var valor='C_20_hasta_4_5_Ton';
+                                  var valor='C 20 hasta 4-5 Ton';
                                   $scope.erroresimportacion.push({fila: filacveintecuatroconcinco, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////C_20_hasta_8_Ton//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_8_Ton)){
+                                if(pattern.test(otm["C 20 hasta 8 Ton"])){
                                   filaCcveinteoocho=filacveinteoocho +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1446,12 +1446,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveinteoocho=filacveinteoocho +1;
-                                  var valor='C_20_hasta_8_Ton';
+                                  var valor='C 20 hasta 8 Ton';
                                   $scope.erroresimportacion.push({fila: filacveinteoocho, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveintendiez//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_10_Ton)){
+                                if(pattern.test(otm["C 20 hasta 10 Ton"])){
                                   filacveintendiez=filacveintendiez +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1459,12 +1459,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveintendiez=filacveintendiez +1;
-                                  var valor='C_20_hasta_10_Ton';
+                                  var valor='C 20 hasta 10 Ton';
                                   $scope.erroresimportacion.push({fila: filacveintendiez, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveintendiezsiete//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_17_Ton)){
+                                if(pattern.test(otm["C 20 hasta 17 Ton"])){
                                   filacveintendiezsiete=filacveintendiezsiete +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1472,12 +1472,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveintendiezsiete=filacveintendiezsiete +1;
-                                  var valor='C_20_hasta_17_Ton';
+                                  var valor='C 20 hasta 17 Ton';
                                   $scope.erroresimportacion.push({fila: filacveintendiezsiete, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                         //////////////////cveintendieznueve//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_19_Ton)){
+                                if(pattern.test(otm["C 20 hasta 19 Ton"])){
                                   filacveintendieznueve=filacveintendieznueve +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1485,12 +1485,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveintendieznueve=filacveintendieznueve +1;
-                                  var valor='C_20_hasta_19_Ton';
+                                  var valor='C 20 hasta 19 Ton';
                                   $scope.erroresimportacion.push({fila: filacveintendieznueve, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveinteveinte//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_20_Ton)){
+                                if(pattern.test(otm["C 20 hasta 20 Ton"])){
                                   filacveinteveinte=filacveinteveinte +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1498,12 +1498,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveinteveinte=filacveinteveinte +1;
-                                  var valor='C_20_hasta_20_Ton';
+                                  var valor='C 20 hasta 20 Ton';
                                   $scope.erroresimportacion.push({fila: filacveinteveinte, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           //////////////////cveinteveinteyuno//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_21_Ton)){
+                                if(pattern.test(otm["C 20 hasta 21 Ton"])){
                                   filacveinteveinteyuno=filacveinteveinteyuno +1;
                                    $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1511,12 +1511,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveinteveinteyuno=filacveinteveinteyuno +1;
-                                  var valor='C_20_hasta_21_Ton';
+                                  var valor='C 20 hasta 21 Ton';
                                   $scope.erroresimportacion.push({fila: filacveinteveinteyuno, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveinteveinteycinco//////////////////////////
-                                if(pattern.test(otm.C_20_hasta_25_Ton)){
+                                if(pattern.test(otm["C 20 hasta 25 Ton"])){
                                   filacveinteveinteycinco=filacveinteveinteycinco +1;
                                    $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1524,12 +1524,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filacveinteveinteycinco=filacveinteveinteycinco +1;
-                                  var valor='C_20_hasta_25_Ton';
+                                  var valor='C 20 hasta 25 Ton';
                                   $scope.erroresimportacion.push({fila: filacveinteveinteycinco, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaquince//////////////////////////
-                                if(pattern.test(otm.C_40_hasta_15_Ton)){
+                                if(pattern.test(otm["C 40 hasta 15 Ton"])){
                                   filaccuarentaquince=filaccuarentaquince +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1537,12 +1537,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentaquince=filaccuarentaquince +1;
-                                  var valor='C_40_hasta_15_Ton';
+                                  var valor='C 40 hasta 15 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentaquince, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentadiezyseis/////////////////////////////////////////
-                                if(pattern.test(otm.C_40_hasta_16_Ton)){
+                                if(pattern.test(otm["C 40 hasta 16 Ton"])){
                                   filaccuarentadiezyseis=filaccuarentadiezyseis +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1550,12 +1550,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentadiezyseis=filaccuarentadiezyseis +1;
-                                  var valor='C_40_hasta_16_Ton';
+                                  var valor='C 40 hasta 16 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentadiezyseis, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                       //////////////////ccuarentadiezysiete//////////////////////////
-                                if(pattern.test(otm.C_40_hasta_17_Ton)){
+                                if(pattern.test(otm["C 40 hasta 17 Ton"])){
                                   filaccuarentadiezysiete=filaccuarentadiezysiete +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1563,12 +1563,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentadiezysiete=filaccuarentadiezysiete +1;
-                                  var valor='C_40_hasta_17_Ton';
+                                  var valor='C 40 hasta 17 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentadiezysiete, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaveinte/////////////////////////////////////////
-                                if(pattern.test(otm.C_40_hasta_17_18_Ton)){
+                                if(pattern.test(otm["C 40 hasta 17-18 Ton"])){
                                   filaccuarentaveinte=filaccuarentaveinte +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1576,12 +1576,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentaveinte=filaccuarentaveinte +1;
-                                  var valor='C_40_hasta_17_18_Ton';
+                                  var valor='C 40 hasta 17-18 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentaveinte, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              //////////////////ccuarentaveinteyuno//////////////////////////
-                                if(pattern.test(otm.C_40_hasta_20_Ton)){
+                                if(pattern.test(otm["C 40 hasta 20 Ton"])){
                                   filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    $scope.$apply();
@@ -1589,12 +1589,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
-                                  var valor='cC_40_hasta_20_Ton';
+                                  var valor='C 40 hasta 20 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentaveinteyuno, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaveinteydos/////////////////////////////////////////
-                                if(pattern.test(otm.C_40_hasta_21_Ton)){
+                                if(pattern.test(otm["C 40 hasta 21 Ton"])){
                                   filaccuarentaveinteydos=filaccuarentaveinteydos +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1602,12 +1602,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentaveinteydos=filaccuarentaveinteydos +1;
-                                  var valor='C_40_hasta_21_Ton';
+                                  var valor='C 40 hasta 21 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentaveinteydos, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                            //////////////////ccuarentatreinta//////////////////////////
-                                if(pattern.test(otm.C_40_hasta_22_Ton)){
+                                if(pattern.test(otm["C 40 hasta 22 Ton"])){
                                   filaccuarentatreinta=filaccuarentatreinta +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1615,12 +1615,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentatreinta=filaccuarentatreinta +1;
-                                  var valor='C_40_hasta_22_Ton';
+                                  var valor='C 40 hasta 22 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentatreinta, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                    //////////////////ccuarentatreinta//////////////////////////
-                                if(pattern.test(otm.C_40_hasta_30_Ton)){
+                                if(pattern.test(otm["C 40 hasta 30 Ton"])){
                                   filaccuarentatreinta=filaccuarentatreinta +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1628,12 +1628,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaccuarentatreinta=filaccuarentatreinta +1;
-                                  var valor='C_40_hasta_30_Ton';
+                                  var valor='C 40 hasta 30 Ton';
                                   $scope.erroresimportacion.push({fila: filaccuarentatreinta, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucionveinteestandar/////////////////////////////////////////
-                                if(pattern.test(otm.Devolucion_20$_estandar)){
+                                if(pattern.test(otm["Devolucion 20$ estandar"])){
                                   filadevolucionveinteestandar=filadevolucionveinteestandar +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1641,12 +1641,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filadevolucionveinteestandar=filadevolucionveinteestandar +1;
-                                  var valor='Devolucion_20$_estandar';
+                                  var valor='Devolucion 20$ estandar';
                                   $scope.erroresimportacion.push({fila: filadevolucionveinteestandar, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucioncuarentaestandar//////////////////////////
-                                if(pattern.test(otm.Devolucion_40$_estandar)){
+                                if(pattern.test(otm["Devolucion 40$ estandar"])){
                                   filadevolucioncuarentaestandar=filadevolucioncuarentaestandar +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1654,12 +1654,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filadevolucioncuarentaestandar=filadevolucioncuarentaestandar +1;
-                                  var valor='Devolucion_40$_estandar';
+                                  var valor='Devolucion 40$ estandar';
                                   $scope.erroresimportacion.push({fila: filadevolucioncuarentaestandar, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucionveinteexpreso/////////////////////////////////////////
-                                if(pattern.test(otm.Devolucion_20$_expreso)){
+                                if(pattern.test(otm["Devolucion 20$ expreso"])){
                                   filadevolucionveinteexpreso=filadevolucionveinteexpreso +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1667,12 +1667,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filadevolucionveinteexpreso=filadevolucionveinteexpreso +1;
-                                  var valor='Devolucion_20$_expreso';
+                                  var valor='Devolucion 20$ expreso';
                                   $scope.erroresimportacion.push({fila: filadevolucionveinteexpreso, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucioncuarentaexpreso/////////////////////////////////////////
-                                if(pattern.test(otm.Devolucion_40$_expreso)){
+                                if(pattern.test(otm["Devolucion 40$ expreso"])){
                                   filadevolucioncuarentaexpreso=filadevolucioncuarentaexpreso +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1680,7 +1680,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filadevolucioncuarentaexpreso=filadevolucioncuarentaexpreso +1;
-                                  var valor='Devolucion_40$_expreso';
+                                  var valor='Devolucion 40$ expreso';
                                   $scope.erroresimportacion.push({fila: filadevolucioncuarentaexpreso, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -1707,7 +1707,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.MaritimasFcl , function(maritimasfcl) {
                              /////////////C20////////////////////////////////////
-                                if(pattern.test(maritimasfcl.C20)){
+                                if(pattern.test(maritimasfcl["C 20"])){
                                    filaC20=filaC20 +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.C20= data.MaritimasFcl.C20;
@@ -1716,12 +1716,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaC20=filaC20 +1;
-                                  var valor='C20';
+                                  var valor='C 20';
                                   $scope.erroresimportacion.push({fila: filaC20, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Baf20////////////////////////////////////
-                                if(pattern.test(maritimasfcl.Baf20)){
+                                if(pattern.test(maritimasfcl["Baf 20"])){
                                    filaBaf20=filaBaf20 +1;
                                   //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Baf20= data.MaritimasFcl.Baf20;
@@ -1730,12 +1730,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaBaf20=filaBaf20 +1;
-                                  var valor='Baf20';
+                                  var valor='Baf 20';
                                   $scope.erroresimportacion.push({fila: filaBaf20, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////C40////////////////////////////////////
-                                if(pattern.test(maritimasfcl.C40)){
+                                if(pattern.test(maritimasfcl["C 40"])){
                                    filaC40=filaC40 +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.C40= data.MaritimasFcl.C40;
@@ -1744,12 +1744,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaC40=filaC40 +1;
-                                  var valor='C_40';
+                                  var valor='C 40';
                                   $scope.erroresimportacion.push({fila: filaC40, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////Baf40////////////////////////////////////
-                                if(pattern.test(maritimasfcl.Baf40)){
+                                if(pattern.test(maritimasfcl["Baf 40"])){
                                    filaBaf40=filaBaf40 +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Baf40= data.MaritimasFcl.Baf40;
@@ -1758,12 +1758,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaBaf40=filaBaf40 +1;
-                                  var valor='Baf40';
+                                  var valor='Baf 40';
                                   $scope.erroresimportacion.push({fila: filaBaf40, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                               /////////////C40HC////////////////////////////////////
-                                if(pattern.test(maritimasfcl.C40HC)){
+                                if(pattern.test(maritimasfcl["C 40HC"])){
                                    filaC40HC=filaC40HC +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.atoria_C40HC= data.MaritimasFcl.C40HC;
@@ -1773,12 +1773,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaC40HC=filaC40HC +1;
-                                  var valor='C40HC';
+                                  var valor='C 40HC';
                                   $scope.erroresimportacion.push({fila: filaC40HC, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////Baf40HC////////////////////////////////////
-                                if(pattern.test(maritimasfcl.Baf40HC)){
+                                if(pattern.test(maritimasfcl["Baf 40HC"])){
                                    filaBaf40HC=filaBaf40HC +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.SBaf40HC= data.MaritimasFcl.Baf40HC;
@@ -1787,11 +1787,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaBaf40HC=filaBaf40HC +1;
-                                  var valor='Baf40HC';
+                                  var valor='Baf 40HC';
                                   //$scope.erroresimportacion.push({fila: filaBaf40HC, campo:valor, error:'Valor NO numérico'});
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Observaciones= data.MaritimasFcl.Observacione;
                                   $scope.AbrirModal(valor);
                                  }
+
                                /////////////Observaciones////////////////////////////////////
                                  if(maritimasfcl.Observaciones==null){
                                    filaObservacionesmf=filaObservacionesmf +1;
@@ -1806,7 +1807,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
                                  }
                             /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(maritimasfcl.GastosEmbarque)){
+                                if(pattern.test(maritimasfcl["Gastos Embarque"])){
                                    filaGastosEmbarquemf=filaGastosEmbarquemf +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.GastosEmbarque= data.MaritimasFcl.GastosEmbarque;
@@ -1815,12 +1816,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosEmbarquemf=filaGastosEmbarquemf +1;
-                                  var valor='GastosEmbarque';
+                                  var valor='Gastos Embarque';
                                   $scope.erroresimportacion.push({fila: filaGastosEmbarquemf, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Time////////////////////////////////////
-                                if(pattern.test(maritimasfcl.Lead_TimeDias)){
+                                if(pattern.test(maritimasfcl["Lead Time(dias)"])){
                                    filaTimemf=filaTimemf +1;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Lead_TimeDias= data.MaritimasFcl.Lead_TimeDias;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
@@ -1829,7 +1830,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaTimemf=filaTimemf +1;
-                                  var valor='Lead_TimeDias';
+                                  var valor='Lead Time(dias)';
                                   $scope.erroresimportacion.push({fila: filaTimemf, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -1848,58 +1849,58 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////FrecuenciaSemanal////////////////////////////////////
-                                if(maritimasfcl.FrecuenciaSemanal=='X') {
-                                 maritimasfcl.FrecuenciaSemanal=true;
+                                if(maritimasfcl["Frecuencia Semanal"]=='X') {
+                                 maritimasfcl["Frecuencia Semanal"]=true;
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   //$scope.$apply();
                                   }
                                 else
                                 {
-                                 maritimasfcl.FrecuenciaSemanal=false;
+                                 maritimasfcl["Frecuencia Semanal"]=false;
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   $scope.$apply();
                                  }
                              /////////////FrecuenciaQuincenal////////////////////////////////////
-                                if(maritimasfcl.FrecuenciaQuincenal=='X')  {
-                                  maritimasfcl.FrecuenciaQuincenal=true;
+                                if(maritimasfcl["Frecuencia Quincenal"]=='X')  {
+                                  maritimasfcl["Frecuencia Quincenal"]=true;
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   //$scope.$apply();
                                   }
                                 else
                                 {
-                                  maritimasfcl.FrecuenciaQuincenal=false;
+                                  maritimasfcl["Frecuencia Quincenal"]=false;
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   //$scope.$apply();
                                 }
                             /////////////FrecuenciaMensual////////////////////////////////////
-                               if(maritimasfcl.FrecuenciaMensual=='X') {
-                                 maritimasfcl.FrecuenciaMensual=true;
+                               if(maritimasfcl["Frecuencia Mensual"]=='X') {
+                                 maritimasfcl["Frecuencia Mensual"]=true;
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   //$scope.$apply();
                                   }
 
                                 else
                                 {
-                                  maritimasfcl.FrecuenciaMensual=false;
+                                  maritimasfcl["Frecuencia Mensual"]=false;
                                   $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   //$scope.$apply();
                                  }
                            /////////////SUMATORIA C20 + Baf 20 + Ge////////////////////////////////////
                                 var sumatoria=0;
-                                sumatoria=maritimasfcl.C20 + maritimasfcl.Baf20 + maritimasfcl.GastosEmbarque;
-                                maritimasfcl.Sumatoria_C20_Baf20_Ge = sumatoria;
+                                sumatoria=maritimasfcl["C 20"] + maritimasfcl["Baf 20"] + maritimasfcl["Gastos Embarque"];
+                                maritimasfcl["C 20 + Baf 20 + Gastos Embarque"] = sumatoria;
                                 $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                 //$scope.$apply();
                            /////////////SUMATORIA C40 + Baf 40 + Ge////////////////////////////////////
                                 var sumatoria1=0;
-                                sumatoria1=maritimasfcl.C40 + maritimasfcl.Baf40 + maritimasfcl.GastosEmbarque;
-                                maritimasfcl.Sumatoria_C40_Baf40_Ge = sumatoria1;
+                                sumatoria1=maritimasfcl["C 40"] + maritimasfcl["Baf 40"]+ maritimasfcl["Gastos Embarque"];
+                                maritimasfcl["C 40 + Baf 40 + Gastos Embarque"] = sumatoria1;
                                 $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                 //$scope.$apply();
                            /////////////SUMATORIA C40HC + Baf 40HC + Ge////////////////////////////////////
                                 var sumatoria2=0;
-                                sumatoria2=maritimasfcl.C40HC + maritimasfcl.Baf40HC + maritimasfcl.GastosEmbarque;
-                                maritimasfcl.Sumatoria_C40HC_Baf40HC_Ge = sumatoria2;
+                                sumatoria2=maritimasfcl["C 40HC"] + maritimasfcl["Baf 40HC"] + maritimasfcl["Gastos Embarque"];
+                                maritimasfcl["C 40hc + Baf 40hc + Gastos Embarque"] = sumatoria2;
                                 $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                // $scope.$apply();
                                $scope.$apply();
@@ -1938,7 +1939,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ton15////////////////////////////////////
-                                if(pattern.test(maritimaslcl._1_5_ton_M3)){
+                                if(pattern.test(maritimaslcl["1-5 ton/M3"])){
                                    filaton15=filaton15 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1946,12 +1947,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaton15=filaton15 +1;
-                                  var valor='_1_5_ton_M3';
+                                  var valor='1-5 ton/M3';
                                   $scope.erroresimportacion.push({fila: filaton15, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ton58////////////////////////////////////
-                                if(pattern.test(maritimaslcl._5_8_ton_M3)){
+                                if(pattern.test(maritimaslcl["5-8 ton/M3"])){
                                    filaton58=filaton58 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1959,12 +1960,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaton58=filaton58 +1;
-                                  var valor='_5_8_ton_M3';
+                                  var valor='5-8 ton/M3';
                                   $scope.erroresimportacion.push({fila: filaton58, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////ton812////////////////////////////////////
-                                if(pattern.test(maritimaslcl._8_12_ton_M3)){
+                                if(pattern.test(maritimaslcl["8-12 ton/M3"])){
                                    filaton812=filaton812 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1972,12 +1973,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaton812=filaton812 +1;
-                                  var valor='_8_12_ton_M3';
+                                  var valor='8-12 ton/M3';
                                   $scope.erroresimportacion.push({fila: filaton812, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////ton1218////////////////////////////////////
-                                if(pattern.test(maritimaslcl._12_18_ton_M3)){
+                                if(pattern.test(maritimaslcl["12-18 ton/M3"])){
                                    filaton1218=filaton1218 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1985,12 +1986,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaton1218=filaton1218 +1;
-                                  var valor='_12_18_ton_M3';
+                                  var valor='12-18 ton/M3';
                                   $scope.erroresimportacion.push({fila: filaton1218, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                               /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(maritimaslcl.Gastos_Embarque)){
+                                if(pattern.test(maritimaslcl["Gastos Embarque"])){
                                    filaGastosEmbarqueml=filaGastosEmbarqueml +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1998,7 +1999,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosEmbarqueml=filaGastosEmbarqueml +1;
-                                  var valor='Gastos_Embarque';
+                                  var valor='Gastos Embarque';
                                   $scope.erroresimportacion.push({fila: filaGastosEmbarqueml, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
@@ -2016,7 +2017,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
                                  }
                              /////////////Time////////////////////////////////////
-                                if(pattern.test(maritimaslcl.Time)){
+                                if(pattern.test(maritimaslcl["Lead time(dias)"])){
                                    filaTimeml=filaTimeml +1;
                                   $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2024,7 +2025,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaTimeml=filaTimeml +1;
-                                  var valor='Time';
+                                  var valor='Lead Time(dias)';
                                   $scope.erroresimportacion.push({fila: filaTimeml, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2042,93 +2043,93 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////FrecuenciaLunes////////////////////////////////////
-                                if(maritimaslcl.FrecuenciaDiasLunes=='X') {
-                                    maritimaslcl.FrecuenciaDiasLunes=true;
+                                if(maritimaslcl["Frecuencia Dia Lunes"]=='X') {
+                                    maritimaslcl["Frecuencia Dia Lunes"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasLunes=false;
+                                  maritimaslcl["Frecuencia Dia Lunes"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
 
                           /////////////FrecuenciaMartes////////////////////////////////////
-                                if(maritimaslcl.FrecuenciaDiasMartes=='X') {
-                                   maritimaslcl.FrecuenciaDiasMartes=true;
+                                if(maritimaslcl["Frecuencia Dia Martes"]=='X') {
+                                   maritimaslcl["Frecuencia Dia Martes"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasMartes=false;
+                                  maritimaslcl["Frecuencia Dia Martes"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
 
                            /////////////FrecuenciaMiercoles////////////////////////////////////
-                                  if(maritimaslcl.FrecuenciaDiasMiercoles=='X') {
-                                   maritimaslcl.FrecuenciaDiasMiercoles=true;
+                                  if(maritimaslcl["Frecuencia Dia Miercoles"]=='X') {
+                                   maritimaslcl["Frecuencia Dia Miercoles"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasMiercoles=false;
+                                  maritimaslcl["Frecuencia Dia Miercoles"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
 
                             //////////FrecuenciaJueves////////////////////////////////////
 
-                                  if(maritimaslcl.FrecuenciaDiasJueves=='X') {
-                                   maritimaslcl.FrecuenciaDiasJueves=true;
+                                  if(maritimaslcl["Frecuencia Dia Jueves"]=='X') {
+                                   maritimaslcl["Frecuencia Dia Jueves"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasJueves=false;
+                                  maritimaslcl["Frecuencia Dia Jueves"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
 
                             /////////////FrecuenciaViernes////////////////////////////////////
-                                if(maritimaslcl.FrecuenciaDiasViernes=='X') {
-                                   maritimaslcl.FrecuenciaDiasViernes=true;
+                                if(maritimaslcl["Frecuencia Dia Viernes"]=='X') {
+                                   maritimaslcl["Frecuencia Dia Viernes"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                   //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasViernes=false;
+                                  maritimaslcl["Frecuencia Dia Viernes"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
 
                             /////////////FrecuenciaSabado////////////////////////////////////
-                                if(maritimaslcl.FrecuenciaDiasSabado=='X') {
-                                   maritimaslcl.FrecuenciaDiasSabado=true;
+                                if(maritimaslcl["Frecuencia Dia Sabado"]=='X') {
+                                   maritimaslcl["Frecuencia Dia Sabado"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasSabado=false;
+                                  maritimaslcl["Frecuencia Dia Sabado"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
 
                              /////////////FrecuenciaDominfo////////////////////////////////////
-                                   if(maritimaslcl.FrecuenciaDiasDomingo=='X') {
-                                   maritimaslcl.FrecuenciaDiasDomingo=true;
+                                   if(maritimaslcl["Frecuencia Dia Domingo"]=='X') {
+                                   maritimaslcl["Frecuencia Dia Domingo"]=true;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  maritimaslcl.FrecuenciaDiasDomingo=false;
+                                  maritimaslcl["Frecuencia Dia Domingo"]=false;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
@@ -2148,7 +2149,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            angular.forEach(data.Terrestre_Nacional, function(terrestrenacional) {
 
                              /////////////Turbo_Standar_150Cajas////////////////////////////////////
-                                if(pattern.test(terrestrenacional.Turbo_Standar_150Cajas)){
+                                if(pattern.test(terrestrenacional["Turbo Standar (150Cajas)"])){
                                    filaEstandarna=filaEstandarna +1;
                                    $scope.ModalidadesProveedor.TerreNacional.TerresNacional= data.Terrestre_Nacional;
                                    console.log('Terrenacional por aqui');
@@ -2157,12 +2158,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEstandarna=filaEstandarna +1;
-                                  var valor='Turbo_Standar_150Cajas';
+                                  var valor='Turbo Standar (150Cajas)';
                                   $scope.erroresimportacion.push({fila: filaEstandarna, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Especial////////////////////////////////////
-                                if(pattern.test(terrestrenacional.Turbo_Especial)){
+                                if(pattern.test(terrestrenacional["Turbo Especial"])){
                                    filaEspecialna=filaEspecialna +1;
                                    console.log('Terrenacional por aqui 2');
                                    $scope.ModalidadesProveedor.TerreNacional.TerresNacional= data.Terrestre_Nacional;
@@ -2171,7 +2172,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialna=filaEspecialna +1;
-                                  var valor='Turbo_Especial';
+                                  var valor='Turbo Especial';
                                   $scope.erroresimportacion.push({fila: filaEspecialna, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2184,7 +2185,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Nacional_Sencillo, function(terrestrenacionalsencillo) {
                              /////////////Sencillo_240Cajass////////////////////////////////////
-                                if(pattern.test(terrestrenacionalsencillo.Sencillo_240Cajas)){
+                                if(pattern.test(terrestrenacionalsencillo['Sencillo Standar (150Cajas)'])){
                                    filaEstandarnasen=filaEstandarnasen +1;
                                    $scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo= data.Terrestre_Nacional_Sencillo;
                                    //$scope.$apply();
@@ -2192,12 +2193,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEstandarnasen=filaEstandarnasen +1;
-                                  var valor='Sencillo_240Cajas';
+                                  var valor='Sencillo Standar (150Cajas)';
                                   $scope.erroresimportacion.push({fila: filaEstandarnasen, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Sencillo_Especial////////////////////////////////////
-                                if(pattern.test(terrestrenacionalsencillo.Sencillo_Especial)){
+                                if(pattern.test(terrestrenacionalsencillo["Sencillo Especial"])){
                                    filaEspecialnasen=filaEspecialnasen +1;
                                    $scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo= data.Terrestre_Nacional_Sencillo;
                                    //$scope.$apply();
@@ -2205,7 +2206,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialnasen=filaEspecialnasen +1;
-                                  var valor='Sencillo_Especial';
+                                  var valor='Sencillo Especial';
                                   $scope.erroresimportacion.push({fila: filaEspecialnasen, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2231,7 +2232,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////GranDanes////////////////////////////////////
-                                if(pattern.test(terrestrenacionalpatineta.GranDanes)){
+                                if(pattern.test(terrestrenacionalpatineta['Gran Danes'])){
                                    filaEspecialnapat=filaEspecialnapat +1;
                                    $scope.ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta= data.Terrestre_Nacional_Patineta;
                                   // $scope.$apply();
@@ -2239,7 +2240,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialnapat=filaEspecialnapat +1;
-                                  var valor='GranDanes';
+                                  var valor='Gran Danes';
                                   $scope.erroresimportacion.push({fila: filaEspecialnapat, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2263,7 +2264,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Urbano_Dia, function(terrestreurbano) {
                              /////////////Turbo_150Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano.Turbo_150Cajas)){
+                                if(pattern.test(terrestreurbano["Turbo (150Cajas)"])){
                                    filaEstandartu=filaEstandartu +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2271,12 +2272,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEstandartu=filaEstandartu +1;
-                                  var valor='Turbo_150Cajas';
+                                  var valor='Turbo (150Cajas) Urbano Dia';
                                   $scope.erroresimportacion.push({fila: filaEstandartu, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ETurbo_Especial_200Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano.Turbo_Especial_200Cajas)){
+                                if(pattern.test(terrestreurbano["Turbo Especial (200Cajas)"])){
                                    filaEspecialtu=filaEspecialtu +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2284,12 +2285,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtu=filaEspecialtu +1;
-                                  var valor='Turbo_Especial_200Cajas';
+                                  var valor='Turbo Especial (200Cajas) Urbano Dia';
                                   $scope.erroresimportacion.push({fila: filaEspecialtu, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_240Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano.Sencillo_240Cajas)){
+                                if(pattern.test(terrestreurbano["Sencillo (240Cajas)"])){
                                    filaEspecialtusen240=filaEspecialtusen240 +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.TerrestreUrbano;
                                    //$scope.$apply();
@@ -2297,12 +2298,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtusen240=filaEspecialtusen240 +1;
-                                  var valor='Sencillo_240Cajas';
+                                  var valor='Sencillo (240Cajas) Urbano Dia';
                                   $scope.erroresimportacion.push({fila: filaEspecialtusen240, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_Especial_300Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano.Sencillo_Especial_300Cajas)){
+                                if(pattern.test(terrestreurbano["Sencillo Especial (300Cajas)"])){
                                    filaEspecialtusen300=filaEspecialtusen300 +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2310,7 +2311,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtusen300=filaEspecialtusen300 +1;
-                                  var valor='Sencillo_Especial_300Cajas';
+                                  var valor='Sencillo Especial (300Cajas) Urbano Dia';
                                   $scope.erroresimportacion.push({fila: filaEspecialtusen300, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2328,7 +2329,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GranDanes////////////////////////////////////
-                                if(pattern.test(terrestreurbano.GranDanes)){
+                                if(pattern.test(terrestreurbano["Gran Danes"])){
                                    filaEspecialtugran=filaEspecialtugran +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2336,7 +2337,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtugran=filaEspecialtugran +1;
-                                  var valor='GranDanes';
+                                  var valor='Gran Danes Urbano Dia';
                                   $scope.erroresimportacion.push({fila: filaEspecialtugran, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2354,7 +2355,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Urbano_Viaje, function(terrestreurbanoviaje) {
                              /////////////Turbo_150Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje.Turbo_150Cajas)){
+                                if(pattern.test(terrestreurbanoviaje["Turbo (150Cajas)"])){
                                    filaEstandartuvia=filaEstandartuvia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2362,12 +2363,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEstandartu=filaEstandartu +1;
-                                  var valor='Turbo_150Cajas';
+                                  var valor='Turbo (150Cajas) Urbano Viaje';
                                   $scope.erroresimportacion.push({fila: filaEstandartuvia, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ETurbo_Especial_200Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje.Turbo_Especial_200Cajas)){
+                                if(pattern.test(terrestreurbanoviaje["Turbo Especial (200Cajas)"])){
                                    filaEspecialtuvia=filaEspecialtuvia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2375,12 +2376,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtuvia=filaEspecialtuvia +1;
-                                  var valor='Turbo_Especial_200Cajas';
+                                  var valor='Turbo Especial (200Cajas) Urbano Viaje';
                                   $scope.erroresimportacion.push({fila: filaEspecialtuvia, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_240Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje.Sencillo_240Cajas)){
+                                if(pattern.test(terrestreurbanoviaje["Sencillo (240Cajas)"])){
                                    filaEspecialtusen240via=filaEspecialtusen240via +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2388,12 +2389,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtusen240via=filaEspecialtusen240via +1;
-                                  var valor='Sencillo_240Cajas';
+                                  var valor='Sencillo (240Cajas) Urbano Viaje';
                                   $scope.erroresimportacion.push({fila: filaEspecialtusen240via, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_Especial_300Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje.Sencillo_Especial_300Cajas)){
+                                if(pattern.test(terrestreurbanoviaje["Sencillo Especial (300Cajas)"])){
                                    filaEspecialtusen300via=filaEspecialtusen300via +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2401,7 +2402,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtusen300via=filaEspecialtusen300via +1;
-                                  var valor='Sencillo_Especial_300Cajas';
+                                  var valor='Sencillo Especial (300Cajas) Urbano Viaje';
                                   $scope.erroresimportacion.push({fila: filaEspecialtusen300via, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2414,12 +2415,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtuminivia=filaEspecialtuminivia +1;
-                                  var valor='Minimula';
+                                  var valor='Minimula Urbano Viaje';
                                   $scope.erroresimportacion.push({fila: filaEspecialtuminivia, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GranDanes////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje.GranDanes)){
+                                if(pattern.test(terrestreurbanoviaje["Gran Danes"])){
                                    filaEspecialtugranvia=filaEspecialtugranvia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2427,7 +2428,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtugranvia=filaEspecialtugranvia +1;
-                                  var valor='GranDanes';
+                                  var valor='Gran Danes';
                                   $scope.erroresimportacion.push({fila: filaEspecialtugranvia, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2454,7 +2455,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEstandartuviatone=filaEstandartuviatone +1;
-                                  var valor='Turbo_150Cajas';
+                                  var valor='Turbo ';
                                   $scope.erroresimportacion.push({fila: filaEstandartuviatone, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2467,7 +2468,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtuviasentone=filaEspecialtuviasentone +1;
-                                  var valor='Turbo_Especial_200Cajas';
+                                  var valor='Sencillo';
                                   $scope.erroresimportacion.push({fila: filaEspecialtuviasentone, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2524,7 +2525,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////aerea45////////////////////////////////////
-                                if(pattern.test(aereacarguero.T_45)){
+                                if(pattern.test(aereacarguero["45"])){
                                    filaaerea45=filaaerea45 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2532,12 +2533,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea45=filaaerea45 +1;
-                                  var valor='T45_Carguero';
+                                  var valor='45_Carguero';
                                   $scope.erroresimportacion.push({fila: filaaerea45, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea100////////////////////////////////////
-                                if(pattern.test(aereacarguero.T_100)){
+                                if(pattern.test(aereacarguero["+100"])){
                                    filaaerea100=filaaerea100 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2545,12 +2546,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea100=filaaerea100 +1;
-                                  var valor='T100_Carguero';
+                                  var valor='+100_Carguero';
                                   $scope.erroresimportacion.push({fila: filaaerea100, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////aerea300////////////////////////////////////
-                                if(pattern.test(aereacarguero.T_300)){
+                                if(pattern.test(aereacarguero["+300"])){
                                    filaaerea300=filaaerea300 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2558,12 +2559,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea300=filaaerea300 +1;
-                                  var valor='T300_Carguero';
+                                  var valor='+300_Carguero';
                                   $scope.erroresimportacion.push({fila: filaaerea300, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                            /////////////aerea500////////////////////////////////////
-                                if(pattern.test(aereacarguero.T_500)){
+                                if(pattern.test(aereacarguero["+500"])){
                                    filaaerea500=filaaerea500 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                   // $scope.$apply();
@@ -2571,12 +2572,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea500=filaaerea500 +1;
-                                  var valor='T500_Carguero';
+                                  var valor='+500_Carguero';
                                   $scope.erroresimportacion.push({fila: filaaerea500, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea1000////////////////////////////////////
-                                if(pattern.test(aereacarguero.T_1000)){
+                                if(pattern.test(aereacarguero["+1000"])){
                                    filaaerea1000=filaaerea1000 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2584,12 +2585,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea1000=filaaerea1000 +1;
-                                  var valor='T1000_Carguero';
+                                  var valor='+1000_Carguero';
                                   $scope.erroresimportacion.push({fila: filaaerea1000, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////FSmin////////////////////////////////////
-                                if(pattern.test(aereacarguero.FSmin)){
+                                if(pattern.test(aereacarguero["FS min"])){
                                    filaFSmin=filaFSmin +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2597,12 +2598,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaFSmin=filaFSmin +1;
-                                  var valor='FSmin_Carguero';
+                                  var valor='FS min_Carguero';
                                   $scope.erroresimportacion.push({fila: filaFSmin, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                        /////////////Fskg////////////////////////////////////
-                                if(pattern.test(aereacarguero.Fskg)){
+                                if(pattern.test(aereacarguero["Fs/kg"])){
                                    filaFskg=filaFskg +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2610,12 +2611,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaFskg=filaFskg +1;
-                                  var valor='Fskg_Carguero';
+                                  var valor='Fs/kg_Carguero';
                                   $scope.erroresimportacion.push({fila: filaFskg, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(aereacarguero.Gastos_Embarque)){
+                                if(pattern.test(aereacarguero["Gastos Embarque"])){
                                    filaGastosEmbarqueca=filaGastosEmbarqueca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2623,7 +2624,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosEmbarqueca=filaGastosEmbarqueca +1;
-                                  var valor='GastosEmbarque_Carguero';
+                                  var valor='Gastos Embarque_Carguero';
                                   $scope.erroresimportacion.push({fila: filaGastosEmbarqueca, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2641,7 +2642,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
                                  }
                             /////////////Time////////////////////////////////////
-                                if(pattern.test(aereacarguero.Lead_Time_Dias)){
+                                if(pattern.test(aereacarguero["Lead Time (dias)"])){
                                    filaTimeca=filaTimeca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2649,7 +2650,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaTimeca=filaTimeca +1;
-                                  var valor='LeadTimeDias_Carguero';
+                                  var valor='Lead Time (dias)_Carguero';
                                   $scope.erroresimportacion.push({fila: filaTimeca, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2667,115 +2668,115 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////FrecuenciaLunes////////////////////////////////////
-                                  if(aereacarguero.FrecuenciaDiasLunes=='X') {
-                                   aereacarguero.FrecuenciaDiasLunes=true;
+                                  if(aereacarguero["Frecuencia Dia Lunes"]=='X') {
+                                   aereacarguero["Frecuencia Dia Lunes"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                   //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasLunes=false;
+                                  aereacarguero["Frecuencia Dia Lunes"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                  }
                           /////////////FrecuenciaMartes////////////////////////////////////
-                                if(aereacarguero.FrecuenciaDiasMartes=='X') {
-                                   aereacarguero.FrecuenciaDiasMartes=true;
+                                if(aereacarguero["Frecuencia Dia Martes"]=='X') {
+                                   aereacarguero["Frecuencia Dia Martes"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasMartes=false;
+                                  aereacarguero["Frecuencia Dia Martes"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                   // $scope.$apply();
                                  }
                            /////////////FrecuenciaMiercoles////////////////////////////////////
-                                 if(aereacarguero.FrecuenciaDiasMiercoles=='X') {
-                                   aereacarguero.FrecuenciaDiasMiercoles=true;
+                                 if(aereacarguero["Frecuencia Dia Miercoles"]=='X') {
+                                   aereacarguero["Frecuencia Dia Miercoles"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasMiercoles=false;
+                                  aereacarguero["Frecuencia Dia Miercoles"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                  }
 
                             //////////FrecuenciaJueves////////////////////////////////////
-                               if(aereacarguero.FrecuenciaDiasJueves=='X') {
-                                   aereacarguero.FrecuenciaDiasJueves=true;
+                               if(aereacarguero["Frecuencia Dia Jueves"]=='X') {
+                                   aereacarguero["Frecuencia Dia Jueves"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasJueves=false;
+                                  aereacarguero["Frecuencia Dia Jueves"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                  }
 
                             /////////////FrecuenciaViernes////////////////////////////////////
-                                if(aereacarguero.FrecuenciaDiasViernes=='X') {
-                                   aereacarguero.FrecuenciaDiasViernes=true;
+                                if(aereacarguero["Frecuencia Dia Viernes"]=='X') {
+                                   aereacarguero["Frecuencia Dia Viernes"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasViernes=false;
+                                  aereacarguero["Frecuencia Dia Viernes"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                  }
 
                             /////////////FrecuenciaSabado////////////////////////////////////
-                                 if(aereacarguero.FrecuenciaDiasSabado=='X') {
-                                   aereacarguero.FrecuenciaDiasSabado=true;
+                                 if(aereacarguero["Frecuencia Dia Sabado"]=='X') {
+                                   aereacarguero["Frecuencia Dia Sabado"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasSabado=false;
+                                  aereacarguero["Frecuencia Dia Sabado"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                  }
 
                              /////////////FrecuenciaDominfo////////////////////////////////////
-                                if(aereacarguero.FrecuenciaDiasDomingo=='X') {
-                                   aereacarguero.FrecuenciaDiasDomingo=true;
+                                if(aereacarguero["Frecuencia Dia Domingo"]=='X') {
+                                   aereacarguero["Frecuencia Dia Domingo"]=true;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereacarguero.FrecuenciaDiasDomingo=false;
+                                  aereacarguero["Frecuencia Dia Domingo"]=false;
                                    $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                   // $scope.$apply();
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                 var sumatoria=0;
-                                sumatoria=aereacarguero.T_100 + aereacarguero.Fskg + aereacarguero.Gastos_Embarque;
-                                aereacarguero.Sumatoria_T100_FS_Ge = sumatoria;
+                                sumatoria=aereacarguero["+100'"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                aereacarguero["+100 + Fs/kg + Gastos Embarque"] = sumatoria;
                                 $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1=0;
-                                sumatoria1=aereacarguero.T_300 + aereacarguero.Fskg + aereacarguero.Gastos_Embarque;
-                                aereacarguero.Sumatoria_T100_FS_Ge = sumatoria1;
+                                sumatoria1=aereacarguero["+300'"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                aereacarguero["+300 + Fs/kg + Gastos Embarque"] = sumatoria1;
                                 $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2=0;
-                                sumatoria2=aereacarguero.T_500 + aereacarguero.Fskg + aereacarguero.Gastos_Embarque;
-                                aereacarguero.Sumatoria_T500_FS_Ge = sumatoria2;
+                                sumatoria2=aereacarguero["+500'"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                aereacarguero["+500 + Fs/kg + Gastos Embarque"] = sumatoria2;
                                 $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3=0;
-                                sumatoria3=aereacarguero.T_1000 + aereacarguero.Fskg + aereacarguero.Gastos_Embarque;
-                                aereacarguero.Sumatoria_T1000_FS_Ge = sumatoria3;
+                                sumatoria3=aereacarguero["+1000'"] + aereacarguero["Fs/kg"];
+                                aereacarguero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3;
                                 $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                // $scope.$apply();
                              $scope.$apply();
@@ -2811,7 +2812,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////aerea45////////////////////////////////////
-                                if(pattern.test(aereapasajero.T_45)){
+                                if(pattern.test(aereapasajero["45"])){
                                    filaaerea45=filaaerea45 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -2819,12 +2820,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea45=filaaerea45 +1;
-                                  var valor='T45_Pasajero';
+                                  var valor='+45_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea45, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea100////////////////////////////////////
-                                if(pattern.test(aereapasajero.T_100)){
+                                if(pattern.test(aereapasajero["+100"])){
                                    filaaerea100=filaaerea100 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_100= data.Aerea_Pasajero.T_100;
                                    //$scope.$apply();
@@ -2832,12 +2833,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea100=filaaerea100 +1;
-                                  var valor='T100_Pasajero';
+                                  var valor='T+00_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea100, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////aerea300////////////////////////////////////
-                                if(pattern.test(aereapasajero.T_300)){
+                                if(pattern.test(aereapasajero["+300"])){
                                    filaaerea300=filaaerea300 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_300= data.Aerea_Pasajero.T_300;
                                    //$scope.$apply();
@@ -2845,12 +2846,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea300=filaaerea300 +1;
-                                  var valor='T300_Pasajero';
+                                  var valor='+300_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea300, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                            /////////////aerea500////////////////////////////////////
-                                if(pattern.test(aereapasajero.T_500)){
+                                if(pattern.test(aereapasajero["+500"])){
                                    filaaerea500=filaaerea500 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_500= data.Aerea_Pasajero.T_500;
                                    //$scope.$apply();
@@ -2858,12 +2859,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea500=filaaerea500 +1;
-                                  var valor='T500_Pasajero';
+                                  var valor='+500_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea500, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea1000////////////////////////////////////
-                                if(pattern.test(aereapasajero.T_1000)){
+                                if(pattern.test(aereapasajero["+1000"])){
                                    filaaerea1000=filaaerea1000 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_1000= data.Aerea_Pasajero.T_1000;
                                    //$scope.$apply();
@@ -2871,12 +2872,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea1000=filaaerea1000 +1;
-                                  var valor='T1000_Pasajero';
+                                  var valor='+1000_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea1000, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////FSmin////////////////////////////////////
-                                if(pattern.test(aereapasajero.FSmin)){
+                                if(pattern.test(aereapasajero["FS min"])){
                                    filaFSmin=filaFSmin +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -2884,12 +2885,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaFSmin=filaFSmin +1;
-                                  var valor='FSmin_Pasajero';
+                                  var valor='FS min_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaFSmin, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                        /////////////Fskg////////////////////////////////////
-                                if(pattern.test(aereapasajero.Fskg)){
+                                if(pattern.test(aereapasajero["Fs/kg"])){
                                    filaFskg=filaFskg +1;
                                  $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                   // $scope.$apply();
@@ -2897,12 +2898,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaFskg=filaFskg +1;
-                                  var valor='Fskg_Pasajero';
+                                  var valor='Fs/kg_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaFskg, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(aereapasajero.Gastos_Embarque)){
+                                if(pattern.test(aereapasajero["Gastos Embarque"])){
                                    filaGastosEmbarquepa=filaGastosEmbarquepa +1;
                                  $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -2910,7 +2911,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaGastosEmbarquepa=filaGastosEmbarquepa +1;
-                                  var valor='GastosEmbarque_Pasajero';
+                                  var valor='Gastos Embarque_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaGastosEmbarquepa, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2928,7 +2929,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
                                  }
                             /////////////Time////////////////////////////////////
-                                if(pattern.test(aereapasajero.Lead_Time_Dias)){
+                                if(pattern.test(aereapasajero["Lead time (dias)"])){
                                    filaTimepa=filaTimepa +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -2936,7 +2937,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaTimepa=filaTimepa +1;
-                                  var valor='LeadTimeDias_Pasajero';
+                                  var valor='Lead Time (dias)_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaTimepa, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2954,117 +2955,117 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                            /////////////FrecuenciaLunes////////////////////////////////////
-                                 if(aereapasajero.FrecuenciaDiasLunes=='X') {
-                                   aereapasajero.FrecuenciaDiasLunes=true;
+                                 if(aereapasajero["Frecuencia Dia Lunes"]=='X') {
+                                   aereapasajero["Frecuencia Dia Lunes"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasLunes=false;
+                                  aereapasajero["Frecuencia Dia Lunes"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
 
                           /////////////FrecuenciaMartes////////////////////////////////////
-                               if(aereapasajero.FrecuenciaDiasMartes=='X') {
-                                   aereapasajero.FrecuenciaDiasMartes=true;
+                               if(aereapasajero["Frecuencia Dia Martes"]=='X') {
+                                   aereapasajero["Frecuencia Dia Martes"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasMartes=false;
+                                  aereapasajero["Frecuencia Dia Martes"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
 
                            /////////////FrecuenciaMiercoles////////////////////////////////////
-                                 if(aereapasajero.FrecuenciaDiasMiercoles=='X') {
-                                   aereapasajero.FrecuenciaDiasMiercoles=true;
+                                 if(aereapasajero["Frecuencia Dia Miercoles"]=='X') {
+                                   aereapasajero["Frecuencia Dia Miercoles"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasMiercoles=false;
+                                  aereapasajero["Frecuencia Dia Miercoles"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
                             //////////FrecuenciaJueves////////////////////////////////////
 
-                                 if(aereapasajero.FrecuenciaDiasJueves=='X') {
-                                   aereapasajero.FrecuenciaDiasJueves=true;
+                                 if(aereapasajero["Frecuencia Dia Jueves"]=='X') {
+                                   aereapasajero["Frecuencia Dia Jueves"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasJueves=false;
+                                  aereapasajero["Frecuencia Dia Jueves"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
 
                             /////////////FrecuenciaViernes////////////////////////////////////
-                                 if(aereapasajero.FrecuenciaDiasViernes=='X') {
-                                   aereapasajero.FrecuenciaDiasViernes=true;
+                                 if(aereapasajero["Frecuencia Dia Viernes"]=='X') {
+                                   aereapasajero["Frecuencia Dia Viernes"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasViernes=false;
+                                  aereapasajero["Frecuencia Dia Viernes"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
 
                             /////////////FrecuenciaSabado////////////////////////////////////
-                                  if(aereapasajero.FrecuenciaDiasSabado=='X') {
-                                   aereapasajero.FrecuenciaDiasSabdo=true;
+                                  if(aereapasajero["Frecuencia Dia Sabado"]=='X') {
+                                   aereapasajero["Frecuencia Dia Sabado"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasSabado=false;
+                                  aereapasajero["Frecuencia Dia Sabado"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
 
                              /////////////FrecuenciaDomingo////////////////////////////////////
-                                if(aereapasajero.FrecuenciaDiasDomingo=='X') {
-                                   aereapasajero.FrecuenciaDiasDomingo=true;
+                                if(aereapasajero["Frecuencia Dia Domingo"]=='X') {
+                                   aereapasajero["Frecuencia Dia Domingo"]=true;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                    }
                                 else
                                 {
-                                  aereapasajero.FrecuenciaDiasDomingo=false;
+                                  aereapasajero["Frecuencia Dia Domingo"]=false;
                                    $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                 var sumatoriap=0;
-                                sumatoriap=aereapasajero.T_100 + aereapasajero.Fskg;
-                                aereapasajero.Sumatoria_T100_FS = sumatoriap;
+                                sumatoriap=aereapasajero["+100"] + aereapasajero["Ks/kg"];
+                                aereapasajero["+100 + Ks/kg"] = sumatoriap;
                                 $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1p=0;
-                                sumatoria1p=aereapasajero.T_300 + aereapasajero.Fskg;
-                                aereapasajero.Sumatoria_T300_FS = sumatoria1p;
+                                sumatoria1p=aereapasajero["+300"] + aereapasajero["Ks/kg"];
+                                aereapasajero["+300 + Ks/kg"] = sumatoria1p;
                                 $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2p=0;
-                                sumatoria2p=aereapasajero.T_500 + aereapasajero.Fskg;
-                                aereapasajero.Sumatoria_T500_FS = sumatoria2p;
+                                sumatoria2p=aereapasajero["+500"] + aereapasajero["Ks/kg"];
+                                aereapasajero["+500 + Ks/kg"] = sumatoria2p;
                                 $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3p=0;
-                               sumatoria3p=aereapasajero.T_1000 + aereapasajero.Fskg;
-                                aereapasajero.Sumatoria_T1000_FS = sumatoria3p;
+                               sumatoria3p=aereapasajero["+1000"] + aereapasajero["Ks/kg"];
+                                aereapasajero["+1000 + Ks/kg"] = sumatoria3p;
                                 $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                                $scope.$apply();
@@ -3106,17 +3107,17 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            }
 
                            $scope.sumaaerea = function(Aerea){
-                           Aerea.Sumatoria_T100_FS_Ge= parseFloat(Aerea.T_100) + parseFloat(Aerea.Fskg) + parseFloat(Aerea.Gastos_Embarque);
-                           Aerea.Sumatoria_T300_FS_Ge= parseFloat(Aerea.T_300) + parseFloat(Aerea.Fskg) + parseFloat(Aerea.Gastos_Embarque);
-                           Aerea.Sumatoria_T500_FS_Ge= parseFloat(Aerea.T_500) + parseFloat(Aerea.Fskg) + parseFloat(Aerea.Gastos_Embarque);
-                           Aerea.Sumatoria_T1000_FS_Ge= parseFloat(Aerea.T_1000) + parseFloat(Aerea.Fskg) + parseFloat(Aerea.Gastos_Embarque);
+                           Aerea.Sumatoria_T100_FS_Ge= parseFloat(Aerea["'+100"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea.Sumatoria_T300_FS_Ge= parseFloat(Aerea["'+300"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea.Sumatoria_T500_FS_Ge= parseFloat(Aerea["'+500"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea.Sumatoria_T1000_FS_Ge= parseFloat(Aerea["'+1000"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
                            }
 
                            $scope.sumaaereapasaj = function(AereaPasajero){
-                           AereaPasajero.Sumatoria_T100_FS= parseFloat(AereaPasajero.T_100) + parseFloat(AereaPasajero.Fskg);
-                           AereaPasajero.Sumatoria_T300_FS= parseFloat(AereaPasajero.T_300) + parseFloat(AereaPasajero.Fskg);
-                           AereaPasajero.Sumatoria_T500_FS= parseFloat(AereaPasajero.T_500) + parseFloat(AereaPasajero.Fskg);
-                           AereaPasajero.Sumatoria_T1000_FS= parseFloat(AereaPasajero.T_1000) + parseFloat(AereaPasajero.Fskg);
+                           AereaPasajero.Sumatoria_T100_FS= parseFloat(AereaPasajero["'+100"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero.Sumatoria_T300_FS= parseFloat(AereaPasajero["'+300"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero.Sumatoria_T500_FS= parseFloat(AereaPasajero["'+500"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero.Sumatoria_T1000_FS= parseFloat(AereaPasajero["'+1000"]) + parseFloat(AereaPasajero["Fs/kg"]);
                            }
 
 

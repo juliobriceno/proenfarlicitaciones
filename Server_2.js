@@ -1399,9 +1399,25 @@ app.post('/GetModalidadesProveedor', function (req, res) {
          MyMongo.Find('TerresNacional', {}, function (result) {
          var myTerresNacional = result;
 
+          // Terrestre Nacional Sencillo
+         MyMongo.Find('TerresNacionalSencillo', {}, function (result) {
+         var myTerresNacionalSencillo = result;
+
+          // Terrestre Nacional Patineta
+         MyMongo.Find('TerresNacionalPatineta', {}, function (result) {
+         var myTerresNacionalPatineta = result;
+
          // Terrestre Urbano
          MyMongo.Find('TerresUrbano', {}, function (result) {
          var myTerresUrbano = result;
+
+        // Terrestre Urbano Viaje
+         MyMongo.Find('TerresUrbanoViaje', {}, function (result) {
+         var myTerresUrbanoViaje = result;
+
+         // Terrestre Urbano Tonelada
+         MyMongo.Find('TerresUrbanoTonelada', {}, function (result) {
+         var myTerresUrbanoTonelada = result;
 
            // Aereas
          MyMongo.Find('Aereas', {}, function (result) {
@@ -1438,8 +1454,20 @@ app.post('/GetModalidadesProveedor', function (req, res) {
                   TerreNacional: {
                      TerresNacional: myTerresNacional
                    },
+                   TerreNacionalSencillo: {
+                     TerresNacionalSencillo: myTerresNacionalSencillo
+                   },
+                   TerreNacionalPatineta: {
+                     TerresNacionalPatineta: myTerresNacionalPatineta
+                   },
                   TerreUrbano: {
                      TerresUrbano: myTerresUrbano
+                   },
+                   TerreUrbanoViaje: {
+                     TerresUrbanoViaje: myTerresUrbanoViaje
+                   },
+                   TerreUrbanoTonelada: {
+                     TerresUrbanoTonelada: myTerresUrbanoTonelada
                    },
                     Aerea: {
                      Aereas: myAereas
@@ -1464,6 +1492,11 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 
 });
             });
+         });
+         });
+
+         });
+           });
          });
          });
 
@@ -1963,14 +1996,14 @@ app.get('/GetTemplateBodegaje', function (req, res) {
 
     // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
     ///////////////Bodegajes////////////////////////////
-        ws.cell(1, 1).string('TarifaValor').style(style);
-        ws.cell(1, 2).string('TarifaMinima').style(style);
+        ws.cell(1, 1).string('Tarifa Valor/FOB').style(style);
+        ws.cell(1, 2).string('Tarifa Minima').style(style);
         ws.cell(1, 3).string('Otros').style(style);
         ws1.cell(1, 1).string('Tarifa').style(style);
-        ws1.cell(1, 2).string('TarifaMinima').style(style);
+        ws1.cell(1, 2).string('Tarifa Minima').style(style);
         ws1.cell(1, 3).string('FMM').style(style);
         ws2.cell(1, 1).string('Tarifa').style(style);
-        ws2.cell(1, 2).string('TarifaMinima').style(style);
+        ws2.cell(1, 2).string('Tarifa Minima').style(style);
         ws2.cell(1, 3).string('FMM').style(style);
 
     wb.write('Bodegajes.xlsx', res);
@@ -2008,15 +2041,15 @@ app.get('/GetTemplateAduana', function (req, res) {
        Aduana.forEach(function(aduana){
         col = col + 1;
         ws2.cell(1, 1).string('Via').style(style);
-        ws2.cell(1, 2).string('Tarifa').style(style);
+        ws2.cell(1, 2).string("Tarifa % Advalorem/ FOB").style(style);
         ws2.cell(1, 3).string('Minima').style(style);
-        ws2.cell(1, 4).string('Gastos_Adicionales').style(style);
-        ws2.cell(1, 5).string('Conceptos_Adicionales').style(style);
-        ws2.cell(1, 6).string('Gastos_Adicionales_dos').style(style);
-        ws2.cell(1, 7).string('Conceptos_Adicionales_dos').style(style);
-        ws2.cell(1, 8).string('Gastos_Adicionales_tres').style(style);
-        ws2.cell(1, 9).string('Conceptos_Adicionales_tres').style(style);
-        ws2.cell(1, 10).string('Costo_Planificacion_Caja').style(style);
+        ws2.cell(1, 4).string('Gastos Adicionales').style(style);
+        ws2.cell(1, 5).string('Conceptos Adicionales').style(style);
+        ws2.cell(1, 6).string('Gastos Adicionales dos').style(style);
+        ws2.cell(1, 7).string('Conceptos Adicionales dos').style(style);
+        ws2.cell(1, 8).string('Gastos Adicionales tres').style(style);
+        ws2.cell(1, 9).string('Conceptos Adicionales tres').style(style);
+        ws2.cell(1, 10).string('Costo Planificacion Caja').style(style);
         ws2.cell(1, 11).string('Otros').style(style);
         ws2.cell(col + 1, 1 ).string(aduana.Via).style(style);
         });
@@ -2057,26 +2090,26 @@ app.get('/GetTemplateOTM', function (req, res) {
           var OTm = result;
         ws3.cell(1, 1).string('Origen').style(style);
         ws3.cell(1, 2).string('Destino').style(style);
-        ws3.cell(1, 3).string('C_20_hasta_4_5_Ton').style(style);
-        ws3.cell(1, 4).string('C_20_hasta_8_Ton').style(style);
-        ws3.cell(1, 5).string('C_20_hasta_10_Ton').style(style);
-        ws3.cell(1, 6).string('C_20_hasta_17_Ton').style(style);
-        ws3.cell(1, 7).string('C_20_hasta_19_Ton').style(style);
-        ws3.cell(1, 8).string('C_20_hasta_20_Ton').style(style);
-        ws3.cell(1, 9).string('C_20_hasta_21_Ton').style(style);
-        ws3.cell(1, 10).string('C_20_hasta_25_Ton').style(style);
-        ws3.cell(1, 11).string('C_40_hasta_15_Ton').style(style);
-        ws3.cell(1, 12).string('C_40_hasta_16_Ton').style(style);
-        ws3.cell(1, 13).string('C_40_hasta_17_Ton').style(style);
-        ws3.cell(1, 14).string('C_40_hasta_17_18_Ton').style(style);
-        ws3.cell(1, 15).string('C_40_hasta_20_Ton').style(style);
-        ws3.cell(1, 16).string('C_40_hasta_21_Ton').style(style);
-        ws3.cell(1, 17).string('C_40_hasta_22_Ton').style(style);
-        ws3.cell(1, 18).string('C_40_hasta_30_Ton').style(style);
-        ws3.cell(1, 19).string('Devolucion_20$_estandar').style(style);
-        ws3.cell(1, 20).string('Devolucion_40$_estandar').style(style);
-        ws3.cell(1, 21).string('Devolucion_20$_expreso').style(style);
-        ws3.cell(1, 22).string('Devolucion_40$_expreso').style(style);
+        ws3.cell(1, 3).string('C 20 hasta 4-5 Ton').style(style);
+        ws3.cell(1, 4).string('C 20 hasta 8 Ton').style(style);
+        ws3.cell(1, 5).string('C 20 hasta 10 Ton').style(style);
+        ws3.cell(1, 6).string('C 20 hasta 17 Ton').style(style);
+        ws3.cell(1, 7).string('C 20 hasta 19 Ton').style(style);
+        ws3.cell(1, 8).string('C 20 hasta 20 Ton').style(style);
+        ws3.cell(1, 9).string('C 20 hasta 21 Ton').style(style);
+        ws3.cell(1, 10).string('C 20 hasta 25 Ton').style(style);
+        ws3.cell(1, 11).string('C 40 hasta 15 Ton').style(style);
+        ws3.cell(1, 12).string('C 40 hasta 16 Ton').style(style);
+        ws3.cell(1, 13).string('C 40 hasta 17 Ton').style(style);
+        ws3.cell(1, 14).string('C 40 hasta 17-18 Ton').style(style);
+        ws3.cell(1, 15).string('C 40 hasta 20 Ton').style(style);
+        ws3.cell(1, 16).string('C 40 hasta 21 Ton').style(style);
+        ws3.cell(1, 17).string('C 40 hasta 22 Ton').style(style);
+        ws3.cell(1, 18).string('C 40 hasta 30 Ton').style(style);
+        ws3.cell(1, 19).string('Devolucion 20$ estandar').style(style);
+        ws3.cell(1, 20).string('Devolucion 40$ estandar').style(style);
+        ws3.cell(1, 21).string('Devolucion 20$ expreso').style(style);
+        ws3.cell(1, 22).string('Devolucion 40$ expreso').style(style);
 
         var col = 0
         OTm.forEach(function(otm){
@@ -2117,29 +2150,29 @@ app.get('/GetTemplateMariFcl', function (req, res) {
 
 
     // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
-    ///////////////MaritimasLcl///////////////////////////////
+    ///////////////Maritimasfcl///////////////////////////////
       MyMongo.Find('MaritimasFcl', {}, function (result) {
           var MaritFcl= result;
 
         ws4.cell(1, 1).string('PaisDestino').style(style);
         ws4.cell(1, 2).string('PuertoOrigen').style(style);
         ws4.cell(1, 3).string('PuertoDestino').style(style);
-        ws4.cell(1, 4).string('C20').style(style);
-        ws4.cell(1, 5).string('Baf20').style(style);
-        ws4.cell(1, 6).string('C40').style(style);
-        ws4.cell(1, 7).string('Baf40').style(style);
-        ws4.cell(1, 8).string('C40HC').style(style);
-        ws4.cell(1, 9).string('Baf40HC').style(style);
+        ws4.cell(1, 4).string('C 20').style(style);
+        ws4.cell(1, 5).string('Baf 20').style(style);
+        ws4.cell(1, 6).string('C 40').style(style);
+        ws4.cell(1, 7).string('Baf 40').style(style);
+        ws4.cell(1, 8).string('C 40HC').style(style);
+        ws4.cell(1, 9).string('Baf 40HC').style(style);
         ws4.cell(1, 10).string('Observaciones').style(style);
-        ws4.cell(1, 11).string('GastosEmbarque').style(style);
-        ws4.cell(1, 12).string('Lead_TimeDias').style(style);
+        ws4.cell(1, 11).string('Gastos Embarque').style(style);
+        ws4.cell(1, 12).string('Lead Time(dias)').style(style);
         ws4.cell(1, 13).string('Naviera').style(style);
-        ws4.cell(1, 14).string('FrecuenciaSemanal').style(style);
-        ws4.cell(1, 15).string('FrecuenciaQuincenal').style(style);
-        ws4.cell(1, 16).string('FrecuenciaMensual').style(style);
-        ws4.cell(1, 17).string('Sumatoria_C20_Baf20_Ge').style(style);
-        ws4.cell(1, 18).string('Sumatoria_C40_Baf40_Ge').style(style);
-        ws4.cell(1, 19).string('Sumatoria_C40HC_Baf40HC_Ge').style(style);
+        ws4.cell(1, 14).string('Frecuencia Semanal').style(style);
+        ws4.cell(1, 15).string('Frecuencia Quincenal').style(style);
+        ws4.cell(1, 16).string('Frecuencia Mensual').style(style);
+        ws4.cell(1, 17).string('C 20 + Baf 20 + Gastos Embarque').style(style);
+        ws4.cell(1, 18).string('C 40 + Baf 40 + Gastos Embarque').style(style);
+        ws4.cell(1, 19).string('C 40HC + Baf 40HC + Gastos Embarque').style(style);
 
 
         var col = 0;
@@ -2201,21 +2234,21 @@ app.get('/GetTemplateMariLcl', function (req, res) {
         ws5.cell(1, 2).string('PuertoOrigen').style(style);
         ws5.cell(1, 3).string('PuertoDestino').style(style);
         ws5.cell(1, 4).string('Minima').style(style);
-        ws5.cell(1, 5).string('_1_5_ton_M3').style(style);
-        ws5.cell(1, 6).string('_5_8_ton_M3').style(style);
-        ws5.cell(1, 7).string('_8_12_ton_M3').style(style);
-        ws5.cell(1, 8).string('_12_18_ton_M3').style(style);
-        ws5.cell(1, 9).string('Gastos_Embarque').style(style);
+        ws5.cell(1, 5).string('1-5 ton/M3').style(style);
+        ws5.cell(1, 6).string('5-8 ton/M3').style(style);
+        ws5.cell(1, 7).string('8-12 ton/M3').style(style);
+        ws5.cell(1, 8).string('12-18 ton/M3').style(style);
+        ws5.cell(1, 9).string('Gastos Embarque').style(style);
         ws5.cell(1, 10).string('Observaciones').style(style);
-        ws5.cell(1, 11).string('Time').style(style);
+        ws5.cell(1, 11).string('Lead time(dias)').style(style);
         ws5.cell(1, 12).string('Naviera').style(style);
-        ws5.cell(1, 13).string('FrecuenciaDiasLunes').style(style);
-        ws5.cell(1, 14).string('FrecuenciaDiasMartes').style(style);
-        ws5.cell(1, 15).string('FrecuenciaDiasMiercoles').style(style);
-        ws5.cell(1, 16).string('FrecuenciaDiasJueves').style(style);
-        ws5.cell(1, 17).string('FrecuenciaDiasViernes').style(style);
-        ws5.cell(1, 18).string('FrecuenciaDiasSabado').style(style);
-        ws5.cell(1, 19).string('FrecuenciaDiasDomingo').style(style);
+        ws5.cell(1, 13).string('Frecuencia Dia Lunes').style(style);
+        ws5.cell(1, 14).string('Frecuencia Dia Martes').style(style);
+        ws5.cell(1, 15).string('Frecuencia Dia Miercoles').style(style);
+        ws5.cell(1, 16).string('Frecuencia Dia Jueves').style(style);
+        ws5.cell(1, 17).string('Frecuencia Dia Viernes').style(style);
+        ws5.cell(1, 18).string('Frecuencia Dia Sabado').style(style);
+        ws5.cell(1, 19).string('Frecuencia Dia Domingo').style(style);
 
 
         var col = 0
@@ -2270,8 +2303,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
           var TerrestNacional= result;
         ws6.cell(1, 1).string('PaisOrigen').style(style);
         ws6.cell(1, 2).string('PuertoDestino').style(style);
-        ws6.cell(1, 3).string('Turbo_Standar_150Cajas').style(style);
-        ws6.cell(1, 4).string('Turbo_Especial').style(style);
+        ws6.cell(1, 3).string('Turbo Standar (150Cajas)').style(style);
+        ws6.cell(1, 4).string('Turbo Especial').style(style);
 
         var col = 0
         TerrestNacional.forEach(function(terrestnacional){
@@ -2284,8 +2317,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
           var TerrestNacionalSencillo= result;
         ws7.cell(1, 1).string('PaisOrigen').style(style);
         ws7.cell(1, 2).string('PuertoDestino').style(style);
-        ws7.cell(1, 3).string('Sencillo_240Cajas').style(style);
-        ws7.cell(1, 4).string('Sencillo_Especial').style(style);
+        ws7.cell(1, 3).string('Sencillo Standar (150Cajas)').style(style);
+        ws7.cell(1, 4).string('Sencillo Especial').style(style);
 
         var col = 0
         TerrestNacionalSencillo.forEach(function(terrestnacionalsencillo){
@@ -2300,7 +2333,7 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
         ws8.cell(1, 1).string('PaisOrigen').style(style);
         ws8.cell(1, 2).string('PuertoDestino').style(style);
         ws8.cell(1, 3).string('Minimula').style(style);
-        ws8.cell(1, 4).string('GranDanes').style(style);
+        ws8.cell(1, 4).string('Gran Danes').style(style);
 
         var col = 0
         TerrestNacional.forEach(function(terrestnacionalpatineta){
@@ -2349,12 +2382,12 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
           var TerrestUrbano= result;
         ws7.cell(1, 1).string('PaisOrigen').style(style);
         ws7.cell(1, 2).string('PuertoDestino').style(style);
-        ws7.cell(1, 3).string('Turbo_150Cajas').style(style);
-        ws7.cell(1, 4).string('Turbo_Especial_200Cajas').style(style);
-        ws7.cell(1, 5).string('Sencillo_240Cajas').style(style);
-        ws7.cell(1, 6).string('Sencillo_Especial_300Cajas').style(style);
+        ws7.cell(1, 3).string('Turbo (150Cajas)').style(style);
+        ws7.cell(1, 4).string('Turbo Especial (200Cajas)').style(style);
+        ws7.cell(1, 5).string('Sencillo (240Cajas)').style(style);
+        ws7.cell(1, 6).string('Sencillo Especial (300Cajas)').style(style);
         ws7.cell(1, 7).string('Minimula').style(style);
-        ws7.cell(1, 8).string('GranDanes').style(style);
+        ws7.cell(1, 8).string('Gran Danes').style(style);
 
         var col = 0
         TerrestUrbano.forEach(function(terresturbano){
@@ -2368,12 +2401,12 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
           var TerrestUrbanoViaje= result;
          ws8.cell(1, 1).string('PaisOrigen').style(style);
         ws8.cell(1, 2).string('PuertoDestino').style(style);
-        ws8.cell(1, 3).string('Turbo_150Cajas').style(style);
-        ws8.cell(1, 4).string('Turbo_Especial_200Cajas').style(style);
-        ws8.cell(1, 5).string('Sencillo_240Cajas').style(style);
-        ws8.cell(1, 6).string('Sencillo_Especial_300Cajas').style(style);
+        ws8.cell(1, 3).string('Turbo (150Cajas)').style(style);
+        ws8.cell(1, 4).string('Turbo Especial (200Cajas)').style(style);
+        ws8.cell(1, 5).string('Sencillo (240Cajas)').style(style);
+        ws8.cell(1, 6).string('Sencillo Especial (300Cajas)').style(style);
         ws8.cell(1, 7).string('Minimula').style(style);
-        ws8.cell(1, 8).string('GranDanes').style(style);
+        ws8.cell(1, 8).string('Gran Danes').style(style);
 
         var col = 0
         TerrestUrbanoViaje.forEach(function(terresturbanoviaje){
@@ -2440,28 +2473,28 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws8.cell(1, 1).string('Pais').style(style);
         ws8.cell(1, 2).string('Aeropuerto').style(style);
         ws8.cell(1, 3).string('Minima').style(style);
-        ws8.cell(1, 4).string('T_45').style(style);
-        ws8.cell(1, 5).string('T_100').style(style);
-        ws8.cell(1, 6).string('T_300').style(style);
-        ws8.cell(1, 7).string('T_500').style(style);
-        ws8.cell(1, 8).string('T_1000').style(style);
-        ws8.cell(1, 9).string('FSmin').style(style);
-        ws8.cell(1, 10).string('Fskg').style(style);
-        ws8.cell(1, 11).string('Gastos_Embarque').style(style);
+        ws8.cell(1, 4).string("45").style(style);
+        ws8.cell(1, 5).string("+100").style(style);
+        ws8.cell(1, 6).string("+300").style(style);
+        ws8.cell(1, 7).string("+500").style(style);
+        ws8.cell(1, 8).string("+1000").style(style);
+        ws8.cell(1, 9).string('FS min').style(style);
+        ws8.cell(1, 10).string('Fs/kg').style(style);
+        ws8.cell(1, 11).string('Gastos Embarque').style(style);
         ws8.cell(1, 12).string('Observaciones').style(style);
-        ws8.cell(1, 13).string('Lead_Time_Dias').style(style);
+        ws8.cell(1, 13).string('Lead Time (dias)').style(style);
         ws8.cell(1, 14).string('Via').style(style);
-        ws8.cell(1, 15).string('FrecuenciaDiasLunes').style(style);
-        ws8.cell(1, 16).string('FrecuenciaDiasMartes').style(style);
-        ws8.cell(1, 17).string('FrecuenciaDiasMiercoles').style(style);
-        ws8.cell(1, 18).string('FrecuenciaDiasJueves').style(style);
-        ws8.cell(1, 19).string('FrecuenciaDiasViernes').style(style);
-        ws8.cell(1, 20).string('FrecuenciaDiasSabado').style(style);
-        ws8.cell(1, 21).string('FrecuenciaDiasDomingo').style(style);
-        ws8.cell(1, 22).string('Sumatoria_T100_FS_Ge').style(style);
-        ws8.cell(1, 23).string('Sumatoria_T300_FS_Ge').style(style);
-        ws8.cell(1, 24).string('Sumatoria_T500_FS_Ge').style(style);
-        ws8.cell(1, 25).string('Sumatoria_T1000_FS_Ge').style(style);
+        ws8.cell(1, 15).string('Frecuencia Dia Lunes').style(style);
+        ws8.cell(1, 16).string('Frecuencia Dia Martes').style(style);
+        ws8.cell(1, 17).string('Frecuencia Dia Miercoles').style(style);
+        ws8.cell(1, 18).string('Frecuencia Dia Jueves').style(style);
+        ws8.cell(1, 19).string('Frecuencia Dia Viernes').style(style);
+        ws8.cell(1, 20).string('Frecuencia Dia Sabado').style(style);
+        ws8.cell(1, 21).string('Frecuencia Dia Domingo').style(style);
+        ws8.cell(1, 22).string("+100 + Fs/kg + Gastos Embarque").style(style);
+        ws8.cell(1, 23).string("+300 + Fs/kg + Gastos Embarque").style(style);
+        ws8.cell(1, 24).string("+500 + Fs/kg + Gastos Embarque").style(style);
+        ws8.cell(1, 25).string("+1000 + Fs/kg + Gastos Embarque").style(style);
 
 
 
@@ -2497,28 +2530,28 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws9.cell(1, 1).string('Pais').style(style);
         ws9.cell(1, 2).string('Aeropuerto').style(style);
         ws9.cell(1, 3).string('Minima').style(style);
-        ws9.cell(1, 4).string('T_45').style(style);
-        ws9.cell(1, 5).string('T_100').style(style);
-        ws9.cell(1, 6).string('T_300').style(style);
-        ws9.cell(1, 7).string('T_500').style(style);
-        ws9.cell(1, 8).string('T_1000').style(style);
-        ws9.cell(1, 9).string('FSmin').style(style);
-        ws9.cell(1, 10).string('Fskg').style(style);
-        ws9.cell(1, 11).string('Gastos_Embarque').style(style);
+        ws9.cell(1, 4).string("45").style(style);
+        ws9.cell(1, 5).string("+100").style(style);
+        ws9.cell(1, 6).string("+300").style(style);
+        ws9.cell(1, 7).string("+500").style(style);
+        ws9.cell(1, 8).string("+1000").style(style);
+        ws9.cell(1, 9).string('FS min').style(style);
+        ws9.cell(1, 10).string('Fs/kg').style(style);
+        ws9.cell(1, 11).string('Gastos Embarque').style(style);
         ws9.cell(1, 12).string('Observaciones').style(style);
-        ws9.cell(1, 13).string('Lead_Time_Dias').style(style);
+        ws9.cell(1, 13).string('Lead time (dias)').style(style);
         ws9.cell(1, 14).string('Via').style(style);
-        ws9.cell(1, 15).string('FrecuenciaDiasLunes').style(style);
-        ws9.cell(1, 16).string('FrecuenciaDiasMartes').style(style);
-        ws9.cell(1, 17).string('FrecuenciaDiasMiercoles').style(style);
-        ws9.cell(1, 18).string('FrecuenciaDiasJueves').style(style);
-        ws9.cell(1, 19).string('FrecuenciaDiasViernes').style(style);
-        ws9.cell(1, 20).string('FrecuenciaDiasSabado').style(style);
-        ws9.cell(1, 21).string('FrecuenciaDiasDomingo').style(style);
-        ws9.cell(1, 22).string('Sumatoria_T100_FS').style(style);
-        ws9.cell(1, 23).string('Sumatoria_T300_FS').style(style);
-        ws9.cell(1, 24).string('Sumatoria_T500_FS').style(style);
-        ws9.cell(1, 25).string('Sumatoria_T1000_FS').style(style);
+        ws9.cell(1, 15).string('Frecuencia Dia Lunes').style(style);
+        ws9.cell(1, 16).string('Frecuencia Dia Martes').style(style);
+        ws9.cell(1, 17).string('Frecuencia Dia Miercoles').style(style);
+        ws9.cell(1, 18).string('Frecuencia Dia Jueves').style(style);
+        ws9.cell(1, 19).string('Frecuencia Dia Viernes').style(style);
+        ws9.cell(1, 20).string('Frecuencia Dia Sabado').style(style);
+        ws9.cell(1, 21).string('Frecuencia Dia Domingo').style(style);
+        ws9.cell(1, 22).string("+100 + Fs/kg").style(style);
+        ws9.cell(1, 23).string("+300 + Fs/kg").style(style);
+        ws9.cell(1, 24).string("+500 + Fs/kg").style(style);
+        ws9.cell(1, 25).string("+1000 + Fs/kg").style(style);
 
 
         var col = 0;
@@ -2554,247 +2587,6 @@ app.get('/GetTemplateAerea', function (req, res) {
 
 // Fin de la generación de todos los templates de Máfer Modalidades
 
-app.get('/GetTemplate', function (req, res) {
-
-    // Require library
-    var xl = require('excel4node');
-
-    // Create a new instance of a Workbook class
-    var wb = new xl.Workbook();
-
-    // Add Worksheets to the workbook
-    var ws = wb.addWorksheet('Bodegajes');
-    var ws2 = wb.addWorksheet('Aduanas');
-    var ws3 = wb.addWorksheet('OTM');
-    var ws4 = wb.addWorksheet('MaritimasFcl');
-    var ws5 = wb.addWorksheet('MaritimasLcl');
-    var ws6 = wb.addWorksheet('TerrestreNacional');
-    var ws7 = wb.addWorksheet('TerrestreUrbano');
-    var ws8 = wb.addWorksheet('Aerea_Carguero');
-    var ws9 = wb.addWorksheet('Aerea_Pasajero');
-
-    // Create a reusable style
-    var style = wb.createStyle({
-        font: {
-            color: '#000000',
-            size: 12
-        },
-
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
-
-    });
-
-
-    // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
-    ///////////////Bodegajes////////////////////////////
-        ws.cell(1, 1).string('Submodalidad').style(style);
-        ws.cell(2, 1).string('Aduanero').style(style);
-        ws.cell(3, 1).string('Maquinaria').style(style);
-        ws.cell(4, 1).string('Materia Prima').style(style);
-        ws.cell(1, 2).string('TarifaValor').style(style);
-        ws.cell(1, 3).string('TarifaMinima').style(style);
-        ws.cell(1, 4).string('Otros').style(style);
-        ws.cell(1, 5).string('FMM').style(style);
-
-
-    ///////////////Aduana///////////////////////////////
-      MyMongo.Find('Aduanas', {}, function (result) {
-          var Aduana = result;
-
-         var col = 0
-       Aduana.forEach(function(aduana){
-        col = col + 1;
-        ws2.cell(1, 1).string('Via').style(style);
-        ws2.cell(1, 2).string('Tarifa').style(style);
-        ws2.cell(1, 3).string('Minima').style(style);
-        ws2.cell(1, 4).string('GastosAdicionales').style(style);
-        ws2.cell(1, 5).string('ConceptosAdicionales').style(style);
-        ws2.cell(1, 6).string('GastosAdicionales2').style(style);
-        ws2.cell(1, 7).string('ConceptosAdicionales2').style(style);
-        ws2.cell(1, 8).string('GastosAdicionales3').style(style);
-        ws2.cell(1, 9).string('ConceptosAdicionales3').style(style);
-        ws2.cell(1, 10).string('CostoPlanificacionCaja').style(style);
-        ws2.cell(1, 11).string('Otros').style(style);
-        ws2.cell(col + 1, 1 ).string(aduana.Via).style(style);
-        });
-
-///////////////OTM///////////////////////////////
-      MyMongo.Find('Otms', {}, function (result) {
-          var OTm = result;
-
-        var col = 0
-        OTm.forEach(function(otm){
-        col = col + 1;
-        ws3.cell(1, 1).string('Origen').style(style);
-        ws3.cell(1, 2).string('Destino').style(style);
-        ws3.cell(1, 3).string('cveintecuatroconcinco').style(style);
-        ws3.cell(1, 4).string('cveinteoocho').style(style);
-        ws3.cell(1, 5).string('cveintendiez').style(style);
-        ws3.cell(1, 6).string('cveintendiezsiete').style(style);
-        ws3.cell(1, 7).string('cveintendieznueve').style(style);
-        ws3.cell(1, 8).string('cveinteveinte').style(style);
-        ws3.cell(1, 9).string('cveinteveinteyuno').style(style);
-        ws3.cell(1, 10).string('cveinteveinteycinco').style(style);
-        ws3.cell(1, 11).string('ccuarentaquince').style(style);
-        ws3.cell(1, 12).string('ccuarentaquince').style(style);
-        ws3.cell(1, 13).string('ccuarentadiezyseis').style(style);
-        ws3.cell(1, 14).string('ccuarentadiezysiete').style(style);
-        ws3.cell(1, 15).string('ccuarentaveinte').style(style);
-        ws3.cell(1, 16).string('ccuarentaveinteyuno').style(style);
-        ws3.cell(1, 17).string('ccuarentaveinteydos').style(style);
-        ws3.cell(1, 18).string('ccuarentatreinta').style(style);
-        ws3.cell(1, 19).string('devolucionveinteestandar').style(style);
-        ws3.cell(1, 20).string('devolucioncuarentaestandar').style(style);
-        ws3.cell(1, 21).string('devolucionveinteexpreso').style(style);
-        ws3.cell(1, 22).string('devolucioncuarentaexpreso').style(style);
-        ws3.cell(col + 1, 1).string(otm.Origen).style(style);
-        ws3.cell(col + 1, 2).string(otm.Destino).style(style);
-        });
-
-    ///////////////MaritimasLcl///////////////////////////////
-      MyMongo.Find('MaritimasFcl', {}, function (result) {
-          var MaritFcl= result;
-
-        var col = 0
-        MaritFcl.forEach(function(maritFcl){
-        col = col + 1;
-        ws4.cell(1, 1).string('PaisDestino').style(style);
-        ws4.cell(1, 2).string('PuertoOrigen').style(style);
-        ws4.cell(1, 3).string('PuertoDestino').style(style);
-        ws4.cell(1, 4).string('C20').style(style);
-        ws4.cell(1, 5).string('Baf20').style(style);
-        ws4.cell(1, 6).string('C40').style(style);
-        ws4.cell(1, 7).string('Baf40').style(style);
-        ws4.cell(1, 8).string('Baf40HC').style(style);
-        ws4.cell(1, 9).string('Observaciones').style(style);
-        ws4.cell(1, 10).string('GastosEmbarque').style(style);
-        ws4.cell(1, 11).string('Time').style(style);
-        ws4.cell(1, 12).string('Naviera').style(style);
-        ws4.cell(1, 13).string('Frecuencia').style(style);
-        ws4.cell(col + 1, 1).string(maritFcl.PaisDestino).style(style);
-        ws4.cell(col + 1, 2).string(maritFcl.PuertoOrigen).style(style);
-        ws4.cell(col + 1, 3).string(maritFcl.PuertoDestino).style(style);
-        });
-
-   ///////////////MaritimasLcl///////////////////////////////
-      MyMongo.Find('MaritimasLcl', {}, function (result) {
-          var MaritLcl= result;
-
-        var col = 0
-        MaritLcl.forEach(function(maritlcl){
-        col = col + 1;
-        ws5.cell(1, 1).string('PaisDestino').style(style);
-        ws5.cell(1, 2).string('PuertoOrigen').style(style);
-        ws5.cell(1, 3).string('PuertoDestino').style(style);
-        ws5.cell(1, 4).string('Minima').style(style);
-        ws5.cell(1, 5).string('ton15').style(style);
-        ws5.cell(1, 6).string('ton58').style(style);
-        ws5.cell(1, 7).string('ton812').style(style);
-        ws5.cell(1, 8).string('ton1218').style(style);
-        ws5.cell(1, 9).string('GastosEmbarque').style(style);
-        ws5.cell(1, 10).string('Observaciones').style(style);
-        ws5.cell(1, 11).string('Time').style(style);
-        ws5.cell(1, 12).string('Naviera').style(style);
-        ws5.cell(1, 13).string('Frecuencia').style(style);
-        ws5.cell(col + 1, 1).string(maritlcl.PaisDestino).style(style);
-        ws5.cell(col + 1, 2).string(maritlcl.PuertoOrigen).style(style);
-        ws5.cell(col + 1, 3).string(maritlcl.PuertoDestino).style(style);
-        });
-
- ///////////////Terrestre Nacional///////////////////////////////
-      MyMongo.Find('TerresNacional', {}, function (result) {
-          var TerrestNacional= result;
-
-        var col = 0
-        TerrestNacional.forEach(function(terrestnacional){
-        col = col + 1;
-        ws6.cell(1, 1).string('PaisOrigen').style(style);
-        ws6.cell(1, 2).string('PuertoDestino').style(style);
-        ws6.cell(1, 3).string('Estandar').style(style);
-        ws6.cell(1, 4).string('Especial').style(style);
-        ws6.cell(col + 1, 1).string(terrestnacional.PaisOrigen).style(style);
-        ws6.cell(col + 1, 2).string(terrestnacional.PuertoDestino).style(style);
-        });
-
-
-    ///////////////Terrestre Urbano///////////////////////////////
-      MyMongo.Find('TerresUrbano', {}, function (result) {
-          var TerrestUrbano= result;
-
-        var col = 0
-        TerrestUrbano.forEach(function(terresturbano){
-        col = col + 1;
-        ws7.cell(1, 1).string('PaisOrigen').style(style);
-        ws7.cell(1, 2).string('PuertoDestino').style(style);
-        ws7.cell(1, 3).string('Estandar').style(style);
-        ws7.cell(1, 4).string('Especial').style(style);
-        ws7.cell(col + 1, 1).string(terresturbano.PaisOrigen).style(style);
-        ws7.cell(col + 1, 2).string(terresturbano.PuertoDestino).style(style);
-        });
-
-
-    ///////////////Aereas Crguero///////////////////////////////
-      MyMongo.Find('Aereas', {}, function (result) {
-          var AereasC= result;
-
-        var col = 0
-        AereasC.forEach(function(aereasc){
-        col = col + 1;
-        ws8.cell(1, 1).string('Pais').style(style);
-        ws8.cell(1, 2).string('Aeropuerto').style(style);
-        ws8.cell(1, 3).string('Minima').style(style);
-        ws8.cell(1, 4).string('aerea45').style(style);
-        ws8.cell(1, 5).string('aerea100').style(style);
-        ws8.cell(1, 6).string('aerea300').style(style);
-        ws8.cell(1, 7).string('aerea500').style(style);
-        ws8.cell(1, 8).string('aerea1000').style(style);
-        ws8.cell(1, 9).string('FSmin').style(style);
-        ws8.cell(1, 10).string('Fskg').style(style);
-        ws8.cell(1, 11).string('GastosEmbarque').style(style);
-        ws8.cell(1, 12).string('Observaciones').style(style);
-        ws8.cell(1, 13).string('Time').style(style);
-        ws8.cell(1, 14).string('Via').style(style);
-        ws8.cell(1, 15).string('Frecuencia').style(style);
-        ws8.cell(col + 1, 1).string(aereasc.Pais).style(style);
-        ws8.cell(col + 1, 2).string(aereasc.Aeropuerto).style(style);
-        });
-
-    ///////////////Aereas Crguero///////////////////////////////
-      MyMongo.Find('AereasPasajeros', {}, function (result) {
-          var AereasP= result;
-
-        var col = 0
-        AereasP.forEach(function(aereasp){
-        col = col + 1;
-        ws9.cell(1, 1).string('Pais').style(style);
-        ws9.cell(1, 2).string('Aeropuerto').style(style);
-        ws9.cell(1, 3).string('Minima').style(style);
-        ws9.cell(1, 4).string('aerea45').style(style);
-        ws9.cell(1, 5).string('aerea100').style(style);
-        ws9.cell(1, 6).string('aerea300').style(style);
-        ws9.cell(1, 7).string('aerea500').style(style);
-        ws9.cell(1, 8).string('aerea1000').style(style);
-        ws9.cell(1, 9).string('FSmin').style(style);
-        ws9.cell(1, 10).string('Fskg').style(style);
-        ws9.cell(1, 11).string('GastosEmbarque').style(style);
-        ws9.cell(1, 12).string('Observaciones').style(style);
-        ws9.cell(1, 13).string('Time').style(style);
-        ws9.cell(1, 14).string('Via').style(style);
-        ws9.cell(1, 15).string('Frecuencia').style(style);
-        ws9.cell(col + 1, 1).string(aereasp.Pais).style(style);
-        ws9.cell(col + 1, 2).string(aereasp.Aeropuerto).style(style);
-        });
-
-wb.write('Aereas.xlsx', res);
-        });
-  });
-      });
-      });
-      });
-   });
-   });
-   });
-});
 
 ////////////Preguntas y Respuestas Licitacion///////////////
 

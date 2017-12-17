@@ -377,15 +377,15 @@
                                   </tr>
                                   <tr ng-repeat="Aduana in ModalidadesProveedor.Aduana.Aduanas">
                                     <td>{{Aduana.Via}}</td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Tarifa" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Tarifa % Advalorem/ FOB"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Gastos_Adicionales" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Conceptos_Adicionales" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Gastos_Adicionales_dos" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Conceptos_Adicionales_dos" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Gastos_Adicionales_tres" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Conceptos_Adicionales_tres" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Costo_Planificacion_Caja" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Gastos Adicionales"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Conceptos Adicionales"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Gastos Adicionales dos"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Conceptos Adicionales dos"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Gastos Adicionales tres"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Conceptos Adicionales tres"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aduana["Costo Planificacion Caja"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aduana.Otros" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                   </tr>
                                 </table>
@@ -463,16 +463,16 @@
                                     <td>{{Aerea.Pais}}</td>
                                     <td>{{Aerea.Aeropuerto}}</td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_45" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_100" class="form-control" type="text" ng-change="sumaaerea(Aerea);" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_300" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_500" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.T_1000" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.FSmin" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Fskg" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Gastos_Embarque" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["45"]' class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+100']" class="form-control" type="text" ng-change="sumaaerea(Aerea);" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+300']" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+500']" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+1000']" class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["FS min"]' class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["Fs/kg"]' class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["Gastos Embarque"]' class="form-control" type="text" ng-change="sumaaerea(Aerea);"  angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Observaciones" class="form-control" type="text"  placeholder=""></td>
-                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="Aereas.Lead_Time_Dias">
+                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model='Aerea["Lead Time (dias)"]'>
                                       <select class="form-control">
                                         <option>2-3</option>
                                         <option>3-4</option>
@@ -491,18 +491,18 @@
                                     </div></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Via" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td>
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasLunes" type="checkbox" ng-true-value="true" ng-false-value="false">L
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasMartes" type="checkbox" ng-true-value="true" ng-false-value="false">M
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasMiercoles" type="checkbox" ng-true-value="true" ng-false-value="false">X
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasJueves" type="checkbox" ng-true-value="true" ng-false-value="false">J
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasViernes" type="checkbox" ng-true-value="true" ng-false-value="false">V
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasSabado" type="checkbox" ng-true-value="true" ng-false-value="false">S
-                                      <input ng-change="UpdateModalidades();" ng-model="Aerea.FrecuenciaDiasDomingo" type="checkbox" ng-true-value="true" ng-false-value="false">D
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-false-value="false">L
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Martes"]' type="checkbox" ng-true-value="true" ng-false-value="false">M
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Miercoles"]' type="checkbox" ng-true-value="true" ng-false-value="false">X
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Jueves"]' type="checkbox" ng-true-value="true" ng-false-value="false">J
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Viernes"]' type="checkbox" ng-true-value="true" ng-false-value="false">V
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Sabado"]' type="checkbox" ng-true-value="true" ng-false-value="false">S
+                                      <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Domingo"]' type="checkbox" ng-true-value="true" ng-false-value="false">D
                                     </td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T100_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T300_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T500_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Sumatoria_T1000_FS_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+100 + Fs/kg + Gastos Embarque']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+300 + Fs/kg + Gastos Embarque']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+500 + Fs/kg + Gastos Embarque']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="Aerea['+1000 + Fs/kg + Gastos Embarque']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                   </tr>
                                 </table>
                               </div>
@@ -514,7 +514,7 @@
 
                                     <div class=" table-responsive no-padding">
                                       <div class="widget-header">
-                                       <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Carguero</label>
+                                       <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Pasajero</label>
 
                                       </div> <!-- /widget-header -->
                                        <table class="table table-bordered"  style=" table-layout: fixed;">
@@ -544,16 +544,16 @@
                                     <td>{{AereaPasajero.Pais}}</td>
                                     <td>{{AereaPasajero.Aeropuerto}}</td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_45" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_100" class="form-control" type="text" ng-change="sumaaereapasaj(AereaPasajero);" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_300" ng-change="sumaaereapasaj(AereaPasajero);" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_500" ng-change="sumaaereapasaj(AereaPasajero);" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.T_1000" ng-change="sumaaereapasaj(AereaPasajero);" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.FSmin" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Fskg" class="form-control" type="text" ng-change="sumaaereapasaj(AereaPasajero);" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Gastos_Embarque" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['45']" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+100']" class="form-control" type="text" ng-change="sumaaereapasaj(AereaPasajero);" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+300']" ng-change="sumaaereapasaj(AereaPasajero);" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+500']" ng-change="sumaaereapasaj(AereaPasajero);" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+1000']" ng-change="sumaaereapasaj(AereaPasajero);" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['FS min']" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['Fs/kg']" class="form-control" type="text" ng-change="sumaaereapasaj(AereaPasajero);" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['Gastos Embarque']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Observaciones" class="form-control" type="text"  placeholder=""></td>
-                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Lead_Time_Dias">
+                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="AereaPasajero['Lead time (dias)']">
                                       <select class="form-control">
                                         <option>2-3</option>
                                         <option>3-4</option>
@@ -572,20 +572,20 @@
                                     </div></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Via" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td>
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasLunes" type="checkbox" ng-true-value="true" ng-false-value="false">L
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasMartes" type="checkbox" ng-true-value="true" ng-false-value="false">M
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasMiercoles" type="checkbox" ng-true-value="true" ng-false-value="false">X
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasJueves" type="checkbox" ng-true-value="true" ng-false-value="false">J
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasViernes" type="checkbox" ng-true-value="true" ng-false-value="false">V
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasSabado" type="checkbox" ng-true-value="true" ng-false-value="false">S
-                                      <input ng-change="UpdateModalidades();" ng-model="AereaPasajero.FrecuenciaDiasDomingo" type="checkbox" ng-true-value="true" ng-false-value="false">D
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-false-value="false">L
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Martes"]' type="checkbox" ng-true-value="true" ng-false-value="false">M
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Miercoles"]'" type="checkbox" ng-true-value="true" ng-false-value="false">X
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Jueves"]' type="checkbox" ng-true-value="true" ng-false-value="false">J
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Viernes"]'type="checkbox" ng-true-value="true" ng-false-value="false">V
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Sabado"]' type="checkbox" ng-true-value="true" ng-false-value="false">S
+                                      <input ng-change="UpdateModalidades();" ng-model='AereaPasajero["Frecuencia Dia Domingo"]'type="checkbox" ng-true-value="true" ng-false-value="false">D
                                     </td>
 
 
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T100_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T300_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T500_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero.Sumatoria_T1000_FS" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+100 + Fs/kg']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+300 + Fs/kg']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+500 + Fs/kg']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model="AereaPasajero['+1000 + Fs/kg']" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                   </tr>
                                 </table>
                               </div>
@@ -654,26 +654,26 @@
                                     <tr ng-repeat="Otm in ModalidadesProveedor.Otm.Otms">
                                       <td>{{Otm.Origen}}</td>
                                       <td>{{Otm.Destino}}</td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_4_5_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_8_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_10_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_17_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_19_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_20_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_21_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_20_hasta_25_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_15_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_16_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_17_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_17_18_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_20_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_21_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_22_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.C_40_hasta_30_Ton" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_20$_estandar" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_40$_estandar" class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_20$_expreso" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="Otm.Devolucion_40$_expreso" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 4-5 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 8 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 10 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 17 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 19 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 20 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 21 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 20 hasta 25 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 15 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 16 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 17 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 17-18 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 20 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 21 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 22 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["C 40 hasta 30 Ton"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["Devolucion 20$ estandar"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["Devolucion 40$ estandar"]' class="form-control" type="text" angular-currency="options2" variable-options="true"  placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["Devolucion 20$ expreso"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='Otm["Devolucion 40$ expreso"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     </tr>
                                   </table>
                                 </div>
@@ -743,20 +743,20 @@
                                       <td>{{MaritimaFcl.PaisDestino}}</td>
                                       <td>{{MaritimaFcl.PuertoOrigen}}</td>
                                       <td>{{MaritimaFcl.PuertoDestino}}</td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.C20" ng-change="sumamarit(MaritimaFcl);" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Baf20" class="form-control" type="text" ng-change="sumamarit(MaritimaFcl);" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.C40" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Baf40" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.C40HC" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Baf40HC" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.GastosEmbarque" class="form-control" type="text" ng-change="sumamarit(MaritimaFcl);" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["C 20"]' ng-change="sumamarit(MaritimaFcl);" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["Baf 20"]' class="form-control" type="text" ng-change="sumamarit(MaritimaFcl);" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["C 40"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["Baf 40"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["C 40HC"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["Baf 40HC"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["Gastos Embarque"]' class="form-control" type="text" ng-change="sumamarit(MaritimaFcl);" angular-currency="options2" variable-options="true" placeholder=""></td>
                                       <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Observaciones" class="form-control" type="text"  placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Lead_TimeDias" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["Lead Time(dias)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                       <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Naviera" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td class="text-center"><input ng-change="UpdateModalidades();" ng-model="MaritimaFcl.FrecuenciaSemanal" type="checkbox" ng-true-value="true" ng-false-value="false">S <input ng-change="UpdateModalidades();" ng-model="MaritimaFcl.FrecuenciaQuincenal"  type="checkbox" ng-true-value="true" ng-false-value="false">Q <input ng-change="UpdateModalidades();" ng-model="MaritimaFcl.FrecuenciaMensual" type="checkbox" ng-true-value="true" ng-false-value="false">M</td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Sumatoria_C20_Baf20_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Sumatoria_C40_Baf40_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                      <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaFcl.Sumatoria_C40HC_Baf40HC_Ge" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td class="text-center"><input ng-change="UpdateModalidades();" ng-model='MaritimaFcl["Frecuencia Semanal"]'  type="checkbox" ng-true-value="true" ng-false-value="false">S <input ng-change="UpdateModalidades();" ng-model='MaritimaFcl["Frecuencia Quincenal"]'   type="checkbox" ng-true-value="true" ng-false-value="false">Q <input ng-change="UpdateModalidades();" ng-model='MaritimaFcl["Frecuencia Mensual"]'  type="checkbox" ng-true-value="true" ng-false-value="false">M</td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                      <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
 
                                     </td>
                                   </tr>
@@ -818,14 +818,14 @@
                                     <td>{{MaritimaLcl.PaisDestino}}</td>
                                     <td>{{MaritimaLcl.PuertoOrigen}}</td>
                                     <td>{{MaritimaLcl.PuertoDestino}}</td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._1_5_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._5_8_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._8_12_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl._12_18_ton_M3" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Gastos_Embarque" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["1-5 ton/M3"]'timaLcl.Minima" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["1-5 ton/M3"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["5-8 ton/M3"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["8-12 ton/M3"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["12-18 ton/M3"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["Gastos Embarque"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Observaciones" class="form-control" type="text"  placeholder=""></td>
-                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Lead_Time_Dias">
+                                    <td><div class="form-group" ng-blur="UpdateModalidades();" ng-model='MaritimaLcl["Lead time(dias)"]'>
                                       <select class="form-control">
                                         <option>2-3</option>
                                         <option>3-4</option>
@@ -844,13 +844,13 @@
                                     </div></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="MaritimaLcl.Naviera" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td>
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasLunes" type="checkbox" ng-true-value="true" ng-false-value="false">L
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasMartes" type="checkbox" ng-true-value="true" ng-false-value="false">M
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasMiercoles" type="checkbox" ng-true-value="true" ng-false-value="false">X
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasJueves" type="checkbox" ng-true-value="true" ng-false-value="false">J
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasViernes" type="checkbox" ng-true-value="true" ng-false-value="false">V
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasSabado" type="checkbox" ng-true-value="true" ng-false-value="false">S
-                                      <input ng-change="UpdateModalidades();" ng-model="MaritimaLcl.FrecuenciaDiasDomingo" type="checkbox" ng-true-value="true" ng-false-value="false">D
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-false-value="false">L
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Martes"]'  type="checkbox" ng-true-value="true" ng-false-value="false">M
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Miercoles"]'  type="checkbox" ng-true-value="true" ng-false-value="false">X
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Jueves"]'  type="checkbox" ng-true-value="true" ng-false-value="false">J
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Viernes"]'  type="checkbox" ng-true-value="true" ng-false-value="false">V
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Sabado"]' type="checkbox" ng-true-value="true" ng-false-value="false">S
+                                      <input ng-change="UpdateModalidades();" ng-model='MaritimaLcl["Frecuencia Dia Domingo"]'  type="checkbox" ng-true-value="true" ng-false-value="false">D
                                     </td>
                                   </tr>
                                 </table>
@@ -903,8 +903,8 @@
                                           <tr ng-repeat="TerreNacional in ModalidadesProveedor.TerreNacional.TerresNacional">
                                             <td>{{TerreNacional.PaisOrigen}}</td>
                                             <td>{{TerreNacional.PuertoDestino}}</td>
-                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacional.Turbo_Standar_150Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacional.Turbo_Especial" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model='TerreNacional["Turbo Standar (150Cajas)"]'  class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model='TerreNacional["Turbo Especial"]'class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -926,8 +926,8 @@
                                           <tr ng-repeat="TerreNacionalSencillo in ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo">
                                             <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
                                             <td>{{TerreNacionalSencillo.PuertoDestino}}</td>
-                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalSencillo.Sencillo_240Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalSencillo.Sencillo_Especial" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model='TerreNacionalSencillo["Sencillo Standar (150Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model='TerreNacionalSencillo["Sencillo Especial"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -950,7 +950,7 @@
                                             <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
                                             <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
                                             <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalPatineta.Minimula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                            <td><input ng-blur="UpdateModalidades();" ng-model="TerreNacionalPatineta.GranDanes" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                            <td><input ng-blur="UpdateModalidades();" ng-model='TerreNacionalPatineta["Gran Danes"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -1003,12 +1003,12 @@
                                                   <tr ng-repeat="TerreUrbano in ModalidadesProveedor.TerreUrbano.TerresUrbano">
                                                     <td>{{TerreUrbano.PaisOrigen}}</td>
                                                     <td>{{TerreUrbano.PuertoDestino}}</td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Turbo_150Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Turbo_Especial_200Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Sencillo_240Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Sencillo_Especial_300Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbano["Turbo (150Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbano["Turbo Especial (200Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbano["Sencillo (240Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbano["Sencillo Especial (300Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                                     <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.Minimula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbano.GranDanes" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbano["Gran Danes"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                                   </tr>
                                                 </table>
                                               </div>
@@ -1032,12 +1032,12 @@
                                                   <tr ng-repeat="TerreUrbanoViaje in ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje">
                                                     <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
                                                     <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Turbo_150Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Turbo_Especial_200Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Sencillo_240Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Sencillo_Especial_300Cajas" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbanoViaje["Turbo (150Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbanoViaje["Turbo Especial (200Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbanoViaje["Sencillo (240Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbanoViaje["Sencillo Especial (300Cajas)"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                                     <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.Minimula" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
-                                                    <td><input ng-blur="UpdateModalidades();" ng-model="TerreUrbanoViaje.GranDanes" class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
+                                                    <td><input ng-blur="UpdateModalidades();" ng-model='TerreUrbanoViaje["Gran Danes"]' class="form-control" type="text" angular-currency="options2" variable-options="true" placeholder=""></td>
                                                   </tr>
                                                 </table>
                                               </div>
@@ -1051,7 +1051,7 @@
                                           <tr>
                                             <th class="text-center"><h6><b>Origen<b></h6></th>
                                               <th class="text-center"><h6><b>Destino</b></h6></th>
-                                                <th class="text-center"><h6><b>Turbo></h6></th>
+                                                <th class="text-center"><h6><b>Turbo</h6></th>
                                                   <th class="text-center"><h6><b>Sencillo</b></h6></th>
                                                   <th class="text-center"><h6><b>Tractomula</b></h6></th>
 
