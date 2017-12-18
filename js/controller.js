@@ -3101,23 +3101,23 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                }
 
                            $scope.sumamarit = function(MaritimaFcl){
-                           MaritimaFcl.Sumatoria_C20_Baf20_Ge= parseFloat(MaritimaFcl.C20) + parseFloat(MaritimaFcl.Baf20) + parseFloat(MaritimaFcl.GastosEmbarque);
-                           MaritimaFcl.Sumatoria_C40_Baf40_Ge= parseFloat(MaritimaFcl.C40) + parseFloat(MaritimaFcl.Baf40) + parseFloat(MaritimaFcl.GastosEmbarque);
-                           MaritimaFcl.Sumatoria_C40HC_Baf40HC_Ge= parseFloat(MaritimaFcl.C40HC) + parseFloat(MaritimaFcl.Baf40HC) + parseFloat(MaritimaFcl.GastosEmbarque);
+                           MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]= parseFloat(MaritimaFcl["C 20"]) + parseFloat(MaritimaFcl["Baf 20"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
+                           MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]= parseFloat(MaritimaFcl["C 40"]) + parseFloat(MaritimaFcl["Baf 40"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
+                           MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]= parseFloat(MaritimaFcl["C 40HC"]) + parseFloat(MaritimaFcl["Baf 40HC"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
                            }
 
                            $scope.sumaaerea = function(Aerea){
-                           Aerea.Sumatoria_T100_FS_Ge= parseFloat(Aerea["'+100"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           Aerea.Sumatoria_T300_FS_Ge= parseFloat(Aerea["'+300"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           Aerea.Sumatoria_T500_FS_Ge= parseFloat(Aerea["'+500"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           Aerea.Sumatoria_T1000_FS_Ge= parseFloat(Aerea["'+1000"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+100"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+300"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+500"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
+                           Aerea["+1000 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+1000"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
                            }
 
                            $scope.sumaaereapasaj = function(AereaPasajero){
-                           AereaPasajero.Sumatoria_T100_FS= parseFloat(AereaPasajero["'+100"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           AereaPasajero.Sumatoria_T300_FS= parseFloat(AereaPasajero["'+300"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           AereaPasajero.Sumatoria_T500_FS= parseFloat(AereaPasajero["'+500"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           AereaPasajero.Sumatoria_T1000_FS= parseFloat(AereaPasajero["'+1000"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero["+100 + Fs/kg"]= parseFloat(AereaPasajero["+100"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero["+300 + Fs/kg"]= parseFloat(AereaPasajero["+300"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero["+500 + Fs/kg"]= parseFloat(AereaPasajero["+500"]) + parseFloat(AereaPasajero["Fs/kg"]);
+                           AereaPasajero["+1000 + Fs/kg"]= parseFloat(AereaPasajero["+1000"]) + parseFloat(AereaPasajero["Fs/kg"]);
                            }
 
 
