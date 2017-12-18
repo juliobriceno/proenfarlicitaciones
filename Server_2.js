@@ -741,9 +741,6 @@ function convertDate(inputFormat) {
 
 app.post('/EnviarEmailProveedores', function (req, res) {
 
-    // Sres aquí anda el Buffer
-    console.log('Sres aquí anda el buuffer');
-    console.log(req.session.emailfiles);
 
     // Recorre todos los proveedores que se seleccionaron y envía un correo
     req.body.Proveedores.forEach(function(element) {
@@ -849,8 +846,6 @@ app.post('/EnviarEmailProveedores', function (req, res) {
 
       var subject = "Invitación a licitación proenfar.";
 
-      console.log(req.session.emailfiles[0].file);
-
       var attachments = [];
 
       req.session.emailfiles.forEach(function(File) {
@@ -937,10 +932,19 @@ app.post('/EnviarEmailProveedores', function (req, res) {
 
                                  qtyFiles = qtyFiles - 1;
 
-                                 console.log('Paso por aquika');
 
                                  if (qtyFiles == 0){
-                                   console.log('Enío el correo');
+                                   console.log('Envío el correo y creó licitación');
+
+                                   MyMongo.Remove('LicitacionProveedor', { Email: element.Email }, function (result) {
+                                     MyMongo.Insert('LicitacionProveedor', { Email: element.Email, Bloqueado: false }, function (result) {
+                                         if (result == 'Ok') {
+                                         };
+                                     }
+                                     );
+                                   }
+                                   );
+
                                    MyMail.SendEmail(msgCorreo, element.Email, subject, attachments);
                                  }
 
