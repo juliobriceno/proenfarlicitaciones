@@ -936,8 +936,8 @@ app.post('/EnviarEmailProveedores', function (req, res) {
                                  if (qtyFiles == 0){
                                    console.log('Envío el correo y creó licitación');
 
-                                   MyMongo.Remove('LicitacionProveedor', { Email: element.Email }, function (result) {
-                                     MyMongo.Insert('LicitacionProveedor', { Email: element.Email, Bloqueado: false }, function (result) {
+                                   MyMongo.Remove('LicitacionProveedor', { Email: element.User }, function (result) {
+                                     MyMongo.Insert('LicitacionProveedor', { Email: element.User, Bloqueado: false }, function (result) {
                                          if (result == 'Ok') {
                                          };
                                      }
@@ -2710,7 +2710,7 @@ app.post('/GetFinalizarModalidades', function (req, res) {
 
               MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email}, function (result) {
               MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true }, function (result) {
-                  var Data = {};                  
+                  var Data = {};
                  res.end(JSON.stringify(Data))
                });
                });
@@ -2722,12 +2722,12 @@ app.post('/GetEstatusproveedor', function (req, res) {
      MyMongo.Find('LicitacionProveedor', {Email: req.body.Email}, function (result) {
            var Data = {};
             Data.LicitacionProveedor= result[0];
-            res.end(JSON.stringify(Data));           
-           
+            res.end(JSON.stringify(Data));
+
        });
 
 });
-                                   
+
 
 app.get('/downloadanybyname', function (req, res) {
 

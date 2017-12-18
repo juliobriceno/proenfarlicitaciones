@@ -1925,6 +1925,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaFrecuencialcl=1;
 
                            angular.forEach(data.MaritimasLcl , function(maritimaslcl) {
+
                              /////////////C20////////////////////////////////////
                                 if(pattern.test(maritimaslcl.Minima)){
                                    filaMinima=filaMinima +1;
@@ -1939,7 +1940,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ton15////////////////////////////////////
-                                if(pattern.test(maritimaslcl["1-5 ton/M3"])){
+
+                                if( ( typeof maritimaslcl["1-5 ton/M3"] == 'undefined' ) || pattern.test(maritimaslcl["1-5 ton/M3"])){
                                    filaton15=filaton15 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2133,6 +2135,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
+
+
                             $scope.$apply();
                           });
                           //console.log($scope.data.Aduanas);
@@ -3092,13 +3096,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                          $scope.AbrirModal = function(valor){
                           $loading.start('myloading');
-                          $scope.GetModalidadesProveedor();
-                            if ($scope.erroresimportacion.length > 0){
+                          // Julio 20171218 Lo comenté, si va a mostrar la modal de errores creo que no tiene sentido llamar añ servidor
+                          // para buscar éstos datos
+                          // $scope.GetModalidadesProveedor();
+                          if ($scope.erroresimportacion.length > 0){
                             $('#error-importacion-excel').modal('show');
                             return 0;
-                              }
-                              $loading.finish('myloading');
-                               }
+                          }
+                            $loading.finish('myloading');
+                          }
 
                            $scope.sumamarit = function(MaritimaFcl){
                            MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]= parseFloat(MaritimaFcl["C 20"]) + parseFloat(MaritimaFcl["Baf 20"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
@@ -3121,21 +3127,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            }
 
                            $scope.FinalizarModalidad = function (Email){
-                            console.log("paso por aqui");
-                            var Data = {};
-                            Data.Email = localStorage.UserConnected;
 
-                             $http({
-                              method: 'POST',
-                              url: '/GetFinalizarModalidades',
-                              headers: { 'Content-Type': 'application/json' },
-                              data: Data
-                          }).then(function successCallback(response) {
-                            console.log("entro aqui");
-                              $scope.Estatusproveedor();
-                             }, function errorCallback(response) {
-                              console.log(response);
-                          });
+
+                             swal({
+                                 title: "Seguro de finalizar el proceso?",
+                                 text: "",
+                                 type: "warning",
+                                 showCancelButton: true,
+                                 confirmButtonColor: "#DD6B55",
+                                 confirmButtonText: "Aceptar",
+                                 closeOnConfirm: true
+                             },
+                             function () {
+
+                               console.log("paso por aqui");
+                               var Data = {};
+                               Data.Email = localStorage.UserConnected;
+
+                               $loading.start('myloading');
+
+                                $http({
+                                 method: 'POST',
+                                 url: '/GetFinalizarModalidades',
+                                 headers: { 'Content-Type': 'application/json' },
+                                 data: Data
+                             }).then(function successCallback(response) {
+                               console.log("entro aqui");
+                                 $scope.Estatusproveedor();
+                                 $loading.finish('myloading');
+                                }, function errorCallback(response) {
+                                 console.log(response);
+                             });
+
+                             });
+
                         }
 
                           $scope.Estatusproveedor = function(){
@@ -3148,9 +3173,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-                            console.log("entro aqui buscar finalizar"); 
-                              $scope.EstatusproveedorModalidad= response.data.LicitacionProveedor[0].Bloqueado;
-                              console.log($scope.EstatusproveedorModalidad);
+                              $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;
                           }, function errorCallback(response) {
                               console.log(response);
                           });
@@ -3170,7 +3193,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-                              console.log('La data fue actualizada');                              
+                              console.log('La data fue actualizada');
                           }, function errorCallback(response) {
                               console.log(response);
                           });
