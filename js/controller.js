@@ -3120,10 +3120,41 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            AereaPasajero["+1000 + Fs/kg"]= parseFloat(AereaPasajero["+1000"]) + parseFloat(AereaPasajero["Fs/kg"]);
                            }
 
+                           $scope.FinalizarModalidad = function (Email){
+                            console.log("paso por aqui");
+                            var Data = {};
+                            Data.Email = localStorage.UserConnected;
 
+                             $http({
+                              method: 'POST',
+                              url: '/GetFinalizarModalidades',
+                              headers: { 'Content-Type': 'application/json' },
+                              data: Data
+                          }).then(function successCallback(response) {
+                            console.log("entro aqui");
+                              $scope.Estatusproveedor();
+                             }, function errorCallback(response) {
+                              console.log(response);
+                          });
+                        }
 
+                          $scope.Estatusproveedor = function(){
+                             var Data = {};
+                            Data.Email = localStorage.UserConnected;
 
-
+                             $http({
+                              method: 'POST',
+                              url: '/GetEstatusproveedor',
+                              headers: { 'Content-Type': 'application/json' },
+                              data: Data
+                          }).then(function successCallback(response) {
+                            console.log("entro aqui buscar finalizar"); 
+                              $scope.EstatusproveedorModalidad= response.data.LicitacionProveedor[0].Bloqueado;
+                              console.log($scope.EstatusproveedorModalidad);
+                          }, function errorCallback(response) {
+                              console.log(response);
+                          });
+                        }
 
                           // Actualiza las modalidades para éste proveedores
                         $scope.UpdateModalidades = function () {
@@ -3139,7 +3170,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-                              console.log('La data fue actualizada');
+                              console.log('La data fue actualizada');                              
                           }, function errorCallback(response) {
                               console.log(response);
                           });
@@ -3191,6 +3222,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             data: Data
                             }).then(function successCallback(response) {
                             $loading.finish('myloading');
+                            $scope.Estatusproveedor();
                             $scope.Formulario = response.data.Formularios;
                            console.log($scope.Formulario.length);
                               if ($scope.Formulario.length == 0){

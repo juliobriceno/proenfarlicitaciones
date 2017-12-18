@@ -2705,6 +2705,30 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                });
   });
 
+///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
+app.post('/GetFinalizarModalidades', function (req, res) {
+
+              MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email}, function (result) {
+              MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true }, function (result) {
+                  var Data = {};                  
+                 res.end(JSON.stringify(Data))
+               });
+               });
+  });
+
+////////////////////////////////////////Habiliar o Desahabilitar Input ///////////////////////////////
+app.post('/GetEstatusproveedor', function (req, res) {
+
+     MyMongo.Find('LicitacionProveedor', {Email: req.body.Email}, function (result) {
+           var Data = {};
+            Data.LicitacionProveedor= result[0];
+            res.end(JSON.stringify(Data));           
+           
+       });
+
+});
+                                   
+
 app.get('/downloadanybyname', function (req, res) {
 
   var filename = req.query.filename;
