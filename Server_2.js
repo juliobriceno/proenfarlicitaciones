@@ -1439,9 +1439,9 @@ app.post('/GetModalidadesProveedor', function (req, res) {
                  Data.ModalidadesProveedor = {
                    Email: req.body.Email,
                    Bodegajes: {
-                     Aduanero: {TarifaValor: 0, TarifaMinima: 0, Otros: 0},
-                     Maquinaria: {Tarifa: 0, TarifaMinima: 0, Fmm: 0},
-                     MateriaPrima: {Tarifa: 0, TarifaMinima: 0, Fmm: 0}
+                     Aduanero: {TarifaValor: null, TarifaMinima: null, Otros: null},
+                     Maquinaria: {Tarifa: null, TarifaMinima: null, Fmm: null},
+                     MateriaPrima: {Tarifa: null, TarifaMinima: null, Fmm: null}
                    },
                    Aduana: {
                      Aduanas: myAduanas

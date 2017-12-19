@@ -1130,18 +1130,18 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       if($scope.ModalidadesMostrarActual=='Bodegajes'){
                           angular.forEach(data.Aduanero, function(aduanero) {
                         ////////////////////////////valida si es numerico o null ///////////////
-                               if(pattern.test(aduanero["Tarifa Valor/FOB"])){
+                              if( ( typeof aduanero["Tarifa Valor/FOB"] == 'undefined' ) || pattern.test(aduanero["Tarifa Valor/FOB"])){
                                   $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor = aduanero["Tarifa Valor/FOB"];
-                                  //$scope.$apply();
+                                  $scope.$apply();
                                 }
                                 else
                                 {
                                   var valor='Aduanero_Tarifa Valor/FOB';
                                   $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
-                                  $scope.AbrirModal(valor);
+                                  //$scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(aduanero["Tarifa Minima"])){
+                             if( ( typeof aduanero["Tarifa Minima"] == 'undefined' ) || pattern.test(aduanero["Tarifa Minima"])){
                                   $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima = aduanero["Tarifa Minima"];
                                   //$scope.$apply();
                                 }
@@ -1152,7 +1152,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(aduanero.Otros)){
+                              if( ( typeof aduanero.Otros == 'undefined' ) || pattern.test(aduanero.Otros)){
                                 $scope.ModalidadesProveedor.Bodegajes.Aduanero.Otros = aduanero.Otros;
                                  // $scope.$apply();
                                 }
@@ -1168,8 +1168,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                      ////////////////////////////Bodegajes_Maquinaria ////////////////////////////////////////////
                          angular.forEach(data.Maquinaria , function(maquinaria) {
-                           if(pattern.test(maquinaria.Tarifa)){
-                                  $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = maquinaria.Tarifa;
+                           if( ( typeof maquinaria.Tarifa == 'undefined' ) || pattern.test(maquinaria.Tarifa)){                        
+                                $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = maquinaria.Tarifa;
                                   //$scope.$apply();
                                 }
                                 else
@@ -1179,24 +1179,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(maquinaria["Tarifa Minima"])){
+                            if( ( typeof maquinaria["Tarifa Minima"] == 'undefined' ) || pattern.test(maquinaria["Tarifa Minima"])){
                                   $scope.ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima = maquinaria["Tarifa Minima"];
                                   //$scope.$apply();
                                 }
                                 else
                                 {
-                                  var valor='Maquinaria_Tarifa Minima';
+                                  var valor='Maquinaria Tarifa Minima';
                                   $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(maquinaria.FMM)){
+                           if( (typeof maquinaria.FMM == 'undefined' ) || pattern.test(maquinaria.FMM)){
                                  $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Fmm = maquinaria.FMM;
                                   //$scope.$apply();
                                 }
                                 else
                                 {
-                                  var valor='Maquinaria_FMM';
+                                  var valor='Maquinaria FMM';
                                  $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                 }
@@ -1206,7 +1206,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      ////////////////////////////Bodegajes_Materia_Prima ////////////////////////////////////////////
                          angular.forEach(data.Materia_Prima , function(materiaprima) {
                           //////////////////////valida si es numerico o null ///////////////
-                               if(pattern.test(materiaprima.Tarifa)){
+                           if( ( typeof materiaprima.Tarifa == 'undefined' ) || pattern.test(materiaprima.Tarifa)){
                                  $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Tarifa = materiaprima.Tarifa;
                                   //$scope.$apply();
                                 }
@@ -1217,7 +1217,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(materiaprima["Tarifa Minima"])){
+                           if( ( typeof materiaprima["Tarifa Minima"] == 'undefined' ) || pattern.test(materiaprima["Tarifa Minima"])){
                                  $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima = materiaprima["Tarifa Minima"];
                                   //$scope.$apply();
                                 }
@@ -1228,7 +1228,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
 
-                               if(pattern.test(materiaprima.FMM)){
+                            if( ( typeof materiaprima.FMM == 'undefined' ) || pattern.test(materiaprima.FMM)){
                                   $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Fmm = materiaprima.FMM;
                                   //$scope.$apply();
                                 }
@@ -1262,7 +1262,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Aduanas , function(aduana) {
                              /////////////Tarifa////////////////////////////////////
-                                if(pattern.test(aduana["Tarifa % Advalorem/ FOB"])){
+                              if( ( typeof aduana["Tarifa % Advalorem/ FOB"] == 'undefined' ) || pattern.test(aduana["Tarifa % Advalorem/ FOB"])){
                                    filaTarifa=filaTarifa +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                   // $scope.$apply();
@@ -1277,8 +1277,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                                  }
                             //////////////////Minima//////////////////////////
-                                if(pattern.test(aduana.Minima)){
-                                  filaMinima=filaMinima +1;
+                             if( ( typeof aduana.Minima == 'undefined' ) || pattern.test(aduana.Minima)){
+                                   filaMinima=filaMinima +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                   // $scope.$apply();
                                   }
@@ -1290,8 +1290,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////GastosAdicionales//////////////////////////
-                                if(pattern.test(aduana["Gastos Adicionales"])){
-                                  filaGastosAdicionales=filaGastosAdicionales +1;
+                             if( ( typeof aduana["Gastos Adicionales"] == 'undefined' ) || pattern.test(aduana["Gastos Adicionales"])){
+                                   filaGastosAdicionales=filaGastosAdicionales +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
                                   }
@@ -1303,8 +1303,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionales//////////////////////////
-                                if(pattern.test(aduana["Conceptos Adicionales"])){
-                                  filaConceptosAdicionales=filaConceptosAdicionales +1;
+                             if( ( typeof aduana["Conceptos Adicionales"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales"])){
+                                   filaConceptosAdicionales=filaConceptosAdicionales +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                   //$scope.$apply();
                                   }
@@ -1316,7 +1316,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                         //////////////////GastosAdicionalesdos//////////////////////////
-                                if(pattern.test(aduana["Gastos Adicionales dos"])){
+                                if( ( typeof aduana["Gastos Adicionales dos"] == 'undefined' ) || pattern.test(aduana["Gastos Adicionales dos"])){
                                   filaGastosAdicionalesdos=filaGastosAdicionalesdos +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1329,7 +1329,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionales2//////////////////////////
-                                if(pattern.test(aduana["Conceptos Adicionales dos"])){
+                                if( ( typeof aduana["Conceptos Adicionales dos"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales dos"])){
                                   filaConceptosAdicionalesdos=filaConceptosAdicionalesdos +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1342,7 +1342,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           //////////////////GastosAdicionalestres//////////////////////////
-                                if(pattern.test(aduana["Gastos Adicionales tres"])){
+                                if( ( typeof aduana["Gastos Adicionales tres"] == 'undefined' ) || pattern.test(aduana["Gastos Adicionales tres"])){
                                   filaGastosAdicionalestres=filaGastosAdicionalestres +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1355,7 +1355,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionalestres//////////////////////////
-                                if(pattern.test(aduana["Conceptos Adicionales tres"])){
+                                if( ( typeof aduana["Conceptos Adicionales tres"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales tres"])){
                                   filaConceptosAdicionalestres=filaConceptosAdicionalestres +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1368,8 +1368,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////CostoPlanificacionCaja//////////////////////////
-                                if(pattern.test(aduana["Costo Planificacion Caja"])){
-                                  filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
+                                if( ( typeof aduana["Costo Planificacion Caja"] == 'undefined' ) || pattern.test(aduana["Costo Planificacion Caja"])){
+                                   filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
                                   }
@@ -1381,8 +1381,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////Otros/////////////////////////////////////////
-                                if(pattern.test(aduana.Otros)){
-                                  filaOtros=filaOtros +1;
+                             if( ( typeof aduana.Otros == 'undefined' ) || pattern.test(aduana.Otros)){
+                                   filaOtros=filaOtros +1;
                                    $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
                                   }
@@ -1425,8 +1425,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.OTM , function(otm) {
                              /////////////C_20_hasta_4_5_Ton////////////////////////////////////
-                                if(pattern.test(otm["C 20 hasta 4-5 Ton"])){
-                                   filacveintecuatroconcinco=filacveintecuatroconcinco +1;
+                             if( ( typeof otm["C 20 hasta 4-5 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 4-5 Ton"])){
+                                    filacveintecuatroconcinco=filacveintecuatroconcinco +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
                                   }
@@ -1438,8 +1438,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////C_20_hasta_8_Ton//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 8 Ton"])){
-                                  filaCcveinteoocho=filacveinteoocho +1;
+                              if( ( typeof otm["C 20 hasta 8 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 8 Ton"])){
+                                    filaCcveinteoocho=filacveinteoocho +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
                                   }
@@ -1451,7 +1451,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveintendiez//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 10 Ton"])){
+                                if( ( typeof otm["C 20 hasta 10 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 10 Ton"])){
                                   filacveintendiez=filacveintendiez +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1464,7 +1464,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveintendiezsiete//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 17 Ton"])){
+                                 if( ( typeof otm["C 20 hasta 17 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 17 Ton"])){
                                   filacveintendiezsiete=filacveintendiezsiete +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1477,7 +1477,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                         //////////////////cveintendieznueve//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 19 Ton"])){
+                                 if( ( typeof otm["C 20 hasta 19 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 19 Ton"])){
                                   filacveintendieznueve=filacveintendieznueve +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1490,7 +1490,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveinteveinte//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 20 Ton"])){
+                                 if( ( typeof otm["C 20 hasta 20 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 20 Ton"])){
                                   filacveinteveinte=filacveinteveinte +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1503,7 +1503,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           //////////////////cveinteveinteyuno//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 21 Ton"])){
+                                if( ( typeof otm["C 20 hasta 21 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 21 Ton"])){
                                   filacveinteveinteyuno=filacveinteveinteyuno +1;
                                    $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1516,7 +1516,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////cveinteveinteycinco//////////////////////////
-                                if(pattern.test(otm["C 20 hasta 25 Ton"])){
+                                if( ( typeof otm["C 20 hasta 25 Ton"] == 'undefined' ) || pattern.test(otm["C 20 hasta 25 Ton"])){
                                   filacveinteveinteycinco=filacveinteveinteycinco +1;
                                    $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1529,7 +1529,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaquince//////////////////////////
-                                if(pattern.test(otm["C 40 hasta 15 Ton"])){
+                                 if( ( typeof otm["C 40 hasta 15 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 15 Ton"])){
                                   filaccuarentaquince=filaccuarentaquince +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1542,7 +1542,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentadiezyseis/////////////////////////////////////////
-                                if(pattern.test(otm["C 40 hasta 16 Ton"])){
+                               if( ( typeof otm["C 40 hasta 16 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 16 Ton"])){
                                   filaccuarentadiezyseis=filaccuarentadiezyseis +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1555,7 +1555,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                       //////////////////ccuarentadiezysiete//////////////////////////
-                                if(pattern.test(otm["C 40 hasta 17 Ton"])){
+                                if( ( typeof otm["C 40 hasta 17 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 17 Ton"])){
                                   filaccuarentadiezysiete=filaccuarentadiezysiete +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1568,7 +1568,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaveinte/////////////////////////////////////////
-                                if(pattern.test(otm["C 40 hasta 17-18 Ton"])){
+                               if( ( typeof otm["C 40 hasta 17-18 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 17-18 Ton"])){
                                   filaccuarentaveinte=filaccuarentaveinte +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1581,7 +1581,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              //////////////////ccuarentaveinteyuno//////////////////////////
-                                if(pattern.test(otm["C 40 hasta 20 Ton"])){
+                               if( ( typeof otm["C 40 hasta 20 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 20 Ton"])){
                                   filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    $scope.$apply();
@@ -1594,7 +1594,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaveinteydos/////////////////////////////////////////
-                                if(pattern.test(otm["C 40 hasta 21 Ton"])){
+                                if( ( typeof otm["C 40 hasta 21 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 21 Ton"])){
                                   filaccuarentaveinteydos=filaccuarentaveinteydos +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1607,7 +1607,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                            //////////////////ccuarentatreinta//////////////////////////
-                                if(pattern.test(otm["C 40 hasta 22 Ton"])){
+                               if( ( typeof otm["C 40 hasta 22 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 22 Ton"])){
                                   filaccuarentatreinta=filaccuarentatreinta +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1620,7 +1620,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                    //////////////////ccuarentatreinta//////////////////////////
-                                if(pattern.test(otm["C 40 hasta 30 Ton"])){
+                               if( ( typeof otm["C 40 hasta 30 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 30 Ton"])){
                                   filaccuarentatreinta=filaccuarentatreinta +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1633,8 +1633,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucionveinteestandar/////////////////////////////////////////
-                                if(pattern.test(otm["Devolucion 20$ estandar"])){
-                                  filadevolucionveinteestandar=filadevolucionveinteestandar +1;
+                                if( ( typeof otm["Devolucion 20$ estandar"] == 'undefined' ) || pattern.test(otm["Devolucion 20$ estandar"])){
+                                    filadevolucionveinteestandar=filadevolucionveinteestandar +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
                                   }
@@ -1646,7 +1646,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucioncuarentaestandar//////////////////////////
-                                if(pattern.test(otm["Devolucion 40$ estandar"])){
+                                 if( ( typeof otm["Devolucion 40$ estandar"] == 'undefined' ) || pattern.test(otm["Devolucion 40$ estandar"])){
                                   filadevolucioncuarentaestandar=filadevolucioncuarentaestandar +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1659,7 +1659,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucionveinteexpreso/////////////////////////////////////////
-                                if(pattern.test(otm["Devolucion 20$ expreso"])){
+                                 if( ( typeof otm["Devolucion 20$ expreso"] == 'undefined' ) || pattern.test(otm["Devolucion 20$ expreso"])){
                                   filadevolucionveinteexpreso=filadevolucionveinteexpreso +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
@@ -1672,7 +1672,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             //////////////////devolucioncuarentaexpreso/////////////////////////////////////////
-                                if(pattern.test(otm["Devolucion 40$ expreso"])){
+                               if( ( typeof otm["Devolucion 40$ expreso"] == 'undefined' ) || pattern.test(otm["Devolucion 40$ expreso"])){
                                   filadevolucioncuarentaexpreso=filadevolucioncuarentaexpreso +1;
                                     $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
@@ -1707,7 +1707,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.MaritimasFcl , function(maritimasfcl) {
                              /////////////C20////////////////////////////////////
-                                if(pattern.test(maritimasfcl["C 20"])){
+                               if( ( typeof maritimasfcl["C 20"] == 'undefined' ) || pattern.test(maritimasfcl["C 20"])){
                                    filaC20=filaC20 +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.C20= data.MaritimasFcl.C20;
@@ -1721,7 +1721,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Baf20////////////////////////////////////
-                                if(pattern.test(maritimasfcl["Baf 20"])){
+                                if( ( typeof maritimasfcl["Baf 20"] == 'undefined' ) || pattern.test(maritimasfcl["Baf 20"])){
                                    filaBaf20=filaBaf20 +1;
                                   //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Baf20= data.MaritimasFcl.Baf20;
@@ -1735,7 +1735,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////C40////////////////////////////////////
-                                if(pattern.test(maritimasfcl["C 40"])){
+                               if( ( typeof maritimasfcl["C 40"] == 'undefined' ) || pattern.test(maritimasfcl["C 40"])){
                                    filaC40=filaC40 +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.C40= data.MaritimasFcl.C40;
@@ -1749,7 +1749,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////Baf40////////////////////////////////////
-                                if(pattern.test(maritimasfcl["Baf 40"])){
+                                if( ( typeof maritimasfcl["Baf 40"] == 'undefined' ) || pattern.test(maritimasfcl["Baf 40"])){
                                    filaBaf40=filaBaf40 +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Baf40= data.MaritimasFcl.Baf40;
@@ -1763,7 +1763,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                               /////////////C40HC////////////////////////////////////
-                                if(pattern.test(maritimasfcl["C 40HC"])){
+                                 if( ( typeof maritimasfcl["C 40HC"] == 'undefined' ) || pattern.test(maritimasfcl["C 40HC"])){
                                    filaC40HC=filaC40HC +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.atoria_C40HC= data.MaritimasFcl.C40HC;
@@ -1778,7 +1778,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////Baf40HC////////////////////////////////////
-                                if(pattern.test(maritimasfcl["Baf 40HC"])){
+                               if( ( typeof maritimasfcl["Baf 40HC"] == 'undefined' ) || pattern.test(maritimasfcl["Baf 40HC"])){
                                    filaBaf40HC=filaBaf40HC +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.SBaf40HC= data.MaritimasFcl.Baf40HC;
@@ -1794,20 +1794,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
 
                                /////////////Observaciones////////////////////////////////////
-                                 if(maritimasfcl.Observaciones==null){
-                                   filaObservacionesmf=filaObservacionesmf +1;
-                                  var valor='Observaciones';
-                                  $scope.erroresimportacion.push({fila: filaObservacionesmf, campo:valor, error:'Valor NO numérico'});
-                                  $scope.AbrirModal(valor);
-                                  }
-                                else
-                                {
-                                 filaObservacionesmf=filaObservacionesmf +1;
+                                  filaObservacionesmf=filaObservacionesmf +1;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    //$scope.$apply();
-                                 }
+                                                    
                             /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(maritimasfcl["Gastos Embarque"])){
+                             if( ( typeof maritimasfcl["Gastos Embarque"] == 'undefined' ) || pattern.test(maritimasfcl["Gastos Embarque"])){
                                    filaGastosEmbarquemf=filaGastosEmbarquemf +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.GastosEmbarque= data.MaritimasFcl.GastosEmbarque;
@@ -1821,7 +1813,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Time////////////////////////////////////
-                                if(pattern.test(maritimasfcl["Lead Time(dias)"])){
+                             if( ( typeof maritimasfcl["Lead Time(dias)"] == 'undefined' ) || pattern.test(maritimasfcl["Lead Time(dias)"])){
                                    filaTimemf=filaTimemf +1;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Lead_TimeDias= data.MaritimasFcl.Lead_TimeDias;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
@@ -1835,8 +1827,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Naviera////////////////////////////////////
-                                if(pattern.test(maritimasfcl.Naviera)){
-                                   filaNavierafcl=filaNavierafcl +1;
+                             if( ( typeof maritimasfcl.Naviera == 'undefined' ) || pattern.test(maritimasfcl.Naviera)){
+                                  filaNavierafcl=filaNavierafcl +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Naviera= data.MaritimasFcl.Naviera;
                                    //$scope.$apply();
@@ -1927,7 +1919,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            angular.forEach(data.MaritimasLcl , function(maritimaslcl) {
 
                              /////////////C20////////////////////////////////////
-                                if(pattern.test(maritimaslcl.Minima)){
+                             if( ( typeof maritimaslcl.Minima == 'undefined' ) || pattern.test(maritimaslcl.Minima)){
                                    filaMinima=filaMinima +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1940,7 +1932,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ton15////////////////////////////////////
-
                                 if( ( typeof maritimaslcl["1-5 ton/M3"] == 'undefined' ) || pattern.test(maritimaslcl["1-5 ton/M3"])){
                                    filaton15=filaton15 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
@@ -1954,7 +1945,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ton58////////////////////////////////////
-                                if(pattern.test(maritimaslcl["5-8 ton/M3"])){
+                               if( ( typeof maritimaslcl["5-8 ton/M3"] == 'undefined' ) || pattern.test(maritimaslcl["5-8 ton/M3"])){
                                    filaton58=filaton58 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1967,7 +1958,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////ton812////////////////////////////////////
-                                if(pattern.test(maritimaslcl["8-12 ton/M3"])){
+                                if( ( typeof maritimaslcl["8-12 ton/M3"] == 'undefined' ) || pattern.test(maritimaslcl["8-12 ton/M3"])){
                                    filaton812=filaton812 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1980,7 +1971,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////ton1218////////////////////////////////////
-                                if(pattern.test(maritimaslcl["12-18 ton/M3"])){
+                                if( ( typeof maritimaslcl["12-18 ton/M3"] == 'undefined' ) || pattern.test(maritimaslcl["12-18 ton/M3"])){
                                    filaton1218=filaton1218 +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -1993,7 +1984,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                               /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(maritimaslcl["Gastos Embarque"])){
+                              if( ( typeof maritimaslcl["Gastos Embarque"] == 'undefined' ) || pattern.test(maritimaslcl["Gastos Embarque"])){
                                    filaGastosEmbarqueml=filaGastosEmbarqueml +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2006,20 +1997,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                 }
                                /////////////Observaciones////////////////////////////////////
-                                if(maritimaslcl.Observaciones==null){
-                                 filaObservacionesml=filaObservacionesml +1;
-                                  var valor='Observaciones';
-                                  $scope.erroresimportacion.push({fila: filaObservacionesml, campo:valor, error:'Valor NO numérico'});
-                                  $scope.AbrirModal(valor);
-                                  }
-                                else
-                                {
-                                  filaObservacionesml=filaObservacionesml +1;
+                                   filaObservacionesml=filaObservacionesml +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
-                                 }
-                             /////////////Time////////////////////////////////////
-                                if(pattern.test(maritimaslcl["Lead time(dias)"])){
+
+                               /////////Time////////////////////////////////////
+                                if( ( typeof maritimaslcl["Lead time(dias)"] == 'undefined' ) || pattern.test(maritimaslcl["Lead time(dias)"])){
                                    filaTimeml=filaTimeml +1;
                                   $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2032,7 +2015,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                    /////////////Naviera////////////////////////////////////
-                                if(pattern.test(maritimaslcl.Naviera)){
+                                if( ( typeof maritimaslcl.Naviera == 'undefined' ) || pattern.test(maritimaslcl.Naviera)){  
                                    filaNavieralcl=filaNavieralcl +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    $scope.$apply();
@@ -2153,7 +2136,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            angular.forEach(data.Terrestre_Nacional, function(terrestrenacional) {
 
                              /////////////Turbo_Standar_150Cajas////////////////////////////////////
-                                if(pattern.test(terrestrenacional["Turbo Standar (150Cajas)"])){
+
+                              if( ( typeof terrestrenacional["Turbo Standar (150Cajas)"] == 'undefined' ) || pattern.test(terrestrenacional["Turbo Standar (150Cajas)"])){
                                    filaEstandarna=filaEstandarna +1;
                                    $scope.ModalidadesProveedor.TerreNacional.TerresNacional= data.Terrestre_Nacional;
                                    console.log('Terrenacional por aqui');
@@ -2167,7 +2151,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Especial////////////////////////////////////
-                                if(pattern.test(terrestrenacional["Turbo Especial"])){
+                              if( ( typeof terrestrenacional["Turbo Especial"] == 'undefined' ) || pattern.test(terrestrenacional["Turbo Especial"])){
                                    filaEspecialna=filaEspecialna +1;
                                    console.log('Terrenacional por aqui 2');
                                    $scope.ModalidadesProveedor.TerreNacional.TerresNacional= data.Terrestre_Nacional;
@@ -2189,7 +2173,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Nacional_Sencillo, function(terrestrenacionalsencillo) {
                              /////////////Sencillo_240Cajass////////////////////////////////////
-                                if(pattern.test(terrestrenacionalsencillo['Sencillo Standar (150Cajas)'])){
+                              if( ( typeof terrestrenacionalsencillo['Sencillo Standar (150Cajas)'] == 'undefined' ) || pattern.test(terrestrenacionalsencillo['Sencillo Standar (150Cajas)'])){
                                    filaEstandarnasen=filaEstandarnasen +1;
                                    $scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo= data.Terrestre_Nacional_Sencillo;
                                    //$scope.$apply();
@@ -2202,7 +2186,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Sencillo_Especial////////////////////////////////////
-                                if(pattern.test(terrestrenacionalsencillo["Sencillo Especial"])){
+                              if( ( typeof terrestrenacionalsencillo["Sencillo Especial"] == 'undefined' ) || pattern.test(terrestrenacionalsencillo["Sencillo Especial"])){
                                    filaEspecialnasen=filaEspecialnasen +1;
                                    $scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo= data.Terrestre_Nacional_Sencillo;
                                    //$scope.$apply();
@@ -2223,7 +2207,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Nacional_Patineta, function(terrestrenacionalpatineta) {
                              /////////////Minimula////////////////////////////////////
-                                if(pattern.test(terrestrenacionalpatineta.Minimula)){
+                              if( ( typeof terrestrenacionalpatineta.Minimula == 'undefined' ) || pattern.test(terrestrenacionalpatineta.Minimula)){
                                    filaEstandarnapat=filaEstandarnapat +1;
                                    $scope.ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta= data.Terrestre_Nacional_Patineta;
                                    //$scope.$apply();
@@ -2236,7 +2220,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////GranDanes////////////////////////////////////
-                                if(pattern.test(terrestrenacionalpatineta['Gran Danes'])){
+                                if( ( typeof terrestrenacionalpatineta['Gran Danes'] == 'undefined' ) || pattern.test(terrestrenacionalpatineta['Gran Danes'])){
                                    filaEspecialnapat=filaEspecialnapat +1;
                                    $scope.ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta= data.Terrestre_Nacional_Patineta;
                                   // $scope.$apply();
@@ -2268,7 +2252,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Urbano_Dia, function(terrestreurbano) {
                              /////////////Turbo_150Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano["Turbo (150Cajas)"])){
+                             if( ( typeof terrestreurbano["Turbo (150Cajas)"] == 'undefined' ) || pattern.test(terrestreurbano["Turbo (150Cajas)"])){
                                    filaEstandartu=filaEstandartu +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2281,7 +2265,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ETurbo_Especial_200Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano["Turbo Especial (200Cajas)"])){
+                             if( ( typeof terrestreurbano["Turbo Especial (200Cajas)"] == 'undefined' ) || pattern.test(terrestreurbano["Turbo Especial (200Cajas)"])){
                                    filaEspecialtu=filaEspecialtu +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2294,7 +2278,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_240Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano["Sencillo (240Cajas)"])){
+                           if( ( typeof terrestreurbano["Sencillo (240Cajas)"] == 'undefined' ) || pattern.test(terrestreurbano["Sencillo (240Cajas)"])){
                                    filaEspecialtusen240=filaEspecialtusen240 +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.TerrestreUrbano;
                                    //$scope.$apply();
@@ -2307,7 +2291,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_Especial_300Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbano["Sencillo Especial (300Cajas)"])){
+                          if( ( typeof terrestreurbano["Sencillo Especial (300Cajas)"] == 'undefined' ) || pattern.test(terrestreurbano["Sencillo Especial (300Cajas)"])){
                                    filaEspecialtusen300=filaEspecialtusen300 +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2320,7 +2304,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Minimula////////////////////////////////////
-                                if(pattern.test(terrestreurbano.Minimula)){
+                             if( ( typeof terrestreurbano.Minimula == 'undefined' ) || pattern.test(terrestreurbano.Minimula)){
                                    filaEspecialtumini=filaEspecialtumini +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.TerrestreUrbano;
                                    //$scope.$apply();
@@ -2328,12 +2312,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtumini=filaEspecialtumini +1;
-                                  var valor='Minimula';
+                                  var valor='Minimula Urbano Dia';
                                   $scope.erroresimportacion.push({fila: filaEspecialtumini, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GranDanes////////////////////////////////////
-                                if(pattern.test(terrestreurbano["Gran Danes"])){
+                             if( ( typeof terrestreurbano["Gran Danes"] == 'undefined' ) || pattern.test(terrestreurbano["Gran Danes"])){
                                    filaEspecialtugran=filaEspecialtugran +1;
                                    $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                                    //$scope.$apply();
@@ -2359,7 +2343,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Urbano_Viaje, function(terrestreurbanoviaje) {
                              /////////////Turbo_150Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje["Turbo (150Cajas)"])){
+                             if( ( typeof terrestreurbanoviaje["Turbo (150Cajas)"] == 'undefined' ) || pattern.test(terrestreurbanoviaje["Turbo (150Cajas)"])){
                                    filaEstandartuvia=filaEstandartuvia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2372,7 +2356,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////ETurbo_Especial_200Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje["Turbo Especial (200Cajas)"])){
+                               if( ( typeof terrestreurbanoviaje["Turbo Especial (200Cajas)"] == 'undefined' ) || pattern.test(terrestreurbanoviaje["Turbo Especial (200Cajas)"])){
                                    filaEspecialtuvia=filaEspecialtuvia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2385,7 +2369,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_240Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje["Sencillo (240Cajas)"])){
+                          if( ( typeof terrestreurbanoviaje["Sencillo (240Cajas)"] == 'undefined' ) || pattern.test(terrestreurbanoviaje["Sencillo (240Cajas)"])){
                                    filaEspecialtusen240via=filaEspecialtusen240via +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2398,7 +2382,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Sencillo_Especial_300Cajas////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje["Sencillo Especial (300Cajas)"])){
+                          if( ( typeof terrestreurbanoviaje["Sencillo Especial (300Cajas)"] == 'undefined' ) || pattern.test(terrestreurbanoviaje["Sencillo Especial (300Cajas)"])){
                                    filaEspecialtusen300via=filaEspecialtusen300via +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2411,7 +2395,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Minimula////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje.Minimula)){
+                            if( ( typeof terrestreurbanoviaje.Minimula == 'undefined' ) || pattern.test(terrestreurbanoviaje.Minimula)){
                                    filaEspecialtuminivia=filaEspecialtuminivia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2424,7 +2408,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GranDanes////////////////////////////////////
-                                if(pattern.test(terrestreurbanoviaje["Gran Danes"])){
+                            if( ( typeof terrestreurbanoviaje["Gran Danes"] == 'undefined' ) || pattern.test(terrestreurbanoviaje["Gran Danes"])){
                                    filaEspecialtugranvia=filaEspecialtugranvia +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                                    //$scope.$apply();
@@ -2451,7 +2435,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Terrestre_Urbano_Tonelada, function(terrestreurbanotonelada) {
                              /////////////Turbo////////////////////////////////////
-                                if(pattern.test(terrestreurbanotonelada.Turbo)){
+                               if( ( typeof terrestreurbanotonelada.Turbo == 'undefined' ) || pattern.test(terrestreurbanotonelada.Turbo)){
                                    filaEstandartuviatone=filaEstandartuviatone +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada= data.Terrestre_Urbano_Tonelada;
                                    //$scope.$apply();
@@ -2459,12 +2443,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEstandartuviatone=filaEstandartuviatone +1;
-                                  var valor='Turbo ';
+                                  var valor='Turbo Urbano Tonelada';
                                   $scope.erroresimportacion.push({fila: filaEstandartuviatone, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Sencillo////////////////////////////////////
-                                if(pattern.test(terrestreurbanotonelada.Sencillo)){
+                              if( ( typeof terrestreurbanotonelada.Sencillo == 'undefined' ) || pattern.test(terrestreurbanotonelada.Sencillo)){
                                    filaEspecialtuviasentone=filaEspecialtuviasentone +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada= data.Terrestre_Urbano_Tonelada;
                                    //$scope.$apply();
@@ -2472,12 +2456,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtuviasentone=filaEspecialtuviasentone +1;
-                                  var valor='Sencillo';
+                                  var valor='Sencillo Urbano Tonelada';
                                   $scope.erroresimportacion.push({fila: filaEspecialtuviasentone, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                           /////////////Tractomula////////////////////////////////////
-                                if(pattern.test(terrestreurbanotonelada.Tractomula)){
+                           if( ( typeof terrestreurbanotonelada.Tractomula == 'undefined' ) || pattern.test(terrestreurbanotonelada.Tractomula)){
                                    filaEspecialtutracto=filaEspecialtutracto +1;
                                    $scope.ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada= data.Terrestre_Urbano_Tonelada;
                                    //$scope.$apply();
@@ -2485,7 +2469,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaEspecialtutracto=filaEspecialtutracto +1;
-                                  var valor='Tractomula';
+                                  var valor='Tractomula Urbano Tonelada';
                                   $scope.erroresimportacion.push({fila: filaEspecialtutracto, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
@@ -2516,8 +2500,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Aerea_Carguero, function(aereacarguero) {
                              /////////////Minima////////////////////////////////////
-                                if(pattern.test(aereacarguero.Minima)){
-                                   filaMinimaca=filaMinimaca +1;
+                              if( ( typeof aereacarguero.Minima == 'undefined' ) || pattern.test(aereacarguero.Minima)){
+                                  filaMinimaca=filaMinimaca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2528,9 +2512,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaMinimaca, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
-                             /////////////aerea45////////////////////////////////////
-                                if(pattern.test(aereacarguero["45"])){
-                                   filaaerea45=filaaerea45 +1;
+                             /////////////aerea45////////////////////////////////////                            
+                              if( ( typeof aereacarguero["45"] == 'undefined' ) || pattern.test(aereacarguero["45"])){
+                                  filaaerea45=filaaerea45 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2542,8 +2526,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea100////////////////////////////////////
-                                if(pattern.test(aereacarguero["+100"])){
-                                   filaaerea100=filaaerea100 +1;
+                            if( ( typeof aereacarguero["+100"] == 'undefined' ) || pattern.test(aereacarguero["+100"])){
+                                 filaaerea100=filaaerea100 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2555,7 +2539,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////aerea300////////////////////////////////////
-                                if(pattern.test(aereacarguero["+300"])){
+                                if( ( typeof aereacarguero["+300"] == 'undefined' ) || pattern.test(aereacarguero["+300"])){
                                    filaaerea300=filaaerea300 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2568,7 +2552,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                            /////////////aerea500////////////////////////////////////
-                                if(pattern.test(aereacarguero["+500"])){
+                                if( ( typeof aereacarguero["+500"] == 'undefined' ) || pattern.test(aereacarguero["+500"])){
                                    filaaerea500=filaaerea500 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                   // $scope.$apply();
@@ -2581,7 +2565,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea1000////////////////////////////////////
-                                if(pattern.test(aereacarguero["+1000"])){
+                                if( ( typeof aereacarguero["+1000"] == 'undefined' ) || pattern.test(aereacarguero["+1000"])){
                                    filaaerea1000=filaaerea1000 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2594,8 +2578,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////FSmin////////////////////////////////////
-                                if(pattern.test(aereacarguero["FS min"])){
-                                   filaFSmin=filaFSmin +1;
+                             if( ( typeof aereacarguero["FS min"] == 'undefined' ) || pattern.test(aereacarguero["FS min"])){
+                                  filaFSmin=filaFSmin +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2607,8 +2591,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                        /////////////Fskg////////////////////////////////////
-                                if(pattern.test(aereacarguero["Fs/kg"])){
-                                   filaFskg=filaFskg +1;
+                                if( ( typeof aereacarguero["Fs/kg"] == 'undefined' ) || pattern.test(aereacarguero["Fs/kg"])){
+                                  filaFskg=filaFskg +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2620,8 +2604,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(aereacarguero["Gastos Embarque"])){
-                                   filaGastosEmbarqueca=filaGastosEmbarqueca +1;
+                            if( ( typeof aereacarguero["Gastos Embarque"] == 'undefined' ) || pattern.test(aereacarguero["Gastos Embarque"])){
+                                  filaGastosEmbarqueca=filaGastosEmbarqueca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2633,21 +2617,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                               /////////////Observaciones////////////////////////////////////
-                                if(aereacarguero.Observaciones==null){
                                   filaObservacionesca=filaObservacionesca +1;
-                                  var valor='Observaciones_Carguero';
-                                  $scope.erroresimportacion.push({fila: filaObservacionesca, campo:valor, error:'Valor NO numérico'});
-                                  $scope.AbrirModal(valor);
-                                  }
-                                else
-                                {
-                                 filaObservacionesca=filaObservacionesca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
-                                 }
-                            /////////////Time////////////////////////////////////
-                                if(pattern.test(aereacarguero["Lead Time (dias)"])){
-                                   filaTimeca=filaTimeca +1;
+
+                             /////////////Time////////////////////////////////////
+                              if( ( typeof aereacarguero["Lead Time (dias)"] == 'undefined' ) || pattern.test(aereacarguero["Lead Time (dias)"])){
+                                  filaTimeca=filaTimeca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2659,8 +2635,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Via////////////////////////////////////
-                                if(pattern.test(aereacarguero.Via)){
-                                   filaTimeca=filaVia +1;
+                            if( ( typeof aereacarguero.Via == 'undefined' ) || pattern.test(aereacarguero.Via)){
+                                  filaTimeca=filaVia +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2803,8 +2779,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            angular.forEach(data.Aerea_Pasajero, function(aereapasajero) {
                              /////////////Minima////////////////////////////////////
-                                if(pattern.test(aereapasajero.Minima)){
-                                   filaMinimapa=filaMinimapa +1;
+                             if( ( typeof aereapasajero.Minima == 'undefined' ) || pattern.test(aereapasajero.Minima)){
+                                  filaMinimapa=filaMinimapa +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                   }
@@ -2816,33 +2792,33 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////aerea45////////////////////////////////////
-                                if(pattern.test(aereapasajero["45"])){
-                                   filaaerea45=filaaerea45 +1;
+                             if( ( typeof aereapasajero["45"] == 'undefined' ) || pattern.test(aereapasajero["45"])){
+                                  filaaerea45=filaaerea45 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                   }
                                 else
                                 {
                                 filaaerea45=filaaerea45 +1;
-                                  var valor='+45_Pasajero';
+                                  var valor='45 Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea45, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea100////////////////////////////////////
-                                if(pattern.test(aereapasajero["+100"])){
-                                   filaaerea100=filaaerea100 +1;
+                            if( ( typeof aereapasajero["+100"] == 'undefined' ) || pattern.test(aereapasajero["+100"])){
+                                  filaaerea100=filaaerea100 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_100= data.Aerea_Pasajero.T_100;
                                    //$scope.$apply();
                                   }
                                 else
                                 {
                                 filaaerea100=filaaerea100 +1;
-                                  var valor='T+00_Pasajero';
+                                  var valor='+100_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea100, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                                /////////////aerea300////////////////////////////////////
-                                if(pattern.test(aereapasajero["+300"])){
+                                 if( ( typeof aereapasajero["+300"] == 'undefined' ) || pattern.test(aereapasajero["+300"])){
                                    filaaerea300=filaaerea300 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_300= data.Aerea_Pasajero.T_300;
                                    //$scope.$apply();
@@ -2850,12 +2826,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea300=filaaerea300 +1;
-                                  var valor='+300_Pasajero';
+                                  var valor='+300 Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea300, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                            /////////////aerea500////////////////////////////////////
-                                if(pattern.test(aereapasajero["+500"])){
+                                 if( ( typeof aereapasajero["+500"] == 'undefined' ) || pattern.test(aereapasajero["+500"])){
                                    filaaerea500=filaaerea500 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_500= data.Aerea_Pasajero.T_500;
                                    //$scope.$apply();
@@ -2863,12 +2839,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea500=filaaerea500 +1;
-                                  var valor='+500_Pasajero';
+                                  var valor='+500 Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea500, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////aerea1000////////////////////////////////////
-                                if(pattern.test(aereapasajero["+1000"])){
+                                 if( ( typeof aereapasajero["+1000"] == 'undefined' ) || pattern.test(aereapasajero["+1000"])){
                                    filaaerea1000=filaaerea1000 +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros.T_1000= data.Aerea_Pasajero.T_1000;
                                    //$scope.$apply();
@@ -2876,13 +2852,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaaerea1000=filaaerea1000 +1;
-                                  var valor='+1000_Pasajero';
+                                  var valor='+1000 Pasajero';
                                   $scope.erroresimportacion.push({fila: filaaerea1000, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////FSmin////////////////////////////////////
-                                if(pattern.test(aereapasajero["FS min"])){
-                                   filaFSmin=filaFSmin +1;
+                              if( ( typeof aereapasajero["FS min"] == 'undefined' ) || pattern.test(aereapasajero["FS min"])){
+                                  filaFSmin=filaFSmin +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                   }
@@ -2894,8 +2870,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                        /////////////Fskg////////////////////////////////////
-                                if(pattern.test(aereapasajero["Fs/kg"])){
-                                   filaFskg=filaFskg +1;
+                                if( ( typeof aereapasajero["Fs/kg"] == 'undefined' ) || pattern.test(aereapasajero["Fs/kg"])){
+                                 filaFskg=filaFskg +1;
                                  $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                   // $scope.$apply();
                                   }
@@ -2907,8 +2883,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////GastosEmbarque////////////////////////////////////
-                                if(pattern.test(aereapasajero["Gastos Embarque"])){
-                                   filaGastosEmbarquepa=filaGastosEmbarquepa +1;
+                            if( ( typeof aereapasajero["Gastos Embarque"] == 'undefined' ) || pattern.test(aereapasajero["Gastos Embarque"])){
+                                 filaGastosEmbarquepa=filaGastosEmbarquepa +1;
                                  $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                   }
@@ -2920,21 +2896,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                               /////////////Observaciones////////////////////////////////////
-                                if(aereapasajero.Observaciones==null){
-                                  filaObservacionespa=filaObservacionespa +1;
-                                  var valor='Observacione_Pasajeros';
-                                  $scope.erroresimportacion.push({fila: filaObservacionespa, campo:valor, error:'Valor NO numérico'});
-                                  $scope.AbrirModal(valor);
-                                  }
-                                else
-                                {
                                   filaObservacionespa=filaObservacionespa +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
-                                 }
+                                
                             /////////////Time////////////////////////////////////
-                                if(pattern.test(aereapasajero["Lead time (dias)"])){
-                                   filaTimepa=filaTimepa +1;
+                            if( ( typeof aereapasajero["Lead time (dias)"] == 'undefined' ) || pattern.test(aereapasajero["Lead time (dias)"])){
+                                  filaTimepa=filaTimepa +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                   }
@@ -2946,8 +2914,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Via////////////////////////////////////
-                                if(pattern.test(aereapasajero.Via)){
-                                   filaTimeca=filaVia +1;
+                            if( ( typeof aereapasajero.Via == 'undefined' ) || pattern.test(aereapasajero.Via)){
+                                  filaTimeca=filaVia +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
                                   }
