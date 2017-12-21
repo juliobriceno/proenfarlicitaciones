@@ -784,6 +784,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             mDec: '5',
                             vMin: '0'
                         };
+
+                        $scope.options4 = {
+                           aSign: '',
+                            mDec: '0',
+                            vMin: '1',
+                            vMax: '50'
+                        };
                         // Fin s�lo para validar n�meros
 
                             // Mostrar modalidades mensjaes
@@ -1817,7 +1824,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Time////////////////////////////////////
-                             if( ( typeof maritimasfcl["Lead Time(dias)"] == 'undefined' ) || pattern.test(maritimasfcl["Lead Time(dias)"])){
+                            console.log(maritimasfcl["Lead Time(dias)"]);
+                             if( ( typeof maritimasfcl["Lead Time(dias)"] == 'undefined' ) || pattern.test(maritimasfcl["Lead Time(dias)"]) &&  maritimasfcl["Lead Time(dias)"] < 51 &&  maritimasfcl["Lead Time(dias)"] > 0){
                                    filaTimemf=filaTimemf +1;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Lead_TimeDias= data.MaritimasFcl.Lead_TimeDias;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
@@ -1827,7 +1835,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
                                 filaTimemf=filaTimemf +1;
                                   var valor='Lead Time(dias)';
-                                  $scope.erroresimportacion.push({fila: filaTimemf, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaTimemf, campo:valor, error:'Valor NO numérico o Valor menor o igual a 0 o Valor mayor a 50'});
                                   $scope.AbrirModal(valor);
                                  }
                              /////////////Naviera////////////////////////////////////
@@ -2006,7 +2014,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                                /////////Time////////////////////////////////////
-                                if( ( typeof maritimaslcl["Lead time(dias)"] == 'undefined' ) || pattern.test(maritimaslcl["Lead time(dias)"])){
+                                if( ( typeof maritimaslcl["Lead time(dias)"] == 'undefined' ) || pattern.test(maritimaslcl["Lead time(dias)"]) && maritimaslcl["Lead time(dias)"] < 51 && maritimaslcl["Lead time(dias)"] > 0){
                                    filaTimeml=filaTimeml +1;
                                   $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2015,7 +2023,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
                                 filaTimeml=filaTimeml +1;
                                   var valor='Lead Time(dias)';
-                                  $scope.erroresimportacion.push({fila: filaTimeml, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaTimeml, campo:valor, error:'Valor NO numérico o Valor menor o igual a 0 o Valor mayor a 50'});
                                   $scope.AbrirModal(valor);
                                  }
                                    /////////////Naviera////////////////////////////////////
@@ -2626,7 +2634,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                              /////////////Time////////////////////////////////////
-                              if( ( typeof aereacarguero["Lead Time (dias)"] == 'undefined' ) || pattern.test(aereacarguero["Lead Time (dias)"])){
+                              if( ( typeof aereacarguero["Lead Time (dias)"] == 'undefined' ) || pattern.test(aereacarguero["Lead Time (dias)"]) && aereacarguero["Lead Time (dias)"] < 51 && aereacarguero["Lead Time (dias)"] > 0 ){
                                   filaTimeca=filaTimeca +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2635,12 +2643,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
                                 filaTimeca=filaTimeca +1;
                                   var valor='Lead Time (dias)_Carguero';
-                                  $scope.erroresimportacion.push({fila: filaTimeca, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaTimeca, campo:valor, error:'Valor NO numérico o Valor menor o igual a 0 o Valor mayor a 50'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Via////////////////////////////////////
                             if( ( typeof aereacarguero.Via == 'undefined' ) || pattern.test(aereacarguero.Via)){
-                                  filaTimeca=filaVia +1;
+                                  filaVia=filaVia +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
@@ -2905,7 +2913,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                             /////////////Time////////////////////////////////////
-                            if( ( typeof aereapasajero["Lead time (dias)"] == 'undefined' ) || pattern.test(aereapasajero["Lead time (dias)"])){
+                            if( ( typeof aereapasajero["Lead time (dias)"] == 'undefined' ) || pattern.test(aereapasajero["Lead time (dias)"]) && aereapasajero["Lead time (dias)"] < 51 && aereapasajero["Lead time (dias)"] > 0){
                                   filaTimepa=filaTimepa +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -2914,7 +2922,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
                                 filaTimepa=filaTimepa +1;
                                   var valor='Lead Time (dias)_Pasajero';
-                                  $scope.erroresimportacion.push({fila: filaTimepa, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaTimepa, campo:valor, error:'Valor NO numérico o Valor menor o igual a 0 o Valor mayor a 50'});
                                   $scope.AbrirModal(valor);
                                  }
                             /////////////Via////////////////////////////////////
@@ -3289,30 +3297,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         // Fin Cerrar requisitos y preguntas sin aceptar
                         // Cerrar requisitos y preguntas aceptando
                         $scope.AceptarRequisito = function(){
-                         /* if ($scope.RequisitosMostrando == 'Bodegajes'){
-                            $scope.ModalidadesMostrar.BodegajesR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'Aduanas'){
-                            $scope.ModalidadesMostrar.AduanasR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'Otms'){
-                            $scope.ModalidadesMostrar.OTMR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'MaritimasFCL'){
-                            $scope.ModalidadesMostrar.MaritimasFclR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'MaritimasLCL'){
-                            $scope.ModalidadesMostrar.MaritimasLclR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'Terrestre Nacional'){
-                            $scope.ModalidadesMostrar.TerrestreNacionalR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'Terrestre Urbano'){
-                            $scope.ModalidadesMostrar.TerrestreUrbanoR = false;
-                          }
-                          if ($scope.RequisitosMostrando == 'Aereas'){
-                            $scope.ModalidadesMostrar.AreasR = false;
-                          }*/
+
                           $('#requisitos').modal('hide');
                         }
                         $scope.AceptarPregunta = function(){
@@ -3575,10 +3560,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          data: Data
                         }).then(function successCallback(response) {
                          $('#requisitos').modal('hide');
+                          $scope.mostrarmenulicitaciones=true;
                          $loading.finish('myloading');
                          }, function errorCallback(response) {
                          alert(response.statusText);
-                });
+                }); 
             }
                   $scope.botoncerrar = function(){
                     $scope.mostrarmenulicitaciones = false;
