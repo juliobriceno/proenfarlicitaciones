@@ -380,6 +380,7 @@ app.post('/GetUsuario', function (req, res) {
       Data.Result = 'Ok';
       Data.data = DataProveedor;
       Data.ProveedorFiles = result;
+      req.session.proveedorfiles = result;
 
       res.end(JSON.stringify(Data));
     })
