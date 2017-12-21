@@ -1119,6 +1119,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                 ///////////////////carga en Excel ////////////////////
+                     
                       $scope.read = function (workbook) {
                        console.log(workbook);
                         console.log($scope.ModalidadesMostrarActual);
@@ -1130,6 +1131,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          $scope.erroresimportacion = [];//
                          var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
                          var pattern2 = /^-?(\d+\.?\d*)$|(\d*\.?\d+)$/;
+                         
 
                          workbook.SheetNames.forEach(function(sheetName) {
                          var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {raw: true});
@@ -1270,6 +1272,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaConceptosAdicionalestres=1;
                          var filaCostoPlanificacionCaja=1;
                          var filaOtros=1;
+                        
 
                            angular.forEach(data.Aduanas , function(aduana) {
                              /////////////Tarifa////////////////////////////////////
@@ -1404,8 +1407,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaOtros, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
+                                  // Actualiza las modalidades para éste proveedores
+                                                                
                                 $scope.$apply();
                         });
+
+                              $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
                       //console.log($scope.data.Aduanas);
                       if (typeof data.Aduanas == 'undefined') {
                         swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
@@ -1433,6 +1443,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filadevolucioncuarentaestandar=1;
                          var filadevolucionveinteexpreso=1;
                          var filadevolucioncuarentaexpreso=1;
+                         
 
                            angular.forEach(data.OTM , function(otm) {
                              /////////////C_20_hasta_4_5_Ton////////////////////////////////////
@@ -1695,8 +1706,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filadevolucioncuarentaexpreso, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
-                               $scope.$apply();
+                                
+                                  $scope.$apply();                               
+                               
                         });
+
+                              $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
+
                        if (typeof data.OTM == 'undefined') {
                        swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
                       }
@@ -1909,6 +1928,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                // $scope.$apply();
                                $scope.$apply();
                               });
+
+                               $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
 
                       if (typeof data.MaritimasFcl == 'undefined') {
                           swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
@@ -2130,10 +2154,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
-
-
+                            
                             $scope.$apply();
                           });
+
+                            $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
+
                           //console.log($scope.data.Aduanas);
                             if (typeof data.MaritimasLcl == 'undefined') {
                             swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
@@ -2244,8 +2273,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialnapat, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
+                              
                                $scope.$apply();
                         });
+
+                             $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
 
                            if (typeof data.Terrestre_Nacional == 'undefined') {
                              swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
@@ -2485,8 +2520,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialtutracto, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
+
                                  $scope.$apply();
                              });
+
+                             $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
 
                               //console.log($scope.data.Aduanas);
                         if (typeof data.Terrestre_Urbano_Dia == 'undefined') {
@@ -3052,8 +3093,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 aereapasajero["+1000 + Ks/kg"] = sumatoria3p;
                                 $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
+                             
                                $scope.$apply();
                         });
+
+                           $scope.UpdateModalidades();
+                              if ($scope.erroresimportacion.length == 0){                                     
+                                swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
+                               }
                           //console.log($scope.data.Aduanas);
                             if (typeof data.Aerea_Carguero == 'undefined') {
                               swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
@@ -3188,6 +3235,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               console.log(response);
                           });
                         }
+
+
                         // Obtiene los valores de modalidades para éste proveedor
                         $scope.GetModalidadesProveedor = function () {
                           var Data = {};
