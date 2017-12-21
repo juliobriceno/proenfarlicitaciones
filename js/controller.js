@@ -1021,6 +1021,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }*/
 
                           $scope.ModalidadesMostrarActual = ModalidadesMostrar;
+
+                          // Actualiza si puede editar la modalidad actualizada
+                          $scope.Estatusproveedor();
+
                         }
 
                         // Mostrar modalidades mensjaes
@@ -1168,7 +1172,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                      ////////////////////////////Bodegajes_Maquinaria ////////////////////////////////////////////
                          angular.forEach(data.Maquinaria , function(maquinaria) {
-                           if( ( typeof maquinaria.Tarifa == 'undefined' ) || pattern.test(maquinaria.Tarifa)){                        
+                           if( ( typeof maquinaria.Tarifa == 'undefined' ) || pattern.test(maquinaria.Tarifa)){
                                 $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = maquinaria.Tarifa;
                                   //$scope.$apply();
                                 }
@@ -1797,7 +1801,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   filaObservacionesmf=filaObservacionesmf +1;
                                    $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                    //$scope.$apply();
-                                                    
+
                             /////////////GastosEmbarque////////////////////////////////////
                              if( ( typeof maritimasfcl["Gastos Embarque"] == 'undefined' ) || pattern.test(maritimasfcl["Gastos Embarque"])){
                                    filaGastosEmbarquemf=filaGastosEmbarquemf +1;
@@ -2015,7 +2019,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.AbrirModal(valor);
                                  }
                                    /////////////Naviera////////////////////////////////////
-                                if( ( typeof maritimaslcl.Naviera == 'undefined' ) || pattern.test(maritimaslcl.Naviera)){  
+                                if( ( typeof maritimaslcl.Naviera == 'undefined' ) || pattern.test(maritimaslcl.Naviera)){
                                    filaNavieralcl=filaNavieralcl +1;
                                    $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    $scope.$apply();
@@ -2512,7 +2516,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaMinimaca, campo:valor, error:'Valor NO numérico'});
                                   $scope.AbrirModal(valor);
                                  }
-                             /////////////aerea45////////////////////////////////////                            
+                             /////////////aerea45////////////////////////////////////
                               if( ( typeof aereacarguero["45"] == 'undefined' ) || pattern.test(aereacarguero["45"])){
                                   filaaerea45=filaaerea45 +1;
                                   $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
@@ -2899,7 +2903,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   filaObservacionespa=filaObservacionespa +1;
                                   $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
-                                
+
                             /////////////Time////////////////////////////////////
                             if( ( typeof aereapasajero["Lead time (dias)"] == 'undefined' ) || pattern.test(aereapasajero["Lead time (dias)"])){
                                   filaTimepa=filaTimepa +1;
@@ -3111,6 +3115,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                console.log("paso por aqui");
                                var Data = {};
                                Data.Email = localStorage.UserConnected;
+                               Data.Modalidad = $scope.ModalidadesMostrarActual;
 
                                $loading.start('myloading');
 
@@ -3134,6 +3139,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.Estatusproveedor = function(){
                              var Data = {};
                             Data.Email = localStorage.UserConnected;
+                            Data.Modalidad = $scope.ModalidadesMostrarActual;
+
+                            $loading.start('myloading');
 
                              $http({
                               method: 'POST',
@@ -3141,7 +3149,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-                              $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;
+                              $loading.finish('myloading');
+                              if (typeof response.data.LicitacionProveedor == 'undefined'){
+                                  $scope.EstatusproveedorModalidad = false;
+                              }
+                              else{
+                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;
+                              }
                           }, function errorCallback(response) {
                               console.log(response);
                           });
@@ -3437,12 +3451,44 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }).then(function successCallback(response) {
                 $loading.finish('myloading');
                 $scope.Proveedor = response.data.data[0];
+                $scope.ProveedorFiles = response.data.ProveedorFiles;
+
             }, function errorCallback(response) {
                 alert(response.statusText);
             });
           }
           $scope.GetUsuario();
 
+          // Descarga el archivo
+          $scope.DownloadFileById = function (Id) {
+            window.location.href = '/downloadanybyid?fileid=' + Id;
+          }
+
+          $scope.DeleteFileId = function (Id) {
+            var Data = {};
+            $loading.start('myloading');
+            // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+            Data.fileid = Id;
+
+            $http({
+                method: 'POST',
+                url: '/deletefilebyid',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+                $loading.finish('myloading');
+                if (response.data.Result == 'Ok'){
+                  $scope.ProveedorFiles = $scope.ProveedorFiles.filter(function(el){
+                    return el.Id != Id
+                  })
+                  swal("Licitaciones Proenfar", "Se eliminó el archivo.");
+                  return 0
+                }
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
 
        ///////////// /// Menu Ayuda//////////////////
                       $scope.FormularioVisto = function () {
@@ -3591,6 +3637,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               if ($scope.QuantityFiles == 1) {
                   $scope.uploader.clearQueue();
                   $loading.finish('myloading');
+                  // Los files guardados en Drive
+                  $scope.ProveedorFiles = response.ProveedorFiles;
                   swal("Licitaciones Proenfar", "Los datos del proveedor fueron actualizados.");
               }
               $scope.QuantityFiles--;

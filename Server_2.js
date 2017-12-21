@@ -372,10 +372,18 @@ app.post('/closeSession', function (req, res) {
 // Julio HOY
 app.post('/GetUsuario', function (req, res) {
   MyMongo.Find('Usuarios', { User: req.body.User }, function (result) {
-    var Data = {};
-    Data.Result = 'Ok';
-    Data.data = result;
-    res.end(JSON.stringify(Data));
+
+    var DataProveedor = result;
+
+    MyMongo.Find('proveedorfiles', { User: req.body.User }, function (result) {
+      var Data = {};
+      Data.Result = 'Ok';
+      Data.data = DataProveedor;
+      Data.ProveedorFiles = result;
+
+      res.end(JSON.stringify(Data));
+    })
+
   })
 });
 
@@ -487,8 +495,26 @@ app.post('/api/uploadFile', function (req, res) {
 
                             else {
 
-                                Data.Result = 'Ok';
-                                res.end(JSON.stringify(Data));
+                                // Por cada archivo crea un registro en una colección donde estarán todos los documentos por proveedore
+                                // si no está creada la matriz para almacenar los valores de files la crea
+                                if (typeof req.session.proveedorfiles == 'undefined'){
+                                  req.session.proveedorfiles = [];
+                                }
+
+                                req.session.proveedorfiles.push( { User: req.session.user.User, FileName: sampleFile.name, Id: file.id } );
+
+                                MyMongo.Remove('proveedorfiles', { User: req.session.user.User }, function (result) {
+                                  MyMongo.Insert('proveedorfiles', req.session.proveedorfiles, function (result) {
+                                      if (result == 'Ok') {
+                                          Data.Result = 'Ok';
+                                          Data.ProveedorFiles = req.session.proveedorfiles;
+                                          res.end(JSON.stringify(Data));
+                                          return 0;
+                                      };
+                                  }
+                                  );
+                                }
+                                );
 
                             }
                         });
@@ -869,7 +895,7 @@ app.post('/EnviarEmailProveedores', function (req, res) {
 
           drive.files.list({
             auth: jwtClient,
-            q:"'0BykPGdMUS9o9dFI5aTFXLXhVWnc' in parents",
+            q:"'1fP3PMVKdifDiMCIzBcRtgaPYs7dniDos' in parents",
             pageSize: 10,
             fields: "nextPageToken, files(id, name)"
           }, function(err, response) {
@@ -2709,7 +2735,7 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
 app.post('/GetFinalizarModalidades', function (req, res) {
 
               MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email}, function (result) {
-              MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true }, function (result) {
+              MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true, Modalidad: req.body.Modalidad }, function (result) {
                   var Data = {};
                  res.end(JSON.stringify(Data))
                });
@@ -2719,7 +2745,7 @@ app.post('/GetFinalizarModalidades', function (req, res) {
 ////////////////////////////////////////Habiliar o Desahabilitar Input ///////////////////////////////
 app.post('/GetEstatusproveedor', function (req, res) {
 
-     MyMongo.Find('LicitacionProveedor', {Email: req.body.Email}, function (result) {
+     MyMongo.Find('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] } , function (result) {
            var Data = {};
             Data.LicitacionProveedor= result[0];
             res.end(JSON.stringify(Data));
@@ -2728,6 +2754,106 @@ app.post('/GetEstatusproveedor', function (req, res) {
 
 });
 
+app.post('/deletefilebyid', function (req, res) {
+
+    jwtClient.authorize(function (err, tokens) {
+        if (err) {
+            return console.log(err);
+        }
+
+        var fileId = req.body.fileid;
+
+        drive.files.delete({
+            auth: jwtClient,
+            fileId: fileId
+        }, function (err, buffer) {
+            // I wrap this in a promise to handle the data
+            if (err) console.log('Error during download', err);
+            else {
+
+
+              req.session.proveedorfiles = req.session.proveedorfiles.filter(function(el){
+                return el.Id != fileId
+              })
+
+
+              MyMongo.Remove('proveedorfiles', { User: req.session.user.User }, function (result) {
+                if (req.session.proveedorfiles.length > 0){
+
+                  MyMongo.Insert('proveedorfiles', req.session.proveedorfiles, function (result) {
+                      if (result == 'Ok') {
+                          var Data = {};
+                          Data.Result= 'Ok';
+                          res.end(JSON.stringify(Data));
+                          return 0;
+                      };
+                  }
+                  );
+
+                }
+                else{
+                  var Data = {};
+                  Data.Result= 'Ok';
+                  res.end(JSON.stringify(Data));
+                  return 0;
+                }
+              }
+              );
+
+            }
+        });
+
+    });
+
+});
+
+// Envía al navegar cualquier file por id
+app.get('/downloadanybyid', function (req, res) {
+
+    jwtClient.authorize(function (err, tokens) {
+        if (err) {
+            return console.log(err);
+        }
+
+        var fileId = req.query.fileid;
+
+        drive.files.get({
+            auth: jwtClient,
+            fileId: fileId,
+            alt: 'media'
+        }, {
+            encoding: null // make sure that we get the binary data
+        }, function (err, buffer) {
+            // I wrap this in a promise to handle the data
+            if (err) console.log('Error during download', err);
+            else {
+
+                drive.files.get({
+                    auth: jwtClient,
+                    fileId: fileId,
+                    alt: ''
+                }, {
+                    encoding: null // make sure that we get the binary data
+                }, function (err, metadata) {
+                    // I wrap this in a promise to handle the data
+                    if (err) console.log('Error during download', err);
+                    else {
+
+                        res.setHeader('Content-disposition', 'attachment; filename=' + metadata.name);
+                        res.setHeader('Content-type', metadata.mimeType);
+                        res.send(buffer);
+                        res.end();
+
+                    }
+                });
+
+
+            }
+        });
+
+    });
+
+});
 
 app.get('/downloadanybyname', function (req, res) {
 
