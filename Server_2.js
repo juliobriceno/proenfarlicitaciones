@@ -2735,7 +2735,7 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
 ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
 app.post('/GetFinalizarModalidades', function (req, res) {
 
-              MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email}, function (result) {
+              MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
               MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true, Modalidad: req.body.Modalidad }, function (result) {
                   var Data = {};
                  res.end(JSON.stringify(Data))
