@@ -172,11 +172,13 @@
                           <br>
                           <div ng-show="ModalidadesMostrar.Bodegajes" class="callout callout-warning ">
                             <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
+                            *<strong>Tarifas en pesos colombianos.</strong> <br>
+                            * Las tarifas deben estar dadas en pesos colombianos (COP) y por toneladas.<br>
                             * Las estibas se deben armar de 40 bultos cada una.<br>
                             * Las estibas deben ser paletizadas con papel Stres.<br>
-                            * Las tarifas deben estar dadas en pesos colombianos (COP) y por toneladas.<br>
-                            * NO DIGITAR puntos ni comas en las tarifas, excepto FOB. <br>
-                            * Las tarifas FOB son valores en DECIMALES (ejemplo: 0.20,0.10). <br>
+                            * NO DIGITAR puntos ni comas en las tarifas, excepto FOB.<br>
+                            * Las tarifas FOB son valores en DECIMALES (ejemplo: 0.20,0.10).<br>
+
                           </div>
                           <div class="row">
                             <div class="col-md-12">
@@ -331,7 +333,7 @@
                             <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
                             *<strong> Tarifas en pesos colombianos.</strong><br>
                             * NO DIGITAR puntos ni comas en las tarifas.<br>
-                            * Si va usar decimales, use PUNTO (Ejm: 0.00).<br>
+                            * La Tarifa % Advalorem/ FOB es un valor DECIMAL (Ejemplo: 0.20,0.10).<br>
                           </div>
                           <div class="row">
                             <div class="col-md-12">
@@ -394,11 +396,14 @@
                             <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
                             *<strong> Tarifas en dólares.</strong><br>
                             * Diligenciar solamente los campos que apliquen para la licitación.<br>
-                            * Para decimales, solamente usar PUNTOS (Ejm:0.00).<br>
-                            * El campo Vía debe colocar las aerolíneas a utilizar <br>
+                            * Para decimales, solamente usar PUNTOS (Ejemplo: 0.20,0.10).<br>
+                            * El campo Naviera debe colocar las aerolíneas a utilizar.<br>
                             * Para valores en miles o millones, NO USAR PUNTOS NI COMAS (Ejm:2000,1000000).<br>
                             * En el Campo de observaciones: Especificar los ítems que fueron incluidos con sus respectivos valores.<br>
-                            * La FRECUENCIA se debe diligenciar de la siguiente forma: Lunes- martes-miércoles-jueves-viernes-sábado-domingo.<br>
+                            * La FRECUENCIA se debe diligenciar de la siguiente forma:<br>
+                               &#160; &#160;Plantilla Excel: Marque una X Mayúscula en la celda correspondiente al día que desea indicar como habilitado.<br>
+                               &#160; &#160;Formulario: Marque sobre la casilla que desea indicar como habilitado<br>
+
                           </div>
                           <div class="row">
                             <div class="col-md-12">
@@ -441,7 +446,7 @@
                                     <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["Fs/kg"]' class="form-control" type="text" ng-change="sumaaerea(Aerea);" ng-disabled="EstatusproveedorModalidad"  angular-currency="options2" variable-options="true"  placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["Gastos Embarque"]' class="form-control" type="text" ng-change="sumaaerea(Aerea);" ng-disabled="EstatusproveedorModalidad"  angular-currency="options2" variable-options="true" placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Observaciones" class="form-control" type="text" ng-disabled="EstatusproveedorModalidad"  placeholder=""></td>
-                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["Lead Time (dias)"]' class="form-control" type="text" angular-currency="options4"  variable-options="true" ng-disabled="EstatusproveedorModalidad"  placeholder=""></td>                                    
+                                    <td><input ng-blur="UpdateModalidades();" ng-model='Aerea["Lead Time (dias)"]' class="form-control" type="text" angular-currency="options4"  variable-options="true" ng-disabled="EstatusproveedorModalidad"  placeholder=""></td>
                                     <td><input ng-blur="UpdateModalidades();" ng-model="Aerea.Via" class="form-control" type="text" angular-currency="options2" ng-disabled="EstatusproveedorModalidad" variable-options="true" placeholder=""></td>
                                     <td>
                                       <input ng-change="UpdateModalidades();" ng-model='Aerea["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-disabled="EstatusproveedorModalidad" ng-false-value="false">L
@@ -548,10 +553,13 @@
                           <br>
                           <div ng-show="ModalidadesMostrar.OTM" class="callout callout-warning ">
                             <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
-                            * Contenedores de 20 pies con neto de 18 Ton x bultos de 25 Kg cada uno.<br>
-                            * Contenedores de 20 pies con neto de 21 Ton en Big Bag x 1 ton.<br>
                             *<strong> Tarifas en pesos colombianos.</strong><br>
                             * NO DIGITAR puntos ni comas en las tarifas.<br>
+                            * Contenedores de 20 pies con neto de 18 Ton x bultos de 25 Kg cada uno.<br>
+                            * Contenedores de 20 pies con neto de 21 Ton en Big Bag x 1 ton.<br>
+
+
+
                           </div>
                           <div class="row">
                             <div class="col-md-12">
@@ -635,10 +643,15 @@
                             <div ng-show="ModalidadesMostrar.MaritimasFcl" class="callout callout-warning ">
                               <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
                               *<strong> Tarifas en dólares.</strong><br>
-                              * Para decimales, solamente usar PUNTOS (Ejm:0.20).<br>
+                              * Para decimales, solamente usar PUNTOS (Ejemplo: 0.20,0.10).<br>
                               * Para valores en miles o millones, NO USAR PUNTOS NI COMAS (Ejm:2000,1000000).<br>
                               * La FRECUENCIA se debe diligenciar de la siguiente forma: SEMANAL (S) -QUINCENAL-(Q) MENSUAL (M).<br>
-                              * En el campo NAVIERA: Deben especificar el nombre de las navieras que aplican en esa tarifa NO ANOTAR NOMBRE DE AGENTE DE CARGA. <br>
+                                 &#160; &#160;Plantilla Excel: Marque una X Mayúscula en la celda correspondiente al día que desea  n  indicar como habilitado.<br>
+                                 &#160; &#160;Formulario: Marque sobre la casilla que desea indicar como habilitado.<br>
+                              * En el campo Naviera especificar el nombre de las navieras que aplican en esa tarifa <strong>No registrar Nombre de Agente de carga.</strong><br>
+
+
+
                             </div>
                             <div class="row">
                               <div class="col-md-12">
@@ -713,10 +726,12 @@
                           <div ng-show="ModalidadesMostrar.MaritimasLcl" class="callout callout-warning ">
                             <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
                             *<strong> Tarifas en dólares.</strong><br>
-                            * Si va usar decimales, separelos con PUNTOS.<br>
+                            * Para decimales, solamente usar PUNTOS (Ejemplo: 0.20,0.10).<br>
                             * Para valores en miles o millones, NO USAR PUNTOS NI COMAS (Ejm:2000,1000000).<br>
-                            * La FRECUENCIA se debe diligenciar de la siguiente forma: Lunes- martes-miércoles-jueves-viernes-sábado-domingo.<br>
-                            * En el campo NAVIERA: Deben especificar el nombre de las navieras que aplican en esa tarifa o agente consolidador NO ANOTAR NOMBRE DE AGENTE DE CARGA.<br>
+                            * La FRECUENCIA se debe diligenciar de la siguiente forma:<br>
+                               &#160; &#160;Plantilla Excel: Marque una X Mayúscula en la celda correspondiente al día que desea indicar como habilitado.<br>
+                               &#160; &#160;Formulario: Marque sobre la casilla que desea indicar como habilitado.<br>
+                            * En el campo Naviera especificar el nombre de las navieras que aplican en esa tarifa <strong>No registrar Nombre de Agente de carga.</strong><br>
                           </div>
                           <div class="row">
                             <div class="col-md-12">
@@ -795,8 +810,9 @@
                             * La tarifa debe incluir cargue y descargue (Los auxiliares de cargue van por cuenta de las transportadoras).<br>
                             * Todos los vehículos deben ser Furgonados.<br>
                             * Para vehículos turbos y sencillos debe traer un auxiliar.<br>
-                            * Para Patinetas: 2 auxiliares sea carga suelta o palletizada. <br>
-                            * Las empresas deber tener como mínimo CERTIFICACION BASC.<br>
+                            * Para Patinetas: 2 auxiliares ya sea carga suelta o palletizada. <br>
+                            * Las empresas deben tener como mínimo CERTIFICACIÓN BASC.<br>
+
                           </div>
                           <div class="row">
                             <div class="col-md-12">
@@ -898,7 +914,11 @@
                                   * Todos los vehículos deben ser Furgonados.<br>
                                   * Para vehículos turbos y sencillos debe traer un auxiliar.<br>
                                   * Para Patinetas: 2 auxiliares sea carga suelta o palletizada.<br>
-                                  * Las empresas deber tener como mínimo CERTIFICACION BASC.<br>
+                                  * Las empresas deben tener como mínimo CERTIFICACIÓN BASC.<br>
+
+
+
+
                                 </div>
                                 <div class="row">
                                   <div class="col-md-12">
