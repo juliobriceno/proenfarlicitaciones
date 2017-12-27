@@ -1,8 +1,11 @@
+
+var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
+
 module.exports = {
     Update: function Update(pcollection, id, set, callback) {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
+        var url = connString;
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Tremendo Error update!!!!');
@@ -25,7 +28,7 @@ module.exports = {
     UpdateCriteria: function Update(pcollection, criteria, set, callback) {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
+        var url = connString;
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Tremendo Error criteria!!!!');
@@ -58,7 +61,7 @@ module.exports = {
     {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar'; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
+        var url = connString; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Tremendo Error find!!!!');
@@ -83,7 +86,7 @@ module.exports = {
     Insert: function Insert(pcollection, dataInsert, callback) {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar'; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
+        var url = connString; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Tremendo Error Insert!!!!');
@@ -105,7 +108,7 @@ module.exports = {
     Remove: function Remove(pcollection, criteria, callback) {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar'; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
+        var url = connString; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Tremendo Error remove!!!!');
@@ -127,8 +130,8 @@ module.exports = {
     Aggregate: function Aggregate(pcollection, aggregatequery, callback) {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
-        //var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
-        var url = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar'; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
+        //var url = connString;; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
+        var url = connString; // Despu�s de la URL (Fija con puerto por defecto Mongo) viene la BD
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Tremendo Error aggregate!!!!');
