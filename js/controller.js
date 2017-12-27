@@ -1121,7 +1121,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                 ///////////////////carga en Excel ////////////////////
-                     
+
                       $scope.read = function (workbook) {
                        console.log(workbook);
                         console.log($scope.ModalidadesMostrarActual);
@@ -1133,7 +1133,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          $scope.erroresimportacion = [];//
                          var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
                          var pattern2 = /^-?(\d+\.?\d*)$|(\d*\.?\d+)$/;
-                         
+
 
                          workbook.SheetNames.forEach(function(sheetName) {
                          var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {raw: true});
@@ -1148,7 +1148,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               if ( ( typeof aduanero["Tarifa Valor/FOB"] == 'undefined' ) || pattern.test(aduanero["Tarifa Valor/FOB"])){
                                   $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor = aduanero["Tarifa Valor/FOB"];
                                   //$scope.$apply();
-                                  
+
                                 }
                                 else
                                 {
@@ -1160,7 +1160,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              if( ( typeof aduanero["Tarifa Minima"] == 'undefined' ) || pattern.test(aduanero["Tarifa Minima"])){
                                  $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima = aduanero["Tarifa Minima"];
                                   //$scope.$apply();
-                                 
+
                                 }
                                 else
                                 {
@@ -1172,7 +1172,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               if( ( typeof aduanero.Otros == 'undefined' ) || pattern.test(aduanero.Otros)){
                                $scope.ModalidadesProveedor.Bodegajes.Aduanero.Otros = aduanero.Otros;
                                  // $scope.$apply();
-                                
+
                                 }
                                 else
                                 {
@@ -1180,7 +1180,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                 }
-                             
+
                            });
 
 
@@ -1189,7 +1189,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            if( ( typeof maquinaria.Tarifa == 'undefined' ) || pattern.test(maquinaria.Tarifa)){
                             $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = maquinaria.Tarifa;
                                   //$scope.$apply();
-                                 
+
                                 }
                                 else
                                 {
@@ -1201,7 +1201,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             if( ( typeof maquinaria["Tarifa Minima"] == 'undefined' ) || pattern.test(maquinaria["Tarifa Minima"])){
                                  $scope.ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima = maquinaria["Tarifa Minima"];
                                   //$scope.$apply();
-                                
+
                                 }
                                 else
                                 {
@@ -1213,7 +1213,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            if( (typeof maquinaria.FMM == 'undefined' ) || pattern.test(maquinaria.FMM)){
                              $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Fmm = maquinaria.FMM;
                                   //$scope.$apply();
-                                
+
                                 }
                                 else
                                 {
@@ -1221,7 +1221,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                 }
-                                
+
                              });
 
                      ////////////////////////////Bodegajes_Materia_Prima ////////////////////////////////////////////
@@ -1230,7 +1230,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            if( ( typeof materiaprima.Tarifa == 'undefined' ) || pattern.test(materiaprima.Tarifa)){
                              $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Tarifa = materiaprima.Tarifa;
                                   //$scope.$apply();
-                                 
+
                                 }
                                 else
                                 {
@@ -1242,7 +1242,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            if( ( typeof materiaprima["Tarifa Minima"] == 'undefined' ) || pattern.test(materiaprima["Tarifa Minima"])){
                             $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima = materiaprima["Tarifa Minima"];
                                   //$scope.$apply();
-                                  
+
                                 }
                                 else
                                 {
@@ -1254,7 +1254,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             if( ( typeof materiaprima.FMM == 'undefined' ) || pattern.test(materiaprima.FMM)){
                                $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Fmm = materiaprima.FMM;
                                   //$scope.$apply();
-                                 
+
                                 }
                                 else
                                 {
@@ -1262,7 +1262,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  $scope.erroresimportacion.push({fila: 2, campo:valor, error:'Valor NO numérico'});
                                  //$scope.AbrirModal(valor);
                                 }
-                                
+
                              });
 
                        if ($scope.erroresimportacion.length == 0){
@@ -1273,14 +1273,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        else
                         {
                             $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor = null;
-                            $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima = null; 
-                            $scope.ModalidadesProveedor.Bodegajes.Aduanero.Otros = null;  
-                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = null;  
-                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima = null;  
-                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Fmm = null;   
-                            $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Tarifa = null; 
-                            $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima = null;  
-                            $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Fmm = null; 
+                            $scope.ModalidadesProveedor.Bodegajes.Aduanero.TarifaMinima = null;
+                            $scope.ModalidadesProveedor.Bodegajes.Aduanero.Otros = null;
+                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = null;
+                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.TarifaMinima = null;
+                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Fmm = null;
+                            $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Tarifa = null;
+                            $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.TarifaMinima = null;
+                            $scope.ModalidadesProveedor.Bodegajes.MateriaPrima.Fmm = null;
                           $scope.AbrirModal();
 
                           $scope.$apply();
@@ -1304,7 +1304,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaConceptosAdicionalestres=1;
                          var filaCostoPlanificacionCaja=1;
                          var filaOtros=1;
-                        
+
 
                            angular.forEach(data.Aduanas , function(aduana) {
                              /////////////Tarifa////////////////////////////////////
@@ -1442,10 +1442,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
 
                         });
- 
-                       if ($scope.erroresimportacion.length == 0){ 
+
+                       if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -1454,8 +1454,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.AbrirModal();
                           $scope.$apply();
                         }
-                            
-                             
+
+
                       //console.log($scope.data.Aduanas);
                       if (typeof data.Aduanas == 'undefined') {
                         swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
@@ -1483,7 +1483,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filadevolucioncuarentaestandar=1;
                          var filadevolucionveinteexpreso=1;
                          var filadevolucioncuarentaexpreso=1;
-                         
+
 
                            angular.forEach(data.OTM , function(otm) {
                              /////////////C_20_hasta_4_5_Ton////////////////////////////////////
@@ -1745,13 +1745,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Devolucion 40$ expreso';
                                   $scope.erroresimportacion.push({fila: filadevolucioncuarentaexpreso, campo:valor, error:'Valor NO numérico'});
                                  // $scope.AbrirModal(valor);
-                                 }                        
-                               
+                                 }
+
                         });
-                       
-                         if ($scope.erroresimportacion.length == 0){ 
+
+                         if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -1974,9 +1974,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                //$scope.$apply();
                               });
 
-                      if ($scope.erroresimportacion.length == 0){ 
+                      if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -2206,12 +2206,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   // $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
                                  }
-                            
+
                             });
 
-                      if ($scope.erroresimportacion.length == 0){ 
+                      if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -2264,7 +2264,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialna, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
-                             
+
                         });
 
 
@@ -2299,7 +2299,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialnasen, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
-                                 
+
                         });
 
                      ///////////////////Terrestre Nacional Patineta////////////////////////////////////////////
@@ -2334,14 +2334,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialnapat, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
-                              
+
                              });
 
                         if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo= data.Terrestre_Nacional_Sencillo;
-                          $scope.ModalidadesProveedor.TerreNacional.TerresNacional= data.Terrestre_Nacional; 
+                          $scope.ModalidadesProveedor.TerreNacional.TerresNacional= data.Terrestre_Nacional;
                           $scope.ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta= data.Terrestre_Nacional_Patineta;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -2536,7 +2536,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialtugranvia, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
-                                
+
                         });
 
                ///////////////////Terrestre Urbano Tonelada ////////////////////////////////////////////
@@ -2589,15 +2589,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaEspecialtutracto, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
-                               
+
                              });
 
-                             
+
                         if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.TerreUrbano.TerresUrbano= data.Terrestre_Urbano_Dia;
                           $scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje= data.Terrestre_Urbano_Viaje;
                           $scope.ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada= data.Terrestre_Urbano_Tonelada;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -2890,7 +2890,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 aereacarguero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                // $scope.$apply();
-                            
+
                         });
 
                  ///////////////////Aereas Pasajero////////////////////////////////////////////
@@ -3176,7 +3176,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                           $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
-                          $scope.UpdateModalidades();                                    
+                          $scope.UpdateModalidades();
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -3241,7 +3241,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                              swal({
-                                 title: "Seguro de finalizar el proceso?",
+                                 title: "Seguro de finalizar el proceso para la modalidad: " + $scope.ModalidadesMostrarActual + "?",
                                  text: "",
                                  type: "warning",
                                  showCancelButton: true,
@@ -3251,7 +3251,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              },
                              function () {
 
-                               console.log("paso por aqui");
                                var Data = {};
                                Data.Email = localStorage.UserConnected;
                                Data.Modalidad = $scope.ModalidadesMostrarActual;
@@ -3264,7 +3263,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  headers: { 'Content-Type': 'application/json' },
                                  data: Data
                              }).then(function successCallback(response) {
-                               console.log("entro aqui");
                                  $scope.Estatusproveedor();
                                  $loading.finish('myloading');
                                 }, function errorCallback(response) {
@@ -3274,6 +3272,41 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              });
 
                         }
+
+                        $scope.FinalizarModalidadTodas = function (Email){
+
+
+                          swal({
+                              title: "Seguro de finalizar el proceso para todas las modalidades?",
+                              text: "",
+                              type: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#DD6B55",
+                              confirmButtonText: "Aceptar",
+                              closeOnConfirm: true
+                          },
+                          function () {
+
+                            var Data = {};
+                            Data.Email = localStorage.UserConnected;
+
+                            $loading.start('myloading');
+
+                             $http({
+                              method: 'POST',
+                              url: '/GetFinalizarModalidadesTodas',
+                              headers: { 'Content-Type': 'application/json' },
+                              data: Data
+                          }).then(function successCallback(response) {
+                              $scope.Estatusproveedor();
+                              $loading.finish('myloading');
+                             }, function errorCallback(response) {
+                              console.log(response);
+                          });
+
+                          });
+
+                     }
 
                           $scope.Estatusproveedor = function(){
                              var Data = {};
@@ -3697,7 +3730,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          $loading.finish('myloading');
                          }, function errorCallback(response) {
                          alert(response.statusText);
-                }); 
+                });
             }
                   $scope.botoncerrar = function(){
                     $scope.mostrarmenulicitaciones = false;
@@ -5366,7 +5399,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                             $scope.Menulicitacion();
 
-          $scope.ActiveUserModal = {};          
+          $scope.ActiveUserModal = {};
           $scope.openChangePassword = function (size, parentSelector) {
               $scope.ActiveUserModal = $scope.User;
               var parentElem = parentSelector ?
@@ -5687,8 +5720,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }
             }
 
-           
-                     
+
+
 
         }])
 

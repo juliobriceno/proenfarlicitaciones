@@ -2732,16 +2732,27 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                });
   });
 
-///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
-app.post('/GetFinalizarModalidades', function (req, res) {
+  ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
+  app.post('/GetFinalizarModalidades', function (req, res) {
 
-              MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
-              MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true, Modalidad: req.body.Modalidad }, function (result) {
-                  var Data = {};
-                 res.end(JSON.stringify(Data))
-               });
-               });
-  });
+                MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
+                MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true, Modalidad: req.body.Modalidad }, function (result) {
+                    var Data = {};
+                   res.end(JSON.stringify(Data))
+                 });
+                 });
+    });
+
+    ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
+    app.post('/GetFinalizarModalidadesTodas', function (req, res) {
+
+                  MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
+                  MyMongo.Insert('LicitacionProveedor', [{ Email: req.body.Email, Bloqueado: true, Modalidad: 'Bodegajes' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aduanas' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'OTM' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasFcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasLcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreNacional' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreUrbano' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Areas' }], function (result) {
+                      var Data = {};
+                     res.end(JSON.stringify(Data))
+                   });
+                   });
+      });
 
 ////////////////////////////////////////Habiliar o Desahabilitar Input ///////////////////////////////
 app.post('/GetEstatusproveedor', function (req, res) {
