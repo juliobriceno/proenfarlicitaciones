@@ -571,8 +571,8 @@ app.post('/SaveUser', function (req, res) {
                     var msgBody = 'Puede ingresar a la plataforma de Licitaciones de Proenfar con el usuario: ' + req.body.User +  ' y clave: ' + text;
 
                     msg = msg.replace('@@Body', msgBody);
-                    msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:9099">Portal Proenfar</a>');
-                    msg = msg.replace('@@Pie', "href='http://vps-1299884-x.dattaweb.com:9099'>Ir al <b>Portal</b>");
+                    msg = msg.replace('@@boton', '<a href="http://licita.proenfar.com">Portal Proenfar</a>');
+                    msg = msg.replace('@@Pie', "href='http://licita.proenfar.com'>Ir al <b>Portal</b>");
 
                     var subject = "Acceso a plataforma de proveedores Proenfar.";
 
@@ -715,7 +715,7 @@ app.post('/RecoverPassword', function (req, res) {
                   console.log('cuatro');
 
 
-                    var msg = "<table style='max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;'><tr><td style='background-color: #fff; text-align: left; padding: 0;'><img width='20%' style='display:block; margin: 2% 3%' src=''></a></td></tr><tr><td style='padding: 0'></td></tr><tr><td style='background-color: #fff'><div style='color: #34495e; text-align: justify;font-family: sans-serif'><div style='color: #fff; margin: 0 0 5%; text-align:center; height: 120px; background-color: #3498db; padding: 4% 10% 2%; font-size: 23px;'><b>La nueva clave de su usuario para acceso al portal Licitaciones Proenfar es: <label>" + text + "</label> </b> <br><br><a href=''></a></b></div><p style='margin: 2%px; font-size: 15px; margin: 4% 10% 2%;'><br></p><div style='width: 100%;margin:20px 0; display: inline-block;text-align: center'></div><div style='width: 100%; text-align: center'><a style='text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db' href='http://vps-1299884-x.dattaweb.com:9099'>Ir al <b>Portal</b></a></div><p style='color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0; padding:20px 0 0;  background-color:#3498db; height: 30px'>Portal Licitaciones Proenfar.</p></div></td></tr></table>";
+                    var msg = "<table style='max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;'><tr><td style='background-color: #fff; text-align: left; padding: 0;'><img width='20%' style='display:block; margin: 2% 3%' src=''></a></td></tr><tr><td style='padding: 0'></td></tr><tr><td style='background-color: #fff'><div style='color: #34495e; text-align: justify;font-family: sans-serif'><div style='color: #fff; margin: 0 0 5%; text-align:center; height: 120px; background-color: #3498db; padding: 4% 10% 2%; font-size: 23px;'><b>La nueva clave de su usuario para acceso al portal Licitaciones Proenfar es: <label>" + text + "</label> </b> <br><br><a href=''></a></b></div><p style='margin: 2%px; font-size: 15px; margin: 4% 10% 2%;'><br></p><div style='width: 100%;margin:20px 0; display: inline-block;text-align: center'></div><div style='width: 100%; text-align: center'><a style='text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db' href='http://licita.proenfar.com'>Ir al <b>Portal</b></a></div><p style='color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0; padding:20px 0 0;  background-color:#3498db; height: 30px'>Portal Licitaciones Proenfar.</p></div></td></tr></table>";
 
                     MyMail.SendEmail(msg, myUser.Email, "Se generó una nueva clave para su cuenta en el portal Licitaciones Proenfar.");
 
@@ -794,7 +794,7 @@ app.post('/EnviarEmailProveedores', function (req, res) {
       '                <b>Link de acceso</b>'+
       '              </td>'+
       '              <td style="background: #f7f8fa; padding:7px; font-size:12px;" >'+
-      '                http://vps-1299884-x.dattaweb.com:9099'+
+      '                http://licita.proenfar.com'+
       '              </td>'+
       '            </tr>'+
       '            <tr>'+
@@ -1902,8 +1902,8 @@ app.post('/ReadGoogleSheet', function (req, res) {
                     msgBody += table;
 
                     msg = msg.replace('@@Body', msgBody);
-                    msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:8086">Portal Licitaciones Proenfar</a>');
-                    msg = msg.replace('@@Pie', "href='http://vps-1299884-x.dattaweb.com:8086'>Ir al <b>Portal</b>");
+                    msg = msg.replace('@@boton', '<a href="http://licita.proenfar.com">Portal Licitaciones Proenfar</a>');
+                    msg = msg.replace('@@Pie', "href='http://licita.proenfar.com'>Ir al <b>Portal</b>");
 
                     var subject = "Se produjeron errores al tratar de importar una plantilla de empleados.";
 
@@ -1973,8 +1973,8 @@ app.post('/ReadGoogleSheet', function (req, res) {
                       msgBody += table;
 
                       msg = msg.replace('@@Body', msgBody);
-                      msg = msg.replace('@@boton', '<a href="http://vps-1299884-x.dattaweb.com:8086">Portal de Licitaciones Proenfar</a>');
-                      msg = msg.replace('@@Pie', "href='http://vps-1299884-x.dattaweb.com:8086'>Ir al <b>Portal</b>");
+                      msg = msg.replace('@@boton', '<a href="http://licita.proenfar.com">Portal de Licitaciones Proenfar</a>');
+                      msg = msg.replace('@@Pie', "href='http://licita.proenfar.com'>Ir al <b>Portal</b>");
 
                       var subject = "Se produjeron errores al tratar de importar una plantilla de empleados.";
 
