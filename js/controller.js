@@ -5679,7 +5679,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                  // swal("por aqui");
               var params = { usuario: usuario };
               $loading.start('myloading');
-              return $http.post('/GetBuscarUsuario', { params: params })
+              return $http.post('/GetBuscarUsuarioByRazon', { params: params })
                 .then(function (response) {
                     $loading.finish('myloading');
                         $scope.Usuarios = response.data.Usuarios;
