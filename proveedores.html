@@ -2,7 +2,7 @@
 <html>
    <head>
         <meta charset="UTF-8">
-        <title>Proentar::..</title>
+        <title>Proenfar::..</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 
@@ -520,6 +520,18 @@
                             </div>
                           </div>
                           <div class="col-md-6">
+                            <div class="form-group"  ng-class="{'has-error':FormProveedores.nit.$invalid && FormProveedores.nit.$dirty}">
+                              <label class="control-label" for="name">Razón Social:</label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
+                                <input class="form-control" type="number" placeholder= "razón social">
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
                             <div class="form-group" ng-class="{'has-error':FormProveedores.username.$invalid && FormProveedores.username.$dirty}">
                               <label class="control-label" for="name">Nombre Contacto:</label>
                               <div class="input-group">
@@ -528,8 +540,6 @@
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="row">
                           <div class="col-md-6">
                             <div class="form-group" ng-class="{'has-error':FormProveedores.email.$invalid && FormProveedores.email.$dirty}">
                               <label class="control-label" for="name">Dirección de correo:</label>
