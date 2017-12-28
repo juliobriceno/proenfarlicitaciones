@@ -166,11 +166,11 @@
                                                 <div class="form-group">
                                                   <br>
                                                   <ui-select  ng-model="Usuario.selected" theme="bootstrap" title="Escoge un proveedor">
-                                                    <ui-select-match placeholder="Escoge o busca un Proveedor escribiendo algunas letras...">{{$select.selected.Name}}</ui-select-match>
-                                                    <ui-select-choices repeat="usuario in Usuarios | filter: { Name: $select.search } "
+                                                    <ui-select-match placeholder="Escoge o busca un Proveedor escribiendo algunas letras...">{{$select.selected.RazonSocial}}</ui-select-match>
+                                                    <ui-select-choices repeat="usuario in Usuarios | filter: { RazonSocial: $select.search } "
                                                     refresh="refreshUsuarios($select.search)"
                                                     refresh-delay="0">
-                                                    <span ng-bind-html="usuario.Name | highlight: $select.search"></span>
+                                                    <span ng-bind-html="usuario.RazonSocial | highlight: $select.search"></span>
                                                   </ui-select-choices>
                                                 </ui-select>
 
@@ -190,7 +190,7 @@
                                                     <tbody  ng-repeat="Usuario in Proveedores">
                                                       <tr class="">
                                                         <td class="small-col"> <button ng-click="dtproveedor(Usuario);" class="btn btn-clear btn-rojo btn-xs" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                                                        <td>{{Usuario.Name}}</td>
+                                                        <td>{{Usuario.RazonSocial}}</td>
                                                         <td>{{Usuario.Email}}</td>
                                                       </tr>
                                                     </table>

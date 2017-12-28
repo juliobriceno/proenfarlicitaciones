@@ -751,6 +751,25 @@ app.post('/GetBuscarUsuario', function (req, res) {
     );
 });
 
+app.post('/GetBuscarUsuarioByRazon', function (req, res) {
+
+    MyMongo.Find('Usuarios', { $and: [{ RazonSocial: { '$regex': req.body.params.usuario, '$options': 'i' }}, { "Perfil": 3 }] }, function (result) {
+
+        if (result.length > 0) {
+            var Data = {};
+            Data.Result = 'ok';
+            Data.Usuarios = result;
+            res.end(JSON.stringify(Data));
+        }
+        else {
+            var Data = {};
+            Data.Result = 'Error';
+            res.end(JSON.stringify(Data));
+        }
+    }
+    );
+});
+
 app.post('/GetUsuarioProveedor', function (req, res) {
   MyMongo.Find('Usuarios', { NombrePerfil: 'Proveedor' }, function (result) {
     var Data = {};
