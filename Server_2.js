@@ -562,7 +562,7 @@ app.post('/SaveUser', function (req, res) {
                     text += possible.charAt(Math.floor(Math.random() * possible.length));
                 }
 
-                MyMongo.Insert('Usuarios', { Email: req.body.Email, Password: text, Level: req.body.Level, Perfil: req.body.Perfil, NombrePerfil: req.body.NombrePerfil, Name: req.body.UserName, User: req.body.User, Nit: req.body.Nit, Phone: req.body.Phone }, function (result) {
+                MyMongo.Insert('Usuarios', { Email: req.body.Email, Password: text, Level: req.body.Level, Perfil: req.body.Perfil, NombrePerfil: req.body.NombrePerfil, Name: req.body.UserName, User: req.body.User, Nit: req.body.Nit, Phone: req.body.Phone, RazonSocial: req.body.RazonSocial }, function (result) {
 
                     var msg = MyConst.CorreoHTML;
 
@@ -593,7 +593,7 @@ app.post('/SaveUser', function (req, res) {
     );
     }
     else {
-        MyMongo.UpdateCriteria('Usuarios', { User: req.body.EditUser }, { Email: req.body.Email, Password: req.body.Password, Level: req.body.Level, Perfil: req.body.Perfil, NombrePerfil: req.body.NombrePerfil, Name: req.body.UserName, User: req.body.User, Nit: req.body.Nit, Phone: req.body.Phone }, function (resp) {
+        MyMongo.UpdateCriteria('Usuarios', { User: req.body.EditUser }, { Email: req.body.Email, Password: req.body.Password, Level: req.body.Level, Perfil: req.body.Perfil, NombrePerfil: req.body.NombrePerfil, Name: req.body.UserName, User: req.body.User, Nit: req.body.Nit, Phone: req.body.Phone, RazonSocial: req.body.RazonSocial }, function (resp) {
             Data.Result = 'Ok';
             res.end(JSON.stringify(Data))
             return 0;

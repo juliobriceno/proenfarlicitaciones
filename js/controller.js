@@ -4993,6 +4993,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                  Data.Perfil = $scope.selectedPerfil.id;
                  Data.NombrePerfil = $scope.selectedPerfil.Name;
                  Data.EditUser = localStorage.LoginUser;
+                 Data.RazonSocial = $scope.razonsocial;
                  Data.UserName = $scope.username;
                  $http({
                      method: 'POST',
@@ -5246,6 +5247,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
              $scope.user = response.data.Usuario.User;
              $scope.phone = response.data.Usuario.Phone;
              $scope.nit = response.data.Usuario.Nit;
+             $scope.razonsocial = response.data.Usuario.RazonSocial;
 
              $loading.finish('myloading');
            }, function errorCallback(response) {
@@ -5256,7 +5258,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          $scope.GetUsuariosProveedor();
 
           $scope.NewUser = function () {
-               $scope.username = '';
+              $scope.razonsocial = '';
+              $scope.username = '';
                $scope.phone = '';
                $scope.nit = '';
                $scope.email = '';
@@ -5291,6 +5294,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 Data.EditUser = localStorage.LoginUser;
                 Data.NombrePerfil ='Proveedor';
                 Data.UserName = $scope.username;
+                Data.RazonSocial = $scope.razonsocial;
                 Data.Perfil = 3;
                 $http({
                     method: 'POST',
