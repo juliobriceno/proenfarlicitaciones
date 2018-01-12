@@ -908,8 +908,6 @@ app.post('/EnviarEmailProveedores', function (req, res) {
 
       });
 
-      req.session.emailfiles = [];
-
       // Busca los archivos fijos del correo en drive
       jwtClient.authorize(function (err, tokens) {
 
@@ -1019,6 +1017,8 @@ app.post('/EnviarEmailProveedores', function (req, res) {
       // Fin de búsqueda archivos fijos en el servidor drive
 
     });
+
+    req.session.emailfiles = [];
 
     // Envía la respuesta al cliente de acción exitosa
     var Data = {};
@@ -2782,13 +2782,52 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
     ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
     app.post('/GetFinalizarModalidadesTodas', function (req, res) {
 
-                  MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
-                  MyMongo.Insert('LicitacionProveedor', [{ Email: req.body.Email, Bloqueado: true, Modalidad: 'Bodegajes' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aduanas' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'OTM' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasFcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasLcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreNacional' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreUrbano' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Areas' }], function (result) {
+      jwtClient.authorize(function (err, tokens) {
+
+        // Busca o crea la carpeta para éste proveedor
+        MyDrive.createFolder(jwtClient, req.session.user.Nit + '_' + req.session.user.RazonSocial, '1q9EtO-3di6s8LhxIl8ybpfp6_e5w7tKI', function (err, files) {
+            MyDrive.createFolder(jwtClient, 'Documentos', files, function (err, files) {
+              // En la carpeta del proveedor debe haber a menos un file cargado
+
+                  drive.files.list({
+                    auth: jwtClient,
+                    q:"'" + files + "' in parents",
+                    pageSize: 10,
+                    fields: "nextPageToken, files(id, name)"
+                  }, function(err, response) {
+                    if (err) {
+                      console.log('The API returned an error: ' + err);
+                      return;
+                    }
+                    var files = response.files;
+
+                    if (files.length == 0) {
+
                       var Data = {};
-                     res.end(JSON.stringify(Data))
-                   });
-                   });
+                      Data.Result = 'nofiles';
+                      res.end(JSON.stringify(Data))
+
+                    } else {
+
+                      MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
+                      MyMongo.Insert('LicitacionProveedor', [{ Email: req.body.Email, Bloqueado: true, Modalidad: 'Bodegajes' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aduanas' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'OTM' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasFcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasLcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreNacional' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreUrbano' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Areas' }], function (result) {
+                        var Data = {};
+                        Data.Result = 'ok';
+                        res.end(JSON.stringify(Data))
+                       });
+                       });
+
+                    }
+                  });
+
+              // Fin de búsqueda archivos fijos en el servidor drive
+
+            });
+        });
+
       });
+
+    });
 
 ////////////////////////////////////////Habiliar o Desahabilitar Input ///////////////////////////////
 app.post('/GetEstatusproveedor', function (req, res) {

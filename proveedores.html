@@ -169,28 +169,18 @@
                                     <div class="box box-solid" style="padding: 10px;">
                                         <div class="box-header">
                                           <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
-                                            <div class="col-md-3">
-                                              <div class="form-group">
-                                                  <label>Modalidad</label>
-                                                  <select class="form-control">
-                                                      <option>option 1</option>
-                                                      <option>option 2</option>
-                                                      <option>option 3</option>
-                                                      <option>option 4</option>
-                                                      <option>option 5</option>
-                                                  </select>
-                                              </div>
-                                            </div>
+
                                             <div class="col-md-3">
                                               <div class="form-group">
                                                   <label>Proveedor</label>
-                                                  <select class="form-control">
-                                                      <option>option 1</option>
-                                                      <option>option 2</option>
-                                                      <option>option 3</option>
-                                                      <option>option 4</option>
-                                                      <option>option 5</option>
-                                                  </select>
+
+                                                  <ui-select ng-change="filterProveedores();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
+                                                    <ui-select-match placeholder="Proveedor">{{$select.selected.RazonSocial}}</ui-select-match>
+                                                    <ui-select-choices repeat="usuario in UsuariosSaved | filter: { RazonSocial: $select.search } ">
+                                                      <span ng-bind-html="usuario.RazonSocial | highlight: $select.search"></span>
+                                                    </ui-select-choices>
+                                                  </ui-select>
+
                                               </div>
                                             </div>
                                             <div class="col-md-3" >

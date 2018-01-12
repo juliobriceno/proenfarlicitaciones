@@ -1,0 +1,20 @@
+
+URL Para hacer git pull
+
+https://juliobriceno@bitbucket.org/juliobriceno/proveedoresproenfar.git
+
+Se debe hacer desde la carpeta con root
+
+---------------------
+
+Para hacer restart desde su proveedoresApp
+
+--------------------
+
+Para iniciar mongo  mongo
+Para ver BD productivo use licitaciones
+
+
+
+
+

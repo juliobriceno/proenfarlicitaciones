@@ -1,3 +1,5 @@
+var MyMongo = require('./mymongo.js');
+
 module.exports = {
     SendEmail: function SendEmail(message, to, subject, attachments)
     {
@@ -32,10 +34,13 @@ module.exports = {
         }
 
         transport.sendMail(mail, function (error, response) {
+            var datSentEmail = new Date();
             if (error) {
-                console.log(error);
+              MyMongo.Insert('SentEmails', { to: toEmailAddress, msg: message, sent: false, error: error, SentDate: datSentEmail }, function (result) {
+              });
             } else {
-                console.log("Message sent: " + response.message);
+              MyMongo.Insert('SentEmails', { to: toEmailAddress, msg: message, sent: true, error: '', SentDate: datSentEmail }, function (result) {
+              });
             }
 
             transport.close();

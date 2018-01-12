@@ -3298,6 +3298,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
+
+                             if (response.data.Result == 'nofiles'){
+                               $loading.finish('myloading');
+                               swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no ha cargado archivos necesarios para licitar.");
+                               return 0
+                             }
+
                               $scope.Estatusproveedor();
                               $loading.finish('myloading');
                              }, function errorCallback(response) {
@@ -7091,6 +7098,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show3 = true;
          };
 
+         // Variables de selectores
+         $scope.UsuarioSel = {};
+
+         $scope.filterProveedores = function(){
+           $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
+         }
+
+         // Modalidades para el filtro
+         $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
+
          $scope.GetUsuariosProveedor = function () {
            var Data = {};
            $loading.start('myloading');
@@ -7104,6 +7121,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            }).then(function successCallback(response) {
               $loading.finish('myloading');
               $scope.Usuarios = response.data.data
+              $scope.UsuariosSaved = response.data.data
            }, function errorCallback(response) {
                alert(response.statusText);
            });
