@@ -3389,3 +3389,16 @@ fieldset[disabled] .btn-vk.active {
   background-color: #dee2e6;
     outline: 0;
 }
+
+.showrojo{
+  background-color: #FF0000;
+}
+
+.showamarillo{
+  background-color: #FFFF00;
+}
+
+.showverde{
+  background-color: #088A08;
+}
+

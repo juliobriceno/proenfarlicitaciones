@@ -4847,11 +4847,1890 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }).then(function successCallback(response) {
                     $loading.finish('myloading');
                 }, function errorCallback(response) {
-                    alert(response.statusText);
+                   alert(response.statusText);
                 });
             }
             $scope.GetRights();
         }])
+
+         .controller('ctrlConsolidadoDatos', ['$scope', '$http', '$loading', '$uibModal', '$log', '$document', 'FileUploader', function ($scope, $http, $loading, $uibModal,$log, $document, FileUploader) {
+          $scope.Show2=false;
+        
+         $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
+
+         $scope.selectedModalidad = $scope.Modalidades[0];
+       
+
+      
+            $scope.GetConsolidadoDatos = function () {
+                    var Data={};                   
+                    var ModalidadTodas = [];
+                    var ModalidadTodasconOrden = [];
+                    var ModalidadTodasconOrdenMinima = [];
+                    var ModalidadTodasconOrdenGA = [];
+                    var ModalidadTodasconOrdenGAII = [];
+                    var ModalidadTodasconOrdenGAIII = [];
+                    var ModalidadTodasconOrdenCA = [];
+                    var ModalidadTodasconOrdenCAII = [];
+                    var ModalidadTodasconOrdenCAIII = [];
+                    var ModalidadTodasconOrdenCPC = [];
+                    var ModalidadTodasconOrdenotros = [];
+                    var ModalidadTodasconOrdenC4017 = [];
+                    var ModalidadTodasconOrdenC401718 = []; 
+                    var ModalidadTodasconOrdenC4020 = [];
+                    var ModalidadTodasconOrdenC4021 = [];
+                    var ModalidadTodasconOrdenC4022 = []; 
+                    var ModalidadTodasconOrdenC4030 = [];
+                    var ModalidadTodasconOrdenC20EST = [];
+                    var ModalidadTodasconOrdenC40EST = [];
+                    var ModalidadTodasconOrdenC20ESP = [];
+                    var ModalidadTodasconOrdenC40ESP = [];
+                    var ModalidadTodasconOrdencolor = [];
+                    var ModalidadAduMinima = [];
+                    var ModalidadAduTarifaValor = [];
+                    var ModalidadAduGastosAdicionales = [];
+                    var UnObjeto= {};
+                    var ModalidadDeUnProveedor = []
+                    var ModalidadAduanero= []
+                    var Modalidad= $scope.selectedModalidad.Name;
+                    $scope.Show2=false;
+
+                $loading.start('myloading');              
+                $http({
+                    method: 'POST',
+                    url: '/GetConsolidadoDatos',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: Data
+                }).then(function successCallback(response) {
+                    $loading.finish('myloading');
+                    $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
+                   
+                     if (Modalidad == 'Bodegajes') {
+                      angular.forEach($scope.ConsolidadoDatos.Aduanero, function(consbodegaje) {  
+                          UnObjeto.Email=consbodegaje.email;
+                          ModalidadAduanero.push(UnObjeto.Email);
+                             console.log(ModalidadAduanero);
+
+                         }); // });
+                       
+
+                     }             
+                     
+                    if (Modalidad == 'Aduanas') {
+                      $scope.Show2=true;
+                       angular.forEach($scope.ConsolidadoDatos, function(consaduana) { 
+                         ModalidadDeUnProveedor = consaduana.Aduana.Aduanas                         
+                            angular.forEach(ModalidadDeUnProveedor, function(consaduanasprov) {
+                              consaduanasprov.Email = consaduana.Email                         
+                              ModalidadTodas.push(consaduanasprov);
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+
+                              console.log(ModalidadTodasconOrden[0]["Tarifa % Advalorem/ FOB"]);
+                            });
+
+                        });  
+                                         
+                  //////// campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["Tarifa % Advalorem/ FOB"]');
+                     ModalidadTodasconOrdencolor=ModalidadTodasconOrden;
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]) == parseFloat(ModalidadTodasconOrden[i-1]["Tarifa % Advalorem/ FOB"])) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
+
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AdutarifaPintada = ["showverde"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AdutarifaPintada = ["showamarillo"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AdutarifaPintada = ["showrojo"];
+                        }
+                        if (cont>3)
+                        {
+                          $scope.Showsortminima = [];
+                        }
+                        }
+
+              ////////////////// Campo Minima ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, 'Minima');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i].Minima) == parseFloat(ModalidadTodasconOrdenMinima[i-1].Minima)) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["showverde"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["showamarillo"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["showrojo"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduMinimaPintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ["Gastos Adicionales"] /////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["Gastos Adicionales"]');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Gastos Adicionales"])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["showverde"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["showamarillo"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["showrojo"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduGAPintada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["Conceptos Adicionales"]                   
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Conceptos Adicionales"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Conceptos Adicionales"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["showverde"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["showamarillo"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["showrojo"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduCAPintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["Gastos Adicionales dos"]                   
+                      
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["Gastos Adicionales dos"]');
+                     
+                     var contGAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAII= contGAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["Gastos Adicionales dos"])) 
+                              {                                 
+                                contGAII= contGAII;
+                              }
+                              else
+                              {
+                                contGAII=contGAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAII==1) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["showverde"];
+                        }
+                        if (contGAII==2) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["showamarillo"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["showrojo"];
+                        }
+                        if (contGAII>3)
+                        {
+                          ModalidadTodasconOrdenGAII[i].AduGAIIPintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ["Conceptos Adicionales dos"]                   
+                      
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Conceptos Adicionales dos"]');
+                     
+                     var contCAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAII= contCAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Conceptos Adicionales dos"])) 
+                              {                                 
+                                contCAII= contCAII;
+                              }
+                              else
+                              {
+                                contCAII=contCAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAII==1) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["showverde"];
+                        }
+                        if (contCAII==2) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["showamarillo"];
+                        }
+                        if (contCAII==3) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["showrojo"];
+                        }
+                        if (contCAII>3)
+                        {
+                          ModalidadTodasconOrdenCAII[i].AduCAIIPintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["Gastos Adicionales tres"]                   
+                          
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["Gastos Adicionales tres"]');
+                     
+                     var contGAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIII= contGAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["Gastos Adicionales tres"])) 
+                              {                                 
+                                contGAIII= contGAIII;
+                              }
+                              else
+                              {
+                                contGAIII=contGAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIII==1) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["showverde"];
+                        }
+                        if (contGAIII==2) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["showamarillo"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["showrojo"];
+                        }
+                        if (contGAIII>3)
+                        {
+                          ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = [];
+                        }
+                        }   
+
+                  
+                   ////////// Campo ["Conceptos Adicionales dos"]                   
+                     
+                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Conceptos Adicionales tres"]');
+                     
+                     var contCAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIII= contCAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Conceptos Adicionales tres"])) 
+                              {                                 
+                                contCAIII= contCAIII;
+                              }
+                              else
+                              {
+                                contCAIII=contCAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIII==1) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["showverde"];
+                        }
+                        if (contCAIII==2) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["showamarillo"];
+                        }
+                        if (contCAIII==3) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["showrojo"];
+                        }
+                        if (contCAIII>3)
+                        {
+                          ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = [];
+                        }
+                        }      
+                          
+                      
+
+                          ////////// Campo ["Costo Planificacion Caja"]                  
+                       
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["Costo Planificacion Caja"]');
+                     
+                     var contCPC=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCPC= contCPC + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Costo Planificacion Caja"])) 
+                              {                                 
+                                contCPC= contCPC;
+                              }
+                              else
+                              {
+                                contCPC=contCPC + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCPC==1) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["showverde"];
+                        }
+                        if (contCPC==2) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["showamarillo"];
+                        }
+                        if (contCPC==3) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["showrojo"];
+                        }
+                        if (contCPC>3)
+                        {
+                          ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
+                        }
+                        } 
+
+                   ////////// Campo Otros////////////////////////////
+                       
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'Otros');
+                     
+                     var contOTRO=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
+                          if (i==0){                            
+                            contOTRO= contOTRO + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenotros[i].Otros) == parseFloat(ModalidadTodasconOrdenotros[i-1].Otros)) 
+                              {                                 
+                                contOTRO= contOTRO;
+                              }
+                              else
+                              {
+                                contOTRO=contOTRO + 1;                               }
+                            }                                                        
+                          
+
+                        if (contOTRO==1) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["showverde"];
+                        }
+                        if (contOTRO==2) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["showamarillo"];
+                        }
+                        if (contOTRO==3) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["showrojo"];
+                        }
+                        if (contOTRO>3)
+                        {
+                          ModalidadTodasconOrdenotros[i].AduotroPintada = [];
+                        }
+                        }               
+                     
+                   
+               }
+
+                      if (Modalidad == 'OTM') {
+                         $scope.Show2=false;
+                        $scope.Show3=true;
+                       angular.forEach($scope.ConsolidadoDatos, function(consotm) { 
+                         ModalidadDeUnProveedor = consotm.Otm.Otms
+                            angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
+                              consotmprov.Email = consotm.Email                         
+                              ModalidadTodas.push(consotmprov);   
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
+                            });
+                        });
+                         
+                       
+                         ////////  Campo ["C 20 hasta 4-5 Ton"] //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Campo ["C 20 hasta 4-5 Ton"]');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20 hasta 4-5 Ton"])) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
+
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showverde"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showamarillo"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showrojo"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrden[i].AduC2045Pintada = [];
+                        }
+                        }
+
+              ////////////////// ["C 20 hasta 8 Ton"] ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["C 20 hasta 8 Ton"]');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["C 20 hasta 8 Ton"])) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showverde"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showamarillo"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showrojo"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ["C 20 hasta 10 Ton"] /////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["C 20 hasta 10 Ton"]');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 20 hasta 10 Ton"])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showverde"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showamarillo"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showrojo"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["C 20 hasta 17 Ton"]                  
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["C 20 hasta 17 Ton"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["C 20 hasta 17 Ton"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showverde"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showamarillo"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showrojo"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["C 20 hasta 19 Ton"]                 
+                      
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["C 20 hasta 19 Ton"]');
+                     
+                     var contGAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAII= contGAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 20 hasta 19 Ton"])) 
+                              {                                 
+                                contGAII= contGAII;
+                              }
+                              else
+                              {
+                                contGAII=contGAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAII==1) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showverde"];
+                        }
+                        if (contGAII==2) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showamarillo"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showrojo"];
+                        }
+                        if (contGAII>3)
+                        {
+                          ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ["C 20 hasta 20 Ton"]                  
+                      
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["C 20 hasta 20 Ton"]');
+                     
+                     var contCAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAII= contCAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["C 20 hasta 20 Ton"])) 
+                              {                                 
+                                contCAII= contCAII;
+                              }
+                              else
+                              {
+                                contCAII=contCAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAII==1) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showverde"];
+                        }
+                        if (contCAII==2) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showamarillo"];
+                        }
+                        if (contCAII==3) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showrojo"];
+                        }
+                        if (contCAII>3)
+                        {
+                          ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["C 20 hasta 21 Ton"]                  
+                          
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["C 20 hasta 21 Ton"]');
+                     
+                     var contGAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIII= contGAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["C 20 hasta 21 Ton"])) 
+                              {                                 
+                                contGAIII= contGAIII;
+                              }
+                              else
+                              {
+                                contGAIII=contGAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIII==1) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showverde"];
+                        }
+                        if (contGAIII==2) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showamarillo"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showrojo"];
+                        }
+                        if (contGAIII>3)
+                        {
+                          ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
+                        }
+                        }   
+
+                  
+                   ////////// Campo ["C 20 hasta 25 Ton"]                
+                     
+                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["C 20 hasta 25 Ton"]');
+                     
+                     var contCAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIII= contCAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["C 20 hasta 25 Ton"])) 
+                              {                                 
+                                contCAIII= contCAIII;
+                              }
+                              else
+                              {
+                                contCAIII=contCAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIII==1) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showverde"];
+                        }
+                        if (contCAIII==2) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showamarillo"];
+                        }
+                        if (contCAIII==3) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showrojo"];
+                        }
+                        if (contCAIII>3)
+                        {
+                          ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
+                        }
+                        }      
+                          
+                      
+
+                          ////////// Campo ["C 40 hasta 15 Ton"]                 
+                       
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["C 40 hasta 15 Ton"]');
+                     
+                     var contCPC=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCPC= contCPC + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 40 hasta 15 Ton"])) 
+                              {                                 
+                                contCPC= contCPC;
+                              }
+                              else
+                              {
+                                contCPC=contCPC + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCPC==1) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showverde"];
+                        }
+                        if (contCPC==2) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showamarillo"];
+                        }
+                        if (contCPC==3) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showrojo"];
+                        }
+                        if (contCPC>3)
+                        {
+                          ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
+                        }
+                        } 
+
+                   ////////// Campo ["C 40 hasta 16 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, '["C 40 hasta 16 Ton"]');
+                     
+                     var contOTRO=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
+                          if (i==0){                            
+                            contOTRO= contOTRO + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 hasta 16 Ton"])) 
+                              {                                 
+                                contOTRO= contOTRO;
+                              }
+                              else
+                              {
+                                contOTRO=contOTRO + 1;                               }
+                            }                                                        
+                          
+
+                        if (contOTRO==1) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showverde"];
+                        }
+                        if (contOTRO==2) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showamarillo"];
+                        }
+                        if (contOTRO==3) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showrojo"];
+                        }
+                        if (contOTRO>3)
+                        {
+                          ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
+                        }
+                        }          
+
+                  ////////// Campo ["C 40 hasta 17 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, '["C 40 hasta 17 Ton"]');
+                     
+                     var contC4017=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4017= contC4017 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40 hasta 17 Ton"])) 
+                              {                                 
+                                contC4017= contC4017;
+                              }
+                              else
+                              {
+                                contC4017=contC4017 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4017==1) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showverde"];
+                        }
+                        if (contC4017==2) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showamarillo"];
+                        }
+                        if (contC4017==3) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showrojo"];
+                        }
+                        if (contC4017>3)
+                        {
+                          ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
+                        }
+                        }   
+
+                   ////////// Campo ["C 40 hasta 17-18 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, '["C 40 hasta 17-18 Ton"]');
+                     
+                     var contC401718=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC401718= contC401718 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]) == parseFloat(ModalidadTodasconOrdenC401718[i-1]["C 40 hasta 17-18 Ton"])) 
+                              {                                 
+                                contC401718= contC401718;
+                              }
+                              else
+                              {
+                                contC401718=contC401718 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC401718==1) 
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["showverde"];
+                        }
+                        if (contC401718==2) 
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["showamarillo"];
+                        }
+                        if (contC401718==3) 
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["showrojo"];
+                        }
+                        if (contC401718>3)
+                        {
+                          ModalidadTodasconOrdenC401718[i].AduC401718Pintada = [];
+                        }
+                        } 
+
+
+                   ////////// Campo ["C 40 hasta 20 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, '["C 40 hasta 20 Ton"]');
+                     
+                     var contC4020=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4020= contC4020 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenC4020[i-1]["C 40 hasta 20 Ton"])) 
+                              {                                 
+                                contC4020= contC4020;
+                              }
+                              else
+                              {
+                                contC4020=contC4020 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4020==1) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["showverde"];
+                        }
+                        if (contC4020==2) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["showamarillo"];
+                        }
+                        if (contC4020==3) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["showrojo"];
+                        }
+                        if (contC4020>3)
+                        {
+                          ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
+                        }
+                        }       
+
+                         ////////// Campo ["C 40 hasta 21 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, '["C 40 hasta 21 Ton"]');
+                     
+                     var contC4021=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4021= contC4021 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenC4021[i-1]["C 40 hasta 21 Ton"])) 
+                              {                                 
+                                contC4021= contC4021;
+                              }
+                              else
+                              {
+                                contC4021=contC4021 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4021==1) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["showverde"];
+                        }
+                        if (contC4021==2) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["showamarillo"];
+                        }
+                        if (contC4021==3) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["showrojo"];
+                        }
+                        if (contC4021>3)
+                        {
+                          ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
+                        }
+                        } 
+
+                     ////////// Campo ["C 40 hasta 22 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4022 = _.sortBy(ModalidadTodasconOrdenC4022, '["C 40 hasta 22 Ton"]');
+                     
+                     var contC4022=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4022= contC4022 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]) == parseFloat(ModalidadTodasconOrdenC4022[i-1]["C 40 hasta 22 Ton"])) 
+                              {                                 
+                                contC4022= contC4022;
+                              }
+                              else
+                              {
+                                contC4022=contC4022 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4022==1) 
+                        {
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["showverde"];
+                        }
+                        if (contC4020==2) 
+                        {
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["showamarillo"];
+                        }
+                        if (contC4020==3) 
+                        {
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["showrojo"];
+                        }
+                        if (contC4022>3)
+                        {
+                          ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
+                        }
+                        } 
+
+                       ////////// Campo ["C 40 hasta 30 Ton"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4030 = _.sortBy(ModalidadTodasconOrdenC4030, '["C 40 hasta 30 Ton"]');
+                     
+                     var contC4030=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4030.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4030= contC4030 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]) == parseFloat(ModalidadTodasconOrdenC4030[i-1]["C 40 hasta 30 Ton"])) 
+                              {                                 
+                                contC4030= contC4030;
+                              }
+                              else
+                              {
+                                contC4030=contC4030 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4030==1) 
+                        {
+                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["showverde"];
+                        }
+                        if (contC4030==2) 
+                        {
+                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["showamarillo"];
+                        }
+                        if (contC4030==3) 
+                        {
+                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["showrojo"];
+                        }
+                        if (contC4030>3)
+                        {
+                          ModalidadTodasconOrdenC4030[i].AduC4030Pintada = [];
+                        }
+                        }    
+
+                     ////////// Campo ["Devolucion 20$ estandar"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC20EST  = _.sortBy(ModalidadTodasconOrdenC20EST , '["Devolucion 20$ estandar"]');
+                     
+                     var contC20EST=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC20EST.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC20EST= contC20EST + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]) == parseFloat(ModalidadTodasconOrdenC20EST[i-1]["Devolucion 20$ estandar"])) 
+                              {                                 
+                                contC20EST= contC20EST;
+                              }
+                              else
+                              {
+                                contC20EST=contC20EST + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC20EST==1) 
+                        {
+                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["showverde"];
+                        }
+                        if (contC20EST==2) 
+                        {
+                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["showamarillo"];
+                        }
+                        if (contC20EST==3) 
+                        {
+                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["showrojo"];
+                        }
+                        if (contC20EST>3)
+                        {
+                          ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = [];
+                        }
+                        } 
+
+                       ////////// Campo ["Devolucion 40$ estandar"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC40EST = _.sortBy(ModalidadTodasconOrdenC40EST, '["Devolucion 40$ estandar"]');
+                     
+                     var contC40EST=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC40EST.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC40EST= contC40EST + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]) == parseFloat(ModalidadTodasconOrdenC40EST[i-1]["Devolucion 40$ estandar"])) 
+                              {                                 
+                                contC40EST= contC40EST;
+                              }
+                              else
+                              {
+                                contC40EST=contC40EST + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC40EST==1) 
+                        {
+                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["showverde"];
+                        }
+                        if (contC40EST==2) 
+                        {
+                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["showamarillo"];
+                        }
+                        if (contC40EST==3) 
+                        {
+                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["showrojo"];
+                        }
+                        if (contC40EST>3)
+                        {
+                          ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = [];
+                        }
+                        }      
+
+                        ///// Campo ["Devolucion 20$ expreso"]////////////////////////////
+                       
+                     ModalidadTodasconOrdenC20ESP  = _.sortBy(ModalidadTodasconOrdenC20ESP , '["Devolucion 20$ expreso"]');
+                     
+                     var contC20ESP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC20ESP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC20ESP= contC20ESP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]) == parseFloat(ModalidadTodasconOrdenC20ESP[i-1]["Devolucion 20$ expreso"])) 
+                              {                                 
+                                contC20EST= contC20EST;
+                              }
+                              else
+                              {
+                                contC20ESP=contC20ESP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC20ESP==1) 
+                        {
+                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["showverde"];
+                        }
+                        if (contC20ESP==2) 
+                        {
+                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["showamarillo"];
+                        }
+                        if (contC20ESP==3) 
+                        {
+                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["showrojo"];
+                        }
+                        if (contC20ESP>3)
+                        {
+                          ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = [];
+                        }
+                        }   
+
+                          ///// Campo ["Devolucion 40$ expreso"]////////////////////////////
+                       
+                     ModalidadTodasconOrdenC40ESP  = _.sortBy(ModalidadTodasconOrdenC40ESP , '["Devolucion 40$ expreso"]');
+                     
+                     var contC40ESP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC40ESP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC40ESP= contC40ESP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]) == parseFloat(ModalidadTodasconOrdenC40ESP[i-1]["Devolucion 40$ expreso"])) 
+                              {                                 
+                                contC40EST= contC40EST;
+                              }
+                              else
+                              {
+                                contC40ESP=contC40ESP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC40ESP==1) 
+                        {
+                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["showverde"];
+                        }
+                        if (contC40ESP==2) 
+                        {
+                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["showamarillo"];
+                        }
+                        if (contC40ESP==3) 
+                        {
+                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["showrojo"];
+                        }
+                        if (contC40ESP>3)
+                        {
+                          ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
+                        }
+                        }                   
+                     
+                   
+               }                  
+                     
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+                    if (Modalidad == 'MaritimasFCL') {
+                        $scope.Show2=false;
+                        $scope.Show3=false;
+                        $scope.Show4=true;
+                       angular.forEach($scope.ConsolidadoDatos, function(consmaritfcl) { 
+                         ModalidadDeUnProveedor = consmaritfcl.MaritimaFcl.MaritimasFcl
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consmaritfclprov) {
+                              consmaritfclprov.Email = consmaritfcl.Email                         
+                              ModalidadTodas.push(consmaritfclprov);
+                             ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
+                            });
+                        });
+                         
+                       
+                         ////////  Campo ["C 20"] //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Campo ["C 20"]');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i]["C 20"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20"])) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
+
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showverde"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showamarillo"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showrojo"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrden[i].AduC2045Pintada = [];
+                        }
+                        }
+
+              ////////////////// ["Baf 20"] ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["Baf 20"]');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["Baf 20"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Baf 20"])) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showverde"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showamarillo"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showrojo"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ["C 40"]/////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["C 40"]');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]["C 40"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 40"])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showverde"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showamarillo"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showrojo"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["Baf 40"]                 
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Baf 40"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Baf 40"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Baf 40"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showverde"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showamarillo"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showrojo"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["C 40HC"]                
+                      
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["C 40HC"]');
+                     
+                     var contGAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAII= contGAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 40HC"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 40HC"])) 
+                              {                                 
+                                contGAII= contGAII;
+                              }
+                              else
+                              {
+                                contGAII=contGAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAII==1) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showverde"];
+                        }
+                        if (contGAII==2) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showamarillo"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showrojo"];
+                        }
+                        if (contGAII>3)
+                        {
+                          ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ["Baf 40HC"]                 
+                      
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Baf 40HC"]');
+                     
+                     var contCAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAII= contCAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Baf 40HC"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Baf 40HC"])) 
+                              {                                 
+                                contCAII= contCAII;
+                              }
+                              else
+                              {
+                                contCAII=contCAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAII==1) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showverde"];
+                        }
+                        if (contCAII==2) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showamarillo"];
+                        }
+                        if (contCAII==3) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showrojo"];
+                        }
+                        if (contCAII>3)
+                        {
+                          ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo Naviera                  
+                          
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'Naviera');
+                     
+                     var contGAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIII= contGAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat(ModalidadTodasconOrdenGAIII[i-1].Naviera)) 
+                              {                                 
+                                contGAIII= contGAIII;
+                              }
+                              else
+                              {
+                                contGAIII=contGAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIII==1) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showverde"];
+                        }
+                        if (contGAIII==2) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showamarillo"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showrojo"];
+                        }
+                        if (contGAIII>3)
+                        {
+                          ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
+                        }
+                        }   
+
+                  
+                   ////////// Campo ["Gastos Embarque"]                
+                     
+                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Gastos Embarque"]');
+                     
+                     var contCAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIII= contCAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Gastos Embarque"])) 
+                              {                                 
+                                contCAIII= contCAIII;
+                              }
+                              else
+                              {
+                                contCAIII=contCAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIII==1) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showverde"];
+                        }
+                        if (contCAIII==2) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showamarillo"];
+                        }
+                        if (contCAIII==3) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showrojo"];
+                        }
+                        if (contCAIII>3)
+                        {
+                          ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
+                        }
+                        }      
+                          
+                      
+
+                          ////////// Campo ["C 20 + Baf 20 + Gastos Embarque"]                
+                       
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["C 20 + Baf 20 + Gastos Embarque"]');
+                     
+                     var contCPC=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCPC= contCPC + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 20 + Baf 20 + Gastos Embarque"])) 
+                              {                                 
+                                contCPC= contCPC;
+                              }
+                              else
+                              {
+                                contCPC=contCPC + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCPC==1) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showverde"];
+                        }
+                        if (contCPC==2) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showamarillo"];
+                        }
+                        if (contCPC==3) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showrojo"];
+                        }
+                        if (contCPC>3)
+                        {
+                          ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
+                        }
+                        } 
+
+                   ////////// Campo ["C 40 + Baf 40 + Gastos Embarque"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, '["C 40 + Baf 40 + Gastos Embarque"]');
+                     
+                     var contOTRO=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
+                          if (i==0){                            
+                            contOTRO= contOTRO + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 + Baf 40 + Gastos Embarque"])) 
+                              {                                 
+                                contOTRO= contOTRO;
+                              }
+                              else
+                              {
+                                contOTRO=contOTRO + 1;                               }
+                            }                                                        
+                          
+
+                        if (contOTRO==1) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showverde"];
+                        }
+                        if (contOTRO==2) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showamarillo"];
+                        }
+                        if (contOTRO==3) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showrojo"];
+                        }
+                        if (contOTRO>3)
+                        {
+                          ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
+                        }
+                        }          
+
+                  ////////// ["C 40HC + Baf 40HC + Gastos Embarque"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, '["C 40HC + Baf 40HC + Gastos Embarque"]');
+                     
+                     var contC4017=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4017= contC4017 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40HC + Baf 40HC + Gastos Embarque"])) 
+                              {                                 
+                                contC4017= contC4017;
+                              }
+                              else
+                              {
+                                contC4017=contC4017 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4017==1) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showverde"];
+                        }
+                        if (contC4017==2) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showamarillo"];
+                        }
+                        if (contC4017==3) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showrojo"];
+                        }
+                        if (contC4017>3)
+                        {
+                          ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
+                        }
+                        }   
+
+                   }                
+
+
+                        ////////////////////////////////
+                    if (Modalidad == 'MaritimasLcl') {
+                       angular.forEach($scope.ConsolidadoDatos, function(consmaritlcl) { 
+                         ModalidadDeUnProveedor = consmaritlcl.MaritimaLcl.MaritimasLcl
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consmaritlclprov) {
+                              consmaritlclprov.Email = consmaritlcl.Email                         
+                              ModalidadTodas.push(consmaritlclprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+                    }
+
+                      if (Modalidad == 'Terrestre Nacional') {
+                        //Terrestre Nacional
+                       angular.forEach($scope.ConsolidadoDatos, function(consterrenacional) { 
+                         ModalidadDeUnProveedor = consterrenacional.TerreNacional.TerresNacional
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalprov) {
+                              consterrenacionalprov.Email = consterrenacional.Email                         
+                              ModalidadTodas.push(consterrenacionalprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+
+                       //Terrestre Nacional Patineta
+                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpati) { 
+                         ModalidadDeUnProveedor = consterrenacionalpati.TerreNacionalPatineta.TerresNacionaPatineta
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalpatprov) {
+                              consterrenacionalpatprov.Email = consterrenacionalpati.Email                         
+                              ModalidadTodas.push(consterrenacionalpatiprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+
+                        //Terrestre Nacional Sencillo
+                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalsenc) { 
+                         ModalidadDeUnProveedor = consterrenacionalsenc.TerreNacionalSencillo.TerresNacionaSencillo
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalsencprov) {
+                              consterrenacionalsencprov.Email = consterrenacionalsencprov.Email                         
+                              ModalidadTodas.push(consterrenacionalsencprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+                    }
+
+                    if (Modalidad == 'Terrestre Urbano') {
+                        //Terrestre Urbano
+                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbano) { 
+                         ModalidadDeUnProveedor = consterreurbano.TerreUrbano.TerresUrbano
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanoprov) {
+                              consterreurbanoprov.Email = consterreurbano.Email                         
+                              ModalidadTodas.push(consterreurbanoprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+
+                       //Terrestre Urbano Tonelada
+                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoton) { 
+                         ModalidadDeUnProveedor = consterreurbanoton.TerreUrbanoTonelada.TerresUrbanoTonelada
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanotonprov) {
+                              consterreurbanotonprov.Email = consterreurbanoton.Email                         
+                              ModalidadTodas.push(consterreurbanotonprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+
+                        //Terrestre Urbano Viaje
+                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoviaj) { 
+                         ModalidadDeUnProveedor = consterreurbanoviaj.TerreUrbanoViaje.TerresUrbanoViaje
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanoviajprov) {
+                              consterreurbanoviajprov.Email = consterreurbanoviaj.Email                         
+                              ModalidadTodas.push(consterreurbanoviajprov);
+                              console.log(ModalidadTodas);                  
+                            });
+                        });
+                    }
+
+
+                     $scope.ModalidadTodas= ModalidadTodas;
+                     console.log($scope.ModalidadTodas);
+                  
+                    // if ($scope.selectedPerfil.id == 1) {
+                         //  $scope.Show2 = true;
+                         //  }
+                  }, function errorCallback(response) {
+                    alert(response.statusText);
+                });
+            }
+
+             //$scope.GetConsolidadoDatos(); 
+       
+
+         }])
+
 
         .controller('ctrlNuevoUsuario', ['$scope', '$http', '$loading', '$uibModal', function ($scope, $http, $loading, $uibModal) {
 

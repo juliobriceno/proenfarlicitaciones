@@ -1585,6 +1585,23 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 
 });
 
+////////////Consolidado de Datos///////////////
+
+app.post('/GetConsolidadoDatos', function (req, res) {
+
+   //var Modalidad = req.body.Modalidad;
+
+     MyMongo.Find('ModalidadesProveedor', {} , function (result) {
+        var Data = {};
+         Data.ConsolidadoDatos = result;   
+        res.end(JSON.stringify(Data));   
+
+    }
+
+    ); 
+
+});
+
 app.post('/GetEmpleadosData', function (req, res) {
 
 
