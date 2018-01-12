@@ -4863,7 +4863,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          .controller('ctrlConsolidadoDatos', ['$scope', '$http', '$loading', '$uibModal', '$log', '$document', 'FileUploader', function ($scope, $http, $loading, $uibModal,$log, $document, FileUploader) {
           $scope.Show2=false;
         
-         $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
+         $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MaritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
 
          $scope.selectedModalidad = $scope.Modalidades[0];
        
@@ -4892,15 +4892,44 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var ModalidadTodasconOrdenC40EST = [];
                     var ModalidadTodasconOrdenC20ESP = [];
                     var ModalidadTodasconOrdenC40ESP = [];
+                    var ModalidadTodasconOrdenP = [];
+                    var ModalidadTodasconOrdenMinimaP = [];
+                    var ModalidadTodasconOrdenGAP = [];
+                    var ModalidadTodasconOrdenGAIIP = [];
+                    var ModalidadTodasconOrdenGAIIIP = [];
+                    var ModalidadTodasconOrdenCAP = [];
+                    var ModalidadTodasconOrdenCAIIP = [];
+                    var ModalidadTodasconOrdenCAIIIP = [];
+                    var ModalidadTodasconOrdenCPCP = [];
+                    var ModalidadTodasconOrdenotrosP = [];
+                    var ModalidadTodasconOrdenC4017P = [];
+                    var ModalidadTodasconOrdenC401718P = []; 
+                    var ModalidadTodasconOrdenC4020P = [];
+                    var ModalidadTodasconOrdenC4021P = [];
+                    var ModalidadTodasconOrdenC4022P = []; 
+                    var ModalidadTodasconOrdenC4030P = [];
+                    var ModalidadTodasconOrdenC20ESTP = [];
+                    var ModalidadTodasconOrdenC40ESTP = [];
+                    var ModalidadTodasconOrdenC20ESPP = [];
+                    var ModalidadTodasconOrdenC40ESPP = [];
                     var ModalidadTodasconOrdencolor = [];
                     var ModalidadAduMinima = [];
                     var ModalidadAduTarifaValor = [];
                     var ModalidadAduGastosAdicionales = [];
+                    var ModalidadTodasTerreNacionalSencillo = [];
+                    var ModalidadTodasTerreNacionalPatineta = [];
+                    var ModalidadTodasTerreNacionalTurbo = [];
+                    var ModalidadTodasTerreUrbano = [];
+                    var ModalidadTodasTerreUrbanoViaje = [];
+                    var ModalidadTodasTerreUrbanoTonelada = [];
+                    var ModalidadTodasAerea = [];
+                     var ModalidadTodasAereaPasajero = [];
                     var UnObjeto= {};
                     var ModalidadDeUnProveedor = []
                     var ModalidadAduanero= []
                     var Modalidad= $scope.selectedModalidad.Name;
-                    $scope.Show2=false;
+                    
+                    var Unobjeto={};
 
                 $loading.start('myloading');              
                 $http({
@@ -4913,18 +4942,463 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
                    
                      if (Modalidad == 'Bodegajes') {
-                      angular.forEach($scope.ConsolidadoDatos.Aduanero, function(consbodegaje) {  
-                          UnObjeto.Email=consbodegaje.email;
-                          ModalidadAduanero.push(UnObjeto.Email);
-                             console.log(ModalidadAduanero);
+                        $scope.Show1=true;
+                         $scope.Show11=true;
+                          $scope.Show111=true;
+                        $scope.Show2=false;
+                        $scope.Show3=false;
+                        $scope.Show4=false;
+                        $scope.Show5=false;
 
-                         }); // });
-                       
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show11=false;
+                        $scope.Show12=false;
+                        $scope.Show13=false;
+                        
+                         var ModalidadTodasBodegajeaduanero=[];
+                         var ModalidadTodasconOrdenBodegajeaduanero=[];
+                          var ModalidadTodasBodegajeaduaneromin=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromin=[];
+                          var ModalidadTodasBodegajeaduanerootro=[];
+                         var ModalidadTodasconOrdenBodegajeaduanerootro=[];                       
+                      angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) { 
+                          ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
+                          Unobjeto.TarifaValor=ModalidadDeUnProveedor.TarifaValor;
+                          Unobjeto.TarifaMinima=ModalidadDeUnProveedor.TarifaMinima;
+                          Unobjeto.Otros=ModalidadDeUnProveedor.Otros;                          
+                           Unobjeto.Email=consbodegaje.Email;
 
-                     }             
+                        ModalidadTodasBodegajeaduanero.push([{TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros,Email:Unobjeto.Email}]);
+                        $scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                        ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                        console.log( ModalidadTodasBodegajeaduanero);
+                          
+                         });
+                      ///////////////////////// tarifa Valor////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduanero = _.sortBy(ModalidadTodasconOrdenBodegajeaduanero, 'TarifaValor');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduanero);
+                     var cont=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanero.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduanero[i].TarifaValor) == parseFloat( ModalidadTodasconOrdenBodegajeaduanero[i-1].TarifaValor)) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
+
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = ["label label-success"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = ["label label-warning"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = ["label label-danger"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = [];
+                        }
+                        }
+
+                         ///////////////////////// tarifa Minima////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromin = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromin, 'TarifaMinima');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromin);
+                     var contmin=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromin.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromin[i].TarifaMinima) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromin[i-1].TarifaMinima)) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromin[i].AdutarifaminPintada = ["label label-success"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromin[i].AdutarifaminPintada = ["label label-warning"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromin[i].AdutarifaminPintada = ["label label-danger"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromin[i].AdutarifaminPintada = [];
+                        }
+                        }
+
+                                  ///////////////////////// otros////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduanerootro = _.sortBy(ModalidadTodasconOrdenBodegajeaduanerootro, 'Otros');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromin);
+                     var contotro=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanerootro.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduanerootro[i].Otros) == parseFloat( ModalidadTodasconOrdenBodegajeaduanerootro[i-1].Otros)) 
+                              {                                 
+                                contotro= contotro;
+                              }
+                              else
+                              {
+                                contotro=contotro + 1;                               }
+                            }                                                        
+                          
+
+                        if (contotro==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = ["label label-success"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = ["label label-warning"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = ["label label-danger"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = [];
+                        }
+                        }
+
+
+
+                        ////////////////////////////////////////Maquinaria ///////////////////////
+                         var ModalidadDeUnProveedormaq=[];
+                         var ModalidadTodasBodegajeaduaneromaq=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromaq=[];
+                          var ModalidadDeUnProveedormaqmin=[];
+                         var ModalidadTodasBodegajeaduaneromaqmin=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqmin=[];
+                          var ModalidadDeUnProveedormaqfmm=[];
+                         var ModalidadTodasBodegajeaduaneromaqfmm=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqfmm=[];
+                         var Unobjetomaq ={};
+                      angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaq) { 
+                          ModalidadDeUnProveedormaq = consbodegajemaq.Bodegajes.Maquinaria;
+                          Unobjetomaq.Tarifa=ModalidadDeUnProveedormaq.Tarifa;
+                          Unobjetomaq.TarifaMinima=ModalidadDeUnProveedormaq.TarifaMinima;
+                          Unobjetomaq.Otros=ModalidadDeUnProveedormaq.FMM;                          
+                          Unobjetomaq.Email=consbodegajemaq.Email;                       
+                        ModalidadTodasBodegajeaduaneromaq.push([{Tarifa:Unobjetomaq.Tarifa}, {TarifaMinima:Unobjetomaq.TarifaMinima},{FMM:Unobjetomaq.FMM},{Email:Unobjetomaq.Email}]);
+                        $scope.ModalidadTodasBodegajeaduaneromaq=ModalidadTodasBodegajeaduaneromaq;
+                        ModalidadTodasconOrdenBodegajeaduaneromaq=ModalidadTodasBodegajeaduaneromaq;
+                          
+                         }); 
+
+                      /////////////////////////////////tarifa////////////////////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromaq = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaq, 'Tarifa');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromaq);
+                     var contmaq=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaq.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmaq= contmaq + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaq[i].Tarifa) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaq[i-1].Tarifa)) 
+                              {                                 
+                                contmaq= contmaq;
+                              }
+                              else
+                              {
+                                contmaq=contmaq + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmaq==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaq[i].AdumaqPintada = ["label label-success"];
+                        }
+                        if (contmaq==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaq[i].AdumaqPintada = ["label label-warning"];
+                        }
+                        if (contmaq==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaq[i].AdumaqPintada = ["label label-danger"];
+                        }
+                        if (contmaq>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromaq[i].AdumaqPintada = [];
+                        }
+                        }
+
+                            /////////////////////////////////tarifa minima////////////////////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromaqmin = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqmin, 'Tarifa Minima');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromaqmin);
+                     var contmaqmin=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqmin.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmaqmin= contmaqmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqmin[i].TarifaMinima) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqmin[i-1].TarifaMinima)) 
+                              {                                 
+                                contmaqmin= contmaqmin;
+                              }
+                              else
+                              {
+                                contmaqmin=contmaqmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmaqmin==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqmin[i].AdumaqminPintada = ["label label-success"];
+                        }
+                        if (contmaqmin==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqmin[i].AdumaqminPintada = ["label label-warning"];
+                        }
+                        if (contmaqmin==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqmin[i].AdumaqminPintada = ["label label-danger"];
+                        }
+                        if (contmaqmin>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromaqmin[i].AdumaqminPintada = [];
+                        }
+                        }
+
+                     /////////////////////////////////FMM////////////////////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromaqfmm = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqfmm, 'FMM');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromaqfmm);
+                     var contmaqfmm=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqfmm.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmaqfmm= contmaqfmm + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i].FMM) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i-1].FMM)) 
+                              {                                 
+                                contmaqfmm= contmaqfmm;
+                              }
+                              else
+                              {
+                                contmaqfmm=contmaqfmm + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmaqfmm==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i].AdumaqfmmPintada = ["label label-success"];
+                        }
+                        if (contmaqfmm==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i].AdumaqfmmPintada = ["label label-warning"];
+                        }
+                        if (contmaqfmm==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i].AdumaqfmmPintada = ["label label-danger"];
+                        }
+                        if (contmaqfmm>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i].AdumaqfmmPintada = [];
+                        }
+                        }
+
+                            ////////////////////////////////////////Materia Prima ///////////////////////
+                         var ModalidadDeUnProveedormaqt=[];
+                         var ModalidadTodasBodegajeaduaneromaqt=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqt=[];
+                          var ModalidadDeUnProveedormaqmint=[];
+                         var ModalidadTodasBodegajeaduaneromaqmint=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqmint=[];
+                          var ModalidadDeUnProveedormaqfmmt=[];
+                         var ModalidadTodasBodegajeaduaneromaqfmmt=[];
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqfmmt=[];
+                         var Unobjetomaqt ={};
+                      angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqt) { 
+                          ModalidadDeUnProveedormaqt = consbodegajemaqt.Bodegajes.MateriaPrima;
+                          Unobjetomaqt.Tarifa=ModalidadDeUnProveedormaqt.Tarifa;
+                          Unobjetomaqt.TarifaMinima=ModalidadDeUnProveedormaqt.TarifaMinima;
+                          Unobjetomaqt.Otros=ModalidadDeUnProveedormaqt.FMM;                          
+                          Unobjetomaqt.Email=consbodegajemaqt.Email;
+                        ModalidadTodasBodegajeaduaneromaqt.push([{Tarifa:Unobjetomaqt.Tarifa}, {TarifaMinima:Unobjetomaqt.TarifaMinima},{FMM:Unobjetomaqt.FMM},{Email:Unobjetomaqt.Email}]);
+                        $scope.ModalidadTodasBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
+                        ModalidadTodasconOrdenBodegajeaduaneromatq=ModalidadTodasBodegajeaduaneromaqt;
+                          
+                         }); 
+
+                      /////////////////////////////////tarifa////////////////////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromaqt = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqt, 'Tarifa');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromaqt);
+                     var contmaqt=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqt.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmaqt= contmaqt + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqt[i].Tarifa) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqt[i-1].Tarifa)) 
+                              {                                 
+                                contmaqt= contmaqt;
+                              }
+                              else
+                              {
+                                contmaqtt=contmaqt + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmaq==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqtt[i].AdumaqtPintada = ["label label-success"];
+                        }
+                        if (contmaqt==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqt[i].AdumaqtPintada = ["label label-warning"];
+                        }
+                        if (contmaqt==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqt[i].AdumaqtPintada = ["label label-danger"];
+                        }
+                        if (contmaqt>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromaqt[i].AdumaqtPintada = [];
+                        }
+                        }
+
+                            /////////////////////////////////tarifa minima////////////////////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromaqmint = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqmint, 'Tarifa Minima');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromaqmint);
+                     var contmaqmint=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqmint.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmaqmitn= contmaqmit + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].TarifaMinima) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqmint[i-1].TarifaMinima)) 
+                              {                                 
+                                contmaqmint= contmaqmint;
+                              }
+                              else
+                              {
+                                contmaqmint=contmaqmint + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmaqmit==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].AdumaqmintPintada = ["label label-success"];
+                        }
+                        if (contmaqmint==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].AdumaqmintPintada = ["label label-warning"];
+                        }
+                        if (contmaqmint==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].AdumaqmintPintada = ["label label-danger"];
+                        }
+                        if (contmaqmint>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].AdumaqmintPintada = [];t
+                        }
+                        }
+
+                     /////////////////////////////////FMM////////////////////////////////////
+
+                      ModalidadTodasconOrdenBodegajeaduaneromaqfmmt = _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqfmmt, 'FMM');
+                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduaneromaqfmmt);
+                     var contmaqfmmt=0;
+                        for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqfmmt.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmaqfmmt= contmaqfmmt + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqfmm[i].FMM) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i-1].FMM)) 
+                              {                                 
+                                contmaqfmmt= contmaqfmmt;
+                              }
+                              else
+                              {
+                                contmaqfmm=contmaqfmmt + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmaqfmm==1) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqfmmtPintada = ["label label-success"];
+                        }
+                        if (contmaqfmmt==2) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqfmmtPintada = ["label label-warning"];
+                        }
+                        if (contmaqfmmt==3) 
+                        {
+                               ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqfmmtPintada = ["label label-danger"];
+                        }t
+                        if (contmaqfmmt>3)
+                        {
+                          ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqfmmtPintada = [];
+                        }
+                        }
+                      
+                     }   
+
+                     //////////////////////////////  Aduanas ////////////////////////        
                      
                     if (Modalidad == 'Aduanas') {
-                      $scope.Show2=true;
+                    
+                        $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
+                        $scope.Show2=true;
+                        $scope.Show3=false;
+                        $scope.Show4=false;
+                        $scope.Show5=false;
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show1111=false;
+                         $scope.Show12=false;
+                        $scope.Show13=false;
+
                        angular.forEach($scope.ConsolidadoDatos, function(consaduana) { 
                          ModalidadDeUnProveedor = consaduana.Aduana.Aduanas                         
                             angular.forEach(ModalidadDeUnProveedor, function(consaduanasprov) {
@@ -4940,8 +5414,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               ModalidadTodasconOrdenCAIII = ModalidadTodas;
                               ModalidadTodasconOrdenCPC = ModalidadTodas;
                               ModalidadTodasconOrdenotros = ModalidadTodas; 
-
-                              console.log(ModalidadTodasconOrden[0]["Tarifa % Advalorem/ FOB"]);
                             });
 
                         });  
@@ -4969,15 +5441,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (cont==1) 
                         {
-                               ModalidadTodasconOrden[i].AdutarifaPintada = ["showverde"];
+                               ModalidadTodasconOrden[i].AdutarifaPintada = ["label label-success"];
                         }
                         if (cont==2) 
                         {
-                               ModalidadTodasconOrden[i].AdutarifaPintada = ["showamarillo"];
+                               ModalidadTodasconOrden[i].AdutarifaPintada = ["label label-warning"];
                         }
                         if (cont==3) 
                         {
-                               ModalidadTodasconOrden[i].AdutarifaPintada = ["showrojo"];
+                               ModalidadTodasconOrden[i].AdutarifaPintada = ["label label-danger"];
                         }
                         if (cont>3)
                         {
@@ -5009,15 +5481,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contmin==1) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["showverde"];
+                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["label label-success"];
                         }
                         if (contmin==2) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["label label-warning"];
                         }
                         if (contmin==3) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["showrojo"];
+                               ModalidadTodasconOrdenMinima[i].AduMinimaPintada = ["label label-danger"];
                         }
                         if (contmin>3)
                         {
@@ -5048,15 +5520,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGA==1) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["showverde"];
+                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["label label-success"];
                         }
                         if (contGA==2) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["label label-warning"];
                         }
                         if (contGA==3) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["showrojo"];
+                               ModalidadTodasconOrdenGA[i].AduGAPintada = ["label label-danger"];
                         }
                         if (contGA>3)
                         {
@@ -5087,15 +5559,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCA==1) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["showverde"];
+                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["label label-success"];
                         }
                         if (contCA==2) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["label label-warning"];
                         }
                         if (contCA==3) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["showrojo"];
+                               ModalidadTodasconOrdenCA[i].AduCAPintada = ["label label-danger"];
                         }
                         if (contCA>3)
                         {
@@ -5126,15 +5598,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGAII==1) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["showverde"];
+                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["label label-success"];
                         }
                         if (contGAII==2) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["label label-warning"];
                         }
                         if (contGAIII==3) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["showrojo"];
+                               ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["label label-danger"];
                         }
                         if (contGAII>3)
                         {
@@ -5165,15 +5637,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAII==1) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["showverde"];
+                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["label label-success"];
                         }
                         if (contCAII==2) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["label label-warning"];
                         }
                         if (contCAII==3) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["showrojo"];
+                               ModalidadTodasconOrdenCAII[i].AduCAIIPintada = ["label label-danger"];
                         }
                         if (contCAII>3)
                         {
@@ -5204,15 +5676,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGAIII==1) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["showverde"];
+                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["label label-success"];
                         }
                         if (contGAIII==2) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["label label-warning"];
                         }
                         if (contGAIII==3) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["showrojo"];
+                               ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = ["label label-danger"];
                         }
                         if (contGAIII>3)
                         {
@@ -5244,15 +5716,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAIII==1) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["showverde"];
+                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["label label-success"];
                         }
                         if (contCAIII==2) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["label label-warning"];
                         }
                         if (contCAIII==3) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["showrojo"];
+                               ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = ["label label-danger"];
                         }
                         if (contCAIII>3)
                         {
@@ -5285,15 +5757,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCPC==1) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["showverde"];
+                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["label label-success"];
                         }
                         if (contCPC==2) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["label label-warning"];
                         }
                         if (contCPC==3) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["showrojo"];
+                               ModalidadTodasconOrdenCPC[i].AduCPCPintada = ["label label-danger"];
                         }
                         if (contCPC>3)
                         {
@@ -5324,15 +5796,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contOTRO==1) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["showverde"];
+                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["label label-success"];
                         }
                         if (contOTRO==2) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["label label-warning"];
                         }
                         if (contOTRO==3) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["showrojo"];
+                               ModalidadTodasconOrdenotros[i].AduotroPintada = ["label label-danger"];
                         }
                         if (contOTRO>3)
                         {
@@ -5344,8 +5816,23 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                }
 
                       if (Modalidad == 'OTM') {
-                         $scope.Show2=false;
+                      
+                        $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
+                        $scope.Show2=false;
                         $scope.Show3=true;
+                        $scope.Show4=false;
+                        $scope.Show5=false;
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show1111=false;
+                         $scope.Show12=false;
+                        $scope.Show13=false;
+
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) { 
                          ModalidadDeUnProveedor = consotm.Otm.Otms
                             angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
@@ -5378,7 +5865,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        
                          ////////  Campo ["C 20 hasta 4-5 Ton"] //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Campo ["C 20 hasta 4-5 Ton"]');
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["C 20 hasta 4-5 Ton"]');
                      console.log(ModalidadTodasconOrden);
                     
                      var cont=0;
@@ -5400,15 +5887,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (cont==1) 
                         {
-                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showverde"];
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-success"];
                         }
                         if (cont==2) 
                         {
-                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showamarillo"];
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-warning"];
                         }
                         if (cont==3) 
                         {
-                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showrojo"];
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-danger"];
                         }
                         if (cont>3)
                         {
@@ -5440,15 +5927,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contmin==1) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showverde"];
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-success"];
                         }
                         if (contmin==2) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-warning"];
                         }
                         if (contmin==3) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-danger"];
                         }
                         if (contmin>3)
                         {
@@ -5479,15 +5966,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGA==1) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showverde"];
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
                         }
                         if (contGA==2) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
                         }
                         if (contGA==3) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
                         }
                         if (contGA>3)
                         {
@@ -5518,15 +6005,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCA==1) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
                         }
                         if (contCA==2) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
                         }
                         if (contCA==3) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
                         }
                         if (contCA>3)
                         {
@@ -5557,15 +6044,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGAII==1) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showverde"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-success"];
                         }
                         if (contGAII==2) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
                         }
-                        if (contGAIII==3) 
+                        if (contGAII==3) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-danger"];
                         }
                         if (contGAII>3)
                         {
@@ -5596,15 +6083,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAII==1) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-success"];
                         }
                         if (contCAII==2) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-warning"];
                         }
                         if (contCAII==3) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-danger"];
                         }
                         if (contCAII>3)
                         {
@@ -5635,15 +6122,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGAIII==1) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showverde"];
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-success"];
                         }
                         if (contGAIII==2) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-warning"];
                         }
                         if (contGAIII==3) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-danger"];
                         }
                         if (contGAIII>3)
                         {
@@ -5675,15 +6162,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAIII==1) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-success"];
                         }
                         if (contCAIII==2) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-warning"];
                         }
                         if (contCAIII==3) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-danger"];
                         }
                         if (contCAIII>3)
                         {
@@ -5716,15 +6203,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCPC==1) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-success"];
                         }
                         if (contCPC==2) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-warning"];
                         }
                         if (contCPC==3) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-danger"];
                         }
                         if (contCPC>3)
                         {
@@ -5755,15 +6242,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contOTRO==1) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showverde"];
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-success"];
                         }
                         if (contOTRO==2) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-warning"];
                         }
                         if (contOTRO==3) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-danger"];
                         }
                         if (contOTRO>3)
                         {
@@ -5794,19 +6281,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4017==1) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-success"];
                         }
                         if (contC4017==2) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-warning"];
                         }
                         if (contC4017==3) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-danger"];
                         }
                         if (contC4017>3)
                         {
-                          ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
+                          ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
                         }
                         }   
 
@@ -5833,15 +6320,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC401718==1) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-success"];
                         }
                         if (contC401718==2) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-warning"];
                         }
                         if (contC401718==3) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-danger"];
                         }
                         if (contC401718>3)
                         {
@@ -5873,15 +6360,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4020==1) 
                         {
-                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-success"];
                         }
                         if (contC4020==2) 
                         {
-                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-warning"];
                         }
                         if (contC4020==3) 
                         {
-                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-danger"];
                         }
                         if (contC4020>3)
                         {
@@ -5912,15 +6399,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4021==1) 
                         {
-                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-success"];
                         }
                         if (contC4021==2) 
                         {
-                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-warning"];
                         }
                         if (contC4021==3) 
                         {
-                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-danger"];
                         }
                         if (contC4021>3)
                         {
@@ -5951,15 +6438,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4022==1) 
                         {
-                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["label label-success"];
                         }
-                        if (contC4020==2) 
+                        if (contC4022==2) 
                         {
-                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["label label-warning"];
                         }
-                        if (contC4020==3) 
+                        if (contC4022==3) 
                         {
-                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["label label-danger"];
                         }
                         if (contC4022>3)
                         {
@@ -5990,15 +6477,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4030==1) 
                         {
-                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["label label-success"];
                         }
                         if (contC4030==2) 
                         {
-                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["label label-warning"];
                         }
                         if (contC4030==3) 
                         {
-                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC4030[i].AduC4030Pintada = ["label label-danger"];
                         }
                         if (contC4030>3)
                         {
@@ -6029,15 +6516,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC20EST==1) 
                         {
-                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["showverde"];
+                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["label label-success"];
                         }
                         if (contC20EST==2) 
                         {
-                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["label label-warning"];
                         }
                         if (contC20EST==3) 
                         {
-                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["showrojo"];
+                               ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = ["label label-danger"];
                         }
                         if (contC20EST>3)
                         {
@@ -6068,15 +6555,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC40EST==1) 
                         {
-                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["showverde"];
+                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["label label-success"];
                         }
                         if (contC40EST==2) 
                         {
-                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["label label-warning"];
                         }
                         if (contC40EST==3) 
                         {
-                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["showrojo"];
+                               ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = ["label label-danger"];
                         }
                         if (contC40EST>3)
                         {
@@ -6107,15 +6594,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC20ESP==1) 
                         {
-                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["showverde"];
+                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["label label-success"];
                         }
                         if (contC20ESP==2) 
                         {
-                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["label label-warning"];
                         }
                         if (contC20ESP==3) 
                         {
-                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["showrojo"];
+                               ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = ["label label-danger"];
                         }
                         if (contC20ESP>3)
                         {
@@ -6146,15 +6633,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC40ESP==1) 
                         {
-                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["showverde"];
+                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["label label-success"];
                         }
                         if (contC40ESP==2) 
                         {
-                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["label label-warning"];
                         }
                         if (contC40ESP==3) 
                         {
-                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["showrojo"];
+                               ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = ["label label-danger"];
                         }
                         if (contC40ESP>3)
                         {
@@ -6167,9 +6654,23 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      
             ////////////////////////////////////////////////////////////////////////////////////////////////
                     if (Modalidad == 'MaritimasFCL') {
+                         $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
                         $scope.Show2=false;
                         $scope.Show3=false;
                         $scope.Show4=true;
+                        $scope.Show5=false;
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show1111=false;
+                         $scope.Show12=false;
+                        $scope.Show13=false;
+
+
                        angular.forEach($scope.ConsolidadoDatos, function(consmaritfcl) { 
                          ModalidadDeUnProveedor = consmaritfcl.MaritimaFcl.MaritimasFcl
                          console.log( ModalidadDeUnProveedor);
@@ -6203,7 +6704,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        
                          ////////  Campo ["C 20"] //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Campo ["C 20"]');
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["C 20"]');
                      console.log(ModalidadTodasconOrden);
                     
                      var cont=0;
@@ -6225,15 +6726,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (cont==1) 
                         {
-                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showverde"];
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-success"];
                         }
                         if (cont==2) 
                         {
-                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showamarillo"];
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-warning"];
                         }
                         if (cont==3) 
                         {
-                               ModalidadTodasconOrden[i].AduC2045Pintada = ["showrojo"];
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-danger"];
                         }
                         if (cont>3)
                         {
@@ -6265,15 +6766,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contmin==1) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showverde"];
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-success"];
                         }
                         if (contmin==2) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-warning"];
                         }
                         if (contmin==3) 
                         {
-                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-danger"];
                         }
                         if (contmin>3)
                         {
@@ -6304,15 +6805,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGA==1) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showverde"];
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
                         }
                         if (contGA==2) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
                         }
                         if (contGA==3) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
                         }
                         if (contGA>3)
                         {
@@ -6343,15 +6844,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCA==1) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
                         }
                         if (contCA==2) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
                         }
                         if (contCA==3) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
                         }
                         if (contCA>3)
                         {
@@ -6382,15 +6883,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGAII==1) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showverde"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-success"];
                         }
                         if (contGAII==2) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
                         }
-                        if (contGAIII==3) 
+                        if (contGAII==3) 
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-danger"];
                         }
                         if (contGAII>3)
                         {
@@ -6421,15 +6922,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAII==1) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-success"];
                         }
                         if (contCAII==2) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-warning"];
                         }
                         if (contCAII==3) 
                         {
-                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-danger"];
                         }
                         if (contCAII>3)
                         {
@@ -6460,15 +6961,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGAIII==1) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showverde"];
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-success"];
                         }
                         if (contGAIII==2) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-warning"];
                         }
                         if (contGAIII==3) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-danger"];
                         }
                         if (contGAIII>3)
                         {
@@ -6500,15 +7001,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAIII==1) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-success"];
                         }
                         if (contCAIII==2) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-warning"];
                         }
                         if (contCAIII==3) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-danger"];
                         }
                         if (contCAIII>3)
                         {
@@ -6541,15 +7042,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCPC==1) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showverde"];
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-success"];
                         }
                         if (contCPC==2) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-warning"];
                         }
                         if (contCPC==3) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-danger"];
                         }
                         if (contCPC>3)
                         {
@@ -6580,15 +7081,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contOTRO==1) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showverde"];
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-success"];
                         }
                         if (contOTRO==2) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-warning"];
                         }
                         if (contOTRO==3) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-danger"];
                         }
                         if (contOTRO>3)
                         {
@@ -6619,15 +7120,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4017==1) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showverde"];
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-success"];
                         }
                         if (contC4017==2) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showamarillo"];
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-warning"];
                         }
                         if (contC4017==3) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["showrojo"];
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-danger"];
                         }
                         if (contC4017>3)
                         {
@@ -6639,54 +7140,710 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                         ////////////////////////////////
-                    if (Modalidad == 'MaritimasLcl') {
+                    if (Modalidad == 'MaritimasLCL') {
+                     
+                        $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
+                        $scope.Show2=false;
+                        $scope.Show3=false;
+                        $scope.Show4=false;
+                        $scope.Show5=true;
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show1111=false;
+                         $scope.Show12=false;
+                        $scope.Show13=false;
+
                        angular.forEach($scope.ConsolidadoDatos, function(consmaritlcl) { 
                          ModalidadDeUnProveedor = consmaritlcl.MaritimaLcl.MaritimasLcl
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consmaritlclprov) {
                               consmaritlclprov.Email = consmaritlcl.Email                         
                               ModalidadTodas.push(consmaritlclprov);
-                              console.log(ModalidadTodas);                  
+                             ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
                             });
                         });
-                    }
+                         
+                       
+                         ////////  Campo Minima //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Minima');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i].Minima) == parseFloat(ModalidadTodasconOrden[i-1].Minima)) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
 
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-success"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-warning"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-danger"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrden[i].AduC2045Pintada = [];
+                        }
+                        }
+
+              ////////////////// ["1-5 ton/M3"] ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["1-5 ton/M3"]');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["1-5 ton/M3"])) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-success"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-warning"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-danger"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ["5-8 ton/M3"]/////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["5-8 ton/M3"]');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["5-8 ton/M3"])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["8-12 ton/M3"]                
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["8-12 ton/M3"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["8-12 ton/M3"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["12-18 ton/M3"]              
+                      
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["12-18 ton/M3"]');
+                     
+                     var contGAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAII= contGAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["12-18 ton/M3"])) 
+                              {                                 
+                                contGAII= contGAII;
+                              }
+                              else
+                              {
+                                contGAII=contGAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAII==1) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-success"];
+                        }
+                        if (contGAII==2) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
+                        }
+                        if (contGAII==3) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-danger"];
+                        }
+                        if (contGAII>3)
+                        {
+                          ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ["Gastos Embarque"]                
+                      
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Gastos Embarque"]');
+                     
+                     var contCAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAII= contCAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Gastos Embarque"])) 
+                              {                                 
+                                contCAII= contCAII;
+                              }
+                              else
+                              {
+                                contCAII=contCAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAII==1) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-success"];
+                        }
+                        if (contCAII==2) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-warning"];
+                        }
+                        if (contCAII==3) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-danger"];
+                        }
+                        if (contCAII>3)
+                        {
+                          ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo Naviera                  
+                          
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'Naviera');
+                     
+                     var contGAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIII= contGAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat(ModalidadTodasconOrdenGAIII[i-1].Naviera)) 
+                              {                                 
+                                contGAIII= contGAIII;
+                              }
+                              else
+                              {
+                                contGAIII=contGAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIII==1) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-success"];
+                        }
+                        if (contGAIII==2) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-warning"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-danger"];
+                        }
+                        if (contGAIII>3)
+                        {
+                          ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
+                        }
+                        }                
+                 
+
+                   }                
+
+                   ///////////////////////////////////////////////////////////////////////
                       if (Modalidad == 'Terrestre Nacional') {
-                        //Terrestre Nacional
+                         $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
+                        $scope.Show2=false;
+                        $scope.Show3=false;
+                        $scope.Show4=false;
+                        $scope.Show5=false;
+                        $scope.Show6=true;
+                        $scope.Show7=true;
+                        $scope.Show8=true;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show1111=false;
+                         $scope.Show12=false;
+                        $scope.Show13=false;
+
+                      
                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacional) { 
                          ModalidadDeUnProveedor = consterrenacional.TerreNacional.TerresNacional
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalprov) {
                               consterrenacionalprov.Email = consterrenacional.Email                         
                               ModalidadTodas.push(consterrenacionalprov);
-                              console.log(ModalidadTodas);                  
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
                             });
                         });
+                         
+                       
+                         ////////  Campo ["Turbo Standar (150Cajas)"] //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["Turbo Standar (150Cajas)"]');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i]["Turbo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrden[i-1]["Turbo Standar (150Cajas)"])) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
 
-                       //Terrestre Nacional Patineta
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-success"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-warning"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-danger"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrden[i].AduC2045Pintada = [];
+                        }
+                        }
+
+              ////////////////// ["Turbo Especial"] ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["Turbo Especial"]');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["Turbo Especial"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Turbo Especial"])) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-success"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-warning"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-danger"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
+                        }
+                        }
+
+                        $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodas;
+
+                   
+
+                       //Terrestre Nacional Sencillo
                         angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpati) { 
-                         ModalidadDeUnProveedor = consterrenacionalpati.TerreNacionalPatineta.TerresNacionaPatineta
+                         ModalidadDeUnProveedor = consterrenacionalpati.TerreNacionalSencillo.TerresNacionalSencillo
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalpatprov) {
                               consterrenacionalpatprov.Email = consterrenacionalpati.Email                         
-                              ModalidadTodas.push(consterrenacionalpatiprov);
-                              console.log(ModalidadTodas);                  
+                              ModalidadTodas.push(consterrenacionalpatprov);
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
                             });
                         });
+                            
 
-                        //Terrestre Nacional Sencillo
+                             ////////// Campo ["Sencillo Standar (150Cajas)"]/////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["Sencillo Standar (150Cajas)"]');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]["Sencillo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Sencillo Standar (150Cajas)"])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["8-12 ton/M3"]                
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Sencillo Especial"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Sencillo Especial"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Sencillo Especial"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                        }
+                        }
+
+                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodas;                        
+
+                        //Terrestre Nacional Patineta
                         angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalsenc) { 
-                         ModalidadDeUnProveedor = consterrenacionalsenc.TerreNacionalSencillo.TerresNacionaSencillo
+                         ModalidadDeUnProveedor = consterrenacionalsenc.TerreNacionalPatineta.TerresNacionalPatineta
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalsencprov) {
                               consterrenacionalsencprov.Email = consterrenacionalsencprov.Email                         
                               ModalidadTodas.push(consterrenacionalsencprov);
-                              console.log(ModalidadTodas);                  
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
                             });
                         });
+                            
+
+                             ////////// Campo Minimula/////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'Minimula');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i].Minimula) == parseFloat(ModalidadTodasconOrdenGA[i-1].Minimula)) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2019Pintada = ["label label-success"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2019Pintada = ["label label-warning"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2019Pintada = ["label label-danger"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2019Pintada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["Gran Danes"]             
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Gran Danes"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Gran Danes"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2020Pintada = ["label label-success"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2020Pintada = ["label label-warning"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2020Pintada = ["label label-danger"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2020Pintada = [];
+                        }
+                        }
+
+                        $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodas;
                     }
+                ///////////////////////////////////////////////////////////////////////////////
 
                     if (Modalidad == 'Terrestre Urbano') {
+                     
+                         $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
+                        $scope.Show2=false;
+                        $scope.Show3=false;
+                        $scope.Show4=false;
+                        $scope.Show5=false;
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=true;
+                        $scope.Show10=true;
+                        $scope.Show1111=true;
+                        $scope.Show12=false;
+                        $scope.Show13=false;
                         //Terrestre Urbano
                        angular.forEach($scope.ConsolidadoDatos, function(consterreurbano) { 
                          ModalidadDeUnProveedor = consterreurbano.TerreUrbano.TerresUrbano
@@ -6694,40 +7851,1891 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             angular.forEach(ModalidadDeUnProveedor, function(consterreurbanoprov) {
                               consterreurbanoprov.Email = consterreurbano.Email                         
                               ModalidadTodas.push(consterreurbanoprov);
-                              console.log(ModalidadTodas);                  
+                               ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
                             });
                         });
+                         
+                       
+                         ////////  ["Turbo (150Cajas)"] //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["Turbo (150Cajas)"]');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrden[i-1]["Turbo (150Cajas)"])) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
 
-                       //Terrestre Urbano Tonelada
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-success"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-warning"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-danger"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrden[i].AduC2045Pintada = [];
+                        }
+                        }
+
+              ////////////////// ["Turbo Especial (200Cajas)"]////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["Turbo Especial (200Cajas)"]');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Turbo Especial (200Cajas)"])) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-success"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-warning"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-danger"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ["Sencillo (240Cajas)"]/////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["Sencillo (240Cajas)"]');
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Sencillo (240Cajas)"])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ["Sencillo Especial (300Cajas)"]               
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Sencillo Especial (300Cajas)"]');
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Sencillo Especial (300Cajas)"])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["C 40HC"] Minimula
+
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, 'Minimula');
+                     
+                     var contGAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAII= contGAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAII[i].Minimula) == parseFloat(ModalidadTodasconOrdenGAII[i-1].Minimula)) 
+                              {                                 
+                                contGAII= contGAII;
+                              }
+                              else
+                              {
+                                contGAII=contGAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAII==1) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-success"];
+                        }
+                        if (contGAII==2) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
+                        }
+                        if (contGAII==3) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-danger"];
+                        }
+                        if (contGAII>3)
+                        {
+                          ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ["Gran Danes"]                
+                      
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Gran Danes"]');
+                     
+                     var contCAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAII= contCAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Gran Danes"])) 
+                              {                                 
+                                contCAII= contCAII;
+                              }
+                              else
+                              {
+                                contCAII=contCAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAII==1) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-success"];
+                        }
+                        if (contCAII==2) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-warning"];
+                        }
+                        if (contCAII==3) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-danger"];
+                        }
+                        if (contCAII>3)
+                        {
+                          ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
+                        }
+                        }   
+
+                        $scope.ModalidadTodasTerreUrbano=ModalidadTodas;
+
+
+                  ////////////////////////Terrestre Urbano Viaje
+                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoton) { 
+                         ModalidadDeUnProveedor = consterreurbanoton.TerreUrbanoViaje.TerresUrbanoViaje
+                         console.log( ModalidadDeUnProveedor);
+                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanotonprov) {
+                              consterreurbanotonprov.Email = consterreurbanoton.Email                         
+                              ModalidadTodas.push(consterreurbanotonprov);
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
+                             });
+
+                        });
+                             
+                      ////////// Campo ["Turbo (150Cajas)"]  /////////////////////////////////////////////                
+                          
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["Turbo (150Cajas)"]');
+                     
+                     var contGAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIII= contGAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["Turbo (150Cajas)"])) 
+                              {                                 
+                                contGAIII= contGAIII;
+                              }
+                              else
+                              {
+                                contGAIII=contGAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIII==1) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-success"];
+                        }
+                        if (contGAIII==2) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-warning"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-danger"];
+                        }
+                        if (contGAIII>3)
+                        {
+                          ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
+                        }
+                        }   
+
+                  
+                   ////////// Campo ["Turbo Especial (200Cajas)"]               
+                     
+                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Turbo Especial (200Cajas)"]');
+                     
+                     var contCAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIII= contCAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Turbo Especial (200Cajas)"])) 
+                              {                                 
+                                contCAIII= contCAIII;
+                              }
+                              else
+                              {
+                                contCAIII=contCAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIII==1) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-success"];
+                        }
+                        if (contCAIII==2) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-warning"];
+                        }
+                        if (contCAIII==3) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-danger"];
+                        }
+                        if (contCAIII>3)
+                        {
+                          ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
+                        }
+                        }      
+                          
+                      
+
+                          ////////// Campo ["Sencillo (240Cajas)"]              
+                       
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["Sencillo (240Cajas)"]');
+                     
+                     var contCPC=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCPC= contCPC + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["Sencillo (240Cajas)"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Sencillo (240Cajas)"])) 
+                              {                                 
+                                contCPC= contCPC;
+                              }
+                              else
+                              {
+                                contCPC=contCPC + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCPC==1) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-success"];
+                        }
+                        if (contCPC==2) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-warning"];
+                        }
+                        if (contCPC==3) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-danger"];
+                        }
+                        if (contCPC>3)
+                        {
+                          ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
+                        }
+                        } 
+
+                   ////////// Campo ["Sencillo Especial (300Cajas)"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, '["Sencillo Especial (300Cajas)"]');
+                     
+                     var contOTRO=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
+                          if (i==0){                            
+                            contOTRO= contOTRO + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenotros[i]["Sencillo Especial (300Cajas)"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["Sencillo Especial (300Cajas)"])) 
+                              {                                 
+                                contOTRO= contOTRO;
+                              }
+                              else
+                              {
+                                contOTRO=contOTRO + 1;                               }
+                            }                                                        
+                          
+
+                        if (contOTRO==1) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-success"];
+                        }
+                        if (contOTRO==2) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-warning"];
+                        }
+                        if (contOTRO==3) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-danger"];
+                        }
+                        if (contOTRO>3)
+                        {
+                          ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
+                        }
+                        }          
+
+                  ////////// Minimula////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, 'Minimula');
+                     
+                     var contC4017=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4017= contC4017 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4017[i].Minimula) == parseFloat(ModalidadTodasconOrdenC4017[i-1].Minimula)) 
+                              {                                 
+                                contC4017= contC4017;
+                              }
+                              else
+                              {
+                                contC4017=contC4017 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4017==1) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-success"];
+                        }
+                        if (contC4017==2) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-warning"];
+                        }
+                        if (contC4017==3) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-danger"];
+                        }
+                        if (contC4017>3)
+                        {
+                          ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
+                        }
+                        } 
+
+                          ////////// ["Gran Danes"]////////////////////////////
+                       
+                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, '["Gran Danes"]');
+                     
+                     var contC401718=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC401718= contC401718 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC401718[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenC401718[i-1]["Gran Danes"])) 
+                              {                                 
+                                contC401718= contC401718;
+                              }
+                              else
+                              {
+                                contC401718=contC401718 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC401718==1) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC401718Pintada = ["label label-success"];
+                        }
+                        if (contC401718==2) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC401718Pintada = ["label label-warning"];
+                        }
+                        if (contC401718==3) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC401718Pintada = ["label label-danger"];
+                        }
+                        if (contC401718>3)
+                        {
+                          ModalidadTodasconOrdenC4017[i].AduC40178Pintada = [];
+                        }
+                        }  
+
+                        $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodas ;
+
+                /////////////////////////////Terrestre Urbano Tonelada //////////////////////////////
                        angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoton) { 
                          ModalidadDeUnProveedor = consterreurbanoton.TerreUrbanoTonelada.TerresUrbanoTonelada
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterreurbanotonprov) {
                               consterreurbanotonprov.Email = consterreurbanoton.Email                         
                               ModalidadTodas.push(consterreurbanotonprov);
-                              console.log(ModalidadTodas);                  
-                            });
+                             ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
+                                });
+
                         });
 
-                        //Terrestre Urbano Viaje
-                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoviaj) { 
-                         ModalidadDeUnProveedor = consterreurbanoviaj.TerreUrbanoViaje.TerresUrbanoViaje
-                         console.log( ModalidadDeUnProveedor);
-                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanoviajprov) {
-                              consterreurbanoviajprov.Email = consterreurbanoviaj.Email                         
-                              ModalidadTodas.push(consterreurbanoviajprov);
-                              console.log(ModalidadTodas);                  
+                               ////////// Campo Turbo////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, 'Turbo');
+                     
+                     var contC4020=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4020= contC4020 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4020[i].Turbo) == parseFloat(ModalidadTodasconOrdenC4020[i-1].Turbo)) 
+                              {                                 
+                                contC4020= contC4020;
+                              }
+                              else
+                              {
+                                contC4020=contC4020 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4020==1) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-success"];
+                        }
+                        if (contC4020==2) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-warning"];
+                        }
+                        if (contC4020==3) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-danger"];
+                        }
+                        if (contC4020>3)
+                        {
+                          ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
+                        }
+                        }       
+
+                         ////////// Campo Sencillo////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, 'Sencillo');
+                     
+                     var contC4021=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4021= contC4021 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4021[i].Sencillo) == parseFloat(ModalidadTodasconOrdenC4021[i-1].Sencillo)) 
+                              {                                 
+                                contC4021= contC4021;
+                              }
+                              else
+                              {
+                                contC4021=contC4021 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4021==1) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-success"];
+                        }
+                        if (contC4021==2) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-warning"];
+                        }
+                        if (contC4021==3) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-danger"];
+                        }
+                        if (contC4021>3)
+                        {
+                          ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
+                        }
+                        } 
+
+                     ////////// Campo Tractomula////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4022 = _.sortBy(ModalidadTodasconOrdenC4022, 'Tractomula');
+                     
+                     var contC4022=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4022= contC4022 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4022[i].Tractomula) == parseFloat(ModalidadTodasconOrdenC4022[i-1].Tractomula)) 
+                              {                                 
+                                contC4022= contC4022;
+                              }
+                              else
+                              {
+                                contC4022=contC4022 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4022==1) 
+                        {
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["label label-success"];
+                        }
+                        if (contC4022==2) 
+                        {
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["label label-warning"];
+                        }
+                        if (contC4022==3) 
+                        {
+                               ModalidadTodasconOrdenC4022[i].AduC4022Pintada = ["label label-danger"];
+                        }
+                        if (contC4022>3)
+                        {
+                          ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
+                        }
+                        } 
+
+                      $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodas;
+                             
+                    }
+
+                    //////////////////////////////////////////////////////////////////////////////////
+
+                      if (Modalidad == 'Aereas') {
+                          $scope.Show1=false;
+                        $scope.Show11=false;
+                        $scope.Show111=false;
+                        $scope.Show2=false;
+                        $scope.Show3=false;
+                        $scope.Show4=false;
+                        $scope.Show5=false;
+                        $scope.Show6=false;
+                        $scope.Show7=false;
+                        $scope.Show8=false;
+                        $scope.Show9=false;
+                        $scope.Show10=false;
+                        $scope.Show1111=false;
+                        $scope.Show12=true;
+                        $scope.Show13=true;
+                       angular.forEach($scope.ConsolidadoDatos, function(consotm) { 
+                         ModalidadDeUnProveedor = consotm.Aerea.Aereas
+                            angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
+                              consotmprov.Email = consotm.Email                         
+                              ModalidadTodas.push(consotmprov);   
+                              ModalidadTodasconOrden = ModalidadTodas;
+                              ModalidadTodasconOrdenMinima = ModalidadTodas;
+                              ModalidadTodasconOrdenGA = ModalidadTodas;
+                              ModalidadTodasconOrdenGAII = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCA = ModalidadTodas;
+                              ModalidadTodasconOrdenCAII = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
+                              ModalidadTodasconOrdenCPC = ModalidadTodas;
+                              ModalidadTodasconOrdenotros = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+
                             });
                         });
-                    }
+                         
+                       
+                         ////////  Campo Minima //////////////////////////
+                     
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Minima');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var cont=0;
+                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
+                          if (i==0){                            
+                            cont= cont + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrden[i].Minima) == parseFloat(ModalidadTodasconOrden[i-1].Minima)) 
+                              {                                 
+                                cont= cont;
+                              }
+                              else
+                              {
+                                cont=cont + 1;                               }
+                            }                                                        
+                          
+
+                        if (cont==1) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-success"];
+                        }
+                        if (cont==2) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-warning"];
+                        }
+                        if (cont==3) 
+                        {
+                               ModalidadTodasconOrden[i].AduC2045Pintada = ["label label-danger"];
+                        }
+                        if (cont>3)
+                        {
+                          ModalidadTodasconOrden[i].AduC2045Pintada = [];
+                        }
+                        }
+
+              ////////////////// ["45"] ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["45"]');
+                   console.log(ModalidadTodasconOrdenMinima);
+                    
+                     var contmin=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
+                          if (i==0){                            
+                            contmin= contmin + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["45"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["45"])) 
+                              {                                 
+                                contmin= contmin;
+                              }
+                              else
+                              {
+                                contmin=contmin + 1;                               }
+                            }                                                        
+                          
+
+                        if (contmin==1) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-success"];
+                        }
+                        if (contmin==2) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-warning"];
+                        }
+                        if (contmin==3) 
+                        {
+                               ModalidadTodasconOrdenMinima[i].AduC8Pintada = ["label label-danger"];
+                        }
+                        if (contmin>3)
+                        {
+                          ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ['+100'] /////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, "['+100']");
+                     
+                     var contGA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGA= contGA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGA[i]['+100']) == parseFloat(ModalidadTodasconOrdenGA[i-1]['+100'])) 
+                              {                                 
+                                contGA= contGA;
+                              }
+                              else
+                              {
+                                contGA=contGA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGA==1) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
+                        }
+                        if (contGA==3) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
+                        }
+                        if (contGA>3)
+                        {
+                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ['+300']                 
+                       
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, "['+300']");
+                     var contCA=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCA= contCA + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCA[i]['+300']) == parseFloat(ModalidadTodasconOrdenCA[i-1]['+300'])) 
+                              {                                 
+                                contCA= contCA;
+                              }
+                              else
+                              {
+                                contCA=contCA + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCA==1) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
+                        }
+                        if (contCA==2) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
+                        }
+                        if (contCA==3) 
+                        {
+                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
+                        }
+                        if (contCA>3)
+                        {
+                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ['+500']               
+                      
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, "['+500']");
+                     
+                     var contGAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAII= contGAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAII[i]['+500']) == parseFloat(ModalidadTodasconOrdenGAII[i-1]['+500'])) 
+                              {                                 
+                                contGAII= contGAII;
+                              }
+                              else
+                              {
+                                contGAII=contGAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAII==1) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-success"];
+                        }
+                        if (contGAII==2) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-danger"];
+                        }
+                        if (contGAII>3)
+                        {
+                          ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ['+1000']                
+                      
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, "['+1000']");
+                     
+                     var contCAII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAII= contCAII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAII[i]['+1000']) == parseFloat(ModalidadTodasconOrdenCAII[i-1]['+1000'])) 
+                              {                                 
+                                contCAII= contCAII;
+                              }
+                              else
+                              {
+                                contCAII=contCAII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAII==1) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-success"];
+                        }
+                        if (contCAII==2) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-warning"];
+                        }
+                        if (contCAII==3) 
+                        {
+                               ModalidadTodasconOrdenCAII[i].AduC2020Pintada = ["label label-danger"];
+                        }
+                        if (contCAII>3)
+                        {
+                          ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["FS min"]               
+                          
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["FS min"]');
+                     
+                     var contGAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIII= contGAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["FS min"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["FS min"])) 
+                              {                                 
+                                contGAIII= contGAIII;
+                              }
+                              else
+                              {
+                                contGAIII=contGAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIII==1) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-success"];
+                        }
+                        if (contGAIII==2) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-warning"];
+                        }
+                        if (contGAIII==3) 
+                        {
+                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-danger"];
+                        }
+                        if (contGAIII>3)
+                        {
+                          ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
+                        }
+                        }   
+
+                  
+                   ////////// Campo ["Fs/kg"]              
+                     
+                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Fs/kg"]');
+                     
+                     var contCAIII=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIII= contCAIII + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Fs/kg"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Fs/kg"])) 
+                              {                                 
+                                contCAIII= contCAIII;
+                              }
+                              else
+                              {
+                                contCAIII=contCAIII + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIII==1) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-success"];
+                        }
+                        if (contCAIII==2) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-warning"];
+                        }
+                        if (contCAIII==3) 
+                        {
+                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-danger"];
+                        }
+                        if (contCAIII>3)
+                        {
+                          ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
+                        }
+                        }      
+                          
+                      
+
+                          ////////// Campo["Gastos Embarque"]                
+                       
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["Gastos Embarque"]');
+                     
+                     var contCPC=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCPC= contCPC + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Gastos Embarque"])) 
+                              {                                 
+                                contCPC= contCPC;
+                              }
+                              else
+                              {
+                                contCPC=contCPC + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCPC==1) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-success"];
+                        }
+                        if (contCPC==2) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-warning"];
+                        }
+                        if (contCPC==3) 
+                        {
+                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-danger"];
+                        }
+                        if (contCPC>3)
+                        {
+                          ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
+                        }
+                        } 
+
+                   ////////// Campo Via////////////////////////////
+                       
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'Via');
+                     
+                     var contOTRO=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
+                          if (i==0){                            
+                            contOTRO= contOTRO + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenotros[i].Via) == parseFloat(ModalidadTodasconOrdenotros[i-1].Via)) 
+                              {                                 
+                                contOTRO= contOTRO;
+                              }
+                              else
+                              {
+                                contOTRO=contOTRO + 1;                               }
+                            }                                                        
+                          
+
+                        if (contOTRO==1) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-success"];
+                        }
+                        if (contOTRO==2) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-warning"];
+                        }
+                        if (contOTRO==3) 
+                        {
+                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-danger"];
+                        }
+                        if (contOTRO>3)
+                        {
+                          ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
+                        }
+                        }          
+
+                  ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, "['+100 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4017=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4017= contC4017 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4017[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4017[i-1]['+100 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4017= contC4017;
+                              }
+                              else
+                              {
+                                contC4017=contC4017 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4017==1) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-success"];
+                        }
+                        if (contC4017==2) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-warning"];
+                        }
+                        if (contC4017==3) 
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-danger"];
+                        }
+                        if (contC4017>3)
+                        {
+                          ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
+                        }
+                        }   
+
+                   ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, "['+300 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC401718=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC401718= contC401718 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC401718[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC401718[i-1]['+300 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC401718= contC401718;
+                              }
+                              else
+                              {
+                                contC401718=contC401718 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC401718==1) 
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-success"];
+                        }
+                        if (contC401718==2) 
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-warning"];
+                        }
+                        if (contC401718==3) 
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-danger"];
+                        }
+                        if (contC401718>3)
+                        {
+                          ModalidadTodasconOrdenC401718[i].AduC401718Pintada = [];
+                        }
+                        } 
+
+
+                   ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, "['+500 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4020=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4020= contC4020 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4020[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4020[i-1]['+500 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4020= contC4020;
+                              }
+                              else
+                              {
+                                contC4020=contC4020 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4020==1) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-success"];
+                        }
+                        if (contC4020==2) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-warning"];
+                        }
+                        if (contC4020==3) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-danger"];
+                        }
+                        if (contC4020>3)
+                        {
+                          ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
+                        }
+                        }       
+
+                         ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, "['+1000 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4021=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4021= contC4021 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4021[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4021[i-1]['+1000 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4021= contC4021;
+                              }
+                              else
+                              {
+                                contC4021=contC4021 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4021==1) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-success"];
+                        }
+                        if (contC4021==2) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-warning"];
+                        }
+                        if (contC4021==3) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-danger"];
+                        }
+                        if (contC4021>3)
+                        {
+                          ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
+                        }
+                        } 
+
+                    $scope.ModalidadTodasAerea=ModalidadTodas;
+
+                ////////////////////////////Aerea Pasajero /////////////////////////////////////////
+                       angular.forEach($scope.ConsolidadoDatos, function(consotm) { 
+                         ModalidadDeUnProveedor = consotm.AereaPasajero.AereasPasajeros
+                            angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
+                              consotmprov.Email = consotm.Email                         
+                              ModalidadTodas.push(consotmprov);   
+                              ModalidadTodasconOrdenP = ModalidadTodas;
+                              ModalidadTodasconOrdenMinimaP = ModalidadTodas;
+                              ModalidadTodasconOrdenGAP = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIIP = ModalidadTodas;
+                              ModalidadTodasconOrdenGAIIIP = ModalidadTodas;
+                              ModalidadTodasconOrdenCAP = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIIP = ModalidadTodas;
+                              ModalidadTodasconOrdenCAIIIP = ModalidadTodas;
+                              ModalidadTodasconOrdenCPCP = ModalidadTodas;
+                              ModalidadTodasconOrdenotrosP = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4017P = ModalidadTodas; 
+                              ModalidadTodasconOrdenC401718P = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4020P = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4021P = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4022P = ModalidadTodas; 
+                              ModalidadTodasconOrdenC4030P = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESTP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESTP = ModalidadTodas;
+                              ModalidadTodasconOrdenC20ESPP = ModalidadTodas;
+                              ModalidadTodasconOrdenC40ESPP = ModalidadTodas;
+
+                            });
+                        });
+                       
+                         ////////  Campo Minima //////////////////////////
+                     
+                     ModalidadTodasconOrdenP = _.sortBy(ModalidadTodasconOrdenP, 'Minima');
+                     console.log(ModalidadTodasconOrden);
+                    
+                     var contP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contP= contP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenP[i].Minima) == parseFloat(ModalidadTodasconOrdenP[i-1].Minima)) 
+                              {                                 
+                                contP= contP;
+                              }
+                              else
+                              {
+                                contP=contP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contP==1) 
+                        {
+                               ModalidadTodasconOrdenP[i].AduC2045PPintada = ["label label-success"];
+                        }
+                        if (contP==2) 
+                        {
+                               ModalidadTodasconOrdenP[i].AduC2045PPintada = ["label label-warning"];
+                        }
+                        if (contP==3) 
+                        {
+                               ModalidadTodasconOrdenP[i].AduC2045PPintada = ["label label-danger"];
+                        }
+                        if (contP>3)
+                        {
+                          ModalidadTodasconOrdenP[i].AduC2045PPintada = [];
+                        }
+                        }
+
+              ////////////////// ["45"] ////////////////////////////////////
+                 
+                   ModalidadTodasconOrdenMinimaP = _.sortBy(ModalidadTodasconOrdenMinimaP, '["45"]');                 
+                 
+                     var contminP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenMinimaP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contminP= contminP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenMinimaP[i]["45"]) == parseFloat(ModalidadTodasconOrdenMinimaP[i-1]["45"])) 
+                              {                                 
+                                contminP= contminP;
+                              }
+                              else
+                              {
+                                contminP=contminP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contminP==1) 
+                        {
+                               ModalidadTodasconOrdenMinimaP[i].AduC8PPintada = ["label label-success"];
+                        }
+                        if (contminP==2) 
+                        {
+                               ModalidadTodasconOrdenMinimaP[i].AduC8PPintada = ["label label-warning"];
+                        }
+                        if (contminP==3) 
+                        {
+                               ModalidadTodasconOrdenMinimaP[i].AduC8PPintada = ["label label-danger"];
+                        }
+                        if (contminP>3)
+                        {
+                          ModalidadTodasconOrdenMinimaP[i].AduC8PPintada = [];
+                        }
+                        }                    
+
+                  ////////// Campo ['+100'] /////////////////////////////// 
+                      
+                    ModalidadTodasconOrdenGAP = _.sortBy(ModalidadTodasconOrdenGAP, "['+100']");
+                     
+                     var contGAP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAP= contGAP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAP[i]['+100']) == parseFloat(ModalidadTodasconOrdenGAP[i-1]['+100'])) 
+                              {                                 
+                                contGAP= contGAP;
+                              }
+                              else
+                              {
+                                contGAP=contGAP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAP==1) 
+                        {
+                               ModalidadTodasconOrdenGAP[i].AduC2010PPintada = ["label label-success"];
+                        }
+                        if (contGA==2) 
+                        {
+                               ModalidadTodasconOrdenGA[i].AduC2010PPintada = ["label label-warning"];
+                        }
+                        if (contGAP==3) 
+                        {
+                               ModalidadTodasconOrdenGAP[i].AduC2010PPintada = ["label label-danger"];
+                        }
+                        if (contGAP>3)
+                        {
+                          ModalidadTodasconOrdenGAP[i].AduC2010PPintada = [];
+                        }
+                        }         
+                     
+
+                    ////////// Campo ['+300']                 
+                       
+                    ModalidadTodasconOrdenCAP = _.sortBy(ModalidadTodasconOrdenCAP, "['+300']");
+                     var contCAP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAP= contCAP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAP[i]['+300']) == parseFloat(ModalidadTodasconOrdenCAP[i-1]['+300'])) 
+                              {                                 
+                                contCAP= contCAP;
+                              }
+                              else
+                              {
+                                contCAP=contCAP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAP==1) 
+                        {
+                               ModalidadTodasconOrdenCAP[i].AduC2017PPintada = ["label label-success"];
+                        }
+                        if (contCAP==2) 
+                        {
+                               ModalidadTodasconOrdenCAP[i].AduC2017PPintada = ["label label-warning"];
+                        }
+                        if (contCAP==3) 
+                        {
+                               ModalidadTodasconOrdenCAP[i].AduC2017PPintada = ["label label-danger"];
+                        }
+                        if (contCAP>3)
+                        {
+                          ModalidadTodasconOrdenCAP[i].AduC2017PPintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ['+500']               
+                      
+                    ModalidadTodasconOrdenGAIIP = _.sortBy(ModalidadTodasconOrdenGAIIP, "['+500']");
+                     
+                     var contGAIIP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIIP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIIP= contGAIIP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIIP[i]['+500']) == parseFloat(ModalidadTodasconOrdenGAIIP[i-1]['+500'])) 
+                              {                                 
+                                contGAIIP= contGAIIP;
+                              }
+                              else
+                              {
+                                contGAIIP=contGAIIP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIIP==1) 
+                        {
+                               ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = ["label label-success"];
+                        }
+                        if (contGAIIP==2) 
+                        {
+                               ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = ["label label-warning"];
+                        }
+                        if (contGAIIIP==3) 
+                        {
+                               ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = ["label label-danger"];
+                        }
+                        if (contGAIIP>3)
+                        {
+                          ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = [];
+                        }
+                        }   
+
+                       ////////// Campo ['+1000']                
+                      
+                    ModalidadTodasconOrdenCAIIP = _.sortBy(ModalidadTodasconOrdenCAIIP, "['+1000']");
+                     
+                     var contCAIIP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIIP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIIP= contCAIIP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIIP[i]['+1000']) == parseFloat(ModalidadTodasconOrdenCAIIP[i-1]['+1000'])) 
+                              {                                 
+                                contCAIIP= contCAIIP;
+                              }
+                              else
+                              {
+                                contCAIIP=contCAIIP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIIP==1) 
+                        {
+                               ModalidadTodasconOrdenCAIIP[i].AduC2020PPintada = ["label label-success"];
+                        }
+                        if (contCAIIP==2) 
+                        {
+                               ModalidadTodasconOrdenCAIIP[i].AduC2020PPintada = ["label label-warning"];
+                        }
+                        if (contCAIIP==3) 
+                        {
+                               ModalidadTodasconOrdenCAIIP[i].AduC2020PPintada = ["label label-danger"];
+                        }
+                        if (contCAIIP>3)
+                        {
+                          ModalidadTodasconOrdenCAIIP[i].AduC2020PPintada = [];
+                        }
+                        }   
+
+                      ////////// Campo ["FS min"]               
+                          
+                    ModalidadTodasconOrdenGAIIIP = _.sortBy(ModalidadTodasconOrdenGAIIIP, '["FS min"]');
+                     
+                     var contGAIIIP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenGAIIIP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contGAIIIP= contGAIIIP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenGAIIIP[i]["FS min"]) == parseFloat(ModalidadTodasconOrdenGAIIIP[i-1]["FS min"])) 
+                              {                                 
+                                contGAIIIP= contGAIIIP;
+                              }
+                              else
+                              {
+                                contGAIIIP=contGAIIIP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contGAIIIP==1) 
+                        {
+                               ModalidadTodasconOrdenGAIIIP[i].AduC2021PPintada = ["label label-success"];
+                        }
+                        if (contGAIIIP==2) 
+                        {
+                               ModalidadTodasconOrdenGAIIIP[i].AduC2021PPintada = ["label label-warning"];
+                        }
+                        if (contGAIIIP==3) 
+                        {
+                               ModalidadTodasconOrdenGAIIIP[i].AduC2021PPintada = ["label label-danger"];
+                        }
+                        if (contGAIIIP>3)
+                        {
+                          ModalidadTodasconOrdenGAIIIP[i].AduC2021PPintada = [];
+                        }
+                        }   
+
+                  
+                   ////////// Campo ["Fs/kg"]              
+                     
+                    ModalidadTodasconOrdenCAIIIP = _.sortBy(ModalidadTodasconOrdenCAIIIP, '["Fs/kg"]');
+                     
+                     var contCAIIIP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCAIIIP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCAIIIP= contCAIIIP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]) == parseFloat(ModalidadTodasconOrdenCAIIIP[i-1]["Fs/kg"])) 
+                              {                                 
+                                contCAIIIP= contCAIIIP;
+                              }
+                              else
+                              {
+                                contCAIIIP=contCAIIIP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCAIIIP==1) 
+                        {
+                               ModalidadTodasconOrdenCAIIIP[i].AduC2025PPintada = ["label label-success"];
+                        }
+                        if (contCAIIIP==2) 
+                        {
+                               ModalidadTodasconOrdenCAIIIP[i].AduC2025PPintada = ["label label-warning"];
+                        }
+                        if (contCAIIIP==3) 
+                        {
+                               ModalidadTodasconOrdenCAIIIP[i].AduC2025PPintada = ["label label-danger"];
+                        }
+                        if (contCAIIIP>3)
+                        {
+                          ModalidadTodasconOrdenCAIIIP[i].AduC2025PPintada = [];
+                        }
+                        }      
+                          
+                      
+
+                          ////////// Campo["Gastos Embarque"]                
+                       
+                    ModalidadTodasconOrdenCPCP = _.sortBy(ModalidadTodasconOrdenCPCP, '["Gastos Embarque"]');
+                     
+                     var contCPCP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenCPCP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contCPCP= contCPCP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPCP[i-1]["Gastos Embarque"])) 
+                              {                                 
+                                contCPCP= contCPCP;
+                              }
+                              else
+                              {
+                                contCPCP=contCPCP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contCPCP==1) 
+                        {
+                               ModalidadTodasconOrdenCPCP[i].AduC4015PPintada = ["label label-success"];
+                        }
+                        if (contCPCP==2) 
+                        {
+                               ModalidadTodasconOrdenCPCP[i].AduC4015PPintada = ["label label-warning"];
+                        }
+                        if (contCPCP==3) 
+                        {
+                               ModalidadTodasconOrdenCPCP[i].AduC4015PPintada = ["label label-danger"];
+                        }
+                        if (contCPCP>3)
+                        {
+                          ModalidadTodasconOrdenCPCP[i].AduCPCPintada = [];
+                        }
+                        } 
+
+                   ////////// Campo Via////////////////////////////
+                       
+                    ModalidadTodasconOrdenotrosP = _.sortBy(ModalidadTodasconOrdenotrosP, 'Via');
+                     
+                     var contOTROP=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenotrosP.length-1; i++){                                                    
+                          if (i==0){                            
+                            contOTROP= contOTROP + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenotrosP[i].Via) == parseFloat(ModalidadTodasconOrdenotrosP[i-1].Via)) 
+                              {                                 
+                                contOTROP= contOTROP;
+                              }
+                              else
+                              {
+                                contOTROP=contOTROP + 1;                               }
+                            }                                                        
+                          
+
+                        if (contOTROP==1) 
+                        {
+                               ModalidadTodasconOrdenotrosP[i].AduC4016PPintada = ["label label-success"];
+                        }
+                        if (contOTROP==2) 
+                        {
+                               ModalidadTodasconOrdenotrosP[i].AduC4016PPintada = ["label label-warning"];
+                        }
+                        if (contOTROP==3) 
+                        {
+                               ModalidadTodasconOrdenotrosP[i].AduC4016PPintada = ["label label-danger"];
+                        }
+                        if (contOTROP>3)
+                        {
+                          ModalidadTodasconOrdenotrosP[i].AduC4016PPintada = [];
+                        }
+                        }          
+
+                  ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4017P = _.sortBy(ModalidadTodasconOrdenC4017P, "['+100 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4017P=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4017P.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4017P= contC4017P + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4017P= contC4017P;
+                              }
+                              else
+                              {
+                                contC4017P=contC4017P + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4017P==1) 
+                        {
+                               ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = ["label label-success"];
+                        }
+                        if (contC4017P==2) 
+                        {
+                               ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = ["label label-warning"];
+                        }
+                        if (contC4017P==3) 
+                        {
+                               ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = ["label label-danger"];
+                        }
+                        if (contC4017P>3)
+                        {
+                          ModalidadTodasconOrdenC4017P[i].AduC17Pintada = [];
+                        }
+                        }   
+
+                   ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC401718P = _.sortBy(ModalidadTodasconOrdenC401718P, "['+300 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC401718P=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC401718P.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC401718P= contC401718P + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC401718P= contC401718P;
+                              }
+                              else
+                              {
+                                contC401718P=contC401718P + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC401718P==1) 
+                        {
+                               ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = ["label label-success"];
+                        }
+                        if (contC401718P==2) 
+                        {
+                               ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = ["label label-warning"];
+                        }
+                        if (contC401718P==3) 
+                        {
+                               ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = ["label label-danger"];
+                        }
+                        if (contC401718P>3)
+                        {
+                          ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = [];
+                        }
+                        } 
+
+
+                   ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4020P = _.sortBy(ModalidadTodasconOrdenC4020P, "['+500 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4020P=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4020P.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4020P= contC4020P + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4020P= contC4020P;
+                              }
+                              else
+                              {
+                                contC4020P=contC4020P + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4020P==1) 
+                        {
+                               ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = ["label label-success"];
+                        }
+                        if (contC4020P==2) 
+                        {
+                               ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = ["label label-warning"];
+                        }
+                        if (contC4020P==3) 
+                        {
+                               ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = ["label label-danger"];
+                        }
+                        if (contC4020P>3)
+                        {
+                          ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = [];
+                        }
+                        }       
+
+                         ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4021P = _.sortBy(ModalidadTodasconOrdenC4021P, "['+1000 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4021P=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4021P.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4021P= contC4021P + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4021P= contC4021P;
+                              }
+                              else
+                              {
+                                contC4021P=contC4021P + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4021P==1) 
+                        {
+                               ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = ["label label-success"];
+                        }
+                        if (contC4021P==2) 
+                        {
+                               ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = ["label label-warning"];
+                        }
+                        if (contC4021P==3) 
+                        {
+                               ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = ["label label-danger"];
+                        }
+                        if (contC4021P>3)
+                        {
+                          ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = [];
+                        }
+                        } 
+                  
+                    $scope.ModalidadTodasAereaPasajero=ModalidadTodas;                
+                   
+               }                  
+                     
+
+                    ///////////////////////////////////////////////////////////////////////////
+
+
 
 
                      $scope.ModalidadTodas= ModalidadTodas;
                      console.log($scope.ModalidadTodas);
                   
-                    // if ($scope.selectedPerfil.id == 1) {
-                         //  $scope.Show2 = true;
-                         //  }
+                   
                   }, function errorCallback(response) {
                     alert(response.statusText);
                 });
