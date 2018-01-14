@@ -4951,8 +4951,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                    
                      if (Modalidad == 'Bodegajes') {
                         $scope.Show1=true;
-                         $scope.Show11=true;
-                          $scope.Show111=true;
+                        $scope.Show11=true;
+                        $scope.Show111=true;
                         $scope.Show2=false;
                         $scope.Show3=false;
                         $scope.Show4=false;
@@ -4972,7 +4972,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           var ModalidadTodasBodegajeaduaneromin=[];
                          var ModalidadTodasconOrdenBodegajeaduaneromin=[];
                           var ModalidadTodasBodegajeaduanerootro=[];
-                         var ModalidadTodasconOrdenBodegajeaduanerootro=[];                       
+                         var ModalidadTodasconOrdenBodegajeaduanerootro=[];
+                                                
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) { 
                           ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
                           Unobjeto.TarifaValor=ModalidadDeUnProveedor.TarifaValor;
@@ -4983,7 +4984,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         ModalidadTodasBodegajeaduanero.push([{TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros,Email:Unobjeto.Email}]);
                         $scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
                         ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
-                        console.log( ModalidadTodasBodegajeaduanero);
+                        console.log( $scope.ModalidadTodasBodegajeaduanero);
                           
                          });
                       ///////////////////////// tarifa Valor////////////////////
@@ -8162,62 +8163,70 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalsencprov) {
                               consterrenacionalsencprov.Email = consterrenacionalsenc.Email                         
-                              ModalidadTodasSencillo.push(consterrenacionalsencprov);                            
-                              ModalidadTodasconOrdenS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenMinimaS =ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenGAS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenGAIIS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenGAIIIS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenCAS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenCAIIS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenCAIIIS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenCPCS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenotrosS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC4017S = ModalidadTodasSencillo; 
-                              ModalidadTodasconOrdenC401718S = ModalidadTodasSencillo; 
-                              ModalidadTodasconOrdenC4020SS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC4021S = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC4022S = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC4030S = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC20ESTS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC40ESTS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC20ESPS = ModalidadTodasSencillo;
-                              ModalidadTodasconOrdenC40ESPS = ModalidadTodasSencillo;
+                              ModalidadTodasTerreNacionalSencillo.push(consterrenacionalsencprov);                            
+                              ModalidadTodasconOrdenS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenMinimaS =ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenGAS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenGAIIS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenGAIIIS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenCAS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenCAIIS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenCAIIIS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenCPCS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenotrosS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC4017S = ModalidadTodasTerreNacionalSencillo; 
+                              ModalidadTodasconOrdenC401718S = ModalidadTodasTerreNacionalSencillo; 
+                              ModalidadTodasconOrdenC4020SS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC4021S = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC4022S = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC4030S = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC20ESTS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC40ESTS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC20ESPS = ModalidadTodasTerreNacionalSencillo;
+                              ModalidadTodasconOrdenC40ESPS = ModalidadTodasTerreNacionalSencillo;
 
                             });
                         });
 
-                         ModalidadTodasSencillo = _.sortBy(ModalidadTodasSencillo, 'PuertoDestino','PaisOrigen');
-                         console.log(ModalidadTodasSencillo);                             
+                         ModalidadTodasTerreNacionalSencillo = _.sortBy(ModalidadTodasTerreNacionalSencillo, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodasTerreNacionalSencillo);                             
 
 
                              ////////// Campo ["Sencillo Standar (150Cajas)"]/////////////////////////////// 
                       
                      ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA,'PuertoDestino','PaisOrigen','["Sencillo Standar (150Cajas)"]');
-                     
+                     console.log(ModalidadTodasconOrdenGA);
                      var contGA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
                           if (i==0)
                           {                            
-                             contGA= contGA + 1;                            
+                             contGA= contGA + 1; 
+                             console.log('Es igual a cero');                           
                           }
                          else
                           { 
                               if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
                               {
+                               console.log('Puerto igual');   
                                 if(parseFloat( ModalidadTodasconOrdenGA[i]["Sencillo Standar (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGA[i-1]["Sencillo Standar (150Cajas)"])) 
-                                { 
+                                {                                    
                                   contGA= contGA;
+                                  console.log('numero igual'); 
+                                  console.log(contGA);  
                                 }
                                 else
-                                {
-                                  contGA=contGA + 1;              
+                                {                                  
+                                  contGA=contGA + 1; 
+                                  console.log('numero diferete'); 
+                                  console.log(contGA);               
                                 }                  
                               }                              
                              else
                               {                               
                                contGA=1;
+                               console.log('Puerto diferete'); 
+                               console.log(contGA);
                               }
                               
                           }                                                   
@@ -8227,22 +8236,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         if (contGA==1) 
                         {
                                ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
+                               console.log('verde');
                         }
                         if (contGA==2) 
                         {
                                ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
+                               console.log('amarillo');
                         }
                         if (contGA==3) 
                         {
                                ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
+                               console.log('rojo');
                         }
                         if (contGA>3)
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          console.log('blanco');
                         }
                         }    
 
-                    ////////// Campo ["8-12 ton/M3"]                
+                    ////////// Campo Sencillo Especial               
                        
                      ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PaisOrigen','["Sencillo Especial"]');
                      
@@ -8292,17 +8305,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }  
 
-                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasSencillo;  
+                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasTerreNacionalSencillo;  
 
 
                         //Terrestre Nacional Patineta
-                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpat) { 
+                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpat) {                         
                          ModalidadDeUnProveedor = consterrenacionalpat.TerreNacionalPatineta.TerresNacionalPatineta
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalpatprov) {
-
-
-                              consterrenacionalpatprov.Email = consterrenacionalpatprov.Email                         
+                              consterrenacionalpatprov.Email = consterrenacionalpat.Email                         
                               ModalidadTodasPatineta.push(consterrenacionalpatprov);
                               ModalidadTodasconOrden = ModalidadTodasPatineta;
                               ModalidadTodasconOrdenMinima = ModalidadTodasPatineta;
