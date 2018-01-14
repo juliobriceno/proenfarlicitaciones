@@ -4872,6 +4872,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             $scope.GetConsolidadoDatos = function () {
                     var Data={};                   
                     var ModalidadTodas = [];
+                    var ModalidadTodasTurbo = [];
+                    var ModalidadTodasSencillo = [];
+                    var ModalidadTodasPatineta = [];
+                    var ModalidadTodasUrbano = [];
+                    var ModalidadTodasSencilloII = [];
+                    var ModalidadTodasTonelada = [];
+                    var ModalidadTodasCarguero = [];
+                    var ModalidadTodasPasajero = [];
                     var ModalidadTodasconOrden = [];
                     var ModalidadTodasconOrdenMinima = [];
                     var ModalidadTodasconOrdenGA = [];
@@ -5399,6 +5407,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          $scope.Show12=false;
                         $scope.Show13=false;
 
+                        var ModalidadTodasconOrden= [];
+                        var ModalidadGrupoMaritimo= [];
+                        var ModalidadGrupoTerrestre= [];
+
                        angular.forEach($scope.ConsolidadoDatos, function(consaduana) { 
                          ModalidadDeUnProveedor = consaduana.Aduana.Aduanas                         
                             angular.forEach(ModalidadDeUnProveedor, function(consaduanasprov) {
@@ -5417,27 +5429,41 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             });
 
                         });  
-                                         
-                  //////// campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
-                     
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["Tarifa % Advalorem/ FOB"]');
-                     ModalidadTodasconOrdencolor=ModalidadTodasconOrden;
+
+                       ModalidadTodas = _.sortBy(ModalidadTodas, 'Via');
+                       
+                       //console.log(ModalidadTodas);
+                       //$scope.groups = _.groupBy(ModalidadTodas, "Via");                     
+
+                    //////// Aerea campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
+                      ModalidadTodasconOrden = _.sortBy( ModalidadTodasconOrden, 'Via','["Tarifa % Advalorem/ FOB"]');
+                
                      var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]) == parseFloat(ModalidadTodasconOrden[i-1]["Tarifa % Advalorem/ FOB"])) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
-                              {
-                                cont=cont + 1;                               }
-                            }                                                        
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
+                          }
+                         else
+                          { 
+                             if(ModalidadTodasconOrden[i].Via == ModalidadTodasconOrden[i-1].Via)
+                              {
+                                if(parseFloat(ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]) == parseFloat(ModalidadTodasconOrden[i-1]["Tarifa % Advalorem/ FOB"])) 
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }    
 
                         if (cont==1) 
                         {
@@ -5453,31 +5479,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (cont>3)
                         {
-                          $scope.Showsortminima = [];
+                          ModalidadTodasconOrden[i].AdutarifaPintada = [];
                         }
                         }
 
+
               ////////////////// Campo Minima ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, 'Minima');
-                   console.log(ModalidadTodasconOrdenMinima);
-                    
-                     var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i].Minima) == parseFloat(ModalidadTodasconOrdenMinima[i-1].Minima)) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
-                              {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima,'Via','Minima');
+                    var contmin=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
+                          }
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenMinima[i].Via == ModalidadTodasconOrdenMinima[i-1].Via)
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenMinima[i].Minima) == parseFloat(ModalidadTodasconOrdenMinima[i-1].Minima)) 
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }   
 
                         if (contmin==1) 
                         {
@@ -5499,24 +5534,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                   ////////// Campo ["Gastos Adicionales"] /////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["Gastos Adicionales"]');
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'Via', '["Gastos Adicionales"]');
                      
                      var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Gastos Adicionales"])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
-                              {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
+                          }
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenGA[i].Via == ModalidadTodasconOrdenGA[i-1].Via)
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Gastos Adicionales"])) 
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }   
 
                         if (contGA==1) 
                         {
@@ -5534,28 +5579,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduGAPintada = [];
                         }
-                        }         
-                     
+                        }
 
-                    ////////// Campo ["Conceptos Adicionales"]                   
+                    ////////// Campo ["Conceptos Adicionales"] ////////////////////////////////                  
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Conceptos Adicionales"]');
-                     var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Conceptos Adicionales"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
-                              {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'Via','["Conceptos Adicionales"]');
+                    var contCA=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
+                          }
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenCA[i].Via == ModalidadTodasconOrdenCA[i-1].Via)
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Conceptos Adicionales"])) 
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }   
 
                         if (contCA==1) 
                         {
@@ -5573,27 +5627,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduCAPintada = [];
                         }
-                        }   
+                        } 
 
-                      ////////// Campo ["Gastos Adicionales dos"]                   
+                      ////////// Campo ["Gastos Adicionales dos"] //////////////////////////////////////                  
                       
-                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["Gastos Adicionales dos"]');
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, 'Via', '["Gastos Adicionales dos"]');
                      
-                     var contGAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAII= contGAII + 1;
+                      var contGAII=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAII= contGAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["Gastos Adicionales dos"])) 
-                              {                                 
-                                contGAII= contGAII;
-                              }
-                              else
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenGAII[i].Via == ModalidadTodasconOrdenGAII[i-1].Via)
                               {
-                                contGAII=contGAII + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["Gastos Adicionales dos"])) 
+                                { 
+                                  contGAII= contGAII;
+                                }
+                                else
+                                {
+                                  contGAII=contGAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAII=1;
+                              }
+                              
+                          }                                                   
                           
 
                         if (contGAII==1) 
@@ -5604,7 +5669,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                                ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["label label-warning"];
                         }
-                        if (contGAIII==3) 
+                        if (contGAII==3) 
                         {
                                ModalidadTodasconOrdenGAII[i].AduGAIIPintada = ["label label-danger"];
                         }
@@ -5612,27 +5677,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAII[i].AduGAIIPintada = [];
                         }
-                        }   
+                        }
 
                        ////////// Campo ["Conceptos Adicionales dos"]                   
                       
-                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Conceptos Adicionales dos"]');
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, 'Via', '["Conceptos Adicionales dos"]');
                      
-                     var contCAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAII= contCAII + 1;
+                    var contCAII=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAII= contCAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Conceptos Adicionales dos"])) 
-                              {                                 
-                                contCAII= contCAII;
-                              }
-                              else
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenCAII[i].Via == ModalidadTodasconOrdenCAII[i-1].Via)
                               {
-                                contCAII=contCAII + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Conceptos Adicionales dos"])) 
+                                { 
+                                  contCAII= contCAII;
+                                }
+                                else
+                                {
+                                  contCAII=contCAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAII=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCAII==1) 
@@ -5652,26 +5728,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduCAIIPintada = [];
                         }
                         }   
-
                       ////////// Campo ["Gastos Adicionales tres"]                   
                           
-                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["Gastos Adicionales tres"]');
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'Via','["Gastos Adicionales tres"]');
                      
-                     var contGAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIII= contGAIII + 1;
+                      var contGAIII=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAIII= contGAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["Gastos Adicionales tres"])) 
-                              {                                 
-                                contGAIII= contGAIII;
-                              }
-                              else
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenGAIII[i].Via == ModalidadTodasconOrdenGAIII[i-1].Via)
                               {
-                                contGAIII=contGAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["Gastos Adicionales tres"])) 
+                                { 
+                                  contGAIII= contGAIII;
+                                }
+                                else
+                                {
+                                  contGAIII=contGAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIII=1;
+                              }
+                              
+                          }                                                   
                           
 
                         if (contGAIII==1) 
@@ -5690,28 +5776,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = [];
                         }
-                        }   
+                        }
 
                   
-                   ////////// Campo ["Conceptos Adicionales dos"]                   
+                   ////////// Campo ["Conceptos Adicionales tres"]                   
                      
-                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Conceptos Adicionales tres"]');
+                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, 'Via','["Conceptos Adicionales tres"]');
                      
                      var contCAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIII= contCAIII + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAIII= contCAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Conceptos Adicionales tres"])) 
-                              {                                 
-                                contCAIII= contCAIII;
-                              }
-                              else
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenCAIII[i].Via == ModalidadTodasconOrdenCAIII[i-1].Via)
                               {
-                                contCAIII=contCAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Conceptos Adicionales tres"])) 
+                                { 
+                                  contCAIII= contCAIII;
+                                }
+                                else
+                                {
+                                  contCAIII=contCAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIII=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCAIII==1) 
@@ -5730,30 +5827,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = [];
                         }
-                        }      
+                        }   
                           
                       
 
                           ////////// Campo ["Costo Planificacion Caja"]                  
                        
-                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["Costo Planificacion Caja"]');
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, 'Via', '["Costo Planificacion Caja"]');
                      
                      var contCPC=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCPC= contCPC + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Costo Planificacion Caja"])) 
-                              {                                 
-                                contCPC= contCPC;
-                              }
-                              else
-                              {
-                                contCPC=contCPC + 1;                               }
-                            }                                                        
+                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCPC= contCPC + 1;                            
+                          }
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenCPC[i].Via == ModalidadTodasconOrdenCPC[i-1].Via)
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Costo Planificacion Caja"])) 
+                                { 
+                                  contCPC= contCPC;
+                                }
+                                else
+                                {
+                                  contCPC=contCPC + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCPC=1;
+                              }
+                              
+                          }   
 
                         if (contCPC==1) 
                         {
@@ -5775,24 +5882,35 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                    ////////// Campo Otros////////////////////////////
                        
-                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'Otros');
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'Via', 'Otros');
                      
-                     var contOTRO=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
-                          if (i==0){                            
-                            contOTRO= contOTRO + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenotros[i].Otros) == parseFloat(ModalidadTodasconOrdenotros[i-1].Otros)) 
-                              {                                 
-                                contOTRO= contOTRO;
-                              }
-                              else
-                              {
-                                contOTRO=contOTRO + 1;                               }
-                            }                                                        
+                       var contOTRO=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contOTRO= contOTRO + 1;                            
+                          }
+                         else
+                          { 
+                             if(ModalidadTodasconOrdenotros[i].Via == ModalidadTodasconOrdenotros[i-1].Via)
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenotros[i].Otros) == parseFloat(ModalidadTodasconOrdenotros[i-1]["Costo Planificacion Otros"])) 
+                                { 
+                                  contOTRO= contOTRO;
+                                }
+                                else
+                                {
+                                  contOTRO=contOTRO + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contOTRO=1;
+                              }
+                              
+                          }   
+
 
                         if (contOTRO==1) 
                         {
@@ -5810,11 +5928,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotros[i].AduotroPintada = [];
                         }
-                        }               
-                     
-                   
-               }
+                        }  
 
+                  
+               }
+          ///////////////////////////////////////////////////OTM///////////////////////////////////////////////////
                       if (Modalidad == 'OTM') {
                       
                         $scope.Show1=false;
@@ -5861,28 +5979,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                             });
                         });
-                         
+
+                        ModalidadTodas = _.sortBy(ModalidadTodas, 'Destino','Origen');
+                         console.log(ModalidadTodas);
                        
                          ////////  Campo ["C 20 hasta 4-5 Ton"] //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["C 20 hasta 4-5 Ton"]');
-                     console.log(ModalidadTodasconOrden);
-                    
-                     var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Destino','Origen','["C 20 hasta 4-5 Ton"]');
+                                         
+                      var cont=0;
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20 hasta 4-5 Ton"])) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
-                                cont=cont + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrden[i].Otros) == parseFloat(ModalidadTodasconOrden[i-1]["Costo Planificacion Otros"])) 
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (cont==1) 
@@ -5905,24 +6035,33 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
               ////////////////// ["C 20 hasta 8 Ton"] ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["C 20 hasta 8 Ton"]');
-                   console.log(ModalidadTodasconOrdenMinima);
-                    
-                     var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima,'Destino','Origen','["C 20 hasta 8 Ton"]');
+                       var contmin=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["C 20 hasta 8 Ton"])) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenMinima[i].Destino == ModalidadTodasconOrdenMinima[i-1].Destino) && (ModalidadTodasconOrdenMinima[i].Origen == ModalidadTodasconOrdenMinima[i-1].Origen))
                               {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["C 20 hasta 8 Ton"])) 
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }                                                         
                           
 
                         if (contmin==1) 
@@ -5941,27 +6080,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                         }
-                        }                    
+                        } 
+                                          
 
                   ////////// Campo ["C 20 hasta 10 Ton"] /////////////////////////////// 
-                      
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["C 20 hasta 10 Ton"]');
+                       ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'Destino','Origen', '["C 20 hasta 10 Ton"]');
                      
-                     var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
+                      var contGA=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 20 hasta 10 Ton"])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenGA[i].Destino == ModalidadTodasconOrdenGA[i-1].Destino) && (ModalidadTodasconOrdenGA[i].Origen == ModalidadTodasconOrdenGA[i-1].Origen))
                               {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 20 hasta 10 Ton"])) 
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contGA==1) 
@@ -5980,27 +6130,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
                         }
-                        }         
-                     
+                        }
+                  
 
                     ////////// Campo ["C 20 hasta 17 Ton"]                  
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["C 20 hasta 17 Ton"]');
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'Destino','Origen','["C 20 hasta 17 Ton"]');
                      var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["C 20 hasta 17 Ton"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenCA[i].Destino == ModalidadTodasconOrdenCA[i-1].Destino) && (ModalidadTodasconOrdenCA[i].Origen == ModalidadTodasconOrdenCA[i-1].Origen))
                               {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["C 20 hasta 17 Ton"])) 
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contCA==1) 
@@ -6019,27 +6180,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                         }
-                        }   
+                        }  
 
                       ////////// Campo ["C 20 hasta 19 Ton"]                 
                       
-                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["C 20 hasta 19 Ton"]');
+                   ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII,'Destino','Origen','["C 20 hasta 19 Ton"]');
                      
                      var contGAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAII= contGAII + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAII= contGAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 20 hasta 19 Ton"])) 
-                              {                                 
-                                contGAII= contGAII;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenGAII[i].Destino == ModalidadTodasconOrdenGAII[i-1].Destino) && (ModalidadTodasconOrdenGAII[i].Origen == ModalidadTodasconOrdenGAII[i-1].Origen))
                               {
-                                contGAII=contGAII + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 20 hasta 19 Ton"])) 
+                                { 
+                                  contGAII= contGAII;
+                                }
+                                else
+                                {
+                                  contGAII=contGAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAII=1;
+                              }
+                              
+                          }                                                 
                           
 
                         if (contGAII==1) 
@@ -6058,27 +6230,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                         }
-                        }   
+                        }  
 
                        ////////// Campo ["C 20 hasta 20 Ton"]                  
-                      
-                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["C 20 hasta 20 Ton"]');
+                       ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII,'Destino','Origen','["C 20 hasta 20 Ton"]');
                      
-                     var contCAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAII= contCAII + 1;
+                       var contCAII=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAII= contCAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["C 20 hasta 20 Ton"])) 
-                              {                                 
-                                contCAII= contCAII;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenCAII[i].Destino == ModalidadTodasconOrdenCAII[i-1].Destino) && (ModalidadTodasconOrdenCAII[i].Origen == ModalidadTodasconOrdenCAII[i-1].Origen))
                               {
-                                contCAII=contCAII + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["C 20 hasta 20 Ton"])) 
+                                { 
+                                  contCAII= contCAII;
+                                }
+                                else
+                                {
+                                  contCAII=contCAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAII=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contCAII==1) 
@@ -6097,28 +6279,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
-                        }   
+                        }         
+                   
 
                       ////////// Campo ["C 20 hasta 21 Ton"]                  
                           
-                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["C 20 hasta 21 Ton"]');
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'Destino','Origen','["C 20 hasta 21 Ton"]');
                      
                      var contGAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIII= contGAIII + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["C 20 hasta 21 Ton"])) 
-                              {                                 
-                                contGAIII= contGAIII;
-                              }
-                              else
-                              {
-                                contGAIII=contGAIII + 1;                               }
-                            }                                                        
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contGAIII= contGAIII + 1;                            
+                          }
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenGAIII[i].Destino == ModalidadTodasconOrdenGAIII[i-1].Destino) && (ModalidadTodasconOrdenGAIII[i].Origen == ModalidadTodasconOrdenGAIII[i-1].Origen))
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["C 20 hasta 21 Ton"])) 
+                                { 
+                                  contGAIII= contGAIII;
+                                }
+                                else
+                                {
+                                  contGAIII=contGAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIII=1;
+                              }
+                              
+                          } 
 
                         if (contGAIII==1) 
                         {
@@ -6136,29 +6329,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                         }
-                        }   
+                        }       
 
                   
                    ////////// Campo ["C 20 hasta 25 Ton"]                
                      
-                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["C 20 hasta 25 Ton"]');
+                     ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, 'Destino','Origen','["C 20 hasta 25 Ton"]');
                      
                      var contCAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIII= contCAIII + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["C 20 hasta 25 Ton"])) 
-                              {                                 
-                                contCAIII= contCAIII;
-                              }
-                              else
-                              {
-                                contCAIII=contCAIII + 1;                               }
-                            }                                                        
+                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCAIII= contCAIII + 1;                            
+                          }
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenCAIII[i].Destino == ModalidadTodasconOrdenCAIII[i-1].Destino) && (ModalidadTodasconOrdenCAIII[i].Origen == ModalidadTodasconOrdenCAIII[i-1].Origen))
+                              {
+                                if(parseFloat(ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["C 20 hasta 25 Ton"])) 
+                                { 
+                                  contCAIII= contCAIII;
+                                }
+                                else
+                                {
+                                  contCAIII=contCAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIII=1;
+                              }
+                              
+                          }  
 
                         if (contCAIII==1) 
                         {
@@ -6176,29 +6379,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
                         }
-                        }      
-                          
-                      
+                        }  
 
-                          ////////// Campo ["C 40 hasta 15 Ton"]                 
+              /////////////////// ////////// Campo ["C 40 hasta 15 Ton"]  ////////////////////////////////////////////               
                        
-                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["C 40 hasta 15 Ton"]');
+                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, 'Destino','Origen','["C 40 hasta 15 Ton"]');
                      
-                     var contCPC=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCPC= contCPC + 1;
+                      var contCPC=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCPC= contCPC + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 40 hasta 15 Ton"])) 
-                              {                                 
-                                contCPC= contCPC;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenCPC[i].Destino == ModalidadTodasconOrdenCPC[i-1].Destino) && (ModalidadTodasconOrdenCPC[i].Origen == ModalidadTodasconOrdenCPC[i-1].Origen))
                               {
-                                contCPC=contCPC + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 40 hasta 15 Ton"])) 
+                                { 
+                                  contCPC= contCPC;
+                                }
+                                else
+                                {
+                                  contCPC=contCPC + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCPC=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contCPC==1) 
@@ -6217,27 +6429,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
                         }
-                        } 
+                        }    
 
                    ////////// Campo ["C 40 hasta 16 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, '["C 40 hasta 16 Ton"]');
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'Destino','Origen','["C 40 hasta 16 Ton"]');
                      
-                     var contOTRO=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
-                          if (i==0){                            
-                            contOTRO= contOTRO + 1;
+                       var contOTRO=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contOTRO= contOTRO + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 hasta 16 Ton"])) 
-                              {                                 
-                                contOTRO= contOTRO;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenotros[i].Destino == ModalidadTodasconOrdenotros[i-1].Destino) && (ModalidadTodasconOrdenotros[i].Origen == ModalidadTodasconOrdenotros[i-1].Origen))
                               {
-                                contOTRO=contOTRO + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 hasta 16 Ton"])) 
+                                { 
+                                  contOTRO= contOTRO;
+                                }
+                                else
+                                {
+                                  contOTRO=contOTRO + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contOTRO=1;
+                              }
+                              
+                          }                                                           
                           
 
                         if (contOTRO==1) 
@@ -6256,27 +6479,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                         }
-                        }          
+                        }   
 
                   ////////// Campo ["C 40 hasta 17 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, '["C 40 hasta 17 Ton"]');
+                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017,'Destino','Origen','["C 40 hasta 17 Ton"]');
                      
                      var contC4017=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4017= contC4017 + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4017= contC4017 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40 hasta 17 Ton"])) 
-                              {                                 
-                                contC4017= contC4017;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenC4017[i].Destino == ModalidadTodasconOrdenC4017[i-1].Destino) && (ModalidadTodasconOrdenC4017[i].Origen == ModalidadTodasconOrdenC4017[i-1].Origen))
                               {
-                                contC4017=contC4017 + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40 hasta 17 Ton"])) 
+                                { 
+                                  contC4017= contC4017;
+                                }
+                                else
+                                {
+                                  contC4017=contC4017 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4017=1;
+                              }
+                              
+                          }                                                              
                           
 
                         if (contC4017==1) 
@@ -6295,27 +6529,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
                         }
-                        }   
+                        }    
 
                    ////////// Campo ["C 40 hasta 17-18 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, '["C 40 hasta 17-18 Ton"]');
+                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, 'Destino','Origen','["C 40 hasta 17-18 Ton"]');
                      
-                     var contC401718=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC401718= contC401718 + 1;
+                    var contC401718=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC401718= contC401718 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]) == parseFloat(ModalidadTodasconOrdenC401718[i-1]["C 40 hasta 17-18 Ton"])) 
-                              {                                 
-                                contC401718= contC401718;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenC401718[i].Destino == ModalidadTodasconOrdenC401718[i-1].Destino) && (ModalidadTodasconOrdenC401718[i].Origen == ModalidadTodasconOrdenC401718[i-1].Origen))
                               {
-                                contC401718=contC401718 + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]) == parseFloat(ModalidadTodasconOrdenC401718[i-1]["C 40 hasta 17-18 Ton"])) 
+                                { 
+                                  contC401718= contC401718;
+                                }
+                                else
+                                {
+                                  contC401718=contC401718 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC401718=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contC401718==1) 
@@ -6339,23 +6584,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                    ////////// Campo ["C 40 hasta 20 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, '["C 40 hasta 20 Ton"]');
+                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, 'Destino','Origen','["C 40 hasta 20 Ton"]');
                      
                      var contC4020=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4020= contC4020 + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4020= contC4020 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenC4020[i-1]["C 40 hasta 20 Ton"])) 
-                              {                                 
-                                contC4020= contC4020;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenC4020[i].Destino == ModalidadTodasconOrdenC4020[i-1].Destino) && (ModalidadTodasconOrdenC4020[i].Origen == ModalidadTodasconOrdenC4020[i-1].Origen))
                               {
-                                contC4020=contC4020 + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenC4020[i-1]["C 40 hasta 20 Ton"])) 
+                                { 
+                                  contC4020= contC4020;
+                                }
+                                else
+                                {
+                                  contC4020=contC4020 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4020=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contC4020==1) 
@@ -6374,27 +6630,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
                         }
-                        }       
+                        }      
 
                          ////////// Campo ["C 40 hasta 21 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, '["C 40 hasta 21 Ton"]');
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, 'Destino','Origen','["C 40 hasta 21 Ton"]');
                      
-                     var contC4021=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4021= contC4021 + 1;
+                    var contC4021=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4021= contC4021 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenC4021[i-1]["C 40 hasta 21 Ton"])) 
-                              {                                 
-                                contC4021= contC4021;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenC4021[i].Destino == ModalidadTodasconOrdenC4021[i-1].Destino) && (ModalidadTodasconOrdenC4021[i].Origen == ModalidadTodasconOrdenC4021[i-1].Origen))
                               {
-                                contC4021=contC4021 + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenC4021[i-1]["C 40 hasta 21 Ton"])) 
+                                { 
+                                  contC4021= contC4021;
+                                }
+                                else
+                                {
+                                  contC4021=contC4021 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4021=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contC4021==1) 
@@ -6413,27 +6680,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
                         }
-                        } 
+                        }    
 
                      ////////// Campo ["C 40 hasta 22 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC4022 = _.sortBy(ModalidadTodasconOrdenC4022, '["C 40 hasta 22 Ton"]');
+                    ModalidadTodasconOrdenC4022 = _.sortBy(ModalidadTodasconOrdenC4022, 'Destino','Origen','["C 40 hasta 22 Ton"]');
                      
-                     var contC4022=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4022= contC4022 + 1;
+                      var contC4022=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4022= contC4022 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]) == parseFloat(ModalidadTodasconOrdenC4022[i-1]["C 40 hasta 22 Ton"])) 
-                              {                                 
-                                contC4022= contC4022;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenC4022[i].Destino == ModalidadTodasconOrdenC4022[i-1].Destino) && (ModalidadTodasconOrdenC4022[i].Origen == ModalidadTodasconOrdenC4022[i-1].Origen))
                               {
-                                contC4022=contC4022 + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC4022[i]["C 40 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenC4022[i-1]["C 40 hasta 22 Ton"])) 
+                                { 
+                                  contC4022= contC4022;
+                                }
+                                else
+                                {
+                                  contC4022=contC4022 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4022=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contC4022==1) 
@@ -6456,23 +6734,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                        ////////// Campo ["C 40 hasta 30 Ton"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC4030 = _.sortBy(ModalidadTodasconOrdenC4030, '["C 40 hasta 30 Ton"]');
+                   ModalidadTodasconOrdenC4030 = _.sortBy(ModalidadTodasconOrdenC4030, 'Destino','Origen','["C 40 hasta 30 Ton"]');
                      
-                     var contC4030=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4030.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4030= contC4030 + 1;
+                    var contC4030=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenC4030.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4030= contC4030 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]) == parseFloat(ModalidadTodasconOrdenC4030[i-1]["C 40 hasta 30 Ton"])) 
-                              {                                 
-                                contC4030= contC4030;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenC4030[i].Destino == ModalidadTodasconOrdenC4030[i-1].Destino) && (ModalidadTodasconOrdenC4030[i].Origen == ModalidadTodasconOrdenC4030[i-1].Origen))
                               {
-                                contC4030=contC4030 + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]) == parseFloat(ModalidadTodasconOrdenC4030[i-1]["C 40 hasta 30 Ton"])) 
+                                { 
+                                  contC4030= contC4030;
+                                }
+                                else
+                                {
+                                  contC4030=contC4030 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4030=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contC4030==1) 
@@ -6491,27 +6780,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4030[i].AduC4030Pintada = [];
                         }
-                        }    
+                        }   
 
                      ////////// Campo ["Devolucion 20$ estandar"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC20EST  = _.sortBy(ModalidadTodasconOrdenC20EST , '["Devolucion 20$ estandar"]');
+                    ModalidadTodasconOrdenC20EST  = _.sortBy(ModalidadTodasconOrdenC20EST , 'Destino','Origen','["Devolucion 20$ estandar"]');
                      
                      var contC20EST=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC20EST.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC20EST= contC20EST + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenC20EST.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC20EST= contC20EST + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]) == parseFloat(ModalidadTodasconOrdenC20EST[i-1]["Devolucion 20$ estandar"])) 
-                              {                                 
-                                contC20EST= contC20EST;
-                              }
-                              else
+                         else
+                          { 
+                             if((ModalidadTodasconOrdenC20EST[i].Destino == ModalidadTodasconOrdenC20EST[i-1].Destino) && (ModalidadTodasconOrdenC20EST[i].Origen == ModalidadTodasconOrdenC20EST[i-1].Origen))
                               {
-                                contC20EST=contC20EST + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]) == parseFloat(ModalidadTodasconOrdenC20EST[i-1]["Devolucion 20$ estandar"])) 
+                                { 
+                                  contC20EST= contC20EST;
+                                }
+                                else
+                                {
+                                  contC20EST=contC20EST + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC20EST=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contC20EST==1) 
@@ -6530,27 +6830,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = [];
                         }
-                        } 
+                        }  
 
                        ////////// Campo ["Devolucion 40$ estandar"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC40EST = _.sortBy(ModalidadTodasconOrdenC40EST, '["Devolucion 40$ estandar"]');
+                    ModalidadTodasconOrdenC40EST = _.sortBy(ModalidadTodasconOrdenC40EST, 'Destino','Origen','["Devolucion 40$ estandar"]');
                      
-                     var contC40EST=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC40EST.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC40EST= contC40EST + 1;
+                      var contC40EST=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenC40EST.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC40EST= contC40EST + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]) == parseFloat(ModalidadTodasconOrdenC40EST[i-1]["Devolucion 40$ estandar"])) 
-                              {                                 
-                                contC40EST= contC40EST;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenC40EST[i].Destino == ModalidadTodasconOrdenC40EST[i-1].Destino) && (ModalidadTodasconOrdenC40EST[i].Origen == ModalidadTodasconOrdenC40EST[i-1].Origen))
                               {
-                                contC40EST=contC40EST + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]) == parseFloat(ModalidadTodasconOrdenC40EST[i-1]["Devolucion 40$ estandar"])) 
+                                { 
+                                  contC40EST= contC40EST;
+                                }
+                                else
+                                {
+                                  contC40EST=contC40EST + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC40EST=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contC40EST==1) 
@@ -6569,27 +6880,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = [];
                         }
-                        }      
+                        }  
 
                         ///// Campo ["Devolucion 20$ expreso"]////////////////////////////
                        
-                     ModalidadTodasconOrdenC20ESP  = _.sortBy(ModalidadTodasconOrdenC20ESP , '["Devolucion 20$ expreso"]');
+                     ModalidadTodasconOrdenC20ESP  = _.sortBy(ModalidadTodasconOrdenC20ESP , 'Destino','Origen','["Devolucion 20$ expreso"]');
                      
                      var contC20ESP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC20ESP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC20ESP= contC20ESP + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenC20ESP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC20ESP= contC20ESP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]) == parseFloat(ModalidadTodasconOrdenC20ESP[i-1]["Devolucion 20$ expreso"])) 
-                              {                                 
-                                contC20EST= contC20EST;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenC20ESP[i].Destino == ModalidadTodasconOrdenC20ESP[i-1].Destino) && (ModalidadTodasconOrdenC20ESP[i].Origen == ModalidadTodasconOrdenC20ESP[i-1].Origen))
                               {
-                                contC20ESP=contC20ESP + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]) == parseFloat(ModalidadTodasconOrdenC20ESP[i-1]["Devolucion 20$ expreso"])) 
+                                { 
+                                  contC20ESP= contC20ESP;
+                                }
+                                else
+                                {
+                                  contC20ESP=contC20ESP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC20ESP=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contC20ESP==1) 
@@ -6608,27 +6930,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = [];
                         }
-                        }   
+                        } 
 
                           ///// Campo ["Devolucion 40$ expreso"]////////////////////////////
                        
-                     ModalidadTodasconOrdenC40ESP  = _.sortBy(ModalidadTodasconOrdenC40ESP , '["Devolucion 40$ expreso"]');
+                      ModalidadTodasconOrdenC40ESP  = _.sortBy(ModalidadTodasconOrdenC40ESP , 'Destino','Origen','["Devolucion 40$ expreso"]');
                      
                      var contC40ESP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC40ESP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC40ESP= contC40ESP + 1;
+                       for (var i=0; i<=ModalidadTodasconOrdenC40ESP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC40ESP= contC40ESP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]) == parseFloat(ModalidadTodasconOrdenC40ESP[i-1]["Devolucion 40$ expreso"])) 
-                              {                                 
-                                contC40EST= contC40EST;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenC40ESP[i].Destino == ModalidadTodasconOrdenC40ESP[i-1].Destino) && (ModalidadTodasconOrdenC40ESP[i].Origen == ModalidadTodasconOrdenC40ESP[i-1].Origen))
                               {
-                                contC40ESP=contC40ESP + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]) == parseFloat(ModalidadTodasconOrdenC40ESP[i-1]["Devolucion 40$ expreso"])) 
+                                { 
+                                  contC40ESP= contC40ESP;
+                                }
+                                else
+                                {
+                                  contC40ESP=contC40ESP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC40ESP=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contC40ESP==1) 
@@ -6647,7 +6980,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
                         }
-                        }                   
+                        }                
                      
                    
                }                  
@@ -6701,27 +7034,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             });
                         });
                          
+                         ModalidadTodas = _.sortBy(ModalidadTodas, 'PuertoDestino','PuertoOrigen','PaisDestino');
+                         console.log(ModalidadTodas);
+                   
                        
                          ////////  Campo ["C 20"] //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["C 20"]');
-                     console.log(ModalidadTodasconOrden);
-                    
-                     var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden,'PuertoDestino','PuertoOrigen','PaisDestino','["C 20"]');
+                                       
+                      var cont=0;
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i]["C 20"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20"])) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrden[i].PuertoDestino == ModalidadTodasconOrden[i-1].PuertoDestino) && (ModalidadTodasconOrden[i].PuertoOrigen == ModalidadTodasconOrden[i-1].PuertoOrigen) && (ModalidadTodasconOrden[i].PaisDestino == ModalidadTodasconOrden[i-1].PaisDestino))
                               {
-                                cont=cont + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrden[i]["C 20"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20"])) 
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }                                                         
                           
 
                         if (cont==1) 
@@ -6740,28 +7086,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                         }
-                        }
+                        }             
 
               ////////////////// ["Baf 20"] ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["Baf 20"]');
-                   console.log(ModalidadTodasconOrdenMinima);
-                    
-                     var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, 'PuertoDestino','PuertoOrigen','PaisDestino', '["Baf 20"]');
+                  
+                      var contmin=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["Baf 20"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Baf 20"])) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenMinima[i].PuertoDestino == ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && (ModalidadTodasconOrdenMinima[i].PuertoOrigen == ModalidadTodasconOrdenMinima[i-1].PuertoOrigen) && (ModalidadTodasconOrdenMinima[i].PaisDestino == ModalidadTodasconOrdenMinima[i-1].PaisDestino))
                               {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenMinima[i]["Baf 20"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Baf 20"])) 
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }                                                               
                           
 
                         if (contmin==1) 
@@ -6780,27 +7136,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                         }
-                        }                    
+                        }              
 
                   ////////// Campo ["C 40"]/////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["C 40"]');
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'PuertoDestino','PuertoOrigen','PaisDestino','["C 40"]');
                      
-                     var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
+                       var contGA=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]["C 40"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 40"])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenMinima[i].PuertoDestino == ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && (ModalidadTodasconOrdenMinima[i].PuertoOrigen == ModalidadTodasconOrdenMinima[i-1].PuertoOrigen) && (ModalidadTodasconOrdenMinima[i].PaisDestino == ModalidadTodasconOrdenMinima[i-1].PaisDestino))
                               {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenMinima[i]["C 40"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["C 40"])) 
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }                                                          
                           
 
                         if (contGA==1) 
@@ -6819,27 +7186,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
                         }
-                        }         
+                        }      
                      
 
                     ////////// Campo ["Baf 40"]                 
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Baf 40"]');
-                     var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PuertoOrigen','PaisDestino','["Baf 40"]');
+                       var contCA=0;
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Baf 40"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Baf 40"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
+                         else
+                          { 
+                              if((ModalidadTodasconOrdenCA[i].PuertoDestino == ModalidadTodasconOrdenCA[i-1].PuertoDestino) && (ModalidadTodasconOrdenCA[i].PuertoOrigen == ModalidadTodasconOrdenCA[i-1].PuertoOrigen) && (ModalidadTodasconOrdenCA[i].PaisDestino == ModalidadTodasconOrdenCA[i-1].PaisDestino))
                               {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                                if(parseFloat(ModalidadTodasconOrdenCA[i]["Baf 40"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Baf 40"])) 
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCA==1) 
@@ -6858,27 +7236,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                         }
-                        }   
+                        } 
 
                       ////////// Campo ["C 40HC"]                
                       
-                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["C 40HC"]');
+                  ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, 'PuertoDestino','PuertoOrigen','PaisDestino','["C 40HC"]');
                      
-                     var contGAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAII= contGAII + 1;
+                       var contGAII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAII= contGAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 40HC"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 40HC"])) 
-                              {                                 
-                                contGAII= contGAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAII[i].PuertoDestino ==  ModalidadTodasconOrdenGAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAII[i].PuertoOrigen ==  ModalidadTodasconOrdenGAII[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenGAII[i].PaisDestino ==  ModalidadTodasconOrdenGAII[i-1].PaisDestino))
                               {
-                                contGAII=contGAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAII[i]["C 40HC"]) == parseFloat( ModalidadTodasconOrdenGAII[i-1]["C 40HC"])) 
+                                { 
+                                  contGAII= contGAII;
+                                }
+                                else
+                                {
+                                  contGAII=contGAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAII=1;
+                              }
+                              
+                          }                                                 
                           
 
                         if (contGAII==1) 
@@ -6897,27 +7286,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                         }
-                        }   
+                        } 
 
                        ////////// Campo ["Baf 40HC"]                 
                       
-                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Baf 40HC"]');
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, 'PuertoDestino','PuertoOrigen','PaisDestino','["Baf 40HC"]');
                      
-                     var contCAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAII= contCAII + 1;
+                        var contCAII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAII= contCAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Baf 40HC"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Baf 40HC"])) 
-                              {                                 
-                                contCAII= contCAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAII[i].PuertoDestino ==  ModalidadTodasconOrdenCAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAII[i].PuertoOrigen ==  ModalidadTodasconOrdenCAII[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenCAII[i].PaisDestino ==  ModalidadTodasconOrdenCAII[i-1].PaisDestino))
                               {
-                                contCAII=contCAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAII[i]["Baf 40HC"]) == parseFloat( ModalidadTodasconOrdenCAII[i-1]["Baf 40HC"])) 
+                                { 
+                                  contCAII= contCAII;
+                                }
+                                else
+                                {
+                                  contCAII=contCAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAII=1;
+                              }
+                              
+                          }                                                 
+                                                                                 
                           
 
                         if (contCAII==1) 
@@ -6936,27 +7337,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
-                        }   
+                        }  
 
                       ////////// Campo Naviera                  
                           
-                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'Naviera');
+                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'PuertoDestino','PuertoOrigen','PaisDestino','Naviera');
                      
-                     var contGAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIII= contGAIII + 1;
+                      var contGAIII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAIII= contGAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat(ModalidadTodasconOrdenGAIII[i-1].Naviera)) 
-                              {                                 
-                                contGAIII= contGAIII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAIII[i].PuertoDestino ==  ModalidadTodasconOrdenGAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAIII[i].PuertoOrigen ==  ModalidadTodasconOrdenGAIII[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenGAIII[i].PaisDestino ==  ModalidadTodasconOrdenGAIII[i-1].PaisDestino))
                               {
-                                contGAIII=contGAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat( ModalidadTodasconOrdenGAIII[i-1].Naviera)) 
+                                { 
+                                  contGAIII= contGAIII;
+                                }
+                                else
+                                {
+                                  contGAIII=contGAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIII=1;
+                              }
+                              
+                          }                                               
                           
 
                         if (contGAIII==1) 
@@ -6975,29 +7387,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                         }
-                        }   
+                        }  
 
                   
                    ////////// Campo ["Gastos Embarque"]                
                      
-                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Gastos Embarque"]');
+                   ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, 'PuertoDestino','PuertoOrigen','PaisDestino','["Gastos Embarque"]');
                      
-                     var contCAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIII= contCAIII + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Gastos Embarque"])) 
-                              {                                 
-                                contCAIII= contCAIII;
-                              }
-                              else
-                              {
-                                contCAIII=contCAIII + 1;                               }
-                            }                                                        
+                    var contCAIII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIII.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCAIII= contCAIII + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAIII[i].PuertoDestino ==  ModalidadTodasconOrdenCAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAIII[i].PuertoOrigen ==  ModalidadTodasconOrdenCAIII[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenCAIII[i].PaisDestino ==  ModalidadTodasconOrdenCAIII[i-1].PaisDestino))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCAIII[i-1]["Gastos Embarque"])) 
+                                { 
+                                  contCAIII= contCAIII;
+                                }
+                                else
+                                {
+                                  contCAIII=contCAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIII=1;
+                              }
+                              
+                          } 
 
                         if (contCAIII==1) 
                         {
@@ -7015,29 +7437,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
                         }
-                        }      
+                        }    
                           
                       
 
                           ////////// Campo ["C 20 + Baf 20 + Gastos Embarque"]                
                        
-                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["C 20 + Baf 20 + Gastos Embarque"]');
+                   ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC,'PuertoDestino','PuertoOrigen','PaisDestino','["C 20 + Baf 20 + Gastos Embarque"]');
                      
                      var contCPC=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCPC= contCPC + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenCPC.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCPC= contCPC + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 20 + Baf 20 + Gastos Embarque"])) 
-                              {                                 
-                                contCPC= contCPC;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCPC[i].PuertoDestino ==  ModalidadTodasconOrdenCPC[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCPC[i].PuertoOrigen ==  ModalidadTodasconOrdenCPC[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenCPC[i].PaisDestino ==  ModalidadTodasconOrdenCPC[i-1].PaisDestino))
                               {
-                                contCPC=contCPC + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCPC[i-1]["C 20 + Baf 20 + Gastos Embarque"])) 
+                                { 
+                                  contCPC= contCPC;
+                                }
+                                else
+                                {
+                                  contCPC=contCPC + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCPC=1;
+                              }
+                              
+                          }                                                  
                           
 
                         if (contCPC==1) 
@@ -7056,27 +7489,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
                         }
-                        } 
+                        }  
 
                    ////////// Campo ["C 40 + Baf 40 + Gastos Embarque"]////////////////////////////
                        
-                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, '["C 40 + Baf 40 + Gastos Embarque"]');
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'PuertoDestino','PuertoOrigen','PaisDestino','["C 40 + Baf 40 + Gastos Embarque"]');
                      
-                     var contOTRO=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
-                          if (i==0){                            
-                            contOTRO= contOTRO + 1;
+                    var contOTRO=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contOTRO= contOTRO + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 + Baf 40 + Gastos Embarque"])) 
-                              {                                 
-                                contOTRO= contOTRO;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenotros[i].PuertoDestino ==  ModalidadTodasconOrdenotros[i-1].PuertoDestino) && ( ModalidadTodasconOrdenotros[i].PuertoOrigen ==  ModalidadTodasconOrdenotros[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenotros[i].PaisDestino ==  ModalidadTodasconOrdenotros[i-1].PaisDestino))
                               {
-                                contOTRO=contOTRO + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenotros[i-1]["C 40 + Baf 40 + Gastos Embarque"])) 
+                                { 
+                                  contOTRO= contOTRO;
+                                }
+                                else
+                                {
+                                  contOTRO=contOTRO + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contOTRO=1;
+                              }
+                              
+                          }                                                   
                           
 
                         if (contOTRO==1) 
@@ -7095,27 +7539,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                         }
-                        }          
+                        }                
 
                   ////////// ["C 40HC + Baf 40HC + Gastos Embarque"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, '["C 40HC + Baf 40HC + Gastos Embarque"]');
+                     ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017,'PuertoDestino','PuertoOrigen','PaisDestino','["C 40HC + Baf 40HC + Gastos Embarque"]');
                      
-                     var contC4017=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4017= contC4017 + 1;
+                       var contC4017=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4017= contC4017 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40HC + Baf 40HC + Gastos Embarque"])) 
-                              {                                 
-                                contC4017= contC4017;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4017[i].PuertoDestino ==  ModalidadTodasconOrdenC4017[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4017[i].PuertoOrigen ==  ModalidadTodasconOrdenC4017[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenC4017[i].PaisDestino ==  ModalidadTodasconOrdenC4017[i-1].PaisDestino))
                               {
-                                contC4017=contC4017 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenC4017[i-1]["C 40HC + Baf 40HC + Gastos Embarque"])) 
+                                { 
+                                  contC4017= contC4017;
+                                }
+                                else
+                                {
+                                  contC4017=contC4017 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4017=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contC4017==1) 
@@ -7134,7 +7589,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
                         }
-                        }   
+                        }      
 
                    }                
 
@@ -7187,28 +7642,41 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                             });
                         });
-                         
+
+                        ModalidadTodas = _.sortBy(ModalidadTodas, 'PuertoDestino','PuertoOrigen','PaisDestino');
+                         console.log(ModalidadTodas);                         
                        
                          ////////  Campo Minima //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Minima');
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'PuertoDestino','PuertoOrigen','PaisDestino','Minima');
                      console.log(ModalidadTodasconOrden);
                     
-                     var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
+                      var cont=0;
+                       for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i].Minima) == parseFloat(ModalidadTodasconOrden[i-1].Minima)) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
-                                cont=cont + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrden[i].Minima) == parseFloat( ModalidadTodasconOrden[i-1].Minima)) 
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (cont==1) 
@@ -7227,28 +7695,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                         }
-                        }
+                        } 
 
               ////////////////// ["1-5 ton/M3"] ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["1-5 ton/M3"]');
+                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, 'PuertoDestino','PuertoOrigen','PaisDestino','["1-5 ton/M3"]');
                    console.log(ModalidadTodasconOrdenMinima);
                     
                      var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenMinima.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["1-5 ton/M3"])) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenMinima[i].PuertoDestino ==  ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PuertoOrigen ==  ModalidadTodasconOrdenMinima[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenMinima[i].PaisDestino ==  ModalidadTodasconOrdenMinima[i-1].PaisDestino))
                               {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]) == parseFloat( ModalidadTodasconOrdenMinima[i-1]["1-5 ton/M3"])) 
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contmin==1) 
@@ -7267,27 +7746,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                         }
-                        }                    
-
+                        }   
                   ////////// Campo ["5-8 ton/M3"]/////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["5-8 ton/M3"]');
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'PuertoDestino','PuertoOrigen','PaisDestino','["5-8 ton/M3"]');
                      
-                     var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
+                   var contGA=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["5-8 ton/M3"])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PuertoOrigen ==  ModalidadTodasconOrdenGA[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenGA[i].PaisDestino ==  ModalidadTodasconOrdenGA[i-1].PaisDestino))
                               {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]) == parseFloat( ModalidadTodasconOrdenGA[i-1]["5-8 ton/M3"])) 
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }                                                            
                           
 
                         if (contGA==1) 
@@ -7306,28 +7795,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
                         }
-                        }         
+                        }   
                      
 
                     ////////// Campo ["8-12 ton/M3"]                
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["8-12 ton/M3"]');
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PuertoOrigen','PaisDestino','["8-12 ton/M3"]');
                      var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["8-12 ton/M3"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
-                              {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                       for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PuertoOrigen ==  ModalidadTodasconOrdenCA[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenCA[i].PaisDestino ==  ModalidadTodasconOrdenCA[i-1].PaisDestino))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]) == parseFloat( ModalidadTodasconOrdenCA[i-1]["8-12 ton/M3"])) 
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }      
 
                         if (contCA==1) 
                         {
@@ -7345,27 +7844,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                         }
-                        }   
+                        }    
 
                       ////////// Campo ["12-18 ton/M3"]              
                       
-                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, '["12-18 ton/M3"]');
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, 'PuertoDestino','PuertoOrigen','PaisDestino','["12-18 ton/M3"]');
                      
                      var contGAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAII= contGAII + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAII= contGAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["12-18 ton/M3"])) 
-                              {                                 
-                                contGAII= contGAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PuertoOrigen ==  ModalidadTodasconOrdenCA[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenCA[i].PaisDestino ==  ModalidadTodasconOrdenCA[i-1].PaisDestino))
                               {
-                                contGAII=contGAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCA[i]["12-18 ton/M3"]) == parseFloat( ModalidadTodasconOrdenCA[i-1]["12-18 ton/M3"])) 
+                                { 
+                                  contGAII= contGAII;
+                                }
+                                else
+                                {
+                                  contGAII=contGAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAII=1;
+                              }
+                              
+                          }                                                            
                           
 
                         if (contGAII==1) 
@@ -7388,23 +7898,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                        ////////// Campo ["Gastos Embarque"]                
                       
-                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Gastos Embarque"]');
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, 'PuertoDestino','PuertoOrigen','PaisDestino','["Gastos Embarque"]');
                      
                      var contCAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAII= contCAII + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAII= contCAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Gastos Embarque"])) 
-                              {                                 
-                                contCAII= contCAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAII[i].PuertoDestino ==  ModalidadTodasconOrdenCAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAII[i].PuertoOrigen ==  ModalidadTodasconOrdenCAII[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenCAII[i].PaisDestino ==  ModalidadTodasconOrdenCAII[i-1].PaisDestino))
                               {
-                                contCAII=contCAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCAII[i-1]["Gastos Embarque"])) 
+                                { 
+                                  contCAII= contCAII;
+                                }
+                                else
+                                {
+                                  contCAII=contCAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAII=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCAII==1) 
@@ -7423,27 +7944,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
-                        }   
+                        }    
 
                       ////////// Campo Naviera                  
                           
-                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'Naviera');
+                   ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, 'PuertoDestino','PuertoOrigen','PaisDestino','Naviera');
                      
-                     var contGAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIII= contGAIII + 1;
+                    var contGAIII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAIII= contGAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat(ModalidadTodasconOrdenGAIII[i-1].Naviera)) 
-                              {                                 
-                                contGAIII= contGAIII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAIII[i].PuertoDestino ==  ModalidadTodasconOrdenGAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAIII[i].PuertoOrigen ==  ModalidadTodasconOrdenGAIII[i-1].PuertoOrigen) && ( ModalidadTodasconOrdenGAIII[i].PaisDestino ==  ModalidadTodasconOrdenGAIII[i-1].PaisDestino))
                               {
-                                contGAIII=contGAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat( ModalidadTodasconOrdenGAIII[i-1].Naviera)) 
+                                { 
+                                  contGAIII= contGAIII;
+                                }
+                                else
+                                {
+                                  contGAIII=contGAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIII=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contGAIII==1) 
@@ -7462,8 +7994,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                         }
-                        }                
-                 
+                        }   
 
                    }                
 
@@ -7484,6 +8015,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show1111=false;
                          $scope.Show12=false;
                         $scope.Show13=false;
+                       
 
                       
                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacional) { 
@@ -7516,27 +8048,40 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             });
                         });
                          
+                         ModalidadTodas = _.sortBy(ModalidadTodas, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodas);                         
+                         
                        
                          ////////  Campo ["Turbo Standar (150Cajas)"] //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["Turbo Standar (150Cajas)"]');
-                     console.log(ModalidadTodasconOrden);
-                    
+                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'PuertoDestino','PaisOrigen','["Turbo Standar (150Cajas)"]');
+                                   
                      var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
+                       for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i]["Turbo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrden[i-1]["Turbo Standar (150Cajas)"])) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PaisOrigen ==  ModalidadTodasconOrden[i-1].PaisOrigen))
                               {
-                                cont=cont + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrden[i]["Turbo Standar (150Cajas)"]) == parseFloat( ModalidadTodasconOrden[i-1]["Turbo Standar (150Cajas)"])) 
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }                                                          
                           
 
                         if (cont==1) 
@@ -7559,24 +8104,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
               ////////////////// ["Turbo Especial"] ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["Turbo Especial"]');
-                   console.log(ModalidadTodasconOrdenMinima);
-                    
+                  ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, 'PuertoDestino','PaisOrigen','["Turbo Especial"]');
+                     
                      var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenMinima.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["Turbo Especial"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Turbo Especial"])) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenMinima[i].PuertoDestino ==  ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenMinima[i]["Turbo Especial"]) == parseFloat( ModalidadTodasconOrdenMinima[i-1]["Turbo Especial"])) 
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }                                                   
                           
 
                         if (contmin==1) 
@@ -7596,62 +8151,77 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                         }
                         }
-
-                        $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodas;
-
+                  
+                         $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodas;
                    
 
                        //Terrestre Nacional Sencillo
-                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpati) { 
-                         ModalidadDeUnProveedor = consterrenacionalpati.TerreNacionalSencillo.TerresNacionalSencillo
+
+                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalsenc) { 
+                         ModalidadDeUnProveedor = consterrenacionalsenc.TerreNacionalSencillo.TerresNacionalSencillo
                          console.log( ModalidadDeUnProveedor);
-                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalpatprov) {
-                              consterrenacionalpatprov.Email = consterrenacionalpati.Email                         
-                              ModalidadTodas.push(consterrenacionalpatprov);
-                              ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalsencprov) {
+                              consterrenacionalsencprov.Email = consterrenacionalsenc.Email                         
+                              ModalidadTodasSencillo.push(consterrenacionalsencprov);                            
+                              ModalidadTodasconOrdenS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenMinimaS =ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenGAS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenGAIIS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenGAIIIS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenCAS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenCAIIS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenCAIIIS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenCPCS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenotrosS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC4017S = ModalidadTodasSencillo; 
+                              ModalidadTodasconOrdenC401718S = ModalidadTodasSencillo; 
+                              ModalidadTodasconOrdenC4020SS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC4021S = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC4022S = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC4030S = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC20ESTS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC40ESTS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC20ESPS = ModalidadTodasSencillo;
+                              ModalidadTodasconOrdenC40ESPS = ModalidadTodasSencillo;
 
                             });
                         });
-                            
+
+                         ModalidadTodasSencillo = _.sortBy(ModalidadTodasSencillo, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodasSencillo);                             
+
 
                              ////////// Campo ["Sencillo Standar (150Cajas)"]/////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["Sencillo Standar (150Cajas)"]');
+                     ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA,'PuertoDestino','PaisOrigen','["Sencillo Standar (150Cajas)"]');
                      
                      var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]["Sencillo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Sencillo Standar (150Cajas)"])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
                               {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGA[i]["Sencillo Standar (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGA[i-1]["Sencillo Standar (150Cajas)"])) 
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }                                                   
+                                                                            
                           
 
                         if (contGA==1) 
@@ -7670,27 +8240,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
                         }
-                        }         
-                     
+                        }    
 
                     ////////// Campo ["8-12 ton/M3"]                
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Sencillo Especial"]');
+                     ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PaisOrigen','["Sencillo Especial"]');
+                     
                      var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Sencillo Especial"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Sencillo Especial"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PaisOrigen ==  ModalidadTodasconOrdenCA[i-1].PaisOrigen))
                               {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCA[i]["Sencillo Especial"]) == parseFloat( ModalidadTodasconOrdenCA[i-1]["Sencillo Especial"]))
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contCA==1) 
@@ -7709,61 +8290,78 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                         }
-                        }
+                        }  
 
-                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodas;                        
+                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasSencillo;  
+
 
                         //Terrestre Nacional Patineta
-                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalsenc) { 
-                         ModalidadDeUnProveedor = consterrenacionalsenc.TerreNacionalPatineta.TerresNacionalPatineta
+                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpat) { 
+                         ModalidadDeUnProveedor = consterrenacionalpat.TerreNacionalPatineta.TerresNacionalPatineta
                          console.log( ModalidadDeUnProveedor);
-                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalsencprov) {
-                              consterrenacionalsencprov.Email = consterrenacionalsencprov.Email                         
-                              ModalidadTodas.push(consterrenacionalsencprov);
-                              ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                            angular.forEach(ModalidadDeUnProveedor, function(consterrenacionalpatprov) {
+
+
+                              consterrenacionalpatprov.Email = consterrenacionalpatprov.Email                         
+                              ModalidadTodasPatineta.push(consterrenacionalpatprov);
+                              ModalidadTodasconOrden = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenMinima = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenGA = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenGAII = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenCA = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenCAII = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenCPC =ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenotros = ModalidadTodasPatineta; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasPatineta; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodasPatineta; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasPatineta; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodasPatineta; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasPatineta; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasPatineta;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasPatineta;
 
                             });
                         });
                             
+                         ModalidadTodasPatineta = _.sortBy(ModalidadTodasPatineta, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodasPatineta); 
+
 
                              ////////// Campo Minimula/////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'Minimula');
+                  ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'PuertoDestino','PaisOrigen','Minimula');
                      
                      var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i].Minimula) == parseFloat(ModalidadTodasconOrdenGA[i-1].Minimula)) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
                               {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGA[i].Minimula) == parseFloat( ModalidadTodasconOrdenGA[i-1].Minimula))
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contGA==1) 
@@ -7782,27 +8380,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2019Pintada = [];
                         }
-                        }         
-                     
+                        }  
 
                     ////////// Campo ["Gran Danes"]             
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Gran Danes"]');
-                     var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PaisOrigen','["Gran Danes"]');
+                    
+                       var contCA=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Gran Danes"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PaisOrigen ==  ModalidadTodasconOrdenCA[i-1].PaisOrigen))
                               {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCA[i]["Gran Danes"]) == parseFloat( ModalidadTodasconOrdenCA[i-1]["Gran Danes"]))
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contCA==1) 
@@ -7821,10 +8430,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduC2020Pintada = [];
                         }
-                        }
+                        } 
 
-                        $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodas;
-                    }
+                        $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
+                    }      
                 ///////////////////////////////////////////////////////////////////////////////
 
                     if (Modalidad == 'Terrestre Urbano') {
@@ -7850,52 +8459,65 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterreurbanoprov) {
                               consterreurbanoprov.Email = consterreurbano.Email                         
-                              ModalidadTodas.push(consterreurbanoprov);
-                               ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                              ModalidadTodasUrbano.push(consterreurbanoprov);
+                               ModalidadTodasconOrden = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenMinima = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenGA = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenGAII = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenCA = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenCAII = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenCPC = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenotros = ModalidadTodasUrbano; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasUrbano; 
+                              ModalidadTodasconOrdenC401718 =ModalidadTodasUrbano; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasUrbano; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodasUrbano; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasUrbano; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasUrbano;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasUrbano;
 
                             });
                         });
                          
+                          ModalidadTodasUrbano = _.sortBy(ModalidadTodasUrbano, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodasUrbano); 
                        
                          ////////  ["Turbo (150Cajas)"] //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, '["Turbo (150Cajas)"]');
+                     ModalidadTodasconOrden= _.sortBy(ModalidadTodasconOrden, 'PuertoDestino','PaisOrigen','["Turbo (150Cajas)"]');
                      console.log(ModalidadTodasconOrden);
                     
                      var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
+                       for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrden[i-1]["Turbo (150Cajas)"])) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PaisOrigen ==  ModalidadTodasconOrden[i-1].PaisOrigen))
                               {
-                                cont=cont + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrden[i]["Turbo (150Cajas)"]) == parseFloat( ModalidadTodasconOrden[i-1]["Turbo (150Cajas)"]))
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }                                                         
                           
 
                         if (cont==1) 
@@ -7915,27 +8537,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                         }
                         }
+                        
+                     
 
               ////////////////// ["Turbo Especial (200Cajas)"]////////////////////////////////////
-                 
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["Turbo Especial (200Cajas)"]');
-                   console.log(ModalidadTodasconOrdenMinima);
-                    
-                     var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
+                  ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima,'PuertoDestino','PaisOrigen', '["Turbo Especial (200Cajas)"]');
+                                       
+                       var contmin=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenMinima.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Turbo Especial (200Cajas)"])) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenMinima[i].PuertoDestino ==  ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]) == parseFloat( ModalidadTodasconOrdenMinima[i-1]["Turbo Especial (200Cajas)"]))
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }                                                  
                           
 
                         if (contmin==1) 
@@ -7954,27 +8587,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                         }
-                        }                    
+                        }   
+                           
 
                   ////////// Campo ["Sencillo (240Cajas)"]/////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, '["Sencillo (240Cajas)"]');
+                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'PuertoDestino','PaisOrigen','["Sencillo (240Cajas)"]');
                      
                      var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Sencillo (240Cajas)"])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]) == parseFloat( ModalidadTodasconOrdenGA[i-1]["Sencillo (240Cajas)"]))
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contGA==1) 
@@ -7993,28 +8638,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
                         }
-                        }         
+                        }      
                      
 
                     ////////// Campo ["Sencillo Especial (300Cajas)"]               
-                       
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, '["Sencillo Especial (300Cajas)"]');
+                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PaisOrigen','["Sencillo Especial (300Cajas)"]');
                      var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Sencillo Especial (300Cajas)"])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
-                              {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                       for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]) == parseFloat( ModalidadTodasconOrdenCA[i-1]["Sencillo Especial (300Cajas)"]))
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          }         
 
                         if (contCA==1) 
                         {
@@ -8033,26 +8687,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                         }
                         }   
-
                       ////////// Campo ["C 40HC"] Minimula
 
-                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, 'Minimula');
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII,'PuertoDestino','PaisOrigen','Minimula');
                      
-                     var contGAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAII= contGAII + 1;
+                    var contGAII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAII= contGAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAII[i].Minimula) == parseFloat(ModalidadTodasconOrdenGAII[i-1].Minimula)) 
-                              {                                 
-                                contGAII= contGAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAII[i].PuertoDestino ==  ModalidadTodasconOrdenGAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
-                                contGAII=contGAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAII[i].Minimula) == parseFloat( ModalidadTodasconOrdenGAII[i-1].Minimula))
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contGAII=contGAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAII=1;
+                              }
+                              
+                          }                                                            
                           
 
                         if (contGAII==1) 
@@ -8071,27 +8735,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                         }
-                        }   
-
+                        } 
                        ////////// Campo ["Gran Danes"]                
                       
-                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, '["Gran Danes"]');
+                     ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, 'PuertoDestino','PaisOrigen','["Gran Danes"]');
                      
-                     var contCAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAII= contCAII + 1;
+                      var contCAII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAII= contCAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAII[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Gran Danes"])) 
-                              {                                 
-                                contCAII= contCAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAII[i].PuertoDestino ==  ModalidadTodasconOrdenCAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
-                                contCAII=contCAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAII[i]["Gran Danes"]) == parseFloat( ModalidadTodasconOrdenCAII[i-1]["Gran Danes"]))
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contCAII=contCAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAII=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contCAII==1) 
@@ -8110,9 +8784,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
-                        }   
+                        }     
 
-                        $scope.ModalidadTodasTerreUrbano=ModalidadTodas;
+                        $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
 
                   ////////////////////////Terrestre Urbano Viaje
@@ -8121,51 +8795,65 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterreurbanotonprov) {
                               consterreurbanotonprov.Email = consterreurbanoton.Email                         
-                              ModalidadTodas.push(consterreurbanotonprov);
-                              ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                              ModalidadTodasTerreUrbanoViaje.push(consterreurbanotonprov);
+                              ModalidadTodasconOrden = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenMinima = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenGA = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenGAII = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCA = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCAII = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCPC = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenotros = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasTerreUrbanoViaje;
 
                              });
 
                         });
+
+                         ModalidadTodasTerreUrbanoViaje = _.sortBy(ModalidadTodasTerreUrbanoViaje, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodasUrbano); 
                              
                       ////////// Campo ["Turbo (150Cajas)"]  /////////////////////////////////////////////                
                           
-                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["Turbo (150Cajas)"]');
+                       ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII,'PuertoDestino','PaisOrigen','["Turbo (150Cajas)"]');
                      
                      var contGAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIII= contGAIII + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAIII= contGAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["Turbo (150Cajas)"])) 
-                              {                                 
-                                contGAIII= contGAIII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAIII[i].PuertoDestino ==  ModalidadTodasconOrdenGAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAIII[i].PaisOrigen ==  ModalidadTodasconOrdenGAIII[i-1].PaisOrigen))
                               {
-                                contGAIII=contGAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAIII[i]["Turbo (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGAIII[i-1]["Turbo (150Cajas)"]))
+                                { 
+                                  contGAIII= contGAIII;
+                                }
+                                else
+                                {
+                                  contGAIII=contGAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIII=1;
+                              }
+                              
+                          }                                                           
                           
 
                         if (contGAIII==1) 
@@ -8189,23 +8877,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   
                    ////////// Campo ["Turbo Especial (200Cajas)"]               
                      
-                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Turbo Especial (200Cajas)"]');
+                     ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, 'PuertoDestino','PaisOrigen','["Turbo Especial (200Cajas)"]');
                      
-                     var contCAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIII= contCAIII + 1;
+                      var contCAIII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAIII= contCAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Turbo Especial (200Cajas)"])) 
-                              {                                 
-                                contCAIII= contCAIII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAIII[i].PuertoDestino ==  ModalidadTodasconOrdenCAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAIII[i].PaisOrigen ==  ModalidadTodasconOrdenCAIII[i-1].PaisOrigen))
                               {
-                                contCAIII=contCAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAIII[i]["Turbo Especial (200Cajas)"]) == parseFloat( ModalidadTodasconOrdenCAIII[i-1]["Turbo Especial (200Cajas)"]))
+                                { 
+                                  contCAIII= contCAIII;
+                                }
+                                else
+                                {
+                                  contCAIII=contCAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIII=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCAIII==1) 
@@ -8224,29 +8923,41 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
                         }
-                        }      
+                        }    
                           
                       
 
                           ////////// Campo ["Sencillo (240Cajas)"]              
                        
-                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["Sencillo (240Cajas)"]');
+                   
+              ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, 'PuertoDestino','PaisOrigen','["Sencillo (240Cajas)"]');
                      
-                     var contCPC=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCPC= contCPC + 1;
+                       var contCPC=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCPC.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCPC= contCPC + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["Sencillo (240Cajas)"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Sencillo (240Cajas)"])) 
-                              {                                 
-                                contCPC= contCPC;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCPC[i].PuertoDestino ==  ModalidadTodasconOrdenCPC[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCPC[i].PaisOrigen ==  ModalidadTodasconOrdenCPC[i-1].PaisOrigen))
                               {
-                                contCPC=contCPC + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCPC[i]["Sencillo (240Cajas)"]) == parseFloat( ModalidadTodasconOrdenCPC[i-1]["Sencillo (240Cajas)"]))
+                                { 
+                                  contCPC= contCPC;
+                                }
+                                else
+                                {
+                                  contCPC=contCPC + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCPC=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCPC==1) 
@@ -8265,27 +8976,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
                         }
-                        } 
+                        }   
 
                    ////////// Campo ["Sencillo Especial (300Cajas)"]////////////////////////////
                        
-                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, '["Sencillo Especial (300Cajas)"]');
+                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'PuertoDestino','PaisOrigen','["Sencillo Especial (300Cajas)"]');
                      
                      var contOTRO=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
-                          if (i==0){                            
-                            contOTRO= contOTRO + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contOTRO= contOTRO + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenotros[i]["Sencillo Especial (300Cajas)"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["Sencillo Especial (300Cajas)"])) 
-                              {                                 
-                                contOTRO= contOTRO;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenotros[i].PuertoDestino ==  ModalidadTodasconOrdenotros[i-1].PuertoDestino) && ( ModalidadTodasconOrdenotros[i].PaisOrigen ==  ModalidadTodasconOrdenotros[i-1].PaisOrigen))
                               {
-                                contOTRO=contOTRO + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenotros[i]["Sencillo Especial (300Cajas)"]) == parseFloat( ModalidadTodasconOrdenotros[i-1]["Sencillo Especial (300Cajas)"]))
+                                { 
+                                  contOTRO= contOTRO;
+                                }
+                                else
+                                {
+                                  contOTRO=contOTRO + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contOTRO=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contOTRO==1) 
@@ -8304,27 +9026,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                         }
-                        }          
+                        }      
 
                   ////////// Minimula////////////////////////////
-                       
-                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, 'Minimula');
+                        ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, 'PuertoDestino','PaisOrigen','Minimula');
                      
                      var contC4017=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4017= contC4017 + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4017= contC4017 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4017[i].Minimula) == parseFloat(ModalidadTodasconOrdenC4017[i-1].Minimula)) 
-                              {                                 
-                                contC4017= contC4017;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4017[i].PuertoDestino ==  ModalidadTodasconOrdenC4017[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4017[i].PaisOrigen ==  ModalidadTodasconOrdenC4017[i-1].PaisOrigen))
                               {
-                                contC4017=contC4017 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4017[i].Minimula) == parseFloat( ModalidadTodasconOrdenC4017[i-1].Minimula))
+                                { 
+                                  contC4017= contC4017;
+                                }
+                                else
+                                {
+                                  contC4017=contC4017 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4017=1;
+                              }
+                              
+                          }                                                           
                           
 
                         if (contC4017==1) 
@@ -8343,48 +9075,59 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
                         }
-                        } 
+                        }    
+                  
 
                           ////////// ["Gran Danes"]////////////////////////////
                        
-                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, '["Gran Danes"]');
+                     ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718,'PuertoDestino','PaisOrigen','["Gran Danes"]');
                      
-                     var contC401718=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC401718= contC401718 + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC401718[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenC401718[i-1]["Gran Danes"])) 
-                              {                                 
-                                contC401718= contC401718;
-                              }
-                              else
-                              {
-                                contC401718=contC401718 + 1;                               }
-                            }                                                        
+                        var contC401718=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contC401718= contC401718 + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC401718[i].PuertoDestino ==  ModalidadTodasconOrdenC401718[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC401718[i].PaisOrigen ==  ModalidadTodasconOrdenC401718[i-1].PaisOrigen))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC401718[i]["Gran Danes"]) == parseFloat( ModalidadTodasconOrdenC401718[i-1]["Gran Danes"]))
+                                { 
+                                  contC401718= contC401718;
+                                }
+                                else
+                                {
+                                  contC401718=contC401718 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC401718=1;
+                              }
+                              
+                          } 
 
                         if (contC401718==1) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC401718Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-success"];
                         }
                         if (contC401718==2) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC401718Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-warning"];
                         }
                         if (contC401718==3) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC401718Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-danger"];
                         }
                         if (contC401718>3)
                         {
-                          ModalidadTodasconOrdenC4017[i].AduC40178Pintada = [];
+                          ModalidadTodasconOrdenC401718[i].AduC40178Pintada = [];
                         }
-                        }  
+                        }    
 
-                        $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodas ;
+                        $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodasTerreUrbanoViaje ;
 
                 /////////////////////////////Terrestre Urbano Tonelada //////////////////////////////
                        angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoton) { 
@@ -8392,51 +9135,64 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consterreurbanotonprov) {
                               consterreurbanotonprov.Email = consterreurbanoton.Email                         
-                              ModalidadTodas.push(consterreurbanotonprov);
-                             ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                              ModalidadTodasTerreUrbanoTonelada.push(consterreurbanotonprov);
+                             ModalidadTodasconOrden = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenMinima = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenGA = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenGAII = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenCA = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenCAII = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenCPC = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenotros = ModalidadTodasTerreUrbanoTonelada; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasTerreUrbanoTonelada; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodasTerreUrbanoTonelada; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasTerreUrbanoTonelada; 
+                              ModalidadTodasconOrdenC4021 = ModalidadTodasTerreUrbanoTonelada; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasTerreUrbanoTonelada; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasTerreUrbanoTonelada;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasTerreUrbanoTonelada;
 
                                 });
 
                         });
 
+                         ModalidadTodasTerreUrbanoTonelada = _.sortBy(ModalidadTodasTerreUrbanoTonelada, 'PuertoDestino','PaisOrigen');
+                         console.log(ModalidadTodasTerreUrbanoTonelada);
+
                                ////////// Campo Turbo////////////////////////////
                        
-                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, 'Turbo');
-                     
-                     var contC4020=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4020= contC4020 + 1;
+                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, 'PuertoDestino','PaisOrigen','Turbo');
+                      var contC4020=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4020.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4020= contC4020 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4020[i].Turbo) == parseFloat(ModalidadTodasconOrdenC4020[i-1].Turbo)) 
-                              {                                 
-                                contC4020= contC4020;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4020[i].PuertoDestino ==  ModalidadTodasconOrdenC4020[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4020[i].PaisOrigen ==  ModalidadTodasconOrdenC4020[i-1].PaisOrigen))
                               {
-                                contC4020=contC4020 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4020[i].Turbo) == parseFloat( ModalidadTodasconOrdenC4020[i-1].Turbo))
+                                { 
+                                  contC4020= contC4020;
+                                }
+                                else
+                                {
+                                  contC4020=contC4020 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4020=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contC4020==1) 
@@ -8455,27 +9211,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
                         }
-                        }       
+                        }  
 
                          ////////// Campo Sencillo////////////////////////////
                        
-                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, 'Sencillo');
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, 'PuertoDestino','PaisOrigen','Sencillo');
                      
                      var contC4021=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4021= contC4021 + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4021.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4021= contC4021 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4021[i].Sencillo) == parseFloat(ModalidadTodasconOrdenC4021[i-1].Sencillo)) 
-                              {                                 
-                                contC4021= contC4021;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4021[i].PuertoDestino ==  ModalidadTodasconOrdenC4021[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4021[i].PaisOrigen ==  ModalidadTodasconOrdenC4021[i-1].PaisOrigen))
                               {
-                                contC4021=contC4021 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4021[i].Sencillo) == parseFloat( ModalidadTodasconOrdenC4021[i-1].Sencillo))
+                                { 
+                                  contC4021= contC4021;
+                                }
+                                else
+                                {
+                                  contC4021=contC4021 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4021=1;
+                              }
+                              
+                          }                                                        
+                                                                     
                           
 
                         if (contC4021==1) 
@@ -8494,27 +9262,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
                         }
-                        } 
+                        }  
 
                      ////////// Campo Tractomula////////////////////////////
                        
-                    ModalidadTodasconOrdenC4022 = _.sortBy(ModalidadTodasconOrdenC4022, 'Tractomula');
+                     ModalidadTodasconOrdenC4022 = _.sortBy(ModalidadTodasconOrdenC4022, 'Tractomula');
                      
                      var contC4022=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4022= contC4022 + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4022.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4022= contC4022 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4022[i].Tractomula) == parseFloat(ModalidadTodasconOrdenC4022[i-1].Tractomula)) 
-                              {                                 
-                                contC4022= contC4022;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4022[i].PuertoDestino ==  ModalidadTodasconOrdenC4022[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4022[i].PaisOrigen ==  ModalidadTodasconOrdenC4022[i-1].PaisOrigen))
                               {
-                                contC4022=contC4022 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4022[i].Tractomula) == parseFloat( ModalidadTodasconOrdenC4022[i-1].Tractomula))
+                                { 
+                                  contC4022= contC4022;
+                                }
+                                else
+                                {
+                                  contC4022=contC4022 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4022=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contC4022==1) 
@@ -8533,9 +9312,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
                         }
-                        } 
+                        }    
 
-                      $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodas;
+                      $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
                              
                     }
 
@@ -8561,53 +9340,65 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedor = consotm.Aerea.Aereas
                             angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
                               consotmprov.Email = consotm.Email                         
-                              ModalidadTodas.push(consotmprov);   
-                              ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                              ModalidadTodasAerea.push(consotmprov);   
+                              ModalidadTodasconOrden =ModalidadTodasAerea;
+                              ModalidadTodasconOrdenMinima = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenGA = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenGAII = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenCA = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenCAII = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenCPC = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenotros = ModalidadTodasAerea; 
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasAerea; 
+                              ModalidadTodasconOrdenC401718 = ModalidadTodasAerea; 
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasAerea; 
+                              ModalidadTodasconOrdenC4021 =ModalidadTodasAerea; 
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasAerea; 
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasAerea;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasAerea;
 
                             });
                         });
+
+                        ModalidadTodasAerea = _.sortBy(ModalidadTodasAerea,'Aeropuerto','Pais');
+                         console.log(ModalidadTodasAerea);
                          
                        
                          ////////  Campo Minima //////////////////////////
                      
-                     ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden, 'Minima');
-                     console.log(ModalidadTodasconOrden);
-                    
-                     var cont=0;
-                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                                    
-                          if (i==0){                            
-                            cont= cont + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrden[i].Minima) == parseFloat(ModalidadTodasconOrden[i-1].Minima)) 
-                              {                                 
-                                cont= cont;
-                              }
-                              else
-                              {
-                                cont=cont + 1;                               }
-                            }                                                        
+                    ModalidadTodasconOrden = _.sortBy(ModalidadTodasconOrden,'Aeropuerto','Pais','Minima');
+                               
+                    var cont=0;
+                       for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             cont= cont + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrden[i].Aeropuerto ==  ModalidadTodasconOrden[i-1].Aeropuerto) && ( ModalidadTodasconOrden[i].Pais ==  ModalidadTodasconOrden[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrden[i].Minima) == parseFloat( ModalidadTodasconOrden[i-1].Minima))
+                                { 
+                                  cont= cont;
+                                }
+                                else
+                                {
+                                  cont=cont + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               cont=1;
+                              }
+                              
+                          }    
 
                         if (cont==1) 
                         {
@@ -8625,28 +9416,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                         }
-                        }
+                        } 
 
               ////////////////// ["45"] ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima, '["45"]');
-                   console.log(ModalidadTodasconOrdenMinima);
-                    
-                     var contmin=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                                    
-                          if (i==0){                            
-                            contmin= contmin + 1;
+                  ModalidadTodasconOrdenMinima = _.sortBy(ModalidadTodasconOrdenMinima,'Aeropuerto','Pais', '["45"]');
+                    var contmin=0;
+                       for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contmin= contmin + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinima[i]["45"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["45"])) 
-                              {                                 
-                                contmin= contmin;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrden[i].Aeropuerto ==  ModalidadTodasconOrden[i-1].Aeropuerto) && ( ModalidadTodasconOrden[i].Pais ==  ModalidadTodasconOrden[i-1].Pais))
                               {
-                                contmin=contmin + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrden[i]["45"]) == parseFloat( ModalidadTodasconOrden[i-1]["45"]))
+                                { 
+                                  contmin= contmin;
+                                }
+                                else
+                                {
+                                  contmin=contmin + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contmin=1;
+                              }
+                              
+                          }                                                         
                           
 
                         if (contmin==1) 
@@ -8668,25 +9468,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }                    
 
                   ////////// Campo ['+100'] /////////////////////////////// 
-                      
-                    ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, "['+100']");
+                  ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA, 'Aeropuerto','Pais',"['+100']");
                      
-                     var contGA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGA= contGA + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGA[i]['+100']) == parseFloat(ModalidadTodasconOrdenGA[i-1]['+100'])) 
-                              {                                 
-                                contGA= contGA;
-                              }
-                              else
-                              {
-                                contGA=contGA + 1;                               }
-                            }                                                        
+                      var contGA=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contGA= contGA + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGA[i].Aeropuerto ==  ModalidadTodasconOrdenGA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGA[i].Pais ==  ModalidadTodasconOrdenGA[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenGA[i]['+100']) == parseFloat( ModalidadTodasconOrdenGA[i-1]['+100']))
+                                { 
+                                  contGA= contGA;
+                                }
+                                else
+                                {
+                                  contGA=contGA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGA=1;
+                              }
+                              
+                          } 
 
                         if (contGA==1) 
                         {
@@ -8704,28 +9513,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGA[i].AduC2010intada = [];
                         }
-                        }         
+                        }        
                      
 
                     ////////// Campo ['+300']                 
                        
-                    ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, "['+300']");
-                     var contCA=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCA= contCA + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCA[i]['+300']) == parseFloat(ModalidadTodasconOrdenCA[i-1]['+300'])) 
-                              {                                 
-                                contCA= contCA;
-                              }
-                              else
-                              {
-                                contCA=contCA + 1;                               }
-                            }                                                        
+                   ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA,'Aeropuerto','Pais', "['+300']");
+                       var contCA=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCA= contCA + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCA[i].Aeropuerto ==  ModalidadTodasconOrdenCA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCA[i].Pais ==  ModalidadTodasconOrdenCA[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenCA[i]['+300']) == parseFloat( ModalidadTodasconOrdenCA[i-1]['+300']))
+                                { 
+                                  contCA= contCA;
+                                }
+                                else
+                                {
+                                  contCA=contCA + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCA=1;
+                              }
+                              
+                          } 
 
                         if (contCA==1) 
                         {
@@ -8743,27 +9562,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                         }
-                        }   
+                        }    
 
                       ////////// Campo ['+500']               
-                      
-                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, "['+500']");
+                    ModalidadTodasconOrdenGAII = _.sortBy(ModalidadTodasconOrdenGAII, 'Aeropuerto','Pais',"['+500']");
                      
-                     var contGAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAII= contGAII + 1;
+                         var contGAII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAII= contGAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAII[i]['+500']) == parseFloat(ModalidadTodasconOrdenGAII[i-1]['+500'])) 
-                              {                                 
-                                contGAII= contGAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAII[i].Aeropuerto ==  ModalidadTodasconOrdenGAII[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAII[i].Pais ==  ModalidadTodasconOrdenGAII[i-1].Pais))
                               {
-                                contGAII=contGAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAII[i]['+500']) == parseFloat( ModalidadTodasconOrdenGAII[i-1]['+500']))
+                                { 
+                                  contGAII= contGAII;
+                                }
+                                else
+                                {
+                                  contGAII=contGAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAII=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contGAII==1) 
@@ -8774,7 +9603,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                                ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
                         }
-                        if (contGAIII==3) 
+                        if (contGAII==3) 
                         {
                                ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-danger"];
                         }
@@ -8783,26 +9612,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                         }
                         }   
-
                        ////////// Campo ['+1000']                
                       
-                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII, "['+1000']");
+                    ModalidadTodasconOrdenCAII = _.sortBy(ModalidadTodasconOrdenCAII,'Aeropuerto','Pais', "['+1000']");
                      
-                     var contCAII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAII= contCAII + 1;
+                            var contCAII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAII= contCAII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAII[i]['+1000']) == parseFloat(ModalidadTodasconOrdenCAII[i-1]['+1000'])) 
-                              {                                 
-                                contCAII= contCAII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAII[i].Aeropuerto ==  ModalidadTodasconOrdenCAII[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAII[i].Pais ==  ModalidadTodasconOrdenCAII[i-1].Pais))
                               {
-                                contCAII=contCAII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAII[i]['+1000']) == parseFloat( ModalidadTodasconOrdenCAII[i-1]['+1000']))
+                                { 
+                                  contCAII= contCAII;
+                                }
+                                else
+                                {
+                                  contCAII=contCAII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAII=1;
+                              }
+                              
+                          }                                                
                           
 
                         if (contCAII==1) 
@@ -8821,27 +9660,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
-                        }   
+                        }  
 
                       ////////// Campo ["FS min"]               
                           
-                    ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII, '["FS min"]');
+                   ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII,'Aeropuerto','Pais', '["FS min"]');
                      
-                     var contGAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIII= contGAIII + 1;
+                      var contGAIII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAIII= contGAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIII[i]["FS min"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["FS min"])) 
-                              {                                 
-                                contGAIII= contGAIII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAIII[i].Aeropuerto ==  ModalidadTodasconOrdenGAIII[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAIII[i].Pais ==  ModalidadTodasconOrdenGAIII[i-1].Pais))
                               {
-                                contGAIII=contGAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAIII[i]["FS min"]) == parseFloat( ModalidadTodasconOrdenGAIII[i-1]["FS min"]))
+                                { 
+                                  contGAIII= contGAIII;
+                                }
+                                else
+                                {
+                                  contGAIII=contGAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIII=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contGAIII==1) 
@@ -8860,28 +9710,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                         }
-                        }   
+                        } 
 
                   
                    ////////// Campo ["Fs/kg"]              
+                      ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, 'Aeropuerto','Pais','["Fs/kg"]');
                      
-                    ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, '["Fs/kg"]');
-                     
-                     var contCAIII=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIII= contCAIII + 1;
+                      var contCAIII=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIII.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAIII= contCAIII + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Fs/kg"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Fs/kg"])) 
-                              {                                 
-                                contCAIII= contCAIII;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAIII[i].Aeropuerto ==  ModalidadTodasconOrdenCAIII[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAIII[i].Pais ==  ModalidadTodasconOrdenCAIII[i-1].Pais))
                               {
-                                contCAIII=contCAIII + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAIII[i]["Fs/kg"]) == parseFloat( ModalidadTodasconOrdenCAIII[i-1]["Fs/kg"]))
+                                { 
+                                  contCAIII= contCAIII;
+                                }
+                                else
+                                {
+                                  contCAIII=contCAIII + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIII=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCAIII==1) 
@@ -8900,29 +9760,41 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
                         }
-                        }      
-                          
+                        }  
+                             
+                   
                       
 
                           ////////// Campo["Gastos Embarque"]                
                        
-                    ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, '["Gastos Embarque"]');
+                   ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC,'Aeropuerto','Pais','["Gastos Embarque"]');
                      
-                     var contCPC=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCPC= contCPC + 1;
+                       var contCPC=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCPC.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCPC= contCPC + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCPC[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Gastos Embarque"])) 
-                              {                                 
-                                contCPC= contCPC;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCPC[i].Aeropuerto ==  ModalidadTodasconOrdenCPC[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCPC[i].Pais ==  ModalidadTodasconOrdenCPC[i-1].Pais))
                               {
-                                contCPC=contCPC + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCPC[i]["Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCPC[i-1]["Gastos Embarque"]))
+                                { 
+                                  contCPC= contCPC;
+                                }
+                                else
+                                {
+                                  contCPC=contCPC + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCPC=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contCPC==1) 
@@ -8941,27 +9813,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
                         }
-                        } 
+                        }   
 
                    ////////// Campo Via////////////////////////////
                        
-                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'Via');
+                   ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros,'Aeropuerto','Pais', 'Via');
                      
-                     var contOTRO=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                                    
-                          if (i==0){                            
-                            contOTRO= contOTRO + 1;
+                        var contOTRO=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contOTRO= contOTRO + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenotros[i].Via) == parseFloat(ModalidadTodasconOrdenotros[i-1].Via)) 
-                              {                                 
-                                contOTRO= contOTRO;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenotros[i].Aeropuerto ==  ModalidadTodasconOrdenotros[i-1].Aeropuerto) && ( ModalidadTodasconOrdenotros[i].Pais ==  ModalidadTodasconOrdenotros[i-1].Pais))
                               {
-                                contOTRO=contOTRO + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenotros[i].Via) == parseFloat( ModalidadTodasconOrdenotros[i-1].Via))
+                                { 
+                                  contOTRO= contOTRO;
+                                }
+                                else
+                                {
+                                  contOTRO=contOTRO + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contOTRO=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contOTRO==1) 
@@ -8980,27 +9863,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                         }
-                        }          
+                        }      
 
                   ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, "['+100 + Fs/kg + Gastos Embarque']");
+                    ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, 'Aeropuerto','Pais',"['+100 + Fs/kg + Gastos Embarque']");
                      
-                     var contC4017=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4017= contC4017 + 1;
+                       var contC4017=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4017= contC4017 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4017[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4017[i-1]['+100 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC4017= contC4017;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4017[i].Aeropuerto ==  ModalidadTodasconOrdenC4017[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4017[i].Pais ==  ModalidadTodasconOrdenC4017[i-1].Pais))
                               {
-                                contC4017=contC4017 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4017[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4017[i-1]['+100 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC4017= contC4017;
+                                }
+                                else
+                                {
+                                  contC4017=contC4017 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4017=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contC4017==1) 
@@ -9019,67 +9913,88 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
                         }
-                        }   
+                        }      
 
                    ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, "['+300 + Fs/kg + Gastos Embarque']");
+                   ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718, "['+300 + Fs/kg + Gastos Embarque']");
                      
-                     var contC401718=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC401718= contC401718 + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC401718[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC401718[i-1]['+300 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC401718= contC401718;
-                              }
-                              else
-                              {
-                                contC401718=contC401718 + 1;                               }
-                            }                                                        
+                      var contC401718=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contC401718= contC401718 + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC401718[i].Aeropuerto ==  ModalidadTodasconOrdenC401718[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC401718[i].Pais ==  ModalidadTodasconOrdenC401718[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC401718[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718[i-1]['+300 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC401718= contC401718;
+                                }
+                                else
+                                {
+                                  contC401718=contC401718 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC401718=1;
+                              }
+                              
+                          }
 
                         if (contC401718==1) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenC401718[i].AduC40171818Pintada = ["label label-success"];
                         }
                         if (contC401718==2) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenC401718[i].AduC40171818Pintada = ["label label-warning"];
                         }
                         if (contC401718==3) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenC401718[i].AduC40171818Pintada = ["label label-danger"];
                         }
                         if (contC401718>3)
                         {
-                          ModalidadTodasconOrdenC401718[i].AduC401718Pintada = [];
+                          ModalidadTodasconOrdenC401718[i].AduC40171818Pintada = [];
                         }
-                        } 
+                        }
 
 
                    ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, "['+500 + Fs/kg + Gastos Embarque']");
+                     ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020,'Aeropuerto','Pais', "['+500 + Fs/kg + Gastos Embarque']");
                      
-                     var contC4020=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4020= contC4020 + 1;
+                        var contC4020=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4020.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4020= contC4020 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4020[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4020[i-1]['+500 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC4020= contC4020;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4020[i].Aeropuerto ==  ModalidadTodasconOrdenC4020[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4020[i].Pais ==  ModalidadTodasconOrdenC4020[i-1].Pais))
                               {
-                                contC4020=contC4020 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4020[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4020[i-1]['+500 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC4020= contC4020;
+                                }
+                                else
+                                {
+                                  contC4020=contC4020 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4020=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contC4020==1) 
@@ -9098,27 +10013,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
                         }
-                        }       
+                        }      
 
                          ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, "['+1000 + Fs/kg + Gastos Embarque']");
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, 'Aeropuerto','Pais',"['+1000 + Fs/kg + Gastos Embarque']");
                      
-                     var contC4021=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4021= contC4021 + 1;
+                         var contC4021=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4021.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4021= contC4021 + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4021[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4021[i-1]['+1000 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC4021= contC4021;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4021[i].Aeropuerto ==  ModalidadTodasconOrdenC4021[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4021[i].Pais ==  ModalidadTodasconOrdenC4021[i-1].Pais))
                               {
-                                contC4021=contC4021 + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4021[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4021[i-1]['+1000 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC4021= contC4021;
+                                }
+                                else
+                                {
+                                  contC4021=contC4021 + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4021=1;
+                              }
+                              
+                          }                                                   
                           
 
                         if (contC4021==1) 
@@ -9137,60 +10063,73 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
                         }
-                        } 
+                        }      
 
-                    $scope.ModalidadTodasAerea=ModalidadTodas;
+                    $scope.ModalidadTodasAerea=ModalidadTodasAerea;
 
                 ////////////////////////////Aerea Pasajero /////////////////////////////////////////
+                ModalidadTodasAereaPasajero=[];
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) { 
                          ModalidadDeUnProveedor = consotm.AereaPasajero.AereasPasajeros
                             angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
                               consotmprov.Email = consotm.Email                         
-                              ModalidadTodas.push(consotmprov);   
-                              ModalidadTodasconOrdenP = ModalidadTodas;
-                              ModalidadTodasconOrdenMinimaP = ModalidadTodas;
-                              ModalidadTodasconOrdenGAP = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIIP = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIIIP = ModalidadTodas;
-                              ModalidadTodasconOrdenCAP = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIIP = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIIIP = ModalidadTodas;
-                              ModalidadTodasconOrdenCPCP = ModalidadTodas;
-                              ModalidadTodasconOrdenotrosP = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4017P = ModalidadTodas; 
-                              ModalidadTodasconOrdenC401718P = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4020P = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4021P = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4022P = ModalidadTodas; 
-                              ModalidadTodasconOrdenC4030P = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESTP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESTP = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESPP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESPP = ModalidadTodas;
+                              ModalidadTodasAereaPasajero.push(consotmprov);   
+                              ModalidadTodasconOrdenP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenMinimaP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenGAP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenGAIIP =ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenGAIIIP =ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenCAP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenCAIIP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenCAIIIP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenCPCP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenotrosP = ModalidadTodasAereaPasajero; 
+                              ModalidadTodasconOrdenC4017P = ModalidadTodasAereaPasajero; 
+                              ModalidadTodasconOrdenC401718P = ModalidadTodasAereaPasajero; 
+                              ModalidadTodasconOrdenC4020P = ModalidadTodasAereaPasajero; 
+                              ModalidadTodasconOrdenC4021P = ModalidadTodasAereaPasajero; 
+                              ModalidadTodasconOrdenC4022P = ModalidadTodasAereaPasajero; 
+                              ModalidadTodasconOrdenC4030P = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenC20ESTP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenC40ESTP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenC20ESPP = ModalidadTodasAereaPasajero;
+                              ModalidadTodasconOrdenC40ESPP = ModalidadTodasAereaPasajero;
 
                             });
                         });
+
+                         ModalidadTodasAereaPasajero = _.sortBy(ModalidadTodasAereaPasajero,'Aeropuerto','Pais');
+                         console.log(ModalidadTodasAereaPasajero);
                        
                          ////////  Campo Minima //////////////////////////
                      
-                     ModalidadTodasconOrdenP = _.sortBy(ModalidadTodasconOrdenP, 'Minima');
-                     console.log(ModalidadTodasconOrden);
-                    
-                     var contP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contP= contP + 1;
+                      ModalidadTodasconOrdenP = _.sortBy(ModalidadTodasconOrdenP,'Aeropuerto','Pais', 'Minima');
+                      var contP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contP= contP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenP[i].Minima) == parseFloat(ModalidadTodasconOrdenP[i-1].Minima)) 
-                              {                                 
-                                contP= contP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenP[i].Aeropuerto ==  ModalidadTodasconOrdenP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenP[i].Pais ==  ModalidadTodasconOrdenP[i-1].Pais))
                               {
-                                contP=contP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenP[i].Minima) == parseFloat( ModalidadTodasconOrdenP[i-1].Minima))
+                                { 
+                                  contP= contP;
+                                }
+                                else
+                                {
+                                  contP=contP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contP=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contP==1) 
@@ -9213,23 +10152,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
               ////////////////// ["45"] ////////////////////////////////////
                  
-                   ModalidadTodasconOrdenMinimaP = _.sortBy(ModalidadTodasconOrdenMinimaP, '["45"]');                 
+                  ModalidadTodasconOrdenMinimaP = _.sortBy(ModalidadTodasconOrdenMinimaP, 'Aeropuerto','Pais','["45"]');                 
                  
-                     var contminP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenMinimaP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contminP= contminP + 1;
+                      var contminP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenMinimaP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contminP= contminP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenMinimaP[i]["45"]) == parseFloat(ModalidadTodasconOrdenMinimaP[i-1]["45"])) 
-                              {                                 
-                                contminP= contminP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenMinimaP[i].Aeropuerto ==  ModalidadTodasconOrdenMinimaP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenMinimaP[i].Pais ==  ModalidadTodasconOrdenMinimaP[i-1].Pais))
                               {
-                                contminP=contminP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenMinimaP[i]["45"]) == parseFloat( ModalidadTodasconOrdenMinimaP[i-1]["45"]))
+                                { 
+                                  contminP= contminP;
+                                }
+                                else
+                                {
+                                  contminP=contminP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contminP=1;
+                              }
+                              
+                          }                                                       
                           
 
                         if (contminP==1) 
@@ -9248,34 +10198,45 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenMinimaP[i].AduC8PPintada = [];
                         }
-                        }                    
+                        }                   
 
                   ////////// Campo ['+100'] /////////////////////////////// 
                       
-                    ModalidadTodasconOrdenGAP = _.sortBy(ModalidadTodasconOrdenGAP, "['+100']");
+                       ModalidadTodasconOrdenGAP = _.sortBy(ModalidadTodasconOrdenGAP, 'Aeropuerto','Pais',"['+100']");
                      
-                     var contGAP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAP= contGAP + 1;
+                       var contGAP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAP= contGAP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAP[i]['+100']) == parseFloat(ModalidadTodasconOrdenGAP[i-1]['+100'])) 
-                              {                                 
-                                contGAP= contGAP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAP[i].Aeropuerto ==  ModalidadTodasconOrdenGAP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAP[i].Pais ==  ModalidadTodasconOrdenGAP[i-1].Pais))
                               {
-                                contGAP=contGAP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAP[i]['+100']) == parseFloat( ModalidadTodasconOrdenGAP[i-1]['+100']))
+                                { 
+                                  contGAP= contGAP;
+                                }
+                                else
+                                {
+                                  contGAP=contGAP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAP=1;
+                              }
+                              
+                          }                                                      
                           
 
                         if (contGAP==1) 
                         {
                                ModalidadTodasconOrdenGAP[i].AduC2010PPintada = ["label label-success"];
                         }
-                        if (contGA==2) 
+                        if (contGAP==2) 
                         {
                                ModalidadTodasconOrdenGA[i].AduC2010PPintada = ["label label-warning"];
                         }
@@ -9287,27 +10248,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAP[i].AduC2010PPintada = [];
                         }
-                        }         
-                     
+                        }          
 
                     ////////// Campo ['+300']                 
                        
-                    ModalidadTodasconOrdenCAP = _.sortBy(ModalidadTodasconOrdenCAP, "['+300']");
+                    ModalidadTodasconOrdenCAP = _.sortBy(ModalidadTodasconOrdenCAP,'Aeropuerto','Pais', "['+300']");
                      var contCAP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAP= contCAP + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAP= contCAP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAP[i]['+300']) == parseFloat(ModalidadTodasconOrdenCAP[i-1]['+300'])) 
-                              {                                 
-                                contCAP= contCAP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAP[i].Aeropuerto ==  ModalidadTodasconOrdenCAP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAP[i].Pais ==  ModalidadTodasconOrdenCAP[i-1].Pais))
                               {
-                                contCAP=contCAP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAP[i]['+300']) == parseFloat( ModalidadTodasconOrdenCAP[i-1]['+300']))
+                                { 
+                                  contCAP= contCAP;
+                                }
+                                else
+                                {
+                                  contCAP=contCAP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAP=1;
+                              }
+                              
+                          }                                                           
                           
 
                         if (contCAP==1) 
@@ -9330,24 +10301,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       ////////// Campo ['+500']               
                       
-                    ModalidadTodasconOrdenGAIIP = _.sortBy(ModalidadTodasconOrdenGAIIP, "['+500']");
+                   ModalidadTodasconOrdenGAIIP = _.sortBy(ModalidadTodasconOrdenGAIIP, 'Aeropuerto','Pais',"['+500']");
                      
-                     var contGAIIP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIIP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIIP= contGAIIP + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIIP[i]['+500']) == parseFloat(ModalidadTodasconOrdenGAIIP[i-1]['+500'])) 
-                              {                                 
-                                contGAIIP= contGAIIP;
-                              }
-                              else
-                              {
-                                contGAIIP=contGAIIP + 1;                               }
-                            }                                                        
+                      var contGAIIP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIP.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contGAIIP= contGAIIP + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAIIP[i].Aeropuerto ==  ModalidadTodasconOrdenGAIIP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAIIP[i].Pais ==  ModalidadTodasconOrdenGAIIP[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenGAIIP[i]['+500']) == parseFloat( ModalidadTodasconOrdenGAIIP[i-1]['+500']))
+                                { 
+                                  contGAIIP= contGAIIP;
+                                }
+                                else
+                                {
+                                  contGAIIP=contGAIIP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIIP=1;
+                              }
+                              
+                          }
 
                         if (contGAIIP==1) 
                         {
@@ -9357,7 +10338,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                                ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = ["label label-warning"];
                         }
-                        if (contGAIIIP==3) 
+                        if (contGAIIP==3) 
                         {
                                ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = ["label label-danger"];
                         }
@@ -9369,23 +10350,34 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                        ////////// Campo ['+1000']                
                       
-                    ModalidadTodasconOrdenCAIIP = _.sortBy(ModalidadTodasconOrdenCAIIP, "['+1000']");
+                      ModalidadTodasconOrdenCAIIP = _.sortBy(ModalidadTodasconOrdenCAIIP, 'Aeropuerto','Pais',"['+1000']");
                      
                      var contCAIIP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIIP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIIP= contCAIIP + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAIIP= contCAIIP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIIP[i]['+1000']) == parseFloat(ModalidadTodasconOrdenCAIIP[i-1]['+1000'])) 
-                              {                                 
-                                contCAIIP= contCAIIP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAIIP[i].Aeropuerto ==  ModalidadTodasconOrdenCAIIP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAIIP[i].Pais ==  ModalidadTodasconOrdenCAIIP[i-1].Pais))
                               {
-                                contCAIIP=contCAIIP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAIIP[i]['+1000']) == parseFloat( ModalidadTodasconOrdenCAIIP[i-1]['+1000']))
+                                { 
+                                  contCAIIP= contCAIIP;
+                                }
+                                else
+                                {
+                                  contCAIIP=contCAIIP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIIP=1;
+                              }
+                              
+                          }                                                     
                           
 
                         if (contCAIIP==1) 
@@ -9405,26 +10397,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIP[i].AduC2020PPintada = [];
                         }
                         }   
-
                       ////////// Campo ["FS min"]               
                           
-                    ModalidadTodasconOrdenGAIIIP = _.sortBy(ModalidadTodasconOrdenGAIIIP, '["FS min"]');
+                   ModalidadTodasconOrdenGAIIIP = _.sortBy(ModalidadTodasconOrdenGAIIIP,'Aeropuerto','Pais','["FS min"]');
                      
-                     var contGAIIIP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenGAIIIP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contGAIIIP= contGAIIIP + 1;
+                      var contGAIIIP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIIP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contGAIIIP= contGAIIIP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenGAIIIP[i]["FS min"]) == parseFloat(ModalidadTodasconOrdenGAIIIP[i-1]["FS min"])) 
-                              {                                 
-                                contGAIIIP= contGAIIIP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenGAIIIP[i].Aeropuerto ==  ModalidadTodasconOrdenGAIIIP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAIIIP[i].Pais ==  ModalidadTodasconOrdenGAIIIP[i-1].Pais))
                               {
-                                contGAIIIP=contGAIIIP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenGAIIIP[i]["FS min"]) == parseFloat( ModalidadTodasconOrdenGAIIIP[i-1]["FS min"]))
+                                { 
+                                  contGAIIIP= contGAIIIP;
+                                }
+                                else
+                                {
+                                  contGAIIIP=contGAIIIP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contGAIIIP=1;
+                              }
+                              
+                          }                                                              
                           
 
                         if (contGAIIIP==1) 
@@ -9443,28 +10445,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIIIP[i].AduC2021PPintada = [];
                         }
-                        }   
+                        } 
 
                   
-                   ////////// Campo ["Fs/kg"]              
+                   ////////// Campo ["Fs/kg"]  
+                        
+                     ModalidadTodasconOrdenCAIIIP = _.sortBy(ModalidadTodasconOrdenCAIIIP, '["Fs/kg"]');
                      
-                    ModalidadTodasconOrdenCAIIIP = _.sortBy(ModalidadTodasconOrdenCAIIIP, '["Fs/kg"]');
-                     
-                     var contCAIIIP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCAIIIP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCAIIIP= contCAIIIP + 1;
+                      var contCAIIIP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIP.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contCAIIIP= contCAIIIP + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]) == parseFloat(ModalidadTodasconOrdenCAIIIP[i-1]["Fs/kg"])) 
-                              {                                 
-                                contCAIIIP= contCAIIIP;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCAIIIP[i].Aeropuerto ==  ModalidadTodasconOrdenCAIIIP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAIIIP[i].Pais ==  ModalidadTodasconOrdenCAIIIP[i-1].Pais))
                               {
-                                contCAIIIP=contCAIIIP + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]) == parseFloat( ModalidadTodasconOrdenCAIIIP[i-1]["Fs/kg"]))
+                                { 
+                                  contCAIIIP= contCAIIIP;
+                                }
+                                else
+                                {
+                                  contCAIIIP=contCAIIIP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCAIIIP=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contCAIIIP==1) 
@@ -9483,30 +10496,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCAIIIP[i].AduC2025PPintada = [];
                         }
-                        }      
+                        }  
                           
                       
 
                           ////////// Campo["Gastos Embarque"]                
                        
-                    ModalidadTodasconOrdenCPCP = _.sortBy(ModalidadTodasconOrdenCPCP, '["Gastos Embarque"]');
-                     
-                     var contCPCP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenCPCP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contCPCP= contCPCP + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPCP[i-1]["Gastos Embarque"])) 
-                              {                                 
-                                contCPCP= contCPCP;
-                              }
-                              else
-                              {
-                                contCPCP=contCPCP + 1;                               }
-                            }                                                        
+                    ModalidadTodasconOrdenCPCP = _.sortBy(ModalidadTodasconOrdenCPCP,'Aeropuerto','Pais','["Gastos Embarque"]');
+                    var contCPCP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenCPCP.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contCPCP= contCPCP + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenCPCP[i].Aeropuerto ==  ModalidadTodasconOrdenCPCP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCPCP[i].Pais ==  ModalidadTodasconOrdenCPCP[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCPCP[i-1]["Gastos Embarque"]))
+                                { 
+                                  contCPCP= contCPCP;
+                                }
+                                else
+                                {
+                                  contCPCP=contCPCP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contCPCP=1;
+                              }
+                              
+                          }    
 
                         if (contCPCP==1) 
                         {
@@ -9524,28 +10546,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenCPCP[i].AduCPCPintada = [];
                         }
-                        } 
+                        }   
 
                    ////////// Campo Via////////////////////////////
                        
-                    ModalidadTodasconOrdenotrosP = _.sortBy(ModalidadTodasconOrdenotrosP, 'Via');
+                    ModalidadTodasconOrdenotrosP = _.sortBy(ModalidadTodasconOrdenotrosP,'Aeropuerto','Pais', 'Via');
                      
-                     var contOTROP=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenotrosP.length-1; i++){                                                    
-                          if (i==0){                            
-                            contOTROP= contOTROP + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenotrosP[i].Via) == parseFloat(ModalidadTodasconOrdenotrosP[i-1].Via)) 
-                              {                                 
-                                contOTROP= contOTROP;
-                              }
-                              else
-                              {
-                                contOTROP=contOTROP + 1;                               }
-                            }                                                        
+                        var contOTROP=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenotrosP.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contOTROP= contOTROP + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenotrosP[i].Aeropuerto ==  ModalidadTodasconOrdenotrosP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenotrosP[i].Pais ==  ModalidadTodasconOrdenotrosP[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenotrosP[i].Via) == parseFloat( ModalidadTodasconOrdenotrosP[i-1].Via))
+                                { 
+                                  contOTROP= contOTROP;
+                                }
+                                else
+                                {
+                                  contOTROP=contOTROP + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contOTROP=1;
+                              }
+                              
+                          } 
 
                         if (contOTROP==1) 
                         {
@@ -9563,27 +10595,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotrosP[i].AduC4016PPintada = [];
                         }
-                        }          
+                        }     
 
                   ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
-                    ModalidadTodasconOrdenC4017P = _.sortBy(ModalidadTodasconOrdenC4017P, "['+100 + Fs/kg + Gastos Embarque']");
+                    ModalidadTodasconOrdenC4017P = _.sortBy(ModalidadTodasconOrdenC4017P,'Aeropuerto','Pais',"['+100 + Fs/kg + Gastos Embarque']");
                      
-                     var contC4017P=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4017P.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4017P= contC4017P + 1;
+                       var contC4017P=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017P.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4017P= contC4017P + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC4017P= contC4017P;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4017P[i].Aeropuerto ==  ModalidadTodasconOrdenC4017P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4017P[i].Pais ==  ModalidadTodasconOrdenC4017P[i-1].Pais))
                               {
-                                contC4017P=contC4017P + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC4017P= contC4017P;
+                                }
+                                else
+                                {
+                                  contC4017P=contC4017P + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4017P=1;
+                              }
+                              
+                          }                                                    
                           
 
                         if (contC4017P==1) 
@@ -9602,28 +10644,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4017P[i].AduC17Pintada = [];
                         }
-                        }   
+                        }      
 
                    ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC401718P = _.sortBy(ModalidadTodasconOrdenC401718P, "['+300 + Fs/kg + Gastos Embarque']");
+                    ModalidadTodasconOrdenC401718P = _.sortBy(ModalidadTodasconOrdenC401718P,'Aeropuerto','Pais', "['+300 + Fs/kg + Gastos Embarque']");
                      
-                     var contC401718P=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC401718P.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC401718P= contC401718P + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC401718P= contC401718P;
-                              }
-                              else
-                              {
-                                contC401718P=contC401718P + 1;                               }
-                            }                                                        
+                       var contC401718P=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718P.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contC401718P= contC401718P + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC401718P[i].Aeropuerto ==  ModalidadTodasconOrdenC401718P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC401718P[i].Pais ==  ModalidadTodasconOrdenC401718P[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC401718P= contC401718P;
+                                }
+                                else
+                                {
+                                  contC401718P=contC401718P + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC401718P=1;
+                              }
+                              
+                          }   
 
                         if (contC401718P==1) 
                         {
@@ -9641,28 +10693,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = [];
                         }
-                        } 
+                        }  
 
 
                    ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC4020P = _.sortBy(ModalidadTodasconOrdenC4020P, "['+500 + Fs/kg + Gastos Embarque']");
+                    ModalidadTodasconOrdenC4020P = _.sortBy(ModalidadTodasconOrdenC4020P,'Aeropuerto','Pais',"['+500 + Fs/kg + Gastos Embarque']");
                      
                      var contC4020P=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4020P.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4020P= contC4020P + 1;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4020P.length-1; i++){ 
+                          
+                          if (i==0)
+                          {                            
+                             contC4020P= contC4020P + 1;                            
                           }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC4020P= contC4020P;
-                              }
-                              else
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4020P[i].Aeropuerto ==  ModalidadTodasconOrdenC4020P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4020P[i].Pais ==  ModalidadTodasconOrdenC4020P[i-1].Pais))
                               {
-                                contC4020P=contC4020P + 1;                               }
-                            }                                                        
+                                if(parseFloat( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC4020P= contC4020P;
+                                }
+                                else
+                                {
+                                  contC4020P=contC4020P + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4020P=1;
+                              }
+                              
+                          }                                                        
                           
 
                         if (contC4020P==1) 
@@ -9681,28 +10744,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = [];
                         }
-                        }       
+                        }           
+ 
 
                          ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
                        
-                    ModalidadTodasconOrdenC4021P = _.sortBy(ModalidadTodasconOrdenC4021P, "['+1000 + Fs/kg + Gastos Embarque']");
+                    ModalidadTodasconOrdenC4021P = _.sortBy(ModalidadTodasconOrdenC4021P, 'Aeropuerto','Pais',"['+1000 + Fs/kg + Gastos Embarque']");
                      
                      var contC4021P=0;
-                        for (var i=0; i<=ModalidadTodasconOrdenC4021P.length-1; i++){                                                    
-                          if (i==0){                            
-                            contC4021P= contC4021P + 1;
-                          }
-                          else
-                              {         
-                              if(parseFloat(ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg + Gastos Embarque'])) 
-                              {                                 
-                                contC4021P= contC4021P;
-                              }
-                              else
-                              {
-                                contC4021P=contC4021P + 1;                               }
-                            }                                                        
+                       for (var i=0; i<= ModalidadTodasconOrdenC4021P.length-1; i++){ 
                           
+                          if (i==0)
+                          {                            
+                             contC4021P= contC4021P + 1;                            
+                          }
+                         else
+                          { 
+                              if(( ModalidadTodasconOrdenC4021P[i].Aeropuerto ==  ModalidadTodasconOrdenC4021P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4021P[i].Pais ==  ModalidadTodasconOrdenC4021P[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg + Gastos Embarque']))
+                                { 
+                                  contC4021P= contC4021P;
+                                }
+                                else
+                                {
+                                  contC4021P=contC4021P + 1;              
+                                }                  
+                              }                              
+                             else
+                              {                               
+                               contC4021P=1;
+                              }
+                              
+                          } 
 
                         if (contC4021P==1) 
                         {
@@ -9722,7 +10796,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         } 
                   
-                    $scope.ModalidadTodasAereaPasajero=ModalidadTodas;                
+                    $scope.ModalidadTodasAereaPasajero=ModalidadTodasAereaPasajero;                
                    
                }                  
                      

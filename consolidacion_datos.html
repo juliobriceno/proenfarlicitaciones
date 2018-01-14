@@ -281,7 +281,7 @@
                                                           <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
                                                           <th class="text-center"><h6><b>Otros</b></h6></th>
                                                       </tr>
-                                                <tr ng-repeat="Consadu in ModalidadTodas | orderBy:'Via':false">
+                                                <tr ng-repeat="Consadu in ModalidadTodas">
                                                 <td>{{Consadu.Email}}</td>
                                                <td>{{Consadu.Via}}</td>
                                                <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]}}</span></td>
@@ -330,7 +330,7 @@
                                             <th class="text-center"><h6><b>Devolución 20$ expreso</b></h6> </th>
                                             <th class="text-center"><h6><b>Devolución 40$ expreso</b></h6> </th>
                                           </tr>
-                                          <tr ng-repeat="Otm in ModalidadTodas | orderBy:['Origen','Destino']">
+                                          <tr ng-repeat="Otm in ModalidadTodas">
                                             <td>{{Otm.Email}}</td>
                                             <td>{{Otm.Origen}}</td>
                                             <td>{{Otm.Destino}}</td>
@@ -380,12 +380,12 @@
                                             <th class="text-center"><h6><b>C 40 + Baf 40 + Gastos Embarque</b></h6></th>
                                             <th class="text-center"><h6><b>C 24HC + Baf 40HC + Gastos Embarque</b></h6></th>
                                             </tr>
-                                          <tr ng-repeat="MaritimaFcl in ModalidadTodas | orderBy:['PaisDestino','PuertoOrigen','PuertoDestino']">
+                                          <tr ng-repeat="MaritimaFcl in ModalidadTodas | orderBy:['PuertoDestino','PuertoOrigen','PaisDestino']">
                                             <td>{{MaritimaFcl.Email}}</td>
                                             <td>{{MaritimaFcl.PaisDestino}}</td>
                                             <td>{{MaritimaFcl.PuertoOrigen}}</td>
                                             <td>{{MaritimaFcl.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2045Pintada">{{MaritimaFcl["C 20"]}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2045Pintada">{{MaritimaFcl["C 20"]}}</span><R/td>
                                             <td class="text-center"><span ng-class="MaritimaFcl.AduC8Pintada">{{MaritimaFcl["Baf 20"]}}</span></td>
                                             <td class="text-center"><span ng-class="MaritimaFcl.AduC2010Pintada">{{MaritimaFcl["C 40"]}}</span></td>
                                             <td class="text-center"><span ng-class="MaritimaFcl.AduC2017Pintada">{{MaritimaFcl["Baf 40"]}}</span></td>
@@ -419,7 +419,7 @@
                                           <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
                                           <th class="text-center"><h6><b>Naviera</b></h6></th>
                                         </tr>
-                                        <tr ng-repeat="MaritimaLcl in ModalidadTodas | orderBy:['PaisDestino','PuertoOrigen','PuertoDestino']">
+                                        <tr ng-repeat="MaritimaLcl in ModalidadTodas | orderBy:['PuertoDestino','PuertoOrigen','PaisDestino']">
                                           <td>{{MaritimaLcl.Email}}</td>
                                           <td>{{MaritimaLcl.PaisDestino}}</td>
                                           <td>{{MaritimaLcl.PuertoOrigen}}</td>
@@ -450,7 +450,7 @@
                                             <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h6></th>
                                             <th class="text-center"><h6><b>Turbo Especial</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo | orderBy:['Origen','Destino']">
+                                          <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo | orderBy:['PuertoDestino','PaisOrigen']">
                                             <td>{{TerreNacional.Email}}</td>
                                             <td>{{TerreNacional.PaisOrigen}}</td>
                                             <td>{{TerreNacional.PuertoDestino}}</td>
@@ -476,7 +476,7 @@
                                               <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
                                               <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
                                             </tr>
-                                            <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo | orderBy:['PaisOrigen','PuertoDestino']" >
+                                            <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo | orderBy:['PuertoDestino','PaisOrigen']" >
                                               <td>{{TerreNacionalSencillo.Email}}</td>
                                               <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
                                               <td >{{TerreNacionalSencillo.PuertoDestino}}</td>
@@ -502,7 +502,7 @@
                                                 <th class="text-center"><h6><b>Minimula</b></h6></th>
                                                 <th class="text-center"><h6><b>Gran Danes</b></h6></th>
                                               </tr>
-                                              <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta | orderBy:['PaisOrigen','PuertoDestino']">
+                                              <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta | orderBy:['PuertoDestino','PaisOrigen']">
                                                 <td>{{TerreNacionalPatineta.Email}}</td>
                                                 <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
                                                 <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
@@ -513,7 +513,7 @@
                                           </div>
                                         </div>
                                       </div>
-                                      <div class="row" ng-show="Show8">
+                                      <div class="row" ng-show="Show9">
                                       <div class="col-md-12">
                                         <div class="box-body table-responsive no-padding">
                                           <div class="widget-header">
@@ -531,7 +531,7 @@
                                             <th class="text-center"><h6><b>Minimula</b></h6></th>
                                             <th class="text-center"><h6><b>Gran Danes</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano | orderBy:['PaisOrigen','PuertoDestino']">
+                                          <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano | orderBy:['PuertoDestino','PaisOrigen',]">
                                             <td>{{TerreUrbano.Email}}</td>
                                             <td>{{TerreUrbano.PaisOrigen}}</td>
                                             <td>{{TerreUrbano.PuertoDestino}}</td>
@@ -565,7 +565,7 @@
                                             <th class="text-center"><h6><b>Minimula</b></h6></th>
                                             <th class="text-center"><h6><b>Gran Danes</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje | orderBy:['PaisOrigen','PuertoDestino']"">
+                                          <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje | orderBy:['PuertoDestino','PaisOrigen']">
                                             <td>{{TerreUrbanoViaje.Email}}</td>
                                             <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
                                             <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
@@ -596,7 +596,7 @@
                                             <th class="text-center"><h6><b>Sencillo</b></h6></th>
                                             <th class="text-center"><h6><b>Tractomula</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada | orderBy:['PaisOrigen','PuertoDestino']"">
+                                          <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada | orderBy:['PuertoDestino','PaisOrigen']"">
                                             <td>{{TerreUrbanoTonelada.Email}}</td>
                                             <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
                                             <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
@@ -634,7 +634,7 @@
                                             <th class="text-center"><h6><b>'+500 + Fs/kg + Gastos Embarque'</b></h6></th>
                                             <th class="text-center"><h6><b>'+1000 + Fs/kg + Gastos Embarque'</b></h6></th>
                                               </tr>
-                                              <tr ng-repeat="Aerea in ModalidadTodasAerea | orderBy:['Pais','Aeropuerto']">
+                                              <tr ng-repeat="Aerea in ModalidadTodasAerea | orderBy:['Aeropuerto','Pais']">
                                                 <td>{{Aerea.Email}}</td>
                                                 <td>{{Aerea.Pais}}</td>
                                                 <td>{{Aerea.Aeropuerto}}</td>
@@ -684,7 +684,7 @@
                                             <th class="text-center"><h6><b>'+500 + Fs/kg + Gastos Embarque'</b></h6></th>
                                             <th class="text-center"><h6><b>'+1000 + Fs/kg + Gastos Embarque'</b></h6></th>
                                               </tr>
-                                              <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero | orderBy:'Pais':false">
+                                              <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero | orderBy:['Aeropuerto','Pais']">
                                                 <td>{{Aereapasajero.Email}}</td>
                                                 <td>{{Aereapasajero.Pais}}</td>
                                                 <td>{{Aereapasajero.Aeropuerto}}</td>
