@@ -4862,14 +4862,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
          .controller('ctrlConsolidadoDatos', ['$scope', '$http', '$loading', '$uibModal', '$log', '$document', 'FileUploader', function ($scope, $http, $loading, $uibModal,$log, $document, FileUploader) {
           $scope.Show2=false;
+          $scope.ModalidadesSemaforo=false;
         
          $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MaritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
 
          $scope.selectedModalidad = $scope.Modalidades[0];
-       
-
-      
-            $scope.GetConsolidadoDatos = function () {
+         
+        
+                  $scope.GetConsolidadoDatos = function () {
                     var Data={};                   
                     var ModalidadTodas = [];
                     var ModalidadTodasTurbo = [];
@@ -4936,6 +4936,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var ModalidadDeUnProveedor = []
                     var ModalidadAduanero= []
                     var Modalidad= $scope.selectedModalidad.Name;
+                    var ModalidadesTodasRespaldo=[];
                     
                     var Unobjeto={};
 
@@ -4948,8 +4949,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }).then(function successCallback(response) {
                     $loading.finish('myloading');
                     $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
-                   
+
                      if (Modalidad == 'Bodegajes') {
+                      console.log('paso por aqui bodegajes');
                         $scope.Show1=true;
                         $scope.Show11=true;
                         $scope.Show111=true;
@@ -4973,24 +4975,29 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var ModalidadTodasconOrdenBodegajeaduaneromin=[];
                           var ModalidadTodasBodegajeaduanerootro=[];
                          var ModalidadTodasconOrdenBodegajeaduanerootro=[];
-                                                
+
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) { 
-                          ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
-                          Unobjeto.TarifaValor=ModalidadDeUnProveedor.TarifaValor;
+                         var ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
+                          console.log(ModalidadDeUnProveedor);
+                          Unobjeto.Email=consbodegaje.Email;
+
+                          /*Unobjeto.TarifaValor=ModalidadDeUnProveedor.TarifaValor;
                           Unobjeto.TarifaMinima=ModalidadDeUnProveedor.TarifaMinima;
                           Unobjeto.Otros=ModalidadDeUnProveedor.Otros;                          
-                           Unobjeto.Email=consbodegaje.Email;
+                           Unobjeto.Email=consbodegaje.Email;*/
 
-                        ModalidadTodasBodegajeaduanero.push([{TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros,Email:Unobjeto.Email}]);
-                        $scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
-                        ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
-                        console.log( $scope.ModalidadTodasBodegajeaduanero);
+                           
+
+                       ModalidadDeUnProveedor.push([{Email:Unobjeto.Email}]);
+                        /*$scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                        ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;*/
+                        console.log( ModalidadDeUnProveedor);
                           
                          });
                       ///////////////////////// tarifa Valor////////////////////
 
-                      ModalidadTodasconOrdenBodegajeaduanero = _.sortBy(ModalidadTodasconOrdenBodegajeaduanero, 'TarifaValor');
-                    console.log( $scope.ModalidadDeUnProveedorbodegajeaduanero);
+                   /*   ModalidadTodasconOrdenBodegajeaduanero = _.sortBy(ModalidadTodasconOrdenBodegajeaduanero, 'TarifaValor');
+                    console.log( ModalidadTodasconOrdenBodegajeaduanero);
                      var cont=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanero.length-1; i++){                                                    
                           if (i==0){                            
@@ -5384,13 +5391,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqfmmtPintada = [];
                         }
-                        }
+                        }*/
                       
                      }   
 
                      //////////////////////////////  Aduanas ////////////////////////        
                      
                     if (Modalidad == 'Aduanas') {
+
+                      console.log('paso por aqui aduanas');
                     
                         $scope.Show1=false;
                         $scope.Show11=false;
@@ -5438,30 +5447,42 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                     //////// Aerea campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
                       ModalidadTodasconOrden = _.sortBy( ModalidadTodasconOrden, 'Via','["Tarifa % Advalorem/ FOB"]');
+                      console.log(ModalidadTodasconOrden);
                 
                      var cont=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){ 
-                          
-                          if (i==0)
+                     var contnull=0;
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                         
+                           if (i==0) 
                           {                            
-                             cont= cont + 1;                            
+                             cont= cont + 1;  
+                             console.log('i es o');
+                             console.log(cont);                          
                           }
                          else
                           { 
-                             if(ModalidadTodasconOrden[i].Via == ModalidadTodasconOrden[i-1].Via)
+                             if(ModalidadTodasconOrden[i].Via == ModalidadTodasconOrden[i-1].Via)                             
+                             
                               {
+                                console.log('via igual');
                                 if(parseFloat(ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]) == parseFloat(ModalidadTodasconOrden[i-1]["Tarifa % Advalorem/ FOB"])) 
                                 { 
                                   cont= cont;
+                                  console.log('campo igual');
+                                  console.log(cont);
                                 }
                                 else
                                 {
-                                  cont=cont + 1;              
-                                }                  
+                                  cont=cont + 1;
+                                  console.log('campo diferente');
+                             console.log(cont);              
+                                } 
+                               
                               }                              
                              else
                               {                               
                                cont=1;
+                               console.log('via diferente');
+                             console.log(cont);
                               }
                               
                           }    
@@ -5482,6 +5503,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrden[i].AdutarifaPintada = [];
                         }
+                        if (contnull==1)
+                        {
+                          ModalidadTodasconOrden[i].AdutarifaPintada = [];
+                        }
+                      
                         }
 
 
@@ -5491,7 +5517,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contmin=0;
                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -5539,8 +5565,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      
                      var contGA=0;
                        for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){ 
-                          
-                          if (i==0)
+                          if (i==0)                          
                           {                            
                              contGA= contGA + 1;                            
                           }
@@ -5637,7 +5662,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contGAII=0;
                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAII= contGAII + 1;                            
                           }
@@ -5687,7 +5712,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contCAII=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0)
                           {                            
                              contCAII= contCAII + 1;                            
                           }
@@ -5787,7 +5812,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCAIII= contCAIII + 1;                            
                           }
@@ -5839,7 +5864,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCPC= contCPC + 1;                            
                           }
@@ -5888,7 +5913,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contOTRO=0;
                        for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contOTRO= contOTRO + 1;                            
                           }
@@ -5929,7 +5954,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenotros[i].AduotroPintada = [];
                         }
-                        }  
+                        }                        
+
+
+                    
+                     ModalidadTodasRespaldo = ModalidadTodas;
+                       $scope.ModalidadTodas= ModalidadTodas;                   
+                       $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
+                     return (el.AdutarifaPintada.length > 0 || 
+                          el.AduMinimaPintada.length > 0 ||
+                          el.AduGAPintada.length > 0 ||
+                          el.AduCAPintada.length > 0 ||
+                          el.AduGAIIPintada.length > 0 ||
+                          el.AduCAIIPintada.length > 0 ||
+                          el.AduGAIIIPintada.length > 0 ||
+                          el.AduCAIIIPintada.length > 0 ||
+                          el.AduCPCPintada.length > 0 ||
+                          el.AduotroPintada.length > 0 ||                           
+                          $scope.ModalidadesSemaforo == false);
+                }); 
+                console.log($scope.ModalidadTodas);  
 
                   
                }
@@ -5991,7 +6035,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var cont=0;
                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              cont= cont + 1;                            
                           }
@@ -6040,7 +6084,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contmin=0;
                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -6129,7 +6173,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGA>3)
                         {
-                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                         }
                         }
                   
@@ -6140,7 +6184,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
@@ -6190,7 +6234,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII=0;
                        for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAII= contGAII + 1;                            
                           }
@@ -6290,7 +6334,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII=0;
                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAIII= contGAIII + 1;                            
                           }
@@ -6340,7 +6384,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCAIII= contCAIII + 1;                            
                           }
@@ -6389,7 +6433,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contCPC=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCPC= contCPC + 1;                            
                           }
@@ -6489,7 +6533,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4017= contC4017 + 1;                            
                           }
@@ -6539,7 +6583,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contC401718=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC401718= contC401718 + 1;                            
                           }
@@ -6590,7 +6634,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4020=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4020= contC4020 + 1;                            
                           }
@@ -6640,7 +6684,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contC4021=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4021= contC4021 + 1;                            
                           }
@@ -6690,7 +6734,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contC4022=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4022= contC4022 + 1;                            
                           }
@@ -6740,7 +6784,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contC4030=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC4030.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4030= contC4030 + 1;                            
                           }
@@ -6790,7 +6834,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC20EST=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC20EST.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC20EST= contC20EST + 1;                            
                           }
@@ -6840,7 +6884,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contC40EST=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC40EST.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC40EST= contC40EST + 1;                            
                           }
@@ -6940,7 +6984,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC40ESP=0;
                        for (var i=0; i<=ModalidadTodasconOrdenC40ESP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC40ESP= contC40ESP + 1;                            
                           }
@@ -6981,7 +7025,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
                         }
-                        }                
+                        }  
+                           var ModalidadTodasOTM=[];
+                           ModalidadTodasOTM=ModalidadTodas;
+
+              /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasOTM;
+                       $scope.ModalidadTodasOTM= ModalidadTodasOTM;                   
+                       $scope.ModalidadTodasOTM = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045Pintada.length > 0 ||                                 
+                                    el.AduC8Pintada.length > 0 ||
+                                    el.AduC2010Pintada.length > 0 ||
+                                el.AduC2017Pintada.length > 0 ||
+                                el.AduC2019Pintada.length > 0 ||
+                                el.AduC2020Pintada.length > 0 ||
+                                el.AduC2021Pintada.length > 0 ||
+                                el.AduC2025Pintada.length > 0 ||
+                                el.AduC4015Pintada.length > 0 ||
+                                el.AduC4016Pintada.length > 0 ||  
+                                el.AduC4017Pintada.length > 0 ||                         
+                                el.AduC401718Pintada.length > 0 ||
+                                el.AduC4020Pintada.length > 0 ||
+                                el.AduC4021Pintada.length > 0 ||
+                                el.AduC4020Pintada.length > 0 ||
+                                el.AduC4030Pintada.length > 0 ||
+                                el.AduC20ESTPintada.length > 0 ||
+                                el.AduC40ESTPintada.length > 0 ||
+                                el.AduC20ESPPintada.length > 0 ||
+                                el.AduC40ESPPintada.length > 0 ||
+                                $scope.ModalidadesSemaforo == false);
+                      }); 
+                console.log($scope.ModalidadTodas);  
+              
                      
                    
                }                  
@@ -7046,7 +7121,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var cont=0;
                        for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              cont= cont + 1;                            
                           }
@@ -7096,7 +7171,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contmin=0;
                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -7146,7 +7221,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contGA=0;
                        for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                        if (i==0) 
                           {                            
                              contGA= contGA + 1;                            
                           }
@@ -7185,7 +7260,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGA>3)
                         {
-                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                         }
                         }      
                      
@@ -7196,7 +7271,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contCA=0;
                        for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
@@ -7246,7 +7321,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contGAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAII= contGAII + 1;                            
                           }
@@ -7296,7 +7371,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         var contCAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contCAII= contCAII + 1;                            
                           }
@@ -7347,7 +7422,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contGAIII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAIII= contGAIII + 1;                            
                           }
@@ -7398,7 +7473,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contCAIII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCAIII= contCAIII + 1;                            
                           }
@@ -7449,7 +7524,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCPC.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contCPC= contCPC + 1;                            
                           }
@@ -7499,7 +7574,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contOTRO=0;
                        for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){ 
                           
-                          if (i==0)
+                       if (i==0) 
                           {                            
                              contOTRO= contOTRO + 1;                            
                           }
@@ -7549,7 +7624,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contC4017=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4017= contC4017 + 1;                            
                           }
@@ -7590,7 +7665,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenC4017[i].AduC17Pintada = [];
                         }
-                        }      
+                        }  
+
+                  /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodas;
+                       $scope.ModalidadTodas= ModalidadTodas;                   
+                       $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045Pintada.length > 0 || 
+                                el.AduC8Pintada.length > 0 ||
+                                el.AduC2010Pintada.length > 0 ||
+                                el.AduC2017Pintada.length > 0 ||
+                                el.AduC2019Pintada.length > 0 ||
+                                el.AduC2020Pintada.length > 0 ||
+                                el.AduC2025Pintada.length > 0 ||
+                                el.AduC2021Pintada.length > 0 ||
+                                el.AduC4015Pintada.length > 0 ||
+                                el.AduC4016Pintada.length > 0 ||  
+                                el.AduC4017Pintada.length > 0 ||
+                                $scope.ModalidadesSemaforo == false);
+                      }); 
+                console.log($scope.ModalidadTodas);      
 
                    }                
 
@@ -7655,7 +7749,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var cont=0;
                        for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              cont= cont + 1;                            
                           }
@@ -7706,7 +7800,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin=0;
                        for (var i=0; i<= ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -7755,7 +7849,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                    var contGA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGA= contGA + 1;                            
                           }
@@ -7794,7 +7888,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGA>3)
                         {
-                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                         }
                         }   
                      
@@ -7805,7 +7899,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
@@ -7854,7 +7948,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAII= contGAII + 1;                            
                           }
@@ -7904,7 +7998,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCAII= contCAII + 1;                            
                           }
@@ -7954,7 +8048,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contGAIII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAIII= contGAIII + 1;                            
                           }
@@ -7995,7 +8089,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                         }
-                        }   
+                        } 
+
+                        /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodas;
+                       $scope.ModalidadTodas= ModalidadTodas;                   
+                       $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045Pintada.length > 0 || 
+                                 el.AduC8Pintada.length > 0 ||
+                                el.AduC2010Pintada.length > 0 ||
+                                el.AduC2017Pintada.length > 0 ||
+                                el.AduC2019Pintada.length > 0 ||
+                                el.AduC2020Pintada.length > 0 ||
+                                el.AduC2021Pintada.length > 0 ||                               
+                                $scope.ModalidadesSemaforo == false);
+                      }); 
+                console.log($scope.ModalidadTodas);    
 
                    }                
 
@@ -8060,7 +8169,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont=0;
                        for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              cont= cont + 1;                            
                           }
@@ -8110,7 +8219,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin=0;
                        for (var i=0; i<= ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -8154,6 +8263,17 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                   
                          $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodas;
+
+
+                          /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodas;
+                       $scope.ModalidadTodasTerreNacionalTurbo= ModalidadTodas;                   
+                       $scope.ModalidadTodasTerreNacionalTurbo = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045Pintada.length > 0 || 
+                                 el.AduC8Pintada.length > 0 ||                               
+                                $scope.ModalidadesSemaforo == false);
+                      }); 
+                console.log($scope.ModalidadTodas);  
                    
 
                        //Terrestre Nacional Sencillo
@@ -8194,22 +8314,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                              ////////// Campo ["Sencillo Standar (150Cajas)"]/////////////////////////////// 
                       
-                     ModalidadTodasconOrdenGA = _.sortBy(ModalidadTodasconOrdenGA,'PuertoDestino','PaisOrigen','["Sencillo Standar (150Cajas)"]');
+                     ModalidadTodasconOrdenGAS = _.sortBy(ModalidadTodasconOrdenGAS,'PuertoDestino','PaisOrigen','["Sencillo Standar (150Cajas)"]');
                      console.log(ModalidadTodasconOrdenGA);
                      var contGA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGA= contGA + 1; 
                              console.log('Es igual a cero');                           
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenGAS[i].PuertoDestino ==  ModalidadTodasconOrdenGAS[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAS[i].PaisOrigen ==  ModalidadTodasconOrdenGAS[i-1].PaisOrigen))
                               {
                                console.log('Puerto igual');   
-                                if(parseFloat( ModalidadTodasconOrdenGA[i]["Sencillo Standar (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGA[i-1]["Sencillo Standar (150Cajas)"])) 
+                                if(parseFloat( ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGAS[i-1]["Sencillo Standar (150Cajas)"])) 
                                 {                                    
                                   contGA= contGA;
                                   console.log('numero igual'); 
@@ -8235,42 +8355,42 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contGA==1) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenGAS[i].AduC2010Pintada = ["label label-success"];
                                console.log('verde');
                         }
                         if (contGA==2) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenGAS[i].AduC2010Pintada = ["label label-warning"];
                                console.log('amarillo');
                         }
                         if (contGA==3) 
                         {
-                               ModalidadTodasconOrdenGA[i].AduC2010Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenGAS[i].AduC2010Pintada = ["label label-danger"];
                                console.log('rojo');
                         }
                         if (contGA>3)
                         {
-                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          ModalidadTodasconOrdenGAS[i].AduC2010Pintada = [];
                           console.log('blanco');
                         }
                         }    
 
                     ////////// Campo Sencillo Especial               
                        
-                     ModalidadTodasconOrdenCA = _.sortBy(ModalidadTodasconOrdenCA, 'PuertoDestino','PaisOrigen','["Sencillo Especial"]');
+                     ModalidadTodasconOrdenCAS = _.sortBy(ModalidadTodasconOrdenCAS, 'PuertoDestino','PaisOrigen','["Sencillo Especial"]');
                      
                      var contCA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PaisOrigen ==  ModalidadTodasconOrdenCA[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenCAS[i].PuertoDestino ==  ModalidadTodasconOrdenCAS[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAS[i].PaisOrigen ==  ModalidadTodasconOrdenCAS[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenCA[i]["Sencillo Especial"]) == parseFloat( ModalidadTodasconOrdenCA[i-1]["Sencillo Especial"]))
+                                if(parseFloat( ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]) == parseFloat( ModalidadTodasconOrdenCAS[i-1]["Sencillo Especial"]))
                                 { 
                                   contCA= contCA;
                                 }
@@ -8289,23 +8409,33 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCA==1) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenCAS[i].AduC2017Pintada = ["label label-success"];
                         }
                         if (contCA==2) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenCAS[i].AduC2017Pintada = ["label label-warning"];
                         }
                         if (contCA==3) 
                         {
-                               ModalidadTodasconOrdenCA[i].AduC2017Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenCAS[i].AduC2017Pintada = ["label label-danger"];
                         }
                         if (contCA>3)
                         {
-                          ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
+                          ModalidadTodasconOrdenCAS[i].AduC2017Pintada = [];
                         }
                         }  
 
-                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasTerreNacionalSencillo;  
+                        $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasTerreNacionalSencillo; 
+
+                    /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasTerreNacionalSencillo;
+                       $scope.ModalidadTodasTerreNacionalSencillo= ModalidadTodasTerreNacionalSencillo;                   
+                       $scope.ModalidadTodasTerreNacionalSencillo = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2010Pintada.length > 0 || 
+                                 el.AduC2017Pintada.length > 0 ||                               
+                                $scope.ModalidadesSemaforo == false);
+                      }); 
+                
 
 
                         //Terrestre Nacional Patineta
@@ -8350,7 +8480,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contGA= contGA + 1;                            
                           }
@@ -8400,7 +8530,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contCA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
@@ -8444,6 +8574,17 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         } 
 
                         $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
+
+                        ////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasPatineta;
+                        $scope.ModalidadTodasTerreNacionalPatineta= ModalidadTodasPatineta;                   
+                        $scope.ModalidadTodasTerreNacionalPatineta = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2019Pintada.length > 0 || 
+                                 el.AduC2020Pintada.length > 0 ||                               
+                                $scope.ModalidadesSemaforo == false);
+                      });
+
+
                     }      
                 ///////////////////////////////////////////////////////////////////////////////
 
@@ -8506,7 +8647,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont=0;
                        for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              cont= cont + 1;                            
                           }
@@ -8557,7 +8698,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contmin=0;
                        for (var i=0; i<= ModalidadTodasconOrdenMinima.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -8608,7 +8749,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contGA= contGA + 1;                            
                           }
@@ -8647,7 +8788,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGA>3)
                         {
-                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                         }
                         }      
                      
@@ -8657,7 +8798,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
@@ -8705,7 +8846,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contGAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAII= contGAII + 1;                            
                           }
@@ -8754,7 +8895,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contCAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contCAII= contCAII + 1;                            
                           }
@@ -8799,34 +8940,48 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
+                           ////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasUrbano;
+                        $scope.ModalidadTodasTerreUrbano= ModalidadTodasUrbano;                   
+                        $scope.ModalidadTodasTerreUrbano = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045Pintada.length > 0 || 
+                                 el.AduC8Pintada.length > 0 ||  
+                                 el.AduC2010Pintada.length > 0 ||                              
+                                 el.AduC2017Pintada.length > 0 || 
+                                 el.AduC2019Pintada.length > 0 || 
+                                 el.AduC2020Pintada.length > 0 ||
+                                $scope.ModalidadesSemaforo == false);
+                      });
+
 
                   ////////////////////////Terrestre Urbano Viaje
-                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoton) { 
-                         ModalidadDeUnProveedor = consterreurbanoton.TerreUrbanoViaje.TerresUrbanoViaje
+                       angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoviaj) { 
+                         ModalidadDeUnProveedor = consterreurbanoviaj.TerreUrbanoViaje.TerresUrbanoViaje
                          console.log( ModalidadDeUnProveedor);
-                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanotonprov) {
-                              consterreurbanotonprov.Email = consterreurbanoton.Email                         
-                              ModalidadTodasTerreUrbanoViaje.push(consterreurbanotonprov);
-                              ModalidadTodasconOrden = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenMinima = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenGA = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenGAII = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenCA = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenCAII = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenCPC = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenotros = ModalidadTodasTerreUrbanoViaje; 
-                              ModalidadTodasconOrdenC4017 = ModalidadTodasTerreUrbanoViaje; 
-                              ModalidadTodasconOrdenC401718 = ModalidadTodasTerreUrbanoViaje; 
-                              ModalidadTodasconOrdenC4020 = ModalidadTodasTerreUrbanoViaje; 
-                              ModalidadTodasconOrdenC4021 = ModalidadTodasTerreUrbanoViaje; 
-                              ModalidadTodasconOrdenC4022 = ModalidadTodasTerreUrbanoViaje; 
-                              ModalidadTodasconOrdenC4030 = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodasTerreUrbanoViaje;
+                            angular.forEach(ModalidadDeUnProveedor, function(consterreurbanoviajprov) {
+                              consterreurbanoviajprov.Email = consterreurbanoviaj.Email                         
+                              ModalidadTodasTerreUrbanoViaje.push(consterreurbanoviajprov);
+                              ModalidadTodasconOrdenv = ModalidadTodasTerreUrbanoViaje;
+                         
+                              ModalidadTodasconOrdenMinimav = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenGAv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenGAIIv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenGAIIIv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCAv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCAIIv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCAIIIv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenCPCv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenotrosv = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4017v = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC401718v = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4020v = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4021v = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4022v = ModalidadTodasTerreUrbanoViaje; 
+                              ModalidadTodasconOrdenC4030v = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC20ESTv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC40ESTv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC20ESPv = ModalidadTodasTerreUrbanoViaje;
+                              ModalidadTodasconOrdenC40ESPv = ModalidadTodasTerreUrbanoViaje;
 
                              });
 
@@ -8837,71 +8992,71 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              
                       ////////// Campo ["Turbo (150Cajas)"]  /////////////////////////////////////////////                
                           
-                       ModalidadTodasconOrdenGAIII = _.sortBy(ModalidadTodasconOrdenGAIII,'PuertoDestino','PaisOrigen','["Turbo (150Cajas)"]');
+                       ModalidadTodasconOrdenGAIIIv = _.sortBy(ModalidadTodasconOrdenGAIIIv,'PuertoDestino','PaisOrigen','["Turbo (150Cajas)"]');
                      
-                     var contGAIII=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
+                     var contGAIIIv=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIIv.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
-                             contGAIII= contGAIII + 1;                            
+                             contGAIIIv= contGAIIIv + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenGAIII[i].PuertoDestino ==  ModalidadTodasconOrdenGAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAIII[i].PaisOrigen ==  ModalidadTodasconOrdenGAIII[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenGAIIIv[i].PuertoDestino ==  ModalidadTodasconOrdenGAIIIv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAIIIv[i].PaisOrigen ==  ModalidadTodasconOrdenGAIIIv[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenGAIII[i]["Turbo (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGAIII[i-1]["Turbo (150Cajas)"]))
+                                if(parseFloat( ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]) == parseFloat( ModalidadTodasconOrdenGAIIIv[i-1]["Turbo (150Cajas)"]))
                                 { 
-                                  contGAIII= contGAIII;
+                                  contGAIIIv= contGAIIIv;
                                 }
                                 else
                                 {
-                                  contGAIII=contGAIII + 1;              
+                                  contGAIIIv=contGAIIIv + 1;              
                                 }                  
                               }                              
                              else
                               {                               
-                               contGAIII=1;
+                               contGAIIIv=1;
                               }
                               
                           }                                                           
                           
 
-                        if (contGAIII==1) 
+                        if (contGAIIIv==1) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenGAIIIv[i].AduC2021vPintada = ["label label-success"];
                         }
-                        if (contGAIII==2) 
+                        if (contGAIIIv==2) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenGAIIIv[i].AduC2021vPintada = ["label label-warning"];
                         }
-                        if (contGAIII==3) 
+                        if (contGAIIIv==3) 
                         {
-                               ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenGAIIIv[i].AduC2021vPintada = ["label label-danger"];
                         }
-                        if (contGAIII>3)
+                        if (contGAIIIv>3)
                         {
-                          ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
+                          ModalidadTodasconOrdenGAIIIv[i].AduC2021vPintada = [];
                         }
                         }   
 
                   
                    ////////// Campo ["Turbo Especial (200Cajas)"]               
                      
-                     ModalidadTodasconOrdenCAIII = _.sortBy(ModalidadTodasconOrdenCAIII, 'PuertoDestino','PaisOrigen','["Turbo Especial (200Cajas)"]');
+                     ModalidadTodasconOrdenCAIIIv = _.sortBy(ModalidadTodasconOrdenCAIIIv, 'PuertoDestino','PaisOrigen','["Turbo Especial (200Cajas)"]');
                      
                       var contCAIII=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCAIII.length-1; i++){ 
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIv.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contCAIII= contCAIII + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenCAIII[i].PuertoDestino ==  ModalidadTodasconOrdenCAIII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAIII[i].PaisOrigen ==  ModalidadTodasconOrdenCAIII[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenCAIIIv[i].PuertoDestino ==  ModalidadTodasconOrdenCAIIIv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAIIIv[i].PaisOrigen ==  ModalidadTodasconOrdenCAIIIv[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenCAIII[i]["Turbo Especial (200Cajas)"]) == parseFloat( ModalidadTodasconOrdenCAIII[i-1]["Turbo Especial (200Cajas)"]))
+                                if(parseFloat( ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]) == parseFloat( ModalidadTodasconOrdenCAIIIv[i-1]["Turbo Especial (200Cajas)"]))
                                 { 
                                   contCAIII= contCAIII;
                                 }
@@ -8920,19 +9075,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCAIII==1) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenCAIIIv[i].AduC2025Pintada = ["label label-success"];
                         }
                         if (contCAIII==2) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenCAIIIv[i].AduC2025Pintada = ["label label-warning"];
                         }
                         if (contCAIII==3) 
                         {
-                               ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenCAIIIv[i].AduC2025Pintada = ["label label-danger"];
                         }
                         if (contCAIII>3)
                         {
-                          ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
+                          ModalidadTodasconOrdenCAIIIv[i].AduC2025Pintada = [];
                         }
                         }    
                           
@@ -8941,20 +9096,20 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ////////// Campo ["Sencillo (240Cajas)"]              
                        
                    
-              ModalidadTodasconOrdenCPC = _.sortBy(ModalidadTodasconOrdenCPC, 'PuertoDestino','PaisOrigen','["Sencillo (240Cajas)"]');
+              ModalidadTodasconOrdenCPCv = _.sortBy(ModalidadTodasconOrdenCPCv, 'PuertoDestino','PaisOrigen','["Sencillo (240Cajas)"]');
                      
                        var contCPC=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCPC.length-1; i++){ 
+                       for (var i=0; i<= ModalidadTodasconOrdenCPCv.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCPC= contCPC + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenCPC[i].PuertoDestino ==  ModalidadTodasconOrdenCPC[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCPC[i].PaisOrigen ==  ModalidadTodasconOrdenCPC[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenCPCv[i].PuertoDestino ==  ModalidadTodasconOrdenCPCv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCPCv[i].PaisOrigen ==  ModalidadTodasconOrdenCPCv[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenCPC[i]["Sencillo (240Cajas)"]) == parseFloat( ModalidadTodasconOrdenCPC[i-1]["Sencillo (240Cajas)"]))
+                                if(parseFloat( ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]) == parseFloat( ModalidadTodasconOrdenCPCv[i-1]["Sencillo (240Cajas)"]))
                                 { 
                                   contCPC= contCPC;
                                 }
@@ -8973,38 +9128,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contCPC==1) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenCPCv[i].AduC4015Pintada = ["label label-success"];
                         }
                         if (contCPC==2) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenCPCv[i].AduC4015Pintada = ["label label-warning"];
                         }
                         if (contCPC==3) 
                         {
-                               ModalidadTodasconOrdenCPC[i].AduC4015Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenCPCv[i].AduC4015Pintada = ["label label-danger"];
                         }
                         if (contCPC>3)
                         {
-                          ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
+                          ModalidadTodasconOrdenCPCv[i].AduC4015Pintada = [];
                         }
                         }   
 
                    ////////// Campo ["Sencillo Especial (300Cajas)"]////////////////////////////
                        
-                    ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros, 'PuertoDestino','PaisOrigen','["Sencillo Especial (300Cajas)"]');
+                    ModalidadTodasconOrdenotrosv = _.sortBy(ModalidadTodasconOrdenotrosv, 'PuertoDestino','PaisOrigen','["Sencillo Especial (300Cajas)"]');
                      
                      var contOTRO=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){ 
+                       for (var i=0; i<= ModalidadTodasconOrdenotrosv.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contOTRO= contOTRO + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenotros[i].PuertoDestino ==  ModalidadTodasconOrdenotros[i-1].PuertoDestino) && ( ModalidadTodasconOrdenotros[i].PaisOrigen ==  ModalidadTodasconOrdenotros[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenotrosv[i].PuertoDestino ==  ModalidadTodasconOrdenotrosv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenotrosv[i].PaisOrigen ==  ModalidadTodasconOrdenotrosv[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenotros[i]["Sencillo Especial (300Cajas)"]) == parseFloat( ModalidadTodasconOrdenotros[i-1]["Sencillo Especial (300Cajas)"]))
+                                if(parseFloat( ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]) == parseFloat( ModalidadTodasconOrdenotrosv[i-1]["Sencillo Especial (300Cajas)"]))
                                 { 
                                   contOTRO= contOTRO;
                                 }
@@ -9023,37 +9178,37 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contOTRO==1) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenotrosv[i].AduC4016Pintada = ["label label-success"];
                         }
                         if (contOTRO==2) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenotrosv[i].AduC4016Pintada = ["label label-warning"];
                         }
                         if (contOTRO==3) 
                         {
-                               ModalidadTodasconOrdenotros[i].AduC4016Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenotrosv[i].AduC4016Pintada = ["label label-danger"];
                         }
                         if (contOTRO>3)
                         {
-                          ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
+                          ModalidadTodasconOrdenotrosv[i].AduC4016Pintada = [];
                         }
                         }      
 
                   ////////// Minimula////////////////////////////
-                        ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017, 'PuertoDestino','PaisOrigen','Minimula');
+                        ModalidadTodasconOrdenC4017v = _.sortBy(ModalidadTodasconOrdenC4017v, 'PuertoDestino','PaisOrigen','Minimula');
                      
                      var contC4017=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){ 
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017v.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4017= contC4017 + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenC4017[i].PuertoDestino ==  ModalidadTodasconOrdenC4017[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4017[i].PaisOrigen ==  ModalidadTodasconOrdenC4017[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenC4017v[i].PuertoDestino ==  ModalidadTodasconOrdenC4017v[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4017v[i].PaisOrigen ==  ModalidadTodasconOrdenC4017v[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenC4017[i].Minimula) == parseFloat( ModalidadTodasconOrdenC4017[i-1].Minimula))
+                                if(parseFloat( ModalidadTodasconOrdenC4017v[i].Minimula) == parseFloat( ModalidadTodasconOrdenC4017v[i-1].Minimula))
                                 { 
                                   contC4017= contC4017;
                                 }
@@ -9072,39 +9227,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC4017==1) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenC4017v[i].AduC4017Pintada = ["label label-success"];
                         }
                         if (contC4017==2) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenC4017v[i].AduC4017Pintada = ["label label-warning"];
                         }
                         if (contC4017==3) 
                         {
-                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenC4017v[i].AduC4017Pintada = ["label label-danger"];
                         }
                         if (contC4017>3)
                         {
-                          ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
+                          ModalidadTodasconOrdenC4017v[i].AduC4017Pintada = [];
                         }
                         }    
                   
 
                           ////////// ["Gran Danes"]////////////////////////////
                        
-                     ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718,'PuertoDestino','PaisOrigen','["Gran Danes"]');
+                     ModalidadTodasconOrdenC401718v = _.sortBy(ModalidadTodasconOrdenC401718v,'PuertoDestino','PaisOrigen','["Gran Danes"]');
                      
                         var contC401718=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC401718.length-1; i++){ 
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718v.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC401718= contC401718 + 1;                            
                           }
                          else
                           { 
-                              if(( ModalidadTodasconOrdenC401718[i].PuertoDestino ==  ModalidadTodasconOrdenC401718[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC401718[i].PaisOrigen ==  ModalidadTodasconOrdenC401718[i-1].PaisOrigen))
+                              if(( ModalidadTodasconOrdenC401718v[i].PuertoDestino ==  ModalidadTodasconOrdenC401718v[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC401718v[i].PaisOrigen ==  ModalidadTodasconOrdenC401718v[i-1].PaisOrigen))
                               {
-                                if(parseFloat( ModalidadTodasconOrdenC401718[i]["Gran Danes"]) == parseFloat( ModalidadTodasconOrdenC401718[i-1]["Gran Danes"]))
+                                if(parseFloat( ModalidadTodasconOrdenC401718v[i]["Gran Danes"]) == parseFloat( ModalidadTodasconOrdenC401718v[i-1]["Gran Danes"]))
                                 { 
                                   contC401718= contC401718;
                                 }
@@ -9122,23 +9277,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (contC401718==1) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-success"];
+                               ModalidadTodasconOrdenC401718v[i].AduC401718Pintada = ["label label-success"];
                         }
                         if (contC401718==2) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenC401718v[i].AduC401718Pintada = ["label label-warning"];
                         }
                         if (contC401718==3) 
                         {
-                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-danger"];
+                               ModalidadTodasconOrdenC401718v[i].AduC401718Pintada = ["label label-danger"];
                         }
                         if (contC401718>3)
                         {
-                          ModalidadTodasconOrdenC401718[i].AduC40178Pintada = [];
+                          ModalidadTodasconOrdenC401718v[i].AduC40178Pintada = [];
                         }
                         }    
 
-                        $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodasTerreUrbanoViaje ;
+                        $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodasTerreUrbanoViaje;
+
+                    ////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasTerreUrbanoViaje;
+                        $scope.ModalidadTodasTerreUrbanoViaje= ModalidadTodasTerreUrbanoViaje;                   
+                        $scope.ModalidadTodasTerreUrbanoViaje = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2021vPintada.length > 0 || 
+                                 el.AduC2025vPintada.length > 0 ||  
+                                 el.AduC4015vPintada.length > 0 ||                              
+                                 el.AduC4016vPintada.length > 0 || 
+                                 el.AduC4017vPintada.length > 0 || 
+                                 el.AduC401718vPintada.length > 0 ||
+                                $scope.ModalidadesSemaforo == false);
+                      });
 
                 /////////////////////////////Terrestre Urbano Tonelada //////////////////////////////
                        angular.forEach($scope.ConsolidadoDatos, function(consterreurbanoton) { 
@@ -9181,7 +9349,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contC4020=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4020.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4020= contC4020 + 1;                            
                           }
@@ -9231,7 +9399,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4021=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4021.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contC4021= contC4021 + 1;                            
                           }
@@ -9282,7 +9450,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4022=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4022.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4022= contC4022 + 1;                            
                           }
@@ -9326,6 +9494,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }    
 
                       $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
+
+                     ////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasTerreUrbanoTonelada;
+                        $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;                   
+                        $scope.ModalidadTodasTerreUrbanoTonelada = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC4020Pintada.length > 0 || 
+                                 el.AduC4021Pintada.length > 0 ||  
+                                 el.AduC4022Pintada.length > 0 || 
+                                $scope.ModalidadesSemaforo == false);
+                      });
                              
                     }
 
@@ -9387,7 +9565,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var cont=0;
                        for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              cont= cont + 1;                            
                           }
@@ -9435,7 +9613,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contmin=0;
                        for (var i=0; i<= ModalidadTodasconOrden.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contmin= contmin + 1;                            
                           }
@@ -9484,7 +9662,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contGA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGA.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGA= contGA + 1;                            
                           }
@@ -9522,7 +9700,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGA>3)
                         {
-                          ModalidadTodasconOrdenGA[i].AduC2010intada = [];
+                          ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                         }
                         }        
                      
@@ -9533,7 +9711,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contCA=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCA.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contCA= contCA + 1;                            
                           }
@@ -9581,7 +9759,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var contGAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAII.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contGAII= contGAII + 1;                            
                           }
@@ -9630,7 +9808,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             var contCAII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAII.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contCAII= contCAII + 1;                            
                           }
@@ -9680,7 +9858,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contGAIII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAIII.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAIII= contGAIII + 1;                            
                           }
@@ -9730,7 +9908,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contCAIII=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAIII.length-1; i++){ 
                           
-                          if (i==0)
+                            if (i==0) 
                           {                            
                              contCAIII= contCAIII + 1;                            
                           }
@@ -9783,7 +9961,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contCPC=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCPC.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCPC= contCPC + 1;                            
                           }
@@ -9833,7 +10011,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         var contOTRO=0;
                        for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contOTRO= contOTRO + 1;                            
                           }
@@ -9883,7 +10061,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contC4017=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4017= contC4017 + 1;                            
                           }
@@ -9933,7 +10111,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contC401718=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC401718.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC401718= contC401718 + 1;                            
                           }
@@ -9983,7 +10161,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         var contC4020=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4020.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4020= contC4020 + 1;                            
                           }
@@ -10033,7 +10211,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var contC4021=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4021.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contC4021= contC4021 + 1;                            
                           }
@@ -10078,6 +10256,28 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                     $scope.ModalidadTodasAerea=ModalidadTodasAerea;
 
+                     /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasAerea;
+                       $scope.ModalidadTodasAerea= ModalidadTodasAerea;                   
+                       $scope.ModalidadTodasAerea = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045Pintada.length > 0 || 
+                                 el.AduC8Pintada.length > 0 ||
+                                el.AduC2010Pintada.length > 0 ||
+                                el.AduC2017Pintada.length > 0 ||
+                                el.AduC2019Pintada.length > 0 ||
+                                el.AduC2020Pintada.length > 0 ||
+                                el.AduC2021Pintada.length > 0 ||
+                                el.AduC2025Pintada.length > 0 ||
+                                el.AduC4015Pintada.length > 0 ||
+                                el.AduC4016Pintada.length > 0 ||  
+                                el.AduC4017Pintada.length > 0 ||                         
+                                el.AduC401718Pintada.length > 0 ||
+                                el.AduC4020Pintada.length > 0 ||
+                                el.AduC2021Pintada.length > 0 ||
+                                $scope.ModalidadesSemaforo == false);
+                      }); 
+               
+
                 ////////////////////////////Aerea Pasajero /////////////////////////////////////////
                 ModalidadTodasAereaPasajero=[];
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) { 
@@ -10118,7 +10318,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contP= contP + 1;                            
                           }
@@ -10168,7 +10368,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contminP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenMinimaP.length-1; i++){ 
                           
-                          if (i==0)
+                         if (i==0) 
                           {                            
                              contminP= contminP + 1;                            
                           }
@@ -10218,7 +10418,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contGAP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAP= contGAP + 1;                            
                           }
@@ -10267,7 +10467,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAP.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contCAP= contCAP + 1;                            
                           }
@@ -10317,7 +10517,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contGAIIP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAIIP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAIIP= contGAIIP + 1;                            
                           }
@@ -10366,7 +10566,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIIP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAIIP.length-1; i++){ 
                           
-                          if (i==0)
+                           if (i==0) 
                           {                            
                              contCAIIP= contCAIIP + 1;                            
                           }
@@ -10415,7 +10615,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contGAIIIP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAIIIP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contGAIIIP= contGAIIIP + 1;                            
                           }
@@ -10466,7 +10666,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var contCAIIIP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAIIIP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCAIIIP= contCAIIIP + 1;                            
                           }
@@ -10517,7 +10717,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var contCPCP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCPCP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contCPCP= contCPCP + 1;                            
                           }
@@ -10566,7 +10766,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         var contOTROP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenotrosP.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contOTROP= contOTROP + 1;                            
                           }
@@ -10614,7 +10814,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contC4017P=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4017P.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4017P= contC4017P + 1;                            
                           }
@@ -10664,7 +10864,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        var contC401718P=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC401718P.length-1; i++){ 
                           
-                          if (i==0)
+                        if (i==0) 
                           {                            
                              contC401718P= contC401718P + 1;                            
                           }
@@ -10714,7 +10914,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4020P=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4020P.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4020P= contC4020P + 1;                            
                           }
@@ -10765,7 +10965,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4021P=0;
                        for (var i=0; i<= ModalidadTodasconOrdenC4021P.length-1; i++){ 
                           
-                          if (i==0)
+                          if (i==0) 
                           {                            
                              contC4021P= contC4021P + 1;                            
                           }
@@ -10807,24 +11007,46 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         } 
                   
-                    $scope.ModalidadTodasAereaPasajero=ModalidadTodasAereaPasajero;                
+                    $scope.ModalidadTodasAereaPasajero=ModalidadTodasAereaPasajero;
+
+                     /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodasRespaldo = ModalidadTodasAereaPasajero;
+                       $scope.ModalidadTodasAereaPasajero= ModalidadTodasAereaPasajero;                   
+                       $scope.ModalidadTodasAereaPasajero = ModalidadTodasRespaldo.filter(function (el) {
+                         return (el.AduC2045PPintada.length > 0 || 
+                                 el.AduC8PPintada.length > 0 ||
+                                el.AduC2010PPintada.length > 0 ||
+                                el.AduC2017PPintada.length > 0 ||
+                                el.AduC2019PPintada.length > 0 ||
+                                el.AduC2020PPintada.length > 0 ||
+                                el.AduC2021PPintada.length > 0 ||
+                                el.AduC2025PPintada.length > 0 ||
+                                el.AduC4015PPintada.length > 0 ||
+                                el.AduC4016PPintada.length > 0 ||  
+                                el.AduC4017PPintada.length > 0 ||                         
+                                el.AduC401718PPintada.length > 0 ||
+                                el.AduC4020PPintada.length > 0 ||
+                                el.AduC2021PPintada.length > 0 ||
+                                $scope.ModalidadesSemaforo == false);
+                      });                 
                    
                }                  
                      
 
                     ///////////////////////////////////////////////////////////////////////////
-
-
-
-
-                     $scope.ModalidadTodas= ModalidadTodas;
-                     console.log($scope.ModalidadTodas);
-                  
                    
                   }, function errorCallback(response) {
                     alert(response.statusText);
                 });
             }
+
+            $scope.FiltroS= function  (){
+              $scope.ModalidadesSemaforo == true;
+              $scope.GetConsolidadoDatos()
+
+              }
+
+           
 
              //$scope.GetConsolidadoDatos(); 
        

@@ -172,7 +172,7 @@
                                           <div class="form-group">
                                               <label>Modalidad:</label>
                                               <select class="form-control" id="sel1"
-                                              ng-model="selectedModalidad"
+                                              ng-model="selectedModalidad" ng-change="GetConsolidadoDatos();"
                                             ng-options="Modalidad as Modalidad.Name for Modalidad in Modalidades"></select>
                                           </div>
                                         </div>
@@ -180,8 +180,7 @@
                                           <div class="form-group">
                                             <label>Filtrar Seleccionados:</label>
                                             <div style="margin-top:15px;">
-                                             <input  type="checkbox" ng-model="filtrars">S
-                                             <input  type="checkbox" ng-model="filtrarn">N
+                                             <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">S                                            
                                           </div>
                                           </div>
                                         </div>
@@ -189,7 +188,7 @@
                                           <label><br></label>
                                         <div class="form-group">
                                           <button ng-click="GetConsolidadoDatos();"  class="btn btn-green" type="button" ><i class="fa fa-search" aria-hidden="true"></i> Consultar</button>
-                                        </div>
+                                       </div>
                                         </div>
                                       </div>
                                          <br>
@@ -330,7 +329,7 @@
                                             <th class="text-center"><h6><b>Devolución 20$ expreso</b></h6> </th>
                                             <th class="text-center"><h6><b>Devolución 40$ expreso</b></h6> </th>
                                           </tr>
-                                          <tr ng-repeat="Otm in ModalidadTodas">
+                                          <tr ng-repeat="Otm in ModalidadTodasOTM">
                                             <td>{{Otm.Email}}</td>
                                             <td>{{Otm.Origen}}</td>
                                             <td>{{Otm.Destino}}</td>
@@ -569,12 +568,12 @@
                                             <td>{{TerreUrbanoViaje.Email}}</td>
                                             <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
                                             <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2045Pintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC8Pintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2010Pintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2017Pintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2019Pintada">{{TerreUrbanoViaje.Minimula}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2020Pintada">{{TerreUrbanoViaje["Gran Danes"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2025vPintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4015vPintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4016vPintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4017vPintada">{{TerreUrbanoViaje.Minimula}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC401718vPintada">{{TerreUrbanoViaje["Gran Danes"]}}</span></td>
                                           </tr>
                                           </table>
                                         </div>
