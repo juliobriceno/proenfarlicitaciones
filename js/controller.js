@@ -4953,7 +4953,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      if (Modalidad == 'Bodegajes') {
                       console.log('paso por aqui bodegajes');
                         $scope.Show1=true;
-                        $scope.Show11=true;
+                        $scope.Show20=true;
                         $scope.Show111=true;
                         $scope.Show2=false;
                         $scope.Show3=false;
@@ -4976,27 +4976,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           var ModalidadTodasBodegajeaduanerootro=[];
                          var ModalidadTodasconOrdenBodegajeaduanerootro=[];
 
-                      angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) { 
-                         var ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
-                          console.log(ModalidadDeUnProveedor);
-                          Unobjeto.Email=consbodegaje.Email;
-
-                          /*Unobjeto.TarifaValor=ModalidadDeUnProveedor.TarifaValor;
+                       angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) { 
+                          ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
+                          Unobjeto.TarifaValor=ModalidadDeUnProveedor.TarifaValor;
                           Unobjeto.TarifaMinima=ModalidadDeUnProveedor.TarifaMinima;
                           Unobjeto.Otros=ModalidadDeUnProveedor.Otros;                          
-                           Unobjeto.Email=consbodegaje.Email;*/
+                           Unobjeto.Email=consbodegaje.Email;
 
-                           
-
-                       ModalidadDeUnProveedor.push([{Email:Unobjeto.Email}]);
-                        /*$scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
-                        ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;*/
-                        console.log( ModalidadDeUnProveedor);
+                        ModalidadTodasBodegajeaduanero.push([{TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros,Email:Unobjeto.Email}]);
+                        $scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                        ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                        console.log( ModalidadTodasBodegajeaduanero);
                           
                          });
-                      ///////////////////////// tarifa Valor////////////////////
 
-                   /*   ModalidadTodasconOrdenBodegajeaduanero = _.sortBy(ModalidadTodasconOrdenBodegajeaduanero, 'TarifaValor');
+                           
+                     
+                 ///////////////////////// tarifa Valor////////////////////
+
+                     ModalidadTodasconOrdenBodegajeaduanero = _.sortBy(ModalidadTodasconOrdenBodegajeaduanero, 'TarifaValor');
                     console.log( ModalidadTodasconOrdenBodegajeaduanero);
                      var cont=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanero.length-1; i++){                                                    
@@ -5391,7 +5389,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqfmmtPintada = [];
                         }
-                        }*/
+                        }
                       
                      }   
 
