@@ -10289,45 +10289,35 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                  ////////// Campo ['+100'] ///////////////////////////////
+                   ////////// Campo ['+100'] ///////////////////////////////
+                  ModalidadTodasconOrdenGAP = _.sortBy(ModalidadTodasconOrdenGAP, 'Aeropuerto','Pais',"['+100']");
 
-                       ModalidadTodasconOrdenGAP = _.sortBy(ModalidadTodasconOrdenGAP, 'Aeropuerto','Pais',"['+100']");
-
-                       var contGAP=0;
+                      var contGAP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenGAP.length-1; i++){
 
                           if (i==0)
                           {
-                            console.log('cro verde');
                              contGAP= contGAP + 1;
                           }
                          else
                           {
                               if(( ModalidadTodasconOrdenGAP[i].Aeropuerto ==  ModalidadTodasconOrdenGAP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAP[i].Pais ==  ModalidadTodasconOrdenGAP[i-1].Pais))
                               {
-                                console.log('aeropuerto igual');
                                 if(parseFloat( ModalidadTodasconOrdenGAP[i]['+100']) == parseFloat( ModalidadTodasconOrdenGAP[i-1]['+100']))
                                 {
                                   contGAP= contGAP;
-                                  console.log('campo igual');
-                                  console.log(contGAP);
                                 }
                                 else
                                 {
                                   contGAP=contGAP + 1;
-                                  console.log('campo difere');
-                                  console.log(contGAP);
                                 }
                               }
                              else
                               {
                                contGAP=1;
-                               console.log('aeropuerto igual');
-                                  console.log(contGAP);
                               }
 
                           }
-
 
                         if (contGAP==1)
                         {
@@ -10335,9 +10325,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGAP==2)
                         {
-                          console.log('aqui');
-                                  
-                               ModalidadTodasconOrdenGA[i].AduC2010PPintada = ["label label-warning"];
+                               ModalidadTodasconOrdenGAP[i].AduC2010PPintada = ["label label-warning"];
                         }
                         if (contGAP==3)
                         {
@@ -10348,6 +10336,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAP[i].AduC2010PPintada = [];
                         }
                         }
+
 
                     ////////// Campo ['+300']
 
