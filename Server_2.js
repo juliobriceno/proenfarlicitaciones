@@ -1593,12 +1593,12 @@ app.post('/GetConsolidadoDatos', function (req, res) {
 
      MyMongo.Find('ModalidadesProveedor', {} , function (result) {
         var Data = {};
-         Data.ConsolidadoDatos = result;   
-        res.end(JSON.stringify(Data));   
+         Data.ConsolidadoDatos = result;
+        res.end(JSON.stringify(Data));
 
     }
 
-    ); 
+    );
 
 });
 

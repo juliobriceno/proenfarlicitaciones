@@ -178,10 +178,9 @@
                                         </div>
                                         <div class="col-md-4">
                                           <div class="form-group">
-                                            <label>Filtrar Seleccionados:</label>
                                             <div style="margin-top:15px;">
-                                             <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">S                                            
-                                          </div>
+                                              <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
+                                            </div>
                                           </div>
                                         </div>
                                         <div class="col-md-4" >
@@ -197,7 +196,7 @@
                                     <div class="box-body table-responsive no-padding">
                                       <div class="widget-header">
                                         <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Aduanero</label>
-                                      </div>                            
+                                      </div>
                                       <table class="table table-bordered">
                                         <tr>
                                           <th class="text-center"><h6><b>Proveedor<b></h6></th>
@@ -206,7 +205,7 @@
                                             <th class="text-center"><h6><b>Otros</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero | orderBy:['Email']">
-                                            <td>{{BodegajeAduanero.Email}}</td>                                            
+                                            <td>{{BodegajeAduanero.Email}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AduminPintada">{{BodegajeAduanero.TarifaMinima}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AduotroPintada">{{BodegajeAduanero.Otros}}</span></td>
@@ -220,7 +219,7 @@
                                     <div class="box-body table-responsive no-padding">
                                       <div class="widget-header">
                                         <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Maquinaria</label>
-                                      </div>                            
+                                      </div>
                                       <table class="table table-bordered">
                                         <tr>
                                           <th class="text-center"><h6><b>Proveedor<b></h6></th>
@@ -229,7 +228,7 @@
                                             <th class="text-center"><h6><b>Otros</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaq | orderBy:['Email']">
-                                            <td>{{BodegajeAduanermaq.Email}}</td>                                            
+                                            <td>{{BodegajeAduaneromaq.Email}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqPintada">{{BodegajeAduaneromaq.TarifaValor}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqminPintada">{{BodegajeAduaneromaq.TarifaMinima}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdufmmPintada">{{BodegajeAduaneromaq.Otros}}</span></td>
@@ -243,7 +242,7 @@
                                     <div class="box-body table-responsive no-padding">
                                       <div class="widget-header">
                                         <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Materia Prima</label>
-                                      </div>                            
+                                      </div>
                                       <table class="table table-bordered">
                                         <tr>
                                           <th class="text-center"><h6><b>Proveedor<b></h6></th>
@@ -251,11 +250,11 @@
                                           <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
                                             <th class="text-center"><h6><b>Otros</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt | orderBy:['Email']">
-                                            <td>{{BodegajeAduanermaqt.Email}}</td>                                            
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdumaqtPintada">{{BodegajeAduaneromaqt.TarifaValor}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdumaqmintPintada">{{BodegajeAduaneromaqt.TarifaMinima}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdufmmtPintada">{{BodegajeAduaneromaqt.Otros}}</span></td>
+                                          <tr ng-repeat="BodegajeAduanermaqt in ModalidadTodasBodegajeaduaneromaqt | orderBy:['Email']">
+                                            <td>{{BodegajeAduanermaqt.Email}}</td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdumaqtPintada">{{BodegajeAduanermaqt.TarifaValor}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdumaqmintPintada">{{BodegajeAduanermaqt.TarifaMinima}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdufmmtPintada">{{BodegajeAduanermaqt.Otros}}</span></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -357,7 +356,7 @@
                                         </table>
                                       </div>
                                     </div>
-                                  </div> 
+                                  </div>
                                    <div class="row" ng-show="Show4">
                                     <div class="col-md-12">
                                       <div class="box-body table-responsive no-padding">
@@ -400,7 +399,7 @@
                                       </table>
                                     </div>
                                   </div>
-                                </div> 
+                                </div>
                                  <div class="row" ng-show="Show5">
                                   <div class="col-md-12">
                                     <div class="box-body table-responsive no-padding">
@@ -440,7 +439,7 @@
                                     <div class="box-body table-responsive no-padding">
                                       <div class="widget-header">
                                         <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Turbo</label>
-                                      </div>                            
+                                      </div>
                                       <table class="table table-bordered">
                                         <tr>
                                           <th class="text-center"><h6><b>Proveedor<b></h6></th>
