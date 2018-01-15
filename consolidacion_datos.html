@@ -178,18 +178,12 @@
                                         </div>
                                         <div class="col-md-4">
                                           <div class="form-group">
-                                            <div style="margin-top:15px;">
+                                            <div style="margin-top:40px;">
                                               <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="col-md-4" >
-                                          <label><br></label>
-                                        <div class="form-group">
-                                          <button ng-click="GetConsolidadoDatos();"  class="btn btn-green" type="button" ><i class="fa fa-search" aria-hidden="true"></i> Consultar</button>
-                                       </div>
                                         </div>
-                                      </div>
                                          <br>
                                   <div class="row" ng-show="Show1">
                                   <div class="col-md-12">
@@ -204,16 +198,17 @@
                                           <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
                                             <th class="text-center"><h6><b>Otros</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero | orderBy:['Email']">
+                                          <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
                                             <td>{{BodegajeAduanero.Email}}</td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanero.AduminPintada">{{BodegajeAduanero.TarifaMinima}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanero.AduotroPintada">{{BodegajeAduanero.Otros}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaotroPintada">{{BodegajeAduanero.Otros | number:2}} </span></td>
                                           </tr>
                                         </table>
                                       </div>
                                     </div>
                                   </div>
+                                  <br>
                                    <div class="row" ng-show="Show20">
                                   <div class="col-md-12">
                                     <div class="box-body table-responsive no-padding">
@@ -223,20 +218,21 @@
                                       <table class="table table-bordered">
                                         <tr>
                                           <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa Valor/FOB<b></h6></th>
+                                          <th class="text-center"><h6><b>Tarifa<b></h6></th>
                                           <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>Otros</b></h6></th>
+                                            <th class="text-center"><h6><b>FMM</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaq | orderBy:['Email']">
+                                          <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
                                             <td>{{BodegajeAduaneromaq.Email}}</td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqPintada">{{BodegajeAduaneromaq.TarifaValor}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqminPintada">{{BodegajeAduaneromaq.TarifaMinima}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdufmmPintada">{{BodegajeAduaneromaq.Otros}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtfmmPintada">{{BodegajeAduaneromaq.Fmm  | number:2}}</span></td>
                                           </tr>
                                         </table>
                                       </div>
                                     </div>
                                   </div>
+                                  <br>
                                   <div class="row" ng-show="Show111">
                                   <div class="col-md-12">
                                     <div class="box-body table-responsive no-padding">
@@ -246,20 +242,20 @@
                                       <table class="table table-bordered">
                                         <tr>
                                           <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa Valor/FOB<b></h6></th>
+                                          <th class="text-center"><h6><b>Tarifa<b></h6></th>
                                           <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>Otros</b></h6></th>
+                                            <th class="text-center"><h6><b>FMM</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="BodegajeAduanermaqt in ModalidadTodasBodegajeaduaneromaqt | orderBy:['Email']">
-                                            <td>{{BodegajeAduanermaqt.Email}}</td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdumaqtPintada">{{BodegajeAduanermaqt.TarifaValor}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdumaqmintPintada">{{BodegajeAduanermaqt.TarifaMinima}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaqt.AdufmmtPintada">{{BodegajeAduanermaqt.Otros}}</span></td>
+                                          <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp">
+                                            <td>{{BodegajeAduanermaqp.Email}}</td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpfmmPintada">{{BodegajeAduanermaqp.Fmm  | number:2}}</span></td>
                                           </tr>
                                         </table>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div>                                 
                                       <div class="row" ng-show="Show2">
                                   <div class="col-md-12">
                                                       <div  class="box-body table-responsive no-padding">
@@ -282,16 +278,16 @@
                                                 <tr ng-repeat="Consadu in ModalidadTodas">
                                                 <td>{{Consadu.Email}}</td>
                                                <td>{{Consadu.Via}}</td>
-                                               <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduMinimaPintada">{{Consadu.Minima}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduGAPintada">{{Consadu["Gastos Adicionales"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduCAPintada">{{Consadu["Conceptos Adicionales"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduGAIIPintada">{{Consadu["Gastos Adicionales dos"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduCAIIPintada">{{Consadu["Conceptos Adicionales dos"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduGAIIIPintada">{{Consadu["Gastos Adicionales tres"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduCAIIIPintada">{{Consadu["Conceptos Adicionales tres"]}}</span></td>
-                                               <td class="text-center"><span ng-class="Consadu.AduCPCPintada">{{Consadu["Costo Planificacion Caja"]}}</span></td>
-                                               <td class="text-center"><span  ng-class="Consadu.AduotroPintada">{{Consadu.Otros}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduMinimaPintada">{{Consadu.Minima  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduGAPintada">{{Consadu["Gastos Adicionales"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduCAPintada">{{Consadu["Conceptos Adicionales"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduGAIIPintada">{{Consadu["Gastos Adicionales dos"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduCAIIPintada">{{Consadu["Conceptos Adicionales dos"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduGAIIIPintada">{{Consadu["Gastos Adicionales tres"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduCAIIIPintada">{{Consadu["Conceptos Adicionales tres"]  | number:2}}</span></td>
+                                               <td class="text-center"><span ng-class="Consadu.AduCPCPintada">{{Consadu["Costo Planificacion Caja"]  | number:2}}</span></td>
+                                               <td class="text-center"><span  ng-class="Consadu.AduotroPintada">{{Consadu.Otros  | number:2}}</span></td>
                                                </tr>
 
                                                   </table>
@@ -332,26 +328,26 @@
                                             <td>{{Otm.Email}}</td>
                                             <td>{{Otm.Origen}}</td>
                                             <td>{{Otm.Destino}}</td>
-                                            <td class="text-center"><span ng-class="Otm.AduC2045Pintada">{{Otm["C 20 hasta 4-5 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC8Pintada">{{Otm["C 20 hasta 8 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC2010Pintada">{{Otm["C 20 hasta 10 Ton"]}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC2045Pintada">{{Otm["C 20 hasta 4-5 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC8Pintada">{{Otm["C 20 hasta 8 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC2010Pintada">{{Otm["C 20 hasta 10 Ton"]  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="Otm.AduC2017Pintada">{{Otm["C 20 hasta 17 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC2019Pintada">{{Otm["C 20 hasta 19 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC2020Pintada">{{Otm["C 20 hasta 20 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC2021Pintada">{{Otm["C 20 hasta 21 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC2025Pintada">{{Otm["C 20 hasta 25 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC4015Pintada">{{Otm["C 40 hasta 15 Ton"]}}</span></td>
-                                            <td class="text-center"><span  ng-class="Otm.AduC4016Pintada">{{Otm["C 40 hasta 16 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC4017Pintada">{{Otm["C 40 hasta 17 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC401718Pintada">{{Otm["C 40 hasta 17-18 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC4020Pintada">{{Otm["C 40 hasta 20 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC4021Pintada">{{Otm["C 40 hasta 21 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC4022Pintada">{{Otm["C 40 hasta 22 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC4030Pintada">{{Otm["C 40 hasta 30 Ton"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC20ESTPintada">{{Otm["Devolucion 20$ estandar"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC40ESTPintada">{{Otm["Devolucion 40$ estandar"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC20ESPPintada">{{Otm["Devolucion 20$ expreso"]}}</span></td>
-                                            <td class="text-center"><span ng-class="Otm.AduC40ESPPintada">{{Otm["Devolucion 40$ expreso"]}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC2019Pintada">{{Otm["C 20 hasta 19 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC2020Pintada">{{Otm["C 20 hasta 20 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC2021Pintada">{{Otm["C 20 hasta 21 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC2025Pintada">{{Otm["C 20 hasta 25 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC4015Pintada">{{Otm["C 40 hasta 15 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span  ng-class="Otm.AduC4016Pintada">{{Otm["C 40 hasta 16 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC4017Pintada">{{Otm["C 40 hasta 17 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC401718Pintada">{{Otm["C 40 hasta 17-18 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC4020Pintada">{{Otm["C 40 hasta 20 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC4021Pintada">{{Otm["C 40 hasta 21 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC4022Pintada">{{Otm["C 40 hasta 22 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC4030Pintada">{{Otm["C 40 hasta 30 Ton"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC20ESTPintada">{{Otm["Devolucion 20$ estandar"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC40ESTPintada">{{Otm["Devolucion 40$ estandar"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC20ESPPintada">{{Otm["Devolucion 20$ expreso"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="Otm.AduC40ESPPintada">{{Otm["Devolucion 40$ expreso"]  | number:2}}</span></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -383,17 +379,17 @@
                                             <td>{{MaritimaFcl.PaisDestino}}</td>
                                             <td>{{MaritimaFcl.PuertoOrigen}}</td>
                                             <td>{{MaritimaFcl.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2045Pintada">{{MaritimaFcl["C 20"]}}</span><R/td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC8Pintada">{{MaritimaFcl["Baf 20"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2010Pintada">{{MaritimaFcl["C 40"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2017Pintada">{{MaritimaFcl["Baf 40"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2019Pintada">{{MaritimaFcl["C 40HC"]}}</span></td>
-                                            <td class="text-center"><span  ng-class="MaritimaFcl.AduC2020Pintada">{{MaritimaFcl["Baf 40HC"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2025Pintada">{{MaritimaFcl["Gastos Embarque"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2021Pintada">{{MaritimaFcl.Naviera}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC4015Pintada">{{MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC4016Pintada">{{MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]}}</span></td>
-                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC4017Pintada">{{MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2045Pintada">{{MaritimaFcl["C 20"]  | number:2}}</span><R/td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC8Pintada">{{MaritimaFcl["Baf 20"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2010Pintada">{{MaritimaFcl["C 40"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2017Pintada">{{MaritimaFcl["Baf 40"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2019Pintada">{{MaritimaFcl["C 40HC"]  | number:2}}</span></td>
+                                            <td class="text-center"><span  ng-class="MaritimaFcl.AduC2020Pintada">{{MaritimaFcl["Baf 40HC"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2025Pintada">{{MaritimaFcl["Gastos Embarque"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC2021Pintada">{{MaritimaFcl.Naviera  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC4015Pintada">{{MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC4016Pintada">{{MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="MaritimaFcl.AduC4017Pintada">{{MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]  | number:2}}</span></td>
                                           </td>
                                         </tr>
                                       </table>
@@ -422,13 +418,13 @@
                                           <td>{{MaritimaLcl.PaisDestino}}</td>
                                           <td>{{MaritimaLcl.PuertoOrigen}}</td>
                                           <td>{{MaritimaLcl.PuertoDestino}}</td>
-                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2045Pintada">{{MaritimaLcl["Minima"]}}</span></td>
-                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC8Pintada">{{MaritimaLcl["1-5 ton/M3"]}}</span></td>
-                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2010Pintada">{{MaritimaLcl["5-8 ton/M3"]}}</span></td>
-                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2017Pintada">{{MaritimaLcl["8-12 ton/M3"]}}</span></td>
-                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2019Pintada">{{MaritimaLcl["12-18 ton/M3"]}}</span></td>
-                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2020Pintada">{{MaritimaLcl["Gastos Embarque"]}}</span></td>
-                                          <td class="text-center"><span ng-class="MaritimaLcl.AduC2021Pintada">{{MaritimaLcl.Naviera}}</span></td>
+                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2045Pintada">{{MaritimaLcl["Minima"]  | number:2}}</span></td>
+                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC8Pintada">{{MaritimaLcl["1-5 ton/M3"]  | number:2}}</span></td>
+                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2010Pintada">{{MaritimaLcl["5-8 ton/M3"]  | number:2}}</span></td>
+                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2017Pintada">{{MaritimaLcl["8-12 ton/M3"]  | number:2}}</span></td>
+                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2019Pintada">{{MaritimaLcl["12-18 ton/M3"]  | number:2}}</span></td>
+                                          <td  class="text-center"><span ng-class="MaritimaLcl.AduC2020Pintada">{{MaritimaLcl["Gastos Embarque"]  | number:2}}</span></td>
+                                          <td class="text-center"><span ng-class="MaritimaLcl.AduC2021Pintada">{{MaritimaLcl.Naviera  | number:2}}</span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -452,8 +448,8 @@
                                             <td>{{TerreNacional.Email}}</td>
                                             <td>{{TerreNacional.PaisOrigen}}</td>
                                             <td>{{TerreNacional.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreNacional.AduC8Pintada">{{TerreNacional["Turbo Especial"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreNacional.AduC8Pintada">{{TerreNacional["Turbo Especial"]  | number:2}}</span></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -478,8 +474,8 @@
                                               <td>{{TerreNacionalSencillo.Email}}</td>
                                               <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
                                               <td >{{TerreNacionalSencillo.PuertoDestino}}</td>
-                                              <td><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]}}</span></td>
-                                              <td><span ng-class="TerreNacionalSencillo.AduC2017Pintada">{{TerreNacionalSencillo["Sencillo Especial"]}}</span></td>
+                                              <td><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]  | number:2}}</span></td>
+                                              <td><span ng-class="TerreNacionalSencillo.AduC2017Pintada">{{TerreNacionalSencillo["Sencillo Especial"]  | number:2}}</span></td>
                                             </tr>
                                           </table>
                                         </div>
@@ -504,8 +500,8 @@
                                                 <td>{{TerreNacionalPatineta.Email}}</td>
                                                 <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
                                                 <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
-                                                <td><span ng-class="TerreNacionalPatineta.AduC2019Pintada">{{TerreNacionalPatineta.Minimula}}</span></td>
-                                                <td><span ng-class="TerreNacionalPatineta.AduC2020Pintada">{{TerreNacionalPatineta["Gran Danes"]}}</span></td>
+                                                <td><span ng-class="TerreNacionalPatineta.AduC2019Pintada">{{TerreNacionalPatineta.Minimula  | number:2}}</span></td>
+                                                <td><span ng-class="TerreNacionalPatineta.AduC2020Pintada">{{TerreNacionalPatineta["Gran Danes"]  | number:2}}</span></td>
                                               </tr>
                                             </table>
                                           </div>
@@ -533,12 +529,12 @@
                                             <td>{{TerreUrbano.Email}}</td>
                                             <td>{{TerreUrbano.PaisOrigen}}</td>
                                             <td>{{TerreUrbano.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2045Pintada">{{TerreUrbano["Turbo (150Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC8Pintada">{{TerreUrbano["Turbo Especial (200Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2010Pintada">{{TerreUrbano["Sencillo (240Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2017Pintada">{{TerreUrbano["Sencillo Especial (300Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2019Pintada">{{TerreUrbano.Minimula}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2020Pintada">{{TerreUrbano["Gran Danes"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2045Pintada">{{TerreUrbano["Turbo (150Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbano.AduC8Pintada">{{TerreUrbano["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2010Pintada">{{TerreUrbano["Sencillo (240Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2017Pintada">{{TerreUrbano["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2019Pintada">{{TerreUrbano.Minimula  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2020Pintada">{{TerreUrbano["Gran Danes"]  | number:2}}</span></td>
                                           </tr>
                                         </table>
                                       </div>
@@ -567,12 +563,12 @@
                                             <td>{{TerreUrbanoViaje.Email}}</td>
                                             <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
                                             <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2025vPintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4015vPintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4016vPintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4017vPintada">{{TerreUrbanoViaje.Minimula}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC401718vPintada">{{TerreUrbanoViaje["Gran Danes"]}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2025vPintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4015vPintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4016vPintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4017vPintada">{{TerreUrbanoViaje.Minimula  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC401718vPintada">{{TerreUrbanoViaje["Gran Danes"]  | number:2}}</span></td>
                                           </tr>
                                           </table>
                                         </div>
@@ -598,9 +594,9 @@
                                             <td>{{TerreUrbanoTonelada.Email}}</td>
                                             <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
                                             <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4021Pintada">{{TerreUrbanoTonelada.Sencillo}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4022Pintada">{{TerreUrbanoTonelada.Tractomula}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4021Pintada">{{TerreUrbanoTonelada.Sencillo  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4022Pintada">{{TerreUrbanoTonelada.Tractomula  | number:2}}</span></td>
                                           </tr>
                                             </table>
                                           </div>
@@ -627,29 +623,21 @@
                                             <th class="text-center"><h6><b>Fs/kg</b></h6></th>
                                             <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
                                             <th class="text-center"><h6><b>Vía</b></h6></th>
-                                            <th class="text-center"><h6><b>'+100 + Fs/kg + Gastos Embarque'</b></h6></th>
-                                            <th class="text-center"><h6><b>'+300 + Fs/kg + Gastos Embarque'</b></h6></th>
-                                            <th class="text-center"><h6><b>'+500 + Fs/kg + Gastos Embarque'</b></h6></th>
-                                            <th class="text-center"><h6><b>'+1000 + Fs/kg + Gastos Embarque'</b></h6></th>
                                               </tr>
                                               <tr ng-repeat="Aerea in ModalidadTodasAerea | orderBy:['Aeropuerto','Pais']">
                                                 <td>{{Aerea.Email}}</td>
                                                 <td>{{Aerea.Pais}}</td>
                                                 <td>{{Aerea.Aeropuerto}}</td>
-                                                <td><span ng-class="Aerea.AduC2045Pintada">{{Aerea.Minima}}</span></td>
-                                                <td><span ng-class="Aerea.AduC8Pintada">{{Aerea["45"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2010Pintada">{{Aerea["+100"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2017Pintada">{{Aerea['+300']}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2019Pintada">{{Aerea['+500']}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2020Pintada">{{Aerea['+1000']}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2021Pintada">{{Aerea["FS min"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2025Pintada">{{Aerea["Fs/kg"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC4015Pintada">{{Aerea["Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC4016Pintada">{{Aerea.Via}}</span></td>
-                                                <td><span ng-class="Aerea.AduC4017Pintada">{{Aerea["+100 + Fs/kg + Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC401718Pintada">{{Aerea["+300 + Fs/kg + Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC4020Pintada">{{Aerea["+500 + Fs/kg + Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aerea.AduC2021Pintada">{{Aerea["+1000 + Fs/kg + Gastos Embarque"]}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2045Pintada">{{Aerea.Minima  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC8Pintada">{{Aerea["45"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2010Pintada">{{Aerea["+100"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2017Pintada">{{Aerea['+300']  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2019Pintada">{{Aerea['+500']  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2020Pintada">{{Aerea['+1000']  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2021Pintada">{{Aerea["FS min"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC2025Pintada">{{Aerea["Fs/kg"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC4015Pintada">{{Aerea["Gastos Embarque"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aerea.AduC4016Pintada">{{Aerea.Via  | number:2}}</span></td>
                                               </tr>
                                             </table>
                                           </div>
@@ -677,29 +665,21 @@
                                             <th class="text-center"><h6><b>Fs/kg</b></h6></th>
                                             <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
                                             <th class="text-center"><h6><b>Vía</b></h6></th>
-                                            <th class="text-center"><h6><b>'+100 + Fs/kg + Gastos Embarque'</b></h6></th>
-                                            <th class="text-center"><h6><b>'+300 + Fs/kg + Gastos Embarque'</b></h6></th>
-                                            <th class="text-center"><h6><b>'+500 + Fs/kg + Gastos Embarque'</b></h6></th>
-                                            <th class="text-center"><h6><b>'+1000 + Fs/kg + Gastos Embarque'</b></h6></th>
                                               </tr>
                                               <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero | orderBy:['Aeropuerto','Pais']">
                                                 <td>{{Aereapasajero.Email}}</td>
                                                 <td>{{Aereapasajero.Pais}}</td>
                                                 <td>{{Aereapasajero.Aeropuerto}}</td>
-                                                <td><span ng-class="Aereapasajero.AduC2045PPintada">{{Aereapasajero.Minima}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC8PPintada">{{Aereapasajero["45"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2010PPintada">{{Aereapasajero['+100']}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2017PPintada">{{Aereapasajero['+300']}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2019PPintada">{{Aereapasajero['+500']}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2020PPintada">{{Aereapasajero['+1000']}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["FS min"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2025PPintada">{{Aereapasajero["Fs/kg"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC4016PPintada">{{Aereapasajero.Via}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC4017PPintada">{{Aereapasajero["+100 + Fs/kg + Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC401718PPintada">{{Aereapasajero["+300 + Fs/kg + Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC4020PPintada">{{Aereapasajero["+500 + Fs/kg + Gastos Embarque"]}}</span></td>
-                                                <td><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["+1000 + Fs/kg + Gastos Embarque"]}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2045PPintada">{{Aereapasajero.Minima | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC8PPintada">{{Aereapasajero["45"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2010PPintada">{{Aereapasajero['+100']  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2017PPintada">{{Aereapasajero['+300']  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2019PPintada">{{Aereapasajero['+500']  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2020PPintada">{{Aereapasajero['+1000']  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["FS min"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC2025PPintada">{{Aereapasajero["Fs/kg"]  | number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]| number:2}}</span></td>
+                                                <td><span ng-class="Aereapasajero.AduC4016PPintada">{{Aereapasajero.Via  | number:2}}</span></td>                                                
                                               </tr>
                                             </table>
                                           </div>
