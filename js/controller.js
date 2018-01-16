@@ -2868,25 +2868,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                 var sumatoria=0;
-                                sumatoria=aereacarguero["+100'"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                sumatoria=aereacarguero["+100"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
                                 aereacarguero["+100 + Fs/kg + Gastos Embarque"] = sumatoria;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1=0;
-                                sumatoria1=aereacarguero["+300'"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                sumatoria1=aereacarguero["+300"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
                                 aereacarguero["+300 + Fs/kg + Gastos Embarque"] = sumatoria1;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2=0;
-                                sumatoria2=aereacarguero["+500'"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                sumatoria2=aereacarguero["+500"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
                                 aereacarguero["+500 + Fs/kg + Gastos Embarque"] = sumatoria2;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3=0;
-                                sumatoria3=aereacarguero["+1000'"] + aereacarguero["Fs/kg"];
+                                sumatoria3=aereacarguero["+1000"] + aereacarguero["Fs/kg"];
                                 aereacarguero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                // $scope.$apply();
@@ -3149,26 +3149,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                 var sumatoriap=0;
-                                sumatoriap=aereapasajero["+100"] + aereapasajero["Ks/kg"];
-                                aereapasajero["+100 + Ks/kg"] = sumatoriap;
+                                sumatoriap=aereapasajero["+100"] + aereapasajero["Fs/kg"];
+                                aereapasajero["+100 + Fs/kg"] = sumatoriap;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1p=0;
-                                sumatoria1p=aereapasajero["+300"] + aereapasajero["Ks/kg"];
-                                aereapasajero["+300 + Ks/kg"] = sumatoria1p;
+                                sumatoria1p=aereapasajero["+300"] + aereapasajero["Fs/kg"];
+                                aereapasajero["+300 + Fs/kg"] = sumatoria1p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2p=0;
-                                sumatoria2p=aereapasajero["+500"] + aereapasajero["Ks/kg"];
-                                aereapasajero["+500 + Ks/kg"] = sumatoria2p;
+                                sumatoria2p=aereapasajero["+500"] + aereapasajero["Fs/kg"];
+                                aereapasajero["+500 + Fs/kg"] = sumatoria2p;
                                //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3p=0;
-                               sumatoria3p=aereapasajero["+1000"] + aereapasajero["Ks/kg"];
-                                aereapasajero["+1000 + Ks/kg"] = sumatoria3p;
+                               sumatoria3p=aereapasajero["+1000"] + aereapasajero["Fs/kg"];
+                                aereapasajero["+1000 + Fs/kg"] = sumatoria3p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                         });
@@ -5124,6 +5124,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                          
 
+                        ModalidadTodasBodegajeaduanero= _.sortBy(ModalidadTodasconOrdenBodegajeaduanero,'Email');
                         $scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
 
 
@@ -5282,7 +5283,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                          
+                          ModalidadTodasBodegajeaduaneromaqt= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqt,'Email');
                           $scope.ModalidadTodasBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -5441,7 +5442,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                          
+                           ModalidadTodasBodegajeaduaneromaqp= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqp,'Email');
                           $scope.ModalidadTodasBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -6019,7 +6020,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-
+                     ModalidadTodas= _.sortBy(ModalidadTodas,'Via','Email');
                      ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
                        $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
@@ -7089,14 +7090,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                            var ModalidadTodasOTM=[];
-                           ModalidadTodasOTM=ModalidadTodas;
+                           ModalidadTodasOTM= _.sortBy(ModalidadTodas,'Destino','Origen','Email');
 
               /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasOTM;
                        $scope.ModalidadTodasOTM= ModalidadTodasOTM;
-
-                      console.log('Gasto NOOOOO común');
-                      console.log(ModalidadTodasRespaldo);
 
                        $scope.ModalidadTodasOTM = ModalidadTodasRespaldo.filter(function (el) {
                          return (
@@ -7734,6 +7732,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                   /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
+                       console.log(ModalidadTodas);
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
                        $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
@@ -8159,6 +8159,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                         /////////////////////////////////Filtro////////////////////////////////
+                       ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
                        $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
@@ -8330,6 +8331,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
+                         ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PaisOrigen','Email');
                          $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodas;
 
 
@@ -8493,6 +8495,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
+                        ModalidadTodasTerreNacionalSencillo= _.sortBy(ModalidadTodasTerreNacionalSencillo,'PuertoDestino','PaisOrigen','Email');
                         $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasTerreNacionalSencillo;
 
                     /////////////////////////////////Filtro////////////////////////////////
@@ -8640,7 +8643,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2020Pintada = [];
                         }
                         }
-
+                        
+                        ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
                         $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
 
                         ////////////////////////////////Filtro////////////////////////////////
@@ -9006,7 +9010,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
                         }
-
+                        
+                        ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
                         $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
                            ////////////////////////////////Filtro////////////////////////////////
@@ -9362,6 +9367,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
+                         ModalidadTodasTerreUrbanoViaje= _.sortBy(ModalidadTodasTerreUrbanoViaje,'PuertoDestino','PaisOrigen','Email');
+
                         $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodasTerreUrbanoViaje;
 
                     ////////////////////////////////Filtro////////////////////////////////
@@ -9570,7 +9577,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
                         }
                         }
-
+                      
+                      ModalidadTodasTerreUrbanoTonelada = _.sortBy(ModalidadTodasTerreUrbanoTonelada, 'PuertoDestino','PaisOrigen','Email');
                       $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
 
                      ////////////////////////////////Filtro////////////////////////////////
@@ -10085,9 +10093,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                    ////////// Campo Via////////////////////////////
 
-                   ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros,'Aeropuerto','Pais', 'Via');
+                  ModalidadTodasconOrdenotros = _.sortBy(ModalidadTodasconOrdenotros ,'Aeropuerto','Pais','Via');
 
-                        var contOTRO=0;
+                       var contOTRO=0;
                        for (var i=0; i<= ModalidadTodasconOrdenotros.length-1; i++){
 
                           if (i==0)
@@ -10132,9 +10140,185 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                         }
                         }
+                    ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                     ModalidadTodasconOrdenC4017 = _.sortBy(ModalidadTodasconOrdenC4017 ,'Aeropuerto','Pais',"['+100 + Fs/kg + Gastos Embarque']");
+
+                       var contC4017=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017.length-1; i++){
+
+                          if (i==0)
+                          {
+                             contC4017= contC4017 + 1;
+                          }
+                         else
+                          {
+                              if(( ModalidadTodasconOrdenC4017[i].Aeropuerto ==  ModalidadTodasconOrdenC4017[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4017[i].Pais ==  ModalidadTodasconOrdenC4017[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC4017[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4017[i-1]['+100 + Fs/kg + Gastos Embarque']))
+                                {
+                                  contC4017= contC4017;
+                                }
+                                else
+                                {
+                                  contC4017=contC4017 + 1;
+                                }
+                              }
+                             else
+                              {
+                               contC4017=1;
+                              }
+
+                          }
 
 
+                        if (contC4017==1)
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-success"];
+                        }
+                        if (contC4017==2)
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-warning"];
+                        }
+                        if (contC4017==3)
+                        {
+                               ModalidadTodasconOrdenC4017[i].AduC4017Pintada = ["label label-danger"];
+                        }
+                        if (contC4017>3)
+                        {
+                          ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
+                        }
+                        }
 
+               ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                     ModalidadTodasconOrdenC401718 = _.sortBy(ModalidadTodasconOrdenC401718 ,'Aeropuerto','Pais',"['+300 + Fs/kg + Gastos Embarque']");
+
+                       var contC401718=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718.length-1; i++){
+
+                          if (i==0)
+                          {
+                             contC401718= contC401718 + 1;
+                          }
+                         else
+                          {
+                              if(( ModalidadTodasconOrdenC401718[i].Aeropuerto ==  ModalidadTodasconOrdenC401718[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC401718[i].Pais ==  ModalidadTodasconOrdenC401718[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC401718[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718[i-1]['+300 + Fs/kg + Gastos Embarque']))
+                                {
+                                  contC401718= contC401718;
+                                }
+                                else
+                                {
+                                  contC401718=contC401718 + 1;
+                                }
+                              }
+                             else
+                              {
+                               contC401718=1;
+                              }
+
+                          }
+
+
+                        if (contC401718==1)
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-success"];
+                        }
+                        if (contC401718==2)
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-warning"];
+                        }
+                        if (contC401718==3)
+                        {
+                               ModalidadTodasconOrdenC401718[i].AduC401718Pintada = ["label label-danger"];
+                        }
+                        if (contC401718>3)
+                        {
+                          ModalidadTodasconOrdenC401718[i].AduC401718Pintada = [];
+                        }
+                        }
+                   ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4020 = _.sortBy(ModalidadTodasconOrdenC4020, "['+500 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4020=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4020= contC4020 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4020[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4020[i-1]['+500 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4020= contC4020;
+                              }
+                              else
+                              {
+                                contC4020=contC4020 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4020==1) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-success"];
+                        }
+                        if (contC4020==2) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-warning"];
+                        }
+                        if (contC4020==3) 
+                        {
+                               ModalidadTodasconOrdenC4020[i].AduC4020Pintada = ["label label-danger"];
+                        }
+                        if (contC4020>3)
+                        {
+                          ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
+                        }
+                        }       
+
+                         ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                    ModalidadTodasconOrdenC4021 = _.sortBy(ModalidadTodasconOrdenC4021, "['+1000 + Fs/kg + Gastos Embarque']");
+                     
+                     var contC4021=0;
+                        for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                                    
+                          if (i==0){                            
+                            contC4021= contC4021 + 1;
+                          }
+                          else
+                              {         
+                              if(parseFloat(ModalidadTodasconOrdenC4021[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat(ModalidadTodasconOrdenC4021[i-1]['+1000 + Fs/kg + Gastos Embarque'])) 
+                              {                                 
+                                contC4021= contC4021;
+                              }
+                              else
+                              {
+                                contC4021=contC4021 + 1;                               }
+                            }                                                        
+                          
+
+                        if (contC4021==1) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-success"];
+                        }
+                        if (contC4021==2) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-warning"];
+                        }
+                        if (contC4021==3) 
+                        {
+                               ModalidadTodasconOrdenC4021[i].AduC4021Pintada = ["label label-danger"];
+                        }
+                        if (contC4021>3)
+                        {
+                          ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
+                        }
+                        } 
+
+
+                     ModalidadTodasAerea = _.sortBy(ModalidadTodasAerea, 'Aeropuerto','Pais','Email');
                      $scope.ModalidadTodasAerea=ModalidadTodasAerea;
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -10151,7 +10335,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2021Pintada.length > 0 ||
                                 el.AduC2025Pintada.length > 0 ||
                                 el.AduC4015Pintada.length > 0 ||
-                                el.AduC4016Pintada.length > 0 ||                                
+                                el.AduC4016Pintada.length > 0 ||  
+                                el.AduC4017Pintada.length > 0 ||  
+                                el.AduC401718Pintada.length > 0 || 
+                                el.AduC40120Pintada.length > 0 ||
+                                el.AduC4021Pintada.length > 0 ||                              
                                 $scope.ModalidadesSemaforo == false);
                       });
 
@@ -10538,7 +10726,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                    ////////// Campo ["Fs/kg"]
 
-                     ModalidadTodasconOrdenCAIIIP = _.sortBy(ModalidadTodasconOrdenCAIIIP, '["Fs/kg"]');
+                      ModalidadTodasconOrdenCAIIIP = _.sortBy(ModalidadTodasconOrdenCAIIIP,'Aeropuerto','Pais','["Fs/kg"]');
 
                       var contCAIIIP=0;
                        for (var i=0; i<= ModalidadTodasconOrdenCAIIIP.length-1; i++){
@@ -10685,6 +10873,206 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
+                        ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                     ModalidadTodasconOrdenC4017P = _.sortBy(ModalidadTodasconOrdenC4017P ,'Aeropuerto','Pais',"['+100 + Fs/kg']");
+
+                       var contC4017P=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017P.length-1; i++){
+
+                          if (i==0)
+                          {
+                             contC4017P= contC4017P + 1;
+                          }
+                         else
+                          {
+                              if(( ModalidadTodasconOrdenC4017P[i].Aeropuerto ==  ModalidadTodasconOrdenC4017P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4017P[i].Pais ==  ModalidadTodasconOrdenC4017P[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg']))
+                                {
+                                  contC4017P= contC4017P;
+                                }
+                                else
+                                {
+                                  contC4017P=contC4017P + 1;
+                                }
+                              }
+                             else
+                              {
+                               contC4017P=1;
+                              }
+
+                          }
+
+
+                        if (contC4017P==1)
+                        {
+                               ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = ["label label-success"];
+                        }
+                        if (contC4017P==2)
+                        {
+                               ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = ["label label-warning"];
+                        }
+                        if (contC4017P==3)
+                        {
+                               ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = ["label label-danger"];
+                        }
+                        if (contC4017P>3)
+                        {
+                          ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = [];
+                        }
+                        }
+
+               ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                     ModalidadTodasconOrdenC401718P = _.sortBy(ModalidadTodasconOrdenC401718P ,'Aeropuerto','Pais',"['+300 + Fs/kg']");
+
+                       var contC401718P=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718P.length-1; i++){
+
+                          if (i==0)
+                          {
+                             contC401718P= contC401718P + 1;
+                          }
+                         else
+                          {
+                              if(( ModalidadTodasconOrdenC401718P[i].Aeropuerto ==  ModalidadTodasconOrdenC401718P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC401718P[i].Pais ==  ModalidadTodasconOrdenC401718P[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg']))
+                                {
+                                  contC401718P= contC401718P;
+                                }
+                                else
+                                {
+                                  contC401718P=contC401718P + 1;
+                                }
+                              }
+                             else
+                              {
+                               contC401718P=1;
+                              }
+
+                          }
+
+
+                        if (contC401718P==1)
+                        {
+                               ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = ["label label-success"];
+                        }
+                        if (contC401718P==2)
+                        {
+                               ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = ["label label-warning"];
+                        }
+                        if (contC401718P==3)
+                        {
+                               ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = ["label label-danger"];
+                        }
+                        if (contC401718P>3)
+                        {
+                          ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = [];
+                        }
+                        }
+                   ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////              
+                       
+                     ModalidadTodasconOrdenC4020P = _.sortBy(ModalidadTodasconOrdenC4020P ,'Aeropuerto','Pais',"['+500 + Fs/kg']");
+
+                       var contC4020P=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4020P.length-1; i++){
+
+                          if (i==0)
+                          {
+                             contC4020P= contC4020P + 1;
+                          }
+                         else
+                          {
+                              if(( ModalidadTodasconOrdenC4020P[i].Aeropuerto ==  ModalidadTodasconOrdenC4020P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4020P[i].Pais ==  ModalidadTodasconOrdenC4020P[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg']))
+                                {
+                                  contC4020P= contC4020P;
+                                }
+                                else
+                                {
+                                  contC4020P=contC4020P + 1;
+                                }
+                              }
+                             else
+                              {
+                               contC4020P=1;
+                              }
+
+                          }
+
+
+                        if (contC4020P==1)
+                        {
+                               ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = ["label label-success"];
+                        }
+                        if (contC4020P==2)
+                        {
+                               ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = ["label label-warning"];
+                        }
+                        if (contC4020P==3)
+                        {
+                               ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = ["label label-danger"];
+                        }
+                        if (contC4020P>3)
+                        {
+                          ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = [];
+                        }
+                        }
+                       
+                     ////////// Campo ['+10000 + Fs/kg + Gastos Embarque']////////////////////////////
+                       
+                      ModalidadTodasconOrdenC4021P = _.sortBy(ModalidadTodasconOrdenC4021P ,'Aeropuerto','Pais',"['+1000 + Fs/kg']");
+
+                       var contC4021P=0;
+                       for (var i=0; i<= ModalidadTodasconOrdenC4021P.length-1; i++){
+
+                          if (i==0)
+                          {
+                             contC4021P= contC4021P + 1;
+                          }
+                         else
+                          {
+                              if(( ModalidadTodasconOrdenC4021P[i].Aeropuerto ==  ModalidadTodasconOrdenC4021P[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4021P[i].Pais ==  ModalidadTodasconOrdenC4021P[i-1].Pais))
+                              {
+                                if(parseFloat( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg']))
+                                {
+                                  contC4021P= contC4021P;
+                                }
+                                else
+                                {
+                                  contC4021P=contC4021P + 1;
+                                }
+                              }
+                             else
+                              {
+                               contC4021P=1;
+                              }
+
+                          }
+
+
+                        if (contC4021P==1)
+                        {
+                               ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = ["label label-success"];
+                        }
+                        if (contC4021P==2)
+                        {
+                               ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = ["label label-warning"];
+                        }
+                        if (contC4021P==3)
+                        {
+                               ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = ["label label-danger"];
+                        }
+                        if (contC4021P>3)
+                        {
+                          ModalidadTodasconOrdenC4021P[i].AduC4021PPintada = [];
+                        }
+                        }
+
+                    ModalidadTodasAereaPasajero = _.sortBy(ModalidadTodasAereaPasajero, 'Aeropuerto','Pais','Email');
                     //$scope.ModalidadTodasAereaPasajero=ModalidadTodasAereaPasajero;
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -10701,6 +11089,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2025PPintada.length > 0 ||
                                 el.AduC4015PPintada.length > 0 ||
                                 el.AduC4016PPintada.length > 0 ||
+                                el.AduC4017PPintada.length > 0 ||
+                                el.AduC401718PPintada.length > 0 ||
+                                el.AduC4020PPintada.length > 0 ||
+                                el.AduC4021PPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
 
