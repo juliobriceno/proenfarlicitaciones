@@ -185,77 +185,99 @@
                                         </div>
                                         </div>
                                          <br>
-                                  <div class="row" ng-show="Show1">
-                                  <div class="col-md-12">
-                                    <div class="box-body table-responsive no-padding">
-                                      <div class="widget-header">
-                                        <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Aduanero</label>
-                                      </div>
-                                      <table class="table table-bordered">
-                                        <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa Valor/FOB<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>Otros</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
-                                            <td>{{BodegajeAduanero.Email}}</td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaotroPintada">{{BodegajeAduanero.Otros | number:2}} </span></td>
-                                          </tr>
-                                        </table>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <br>
-                                   <div class="row" ng-show="Show20">
-                                  <div class="col-md-12">
-                                    <div class="box-body table-responsive no-padding">
-                                      <div class="widget-header">
-                                        <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Maquinaria</label>
-                                      </div>
-                                      <table class="table table-bordered">
-                                        <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>FMM</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
-                                            <td>{{BodegajeAduaneromaq.Email}}</td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtfmmPintada">{{BodegajeAduaneromaq.Fmm  | number:2}}</span></td>
-                                          </tr>
-                                        </table>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <br>
-                                  <div class="row" ng-show="Show111">
-                                  <div class="col-md-12">
-                                    <div class="box-body table-responsive no-padding">
-                                      <div class="widget-header">
-                                        <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Materia Prima</label>
-                                      </div>
-                                      <table class="table table-bordered">
-                                        <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa<b></h6></th>
-                                          <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>FMM</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp">
-                                            <td>{{BodegajeAduanermaqp.Email}}</td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpfmmPintada">{{BodegajeAduanermaqp.Fmm  | number:2}}</span></td>
-                                          </tr>
-                                        </table>
-                                      </div>
-                                    </div>
-                                  </div>                                 
+                                         <div class="row">
+                                           <div class="col-md-12">
+                                             <div class="menu-accordion">
+                                               <div class="contenedor-accordion">
+                                                 <!-- Áreas -->
+                                                 <div class="accordion-group" ng-show="Show1">
+                                                   <!-- Área -->
+                                                   <div class="accordion-heading recuadro">
+                                                     <a class="accordion-toggle" data-toggle="collapse" href="#area1"><h5><i class="fa fa-industry" aria-hidden="true"></i> Aduanero</a>
+                                                   </div><!-- /Área -->
+                                                   <div id="area1" class="panel-collapse collapse in">
+                                                     <div class="panel-body">
+                                                       <div class="row" >
+                                                         <div class="col-md-12">
+                                                           <table class="table table-bordered">
+                                                             <tr>
+                                                               <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                               <th class="text-center"><h6><b>Tarifa Valor/FOB<b></h6></th>
+                                                               <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
+                                                               <th class="text-center"><h6><b>Otros</b></h6></th>
+                                                             </tr>
+                                                             <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
+                                                               <td>{{BodegajeAduanero.Email}}</td>
+                                                               <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
+                                                               <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
+                                                               <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaotroPintada">{{BodegajeAduanero.Otros | number:2}} </span></td>
+                                                             </tr>
+                                                           </table>
+                                                         </div>
+                                                       </div>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                                 <div class="accordion-group"  ng-show="Show20">
+                                                   <!-- Área -->
+                                                   <div class="accordion-heading recuadro">
+                                                     <a class="accordion-toggle" data-toggle="collapse" href="#area2"><h5><i class="fa fa-industry" aria-hidden="true"></i> Máquinaria</h5></a>
+                                                   </div><!-- /Área -->
+                                                   <div id="area2" class="panel-collapse collapse ">
+                                                     <div class="panel-body">
+                                                       <div class="row" >
+                                                         <div class="col-md-12">
+                                                           <table class="table table-bordered">
+                                                             <tr>
+                                                               <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                                 <th class="text-center"><h6><b>Tarifa<b></h6></th>
+                                                                   <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
+                                                                     <th class="text-center"><h6><b>FMM</b></h6></th>
+                                                                   </tr>
+                                                                   <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
+                                                                     <td>{{BodegajeAduaneromaq.Email}}</td>
+                                                                     <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
+                                                                     <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
+                                                                     <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtfmmPintada">{{BodegajeAduaneromaq.Fmm  | number:2}}</span></td>
+                                                                   </tr>
+                                                                 </table>
+                                                         </div>
+                                                       </div><!-- /.box-body -->
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                                 <div class="accordion-group" ng-show="Show111">
+                                                   <!-- Área -->
+                                                   <div class="accordion-heading recuadro">
+                                                     <a class="accordion-toggle" data-toggle="collapse" href="#area3"><h5><i class="fa fa-industry" aria-hidden="true"></i> Materia Prima</h5></a>
+                                                   </div><!-- /Área -->
+                                                   <div id="area3" class="panel-collapse collapse ">
+                                                     <div class="panel-body">
+                                                       <div class="row" >
+                                                         <div class="col-md-12">
+                                                           <table class="table table-bordered">
+                                                             <tr>
+                                                               <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                                 <th class="text-center"><h6><b>Tarifa<b></h6></th>
+                                                                   <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
+                                                                     <th class="text-center"><h6><b>FMM</b></h6></th>
+                                                                   </tr>
+                                                                   <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp">
+                                                                     <td>{{BodegajeAduanermaqp.Email}}</td>
+                                                                     <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
+                                                                     <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
+                                                                     <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpfmmPintada">{{BodegajeAduanermaqp.Fmm  | number:2}}</span></td>
+                                                                   </tr>
+                                                                 </table>
+                                                         </div>
+                                                       </div><!-- /.box-body -->
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div><!-- /accordion -->
+                                             </div>
+                                           </div>
+                                         </div>
                                       <div class="row" ng-show="Show2">
                                   <div class="col-md-12">
                                                       <div  class="box-body table-responsive no-padding">
@@ -430,261 +452,332 @@
                                     </div>
                                   </div>
                                 </div>
-                                  <div class="row" ng-show="Show6">
+                                <div class="row">
                                   <div class="col-md-12">
-                                    <div class="box-body table-responsive no-padding">
-                                      <div class="widget-header">
-                                        <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Turbo</label>
-                                      </div>
-                                      <table class="table table-bordered">
-                                        <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                          <th class="text-center"><h6><b>Origen<b></h6></th>
-                                            <th class="text-center"><h6><b>Destino</b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo Especial</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo | orderBy:['PuertoDestino','PaisOrigen']">
-                                            <td>{{TerreNacional.Email}}</td>
-                                            <td>{{TerreNacional.PaisOrigen}}</td>
-                                            <td>{{TerreNacional.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreNacional.AduC8Pintada">{{TerreNacional["Turbo Especial"]  | number:2}}</span></td>
-                                          </tr>
-                                        </table>
-                                      </div>
+                                    <div class="menu-accordion">
+                                      <div class="contenedor-accordion">
+                                        <!-- Áreas -->
+                                        <div class="accordion-group" ng-show="Show6">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalTurbo"><h5><i class="fa fa-list" aria-hidden="true"></i>Turbo</a>
+                                          </div><!-- /Área -->
+                                          <div id="tNacionalTurbo" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <table class="table table-bordered">
+                                                    <tr>
+                                                      <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                      <th class="text-center"><h6><b>Origen<b></h6></th>
+                                                        <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                        <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h6></th>
+                                                        <th class="text-center"><h6><b>Turbo Especial</b></h6></th>
+                                                      </tr>
+                                                      <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo | orderBy:['PuertoDestino','PaisOrigen']">
+                                                        <td>{{TerreNacional.Email}}</td>
+                                                        <td>{{TerreNacional.PaisOrigen}}</td>
+                                                        <td>{{TerreNacional.PuertoDestino}}</td>
+                                                        <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreNacional.AduC8Pintada">{{TerreNacional["Turbo Especial"]  | number:2}}</span></td>
+                                                      </tr>
+                                                    </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="accordion-group" ng-show="Show7">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalSencillo"><h5><i class="fa fa-list" aria-hidden="true"></i>Sencillo</h5></a>
+                                          </div><!-- /Área -->
+                                          <div id="tNacionalSencillo" class="panel-collapse collapse ">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <table class="table table-bordered">
+                                                    <tr>
+                                                      <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                      <th class="text-center"><h6><b>Origen<b></h6></th>
+                                                        <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                        <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
+                                                        <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
+                                                      </tr>
+                                                      <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo | orderBy:['PuertoDestino','PaisOrigen']" >
+                                                        <td>{{TerreNacionalSencillo.Email}}</td>
+                                                        <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
+                                                        <td >{{TerreNacionalSencillo.PuertoDestino}}</td>
+                                                        <td class="text-center"><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreNacionalSencillo.AduC2017Pintada">{{TerreNacionalSencillo["Sencillo Especial"]  | number:2}}</span></td>
+                                                      </tr>
+                                                    </table>
+                                                </div>
+                                              </div><!-- /.box-body -->
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="accordion-group" ng-show="Show8">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalPatineta"><h5><i class="fa fa-list" aria-hidden="true"></i>Patineta</h5></a>
+                                          </div><!-- /Área -->
+                                          <div id="tNacionalPatineta" class="panel-collapse collapse ">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <table class="table table-bordered">
+                                                    <tr>
+                                                      <th class="text-center"><h6><b>Proveedor<b></h></th>
+                                                      <th class="text-center"><h6><b>Origen<b></h></th>
+                                                        <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                        <th class="text-center"><h6><b>Minimula</b></h6></th>
+                                                        <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                                      </tr>
+                                                      <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta | orderBy:['PuertoDestino','PaisOrigen']">
+                                                        <td>{{TerreNacionalPatineta.Email}}</td>
+                                                        <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
+                                                        <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
+                                                        <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2019Pintada">{{TerreNacionalPatineta.Minimula  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2020Pintada">{{TerreNacionalPatineta["Gran Danes"]  | number:2}}</span></td>
+                                                      </tr>
+                                                    </table>
+                                                </div>
+                                              </div><!-- /.box-body -->
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div><!-- /accordion -->
                                     </div>
                                   </div>
-                                    <br>
-                                   <div class="row" ng-show="Show7">
-                                    <div class="col-md-12">
-                                      <div class="box-body table-responsive no-padding">
-                                        <div class="widget-header">
-                                          <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Sencillo</label>
-                                        </div>
-                                        <table class="table table-bordered">
-                                          <tr>
-                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Origen<b></h6></th>
-                                              <th class="text-center"><h6><b>Destino</b></h6></th>
-                                              <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
-                                              <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
-                                            </tr>
-                                            <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo | orderBy:['PuertoDestino','PaisOrigen']" >
-                                              <td>{{TerreNacionalSencillo.Email}}</td>
-                                              <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
-                                              <td >{{TerreNacionalSencillo.PuertoDestino}}</td>
-                                              <td class="text-center"><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]  | number:2}}</span></td>
-                                              <td class="text-center"><span ng-class="TerreNacionalSencillo.AduC2017Pintada">{{TerreNacionalSencillo["Sencillo Especial"]  | number:2}}</span></td>
-                                            </tr>
-                                          </table>
-                                        </div>
-                                      </div>
-                                    </div>
-                                      <br>
-                                    <div class="row" ng-show="Show8">
-                                      <div class="col-md-12">
-                                        <div class="box-body table-responsive no-padding">
-                                          <div class="widget-header">
-                                            <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Patineta</label>
-                                          </div>
-                                          <table class="table table-bordered">
-                                            <tr>
-                                              <th class="text-center"><h6><b>Proveedor<b></h></th>
-                                              <th class="text-center"><h6><b>Origen<b></h></th>
-                                                <th class="text-center"><h6><b>Destino</b></h6></th>
-                                                <th class="text-center"><h6><b>Minimula</b></h6></th>
-                                                <th class="text-center"><h6><b>Gran Danes</b></h6></th>
-                                              </tr>
-                                              <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta | orderBy:['PuertoDestino','PaisOrigen']">
-                                                <td>{{TerreNacionalPatineta.Email}}</td>
-                                                <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
-                                                <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
-                                                <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2019Pintada">{{TerreNacionalPatineta.Minimula  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2020Pintada">{{TerreNacionalPatineta["Gran Danes"]  | number:2}}</span></td>
-                                              </tr>
-                                            </table>
+                                </div>
+
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="menu-accordion">
+                                      <div class="contenedor-accordion">
+                                        <!-- Áreas -->
+                                        <div class="accordion-group" ng-show="Show9">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoDia"><h5><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</a>
+                                          </div><!-- /Área -->
+                                          <div id="tUrbanoDia" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <table class="table table-bordered">
+                                                    <tr>
+                                                      <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                        <th class="text-center"><h6><b>Origen<b></h6></th>
+                                                      <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                        <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
+                                                        <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
+                                                        <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
+                                                        <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
+                                                        <th class="text-center"><h6><b>Minimula</b></h6></th>
+                                                        <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                                      </tr>
+                                                      <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano | orderBy:['PuertoDestino','PaisOrigen',]">
+                                                        <td>{{TerreUrbano.Email}}</td>
+                                                        <td>{{TerreUrbano.PaisOrigen}}</td>
+                                                        <td>{{TerreUrbano.PuertoDestino}}</td>
+                                                        <td class="text-center"><span ng-class="TerreUrbano.AduC2045Pintada">{{TerreUrbano["Turbo (150Cajas)"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreUrbano.AduC8Pintada">{{TerreUrbano["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreUrbano.AduC2010Pintada">{{TerreUrbano["Sencillo (240Cajas)"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreUrbano.AduC2017Pintada">{{TerreUrbano["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreUrbano.AduC2019Pintada">{{TerreUrbano.Minimula  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="TerreUrbano.AduC2020Pintada">{{TerreUrbano["Gran Danes"]  | number:2}}</span></td>
+                                                      </tr>
+                                                    </table>
+                                                </div>
+                                              </div>
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
-                                      <div class="row" ng-show="Show9">
-                                      <div class="col-md-12">
-                                        <div class="box-body table-responsive no-padding">
-                                          <div class="widget-header">
-                                      <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</label>
-                                    </div>
-                                      <table class="table table-bordered">
-                                        <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Origen<b></h6></th>
-                                          <th class="text-center"><h6><b>Destino</b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
-                                            <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
-                                            <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
-                                            <th class="text-center"><h6><b>Minimula</b></h6></th>
-                                            <th class="text-center"><h6><b>Gran Danes</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano | orderBy:['PuertoDestino','PaisOrigen',]">
-                                            <td>{{TerreUrbano.Email}}</td>
-                                            <td>{{TerreUrbano.PaisOrigen}}</td>
-                                            <td>{{TerreUrbano.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2045Pintada">{{TerreUrbano["Turbo (150Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC8Pintada">{{TerreUrbano["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2010Pintada">{{TerreUrbano["Sencillo (240Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2017Pintada">{{TerreUrbano["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2019Pintada">{{TerreUrbano.Minimula  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbano.AduC2020Pintada">{{TerreUrbano["Gran Danes"]  | number:2}}</span></td>
-                                          </tr>
-                                        </table>
-                                      </div>
+                                        <div class="accordion-group" ng-show="Show10">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoViaje"><h5><i class="fa fa-list" aria-hidden="true"></i>Urbano Viaje</h5></a>
+                                          </div><!-- /Área -->
+                                          <div id="tUrbanoViaje" class="panel-collapse collapse ">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <table class="table table-bordered">
+                                                    <tr>
+                                                    <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                      <th class="text-center"><h6><b>Origen</b></h6></th>
+                                                    <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                      <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
+                                                      <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
+                                                      <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
+                                                      <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
+                                                      <th class="text-center"><h6><b>Minimula</b></h6></th>
+                                                      <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                                    </tr>
+                                                    <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje | orderBy:['PuertoDestino','PaisOrigen']">
+                                                      <td>{{TerreUrbanoViaje.Email}}</td>
+                                                      <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
+                                                      <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
+                                                      <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2025vPintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4015vPintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4016vPintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4017vPintada">{{TerreUrbanoViaje.Minimula  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC401718vPintada">{{TerreUrbanoViaje["Gran Danes"]  | number:2}}</span></td>
+                                                    </tr>
+                                                    </table>
+                                                </div>
+                                              </div><!-- /.box-body -->
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="accordion-group" ng-show="Show1111">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoTonelada"><h5><i class="fa fa-list" aria-hidden="true"></i>Tonelada</h5></a>
+                                          </div><!-- /Área -->
+                                          <div id="tUrbanoTonelada" class="panel-collapse collapse ">
+                                            <div class="panel-body">
+                                              <div class="row" >
+                                                <div class="col-md-12">
+                                                  <table class="table table-bordered">
+                                                     <tr>
+                                                  <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                    <th class="text-center"><h6><b>Origen<b></h6></th>
+                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                    <th class="text-center"><h6><b>Turbo</b></h6></th>
+                                                    <th class="text-center"><h6><b>Sencillo</b></h6></th>
+                                                    <th class="text-center"><h6><b>Tractomula</b></h6></th>
+                                                  </tr>
+                                                  <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada | orderBy:['PuertoDestino','PaisOrigen']">
+                                                    <td>{{TerreUrbanoTonelada.Email}}</td>
+                                                    <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
+                                                    <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
+                                                    <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo  | number:2}}</span></td>
+                                                    <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4021Pintada">{{TerreUrbanoTonelada.Sencillo  | number:2}}</span></td>
+                                                    <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4022Pintada">{{TerreUrbanoTonelada.Tractomula  | number:2}}</span></td>
+                                                  </tr>
+                                                    </table>
+                                                </div>
+                                              </div><!-- /.box-body -->
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div><!-- /accordion -->
                                     </div>
                                   </div>
-                                    <br>
-                                   <div class="row" ng-show="Show10">
-                                    <div class="col-md-12">
-                                      <div class="box-body table-responsive no-padding">
-                                        <div class="widget-header">
-                                          <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Urbano Viaje</label>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="menu-accordion">
+                                      <div class="contenedor-accordion">
+                                        <!-- Áreas -->
+                                        <div class="accordion-group"  ng-show="Show12">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#ACarguero"><h5><i class="fa fa-list" aria-hidden="true"></i>Carguero</a>
+                                          </div><!-- /Área -->
+                                          <div id="ACarguero" class="panel-collapse collapse in">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <div  class="box-body table-responsive no-padding">
+                                              <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                                    <tr>
+                                                    <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                                    <th class="text-center"><h6><b>País</b></h6></th>
+                                                    <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
+                                                    <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                                    <th class="text-center"><h6><b>45</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+100</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+300</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+500</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+1000</b></h6></th>
+                                                    <th class="text-center"><h6><b>FS min</b></h6></th>
+                                                    <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                                    <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
+                                                    <th class="text-center"><h6><b>Vía</b></h6></th>
+                                                      </tr>
+                                                      <tr ng-repeat="Aerea in ModalidadTodasAerea | orderBy:['Aeropuerto','Pais']">
+                                                        <td>{{Aerea.Email}}</td>
+                                                        <td>{{Aerea.Pais}}</td>
+                                                        <td>{{Aerea.Aeropuerto}}</td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2045Pintada">{{Aerea.Minima  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC8Pintada">{{Aerea["45"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2010Pintada">{{Aerea["+100"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2017Pintada">{{Aerea['+300']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2019Pintada">{{Aerea['+500']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2020Pintada">{{Aerea['+1000']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2021Pintada">{{Aerea["FS min"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC2025Pintada">{{Aerea["Fs/kg"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC4015Pintada">{{Aerea["Gastos Embarque"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aerea.AduC4016Pintada">{{Aerea.Via  | number:2}}</span></td>
+                                                      </tr>
+                                                    </table>
+                                                        </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                        <table class="table table-bordered">
-                                          <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Origen</b></h6></th>
-                                          <th class="text-center"><h6><b>Destino</b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
-                                            <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
-                                            <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
-                                            <th class="text-center"><h6><b>Minimula</b></h6></th>
-                                            <th class="text-center"><h6><b>Gran Danes</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje | orderBy:['PuertoDestino','PaisOrigen']">
-                                            <td>{{TerreUrbanoViaje.Email}}</td>
-                                            <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
-                                            <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2025vPintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4015vPintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4016vPintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4017vPintada">{{TerreUrbanoViaje.Minimula  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC401718vPintada">{{TerreUrbanoViaje["Gran Danes"]  | number:2}}</span></td>
-                                          </tr>
-                                          </table>
+                                        <div class="accordion-group"  ng-show="Show13">
+                                          <!-- Área -->
+                                          <div class="accordion-heading recuadro">
+                                            <a class="accordion-toggle" data-toggle="collapse" href="#APasajero"><h5><i class="fa fa-list" aria-hidden="true"></i>Pasajero</h5></a>
+                                          </div><!-- /Área -->
+                                          <div id="APasajero" class="panel-collapse collapse ">
+                                            <div class="panel-body">
+                                              <div class="row">
+                                                <div class="col-md-12">
+                                                  <div  class="box-body table-responsive no-padding">
+                                              <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                                    <tr>
+                                                    <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                                    <th class="text-center"><h6><b>País</b></h6></th>
+                                                    <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
+                                                    <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                                    <th class="text-center"><h6><b>45</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+100</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+300</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+500</b></h6></th>
+                                                    <th class="text-center"><h6><b>'+1000</b></h6></th>
+                                                    <th class="text-center"><h6><b>FS min</b></h6></th>
+                                                    <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                                    <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
+                                                    <th class="text-center"><h6><b>Vía</b></h6></th>
+                                                      </tr>
+                                                      <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero | orderBy:['Aeropuerto','Pais']">
+                                                        <td>{{Aereapasajero.Email}}</td>
+                                                        <td>{{Aereapasajero.Pais}}</td>
+                                                        <td>{{Aereapasajero.Aeropuerto}}</td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2045PPintada">{{Aereapasajero.Minima | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC8PPintada">{{Aereapasajero["45"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2010PPintada">{{Aereapasajero['+100']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2017PPintada">{{Aereapasajero['+300']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2019PPintada">{{Aereapasajero['+500']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2020PPintada">{{Aereapasajero['+1000']  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["FS min"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC2025PPintada">{{Aereapasajero["Fs/kg"]  | number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]| number:2}}</span></td>
+                                                        <td class="text-center"><span ng-class="Aereapasajero.AduC4016PPintada">{{Aereapasajero.Via  | number:2}}</span></td>
+                                                      </tr>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                              </div><!-- /.box-body -->
+                                            </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                      </div><!-- /accordion -->
                                     </div>
-                                      <br>
-                                    <div class="row" ng-show="Show1111">
-                                      <div class="col-md-12">
-                                        <div class="box-body table-responsive no-padding">
-                                          <div class="widget-header">
-                                            <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Tonelada</label>
-                                          </div>
-                                          <table class="table table-bordered">
-                                             <tr>
-                                          <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Origen<b></h6></th>
-                                          <th class="text-center"><h6><b>Destino</b></h6></th>
-                                            <th class="text-center"><h6><b>Turbo</b></h6></th>
-                                            <th class="text-center"><h6><b>Sencillo</b></h6></th>
-                                            <th class="text-center"><h6><b>Tractomula</b></h6></th>
-                                          </tr>
-                                          <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada | orderBy:['PuertoDestino','PaisOrigen']"">
-                                            <td>{{TerreUrbanoTonelada.Email}}</td>
-                                            <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
-                                            <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4021Pintada">{{TerreUrbanoTonelada.Sencillo  | number:2}}</span></td>
-                                            <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4022Pintada">{{TerreUrbanoTonelada.Tractomula  | number:2}}</span></td>
-                                          </tr>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row" ng-show="Show12">
-                                      <div class="col-md-12">
-                                        <div class="box-body table-responsive no-padding">
-                                          <div class="widget-header">
-                                            <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Carguero</label>
-                                          </div>
-                                          <table class="table table-bordered">
-                                            <tr>
-                                            <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                            <th class="text-center"><h6><b>País</b></h6></th>
-                                            <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
-                                            <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                            <th class="text-center"><h6><b>45</b></h6></th>
-                                            <th class="text-center"><h6><b>'+100</b></h6></th>
-                                            <th class="text-center"><h6><b>'+300</b></h6></th>
-                                            <th class="text-center"><h6><b>'+500</b></h6></th>
-                                            <th class="text-center"><h6><b>'+1000</b></h6></th>
-                                            <th class="text-center"><h6><b>FS min</b></h6></th>
-                                            <th class="text-center"><h6><b>Fs/kg</b></h6></th>
-                                            <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
-                                            <th class="text-center"><h6><b>Vía</b></h6></th>
-                                              </tr>
-                                              <tr ng-repeat="Aerea in ModalidadTodasAerea | orderBy:['Aeropuerto','Pais']">
-                                                <td>{{Aerea.Email}}</td>
-                                                <td>{{Aerea.Pais}}</td>
-                                                <td>{{Aerea.Aeropuerto}}</td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2045Pintada">{{Aerea.Minima  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC8Pintada">{{Aerea["45"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2010Pintada">{{Aerea["+100"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2017Pintada">{{Aerea['+300']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2019Pintada">{{Aerea['+500']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2020Pintada">{{Aerea['+1000']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2021Pintada">{{Aerea["FS min"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC2025Pintada">{{Aerea["Fs/kg"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC4015Pintada">{{Aerea["Gastos Embarque"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aerea.AduC4016Pintada">{{Aerea.Via  | number:2}}</span></td>
-                                              </tr>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </div>
-  <br>
-                                          <div class="row" ng-show="Show13">
-                                      <div class="col-md-12">
-                                        <div class="box-body table-responsive no-padding">
-                                          <div class="widget-header">
-                                            <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i>Pasajero</label>
-                                          </div>
-                                          <table class="table table-bordered">
-                                            <tr>
-                                            <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                            <th class="text-center"><h6><b>País</b></h6></th>
-                                            <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
-                                            <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                            <th class="text-center"><h6><b>45</b></h6></th>
-                                            <th class="text-center"><h6><b>'+100</b></h6></th>
-                                            <th class="text-center"><h6><b>'+300</b></h6></th>
-                                            <th class="text-center"><h6><b>'+500</b></h6></th>
-                                            <th class="text-center"><h6><b>'+1000</b></h6></th>
-                                            <th class="text-center"><h6><b>FS min</b></h6></th>
-                                            <th class="text-center"><h6><b>Fs/kg</b></h6></th>
-                                            <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
-                                            <th class="text-center"><h6><b>Vía</b></h6></th>
-                                              </tr>
-                                              <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero | orderBy:['Aeropuerto','Pais']">
-                                                <td>{{Aereapasajero.Email}}</td>
-                                                <td>{{Aereapasajero.Pais}}</td>
-                                                <td>{{Aereapasajero.Aeropuerto}}</td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2045PPintada">{{Aereapasajero.Minima | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC8PPintada">{{Aereapasajero["45"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2010PPintada">{{Aereapasajero['+100']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2017PPintada">{{Aereapasajero['+300']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2019PPintada">{{Aereapasajero['+500']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2020PPintada">{{Aereapasajero['+1000']  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["FS min"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC2025PPintada">{{Aereapasajero["Fs/kg"]  | number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]| number:2}}</span></td>
-                                                <td class="text-center"><span ng-class="Aereapasajero.AduC4016PPintada">{{Aereapasajero.Via  | number:2}}</span></td>                                                
-                                              </tr>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </div>
+                                  </div>
+                                </div>
+
+
                                             </div><!-- /.box -->
                                         </div><!-- /.col (MAIN) -->
                                     </div>
