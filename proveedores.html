@@ -185,7 +185,14 @@
                                                   </ui-select>
 
                                               </div>
+                                              <div class="form-group" ng-show="Show70">
+                                        <label>Modalidad:</label>
+                                        <select class="form-control" id="sel1"
+                                        ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
+                                        ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
+                                      </div>
                                             </div>
+
                                             <div class="col-md-3" >
                                               <label>Vistas</label>
                                               <div class="dropdown">
@@ -201,25 +208,22 @@
                                               </div>
 
                                             </div>
-                                 <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
-                                <div class="col-md-4">
-                                  <div class="form-group" ng-show="Show70">
-                            <label>Modalidad:</label>
-                            <select class="form-control" id="sel1"
-                            ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
-                            ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group" ng-show="Show80">
-                            <div style="margin-top:40px;">
-                              <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                                          </div>
-                 
+                                            <div>
+
+                                              <div class="col-md-3 checkbox pull-right ">
+                                                <div ng-show="Show80">
+                                                  <div style="margin-top:25px; " >
+                                                    <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
+                                                  </div>
+                                                </div>
+                                              </div>
+
+
+                                            </div>
+
+
+                                         </div>
+
 
                                         </div><!-- /.box-header -->
                                         <div class="row">
@@ -227,19 +231,19 @@
                                         <div class="col-md-12">
                                            <div ng-show="Show30" class="wrapper row-offcanvas row-offcanvas-left">
       <!-- Right side column. Contains the navbar and content of the page -->
-      <aside class="right-side">
-        <!-- Content Header (Page header) -->       
+      <aside >
+        <!-- Content Header (Page header) -->
         <!-- Main content -->
-        <section class="content">
+        <section>
           <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="">
               <!-- Main content -->
-              <section class="content">
+              <section >
                 <!-- MAILBOX BEGIN -->
-                <div class="mailbox row">
-                  <div class="box box-solid" style="padding: 10px;">
-                    <div class="box-header">                 
+                <div class="">
+                  <div class="" style="padding: 10px;">
+                    <div class="box-header">
                       <br><br>
                       <div class="row">
                         <div class="col-md-12">
@@ -839,6 +843,8 @@
                                           </div>
                                         </div>
                                       </div>
+
+
                                     </div><!-- /accordion -->
                                   </div>
                                 </div>
@@ -850,6 +856,147 @@
                     </div><!-- /.col (MAIN) -->
                   </div>
                 </div>
+<br><br><br>
+                <div ng-show="Show40" class="box-body table-responsive no-padding">
+                    <table class="table table-bordered">
+                        <tr>
+                          <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                          <th class="text-center"><h6><b>Nit</b></h6></th>
+                          <th class="text-center"><h6><b>Nombre Empresa</b></h6></th>
+                          <th class="text-center"><h6><b>Contacto</b></h6></th>
+                          <th class="text-center"><h6><b>Número Fijo</b></h6></th>
+                          <th class="text-center"><h6><b>Email</b></h6></th>
+                          <th class="text-center"><h6><b>Usuario Sistema</b></h6></th>
+                          <th class="text-center"><h6><b>Estado</b></h6></th>
+                        </tr>
+
+                             <tbody  ng-repeat="Usuario in Usuarios">
+
+                        <tr>
+                            <td>
+                              <div class="btn-group">
+                                <button class="btn btn-default" type="button">Acciones</button>
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#" ng-click="DeleteUser(Usuario.User);"><i  class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                                  <li><a href="#" ng-click="GotoUser(Usuario.User);"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                                </ul>
+                              </div>
+
+                            </td>
+
+                 <td>{{Usuario.Nit}}</td>
+                 <td>{{Usuario.RazonSocial}}</td>
+                 <td>{{Usuario.Name}}</td>
+                <td>{{Usuario.Phone}}</td>
+                <td>{{Usuario.Email}}</td>
+                <td>{{Usuario.User}}</td>
+                <td>Activo</td>
+
+                        </tr>
+
+                    </table>
+                     <div class="" style="height: 150px;"><div class="row" ></div></div>
+                </div><!-- /.box-body -->
+
+<div ng-show="Show50" class="box-body table-responsive no-padding">
+    <table class="table table-bordered">
+        <tr>
+          <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+          <th class="text-center"><h6><b>Proveedor</b></h6></th>
+          <th class="text-center"><h6><b>Vía</b></h6></th>
+          <th class="text-center"><h6><b>% ADVALOREM</b></h6></th>
+          <th class="text-center"><h6><b>Mínima</b></h6></th>
+          <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
+          <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
+          <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
+          <th class="text-center"><h6><b>Otro</b></h6></th>
+          <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
+        </tr>
+        <tr>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-default" type="button">Acciones</button>
+                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                </ul>
+              </div>
+
+            </td>
+            <td>Almagrario </td>
+            <td>Aereo</td>
+            <td>0.3</td>
+            <td>350000.0</td>
+            <td>220000.0</td>
+            <td></td>
+            <td>20000.0</td>
+            <td><span class="label label-danger">70000.0</span></td>
+            <td>50000.0</td>
+        </tr>
+        <tr>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-default" type="button">Acciones</button>
+                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>Almagrario</td>
+            <td>Maritimo</td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td></td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td>0.0</td>
+        </tr>
+        <tr>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-default" type="button">Acciones</button>
+                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
+                  <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
+                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>Almagrario</td>
+            <td>Terrestre</td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td></td>
+            <td>0.0</td>
+            <td>0.0</td>
+            <td>0.0</td>
+        </tr>
+
+    </table>
+     <div class="" style="height: 150px;"><div class="row" ></div></div>
+</div><!-- /.box-body -->
                 <!-- MAILBOX END -->
               </section><!-- /.content -->
             </aside><!-- /.right-side -->
@@ -858,7 +1005,7 @@
       </aside><!-- /.right-side -->
     </div><!--
 
-                                          
+
                                        <!--Se agrego consolidado-->
 
                                         </div><!-- /.box-body -->
@@ -866,146 +1013,9 @@
                                         </div>
 
 
-                                        <div ng-show="Show40" class="box-body table-responsive no-padding">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                  <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                                                  <th class="text-center"><h6><b>Nit</b></h6></th>
-                                                  <th class="text-center"><h6><b>Nombre Empresa</b></h6></th>
-                                                  <th class="text-center"><h6><b>Contacto</b></h6></th>
-                                                  <th class="text-center"><h6><b>Número Fijo</b></h6></th>
-                                                  <th class="text-center"><h6><b>Email</b></h6></th>
-                                                  <th class="text-center"><h6><b>Usuario Sistema</b></h6></th>
-                                                  <th class="text-center"><h6><b>Estado</b></h6></th>
-                                                </tr>
 
-                                                     <tbody  ng-repeat="Usuario in Usuarios">
 
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#" ng-click="DeleteUser(Usuario.User);"><i  class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#" ng-click="GotoUser(Usuario.User);"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
 
-                                                    </td>
-
-                                         <td>{{Usuario.Nit}}</td>
-                                         <td>{{Usuario.RazonSocial}}</td>
-                                         <td>{{Usuario.Name}}</td>
-                                        <td>{{Usuario.Phone}}</td>
-                                        <td>{{Usuario.Email}}</td>
-                                        <td>{{Usuario.User}}</td>
-                                        <td>Activo</td>
-
-                                                </tr>
-
-                                            </table>
-                                             <div class="" style="height: 150px;"><div class="row" ></div></div>
-                                        </div><!-- /.box-body -->
-
-                                        <div ng-show="Show50" class="box-body table-responsive no-padding">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                  <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                                                  <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                                  <th class="text-center"><h6><b>Vía</b></h6></th>
-                                                  <th class="text-center"><h6><b>% ADVALOREM</b></h6></th>
-                                                  <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                                  <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-                                                  <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
-                                                  <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
-                                                  <th class="text-center"><h6><b>Otro</b></h6></th>
-                                                  <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
-
-                                                    </td>
-                                                    <td>Almagrario </td>
-                                                    <td>Aereo</td>
-                                                    <td>0.3</td>
-                                                    <td>350000.0</td>
-                                                    <td>220000.0</td>
-                                                    <td></td>
-                                                    <td>20000.0</td>
-                                                    <td><span class="label label-danger">70000.0</span></td>
-                                                    <td>50000.0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
-                                                    </td>
-                                                    <td>Almagrario</td>
-                                                    <td>Maritimo</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td></td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
-                                                    </td>
-                                                    <td>Almagrario</td>
-                                                    <td>Terrestre</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td></td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                </tr>
-
-                                            </table>
-                                             <div class="" style="height: 150px;"><div class="row" ></div></div>
-                                        </div><!-- /.box-body -->
                                     </div><!-- /.box -->
                                 </div>
                             </div>
