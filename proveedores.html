@@ -77,6 +77,8 @@
         <!--Librería para máscara números -->
         <script type="text/javascript" src="js/mask.js"></script>
 
+         <script src="js/lodash.min.js"></script>
+
 
     </head>
     <body class="skin-blue"  ng-controller="ctrlProveedor">
@@ -161,7 +163,7 @@
                           <section class="content">
                              <div class="pull-right" >
                                <div class="form-group" style="margin-top:-10px;">
-                                  <a ng-click="GotoUser('');"  data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span> Nuevo Proveedor</button></a>
+                                  <a ng-click="GotoUser('');" ng-show="Show4" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span> Nuevo Proveedor</button></a>
                                </div>
                              </div>
                             <div class="row">
@@ -171,10 +173,10 @@
                                           <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
 
                                             <div class="col-md-3">
-                                              <div class="form-group">
+                                              <div class="form-group" ng-show="Show20">
                                                   <label>Proveedor</label>
 
-                                                  <ui-select ng-change="filterProveedores();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
+                                                  <ui-select ng-change="filterProveedores();" ng-show="Show20" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
                                                     <ui-select-match placeholder="Proveedor">{{$select.selected.RazonSocial}}</ui-select-match>
                                                     <ui-select-choices repeat="usuario in UsuariosSaved | filter: { RazonSocial: $select.search } ">
                                                       <span ng-bind-html="usuario.RazonSocial | highlight: $select.search"></span>
@@ -204,131 +206,661 @@
                                         <div class="row">
                                         <br>
                                         <div class="col-md-12">
-
-                                          <div class="widget-header">
-                                           <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Consolidación de Datos</label>
-
-                                          </div> <!-- /widget-header -->
-                                        <div ng-show="Show1" class="box-body table-responsive no-padding">
+                                          <!-- /widget-header -->
+                                        <div ng-show="Show1" class="wrapper row-offcanvas row-offcanvas-left">
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Consolidado de Datos
+          </h1>
+          <ol class="breadcrumb">
+            <li class="active"><a href="#"> <i class="fa fa-check" aria-hidden="true"></i>Consolidado de Datos</a></li>
+          </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="">
+              <!-- Main content -->
+              <section class="content">
+                <!-- MAILBOX BEGIN -->
+                <div class="mailbox row">
+                  <div class="box box-solid" style="padding: 10px;">
+                    <div class="box-header">
+                      <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>Modalidad:</label>
+                            <select class="form-control" id="sel1"
+                            ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
+                            ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
+                          </div>
+                        </div>
+                         <div class="col-md-4">
+                          <div class="form-group">
+                            <div style="margin-top:40px;">
+                              <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="menu-accordion">
+                            <div class="contenedor-accordion">
+                              <!-- Áreas -->
+                              <div class="accordion-group" ng-show="Show5">
+                                <!-- Área -->
+                                <div class="accordion-heading recuadro">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#area1"><h5><i class="fa fa-industry" aria-hidden="true"></i> Aduanero</a>
+                                </div><!-- /Área -->
+                                <div id="area1" class="panel-collapse collapse in">
+                                  <div class="panel-body">
+                                    <div class="row" >
+                                      <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                          <tr>
+                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                            <th class="text-center"><h6><b>Tarifa Valor/FOB<b></h6></th>
+                                            <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
+                                            <th class="text-center"><h6><b>Otros</b></h6></th>
+                                          </tr>
+                                          <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
+                                            <td>{{BodegajeAduanero.Email}}</td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaotroPintada">{{BodegajeAduanero.Otros | number:2}} </span></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="accordion-group"  ng-show="Show6">
+                                <!-- Área -->
+                                <div class="accordion-heading recuadro">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#area2"><h5><i class="fa fa-industry" aria-hidden="true"></i> Máquinaria</h5></a>
+                                </div><!-- /Área -->
+                                <div id="area2" class="panel-collapse collapse ">
+                                  <div class="panel-body">
+                                    <div class="row" >
+                                      <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                          <tr>
+                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                            <th class="text-center"><h6><b>Tarifa<b></h6></th>
+                                            <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
+                                            <th class="text-center"><h6><b>FMM</b></h6></th>
+                                          </tr>
+                                          <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
+                                            <td>{{BodegajeAduaneromaq.Email}}</td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtfmmPintada">{{BodegajeAduaneromaq.Fmm  | number:2}}</span></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div><!-- /.box-body -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="accordion-group" ng-show="Show7">
+                                <!-- Área -->
+                                <div class="accordion-heading recuadro">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#area3"><h5><i class="fa fa-industry" aria-hidden="true"></i> Materia Prima</h5></a>
+                                </div><!-- /Área -->
+                                <div id="area3" class="panel-collapse collapse ">
+                                  <div class="panel-body">
+                                    <div class="row" >
+                                      <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                          <tr>
+                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                            <th class="text-center"><h6><b>Tarifa<b></h6></th>
+                                            <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
+                                            <th class="text-center"><h6><b>FMM</b></h6></th>
+                                          </tr>
+                                          <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp">
+                                            <td>{{BodegajeAduanermaqp.Email}}</td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
+                                            <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpfmmPintada">{{BodegajeAduanermaqp.Fmm  | number:2}}</span></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div><!-- /.box-body -->
+                                  </div>
+                                </div>
+                              </div>
+                            </div><!-- /accordion -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" ng-show="Show8">
+                        <div class="col-md-12">
+                          <div  class="box-body table-responsive no-padding">
+                            <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                              <tr>
+                                <tr>
+                                  <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                  <th class="text-center"><h6><b>Vía</b></h6></th>
+                                  <th class="text-center"><h6><b>Tarifa % Advalorem/ FOB</b></h6></th>
+                                  <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                  <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
+                                  <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
+                                  <th class="text-center"><h6><b>Gastos Adicionales dos</b></h6></th>
+                                  <th class="text-center"><h6><b>Conceptos Adicionales dos</b></h6></th>
+                                  <th class="text-center"><h6><b>Gastos Adicionales tres</b></h6></th>
+                                  <th class="text-center"><h6><b>Conceptos Adicionales tres</b></h6></th>
+                                  <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
+                                  <th class="text-center"><h6><b>Otros</b></h6></th>
+                                </tr>
+                                <tr ng-repeat="Consadu in ModalidadTodas">
+                                  <td>{{Consadu.Email}}</td>
+                                  <td>{{Consadu.Via}}</td>
+                                  <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduMinimaPintada">{{Consadu.Minima  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduGAPintada">{{Consadu["Gastos Adicionales"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduCAPintada">{{Consadu["Conceptos Adicionales"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduGAIIPintada">{{Consadu["Gastos Adicionales dos"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduCAIIPintada">{{Consadu["Conceptos Adicionales dos"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduGAIIIPintada">{{Consadu["Gastos Adicionales tres"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduCAIIIPintada">{{Consadu["Conceptos Adicionales tres"]  | number:2}}</span></td>
+                                  <td class="text-center"><span ng-class="Consadu.AduCPCPintada">{{Consadu["Costo Planificacion Caja"]  | number:2}}</span></td>
+                                  <td class="text-center"><span  ng-class="Consadu.AduotroPintada">{{Consadu.Otros  | number:2}}</span></td>
+                                </tr>
+                              </table>
+                            </div><!-- /.box-body -->
+                          </div>
+                      </div>
+                      <div class="row" ng-show="Show9">
+                        <div class="col-md-12">
+                          <div class="box-body table-responsive">
+                            <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                              <tr>
+                                <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                <th class="text-center"><h6><b>Origen</b></h6></th>
+                                <th class="text-center"><h6><b>Destino</b></h6></th>
+                                <th class="text-center"><h6><b>C 20 hasta 4.5 Ton</b></h6></th>
+                                <th class="text-center"><h6><b>C 20 hasta 8 Ton</b></h6></th>
+                                <th class="text-center"><h6><b>C 20 hasta 10 Ton</b></h6></th>
+                                <th class="text-center"><h6><b>C 20 hasta 17 Ton</b></h6></th>
+                                <th class="text-center"><h6><b>C 20 hasta 19 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 20 hasta 20 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 20 hasta 21 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 20 hasta 25 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 15 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 16 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 17 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 17-18 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 20 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 21 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 22 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>C 40 hasta 30 Ton</b></h6> </th>
+                                <th class="text-center"><h6><b>Devolución 20$ estándar</b></h6> </th>
+                                <th class="text-center"><h6><b>Devolución 40$ estándar </th>
+                                <th class="text-center"><h6><b>Devolución 20$ expreso</b></h6> </th>
+                                <th class="text-center"><h6><b>Devolución 40$ expreso</b></h6> </th>
+                              </tr>
+                              <tr ng-repeat="Otm in ModalidadTodasOTM">
+                                <td>{{Otm.Email}}</td>
+                                <td>{{Otm.Origen}}</td>
+                                <td>{{Otm.Destino}}</td>
+                                <td class="text-center"><span ng-class="Otm.AduC2045Pintada">{{Otm["C 20 hasta 4-5 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC8Pintada">{{Otm["C 20 hasta 8 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2010Pintada">{{Otm["C 20 hasta 10 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2017Pintada">{{Otm["C 20 hasta 17 Ton"]}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2019Pintada">{{Otm["C 20 hasta 19 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2020Pintada">{{Otm["C 20 hasta 20 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2021Pintada">{{Otm["C 20 hasta 21 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2025Pintada">{{Otm["C 20 hasta 25 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC4015Pintada">{{Otm["C 40 hasta 15 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span  ng-class="Otm.AduC4016Pintada">{{Otm["C 40 hasta 16 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC4017Pintada">{{Otm["C 40 hasta 17 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC401718Pintada">{{Otm["C 40 hasta 17-18 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC4020Pintada">{{Otm["C 40 hasta 20 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC4021Pintada">{{Otm["C 40 hasta 21 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC4022Pintada">{{Otm["C 40 hasta 22 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC4030Pintada">{{Otm["C 40 hasta 30 Ton"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC20ESTPintada">{{Otm["Devolucion 20$ estandar"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC40ESTPintada">{{Otm["Devolucion 40$ estandar"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC20ESPPintada">{{Otm["Devolucion 20$ expreso"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC40ESPPintada">{{Otm["Devolucion 40$ expreso"]  | number:2}}</span></td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" ng-show="Show10">
+                        <div class="col-md-12">
+                          <div class="box-body table-responsive no-padding">
+                            <table class="table table-bordered"  style=" table-layout: fixed;">
+                              <tr class="width-table"><!-- class="width-table">-->
+                                <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                <th class="text-center"><h6><b>País Destino</b></h6></th>
+                                <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
+                                <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
+                                <th class="text-center"><h6><b>C 20</b></h6></th>
+                                <th class="text-center"><h6><b>Baf 20</b></h6></th>
+                                <th class="text-center"><h6><b>C 40</b></h6></th>
+                                <th class="text-center"><h6><b>Baf 40</b></h6></th>
+                                <th class="text-center"><h6><b>C 40HC</b></h6></th>
+                                <th class="text-center"><h6><b>Baf 40HC</b></h6></th>
+                                <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
+                                <th class="text-center"><h6><b>Naviera</b></h6></th>
+                                <th class="text-center"><h6><b>C 20 + Baf 20 + Gastos Embarque</b></h6></th>
+                                <th class="text-center"><h6><b>C 40 + Baf 40 + Gastos Embarque</b></h6></th>
+                                <th class="text-center"><h6><b>C 24HC + Baf 40HC + Gastos Embarque</b></h6></th>
+                              </tr>
+                              <tr ng-repeat="MaritimaFcl in ModalidadTodas">
+                                <td>{{MaritimaFcl.Email}}</td>
+                                <td>{{MaritimaFcl.PaisDestino}}</td>
+                                <td>{{MaritimaFcl.PuertoOrigen}}</td>
+                                <td>{{MaritimaFcl.PuertoDestino}}</td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC2045Pintada">{{MaritimaFcl["C 20"]  | number:2}}</span><R/td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC8Pintada">{{MaritimaFcl["Baf 20"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC2010Pintada">{{MaritimaFcl["C 40"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC2017Pintada">{{MaritimaFcl["Baf 40"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC2019Pintada">{{MaritimaFcl["C 40HC"]  | number:2}}</span></td>
+                                <td class="text-center"><span  ng-class="MaritimaFcl.AduC2020Pintada">{{MaritimaFcl["Baf 40HC"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC2025Pintada">{{MaritimaFcl["Gastos Embarque"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC2021Pintada">{{MaritimaFcl.Naviera  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC4015Pintada">{{MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC4016Pintada">{{MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaFcl.AduC4017Pintada">{{MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]  | number:2}}</span></td>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" ng-show="Show11">
+                        <div class="col-md-12">
+                          <div class="box-body table-responsive no-padding">
+                            <table class="table table-bordered"  style=" table-layout: fixed;">
+                              <tr class="width-table">
+                                <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                <th class="text-center"><h6><b>País Destino</b></h6></th>
+                                <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
+                                <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
+                                <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                <th class="text-center"><h6><b>1-5 ton/M3</b></h6></th>
+                                <th class="text-center"><h6><b>5-8 ton/M3</b></h6></th>
+                                <th class="text-center"><h6><b>8-12 Ton/M3</b></h6></th>
+                                <th class="text-center"><h6><b>12-18 Ton/M3</b></h6></th>
+                                <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
+                                <th class="text-center"><h6><b>Naviera</b></h6></th>
+                              </tr>
+                              <tr ng-repeat="MaritimaLcl in ModalidadTodas">
+                                <td>{{MaritimaLcl.Email}}</td>
+                                <td>{{MaritimaLcl.PaisDestino}}</td>
+                                <td>{{MaritimaLcl.PuertoOrigen}}</td>
+                                <td>{{MaritimaLcl.PuertoDestino}}</td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2045Pintada">{{MaritimaLcl["Minima"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC8Pintada">{{MaritimaLcl["1-5 ton/M3"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2010Pintada">{{MaritimaLcl["5-8 ton/M3"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2017Pintada">{{MaritimaLcl["8-12 ton/M3"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2019Pintada">{{MaritimaLcl["12-18 ton/M3"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2020Pintada">{{MaritimaLcl["Gastos Embarque"]  | number:2}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2021Pintada">{{MaritimaLcl.Naviera  | number:2}}</span></td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="menu-accordion">
+                            <div class="contenedor-accordion">
+                              <!-- Áreas -->
+                              <div class="accordion-group" ng-show="Show12">
+                                <!-- Área -->
+                                <div class="accordion-heading recuadro">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalTurbo"><h5><i class="fa fa-list" aria-hidden="true"></i> Turbo</a>
+                                  </div><!-- /Área -->
+                                  <div id="tNacionalTurbo" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <table class="table table-bordered">
+                                            <tr>
+                                              <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                              <th class="text-center"><h6><b>Origen<b></h6></th>
+                                              <th class="text-center"><h6><b>Destino</b></h6></th>
+                                              <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h6></th>
+                                              <th class="text-center"><h6><b>Turbo Especial</b></h6></th>
+                                            </tr>
+                                            <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo">
+                                              <td>{{TerreNacional.Email}}</td>
+                                              <td>{{TerreNacional.PaisOrigen}}</td>
+                                              <td>{{TerreNacional.PuertoDestino}}</td>
+                                              <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]  | number:2}}</span></td>
+                                              <td class="text-center"><span ng-class="TerreNacional.AduC8Pintada">{{TerreNacional["Turbo Especial"]  | number:2}}</span></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="accordion-group" ng-show="Show13">
+                                  <!-- Área -->
+                                  <div class="accordion-heading recuadro">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalSencillo"><h5><i class="fa fa-list" aria-hidden="true"></i> Sencillo</h5></a>
+                                  </div><!-- /Área -->
+                                  <div id="tNacionalSencillo" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <table class="table table-bordered">
+                                            <tr>
+                                              <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                              <th class="text-center"><h6><b>Origen<b></h6></th>
+                                              <th class="text-center"><h6><b>Destino</b></h6></th>
+                                              <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
+                                              <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
+                                            </tr>
+                                            <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo | orderBy:['PuertoDestino','PaisOrigen']" >
+                                              <td>{{TerreNacionalSencillo.Email}}</td>
+                                              <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
+                                              <td >{{TerreNacionalSencillo.PuertoDestino}}</td>
+                                              <td class="text-center"><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]  | number:2}}</span></td>
+                                              <td class="text-center"><span ng-class="TerreNacionalSencillo.AduC2017Pintada">{{TerreNacionalSencillo["Sencillo Especial"]  | number:2}}</span></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      </div><!-- /.box-body -->
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="accordion-group" ng-show="Show14">
+                                  <!-- Área -->
+                                  <div class="accordion-heading recuadro">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalPatineta"><h5><i class="fa fa-list" aria-hidden="true"></i> Patineta</h5></a>
+                                  </div><!-- /Área -->
+                                  <div id="tNacionalPatineta" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <table class="table table-bordered">
+                                            <tr>
+                                              <th class="text-center"><h6><b>Proveedor<b></h></th>
+                                              <th class="text-center"><h6><b>Origen<b></h></th>
+                                              <th class="text-center"><h6><b>Destino</b></h6></th>
+                                              <th class="text-center"><h6><b>Minimula</b></h6></th>
+                                              <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                            </tr>
+                                            <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta">
+                                              <td>{{TerreNacionalPatineta.Email}}</td>
+                                              <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
+                                              <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
+                                              <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2019Pintada">{{TerreNacionalPatineta.Minimula  | number:2}}</span></td>
+                                              <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2020Pintada">{{TerreNacionalPatineta["Gran Danes"]  | number:2}}</span></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      </div><!-- /.box-body -->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div><!-- /accordion -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="menu-accordion">
+                              <div class="contenedor-accordion">
+                                <!-- Áreas -->
+                                <div class="accordion-group" ng-show="Show15">
+                                  <!-- Área -->
+                                  <div class="accordion-heading recuadro">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoDia"><h5><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</a>
+                                    </div><!-- /Área -->
+                                    <div id="tUrbanoDia" class="panel-collapse collapse in">
+                                      <div class="panel-body">
+                                        <div class="row">
+                                          <div class="col-md-12">
                                             <table class="table table-bordered">
-                                                <tr>
-                                                  <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                                                  <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                                  <th class="text-center"><h6><b>Vía</b></h6></th>
-                                                  <th  class="text-center"><h6><b>% ADVALOREM</b></h6></th>
-                                                  <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                                  <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-                                                  <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
-                                                  <th class="text-center"><h6><b>Planificación Caja</b></h6></th>
-                                                  <th class="text-center"><h6><b>Otro</b></h6></th>
-                                                  <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
+                                              <tr>
+                                                <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                  <th class="text-center"><h6><b>Origen<b></h6></th>
+                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                  <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
+                                                  <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6><b>Minimula</b></h6></th>
+                                                  <th class="text-center"><h6><b>Gran Danes</b></h6></th>
                                                 </tr>
+                                                <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano">
+                                                  <td>{{TerreUrbano.Email}}</td>
+                                                  <td>{{TerreUrbano.PaisOrigen}}</td>
+                                                  <td>{{TerreUrbano.PuertoDestino}}</td>
+                                                  <td class="text-center"><span ng-class="TerreUrbano.AduC2045Pintada">{{TerreUrbano["Turbo (150Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbano.AduC8Pintada">{{TerreUrbano["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbano.AduC2010Pintada">{{TerreUrbano["Sencillo (240Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbano.AduC2017Pintada">{{TerreUrbano["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbano.AduC2019Pintada">{{TerreUrbano.Minimula  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbano.AduC2020Pintada">{{TerreUrbano["Gran Danes"]  | number:2}}</span></td>
+                                                </tr>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-group" ng-show="Show16">
+                                      <!-- Área -->
+                                      <div class="accordion-heading recuadro">
+                                        <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoViaje"><h5><i class="fa fa-list" aria-hidden="true"></i> Urbano Viaje</h5></a>
+                                      </div><!-- /Área -->
+                                      <div id="tUrbanoViaje" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <table class="table table-bordered">
                                                 <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
+                                                  <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                  <th class="text-center"><h6><b>Origen</b></h6></th>
+                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                  <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
+                                                  <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6><b>Minimula</b></h6></th>
+                                                  <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                                </tr>
+                                                <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje">
+                                                  <td>{{TerreUrbanoViaje.Email}}</td>
+                                                  <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
+                                                  <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2025vPintada">{{TerreUrbanoViaje["Turbo Especial (200Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4015vPintada">{{TerreUrbanoViaje["Sencillo (240Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4016vPintada">{{TerreUrbanoViaje["Sencillo Especial (300Cajas)"]  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC4017vPintada">{{TerreUrbanoViaje.Minimula  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC401718vPintada">{{TerreUrbanoViaje["Gran Danes"]  | number:2}}</span></td>
+                                                </tr>
+                                              </table>
+                                            </div>
+                                          </div><!-- /.box-body -->
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-group" ng-show="Show17">
+                                      <!-- Área -->
+                                      <div class="accordion-heading recuadro">
+                                        <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoTonelada"><h5><i class="fa fa-list" aria-hidden="true"></i> Tonelada</h5></a>
+                                      </div><!-- /Área -->
+                                      <div id="tUrbanoTonelada" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                          <div class="row" >
+                                            <div class="col-md-12">
+                                              <table class="table table-bordered">
+                                                <tr>
+                                                  <th class="text-center"><h6><b>Proveedor<b></h6></th>
+                                                  <th class="text-center"><h6><b>Origen<b></h6></th>
+                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
+                                                  <th class="text-center"><h6><b>Turbo</b></h6></th>
+                                                  <th class="text-center"><h6><b>Sencillo</b></h6></th>
+                                                  <th class="text-center"><h6><b>Tractomula</b></h6></th>
+                                                </tr>
+                                                <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada">
+                                                  <td>{{TerreUrbanoTonelada.Email}}</td>
+                                                  <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
+                                                  <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4021Pintada">{{TerreUrbanoTonelada.Sencillo  | number:2}}</span></td>
+                                                  <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4022Pintada">{{TerreUrbanoTonelada.Tractomula  | number:2}}</span></td>
+                                                </tr>
+                                              </table>
+                                            </div>
+                                          </div><!-- /.box-body -->
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div><!-- /accordion -->
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row"><!-- Áreas -->
+                              <div class="col-md-12">
+                                <div class="menu-accordion">
+                                  <div class="contenedor-accordion">
+                                    <!-- Áreas Carguero-->
+                                    <div class="accordion-group"  ng-show="Show18">
+                                      <!-- Área -->
+                                      <div class="accordion-heading recuadro">
+                                        <a class="accordion-toggle" data-toggle="collapse" href="#ACarguero"><h5><i class="fa fa-list" aria-hidden="true"></i> Carguero</a>
+                                        </div><!-- /Área -->
+                                        <div id="ACarguero" class="panel-collapse collapse in">
+                                          <div class="panel-body">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div  class=" ">
+                                                  <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                                    <tr>
+                                                      <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                                      <th class="text-center"><h6><b>País</b></h6></th>
+                                                      <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
+                                                      <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                                      <th class="text-center"><h6><b>45</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+100</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+300</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+500</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+1000</b></h6></th>
+                                                      <th class="text-center"><h6><b>FS min</b></h6></th>
+                                                      <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                                      <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6><b>Vía</b></h6></th>
+                                                      <th class="text-center"><h6><b>T 100 + FS/Kg + Ge</b></h6></th>
+                                                      <th class="text-center"><h6><b>T 300 + FS/Kg + Ge</b></h6></th>
+                                                      <th class="text-center"><h6><b>T 500 + FS/Kg + Ge</b></h6></th>
+                                                      <th class="text-center"><h6><b>T 1000 + FS/Kg + Ge</b></h6></th>
+                                                    </tr>
+                                                    <tr ng-repeat="Aerea in ModalidadTodasAerea">
+                                                      <td>{{Aerea.Email}}</td>
+                                                      <td>{{Aerea.Pais}}</td>
+                                                      <td>{{Aerea.Aeropuerto}}</td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2045Pintada">{{Aerea.Minima  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC8Pintada">{{Aerea["45"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2010Pintada">{{Aerea["+100"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2017Pintada">{{Aerea['+300']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2019Pintada">{{Aerea['+500']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2020Pintada">{{Aerea['+1000']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2021Pintada">{{Aerea["FS min"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC2025Pintada">{{Aerea["Fs/kg"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC4015Pintada">{{Aerea["Gastos Embarque"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC4016Pintada">{{Aerea.Via  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC4017Pintada">{{Aerea['+100 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC401718Pintada">{{Aerea['+300 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC4020Pintada">{{Aerea['+500 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aerea.AduC4021Pintada">{{Aerea['+1000 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                    </tr>
+                                                  </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                        <!-- Área -->
+                                        <div class="accordion-group"  ng-show="Show19">
+                                        <div class="accordion-heading recuadro">
+                                          <a class="accordion-toggle" data-toggle="collapse" href="#APasajero"><h5><i class="fa fa-list" aria-hidden="true"></i> Pasajero</h5></a>
+                                        </div><!-- /Área -->
+                                        <div id="APasajero" class="panel-collapse collapse ">
+                                          <div class="panel-body">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div  class="">
+                                                  <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
+                                                    <tr>
+                                                      <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                                                      <th class="text-center"><h6><b>País</b></h6></th>
+                                                      <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
+                                                      <th class="text-center"><h6><b>Mínima</b></h6></th>
+                                                      <th class="text-center"><h6><b>45</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+100</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+300</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+500</b></h6></th>
+                                                      <th class="text-center"><h6><b>'+1000</b></h6></th>
+                                                      <th class="text-center"><h6><b>FS min</b></h6></th>
+                                                      <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                                      <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6><b>Vía</b></h6></th>
+                                                      <th class="text-center"><h6><b>T 100 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6><b>T 300 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6><b>T 500 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6><b>T 1000 + FS/Kg </b></h6></th>
+                                                    </tr>
+                                                    <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
+                                                      <td>{{Aereapasajero.Email}}</td>
+                                                      <td>{{Aereapasajero.Pais}}</td>
+                                                      <td>{{Aereapasajero.Aeropuerto}}</td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2045PPintada">{{Aereapasajero.Minima | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC8PPintada">{{Aereapasajero["45"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2010PPintada">{{Aereapasajero['+100']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2017PPintada">{{Aereapasajero['+300']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2019PPintada">{{Aereapasajero['+500']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2020PPintada">{{Aereapasajero['+1000']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["FS min"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC2025PPintada">{{Aereapasajero["Fs/kg"]  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]| number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4016PPintada">{{Aereapasajero.Via  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4017PPintada">{{Aereapasajero['+100 + Fs/kg']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC401718PPintada">{{Aereapasajero['+300 + Fs/kg']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4020PPintada">{{Aereapasajero['+500 + Fs/kg']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4021PPintada">{{Aereapasajero['+1000 + Fs/kg']  | number:2}}</span></td>
+                                                    </tr>
+                                                  </table>
+                                                </div>
+                                              </div>
+                                            </div><!-- /.box-body -->
+                                          </div>
+                                        </div>
+                                      </div><!-- /accordion --> <!divaereapasajero-->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div><!-- Fin Áreas -->
 
-                                                    </td>
-                                                    <td>Agencia de Carga Aviatur S.A  </td>
-                                                    <td>Aereo</td>
-                                                    <td>0.15</td>
-                                                    <td><span class="label label-warning">150000.0</span></td>
-                                                    <td>32000.0</td>
-                                                    <td>C Origen</td>
-                                                    <td><span class="label label-danger">1650.0</span></td>
-                                                    <td>0.0</td>
-                                                    <td>45000.0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
-                                                    </td>
-                                                    <td>Panalpina Colombia</td>
-                                                    <td>Aereo</td>
-                                                    <td>0.15</td>
-                                                    <td><span class="label label-warning">150000.0</span></td>
-                                                    <td>41500.0</td>
-                                                    <td>C Origen</td>
-                                                    <td>2500.0</td>
-                                                    <td>0.0</td>
-                                                    <td>45000.0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
-                                                    </td>
-                                                    <td>El dorado Air Cargo SAS</td>
-                                                    <td>Aereo</td>
-                                                    <td>0.15</td>
-                                                    <td>18500.0</td>
-                                                    <td><span class="label label-success">10000.0</span></td>
-                                                    <td>Certificado de Origen</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <div class="btn-group">
-                                                        <button class="btn btn-default" type="button">Acciones</button>
-                                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                          <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                                          <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                                          <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                                          <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                                          <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                                        </ul>
-                                                      </div>
-                                                    </td>
-                                                    <td>Jas Forwaring de Colombia S.A.S</td>
-                                                    <td>Maritimo</td>
-                                                    <td>0.15</td>
-                                                    <td>300000.0</td>
-                                                    <td ><span class="label label-success">10000.0</span></td>
-                                                    <td>Traslado</td>
-                                                    <td>0.0</td>
-                                                    <td>0.0</td>
-                                                    <td>40000.0</td>
-                                                </tr>
-                                            </table>
-                                             <div class="" style="height: 150px;"><div class="row" ></div></div>
-                                        </div><!-- /.box-body -->
-                                        </div>
-                                        </div>
+                            </div><!-- /.box -->
+                          </div><!-- /.col (MAIN) -->
+                        </div>
+                      </section><!-- /.box -->
+                    </aside>
+                  </div><!-- /.col (MAIN) -->
+                </section>
+                  </aside>
+                </div>
+
 
 
                                         <div ng-show="Show2" class="box-body table-responsive no-padding">
