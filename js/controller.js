@@ -6041,7 +6041,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                }
           ///////////////////////////////////////////////////OTM///////////////////////////////////////////////////
-                      if (ModalidadConsolidado == 'OTM') {
+                      if (Modalidad == 'OTM') {
                         $scope.Show20=false;
                         $scope.Show1=false;
                         $scope.Show11=false;
@@ -11463,6 +11463,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          $scope.Show30 = false;
          $scope.Show40 = false;
          $scope.Show50 = false;
+         $scope.Show60 = false;
+         $scope.Show70 = false;
+         $scope.Show80 = false;
+         $scope.Show90 = true;
                         $scope.Show1=false;
                         $scope.Show20=false;
                         $scope.Show111=false;
@@ -11483,7 +11487,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show30 = true;
            $scope.Show40 = false;
            $scope.Show50 = false;
-           $scope.Show60=false;
+           $scope.Show60=false;                    
+           $scope.Show70 = true;
+           $scope.Show80 = true;
+          $scope.Show90 = false;
                $scope.Show1=true;
                         $scope.Show20=true;
                         $scope.Show111=true;
@@ -11507,7 +11514,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show30 = false;
            $scope.Show40 = true;
            $scope.Show50 = false;
-           $scope.Show60=true;
+           $scope.Show60=true;                   
+           $scope.Show70 = false;
+           $scope.Show80 = false;
+           $scope.Show90 = true;
              $scope.Show1=false;
                         $scope.Show20=false;
                         $scope.Show111=false;
@@ -11530,6 +11540,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show40 = false;
            $scope.Show50 = true;
            $scope.Show60=false;
+            $scope.Show70 = false;
+           $scope.Show80 = false;
+           $scope.Show90 = true;
            $scope.Show1=false;
                         $scope.Show20=false;
                         $scope.Show111=false;
@@ -11988,6 +12001,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        ModalidadTodasRespaldo = ModalidadTodasBodegajeaduanero;
                        $scope.ModalidadTodasBodegajeaduanero= ModalidadTodasBodegajeaduanero;
                        console.log(ModalidadTodasRespaldo);
+                      console.log($scope.ModalidadesSemaforo);
                        $scope.ModalidadTodasBodegajeaduanero = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AdutarifaPintada.length > 0 ||
                                  el.AdutarifaminPintada.length > 0 ||
@@ -12300,6 +12314,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                            ModalidadTodasBodegajeaduaneromaqp= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqp,'Email');
                           $scope.ModalidadTodasBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
+                          console.log($scope.ModalidadTodasBodegajeaduaneromaqp);
+                          console.log($scope.ModalidadesSemaforo);
 
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasBodegajeaduaneromaqp;

@@ -174,7 +174,7 @@
                                           <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
 
                                             <div class="col-md-3">
-                                              <div class="form-group">
+                                              <div class="form-group" ng-show="Show90">
                                                   <label>Proveedor</label>
 
                                                   <ui-select ng-change="filterProveedores();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
@@ -201,7 +201,25 @@
                                               </div>
 
                                             </div>
+                                 <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
+                                <div class="col-md-4">
+                                  <div class="form-group" ng-show="Show70">
+                            <label>Modalidad:</label>
+                            <select class="form-control" id="sel1"
+                            ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
+                            ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group" ng-show="Show80">
+                            <div style="margin-top:40px;">
+                              <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                                           </div>
+                 
 
                                         </div><!-- /.box-header -->
                                         <div class="row">
@@ -210,15 +228,7 @@
                                            <div ng-show="Show30" class="wrapper row-offcanvas row-offcanvas-left">
       <!-- Right side column. Contains the navbar and content of the page -->
       <aside class="right-side">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Consolidado de Datos
-          </h1>
-          <ol class="breadcrumb">
-            <li class="active"><a href="#"> <i class="fa fa-check" aria-hidden="true"></i>Consolidado de Datos</a></li>
-          </ol>
-        </section>
+        <!-- Content Header (Page header) -->       
         <!-- Main content -->
         <section class="content">
           <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -229,24 +239,7 @@
                 <!-- MAILBOX BEGIN -->
                 <div class="mailbox row">
                   <div class="box box-solid" style="padding: 10px;">
-                    <div class="box-header">
-                      <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label>Modalidad:</label>
-                            <select class="form-control" id="sel1"
-                            ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
-                            ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <div style="margin-top:40px;">
-                              <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="box-header">                 
                       <br><br>
                       <div class="row">
                         <div class="col-md-12">
@@ -414,7 +407,7 @@
                                 <td class="text-center"><span ng-class="Otm.AduC2045Pintada">{{Otm["C 20 hasta 4-5 Ton"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="Otm.AduC8Pintada">{{Otm["C 20 hasta 8 Ton"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="Otm.AduC2010Pintada">{{Otm["C 20 hasta 10 Ton"]  | number:2}}</span></td>
-                                <td class="text-center"><span ng-class="Otm.AduC2017Pintada">{{Otm["C 20 hasta 17 Ton"]}}</span></td>
+                                <td class="text-center"><span ng-class="Otm.AduC2017Pintada">{{Otm["C 20 hasta 17 Ton"]| number:2}}</span></td>
                                 <td class="text-center"><span ng-class="Otm.AduC2019Pintada">{{Otm["C 20 hasta 19 Ton"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="Otm.AduC2020Pintada">{{Otm["C 20 hasta 20 Ton"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="Otm.AduC2021Pintada">{{Otm["C 20 hasta 21 Ton"]  | number:2}}</span></td>
