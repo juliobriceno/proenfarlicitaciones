@@ -11493,7 +11493,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show70 = true;
            $scope.Show80 = true;
            $scope.Show90 = false;
-            $scope.Show100 = false;
+            //$scope.Show100 = false;
            $scope.Show1=true;
             $scope.Show20=true;
             $scope.Show111=true;
@@ -11522,7 +11522,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show70 = false;
            $scope.Show80 = false;
            $scope.Show90 = true;
-            $scope.Show100 = false;
+            //$scope.Show100 = false;
             $scope.Show1=false;
             $scope.Show20=false;
             $scope.Show111=false;
@@ -11548,8 +11548,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show60=false;
            $scope.Show70 = false;
            $scope.Show80 = false;
-           $scope.Show90 = false;
-           $scope.Show100 = true;
+           $scope.Show90 = true;
+           //$scope.Show100 = true;
             $scope.Show1=false;
             $scope.Show20=false;
             $scope.Show111=false;
@@ -11576,6 +11576,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
            console.log($scope.UsuarioSel.selected.Name);
            
+           if (VistaName=='DatosProveedor')
+           {
+              $scope.GetProveedorModalidadName();
+           }
          } 
 
          // Modalidades para el filtro
@@ -11741,15 +11745,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
           //////////////////////////////////////////Data Proveedor ////////////////////////////////////////
           
-            $scope.filterProveedoresModalidad = function(){ 
+          /*  $scope.filterProveedoresModalidad = function(){ 
                 $scope.GetProveedorModalidadName();
-           }  
+           } */ 
 
            $scope.GetProveedorModalidadName = function () {
                   var Data = {};
                   console.log('GetProveedorModalidadName');
-                  console.log($scope.UsuarioSel.selected.Email);
-                  Data.Email = $scope.UsuarioSel.selected.Email; 
+                  console.log($scope.UsuarioSel.selected.RazonSocial);
+                  Data.RazonSocial = $scope.UsuarioSel.selected.RazonSocial; 
                   $loading.start('myloading');
                   $http({
                         method: 'POST',
@@ -11806,7 +11810,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                   $scope.GetNegociarmodalidad = function (user,modalidad) {
-                  /*var Data = {};
+                  var Data = {};
                   Data.Email= user;
                   Data.Modalidad=modalidad;
                   console.log(Data.Modalidad);
@@ -11820,10 +11824,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
                           swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
-                          $scope.GetProveedorModalidadName();              
+                          $scope.GetDesbloquearmodalidad();              
                        }, function errorCallback(response) {
                              console.log(response);
-                        });*/
+                        });
                      }
 
           //////////////////////////////se agrego consolidado datos /////////////////////////////////////

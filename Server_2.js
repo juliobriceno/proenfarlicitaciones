@@ -1485,44 +1485,57 @@ app.post('/GetModalidadesProveedor', function (req, res) {
                  Data.ModalidadesProveedor = {
                    Email: req.body.Email,
                    Bodegajes: {
+                     Version:1,
                      Aduanero: {TarifaValor: null, TarifaMinima: null, Otros: null},
                      Maquinaria: {Tarifa: null, TarifaMinima: null, Fmm: null},
                      MateriaPrima: {Tarifa: null, TarifaMinima: null, Fmm: null}
                    },
                    Aduana: {
+                     Version:1,
                      Aduanas: myAduanas
                    },
                    Otm: {
+                    Version:1,
                      Otms: myOtms
                    },
                    MaritimaFcl: {
+                    Version:1,
                      MaritimasFcl: myMaritimasFcl
                  },
                   MaritimaLcl: {
+                    Version:1,
                      MaritimasLcl: myMaritimasLcl
                  },
                   TerreNacional: {
+                    Version:1,
                      TerresNacional: myTerresNacional
                    },
                    TerreNacionalSencillo: {
+                    Version:1,
                      TerresNacionalSencillo: myTerresNacionalSencillo
                    },
                    TerreNacionalPatineta: {
+                    Version:1,
                      TerresNacionalPatineta: myTerresNacionalPatineta
                    },
                   TerreUrbano: {
+                    Version:1,
                      TerresUrbano: myTerresUrbano
                    },
                    TerreUrbanoViaje: {
+                    Version:1,
                      TerresUrbanoViaje: myTerresUrbanoViaje
                    },
                    TerreUrbanoTonelada: {
+                    Version:1,
                      TerresUrbanoTonelada: myTerresUrbanoTonelada
                    },
                     Aerea: {
+                        Version:1,
                      Aereas: myAereas
                    },
                    AereaPasajero: {
+                    Version:1,
                      AereasPasajeros: myAereasPasajeros
                    }
                    };
@@ -2944,9 +2957,9 @@ app.get('/downloadanybyid', function (req, res) {
 
 //////////////////////////////Vista Datos Proveedor ////////////////////////////////
 app.post('/GetProveedorModalidadName', function (req, res) {
-    console.log(req.body.Email);
+    console.log(req.body.RazonSocial);
 
-    MyMongo.Find('Usuarios', { Name: req.body.Email }, function (result) {
+    MyMongo.Find('Usuarios', { RazonSocial: req.body.RazonSocial }, function (result) {
     var Data = {};
     Data.ProveedorEmailModalidad = result[0]; 
     var myUserProveedorModalidad =Data.ProveedorEmailModalidad.User;
@@ -2983,19 +2996,60 @@ app.post('/GetDesbloquearmodalidad', function (req, res) {
 
 });
 
-/*app.post('/GetNegociarmodalidad', function (req, res) {
+app.post('/GetNegociarmodalidad', function (req, res) {
+    var varEmail= req.body.Email;
+    var varModalidad = req.body.Modalidad;
+    var varModalidadN='';
 
-     MyMongo.Find('ModalidadesProveedor',{Email:req.body.Email}, function (result) {
-       forEach( function(result) { 
-       result.ts_imported = new Date();
-       MyMongo.Insert('NegociarModalidadesProveedor', result, function (result) {
-      
-       });  
-      
-  });  
-       });
+     if (varModalidad=='Aduanas') { varModalidadN = 'Aduana'; }
+        
 
-});*/
+
+
+     MyMongo.Find('ModalidadesProveedor', { Email: req.body.Email }, function (result) {
+       console.log(req.body.Modalidad);
+       console.log(result[0][varModalidadN]);
+
+    // Se aumenta la versión a la modalidad específica que se va a aumentar. OJO se asume que viene Version siempre (1 si es la primera vez)
+    // por lo que hay que hacer un query para actualizar todas las anteriores y hacer los cambios para que cuando sea por primera vez coloque 1
+    // en las versiones. En la lína inmediata de abajo se simulña que viene 1 eso no será así es sólo simulación
+    //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar
+    var newVersion = result[0][varModalidadN].Version  + 1;
+    console.log(newVersion);
+
+    // Respalda la version de la modalidad anterior (Toda las modalidades del proveedor)
+    MyMongo.Insert('ModalidadesProveedorRespaldo', result[0] , function (result) {
+
+      console.log('Insertó el respaldo');
+
+        // Se busca una version vacía de la modalidad como si fuese primera vez (Esto lo cambias por modalidad que se le dio negociar)
+       MyMongo.Find('Aduanas', {}, function (result2) {
+
+        console.log('Encontró l madalidad Vacía está abajo');
+        console.log(result2);
+
+        
+        // Se crea un objeto para insertar nuevas OTMs vacías con nueva versión
+        var ModalidadNew = {};
+        ModalidadNew.varModalidad = result2;
+        ModalidadNew.Version = newVersion;
+        console.log('Nueva OTM');
+        console.log(ModalidadNew);
+        
+        // Se actualiza modalidades proveedor de éste proveedor con la modalidad vacía y nueva version
+        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: varEmail}, { varModalidadN: ModalidadNew }, function (result) {
+          console.log('Hizo el update');
+
+        }); // Fin actualizar la modalidad actual para agregar versión aumentada y vacía
+
+      });  // Fin buscar modalidad vacía En éste ejemplo OTM
+
+ });
+    
+
+});
+     });
+
 
 
 //////////////////////////////////////////////////

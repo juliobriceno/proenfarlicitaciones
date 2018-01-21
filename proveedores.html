@@ -185,7 +185,7 @@
                                                   </ui-select>
 
                                               </div>
-                                               <div class="form-group" ng-show="Show100">
+                                               <!--<div class="form-group" ng-show="Show100">
                                                   <label>Proveedor</label>
 
                                                   <ui-select ng-change="filterProveedoresModalidad();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
@@ -195,7 +195,7 @@
                                                     </ui-select-choices>
                                                   </ui-select>
 
-                                              </div>
+                                              </div>-->
                                               <div class="form-group" ng-show="Show70">
                                         <label>Modalidad:</label>
                                         <select class="form-control" id="sel1"
@@ -935,7 +935,7 @@
                             <td>
                                <div class="pull-right" >
                                <div class="form-group" style="margin-top:-10px;">
-                                  <a ng-click="GetNegociarmodalidad();" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span>Negociar</button></a>
+                                  <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span>Negociar</button></a>
                                </div>
                              </div>
                             </td>
