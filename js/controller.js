@@ -11459,6 +11459,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          var editform= 0;
 
          $scope.Usuario={};
+         var VistaName='';
 
          $scope.Show30 = false;
          $scope.Show40 = false;
@@ -11484,33 +11485,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show12=false;
                         $scope.Show13=false;
          $scope.Showf1 = function () {
+          VistaName = '';
            $scope.Show30 = true;
            $scope.Show40 = false;
            $scope.Show50 = false;
            $scope.Show60=false;                    
            $scope.Show70 = true;
            $scope.Show80 = true;
-          $scope.Show90 = false;
-               $scope.Show1=true;
-                        $scope.Show20=true;
-                        $scope.Show111=true;
-                        $scope.Show2=false;
-                        $scope.Show3=false;
-                        $scope.Show4=false;
-                        $scope.Show5=false;
+           $scope.Show90 = false;
+            $scope.Show100 = false;
+           $scope.Show1=true;
+            $scope.Show20=true;
+            $scope.Show111=true;
+            $scope.Show2=false;
+            $scope.Show3=false;
+            $scope.Show4=false;
+            $scope.Show5=false;
 
-                        $scope.Show6=false;
-                        $scope.Show7=false;
-                        $scope.Show8=false;
-                        $scope.Show9=false;
-                        $scope.Show10=false;
-                        $scope.Show11=false;
-                        $scope.Show12=false;
-                        $scope.Show13=false;
-                        $scope.GetConsolidadoDatos();
+            $scope.Show6=false;
+            $scope.Show7=false;
+            $scope.Show8=false;
+            $scope.Show9=false;
+            $scope.Show10=false;
+            $scope.Show11=false;
+            $scope.Show12=false;
+            $scope.Show13=false;
+            $scope.GetConsolidadoDatos();
 
          };
          $scope.Showf2 = function () {
+          VistaName='';
            $scope.Show30 = false;
            $scope.Show40 = true;
            $scope.Show50 = false;
@@ -11518,55 +11522,61 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show70 = false;
            $scope.Show80 = false;
            $scope.Show90 = true;
-             $scope.Show1=false;
-                        $scope.Show20=false;
-                        $scope.Show111=false;
-                        $scope.Show2=false;
-                        $scope.Show3=false;
-                        $scope.Show4=false;
-                        $scope.Show5=false;
+            $scope.Show100 = false;
+            $scope.Show1=false;
+            $scope.Show20=false;
+            $scope.Show111=false;
+            $scope.Show2=false;
+            $scope.Show3=false;
+            $scope.Show4=false;
+            $scope.Show5=false;
 
-                        $scope.Show6=false;
-                        $scope.Show7=false;
-                        $scope.Show8=false;
-                        $scope.Show9=false;
-                        $scope.Show10=false;
-                        $scope.Show11=false;
-                        $scope.Show12=false;
-                        $scope.Show13=false;
+            $scope.Show6=false;
+            $scope.Show7=false;
+            $scope.Show8=false;
+            $scope.Show9=false;
+            $scope.Show10=false;
+            $scope.Show11=false;
+            $scope.Show12=false;
+            $scope.Show13=false;
          };
          $scope.Showf3 = function () {
+          VistaName = 'DatosProveedor';
            $scope.Show30 = false;
            $scope.Show40 = false;
            $scope.Show50 = true;
            $scope.Show60=false;
-            $scope.Show70 = false;
+           $scope.Show70 = false;
            $scope.Show80 = false;
-           $scope.Show90 = true;
-           $scope.Show1=false;
-                        $scope.Show20=false;
-                        $scope.Show111=false;
-                        $scope.Show2=false;
-                        $scope.Show3=false;
-                        $scope.Show4=false;
-                        $scope.Show5=false;
-
-                        $scope.Show6=false;
-                        $scope.Show7=false;
-                        $scope.Show8=false;
-                        $scope.Show9=false;
-                        $scope.Show10=false;
-                        $scope.Show11=false;
-                        $scope.Show12=false;
-                        $scope.Show13=false;
+           $scope.Show90 = false;
+           $scope.Show100 = true;
+            $scope.Show1=false;
+            $scope.Show20=false;
+            $scope.Show111=false;
+            $scope.Show2=false;
+            $scope.Show3=false;
+            $scope.Show4=false;
+            $scope.Show5=false;
+            $scope.Show6=false;
+            $scope.Show7=false;
+            $scope.Show8=false;
+            $scope.Show9=false;
+            $scope.Show10=false;
+            $scope.Show11=false;
+            $scope.Show12=false;
+            $scope.Show13=false;
+            $scope.GetProveedoresModalidadesName();
          };
 
          // Variables de selectores
          $scope.UsuarioSel = {};
 
-         $scope.filterProveedores = function(){
+            $scope.filterProveedores = function(){
+
            $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
-         }
+           console.log($scope.UsuarioSel.selected.Name);
+           
+         } 
 
          // Modalidades para el filtro
          $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
@@ -11583,7 +11593,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                data: Data
            }).then(function successCallback(response) {
               $loading.finish('myloading');
-              $scope.Usuarios = response.data.data
+              $scope.Usuarios = response.data.data             
               $scope.UsuariosSaved = response.data.data
            }, function errorCallback(response) {
                alert(response.statusText);
@@ -11728,6 +11738,93 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               $scope.nit = '';
             }
           }
+
+          //////////////////////////////////////////Data Proveedor ////////////////////////////////////////
+          
+            $scope.filterProveedoresModalidad = function(){ 
+                $scope.GetProveedorModalidadName();
+           }  
+
+           $scope.GetProveedorModalidadName = function () {
+                  var Data = {};
+                  console.log('GetProveedorModalidadName');
+                  console.log($scope.UsuarioSel.selected.Email);
+                  Data.Email = $scope.UsuarioSel.selected.Email; 
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetProveedorModalidadName',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          $scope.LicitacionModalidadProveedor = response.data.data; 
+                          console.log($scope.LicitacionModalidadProveedor);                         
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     } 
+
+             $scope.GetProveedoresModalidadesName = function () {
+                  var Data = {};
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetProveedoresModalidadesName',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          $scope.LicitacionModalidadesProveedores = response.data.data; 
+                          console.log($scope.LicitacionModalidadesProveedores);                         
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     } 
+            
+
+                  $scope.GetDesbloquearmodalidad = function (user,modalidad) {
+                  var Data = {};
+                  Data.Email= user;
+                  Data.Modalidad=modalidad;
+                  console.log(Data.Modalidad);
+                  console.log(Data.Email);
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetDesbloquearmodalidad',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
+                          $scope.GetProveedorModalidadName();              
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     }
+
+
+                  $scope.GetNegociarmodalidad = function (user,modalidad) {
+                  /*var Data = {};
+                  Data.Email= user;
+                  Data.Modalidad=modalidad;
+                  console.log(Data.Modalidad);
+                  console.log(Data.Email);
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetNegociarmodalidad',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
+                          $scope.GetProveedorModalidadName();              
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });*/
+                     }
 
           //////////////////////////////se agrego consolidado datos /////////////////////////////////////
 

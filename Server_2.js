@@ -2942,6 +2942,64 @@ app.get('/downloadanybyid', function (req, res) {
 
 });
 
+//////////////////////////////Vista Datos Proveedor ////////////////////////////////
+app.post('/GetProveedorModalidadName', function (req, res) {
+    console.log(req.body.Email);
+
+    MyMongo.Find('Usuarios', { Name: req.body.Email }, function (result) {
+    var Data = {};
+    Data.ProveedorEmailModalidad = result[0]; 
+    var myUserProveedorModalidad =Data.ProveedorEmailModalidad.User;
+  
+
+     MyMongo.Find('LicitacionProveedor', {Email:myUserProveedorModalidad} , function (result) {
+           var Data = {};
+            Data.data= result;           
+            res.end(JSON.stringify(Data));
+       });
+   
+     
+      })
+
+});
+
+app.post('/GetProveedoresModalidadesName', function (req, res) {
+
+     MyMongo.Find('LicitacionProveedor',{}, function (result) {
+           var Data = {};
+            Data.data= result;  
+            res.end(JSON.stringify(Data));
+            console.log(Data.data);
+       });
+
+});
+
+app.post('/GetDesbloquearmodalidad', function (req, res) {
+
+      MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
+            var Data = {};
+             res.end(JSON.stringify(Data))          
+       });
+
+});
+
+/*app.post('/GetNegociarmodalidad', function (req, res) {
+
+     MyMongo.Find('ModalidadesProveedor',{Email:req.body.Email}, function (result) {
+       forEach( function(result) { 
+       result.ts_imported = new Date();
+       MyMongo.Insert('NegociarModalidadesProveedor', result, function (result) {
+      
+       });  
+      
+  });  
+       });
+
+});*/
+
+
+//////////////////////////////////////////////////
+
 app.get('/downloadanybyname', function (req, res) {
 
   var filename = req.query.filename;

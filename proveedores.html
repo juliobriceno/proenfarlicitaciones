@@ -185,6 +185,17 @@
                                                   </ui-select>
 
                                               </div>
+                                               <div class="form-group" ng-show="Show100">
+                                                  <label>Proveedor</label>
+
+                                                  <ui-select ng-change="filterProveedoresModalidad();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
+                                                    <ui-select-match placeholder="Proveedor">{{$select.selected.Email}}</ui-select-match>
+                                                    <ui-select-choices repeat="usuario in LicitacionModalidadesProveedores | filter: { Email: $select.search }">
+                                                      <span ng-bind-html="usuario.Email | highlight: $select.search"></span>
+                                                    </ui-select-choices>
+                                                  </ui-select>
+
+                                              </div>
                                               <div class="form-group" ng-show="Show70">
                                         <label>Modalidad:</label>
                                         <select class="form-control" id="sel1"
@@ -856,7 +867,7 @@
                     </div><!-- /.col (MAIN) -->
                   </div>
                 </div>
-<br><br><br>
+        <br><br><br>
                 <div ng-show="Show40" class="box-body table-responsive no-padding">
                     <table class="table table-bordered">
                         <tr  style="background-color:#676565;color:#ddd;">
@@ -902,101 +913,37 @@
                     </table>
                      <div class="" style="height: 150px;"><div class="row" ></div></div>
                 </div><!-- /.box-body -->
+                <div ng-show="Show50" class="box-body table-responsive no-padding">
+                    <table class="table table-bordered">
+                        <tr  style="background-color:#676565;color:#ddd;">
+                          <th class="text-center"><h6><b>Modalidades Diligenciadas</b></h6></th>
+                          <th class="text-center"><h6><b></b></h6></th>
+                          <th class="text-center"><h6><b></b></h6></th>
+                        </tr>
 
-<div ng-show="Show50" class="box-body table-responsive no-padding">
-    <table class="table table-bordered">
-        <tr>
-          <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-          <th class="text-center"><h6><b>Proveedor</b></h6></th>
-          <th class="text-center"><h6><b>Vía</b></h6></th>
-          <th class="text-center"><h6><b>% ADVALOREM</b></h6></th>
-          <th class="text-center"><h6><b>Mínima</b></h6></th>
-          <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-          <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
-          <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
-          <th class="text-center"><h6><b>Otro</b></h6></th>
-          <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-        </tr>
-        <tr>
-            <td>
-              <div class="btn-group">
-                <button class="btn btn-default" type="button">Acciones</button>
-                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                </ul>
-              </div>
+                             <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
 
-            </td>
-            <td>Almagrario </td>
-            <td>Aereo</td>
-            <td>0.3</td>
-            <td>350000.0</td>
-            <td>220000.0</td>
-            <td></td>
-            <td>20000.0</td>
-            <td><span class="label label-danger">70000.0</span></td>
-            <td>50000.0</td>
-        </tr>
-        <tr>
-            <td>
-              <div class="btn-group">
-                <button class="btn btn-default" type="button">Acciones</button>
-                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                </ul>
-              </div>
-            </td>
-            <td>Almagrario</td>
-            <td>Maritimo</td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td></td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td>0.0</td>
-        </tr>
-        <tr>
-            <td>
-              <div class="btn-group">
-                <button class="btn btn-default" type="button">Acciones</button>
-                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#"><i class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                  <li><a href="#"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                </ul>
-              </div>
-            </td>
-            <td>Almagrario</td>
-            <td>Terrestre</td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td></td>
-            <td>0.0</td>
-            <td>0.0</td>
-            <td>0.0</td>
-        </tr>
+                        <tr>
+                          <td>{{LiciModalidadProveedor.Modalidad}}</td>
+                            <td>
+                               <div class="pull-right" >
+                               <div class="form-group" style="margin-top:-10px;">
+                                  <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span>Desbloquear</button></a>
+                               </div>
+                             </div>
+                            </td>
+                            <td>
+                               <div class="pull-right" >
+                               <div class="form-group" style="margin-top:-10px;">
+                                  <a ng-click="GetNegociarmodalidad();" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span>Negociar</button></a>
+                               </div>
+                             </div>
+                            </td>
+                        </tr>
 
-    </table>
-     <div class="" style="height: 150px;"><div class="row" ></div></div>
-</div><!-- /.box-body -->
+                    </table>
+                     <div class="" style="height: 150px;"><div class="row" ></div></div>
+                </div><!-- /.box-body -->
                 <!-- MAILBOX END -->
               </section><!-- /.content -->
             </aside><!-- /.right-side -->
