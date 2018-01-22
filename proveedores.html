@@ -916,29 +916,27 @@
                 <div ng-show="Show50" class="box-body table-responsive no-padding">
                     <table class="table table-bordered">
                         <tr  style="background-color:#676565;color:#ddd;">
+                          <th class="text-center" style="width:20%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
                           <th class="text-center"><h6><b>Modalidades Diligenciadas</b></h6></th>
-                          <th class="text-center"><h6><b></b></h6></th>
-                          <th class="text-center"><h6><b></b></h6></th>
+
                         </tr>
 
                              <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
 
                         <tr>
+                          <td>
+
+
+                                <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Desbloquear</button></a>
+
+
+
+                              <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><i class="fa fa-handshake-o" aria-hidden="true"></i> Negociar</button></a>
+
+                          </td>
+
                           <td>{{LiciModalidadProveedor.Modalidad}}</td>
-                            <td>
-                               <div class="pull-right" >
-                               <div class="form-group" style="margin-top:-10px;">
-                                  <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span>Desbloquear</button></a>
-                               </div>
-                             </div>
-                            </td>
-                            <td>
-                               <div class="pull-right" >
-                               <div class="form-group" style="margin-top:-10px;">
-                                  <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span>Negociar</button></a>
-                               </div>
-                             </div>
-                            </td>
+
                         </tr>
 
                     </table>
