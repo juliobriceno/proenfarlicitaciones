@@ -2961,17 +2961,17 @@ app.post('/GetProveedorModalidadName', function (req, res) {
 
     MyMongo.Find('Usuarios', { RazonSocial: req.body.RazonSocial }, function (result) {
     var Data = {};
-    Data.ProveedorEmailModalidad = result[0]; 
+    Data.ProveedorEmailModalidad = result[0];
     var myUserProveedorModalidad =Data.ProveedorEmailModalidad.User;
-  
+
 
      MyMongo.Find('LicitacionProveedor', {Email:myUserProveedorModalidad} , function (result) {
            var Data = {};
-            Data.data= result;           
+            Data.data= result;
             res.end(JSON.stringify(Data));
        });
-   
-     
+
+
       })
 
 });
@@ -2980,7 +2980,7 @@ app.post('/GetProveedoresModalidadesName', function (req, res) {
 
      MyMongo.Find('LicitacionProveedor',{}, function (result) {
            var Data = {};
-            Data.data= result;  
+            Data.data= result;
             res.end(JSON.stringify(Data));
             console.log(Data.data);
        });
@@ -2991,67 +2991,45 @@ app.post('/GetDesbloquearmodalidad', function (req, res) {
 
       MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
             var Data = {};
-             res.end(JSON.stringify(Data))          
+             res.end(JSON.stringify(Data))
        });
 
 });
 
+// Funcionalidad para negociar modalidad de un proveedor
 app.post('/GetNegociarmodalidad', function (req, res) {
-    var varEmail= req.body.Email;
-    var varModalidad = req.body.Modalidad;
-    var varModalidadN='';
 
-     if (varModalidad=='Aduanas') { varModalidadN = 'Aduana'; }
-        
+  var mModalidad = 'Aduana';
+  var mEmail = req.body.Email;
 
-
-
-     MyMongo.Find('ModalidadesProveedor', { Email: req.body.Email }, function (result) {
-       console.log(req.body.Modalidad);
-       console.log(result[0][varModalidadN]);
-
+  MyMongo.Find('ModalidadesProveedor', { Email: mEmail }, function (result) {
     // Se aumenta la versión a la modalidad específica que se va a aumentar. OJO se asume que viene Version siempre (1 si es la primera vez)
     // por lo que hay que hacer un query para actualizar todas las anteriores y hacer los cambios para que cuando sea por primera vez coloque 1
     // en las versiones. En la lína inmediata de abajo se simulña que viene 1 eso no será así es sólo simulación
     //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar
-    var newVersion = result[0][varModalidadN].Version  + 1;
-    console.log(newVersion);
+
+    var newVersion = result[0][mModalidad].Version + 1;
+    var mModalidadObject =  result[0][mModalidad];
 
     // Respalda la version de la modalidad anterior (Toda las modalidades del proveedor)
     MyMongo.Insert('ModalidadesProveedorRespaldo', result[0] , function (result) {
 
-      console.log('Insertó el respaldo');
+      // Se crea un objeto para insertar nuevas OTMs CON IGUALES DATOS con nueva versión
+      mModalidadObject.Version = newVersion;
 
-        // Se busca una version vacía de la modalidad como si fuese primera vez (Esto lo cambias por modalidad que se le dio negociar)
-       MyMongo.Find('Aduanas', {}, function (result2) {
+      // Se actualiza modalidades proveedor de éste proveedor con la modalidad vacía y nueva version
 
-        console.log('Encontró l madalidad Vacía está abajo');
-        console.log(result2);
+      var mupdate = {};
+      mupdate[mModalidad] = mModalidadObject;
 
-        
-        // Se crea un objeto para insertar nuevas OTMs vacías con nueva versión
-        var ModalidadNew = {};
-        ModalidadNew.varModalidad = result2;
-        ModalidadNew.Version = newVersion;
-        console.log('Nueva OTM');
-        console.log(ModalidadNew);
-        
-        // Se actualiza modalidades proveedor de éste proveedor con la modalidad vacía y nueva version
-        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: varEmail}, { varModalidadN: ModalidadNew }, function (result) {
-          console.log('Hizo el update');
+      MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
 
-        }); // Fin actualizar la modalidad actual para agregar versión aumentada y vacía
+      }); // Fin actualizar la modalidad actual para agregar versión aumentada y vacía
 
-      });  // Fin buscar modalidad vacía En éste ejemplo OTM
+    });
 
- });
-    
-
+  }); // Fin de buscar todas las modalidad del proveedor que se pasó a la función
 });
-     });
-
-
-
 //////////////////////////////////////////////////
 
 app.get('/downloadanybyname', function (req, res) {
