@@ -804,7 +804,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         MaritimasLcl: true,
                         TerrestreNacional: true,
                         TerrestreUrbano: true,
-                        Areas: true,
+                        Aereas: true,
                         BodegajesP: true,
                         AduanasP: true,
                         OTMP: true,
@@ -812,7 +812,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         MaritimasLclP: true,
                         TerrestreNacionalP: true,
                         TerrestreUrbanoP: true,
-                        AreasP: true,
+                        AereasP: true,
                         BodegajesR: true,
                         AduanasR: true,
                         OTMR: true,
@@ -820,7 +820,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         MaritimasLclR: true,
                         TerrestreNacionalR: true,
                         TerrestreUrbanoR: true,
-                        AreasR: true
+                        AereasR: true
                         }
                         $scope.ModalidadesMostrarActual = 'Bodegajes';
 
@@ -848,8 +848,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         if ($scope.ModalidadesMostrarActual == 'TerrestreUrbano'){
                           $scope.ModalidadesMostrar.TerrestreUrbano = false;
                         }
-                        if ($scope.ModalidadesMostrarActual == 'Areas'){
-                          $scope.ModalidadesMostrar.Areas = false;
+                        if ($scope.ModalidadesMostrarActual == 'Aereas'){
+                          $scope.ModalidadesMostrar.Aereas = false;
                         }
                         /*if (ModalidadesMostrar == 'Bodegajes'){
                           if ($scope.ModalidadesMostrar.BodegajesP == true){
@@ -2614,7 +2614,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          }
 
                  ///////////////////Aereas Carguero////////////////////////////////////////////
-                        if($scope.ModalidadesMostrarActual=='Areas'){
+                        if($scope.ModalidadesMostrarActual=='Aereas'){
                          var filaMinimaca=1;
                          var filaaerea45=1;
                          var filaaerea100=1;
@@ -11823,8 +11823,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
-                          $scope.GetDesbloquearmodalidad();              
+                          swal("Licitaciones Proenfar", "Modalidad Negociada.");  
+                          $scope.GetProveedorModalidadName();              
                        }, function errorCallback(response) {
                              console.log(response);
                         });

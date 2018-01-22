@@ -2998,18 +2998,29 @@ app.post('/GetDesbloquearmodalidad', function (req, res) {
 
 // Funcionalidad para negociar modalidad de un proveedor
 app.post('/GetNegociarmodalidad', function (req, res) {
-
-  var mModalidad = 'Aduana';
+  
+  var mModalidad = req.body.Modalidad;
+  var Modalidaddesbloquear= req.body.Modalidad;
   var mEmail = req.body.Email;
+
+  if (mModalidad =='Aduanas')   { mModalidad = 'Aduana';  }
+  if (mModalidad =='OTM')   { mModalidad = 'Otm';  }
+  if (mModalidad =='MaritimasFcl')   { mModalidad = 'MaritimaFcl';  }
+  if (mModalidad =='MaritimasLcl')   { mModalidad = 'MaritimaLcl';  }
+  if (mModalidad =='TerrestreNacional')   { mModalidad = 'TerreNacional';  }
+  if (mModalidad =='TerrestreUrbano')   { mModalidad = 'TerreUrbano';  }
+  if (mModalidad =='Aereas')   { mModalidad = 'Aerea';  }
 
   MyMongo.Find('ModalidadesProveedor', { Email: mEmail }, function (result) {
     // Se aumenta la versión a la modalidad específica que se va a aumentar. OJO se asume que viene Version siempre (1 si es la primera vez)
     // por lo que hay que hacer un query para actualizar todas las anteriores y hacer los cambios para que cuando sea por primera vez coloque 1
     // en las versiones. En la lína inmediata de abajo se simulña que viene 1 eso no será así es sólo simulación
-    //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar
-
+    //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar    
     var newVersion = result[0][mModalidad].Version + 1;
     var mModalidadObject =  result[0][mModalidad];
+
+     MyMongo.Remove('ModalidadesProveedorRespaldo', { Email: req.body.Email } , function (result) {
+     });
 
     // Respalda la version de la modalidad anterior (Toda las modalidades del proveedor)
     MyMongo.Insert('ModalidadesProveedorRespaldo', result[0] , function (result) {
@@ -3025,10 +3036,47 @@ app.post('/GetNegociarmodalidad', function (req, res) {
       MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
 
       }); // Fin actualizar la modalidad actual para agregar versión aumentada y vacía
+     
+
+       if (mModalidad=='TerreNacional') {
+        mupdate = {};
+        mupdate['TerreNacionalSencillo'] = mModalidadObject;
+        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
+        }); 
+        mupdate = {};
+        mupdate['TerreNacionalPatineta'] = mModalidadObject;
+        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
+        });
+       }
+
+        if (mModalidad=='TerreUrbano') {
+        mupdate = {};
+        mupdate['TerreUrbanoViaje'] = mModalidadObject;
+        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
+        }); 
+        mupdate = {};
+        mupdate['TerreUrbanoTonelada'] = mModalidadObject;
+        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
+        });
+       }
+
+        if (mModalidad=='Aerea') {
+        mupdate = {};
+        mupdate['AereaPasajero'] = mModalidadObject;
+        MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
+        }); 
+       }
 
     });
 
-  }); // Fin de buscar todas las modalidad del proveedor que se pasó a la función
+  });
+console.log(req.body.Email);
+console.log(req.body.Modalidad);
+   MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
+             var Data = {};
+             res.end(JSON.stringify(Data)) 
+       });
+             // Fin de buscar todas las modalidad del proveedor que se pasó a la función
 });
 //////////////////////////////////////////////////
 

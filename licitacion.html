@@ -144,10 +144,7 @@
                       <li ng-click="CambiarVisionModalidades('MaritimasLcl');"><a href="#maritima-lcl" data-toggle="tab">Marítimas LCL</a></li>
                       <li ng-click="CambiarVisionModalidades('TerrestreNacional');"><a href="#terrestre" data-toggle="tab">Terrestre Nacional</a></li>
                       <li ng-click="CambiarVisionModalidades('TerrestreUrbano');"><a href="#terrestreurbano" data-toggle="tab">Terrestre Urbano</a></li>
-                      <li ng-click="CambiarVisionModalidades('Areas');"><a href="#aerea" data-toggle="tab">Aéreas</a></li>
-                      <div class="pull-right">
-                        <h6>  <strong style="color:red;">Versión 1</strong> </h6>
-                      </div>
+                      <li ng-click="CambiarVisionModalidades('Aereas');"><a href="#aerea" data-toggle="tab">Aéreas</a></li>
                     </ul>
                     <div id="my-tab-content" class="tab-content">
                       <div class="tab-pane active" id="bodegajes">
@@ -158,7 +155,10 @@
                               <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Cargar Plantilla
                                 <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                               </span>
+                              <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.Bodegajes.Version}}</strong> </h6>
                             </div>
+                          </div>
                           </div>
                           <div ng-show="!ModalidadesMostrar.Bodegajes" class="row">
                             <div class="col-md-12">
@@ -317,6 +317,9 @@
                               <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload"  aria-hidden="true" ></i> Cargar Plantilla
                                 <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                               </span>
+                              <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.Aduana.Version}}</strong> </h6>
+                            </div>
                             </div>
                           </div>
                           <div ng-show="!ModalidadesMostrar.Aduanas" class="row">
@@ -380,19 +383,22 @@
                               <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload"  aria-hidden="true"></i> Cargar Plantilla
                                 <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                               </span>
+                              <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.Aerea.Version}}</strong> </h6>
+                            </div>
                             </div>
                           </div>
-                          <div ng-show="!ModalidadesMostrar.Areas" class="row">
+                          <div ng-show="!ModalidadesMostrar.Aereas" class="row">
                             <div class="col-md-12">
                               <div class="pull-right">
-                                <button title="Mostrar las consideraciones"  ng-click="ModalidadesMostrar.Areas=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
+                                <button title="Mostrar las consideraciones"  ng-click="ModalidadesMostrar.Aereas=true"  href="#" class="btn btn-success" style="margin-top:8px; color:green; background-color:transparent" >
                                   <i class="fa fa-eye" aria-hidden="true"></i>
                                 </button>
                               </div>
                             </div>
                           </div>
                           <br>
-                          <div ng-show="ModalidadesMostrar.Areas" class="callout callout-warning ">
+                          <div ng-show="ModalidadesMostrar.Aereas" class="callout callout-warning ">
                             <h3>CONSIDERACIONES A TENER EN CUENTA PARA LA COTIZACIÓN</h3>
                             *<strong> Tarifas en dólares.</strong><br>
                             * Diligenciar solamente los campos que apliquen para la licitación.<br>
@@ -539,6 +545,9 @@
                               <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Cargar Plantilla
                                 <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                               </span>
+                              <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.Otm.Version}}</strong> </h6>
+                            </div>
                             </div>
                           </div>
                           <div ng-show="!ModalidadesMostrar.OTM" class="row">
@@ -628,6 +637,9 @@
                                 <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Cargar Plantilla
                                   <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                                 </span>
+                                <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.MaritimaFcl.Version}}</strong> </h6>
+                            </div>
                               </div>
                             </div>
                             <div ng-show="!ModalidadesMostrar.MaritimasFcl"  class="row">
@@ -711,6 +723,9 @@
                               <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Cargar Plantilla
                                 <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                               </span>
+                              <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.MaritimaLcl.Version}}</strong> </h6>
+                            </div>
                             </div>
                           </div>
                           <div ng-show="!ModalidadesMostrar.MaritimasLcl"  class="row">
@@ -791,6 +806,9 @@
                               <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload"  aria-hidden="true"></i> Cargar Plantilla
                                 <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                               </span>
+                              <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.TerreNacional.Version}}</strong> </h6>
+                            </div>
                             </div>
                           </div>
                           <div ng-show="!ModalidadesMostrar.TerrestreNacional" class="row">
@@ -894,6 +912,9 @@
                                     <span title="Cargar plantilla de modalidad" ng-disabled="EstatusproveedorModalidad" class="btn-file btn-file-notificacion btn btn-green "><i class="fa fa-upload" aria-hidden="true"></i> Cargar Plantilla
                                       <js-xls onread="read" onerror="error" ng-disabled="EstatusproveedorModalidad"></js-xls>
                                     </span>
+                                    <div class="pull-right">
+                                <h6> <strong style="color:red;">{{"Version: " + ModalidadesProveedor.TerreUrbano.Version}}</strong> </h6>
+                            </div>
                                   </div>
                                 </div>
                                 <div ng-show="!ModalidadesMostrar.TerrestreUrbano" class="row">
