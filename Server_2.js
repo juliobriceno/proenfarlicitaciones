@@ -1598,7 +1598,7 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 
 });
 
-////////////Consolidado de Datos///////////////
+////////////Consolidado de Datos/////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/GetConsolidadoDatos', function (req, res) {
 
@@ -1614,6 +1614,17 @@ app.post('/GetConsolidadoDatos', function (req, res) {
     );
 
 });
+
+///////////////////////////////Exportar Excel Aduana //////////////////
+
+//app.get('/GetTemplateExportarAduana', function (req, res) {
+
+      //console.log(req.query.ModalidadTodas);
+
+   
+  //});
+
+/////////////Fin Consolidado de Datos///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/GetEmpleadosData', function (req, res) {
 

@@ -10338,7 +10338,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC4016Pintada.length > 0 ||  
                                 el.AduC4017Pintada.length > 0 ||  
                                 el.AduC401718Pintada.length > 0 || 
-                                el.AduC40120Pintada.length > 0 ||
+                                el.AduC4020Pintada.length > 0 ||
                                 el.AduC4021Pintada.length > 0 ||                              
                                 $scope.ModalidadesSemaforo == false);
                       });
@@ -10820,7 +10820,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contCPCP>3)
                         {
-                          ModalidadTodasconOrdenCPCP[i].AduCPCPintada = [];
+                          ModalidadTodasconOrdenCPCP[i].AduC4015PPintada = [];
                         }
                         }
 
@@ -13011,8 +13011,18 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 });
                 console.log($scope.ModalidadTodas);
 
+          ///////////////////////////Crea plantilla para exportar a excel ////////////////
+                 $scope.ExportarExcelAduana = function () {
+                    
+                    var table = document.getElementById('ExportAduana');
+                    var html = table.outerHTML;
+                    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+   
+             
+             }
+           }
 
-               }
+
           ///////////////////////////////////////////////////OTM///////////////////////////////////////////////////
                       if (ModalidadConsolidado == 'OTM') {
                         $scope.Show20=false;
@@ -15318,7 +15328,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       });
                 console.log($scope.ModalidadTodas);
 
-
                        //Terrestre Nacional Sencillo
 
                         angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalsenc) {
@@ -17311,7 +17320,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC4016Pintada.length > 0 ||  
                                 el.AduC4017Pintada.length > 0 ||  
                                 el.AduC401718Pintada.length > 0 || 
-                                el.AduC40120Pintada.length > 0 ||
+                                el.AduC4020Pintada.length > 0 ||
                                 el.AduC4021Pintada.length > 0 ||                              
                                 $scope.ModalidadesSemaforo == false);
                       });
@@ -17793,7 +17802,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contCPCP>3)
                         {
-                          ModalidadTodasconOrdenCPCP[i].AduCPCPintada = [];
+                          ModalidadTodasconOrdenCPCP[i].AduC4015PPintada = [];
                         }
                         }
 

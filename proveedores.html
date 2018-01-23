@@ -349,8 +349,13 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row" ng-show="Show2">
-                        <div class="col-md-12">
+                      <div  class="row" ng-show="Show2">
+                         <div class="wrapper row-offcanvas row-offcanvas-left">
+                                  <div class="col-md-12 file-input">
+                                    <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelAduana();"><i class="fa fa-download" aria-hidden="true"></i> Exportar Excel</button> 
+                                  </div>
+                                </div>
+                        <div id="ExportAduana" class="col-md-12">
                           <div  class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
 
