@@ -6038,6 +6038,29 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 });
                 console.log($scope.ModalidadTodas);
 
+      //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+             $scope.ExportarExcelModalidad = function () {
+            var Data = {};
+            Data.ModalidadesProveedor=$scope.ModalidadTodas;
+            console.log(Data.ModalidadesProveedor);
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidad',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+              var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
+              downloadURI(urlbase64, "helloWorld.xlsx");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
+
+
 
                }
           ///////////////////////////////////////////////////OTM///////////////////////////////////////////////////
@@ -11460,17 +11483,18 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
          $scope.Usuario={};
          var VistaName='';
+         var label="Consolidado Datos";
 
-         $scope.Show30 = false;
+         $scope.Show30 = true;
          $scope.Show40 = false;
          $scope.Show50 = false;
          $scope.Show60 = false;
-         $scope.Show70 = false;
-         $scope.Show80 = false;
-         $scope.Show90 = true;
-                        $scope.Show1=false;
-                        $scope.Show20=false;
-                        $scope.Show111=false;
+         $scope.Show70 = true;
+         $scope.Show80 = true;
+         $scope.Show90 = false;
+                        $scope.Show1=true;
+                        $scope.Show20=true;
+                        $scope.Show111=true;
                         $scope.Show2=false;
                         $scope.Show3=false;
                         $scope.Show4=false;
@@ -12428,6 +12452,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AdumaqpfmmPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
+
+                ///////////////////////////Crea plantilla para exportar a excel ////////////////
+                 $scope.ExportarExcelBodegaje = function () {
+                    
+                    var table = document.getElementById('ExportBodegaje');
+                    var html = table.outerHTML;
+                    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));   
+             
+             }
                      }
 
                      //////////////////////////////  Aduanas ////////////////////////
@@ -13012,15 +13045,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 console.log($scope.ModalidadTodas);
 
           ///////////////////////////Crea plantilla para exportar a excel ////////////////
-                 $scope.ExportarExcelAduana = function () {
-                    
-                    var table = document.getElementById('ExportAduana');
-                    var html = table.outerHTML;
-                    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
-   
-             
-             }
-           }
+              $scope.RecoverPassword = function () {
+            var Data = {};
+            Data.ModalidadesExcel=$scope.ModalidadTodas;
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/RecoverPassword',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+              console.log(response.data.ExcelBase64);
+
+              var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
+              downloadURI(urlbase64, "helloWorld.xlsx");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
 
 
           ///////////////////////////////////////////////////OTM///////////////////////////////////////////////////
@@ -18079,6 +18122,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       });
 
                }
+             }
 
 
                     ///////////////////////////////////////////////////////////////////////////

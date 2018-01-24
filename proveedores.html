@@ -213,8 +213,8 @@
                                                   <li ng-click="Showf1();"><a href="">Consolidación Datos</a></li>
                                                   <li ng-click="Showf2();"><a href="">Información Proveedor</a></li>
                                                   <li ng-click="Showf3();"><a href="">Datos Proveedor</a></li>
-                                                </ul>
-                                              </div>
+                                                </ul><label>{{label}}</label>
+                                              </div> 
 
                                             </div>
                                             <div>
@@ -254,16 +254,7 @@
                   <!--comienza Modalidad Bodegaje -->
                   <div class="" style="padding: 10px;">
                     <div class="box-header">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="pull-right">
-                            <div class="col-md-12 file-input">
-                              <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
+                      <div class="row">   
                         <div class="col-md-12">
                           <div class="menu-accordion">
                             <div class="contenedor-accordion">
@@ -364,6 +355,7 @@
                             </div>
                           </div>
                         </div>
+                        <br><br>
                         <div id="ExportAduana" class="col-md-12">
                           <div  class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">

@@ -1615,14 +1615,68 @@ app.post('/GetConsolidadoDatos', function (req, res) {
 
 });
 
-///////////////////////////////Exportar Excel Aduana //////////////////
 
-//app.get('/GetTemplateExportarAduana', function (req, res) {
+app.post('/ExportarExcelModalidad', function (req, res) {
 
-      //console.log(req.query.ModalidadTodas);
+    // Require library
+    var xl = require('excel4node');
 
-   
-  //});
+    // Create a new instance of a Workbook class
+    var wb = new xl.Workbook();
+
+    // Add Worksheets to the workbook
+    var ws2 = wb.addWorksheet('Aduanas');
+
+    // Create a reusable style
+    var style = wb.createStyle({
+        font: {
+            color: '#000000',
+            size: 12
+        },
+
+        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        
+    });
+
+    // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
+    ///////////////Aduana///////////////////////////////
+
+     
+          var Aduana = req.body.ModalidadesProveedor;
+          var arrayExcelEjemplo = [];
+          var fila = 0;
+           var col = 0
+       Aduana.forEach(function(aduana){
+         var Encabezados = Object.keys(aduana);
+              // Recorre cada encabezado
+              if (fila == 0){
+                Encabezados.forEach(function(columnaname) {
+                  console.log(columnaname);
+                });
+              }
+              // Recorre cada registro
+              else{
+                Encabezados.forEach(function(columnaname) {
+                  console.log(aduana[columnaname]);
+                });
+              }
+              // Aumenta la fila
+              fila++
+        });
+
+        wb.writeToBuffer().then(function (buffer) {
+          var Data = {};
+          Data.ExcelBase64 = buffer.toString('base64');
+          res.end(JSON.stringify(Data));
+        });
+
+
+            
+console.log('Si va');
+    wb.write('Aduana.xlsx', res);
+        
+  });
+
 
 /////////////Fin Consolidado de Datos///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1686,6 +1740,16 @@ app.post('/GetEmpleadosNomina', function (req, res) {
   );
 
 });
+
+ function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
 
 function getIdFromUrl(url) {
   return url.match(/[-\w]{25,}/);
@@ -2121,6 +2185,7 @@ app.get('/GetTemplateAduana', function (req, res) {
         },
 
         numberFormat: '$#,##0.00; ($#,##0.00); -',
+        
     });
 
     // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
