@@ -5,8 +5,6 @@
         <title>Proenfar::..</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-
-
         <!-- bootstrap 3.3.7 -->
             <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
@@ -197,7 +195,7 @@
 
                                               </div>-->
                                               <div class="form-group" ng-show="Show70">
-                                        <label>Modalidad:</label>
+                                        <label>Modalidad</label>
                                         <select class="form-control" id="sel1"
                                         ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
                                         ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
@@ -253,19 +251,26 @@
               <section >
                 <!-- MAILBOX BEGIN -->
                 <div class="">
+                  <!--comienza Modalidad Bodegaje -->
                   <div class="" style="padding: 10px;">
                     <div class="box-header">
-                      <br><br>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="pull-right">
+                            <div class="col-md-12 file-input">
+                              <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="menu-accordion">
                             <div class="contenedor-accordion">
-                              <!-- Áreas -->
                               <div class="accordion-group" ng-show="Show1">
-                                <!-- Área -->
                                 <div class="accordion-heading recuadro">
                                   <a class="accordion-toggle" data-toggle="collapse" href="#area1"><h5><i class="fa fa-industry" aria-hidden="true"></i> Aduanero</a>
-                                </div><!-- /Área -->
+                                </div>
                                 <div id="area1" class="panel-collapse collapse in">
                                   <div class="panel-body">
                                     <div class="row" >
@@ -290,10 +295,9 @@
                                 </div>
                               </div>
                               <div class="accordion-group"  ng-show="Show20">
-                                <!-- Área -->
                                 <div class="accordion-heading recuadro">
                                   <a class="accordion-toggle" data-toggle="collapse" href="#area2"><h5><i class="fa fa-industry" aria-hidden="true"></i> Máquinaria</h5></a>
-                                </div><!-- /Área -->
+                                </div>
                                 <div id="area2" class="panel-collapse collapse ">
                                   <div class="panel-body">
                                     <div class="row" >
@@ -313,15 +317,14 @@
                                           </tr>
                                         </table>
                                       </div>
-                                    </div><!-- /.box-body -->
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="accordion-group" ng-show="Show111">
-                                <!-- Área -->
                                 <div class="accordion-heading recuadro">
                                   <a class="accordion-toggle" data-toggle="collapse" href="#area3"><h5><i class="fa fa-industry" aria-hidden="true"></i> Materia Prima</h5></a>
-                                </div><!-- /Área -->
+                                </div>
                                 <div id="area3" class="panel-collapse collapse ">
                                   <div class="panel-body">
                                     <div class="row" >
@@ -349,16 +352,21 @@
                           </div>
                         </div>
                       </div>
+
+                      <!--comienza Modalidad aduana -->
                       <div  class="row" ng-show="Show2">
-                         <div class="wrapper row-offcanvas row-offcanvas-left">
-                                  <div class="col-md-12 file-input">
-                                    <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelAduana();"><i class="fa fa-download" aria-hidden="true"></i> Exportar Excel</button> 
-                                  </div>
-                                </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="pull-right">
+                              <div class="col-md-12 file-input">
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelAduana();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div id="ExportAduana" class="col-md-12">
                           <div  class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
-
                                 <tr style="background-color:#676565;color:#ddd;">
                                   <th class="text-center"><h6><b>Proveedor</b></h6></th>
                                   <th class="text-center"><h6><b>Vía</b></h6></th>

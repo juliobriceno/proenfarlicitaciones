@@ -1383,7 +1383,7 @@ body > .header .logo .icon {
   padding-bottom: 0px!important;
 }
 .box.box-solid > .box-header .btn.btn-default {
-  background: transparent;
+  background: white;
 }
 .box.box-solid.box-primary > .box-header {
   color: #fff;
@@ -1791,7 +1791,7 @@ Component: timeline
 .btn.btn-file {
   position: relative;
   width: 150px;
-  
+
   overflow: hidden;
 }
 .btn.btn-file > input[type='file'] {
@@ -3401,4 +3401,3 @@ fieldset[disabled] .btn-vk.active {
 .showverde{
   background-color: #088A08;
 }
-
