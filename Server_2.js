@@ -1,4 +1,4 @@
-﻿var express = require("express");
+var express = require("express");
 var app     = express();
 var path    = require("path");
 var bodyParser = require('body-parser');
@@ -1643,26 +1643,50 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
      
           var Aduana = req.body.ModalidadesProveedor;
+          console.log(Aduana);
           var arrayExcelEjemplo = [];
-          var fila = 0;
-           var col = 0
-       Aduana.forEach(function(aduana){
-         var Encabezados = Object.keys(aduana);
+          var fila = 1;
+           var col = 0    
+
+              
+             Aduana.forEach(function(aduana) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(aduana);
+              
               // Recorre cada encabezado
-              if (fila == 0){
-                Encabezados.forEach(function(columnaname) {
-                  console.log(columnaname);
+              if (fila == 1){               
+                Encabezados.forEach(function(header) {
+                  col = col + 1;
+                  ws2.cell(1, col).string(header).style(style);
+                  console.log(header);
                 });
               }
               // Recorre cada registro
-              else{
-                Encabezados.forEach(function(columnaname) {
-                  console.log(aduana[columnaname]);
-                });
+              if (fila == 2){
+                Encabezados.forEach(function(body) {
+                    var valor = '0';
+                    var myProp = '_id';
+                    console.log(body);
+                            
+                    if (aduana[body] != null){
+                      valor = aduana[body].toString();
+                    }
+                    else {
+                        valor = '0'
+                    }  
+                   col = col + 1;
+                   ws2.cell(fila,col ).string(valor).style(style);
+              
+                  //console.log(fila);
+                  //console.log(col);
+                  });
               }
               // Aumenta la fila
-              fila++
-        });
+              fila++    
+              col=0;
+            });
+
+    
 
         wb.writeToBuffer().then(function (buffer) {
           var Data = {};
@@ -1670,10 +1694,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           res.end(JSON.stringify(Data));
         });
 
-
             
 console.log('Si va');
-    wb.write('Aduana.xlsx', res);
+    //wb.write('Aduana.xlsx', res);
         
   });
 

@@ -327,7 +327,7 @@
                                             <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
                                             <th class="text-center"><h6><b>FMM</b></h6></th>
                                           </tr>
-                                          <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp">
+                                          <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp ">
                                             <td>{{BodegajeAduanermaqp.Email}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
@@ -350,7 +350,7 @@
                           <div class="col-md-12">
                             <div class="pull-right">
                               <div class="col-md-12 file-input">
-                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelAduana();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidad();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
                               </div>
                             </div>
                           </div>
@@ -598,10 +598,10 @@
                                               <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
                                               <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
                                             </tr>
-                                            <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo | orderBy:['PuertoDestino','PaisOrigen']" >
+                                            <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo">
                                               <td>{{TerreNacionalSencillo.Email}}</td>
                                               <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
-                                              <td >{{TerreNacionalSencillo.PuertoDestino}}</td>
+                                              <td>{{TerreNacionalSencillo.PuertoDestino}}</td>
                                               <td class="text-center"><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]  | number:2}}</span></td>
                                               <td class="text-center"><span ng-class="TerreNacionalSencillo.AduC2017Pintada">{{TerreNacionalSencillo["Sencillo Especial"]  | number:2}}</span></td>
                                             </tr>
@@ -776,7 +776,7 @@
                                           <div class="panel-body">
                                             <div class="row">
                                               <div class="col-md-12">
-                                                <div  class=" ">
+                                                <div  class="table-responsive">
                                                   <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                                                     <tr  style="background-color:#676565;color:#ddd;">
                                                       <th class="text-center"><h6><b>Proveedor</b></h6></th>
@@ -832,7 +832,7 @@
                                           <div class="panel-body">
                                             <div class="row">
                                               <div class="col-md-12">
-                                                <div  class="">
+                                                <div  class="table-responsive">
                                                   <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                                                     <tr  style="background-color:#676565;color:#ddd;">
                                                       <th class="text-center"><h6><b>Proveedor</b></h6></th>
