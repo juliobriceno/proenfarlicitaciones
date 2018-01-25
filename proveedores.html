@@ -214,19 +214,17 @@
                                                   <li ng-click="Showf2();"><a href="">Información Proveedor</a></li>
                                                   <li ng-click="Showf3();"><a href="">Datos Proveedor</a></li>
                                                 </ul><label>{{label}}</label>
-                                              </div> 
+                                              </div>
 
                                             </div>
                                             <div>
-
-                                              <div class="col-md-3 checkbox pull-right ">
-                                                <div ng-show="Show80">
-                                                  <div style="margin-top:25px; " >
-                                                    <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
-                                                  </div>
+                                            <div class="col-md-6 checkbox  ">
+                                              <div ng-show="Show80" class="col-lg-6 col-lg-push-6 col-md-6 col-md-push-0 col-sm-6 col-sm-push-0 col-xs-6 col-xs-push-0">
+                                                <div style="margin-top:25px;" class=" pull-right">
+                                                  <input  type="checkbox" ng-click="FiltroS();" ng-model="ModalidadesSemaforo">Sólo proveedores seleccionados
                                                 </div>
                                               </div>
-
+                                            </div>
 
                                             </div>
 
@@ -236,7 +234,7 @@
 
                                         </div><!-- /.box-header -->
                                         <div class="row">
-                                        <br>
+
                                         <div class="col-md-12">
                                            <div ng-show="Show30" class="wrapper row-offcanvas row-offcanvas-left">
       <!-- Right side column. Contains the navbar and content of the page -->
@@ -254,24 +252,24 @@
                   <!--comienza Modalidad Bodegaje -->
                   <div class="" style="padding: 10px;">
                     <div class="box-header">
-                      <div class="row">   
+                      <div class="row">
                         <div class="col-md-12">
                           <div class="menu-accordion">
                             <div class="contenedor-accordion">
                               <div class="accordion-group" ng-show="Show1">
                                 <div class="accordion-heading recuadro">
-                                  <a class="accordion-toggle" data-toggle="collapse" href="#area1"><h5><i class="fa fa-industry" aria-hidden="true"></i> Aduanero</a>
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#area1"><h5><i class="fa fa-industry" aria-hidden="true"></i> Aduanero </h5></a>
                                 </div>
                                 <div id="area1" class="panel-collapse collapse in">
                                   <div class="panel-body">
                                     <div class="row" >
                                       <div class="col-md-12">
                                         <table class="table table-bordered">
-                                          <tr  style="background-color:#676565;color:#ddd;">
-                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Tarifa Valor/FOB<b></h6></th>
-                                            <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>Otros</b></h6></th>
+                                          <tr  class="encabezadotabla">
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                            <th class="text-center"><h6  style="font-size:13px;"><b>Tarifa Valor/FOB<b></h6></th>
+                                            <th class="text-center"><h6  style="font-size:13px;"><b>Tarifa Mínima<b></h6></th>
+                                            <th class="text-center"><h6  style="font-size:13px;"><b>Otros</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
                                             <td>{{BodegajeAduanero.Email}}</td>
@@ -294,11 +292,11 @@
                                     <div class="row" >
                                       <div class="col-md-12">
                                         <table class="table table-bordered">
-                                          <tr  style="background-color:#676565;color:#ddd;">
-                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Tarifa<b></h6></th>
-                                            <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>FMM</b></h6></th>
+                                          <tr  class="encabezadotabla">
+                                            <th class="text-center"><h6  style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa<b></h6></th>
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa Mínima<b></h6></th>
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
                                             <td>{{BodegajeAduaneromaq.Email}}</td>
@@ -321,11 +319,11 @@
                                     <div class="row" >
                                       <div class="col-md-12">
                                         <table class="table table-bordered">
-                                          <tr  style="background-color:#676565;color:#ddd;">
-                                            <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                            <th class="text-center"><h6><b>Tarifa<b></h6></th>
-                                            <th class="text-center"><h6><b>Tarifa Mínima<b></h6></th>
-                                            <th class="text-center"><h6><b>FMM</b></h6></th>
+                                          <tr class="encabezadotabla">
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa<b></h6></th>
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa Mínima<b></h6></th>
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp ">
                                             <td>{{BodegajeAduanermaqp.Email}}</td>
@@ -355,23 +353,23 @@
                             </div>
                           </div>
                         </div>
-                        <br><br>
+                        <br>
                         <div id="ExportAduana" class="col-md-12">
                           <div  class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
-                                <tr style="background-color:#676565;color:#ddd;">
-                                  <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                  <th class="text-center"><h6><b>Vía</b></h6></th>
-                                  <th class="text-center"><h6><b>Tarifa % Advalorem/ FOB</b></h6></th>
-                                  <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                  <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-                                  <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
-                                  <th class="text-center"><h6><b>Gastos Adicionales dos</b></h6></th>
-                                  <th class="text-center"><h6><b>Conceptos Adicionales dos</b></h6></th>
-                                  <th class="text-center"><h6><b>Gastos Adicionales tres</b></h6></th>
-                                  <th class="text-center"><h6><b>Conceptos Adicionales tres</b></h6></th>
-                                  <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
-                                  <th class="text-center"><h6><b>Otros</b></h6></th>
+                                <tr class="encabezadotabla">
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa % Advalorem/ FOB</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Mínima</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Adicionales</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Adicionales dos</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales dos</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Adicionales tres</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales tres</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Costo Plastificación Caja</b></h6></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Otros</b></h6></th>
                                 </tr>
                                 <tr ng-repeat="Consadu in ModalidadTodas">
                                   <td>{{Consadu.Email}}</td>
@@ -402,33 +400,34 @@
                             </div>
                           </div>
                         </div>
+                        <br>
                         <div class="col-md-12">
                           <div class="box-body table-responsive">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
-                              <tr  style="background-color:#676565;color:#ddd;">
-                                <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                <th class="text-center"><h6><b>Origen</b></h6></th>
-                                <th class="text-center"><h6><b>Destino</b></h6></th>
-                                <th class="text-center"><h6><b>C 20 hasta 4.5 Ton</b></h6></th>
-                                <th class="text-center"><h6><b>C 20 hasta 8 Ton</b></h6></th>
-                                <th class="text-center"><h6><b>C 20 hasta 10 Ton</b></h6></th>
-                                <th class="text-center"><h6><b>C 20 hasta 17 Ton</b></h6></th>
-                                <th class="text-center"><h6><b>C 20 hasta 19 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 20 hasta 20 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 20 hasta 21 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 20 hasta 25 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 15 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 16 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 17 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 17-18 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 20 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 21 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 22 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>C 40 hasta 30 Ton</b></h6> </th>
-                                <th class="text-center"><h6><b>Devolución 20$ estándar</b></h6> </th>
-                                <th class="text-center"><h6><b>Devolución 40$ estándar </th>
-                                <th class="text-center"><h6><b>Devolución 20$ expreso</b></h6> </th>
-                                <th class="text-center"><h6><b>Devolución 40$ expreso</b></h6> </th>
+                              <tr  class="encabezadotabla">
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Origen</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 4.5 Ton</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 8 Ton</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 10 Ton</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 17 Ton</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 19 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 20 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 21 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 hasta 25 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 15 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 16 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 17 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 17-18 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 20 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 21 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 22 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 hasta 30 Ton</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 20$ estándar</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 40$ estándar </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 20$ expreso</b></h6> </th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 40$ expreso</b></h6> </th>
                               </tr>
                               <tr ng-repeat="Otm in ModalidadTodasOTM">
                                 <td>{{Otm.Email}}</td>
@@ -470,25 +469,26 @@
                             </div>
                           </div>
                         </div>
+                        <br>
                         <div class="col-md-12">
                           <div class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style=" table-layout: fixed;">
-                              <tr class="width-table"  style="background-color:#676565;color:#ddd;"><!-- class="width-table">-->
-                                <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                <th class="text-center"><h6><b>País Destino</b></h6></th>
-                                <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
-                                <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
-                                <th class="text-center"><h6><b>C 20</b></h6></th>
-                                <th class="text-center"><h6><b>Baf 20</b></h6></th>
-                                <th class="text-center"><h6><b>C 40</b></h6></th>
-                                <th class="text-center"><h6><b>Baf 40</b></h6></th>
-                                <th class="text-center"><h6><b>C 40HC</b></h6></th>
-                                <th class="text-center"><h6><b>Baf 40HC</b></h6></th>
-                                <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
-                                <th class="text-center"><h6><b>Naviera</b></h6></th>
-                                <th class="text-center"><h6><b>C 20 + Baf 20 + Gastos Embarque</b></h6></th>
-                                <th class="text-center"><h6><b>C 40 + Baf 40 + Gastos Embarque</b></h6></th>
-                                <th class="text-center"><h6><b>C 24HC + Baf 40HC + Gastos Embarque</b></h6></th>
+                              <tr class="width-table encabezadotabla" ><!-- class="width-table">-->
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>País Destino</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Puerto Origen</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Puerto Destino</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Baf 20</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Baf 40</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40HC</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Baf 40HC</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Gastos de Embarque</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 20 + Baf 20 + Gastos Embarque</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40 + Baf 40 + Gastos Embarque</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>C 40HC + Baf 40HC + Gastos Embarque</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaFcl in ModalidadTodas">
                                 <td>{{MaritimaFcl.Email}}</td>
@@ -516,18 +516,18 @@
                         <div class="col-md-12">
                           <div class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style=" table-layout: fixed;">
-                              <tr class="width-table"  style="background-color:#676565;color:#ddd;">
-                                <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                <th class="text-center"><h6><b>País Destino</b></h6></th>
-                                <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
-                                <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
-                                <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                <th class="text-center"><h6><b>1-5 ton/M3</b></h6></th>
-                                <th class="text-center"><h6><b>5-8 ton/M3</b></h6></th>
-                                <th class="text-center"><h6><b>8-12 Ton/M3</b></h6></th>
-                                <th class="text-center"><h6><b>12-18 Ton/M3</b></h6></th>
-                                <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
-                                <th class="text-center"><h6><b>Naviera</b></h6></th>
+                              <tr class="width-table encabezadotabla" >
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>País Destino</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Puerto Origen</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Puerto Destino</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Mínima</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>1-5 ton/M3</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>5-8 ton/M3</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>8-12 Ton/M3</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>12-18 Ton/M3</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Gastos de Embarque</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaLcl in ModalidadTodas">
                                 <td>{{MaritimaLcl.Email}}</td>
@@ -554,19 +554,19 @@
                               <div class="accordion-group" ng-show="Show6">
                                 <!-- Área -->
                                 <div class="accordion-heading recuadro">
-                                  <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalTurbo"><h5><i class="fa fa-list" aria-hidden="true"></i> Turbo</a>
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalTurbo"><h5><i class="fa fa-list" aria-hidden="true"></i> Turbo</h5></a>
                                   </div><!-- /Área -->
                                   <div id="tNacionalTurbo" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                       <div class="row">
                                         <div class="col-md-12">
                                           <table class="table table-bordered">
-                                            <tr  style="background-color:#676565;color:#ddd;">
-                                              <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                              <th class="text-center"><h6><b>Origen<b></h6></th>
-                                              <th class="text-center"><h6><b>Destino</b></h6></th>
-                                              <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h6></th>
-                                              <th class="text-center"><h6><b>Turbo Especial</b></h6></th>
+                                            <tr class="encabezadotabla">
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Standar (150 cajas) </b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Especial</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo">
                                               <td>{{TerreNacional.Email}}</td>
@@ -591,12 +591,12 @@
                                       <div class="row">
                                         <div class="col-md-12">
                                           <table class="table table-bordered">
-                                            <tr  style="background-color:#676565;color:#ddd;">
-                                              <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                              <th class="text-center"><h6><b>Origen<b></h6></th>
-                                              <th class="text-center"><h6><b>Destino</b></h6></th>
-                                              <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
-                                              <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
+                                            <tr class="encabezadotabla">
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Standar (150 cajas) </b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Especial</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo">
                                               <td>{{TerreNacionalSencillo.Email}}</td>
@@ -621,12 +621,12 @@
                                       <div class="row">
                                         <div class="col-md-12">
                                           <table class="table table-bordered">
-                                            <tr  style="background-color:#676565;color:#ddd;">
-                                              <th class="text-center"><h6><b>Proveedor<b></h></th>
-                                              <th class="text-center"><h6><b>Origen<b></h></th>
-                                              <th class="text-center"><h6><b>Destino</b></h6></th>
-                                              <th class="text-center"><h6><b>Minimula</b></h6></th>
-                                              <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                            <tr class="encabezadotabla">
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Minimula</b></h6></th>
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta">
                                               <td>{{TerreNacionalPatineta.Email}}</td>
@@ -653,23 +653,23 @@
                                 <div class="accordion-group" ng-show="Show9">
                                   <!-- Área -->
                                   <div class="accordion-heading recuadro">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoDia"><h5><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</a>
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoDia"><h5><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</h5></a>
                                     </div><!-- /Área -->
                                     <div id="tUrbanoDia" class="panel-collapse collapse in">
                                       <div class="panel-body">
                                         <div class="row">
                                           <div class="col-md-12">
                                             <table class="table table-bordered">
-                                              <tr  style="background-color:#676565;color:#ddd;">
-                                                <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                                  <th class="text-center"><h6><b>Origen<b></h6></th>
-                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
-                                                  <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
-                                                  <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
-                                                  <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
-                                                  <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
-                                                  <th class="text-center"><h6><b>Minimula</b></h6></th>
-                                                  <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                              <tr class="encabezadotabla">
+                                                <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo (150 cajas) </b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Especial (200 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo (240 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Especial (300 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Minimula</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano">
                                                   <td>{{TerreUrbano.Email}}</td>
@@ -698,16 +698,16 @@
                                           <div class="row">
                                             <div class="col-md-12">
                                               <table class="table table-bordered">
-                                                <tr  style="background-color:#676565;color:#ddd;">
-                                                  <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                                  <th class="text-center"><h6><b>Origen</b></h6></th>
-                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
-                                                  <th class="text-center"><h6><b>Turbo (150 cajas) </b></h6></th>
-                                                  <th class="text-center"><h6><b>Turbo Especial (200 cajas)</b></h6></th>
-                                                  <th class="text-center"><h6><b>Sencillo (240 cajas)</b></h6></th>
-                                                  <th class="text-center"><h6><b>Sencillo Especial (300 cajas)</b></h6></th>
-                                                  <th class="text-center"><h6><b>Minimula</b></h6></th>
-                                                  <th class="text-center"><h6><b>Gran Danes</b></h6></th>
+                                                <tr class="encabezadotabla">
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Origen</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo (150 cajas) </b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Especial (200 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo (240 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Especial (300 cajas)</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Minimula</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje">
                                                   <td>{{TerreUrbanoViaje.Email}}</td>
@@ -736,13 +736,13 @@
                                           <div class="row" >
                                             <div class="col-md-12">
                                               <table class="table table-bordered">
-                                                <tr  style="background-color:#676565;color:#ddd;">
-                                                  <th class="text-center"><h6><b>Proveedor<b></h6></th>
-                                                  <th class="text-center"><h6><b>Origen<b></h6></th>
-                                                  <th class="text-center"><h6><b>Destino</b></h6></th>
-                                                  <th class="text-center"><h6><b>Turbo</b></h6></th>
-                                                  <th class="text-center"><h6><b>Sencillo</b></h6></th>
-                                                  <th class="text-center"><h6><b>Tractomula</b></h6></th>
+                                                <tr class="encabezadotabla">
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo</b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Tractomula</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada">
                                                   <td>{{TerreUrbanoTonelada.Email}}</td>
@@ -770,7 +770,7 @@
                                     <div class="accordion-group"  ng-show="Show12">
                                       <!-- Área -->
                                       <div class="accordion-heading recuadro">
-                                        <a class="accordion-toggle" data-toggle="collapse" href="#ACarguero"><h5><i class="fa fa-list" aria-hidden="true"></i> Carguero</a>
+                                        <a class="accordion-toggle" data-toggle="collapse" href="#ACarguero"><h5><i class="fa fa-list" aria-hidden="true"></i> Carguero</h5></a>
                                         </div><!-- /Área -->
                                         <div id="ACarguero" class="panel-collapse collapse in">
                                           <div class="panel-body">
@@ -778,24 +778,24 @@
                                               <div class="col-md-12">
                                                 <div  class="table-responsive">
                                                   <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
-                                                    <tr  style="background-color:#676565;color:#ddd;">
-                                                      <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                                      <th class="text-center"><h6><b>País</b></h6></th>
-                                                      <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
-                                                      <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                                      <th class="text-center"><h6><b>45</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+100</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+300</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+500</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+1000</b></h6></th>
-                                                      <th class="text-center"><h6><b>FS min</b></h6></th>
-                                                      <th class="text-center"><h6><b>Fs/kg</b></h6></th>
-                                                      <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
-                                                      <th class="text-center"><h6><b>Vía</b></h6></th>
-                                                      <th class="text-center"><h6><b>T 100 + FS/Kg + Ge</b></h6></th>
-                                                      <th class="text-center"><h6><b>T 300 + FS/Kg + Ge</b></h6></th>
-                                                      <th class="text-center"><h6><b>T 500 + FS/Kg + Ge</b></h6></th>
-                                                      <th class="text-center"><h6><b>T 1000 + FS/Kg + Ge</b></h6></th>
+                                                    <tr class="encabezadotabla">
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>País</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Aeropuerto</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Mínima</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>45</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+100</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+300</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+500</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+1000</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>FS min</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Fs/kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Ge</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Ge</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg + Ge</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Ge</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aerea in ModalidadTodasAerea">
                                                       <td>{{Aerea.Email}}</td>
@@ -834,24 +834,24 @@
                                               <div class="col-md-12">
                                                 <div  class="table-responsive">
                                                   <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
-                                                    <tr  style="background-color:#676565;color:#ddd;">
-                                                      <th class="text-center"><h6><b>Proveedor</b></h6></th>
-                                                      <th class="text-center"><h6><b>País</b></h6></th>
-                                                      <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
-                                                      <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                                      <th class="text-center"><h6><b>45</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+100</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+300</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+500</b></h6></th>
-                                                      <th class="text-center"><h6><b>'+1000</b></h6></th>
-                                                      <th class="text-center"><h6><b>FS min</b></h6></th>
-                                                      <th class="text-center"><h6><b>Fs/kg</b></h6></th>
-                                                      <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
-                                                      <th class="text-center"><h6><b>Vía</b></h6></th>
-                                                      <th class="text-center"><h6><b>T 100 + FS/Kg </b></h6></th>
-                                                      <th class="text-center"><h6><b>T 300 + FS/Kg </b></h6></th>
-                                                      <th class="text-center"><h6><b>T 500 + FS/Kg </b></h6></th>
-                                                      <th class="text-center"><h6><b>T 1000 + FS/Kg </b></h6></th>
+                                                    <tr class="encabezadotabla">
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>País</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Aeropuerto</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Mínima</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>45</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+100</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+300</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+500</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>'+1000</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>FS min</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Fs/kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg </b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
                                                       <td>{{Aereapasajero.Email}}</td>
@@ -896,15 +896,15 @@
 
                 <div ng-show="Show40" class="box-body table-responsive no-padding">
                     <table class="table table-bordered">
-                        <tr  style="background-color:#676565;color:#ddd;">
+                        <tr class="encabezadotabla">
                           <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                          <th class="text-center"><h6><b>Nit</b></h6></th>
-                          <th class="text-center"><h6><b>Nombre Empresa</b></h6></th>
-                          <th class="text-center"><h6><b>Contacto</b></h6></th>
-                          <th class="text-center"><h6><b>Número Fijo</b></h6></th>
-                          <th class="text-center"><h6><b>Email</b></h6></th>
-                          <th class="text-center"><h6><b>Usuario Sistema</b></h6></th>
-                          <th class="text-center"><h6><b>Estado</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Nit</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Nombre Empresa</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Contacto</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Número Fijo</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Email</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Usuario Sistema</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Estado</b></h6></th>
                         </tr>
 
                              <tbody  ng-repeat="Usuario in Usuarios">
@@ -941,7 +941,7 @@
                 </div><!-- /.box-body -->
                 <div ng-show="Show50" class="box-body table-responsive no-padding">
                     <table class="table table-bordered">
-                        <tr  style="background-color:#676565;color:#ddd;">
+                        <tr class="encabezadotabla">
                           <th class="text-center" style="width:20%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
                           <th class="text-center"><h6><b>Modalidades Diligenciadas</b></h6></th>
 
