@@ -252,7 +252,17 @@
                   <!--comienza Modalidad Bodegaje -->
                   <div class="" style="padding: 10px;">
                     <div class="box-header">
-                      <div class="row">
+                      <div class="row" ng-show="Show1">
+                         <div class="row">
+                          <div class="col-md-12">
+                            <div class="pull-right">
+                              <div class="col-md-12 file-input">
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadBodegaje();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
                         <div class="col-md-12">
                           <div class="menu-accordion">
                             <div class="contenedor-accordion">
@@ -348,7 +358,7 @@
                           <div class="col-md-12">
                             <div class="pull-right">
                               <div class="col-md-12 file-input">
-                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidad();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadAduana();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
                               </div>
                             </div>
                           </div>
@@ -395,7 +405,7 @@
                           <div class="col-md-12">
                             <div class="pull-right">
                               <div class="col-md-12 file-input">
-                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelAduana();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadOTM();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
                               </div>
                             </div>
                           </div>
@@ -429,7 +439,7 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 20$ expreso</b></h6> </th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 40$ expreso</b></h6> </th>
                               </tr>
-                              <tr ng-repeat="Otm in ModalidadTodasOTM">
+                              <tr ng-repeat="Otm in ModalidadTodasOtm">
                                 <td>{{Otm.Email}}</td>
                                 <td>{{Otm.Origen}}</td>
                                 <td>{{Otm.Destino}}</td>
@@ -464,7 +474,7 @@
                           <div class="col-md-12">
                             <div class="pull-right">
                               <div class="col-md-12 file-input">
-                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelAduana();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadMaritFCL();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
                               </div>
                             </div>
                           </div>
@@ -513,6 +523,16 @@
                         </div>
                       </div>
                       <div class="row" ng-show="Show5">
+                       <div class="row">
+                          <div class="col-md-12">
+                            <div class="pull-right">
+                              <div class="col-md-12 file-input">
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadMaritLCL();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
                         <div class="col-md-12">
                           <div class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style=" table-layout: fixed;">
@@ -546,12 +566,22 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row" ng-show="Show6">
                         <div class="col-md-12">
+                           <div class="row">
+                          <div class="col-md-12">
+                            <div class="pull-right">
+                              <div class="col-md-12 file-input">
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadTerrestreNacional();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
                           <div class="menu-accordion">
                             <div class="contenedor-accordion">
                               <!-- Áreas -->
-                              <div class="accordion-group" ng-show="Show6">
+                              <div class="accordion-group">
                                 <!-- Área -->
                                 <div class="accordion-heading recuadro">
                                   <a class="accordion-toggle" data-toggle="collapse" href="#tNacionalTurbo"><h5><i class="fa fa-list" aria-hidden="true"></i> Turbo</h5></a>
@@ -645,12 +675,22 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-show="Show9">
                           <div class="col-md-12">
+                             <div class="row">
+                          <div class="col-md-12">
+                            <div class="pull-right">
+                              <div class="col-md-12 file-input">
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadTerrestreUrbano();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
                             <div class="menu-accordion">
                               <div class="contenedor-accordion">
                                 <!-- Áreas -->
-                                <div class="accordion-group" ng-show="Show9">
+                                <div class="accordion-group">
                                   <!-- Área -->
                                   <div class="accordion-heading recuadro">
                                     <a class="accordion-toggle" data-toggle="collapse" href="#tUrbanoDia"><h5><i class="fa fa-list" aria-hidden="true"></i> Urbano Día</h5></a>
@@ -762,12 +802,22 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="row">
+                            <div class="row" ng-show="Show12">
                               <div class="col-md-12">
-                                <div class="menu-accordion">
+                                 <div class="row">
+                          <div class="col-md-12">
+                            <div class="pull-right">
+                              <div class="col-md-12 file-input">
+                                <button title="Descarga plantilla de excel de ésta modalidad" class="btn btn-green" ng-click="ExportarExcelModalidadAerea();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                             <div class="menu-accordion">
                                   <div class="contenedor-accordion">
                                     <!-- Áreas -->
-                                    <div class="accordion-group"  ng-show="Show12">
+                                    <div class="accordion-group">
                                       <!-- Área -->
                                       <div class="accordion-heading recuadro">
                                         <a class="accordion-toggle" data-toggle="collapse" href="#ACarguero"><h5><i class="fa fa-list" aria-hidden="true"></i> Carguero</h5></a>

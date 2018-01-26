@@ -1615,9 +1615,24 @@ app.post('/GetConsolidadoDatos', function (req, res) {
 
 });
 
+/*app.use( bodyParser.json({limit: '50mb'}) );
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit:500000000
+}));*/
+
+
+app.use(bodyParser.json({limit: '20mb'}));
+app.use(bodyParser.urlencoded({limit: '20mb', extended: true}));
 
 app.post('/ExportarExcelModalidad', function (req, res) {
 
+   var NombreModalidad = req.body.Modalidad;
+   var Modalidad = req.body.ModalidadesProveedor;
+   console.log(Modalidad);
+   var Data={};
+ 
     // Require library
     var xl = require('excel4node');
 
@@ -1625,7 +1640,170 @@ app.post('/ExportarExcelModalidad', function (req, res) {
     var wb = new xl.Workbook();
 
     // Add Worksheets to the workbook
-    var ws2 = wb.addWorksheet('Aduanas');
+    if (NombreModalidad == 'Aduanas') { var ws2 = wb.addWorksheet('Aduanas');}   
+    if (NombreModalidad=='OTM'){var ws2 = wb.addWorksheet('OTM');}
+    if (NombreModalidad=='MaritimasFCL'){var ws2 = wb.addWorksheet('MaritFCL');}
+    if (NombreModalidad=='MaritimasLCL'){var ws2 = wb.addWorksheet('MaritLCL');}
+
+    // Create a reusable style
+    var style1 = wb.createStyle({
+        font: {
+            color: '#000000',
+            size: 14
+        },
+
+        //numberFormat: '#,##0.00; (#,##0.00); -',
+        numberFormat: '#,##0.00',
+        
+    });  
+
+     var style = wb.createStyle({
+        font: {
+            color: '#000000',
+            size: 12
+        },
+
+        //numberFormat: '0,00.00; (0,000.00); -',
+         numberFormat: '#,##0.00',
+    });  
+
+          var fila = 1;
+          var filabody = 1;
+           var col = 1;    
+
+              
+             Modalidad.forEach(function(modalid) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(modalid);              
+              // Recorre cada encabezado
+              if (fila == 1){               
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
+                    header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto')
+                {        
+                  if (header =='Email'){
+                    ws2.cell(1, 1).string(header).style(style1);
+                      console.log(header);
+                  }
+                  else {
+                    console.log(header);
+                  col = col + 1;
+                  ws2.cell(1, col).string(header).style(style1);
+                  }
+                  }                  
+                });
+              }
+              // Recorre cada registro
+              else {
+                 Encabezados.forEach(function(header) {
+                    var valor = '';
+                    var myProp = '_id';
+                     var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
+                    //console.log(body);
+                     //console.log(body);
+                if (header !='_id' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
+                    header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto')
+                {      
+                console.log(modalid[header]);
+                    if (modalid[header] == null || modalid[header] == 'undefined' ) {
+                            valor =parseFloat(0.00);
+                            col = col + 1;
+                           ws2.cell(fila,col).number(valor).style(style);
+                    }
+                    else
+                    { 
+                       if (pattern.test(modalid[header])){                         
+                             valor = parseFloat(modalid[header]); 
+                           col = col + 1;
+                          ws2.cell(fila,col).number(valor).style(style);
+                       }
+                       else
+                       { 
+                         if (header =='Email')
+                         {
+                            valor = modalid[header].toString();
+                            ws2.cell(fila,1).string(valor).style(style);
+                         }
+                          else 
+                         {
+                           valor = modalid[header].toString();
+                            col = col + 1;
+                            ws2.cell(fila,col).string(valor).style(style);
+                         }
+                       }
+                    } 
+                   // 
+                }
+               
+               });
+                  }
+            
+              // Aumenta la fila
+              fila++ 
+              filabody++    
+              col=1;
+            });
+
+    
+
+        wb.writeToBuffer().then(function (buffer) {
+          Data.ExcelBase64 = buffer.toString('base64');
+          res.end(JSON.stringify(Data));
+       
+        });
+
+           
+
+            
+console.log('Si va');
+    //wb.write('Aduana.xlsx', res);
+        
+  });
+
+app.post('/ExportarExcelModalidadVarios', function (req, res) {
+
+
+   var NombreModalidad = req.body.Modalidad;
+   var Modalidad1 = req.body.ModalidadesProveedor1;
+   var Modalidad2 = req.body.ModalidadesProveedor2;
+   var Modalidad3 = req.body.ModalidadesProveedor3;
+   
+   var Data={};
+ 
+    // Require library
+    var xl = require('excel4node');
+
+    // Create a new instance of a Workbook class
+    var wb = new xl.Workbook();
+
+    // Add Worksheets to the workbook
+    if (NombreModalidad == 'Bodegajes') 
+        { 
+            var ws2 = wb.addWorksheet('Aduanero');
+            var ws3 = wb.addWorksheet('Maquinaria');
+            var ws4 = wb.addWorksheet('MateriaPrima');
+        } 
+
+     if (NombreModalidad == 'Terrestre Nacional') 
+        { 
+            var ws2 = wb.addWorksheet('Turbo');
+            var ws3 = wb.addWorksheet('Sencillo');
+            var ws4 = wb.addWorksheet('Patineta');
+        }   
+
+     if (NombreModalidad == 'Terrestre Urbano') 
+        { 
+            var ws2 = wb.addWorksheet('Urbano');
+            var ws3 = wb.addWorksheet('Viaje');
+            var ws4 = wb.addWorksheet('Tonelada');
+        }   
+   
 
     // Create a reusable style
     var style = wb.createStyle({
@@ -1634,65 +1812,263 @@ app.post('/ExportarExcelModalidad', function (req, res) {
             size: 12
         },
 
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        numberFormat: '#,##0.00; (#,##0.00); -',
         
-    });
+    });  
 
-    // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
-    ///////////////Aduana///////////////////////////////
-
-     
-          var Aduana = req.body.ModalidadesProveedor;
-          console.log(Aduana);
-          var arrayExcelEjemplo = [];
           var fila = 1;
-           var col = 0    
+           var col = 1;  
+
+           ////////////////////////////Primera Hoja////////////////////////////////  
 
               
-             Aduana.forEach(function(aduana) {
+             Modalidad1.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
-              var Encabezados = Object.keys(aduana);
-              
+              var Encabezados = Object.keys(modalid);              
               // Recorre cada encabezado
               if (fila == 1){               
                 Encabezados.forEach(function(header) {
+                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' &&  header !='AduC2045Pintada' && header !='AduC8Pintada' &&
+                    header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada')
+                 
+                {        
+                  if (header =='Email'){
+                    ws2.cell(1, 1).string(header).style(style);
+                  }
+                  else {
+                    console.log(header);
                   col = col + 1;
                   ws2.cell(1, col).string(header).style(style);
-                  console.log(header);
+                  }
+                  }                  
                 });
               }
               // Recorre cada registro
-              if (fila == 2){
-                Encabezados.forEach(function(body) {
-                    var valor = '0';
+              //if (fila == 2){
+             else{
+               Encabezados.forEach(function(body) {
+                    var valor = '';
                     var myProp = '_id';
-                    console.log(body);
-                            
-                    if (aduana[body] != null){
-                      valor = aduana[body].toString();
+                     var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
+                    //console.log(body);
+                     //console.log(body);
+
+                if (body !='_id' && body !='AdutarifaPintada' && body !='AdutarifaminPintada' && body !='AdutarifaotroPintada' &&  body !='AduC2045Pintada' && body !='AduC8Pintada' &&
+                    body !='AduC2010Pintada' && body !='AduC2017Pintada' && body !='AduC2019Pintada' && body !='AduC2020Pintada' &&
+                    body !='AduC2021Pintada' && body !='AduC2025Pintada' && body !='AduC4015Pintada' && body !='AduC4016Pintada' && body !='AduC4017Pintada' && body !='AduC401718Pintada' && body !='AduC4020Pintada' &&
+                    body !='AduC4021Pintada')
+                 
+                {  
+                    if (modalid[body] == null) {
+                            valor =parseFloat(0.00);
+                            col = col + 1;
+                           ws2.cell(fila,col).number(valor).style(style);
                     }
-                    else {
-                        valor = '0'
-                    }  
-                   col = col + 1;
-                   ws2.cell(fila,col ).string(valor).style(style);
-              
-                  //console.log(fila);
-                  //console.log(col);
-                  });
+                    else
+                    {
+                       if (pattern.test(modalid[body])) {
+                          valor = parseFloat(modalid[body]);
+                           col = col + 1;
+                          ws2.cell(fila,col).number(valor).style(style);
+                       }
+                       else
+                       { 
+                         if (body =='Email')
+                         {
+                            valor = modalid[body].toString();
+                            ws2.cell(fila,1).string(valor).style(style);
+                         }
+                          else 
+                         {
+                           valor = modalid[body].toString();
+                            col = col + 1;
+                            ws2.cell(fila,col).string(valor).style(style);
+                         }
+                       }
+                    } 
+                   // 
+                }
+                
+               });
               }
               // Aumenta la fila
               fila++    
-              col=0;
+              col=1;
             });
+
+
+          ////////////////////////////Segunda Hoja////////////////////////////////  
+
+              fila=1;
+              col=1;
+             Modalidad2.forEach(function(modalid) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(modalid);              
+              // Recorre cada encabezado
+              if (fila == 1){               
+                Encabezados.forEach(function(header) {
+                 if ( header !='_id' && header !='AdumaqtPintada' && header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' &&   header !='AduC2010Pintada' && header !='AduC2017Pintada' &&
+                      header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
+                      header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                      header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
+                      header !='AduC4021PPintada')
+                {        
+                  if (header =='Email'){
+                    ws3.cell(1, 1).string(header).style(style);
+                  }
+                  else {
+                    console.log(header);
+                  col = col + 1;
+                  ws3.cell(1, col).string(header).style(style);
+                  }
+                  }                  
+                });
+              }
+              // Recorre cada registro
+              //if (fila == 2){
+             else{
+               Encabezados.forEach(function(body) {
+                    var valor = '';
+                    var myProp = '_id';
+                     var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
+                    //console.log(body);
+                     //console.log(body);
+
+                if (body !='_id' && body !='AdumaqtPintada' && body !='AdumaqtminPintada' && body !='AdumaqtfmmPintada' &&   body !='AduC2010Pintada' && body !='AduC2017Pintada' &&
+                    body !='AduC2021vPintada' && body !='AduC2025vPintada' && body !='AduC4015vPintada' && body !='AduC4016vPintada' && body !='AduC4017vPintada' && body !='AduC401718vPintada' &&
+                    body !='AduC2045PPintada' && body !='AduC8PPintada' && body !='AduC2010PPintada' && body !='AduC2017PPintada' && body !='AduC2019PPintada' && body !='AduC2020PPintada' && 
+                    body !='AduC2021PPintada' && body !='AduC2025PPintada' && body !='AduC4015PPintada' && body !='AduC4016PPintada' && body !='AduC4017PPintada' && body !='AduC401718PPintada' && body !='AduC4020PPintada' &&
+                    body !='AduC4021PPintada')
+                 
+                {  
+                    if (modalid[body] == null) {
+                            valor =parseFloat(0.00);
+                            col = col + 1;
+                           ws3.cell(fila,col).number(valor).style(style);
+                    }
+                    else
+                    {
+                       if (pattern.test(modalid[body])) {
+                          valor = parseFloat(modalid[body]);
+                           col = col + 1;
+                          ws3.cell(fila,col).number(valor).style(style);
+                       }
+                       else
+                       { 
+                         if (body =='Email')
+                         {
+                            valor = modalid[body].toString();
+                            ws3.cell(fila,1).string(valor).style(style);
+                         }
+                          else 
+                         {
+                           valor = modalid[body].toString();
+                            col = col + 1;
+                            ws3.cell(fila,col).string(valor).style(style);
+                         }
+                       }
+                    } 
+                   // 
+                }
+                
+               });
+              }
+              // Aumenta la fila
+              fila++    
+              col=1;
+            });
+
+
+             if (NombreModalidad !='Aereas')
+             {
+
+              ////////////////////////////Tercera Hoja////////////////////////////////  
+
+             fila=1;
+              col=1; 
+             Modalidad3.forEach(function(modalid) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(modalid);              
+              // Recorre cada encabezado
+              if (fila == 1){               
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada' &&   header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
+                     header !='AduC4020Pintada' && header !='AduC4021Pintada' && header !='AduC4022Pintada')
+                {        
+                  if (header =='Email'){
+                    ws4.cell(1, 1).string(header).style(style);
+                  }
+                  else {
+                    console.log(header);
+                  col = col + 1;
+                  ws4.cell(1, col).string(header).style(style);
+                  }
+                  }                  
+                });
+              }
+              // Recorre cada registro
+              //if (fila == 2){
+             else{
+               Encabezados.forEach(function(body) {
+                    var valor = '';
+                    var myProp = '_id';
+                     var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
+                    //console.log(body);
+                     //console.log(body);
+
+                if (body !='_id' && body !='AdumaqpPintada' && body !='AdumaqpminPintada' && body !='AdumaqpfmmPintada' &&   body !='AduC2019Pintada' && body !='AduC2020Pintada' &&
+                    body !='AduC4020Pintada' && body !='AduC4021Pintada' && body !='AduC4022Pintada')
+                 
+                {  
+                    if (modalid[body] == null) {
+                            valor =parseFloat(0.00);
+                            col = col + 1;
+                           ws4.cell(fila,col).number(valor).style(style);
+                    }
+                    else
+                    {
+                       if (pattern.test(modalid[body])) {
+                          valor = parseFloat(modalid[body]);
+                           col = col + 1;
+                          ws4.cell(fila,col).number(valor).style(style);
+                       }
+                       else
+                       { 
+                         if (body =='Email')
+                         {
+                            valor = modalid[body].toString();
+                            ws4.cell(fila,1).string(valor).style(style);
+                         }
+                          else 
+                         {
+                           valor = modalid[body].toString();
+                            col = col + 1;
+                            ws4.cell(fila,col).string(valor).style(style);
+                         }
+                       }
+                    } 
+                   // 
+                }
+                
+               });
+              }
+              // Aumenta la fila
+              fila++    
+              col=1;
+            });
+         }
 
     
 
         wb.writeToBuffer().then(function (buffer) {
-          var Data = {};
           Data.ExcelBase64 = buffer.toString('base64');
           res.end(JSON.stringify(Data));
+       
         });
+
+           
 
             
 console.log('Si va');

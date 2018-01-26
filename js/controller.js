@@ -1141,6 +1141,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  });
                          var exceljson = JSON.stringify(result, 2, 2);
                          var data = angular.fromJson(exceljson);
+                         console.log(data);
                  ////////////////////////////Bodegajes_Aduanero ////////////////////////////////////////////
                       if($scope.ModalidadesMostrarActual=='Bodegajes'){
                           angular.forEach(data.Aduanero, function(aduanero) {
@@ -5158,7 +5159,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         })
 
         .controller('ctrlProveedor', ['$scope', '$http', '$loading', '$uibModal',  function ($scope, $http, $loading, $uibModal) {
-
+         
           // Llama a HTML Modal que permite cambiar passwor de la app
           $scope.ActiveUserModal = {};
           $scope.openChangePassword = function (size, parentSelector) {
@@ -5197,6 +5198,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   alert(response.statusText);
               });
           }
+
+
 
          var editform= 0;
 
@@ -5584,7 +5587,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                   $scope.GetConsolidadoDatos = function () {
                     var Data={};
-                    var ModalidadTodas = [];                    
+                    var ModalidadTodas = [];   
+                    var ModalidadTodasOtm = [];                   
                     var ModalidadTodasT = [];
                     var ModalidadTodasTurbo = [];
                     var ModalidadTodasSencillo = [];
@@ -5661,7 +5665,20 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     var ModalidadTodasRespaldoOTM=[];
                     var ModalidadTodasRespaldo=[];
                     var ModalidadTodasRespaldoAD=[];
-                    var ModalidadTodasRespaldo=[];
+                    var ModalidadTodasRespaldoExcel=[];
+                    var ModalidadTodasRespaldoTNExcelExcel=[];
+                    var ModalidadTodasRespaldoTNSExcel=[];
+                    var ModalidadTodasRespaldoTNPExcel=[];
+                    var ModalidadTodasRespaldoTUExcel=[];
+                    var ModalidadTodasRespaldoTUVExcel=[];
+                    var ModalidadTodasRespaldoTUTExcel=[];
+                    var ModalidadTodasRespaldoAAExcel=[];
+                    var ModalidadTodasRespaldoAPExcel=[];
+                    var ModalidadTodasRespaldoOTMExcel=[];
+                    var ModalidadTodasRespaldoExcel=[];
+                    var ModalidadTodasRespaldoADExcel=[];
+                    var ModalidadTodasRespaldoExcel=[];
+
 
                     var Unobjeto={};
 
@@ -5672,9 +5689,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     headers: { 'Content-Type': 'application/json' },
                     data: Data
                 }).then(function successCallback(response) {
-                    $loading.finish('myloading');
+                    
                     $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
+                    ModalidadTodasRespaldoOTMExcel = response.data.ConsolidadoDatos;
                     console.log($scope.ConsolidadoDatos);
+                    console.log(ModalidadTodasRespaldoOTMExcel);
+
 
                      if (ModalidadConsolidado == 'Bodegajes') {
                       console.log('paso por aqui bodegajes');
@@ -5712,21 +5732,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjeto.Otros = ModalidadDeUnProveedor.Otros;
                           Unobjeto.Email = consbodegaje.Email;
 
-                          ModalidadTodasBodegajeaduanero.push({TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros,Email:Unobjeto.Email});
+                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
                           
-                          ModalidadTodasconOrdenBodegajeaduanero=parseFloat(ModalidadTodasBodegajeaduanero);
-                          ModalidadTodasconOrdenBodegajeaduaneromaq=parseFloat(ModalidadTodasBodegajeaduanero);
+
+                          //ModalidadTodasconOrdenBodegajeaduanero=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                          ModalidadTodasconOrdenBodegajeaduanerotv=parseFloat(ModalidadTodasBodegajeaduanero);
+                          ModalidadTodasconOrdenBodegajeaduanerotv=ModalidadTodasBodegajeaduanero;
+                          ModalidadTodasconOrdenBodegajeaduaneromaq=parseFloat(ModalidadTodasBodegajeaduanero);
+                          ModalidadTodasconOrdenBodegajeaduaneromaq=ModalidadTodasBodegajeaduanero;                          
                           ModalidadTodasconOrdenBodegajeaduaneromin=parseFloat(ModalidadTodasBodegajeaduanero); 
-                          ModalidadTodasconOrdenBodegajeaduaneromin=ModalidadTodasBodegajeaduanero;                        
-                          
+                          ModalidadTodasconOrdenBodegajeaduaneromin=ModalidadTodasBodegajeaduanero;
                           ModalidadTodasconOrdenBodegajeaduanerootro=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduanerootro=ModalidadTodasBodegajeaduanero;
 
                          });
 
-                       console.log( ModalidadTodasconOrdenBodegajeaduanero);
+                       console.log( ModalidadTodasconOrdenBodegajeaduanerotv);
                        console.log( ModalidadTodasconOrdenBodegajeaduaneromin);
                        console.log( ModalidadTodasconOrdenBodegajeaduanerootro);
 
@@ -5734,8 +5757,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                  ///////////////////////// tarifa Valor////////////////////
 
-                     ModalidadTodasconOrdenBodegajeaduanero = _.sortBy(ModalidadTodasconOrdenBodegajeaduanero,'TarifaValor');
-                    console.log( ModalidadTodasconOrdenBodegajeaduanero);
+                     ModalidadTodasconOrdenBodegajeaduanerotv = _.sortBy(ModalidadTodasconOrdenBodegajeaduanerotv,'TarifaValor');
+                    console.log( ModalidadTodasconOrdenBodegajeaduanerotv);
                      var cont=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanero.length-1; i++){
                           if (i==0){
@@ -5743,7 +5766,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                           else
                               {
-                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduanero[i].TarifaValor) == parseFloat( ModalidadTodasconOrdenBodegajeaduanero[i-1].TarifaValor))
+                              if(parseFloat( ModalidadTodasconOrdenBodegajeaduanerotv[i].TarifaValor) == parseFloat( ModalidadTodasconOrdenBodegajeaduanerotv[i-1].TarifaValor))
                               {
                                 cont= cont;
                               }
@@ -5755,19 +5778,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         if (cont==1)
                         {
-                               ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = ["label label-success"];
+                               ModalidadTodasconOrdenBodegajeaduanerotv[i].AdutarifaPintada = ["label label-success"];
                         }
                         if (cont==2)
                         {
-                               ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = ["label label-warning"];
+                               ModalidadTodasconOrdenBodegajeaduanerotv[i].AdutarifaPintada = ["label label-warning"];
                         }
                         if (cont==3)
                         {
-                               ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = ["label label-danger"];
+                               ModalidadTodasconOrdenBodegajeaduanerotv[i].AdutarifaPintada = ["label label-danger"];
                         }
                         if (cont>3)
                         {
-                          ModalidadTodasconOrdenBodegajeaduanero[i].AdutarifaPintada = [];
+                          ModalidadTodasconOrdenBodegajeaduanerotv[i].AdutarifaPintada = [];
                         }
                         }
 
@@ -5847,11 +5870,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = [];
                         }
-                        }
-                         
-
-                        ModalidadTodasBodegajeaduanero= _.sortBy(ModalidadTodasconOrdenBodegajeaduanero,'Email');
+                        }          
+                        ModalidadTodasBodegajeaduanero = _.orderBy(ModalidadTodasconOrdenBodegajeaduanero, [ModalidadBodeaduanero => ModalidadBodeaduanero.Email.toLowerCase()], ['asc']);               
+                        console.log(ModalidadTodasBodegajeaduanero);
+                       // ModalidadTodasBodegajeaduanero= _.orderBy(Email,[user => user.name.toLowerCase()], ['desc'])
+                        //ModalidadTodasBodegajeaduanero= _.sortBy(_.sortBy(ModalidadTodasconOrdenBodegajeaduanero,'Email'), (a,b)=>b-a);
                         $scope.ModalidadTodasBodegajeaduanero=ModalidadTodasBodegajeaduanero;
+                        console.log($scope.ModalidadTodasBodegajeaduanero);
 
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -5884,7 +5909,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjetomaqt.TarifaMinima=ModalidadDeUnProveedormaqt.TarifaMinima;
                           Unobjetomaqt.Fmm=ModalidadDeUnProveedormaqt.Fmm;
                           Unobjetomaqt.Email=consbodegajemaqt.Email;
-                        ModalidadTodasBodegajeaduaneromaqt.push({Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm, Email:Unobjetomaqt.Email});
+                        ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
 
                         
                         ModalidadTodasconOrdenBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
@@ -6009,9 +6034,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqtfmmPintada = [];
                         }
                         }
-
-                          ModalidadTodasBodegajeaduaneromaqt= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqt,'Email');
+                          
+                          //ModalidadTodasBodegajeaduaneromaqt= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqt,'Email');
+                          ModalidadTodasBodegajeaduaneromaqt = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqt, [ModalidadBodemaqt => ModalidadBodemaqt.Email.toLowerCase()], ['asc']);    
                           $scope.ModalidadTodasBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
+                          console.log($scope.ModalidadTodasBodegajeaduaneromaqt);
 
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasBodegajeaduaneromaqt;
@@ -6042,7 +6069,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjetomaqp.TarifaMinima=ModalidadDeUnProveedormaqp.TarifaMinima;
                           Unobjetomaqp.Fmm=ModalidadDeUnProveedormaqp.Fmm;
                           Unobjetomaqp.Email=consbodegajemaqp.Email;
-                        ModalidadTodasBodegajeaduaneromaqp.push({Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm, Email:Unobjetomaqp.Email});
+                        ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
 
                         
                         ModalidadTodasconOrdenBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
@@ -6169,7 +6196,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                           ModalidadTodasBodegajeaduaneromaqp= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqp,'Email');
+                           //ModalidadTodasBodegajeaduaneromaqp= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqp,'Email');
+                           ModalidadTodasBodegajeaduaneromaqp = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqp, [ModalidadBodemaqp => ModalidadBodemaqp.Email.toLowerCase()], ['asc']);    
                           $scope.ModalidadTodasBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
                           console.log($scope.ModalidadTodasBodegajeaduaneromaqp);
                           console.log($scope.ModalidadesSemaforo);
@@ -6184,6 +6212,49 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AdumaqpfmmPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
+
+                        $loading.finish('myloading');
+
+
+
+         ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
+
+          $scope.ExportarExcelModalidadBodegaje = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor1=$scope.ModalidadTodasBodegajeaduanero; 
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasBodegajeaduaneromaqt; 
+              Data.ModalidadesProveedor3=$scope.ModalidadTodasBodegajeaduaneromaqp; 
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidadVarios',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "Bodegaje.xlsx");
+              //saveAs(urlbase64, "Report.xls");
+               $loading.finish('myloading');
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
                      }
 
 
@@ -6214,6 +6285,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         var ModalidadTodasconOrden= [];
                         var ModalidadGrupoMaritimo= [];
                         var ModalidadGrupoTerrestre= [];
+
+                        console.log($scope.ConsolidadoDatos);
 
                        angular.forEach($scope.ConsolidadoDatos, function(consaduana) {
                          ModalidadDeUnProveedorAD = consaduana.Aduana.Aduanas
@@ -6752,7 +6825,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                     ModalidadTodas= _.sortBy(ModalidadTodas,'Via','Email');
+                    // ModalidadTodas= _.sortBy(ModalidadTodas,'Via','Email');
+                   // ModalidadTodas = _.orderBy(ModalidadTodas, [Modalidadtoda => (Modalidadtoda.Via.toLowerCase())],[Modalidadtoda => (Modalidadtoda.Email.toLowerCase())],['asc'],['asc']);    
+                    ModalidadTodas= _.orderBy(ModalidadTodas, ['Via','Email'], ['asc', 'asc']);
                      console.log(ModalidadTodas);
                        ModalidadTodasRespaldoAD = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
@@ -6770,11 +6845,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.ModalidadesSemaforo == false);
                 });
                 console.log($scope.ModalidadTodas);
+                 $loading.finish('myloading');
 
           ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
 
-                 function downloadURI(uri, name) {
+            function downloadURI(uri, name) {
             var link = document.createElement("a");
             link.download = name;
             link.href = uri;
@@ -6782,29 +6858,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             link.click();
             document.body.removeChild(link);
             delete link;
-          }
+          }        
 
-             $scope.ExportarExcelModalidad = function () {
+          $scope.ExportarExcelModalidadAduana = function () {            
 
-              angular.forEach($scope.ModalidadTodas, function(aduanaexcel) {
-                var varid=aduanaexcel._id;
-                console.log(varid);
-                if (varid != 'undefined')
-                { 
-                  console.log('pasa por aqui varid valor');
-                  var removeItemFromArr = ( aduanaexcel, _id ) => {
-                    console.log('pasa por aqui eliminar3');
-                  var i = aduanaexcel.indexOf( _id );
-                  console.log(i);
-                  i !== -1 && aduanaexcel.splice( i, 1 );
-                  console.log(aduanaexcel);
-                  };
-                
-                }
-               });
-
-            var Data = {};
-          Data.ModalidadesProveedor=$scope.ModalidadTodas;            //Data.ModalidadesProveedor.splice(x,1)
+              Data = {};            
+              Data.ModalidadesProveedor=$scope.ModalidadTodas; 
+              Data.Modalidad=ModalidadConsolidado;
            
             $loading.start('myloading');
             $http({
@@ -6814,15 +6874,17 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
-              downloadURI(urlbase64, "helloWorld.xlsx");
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "Aduana.xlsx");
+               $loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
                 alert(response.statusText);
             });
           }
-        }
+
+                   }
 
 
           ///////////////////////////////////////////////////OTM///////////////////////////////////////////////////
@@ -6845,36 +6907,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show13=false;
 
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) {
-                         ModalidadDeUnProveedor = consotm.Otm.Otms
-                            angular.forEach(ModalidadDeUnProveedor, function(consotmprov) {
+                        console.log($scope.ConsolidadoDatos);
+                        console.log(consotm);
+                         ModalidadDeUnProveedorOTM = consotm.Otm.Otms
+                            angular.forEach(ModalidadDeUnProveedorOTM, function(consotmprov) {
                               consotmprov.Email = consotm.Email
-                              ModalidadTodas.push(consotmprov);
-                              ModalidadTodasconOrden = ModalidadTodas;
-                              ModalidadTodasconOrdenMinima = ModalidadTodas;
-                              ModalidadTodasconOrdenGA = ModalidadTodas;
-                              ModalidadTodasconOrdenGAII = ModalidadTodas;
-                              ModalidadTodasconOrdenGAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCA = ModalidadTodas;
-                              ModalidadTodasconOrdenCAII = ModalidadTodas;
-                              ModalidadTodasconOrdenCAIII = ModalidadTodas;
-                              ModalidadTodasconOrdenCPC = ModalidadTodas;
-                              ModalidadTodasconOrdenotros = ModalidadTodas;
-                              ModalidadTodasconOrdenC4017 = ModalidadTodas;
-                              ModalidadTodasconOrdenC401718 = ModalidadTodas;
-                              ModalidadTodasconOrdenC4020 = ModalidadTodas;
-                              ModalidadTodasconOrdenC4021 = ModalidadTodas;
-                              ModalidadTodasconOrdenC4022 = ModalidadTodas;
-                              ModalidadTodasconOrdenC4030 = ModalidadTodas;
-                              ModalidadTodasconOrdenC20EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC40EST = ModalidadTodas;
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodas;
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodas;
+                              ModalidadTodasOtm.push(consotmprov);
+                              console.log(ModalidadTodasOtm);
+                              ModalidadTodasconOrden = ModalidadTodasOtm;                              
+                              ModalidadTodasconOrdenMinima = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenGA = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenGAII = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenCA = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenCAII = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenCPC = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenotros = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC401718 = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC4021 = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasOtm;  
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasOtm;  
 
                             });
                         });
 
-                        ModalidadTodas = _.sortBy(ModalidadTodas, 'Destino','Origen');
-                         console.log(ModalidadTodas);
+                        ModalidadTodasOtm = _.sortBy(ModalidadTodasOtm, 'Destino','Origen');                        
+                         console.log(ModalidadTodasOtm);
 
                          ////////  Campo ["C 20 hasta 4-5 Ton"] //////////////////////////
 
@@ -7874,14 +7939,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
                         }
                         }
-                           var ModalidadTodasOTM=[];
-                           ModalidadTodasOTM= _.sortBy(ModalidadTodas,'Destino','Origen','Email');
+                           
+                           ModalidadTodasOtm= _.sortBy(ModalidadTodasOtm,'Destino','Origen','Email');
 
               /////////////////////////////////Filtro////////////////////////////////
-                       ModalidadTodasRespaldo = ModalidadTodasOTM;
-                       $scope.ModalidadTodasOTM= ModalidadTodasOTM;
+                       ModalidadTodasRespaldoExcel = ModalidadTodasOtm;
+                       ModalidadTodasRespaldo = ModalidadTodasOtm;
+                       $scope.ModalidadTodasOtm= ModalidadTodasOtm;
 
-                       $scope.ModalidadTodasOTM = ModalidadTodasRespaldo.filter(function (el) {
+                       $scope.ModalidadTodasOtm = ModalidadTodasRespaldo.filter(function (el) {
                          return (
                                 el.AduC2045Pintada.length > 0 ||
                                 el.AduC8Pintada.length > 0 ||
@@ -7899,14 +7965,53 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC401718Pintada.length > 0 ||
                                 el.AduC4020Pintada.length > 0 ||
                                 el.AduC4021Pintada.length > 0 ||
-                                el.AduC4020Pintada.length > 0 ||
+                                el.AduC4022Pintada.length > 0 ||
                                 el.AduC4030Pintada.length > 0 ||
+                                el.AduC20ESTPintada.length > 0 ||
+                                el.AduC40ESTPintada.length > 0 ||
+                                el.AduC20ESPPintada.length > 0 ||
+                                el.AduC40ESPPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
-                console.log($scope.ModalidadTodas);
+                console.log($scope.ModalidadTodasOtm);
+                 $loading.finish('myloading');
 
+                 ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
 
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
 
+          $scope.ExportarExcelModalidadOTM = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor=$scope.ModalidadTodasOtm; 
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidad',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "OTM.xlsx");
+               $loading.finish('myloading');
+              //saveAs(urlbase64, "Report.xls");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
                }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8536,6 +8641,44 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
+                 $loading.finish('myloading');
+
+                           ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
+
+          $scope.ExportarExcelModalidadMaritFCL = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor=$scope.ModalidadTodas; 
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidad',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "MaritimasFCL.xlsx");
+               $loading.finish('myloading');
+              //saveAs(urlbase64, "Report.xls");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
 
                    }
 
@@ -8958,6 +9101,44 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
+                 $loading.finish('myloading');
+
+                                        ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
+
+          $scope.ExportarExcelModalidadMaritLCL = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor=$scope.ModalidadTodas; 
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidad',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "MaritimasLCL.xlsx");
+               $loading.finish('myloading');
+              //saveAs(urlbase64, "Report.xls");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
 
                    }
 
@@ -9441,6 +9622,46 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AduC2020Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
+                         $loading.finish('myloading');
+
+           ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
+
+          $scope.ExportarExcelModalidadTerrestreNacional = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor1=$scope.ModalidadTodasTerreNacionalTurbo; 
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreNacionalSencillo; 
+              Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreNacionalPatineta; 
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidadVarios',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "TerrestreNacional.xlsx");
+               $loading.finish('myloading');
+              //saveAs(urlbase64, "Report.xls");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
 
 
                     }
@@ -10376,6 +10597,46 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AduC4022Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
+                         $loading.finish('myloading');
+
+                             ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
+
+          $scope.ExportarExcelModalidadTerrestreUrbano = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor1=$scope.ModalidadTodasTerreUrbano; 
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreUrbanoViaje; 
+              Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreUrbanoTonelada; 
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidadVarios',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "TerrestreUrbano.xlsx");
+               $loading.finish('myloading');
+              //saveAs(urlbase64, "Report.xls");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
 
                     }
 
@@ -11904,6 +12165,46 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC4021PPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
+                        $loading.finish('myloading');
+
+           ///////////////////////////Crea plantilla para exportar a excel ////////////////
+          //////////////////////////////////////Exportar a Excel////////////////////////////////////////
+
+            function downloadURI(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+          }
+
+          $scope.ExportarExcelModalidadAerea = function () {            
+
+              Data = {};            
+              Data.ModalidadesProveedor1=$scope.ModalidadTodasAerea; 
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasAereaPasajero;             
+              Data.Modalidad=ModalidadConsolidado;
+           
+            $loading.start('myloading');
+            $http({
+                method: 'POST',
+                url: '/ExportarExcelModalidadVarios',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+               console.log(response.data.ExcelBase64);
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+              downloadURI(urlbase64, "Aerea.xlsx");
+               $loading.finish('myloading');
+              //saveAs(urlbase64, "Report.xls");
+
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
+
                
              }
 
