@@ -100,6 +100,19 @@
                   <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
                 </a>
               </li>
+              <li class="dropdown" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  <span>Licitación</span>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="active"><a href="Seleccionar_proveedor.html">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <span>Seleccionar Proveedores</span>
+                  </a></li>
+                </ul>
+              </li>
               <li >
                 <a href="usuarios.html">
                   <i class="fa fa-id-card" ></i>
@@ -117,12 +130,7 @@
                   <li><a href="requisitos.html"><i class="fa fa-angle-double-right"></i>Administrar Requisitos</a></li>
                 </ul>
               </li>
-              <li  class="active">
-                <a href="consolidacion_datos.html">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  <span>Seleccionar Proveedores</span>
-                </a>
-              </li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
@@ -163,34 +171,37 @@
                       <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
                         <div class="col-md-4">
                           <div class="form-group">
-                            <label>Modalidad:</label>
+                            <label>Modalidad</label>
                             <select class="form-control" id="sel1"
                             ng-model="selectedModalidadSelecProveedor" ng-change="GetSeleccionarProveedor();"
                             ng-options="ModalidadSelecProveedor as ModalidadSelecProveedor.Name for ModalidadSelecProveedor in ModalidadesSelecProveedor"></select>
                           </div>
-                        </div>                       
+                        </div>
                       </div>
                       <br><br>
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 ">
                           <div  class="box-body table-responsive no-padding">
-                            <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
-                              <tr>
-                                <tr>
-                                  <th class="text-center"><h6><b></b></h6></th>
-                                  <th class="text-center"><h6><b>Proveedor</b></h6></th>
+                            <table class="table table-bordered">
+                                <tr  class="encabezadotabla">
+                                  <th class="text-center" style="width:5%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                 </tr>
                                 <tr ng-repeat="LicitacionModaProveedor in LicitacionModaProveedores">
-                                  <td><input ng-change="ProveedorSeleccionado(LicitacionModaProveedor.Email);" ng-model="LicitacionModaProveedor.Seleccionado" type="checkbox" ng-true-value="true"  ng-false-value="false"></td>
-                                  <td>{{LicitacionModaProveedor.Email}}</td>                                 
+                                  <td class="text-center"><input ng-change="ProveedorSeleccionado(LicitacionModaProveedor.Email);" ng-model="LicitacionModaProveedor.Seleccionado" type="checkbox" ng-true-value="true"  ng-false-value="false"></td>
+                                  <td >{{LicitacionModaProveedor.Email}}</td>
                                 </tr>
                               </table>
                             </div><!-- /.box-body -->
                           </div>
-                      </div>                      
+                            <div class="col-md-3"></div>
+                      </div>
+                      <br><br>
                             </div><!-- /.box -->
                           </div><!-- /.col (MAIN) -->
                         </div>
+
                       </div><!-- /.box -->
                     </div><!-- /.col (MAIN) -->
                   </div>
