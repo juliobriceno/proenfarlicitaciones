@@ -5198,15 +5198,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   alert(response.statusText);
               });
           }
-
-
-
-         var editform= 0;
-
-         $scope.Usuario={};
-         var VistaName='';
-         var label="Consolidado Datos";
-
+        
          $scope.Show30 = true;
          $scope.Show40 = false;
          $scope.Show50 = false;
@@ -5230,353 +5222,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show11=false;
                         $scope.Show12=false;
                         $scope.Show13=false;
-         $scope.Showf1 = function () {
-          VistaName = '';
-           $scope.Show30 = true;
-           $scope.Show40 = false;
-           $scope.Show50 = false;
-           $scope.Show60=false;                    
-           $scope.Show70 = true;
-           $scope.Show80 = true;
-           $scope.Show90 = false;
-            //$scope.Show100 = false;
-           $scope.Show1=true;
-            $scope.Show20=true;
-            $scope.Show111=true;
-            $scope.Show2=false;
-            $scope.Show3=false;
-            $scope.Show4=false;
-            $scope.Show5=false;
-
-            $scope.Show6=false;
-            $scope.Show7=false;
-            $scope.Show8=false;
-            $scope.Show9=false;
-            $scope.Show10=false;
-            $scope.Show11=false;
-            $scope.Show12=false;
-            $scope.Show13=false;
-            $scope.GetConsolidadoDatos();
-
-         };
-         $scope.Showf2 = function () {
-          VistaName='';
-           $scope.Show30 = false;
-           $scope.Show40 = true;
-           $scope.Show50 = false;
-           $scope.Show60=true;                   
-           $scope.Show70 = false;
-           $scope.Show80 = false;
-           $scope.Show90 = true;
-            //$scope.Show100 = false;
-            $scope.Show1=false;
-            $scope.Show20=false;
-            $scope.Show111=false;
-            $scope.Show2=false;
-            $scope.Show3=false;
-            $scope.Show4=false;
-            $scope.Show5=false;
-
-            $scope.Show6=false;
-            $scope.Show7=false;
-            $scope.Show8=false;
-            $scope.Show9=false;
-            $scope.Show10=false;
-            $scope.Show11=false;
-            $scope.Show12=false;
-            $scope.Show13=false;
-         };
-         $scope.Showf3 = function () {
-          VistaName = 'DatosProveedor';
-           $scope.Show30 = false;
-           $scope.Show40 = false;
-           $scope.Show50 = true;
-           $scope.Show60=false;
-           $scope.Show70 = false;
-           $scope.Show80 = false;
-           $scope.Show90 = true;
-           //$scope.Show100 = true;
-            $scope.Show1=false;
-            $scope.Show20=false;
-            $scope.Show111=false;
-            $scope.Show2=false;
-            $scope.Show3=false;
-            $scope.Show4=false;
-            $scope.Show5=false;
-            $scope.Show6=false;
-            $scope.Show7=false;
-            $scope.Show8=false;
-            $scope.Show9=false;
-            $scope.Show10=false;
-            $scope.Show11=false;
-            $scope.Show12=false;
-            $scope.Show13=false;
-            $scope.GetProveedoresModalidadesName();
-         };
-
-         // Variables de selectores
-         $scope.UsuarioSel = {};
-
-            $scope.filterProveedores = function(){
-
-           $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
-           console.log($scope.UsuarioSel.selected.Name);
-           
-           if (VistaName=='DatosProveedor')
-           {
-              $scope.GetProveedorModalidadName();
-           }
-         } 
-
-         // Modalidades para el filtro
-         $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
-
-         $scope.GetUsuariosProveedor = function () {
-           var Data = {};
-           $loading.start('myloading');
-           // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
-           Data.Email = localStorage.User
-           $http({
-               method: 'POST',
-               url: '/GetUsuarioProveedor',
-               headers: { 'Content-Type': 'application/json' },
-               data: Data
-           }).then(function successCallback(response) {
-              $loading.finish('myloading');
-              $scope.Usuarios = response.data.data             
-              $scope.UsuariosSaved = response.data.data
-           }, function errorCallback(response) {
-               alert(response.statusText);
-           });
-         }
-
-         $scope.GetUsuarioProveedor = function () {
-           $loading.start('myloading');
-           var Data = {};
-           Data.EditUser = localStorage.LoginUser;
-         $http({
-               method: 'POST',
-               url: '/GetEmpleadosdata',
-               headers: { 'Content-Type': 'application/json' },
-               data: Data
-           }).then(function successCallback(response) {
-             $loading.finish('myloading');
-
-             $scope.username = response.data.Usuario.Name;
-             $scope.email = response.data.Usuario.Email;
-             $scope.user = response.data.Usuario.User;
-             $scope.phone = response.data.Usuario.Phone;
-             $scope.nit = response.data.Usuario.Nit;
-             $scope.razonsocial = response.data.Usuario.RazonSocial;
-
-             $loading.finish('myloading');
-           }, function errorCallback(response) {
-               alert(response.statusText);
-           });
-         }
-
-         $scope.GetUsuariosProveedor();
-
-          $scope.NewUser = function () {
-              $scope.razonsocial = '';
-              $scope.username = '';
-               $scope.phone = '';
-               $scope.nit = '';
-               $scope.email = '';
-               $scope.user = '';
-               $scope.password = '';
-               $scope.repeatpassword = '';
-               $scope.selectedPerfil = $scope.Perfiles[0];
-               $scope.NominasEmpleado = [];
-           }
-
-           $scope.ValidateEmail = function validateEmail(email) {
-               var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-               return re.test(email);
-           }
-
-
-           $scope.SaveUser = function () {
-
-             if (!$scope.FormProveedores.$valid)
-             {
-               swal("Licitaciones Proenfar", "Hay valores inválidos. Por favor revisar el formulario.");
-               return 0
-             }
-
-               $loading.start('myloading');
-                var Data = {};
-                Data.Email = $scope.email;
-                Data.Password = $scope.password;
-                Data.User=$scope.user;
-                Data.Nit=$scope.nit;
-                Data.Phone=$scope.phone;
-                Data.EditUser = localStorage.LoginUser;
-                Data.NombrePerfil ='Proveedor';
-                Data.UserName = $scope.username;
-                Data.RazonSocial = $scope.razonsocial;
-                Data.Perfil = 3;
-                $http({
-                    method: 'POST',
-                    url: '/SaveUser',
-                    headers: { 'Content-Type': 'application/json' },
-                    data: Data
-                }).then(function successCallback(response) {
-                    $loading.finish('myloading');
-
-                    if (response.data.Result == 'noallow') {
-                        swal("Licitaciones Proenfar", "No tiene permiso para crear usuarios.");
-                        return 0;
-                    }
-
-                    if (response.data.Result == 'ex') {
-                        swal("Licitaciones Proenfar", "Ya existe un proveedor con ese correo.");
-                        return 0;
-                    }
-                    $('#nuevoProveedor').modal('hide');
-                    $scope.GetUsuariosProveedor();
-
-                }, function errorCallback(response) {
-                    alert(response.statusText);
-                });
-             }
-
-             $scope.DeleteUser = function (User) {
-               if (localStorage.UserConnected == User) {
-                   swal("", "No puede eliminar el propio usuario.");
-                   return 0;
-               }
-             swal({
-                 title: "Seguro de  eliminar el usuario?",
-                 text: "",
-                 type: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#DD6B55",
-                 confirmButtonText: "Aceptar",
-                 closeOnConfirm: true
-             },
-             function () {
-
-               var Data = {};
-               Data.User = User;
-               $http({
-                   method: 'POST',
-                   url: '/DeleteUser',
-                   headers: { 'Content-Type': 'application/json' },
-                   data: Data
-               }).then(function successCallback(response) {
-                  $loading.finish('myloading');
-                  $scope.GetUsuariosProveedor();
-               }, function errorCallback(response) {
-                   alert(response.statusText);
-               });
-
-             });
-           }
-
-          $scope.GotoUser = function (User) {
-            localStorage.LoginUser = User;
-            $('#nuevoProveedor').modal('show');
-            if (localStorage.LoginUser != ''){
-              $scope.GetUsuarioProveedor();
-            }
-            else{
-              $scope.username = '';
-              $scope.email = '';
-              $scope.user = '';
-              $scope.phone = '';
-              $scope.nit = '';
-            }
-          }
-
-          //////////////////////////////////////////Data Proveedor ////////////////////////////////////////
-          
-          /*  $scope.filterProveedoresModalidad = function(){ 
-                $scope.GetProveedorModalidadName();
-           } */ 
-
-           $scope.GetProveedorModalidadName = function () {
-                  var Data = {};
-                  console.log('GetProveedorModalidadName');
-                  console.log($scope.UsuarioSel.selected.RazonSocial);
-                  Data.RazonSocial = $scope.UsuarioSel.selected.RazonSocial; 
-                  $loading.start('myloading');
-                  $http({
-                        method: 'POST',
-                        url: '/GetProveedorModalidadName',
-                        headers: { 'Content-Type': 'application/json' },
-                        data: Data
-                       }).then(function successCallback(response) {
-                          $loading.finish('myloading');
-                          $scope.LicitacionModalidadProveedor = response.data.data; 
-                          console.log($scope.LicitacionModalidadProveedor);                         
-                       }, function errorCallback(response) {
-                             console.log(response);
-                        });
-                     } 
-
-             $scope.GetProveedoresModalidadesName = function () {
-                  var Data = {};
-                  $loading.start('myloading');
-                  $http({
-                        method: 'POST',
-                        url: '/GetProveedoresModalidadesName',
-                        headers: { 'Content-Type': 'application/json' },
-                        data: Data
-                       }).then(function successCallback(response) {
-                          $loading.finish('myloading');
-                          $scope.LicitacionModalidadesProveedores = response.data.data; 
-                          console.log($scope.LicitacionModalidadesProveedores);                         
-                       }, function errorCallback(response) {
-                             console.log(response);
-                        });
-                     } 
-            
-
-                  $scope.GetDesbloquearmodalidad = function (user,modalidad) {
-                  var Data = {};
-                  Data.Email= user;
-                  Data.Modalidad=modalidad;
-                  console.log(Data.Modalidad);
-                  console.log(Data.Email);
-                  $loading.start('myloading');
-                  $http({
-                        method: 'POST',
-                        url: '/GetDesbloquearmodalidad',
-                        headers: { 'Content-Type': 'application/json' },
-                        data: Data
-                       }).then(function successCallback(response) {
-                          $loading.finish('myloading');
-                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
-                          $scope.GetProveedorModalidadName();              
-                       }, function errorCallback(response) {
-                             console.log(response);
-                        });
-                     }
-
-
-                  $scope.GetNegociarmodalidad = function (user,modalidad) {
-                  var Data = {};
-                  Data.Email= user;
-                  Data.Modalidad=modalidad;
-                  console.log(Data.Modalidad);
-                  console.log(Data.Email);
-                  $loading.start('myloading');
-                  $http({
-                        method: 'POST',
-                        url: '/GetNegociarmodalidad',
-                        headers: { 'Content-Type': 'application/json' },
-                        data: Data
-                       }).then(function successCallback(response) {
-                          $loading.finish('myloading');
-                          swal("Licitaciones Proenfar", "Modalidad Negociada.");  
-                          $scope.GetProveedorModalidadName();              
-                       }, function errorCallback(response) {
-                             console.log(response);
-                        });
-                     }
-
-          //////////////////////////////se agrego consolidado datos /////////////////////////////////////
+        
+           //////////////////////////////se agrego consolidado datos /////////////////////////////////////
 
             $scope.ModalidadesSemaforo=false;
 
@@ -5689,14 +5336,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     headers: { 'Content-Type': 'application/json' },
                     data: Data
                 }).then(function successCallback(response) {
-                    
+                     $loading.finish('myloading');
                     $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
                     ModalidadTodasRespaldoOTMExcel = response.data.ConsolidadoDatos;
                     console.log($scope.ConsolidadoDatos);
                     console.log(ModalidadTodasRespaldoOTMExcel);
 
-
-                     if (ModalidadConsolidado == 'Bodegajes') {
+                    if (ModalidadConsolidado == 'Bodegajes') {
                       console.log('paso por aqui bodegajes');
                         $scope.Show1=true;
                         $scope.Show20=true;
@@ -5734,7 +5380,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                           ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
-                          
+                    
 
                           //ModalidadTodasconOrdenBodegajeaduanero=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
@@ -6213,10 +5859,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
 
-                        $loading.finish('myloading');
-
-
-
          ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
 
@@ -6233,32 +5875,30 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.ExportarExcelModalidadBodegaje = function () {            
 
               Data = {};            
-              Data.ModalidadesProveedor1=$scope.ModalidadTodasBodegajeaduanero; 
+              Data.ModalidadesProveedor=$scope.ModalidadTodasBodegajeaduanero; 
               Data.ModalidadesProveedor2=$scope.ModalidadTodasBodegajeaduaneromaqt; 
               Data.ModalidadesProveedor3=$scope.ModalidadTodasBodegajeaduaneromaqp; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
-                url: '/ExportarExcelModalidadVarios',
+                url: '/ExportarExcelModalidad',
                 headers: { 'Content-Type': 'application/json' },
-                data: Data
+                data: Data                
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "Bodegaje.xlsx");
               //saveAs(urlbase64, "Report.xls");
-               $loading.finish('myloading');
-
+               //$loading.finish('myloading');
             }, function errorCallback(response) {
                 alert(response.statusText);
             });
           }
                      }
 
-
-
+                     
                      //////////////////////////////  Aduanas ////////////////////////
 
                     if (ModalidadConsolidado == 'Aduanas') {
@@ -6314,6 +5954,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        //$scope.groups = _.groupBy(ModalidadTodas, "Via");
 
                     //////// Aerea campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
+
+
                       ModalidadTodasconOrden = _.sortBy( ModalidadTodasconOrden, 'Via','["Tarifa % Advalorem/ FOB"]');
                       console.log(ModalidadTodasconOrden);
 
@@ -6827,7 +6469,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                     // ModalidadTodas= _.sortBy(ModalidadTodas,'Via','Email');
                    // ModalidadTodas = _.orderBy(ModalidadTodas, [Modalidadtoda => (Modalidadtoda.Via.toLowerCase())],[Modalidadtoda => (Modalidadtoda.Email.toLowerCase())],['asc'],['asc']);    
-                    ModalidadTodas= _.orderBy(ModalidadTodas, ['Via','Email'], ['asc', 'asc']);
+                                              
+                   //ModalidadTodas= _.orderBy(ModalidadTodas, ["Email"], ["asc"]);  
+                   ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasadu => ModalidadTodasadu.Via.toLowerCase(),ModalidadTodasadu =>ModalidadTodasadu.Email.toLowerCase()], ['asc','asc']);              
+
                      console.log(ModalidadTodas);
                        ModalidadTodasRespaldoAD = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
@@ -6845,7 +6490,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.ModalidadesSemaforo == false);
                 });
                 console.log($scope.ModalidadTodas);
-                 $loading.finish('myloading');
+               
 
           ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -6866,7 +6511,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               Data.ModalidadesProveedor=$scope.ModalidadTodas; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
                 url: '/ExportarExcelModalidad',
@@ -6876,7 +6521,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "Aduana.xlsx");
-               $loading.finish('myloading');
+               //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
@@ -7939,8 +7584,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
                         }
                         }
-                           
-                           ModalidadTodasOtm= _.sortBy(ModalidadTodasOtm,'Destino','Origen','Email');
+                           ModalidadTodasOtm=_.orderBy(ModalidadTodasOtm, [ModalidadTodasotm => ModalidadTodasotm.Destino.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Origen.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Email.toLowerCase()], ['asc','asc','asc']);                
 
               /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoExcel = ModalidadTodasOtm;
@@ -7974,7 +7618,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodasOtm);
-                 $loading.finish('myloading');
+                 //$loading.finish('myloading');
 
                  ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -7995,7 +7639,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               Data.ModalidadesProveedor=$scope.ModalidadTodasOtm; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
                 url: '/ExportarExcelModalidad',
@@ -8005,7 +7649,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "OTM.xlsx");
-               $loading.finish('myloading');
+               //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
@@ -8622,7 +8266,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                   /////////////////////////////////Filtro////////////////////////////////
-                       ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
+                       ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasmfcl => ModalidadTodasmfcl.PuertoDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PuertoOrigen.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PaisDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.Email.toLowerCase()], ['asc','asc','asc','asc']);
+                       //ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
                        console.log(ModalidadTodas);
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
@@ -8641,7 +8286,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
-                 $loading.finish('myloading');
+                 //$loading.finish('myloading');
 
                            ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -8662,7 +8307,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               Data.ModalidadesProveedor=$scope.ModalidadTodas; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
                 url: '/ExportarExcelModalidad',
@@ -8672,7 +8317,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "MaritimasFCL.xlsx");
-               $loading.finish('myloading');
+              // $loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
@@ -9087,7 +8732,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                         /////////////////////////////////Filtro////////////////////////////////
-                       ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
+                       ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasmlcl => ModalidadTodasmlcl.PuertoDestino.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.PuertoOrigen.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.PaisDestino.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.Email.toLowerCase()], ['asc','asc','asc','asc']);
+                      // ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
                        $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
@@ -9101,7 +8747,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
-                 $loading.finish('myloading');
+                 //$loading.finish('myloading');
 
                                         ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -9122,7 +8768,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               Data.ModalidadesProveedor=$scope.ModalidadTodas; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
                 url: '/ExportarExcelModalidad',
@@ -9132,7 +8778,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "MaritimasLCL.xlsx");
-               $loading.finish('myloading');
+               //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
@@ -9297,7 +8943,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                         ModalidadTodasT= _.sortBy(ModalidadTodasT,'PuertoDestino','PaisOrigen','Email');
+                         ModalidadTodasT=_.orderBy(ModalidadTodasT, [ModalidadTodastn => ModalidadTodastn.PuertoDestino.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.PaisOrigen.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.Email.toLowerCase()], ['asc','asc','asc']);
+                         //ModalidadTodasT= _.sortBy(ModalidadTodasT,'PuertoDestino','PaisOrigen','Email');
                          $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodasT;
 
 
@@ -9462,7 +9109,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                        ModalidadTodasTerreNacionalSencillo= _.sortBy(ModalidadTodasTerreNacionalSencillo,'PuertoDestino','PaisOrigen','Email');
+                        //ModalidadTodasTerreNacionalSencillo= _.sortBy(ModalidadTodasTerreNacionalSencillo,'PuertoDestino','PaisOrigen','Email');
+                        ModalidadTodasTerreNacionalSencillo=_.orderBy(ModalidadTodasTerreNacionalSencillo, [ModalidadTodastns => ModalidadTodastns.PuertoDestino.toLowerCase(),ModalidadTodastns =>ModalidadTodastns.PaisOrigen.toLowerCase(),ModalidadTodastns =>ModalidadTodastns.Email.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasTerreNacionalSencillo;
 
                     /////////////////////////////////Filtro////////////////////////////////
@@ -9611,7 +9259,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                         
-                        ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
+                       // ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
+                        ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
+                        
                         $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
 
                         ////////////////////////////////Filtro////////////////////////////////
@@ -9622,7 +9272,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AduC2020Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
-                         $loading.finish('myloading');
+                         //$loading.finish('myloading');
 
            ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -9640,22 +9290,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.ExportarExcelModalidadTerrestreNacional = function () {            
 
               Data = {};            
-              Data.ModalidadesProveedor1=$scope.ModalidadTodasTerreNacionalTurbo; 
+              Data.ModalidadesProveedor=$scope.ModalidadTodasTerreNacionalTurbo; 
               Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreNacionalSencillo; 
               Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreNacionalPatineta; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
-                url: '/ExportarExcelModalidadVarios',
+                url: '/ExportarExcelModalidad',
                 headers: { 'Content-Type': 'application/json' },
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "TerrestreNacional.xlsx");
-               $loading.finish('myloading');
+               //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
@@ -10597,7 +10247,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AduC4022Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
-                         $loading.finish('myloading');
+                         //$loading.finish('myloading');
 
                              ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -10615,22 +10265,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.ExportarExcelModalidadTerrestreUrbano = function () {            
 
               Data = {};            
-              Data.ModalidadesProveedor1=$scope.ModalidadTodasTerreUrbano; 
+              Data.ModalidadesProveedor=$scope.ModalidadTodasTerreUrbano; 
               Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreUrbanoViaje; 
               Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreUrbanoTonelada; 
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
-                url: '/ExportarExcelModalidadVarios',
+                url: '/ExportarExcelModalidad',
                 headers: { 'Content-Type': 'application/json' },
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "TerrestreUrbano.xlsx");
-               $loading.finish('myloading');
+               //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
 
             }, function errorCallback(response) {
@@ -11416,6 +11066,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                 ////////////////////////////Aerea Pasajero /////////////////////////////////////////
                 ModalidadTodasAereaPasajero=[];
+                console.log($scope.ConsolidadoDatos);
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) {
                          ModalidadDeUnProveedorAP = consotm.AereaPasajero.AereasPasajeros
                             angular.forEach(ModalidadDeUnProveedorAP, function(consotmprov) {
@@ -12165,9 +11816,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC4021PPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
-                        $loading.finish('myloading');
+                        //$loading.finish('myloading');
 
-           ///////////////////////////Crea plantilla para exportar a excel ////////////////
+                            ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
 
             function downloadURI(uri, name) {
@@ -12183,51 +11834,521 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.ExportarExcelModalidadAerea = function () {            
 
               Data = {};            
-              Data.ModalidadesProveedor1=$scope.ModalidadTodasAerea; 
+              Data.ModalidadesProveedor=$scope.ModalidadTodasAerea; 
               Data.ModalidadesProveedor2=$scope.ModalidadTodasAereaPasajero;             
               Data.Modalidad=ModalidadConsolidado;
            
-            $loading.start('myloading');
+            //$loading.start('myloading');
             $http({
                 method: 'POST',
-                url: '/ExportarExcelModalidadVarios',
+                url: '/ExportarExcelModalidad',
                 headers: { 'Content-Type': 'application/json' },
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
                var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
               downloadURI(urlbase64, "Aerea.xlsx");
-               $loading.finish('myloading');
+              // $loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
-
             }, function errorCallback(response) {
                 alert(response.statusText);
             });
-          }
+          }               
+             
+           }
+             $loading.finish('myloading');
 
-               
-             }
-
-
-                    ///////////////////////////////////////////////////////////////////////////
-
-                  }, function errorCallback(response) {
+       }, function errorCallback(response) {
                     alert(response.statusText);
                 });
             }
+
+
+             $scope.GetConsolidadoDatos();
+
+             var editform= 0;
+
+         $scope.Usuario={};
+         var VistaName='';
+         var label="Consolidado Datos";
+        
+         $scope.Showf1 = function () {
+          VistaName = '';
+           $scope.Show30 = true;
+           $scope.Show40 = false;
+           $scope.Show50 = false;
+           $scope.Show60=false;                    
+           $scope.Show70 = true;
+           $scope.Show80 = true;
+           $scope.Show90 = false;
+            //$scope.Show100 = false;
+           $scope.Show1=true;
+            $scope.Show20=true;
+            $scope.Show111=true;
+            $scope.Show2=false;
+            $scope.Show3=false;
+            $scope.Show4=false;
+            $scope.Show5=false;
+
+            $scope.Show6=false;
+            $scope.Show7=false;
+            $scope.Show8=false;
+            $scope.Show9=false;
+            $scope.Show10=false;
+            $scope.Show11=false;
+            $scope.Show12=false;
+            $scope.Show13=false;
+            $scope.GetConsolidadoDatos();
+
+         };
+         $scope.Showf2 = function () {
+          VistaName='';
+           $scope.Show30 = false;
+           $scope.Show40 = true;
+           $scope.Show50 = false;
+           $scope.Show60=true;                   
+           $scope.Show70 = false;
+           $scope.Show80 = false;
+           $scope.Show90 = true;
+            //$scope.Show100 = false;
+            $scope.Show1=false;
+            $scope.Show20=false;
+            $scope.Show111=false;
+            $scope.Show2=false;
+            $scope.Show3=false;
+            $scope.Show4=false;
+            $scope.Show5=false;
+
+            $scope.Show6=false;
+            $scope.Show7=false;
+            $scope.Show8=false;
+            $scope.Show9=false;
+            $scope.Show10=false;
+            $scope.Show11=false;
+            $scope.Show12=false;
+            $scope.Show13=false;
+         };
+         $scope.Showf3 = function () {
+          VistaName = 'DatosProveedor';
+           $scope.Show30 = false;
+           $scope.Show40 = false;
+           $scope.Show50 = true;
+           $scope.Show60=false;
+           $scope.Show70 = false;
+           $scope.Show80 = false;
+           $scope.Show90 = true;
+           //$scope.Show100 = true;
+            $scope.Show1=false;
+            $scope.Show20=false;
+            $scope.Show111=false;
+            $scope.Show2=false;
+            $scope.Show3=false;
+            $scope.Show4=false;
+            $scope.Show5=false;
+            $scope.Show6=false;
+            $scope.Show7=false;
+            $scope.Show8=false;
+            $scope.Show9=false;
+            $scope.Show10=false;
+            $scope.Show11=false;
+            $scope.Show12=false;
+            $scope.Show13=false;
+            $scope.GetProveedoresModalidadesName();
+         };
 
             $scope.FiltroS= function  (){
               $scope.ModalidadesSemaforo == true;
               $scope.GetConsolidadoDatos()
 
               }
+ 
+
+         // Variables de selectores
+         $scope.UsuarioSel = {};
+
+            $scope.filterProveedores = function(){
+
+           $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
+           console.log($scope.UsuarioSel.selected.Name);
+           
+           if (VistaName=='DatosProveedor')
+           {
+              $scope.GetProveedorModalidadName();
+           }
+         } 
+
+         // Modalidades para el filtro
+         $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
+
+         $scope.GetUsuariosProveedor = function () {
+           var Data = {};
+           $loading.start('myloading');
+           // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+           Data.Email = localStorage.User
+           $http({
+               method: 'POST',
+               url: '/GetUsuarioProveedor',
+               headers: { 'Content-Type': 'application/json' },
+               data: Data
+           }).then(function successCallback(response) {
+              $loading.finish('myloading');
+              $scope.Usuarios = response.data.data             
+              $scope.UsuariosSaved = response.data.data
+           }, function errorCallback(response) {
+               alert(response.statusText);
+           });
+         }
+
+         $scope.GetUsuarioProveedor = function () {
+           $loading.start('myloading');
+           var Data = {};
+           Data.EditUser = localStorage.LoginUser;
+         $http({
+               method: 'POST',
+               url: '/GetEmpleadosdata',
+               headers: { 'Content-Type': 'application/json' },
+               data: Data
+           }).then(function successCallback(response) {
+             $loading.finish('myloading');
+
+             $scope.username = response.data.Usuario.Name;
+             $scope.email = response.data.Usuario.Email;
+             $scope.user = response.data.Usuario.User;
+             $scope.phone = response.data.Usuario.Phone;
+             $scope.nit = response.data.Usuario.Nit;
+             $scope.razonsocial = response.data.Usuario.RazonSocial;
+
+             $loading.finish('myloading');
+           }, function errorCallback(response) {
+               alert(response.statusText);
+           });
+         }
+
+         $scope.GetUsuariosProveedor();
+
+          $scope.NewUser = function () {
+              $scope.razonsocial = '';
+              $scope.username = '';
+               $scope.phone = '';
+               $scope.nit = '';
+               $scope.email = '';
+               $scope.user = '';
+               $scope.password = '';
+               $scope.repeatpassword = '';
+               $scope.selectedPerfil = $scope.Perfiles[0];
+               $scope.NominasEmpleado = [];
+           }
+
+           $scope.ValidateEmail = function validateEmail(email) {
+               var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+               return re.test(email);
+           }
 
 
+           $scope.SaveUser = function () {
 
-             $scope.GetConsolidadoDatos();
+             if (!$scope.FormProveedores.$valid)
+             {
+               swal("Licitaciones Proenfar", "Hay valores inválidos. Por favor revisar el formulario.");
+               return 0
+             }
+
+               $loading.start('myloading');
+                var Data = {};
+                Data.Email = $scope.email;
+                Data.Password = $scope.password;
+                Data.User=$scope.user;
+                Data.Nit=$scope.nit;
+                Data.Phone=$scope.phone;
+                Data.EditUser = localStorage.LoginUser;
+                Data.NombrePerfil ='Proveedor';
+                Data.UserName = $scope.username;
+                Data.RazonSocial = $scope.razonsocial;
+                Data.Perfil = 3;
+                $http({
+                    method: 'POST',
+                    url: '/SaveUser',
+                    headers: { 'Content-Type': 'application/json' },
+                    data: Data
+                }).then(function successCallback(response) {
+                    $loading.finish('myloading');
+
+                    if (response.data.Result == 'noallow') {
+                        swal("Licitaciones Proenfar", "No tiene permiso para crear usuarios.");
+                        return 0;
+                    }
+
+                    if (response.data.Result == 'ex') {
+                        swal("Licitaciones Proenfar", "Ya existe un proveedor con ese correo.");
+                        return 0;
+                    }
+                    $('#nuevoProveedor').modal('hide');
+                    $scope.GetUsuariosProveedor();
+
+                }, function errorCallback(response) {
+                    alert(response.statusText);
+                });
+             }
+
+             $scope.DeleteUser = function (User) {
+               if (localStorage.UserConnected == User) {
+                   swal("", "No puede eliminar el propio usuario.");
+                   return 0;
+               }
+             swal({
+                 title: "Seguro de  eliminar el usuario?",
+                 text: "",
+                 type: "warning",
+                 showCancelButton: true,
+                 confirmButtonColor: "#DD6B55",
+                 confirmButtonText: "Aceptar",
+                 closeOnConfirm: true
+             },
+             function () {
+
+               var Data = {};
+               Data.User = User;
+               $http({
+                   method: 'POST',
+                   url: '/DeleteUser',
+                   headers: { 'Content-Type': 'application/json' },
+                   data: Data
+               }).then(function successCallback(response) {
+                  $loading.finish('myloading');
+                  $scope.GetUsuariosProveedor();
+               }, function errorCallback(response) {
+                   alert(response.statusText);
+               });
+
+             });
+           }
+
+          $scope.GotoUser = function (User) {
+            localStorage.LoginUser = User;
+            $('#nuevoProveedor').modal('show');
+            if (localStorage.LoginUser != ''){
+              $scope.GetUsuarioProveedor();
+            }
+            else{
+              $scope.username = '';
+              $scope.email = '';
+              $scope.user = '';
+              $scope.phone = '';
+              $scope.nit = '';
+            }
+          }
+
+          //////////////////////////////////////////Data Proveedor ////////////////////////////////////////
+          
+          /*  $scope.filterProveedoresModalidad = function(){ 
+                $scope.GetProveedorModalidadName();
+           } */ 
+
+           $scope.GetProveedorModalidadName = function () {
+                  var Data = {};
+                  console.log('GetProveedorModalidadName');
+                  console.log($scope.UsuarioSel.selected.RazonSocial);
+                  Data.RazonSocial = $scope.UsuarioSel.selected.RazonSocial; 
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetProveedorModalidadName',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          $scope.LicitacionModalidadProveedor = response.data.data; 
+                          console.log($scope.LicitacionModalidadProveedor);                         
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     } 
+
+             $scope.GetProveedoresModalidadesName = function () {
+                  var Data = {};
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetProveedoresModalidadesName',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          $scope.LicitacionModalidadesProveedores = response.data.data; 
+                          console.log($scope.LicitacionModalidadesProveedores);                         
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     } 
+            
+
+                  $scope.GetDesbloquearmodalidad = function (user,modalidad) {
+                  var Data = {};
+                  Data.Email= user;
+                  Data.Modalidad=modalidad;
+                  console.log(Data.Modalidad);
+                  console.log(Data.Email);
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetDesbloquearmodalidad',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
+                          $scope.GetProveedorModalidadName();              
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     }
+
+
+                  $scope.GetNegociarmodalidad = function (user,modalidad) {
+                  var Data = {};
+                  Data.Email= user;
+                  Data.Modalidad=modalidad;
+                  console.log(Data.Modalidad);
+                  console.log(Data.Email);
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetNegociarmodalidad',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          swal("Licitaciones Proenfar", "Modalidad Negociada.");  
+                          $scope.GetProveedorModalidadName();              
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     }           
 
 
        }])
+
+/////////////////////////////////////////////Seleccionr Proveedor //////////////////////////////////////////
+
+       .controller('ctrlSeleccionarProveedor', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
+        
+         $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }
+
+
+        $scope.ModalidadesSelecProveedor = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MaritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
+
+         $scope.selectedModalidadSelecProveedor = $scope.ModalidadesSelecProveedor[0];
+
+           $scope.GetSeleccionarProveedor = function (user,modalidad) {
+                  var Data = {};
+                  //Data.Email= user;
+                  Data.Modalidad=$scope.selectedModalidadSelecProveedor.Name;
+                  console.log(Data.Modalidad);
+                  //console.log(Data.Email);
+                  $loading.start('myloading');
+                  $http({
+                        method: 'POST',
+                        url: '/GetSeleccionarProveedor',
+                        headers: { 'Content-Type': 'application/json' },
+                        data: Data
+                       }).then(function successCallback(response) {
+                          $loading.finish('myloading');
+                          $scope.LicitacionModaProveedores = response.data.data; 
+                          $scope.LicitacionModaProveedores= _.orderBy($scope.LicitacionModaProveedores, [Licimodaprov => Licimodaprov.Email.toLowerCase()], ['asc']); 
+                          console.log($scope.LicitacionModaProveedores);      
+                                        
+                       }, function errorCallback(response) {
+                             console.log(response);
+                        });
+                     } 
+
+                      $scope.GetSeleccionarProveedor();
+
+                $scope.ProveedorSeleccionado = function (Email){
+                               var Data = {};
+                               Data.Email = Email;
+                               Data.Modalidad = $scope.selectedModalidadSelecProveedor.Name;
+                               $loading.start('myloading');
+                                $http({
+                                 method: 'POST',
+                                 url: '/GetProveedorSeleccionado',
+                                 headers: { 'Content-Type': 'application/json' },
+                                 data: Data
+                             }).then(function successCallback(response) {                                
+                                 $loading.finish('myloading');
+                                }, function errorCallback(response) {
+                                 console.log(response);
+                             });                        
+
+                        }
+
+
+
+         }])
+
+//////////////////////////////////////////////////////////////////////////////////////////
 
         .controller('ctrlWarrantyLogin', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
          // Llama a HTML Modal que permite cambiar passwor de la app
