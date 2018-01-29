@@ -3928,10 +3928,10 @@ console.log(req.body.Modalidad);
              // Fin de buscar todas las modalidad del proveedor que se pasó a la función
 });
 
-//////////////////////////////////////////////////// Funcionalidad para negociar modalidad de un proveedor
+//////////////////////////////////////////////////// Modulo Seleccionar Proveedores //////////////////////////
 app.post('/GetSeleccionarProveedor', function (req, res) {
   
- MyMongo.Find('LicitacionProveedor', { Modalidad: req.body.Modalidad } , function (result) {
+ MyMongo.Find('LicitacionProveedor', { $and: [{ Modalidad: req.body.Modalidad } ,{Bloqueado:true}]}, function (result) {
            var Data = {};
             Data.data= result;           
             res.end(JSON.stringify(Data));
@@ -3942,18 +3942,18 @@ app.post('/GetSeleccionarProveedor', function (req, res) {
 
 app.post('/GetProveedorSeleccionado', function (req, res) {
   
- MyMongo.Find('ProveedorSeleccionado', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] } , function (result) {
+ MyMongo.Find('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } , {Bloqueado:true} , {Seleccionado:true}] } , function (result) {
          if (result.length == 0){
 
             // MyMongo.Insert('ProveedorSeleccionado', { Email: req.body.Email, Modalidad: req.body.Modalidad }, function (result) {
-             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: mEmail}, {Modalidad: req.body.Modalidad},Seleccionado:true, function (result) {
+             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad,Bloqueado:true},{Seleccionado:true}, function (result) {
              var Data = {};
              res.end(JSON.stringify(Data)) 
              });          
          }
          else
          {
-             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: mEmail}, {Modalidad: req.body.Modalidad},Seleccionado:false, function (result) {
+             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad, Bloqueado:true},{Seleccionado:false}, function (result) {
             var Data = {};
              res.end(JSON.stringify(Data)) 
 

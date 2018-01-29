@@ -9669,6 +9669,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         
                         ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
+                          // ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
                            ////////////////////////////////Filtro////////////////////////////////
