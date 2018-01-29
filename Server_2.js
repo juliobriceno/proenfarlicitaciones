@@ -3827,7 +3827,7 @@ app.post('/GetProveedorModalidadName', function (req, res) {
 
 app.post('/GetProveedoresModalidadesName', function (req, res) {
 
-     MyMongo.Find('LicitacionProveedor',{}, function (result) {
+     MyMongo.Find('LicitacionProveedor',{Bloqueado:true}, function (result) {
            var Data = {};
             Data.data= result;
             res.end(JSON.stringify(Data));

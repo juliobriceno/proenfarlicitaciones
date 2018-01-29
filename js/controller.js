@@ -9668,7 +9668,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                         
-                        ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
+                        //ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
+                        ModalidadTodasUrbano=_.orderBy(ModalidadTodasUrbano, [ModalidadTodastu => ModalidadTodastu.PuertoDestino.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.PaisOrigen.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.Email.toLowerCase()], ['asc','asc','asc']);
                           // ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
@@ -10025,8 +10026,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                         ModalidadTodasTerreUrbanoViaje= _.sortBy(ModalidadTodasTerreUrbanoViaje,'PuertoDestino','PaisOrigen','Email');
-
+                         //ModalidadTodasTerreUrbanoViaje= _.sortBy(ModalidadTodasTerreUrbanoViaje,'PuertoDestino','PaisOrigen','Email');
+                        ModalidadTodasTerreUrbanoViaje=_.orderBy(ModalidadTodasTerreUrbanoViaje, [ModalidadTodastuv => ModalidadTodastuv.PuertoDestino.toLowerCase(),ModalidadTodastuv =>ModalidadTodastuv.PaisOrigen.toLowerCase(),ModalidadTodastuv =>ModalidadTodastuv.Email.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodasTerreUrbanoViaje;
 
                     ////////////////////////////////Filtro////////////////////////////////
@@ -10236,7 +10237,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                       
-                      ModalidadTodasTerreUrbanoTonelada = _.sortBy(ModalidadTodasTerreUrbanoTonelada, 'PuertoDestino','PaisOrigen','Email');
+                     // ModalidadTodasTerreUrbanoTonelada = _.sortBy(ModalidadTodasTerreUrbanoTonelada, 'PuertoDestino','PaisOrigen','Email');
+                        ModalidadTodasTerreUrbanoTonelada=_.orderBy(ModalidadTodasTerreUrbanoTonelada, [ModalidadTodastut => ModalidadTodastut.PuertoDestino.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.PaisOrigen.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.Email.toLowerCase()], ['asc','asc','asc']);
                       $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
 
                      ////////////////////////////////Filtro////////////////////////////////
@@ -11039,7 +11041,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                     ModalidadTodasAerea = _.sortBy(ModalidadTodasAerea, 'Aeropuerto','Pais','Email');
+                     //ModalidadTodasAerea = _.sortBy(ModalidadTodasAerea, 'Aeropuerto','Pais','Email');
+                     ModalidadTodasAerea=_.orderBy(ModalidadTodasAerea, [ModalidadTodasac => ModalidadTodasac.Aeropuerto.toLowerCase(),ModalidadTodasac =>ModalidadTodasac.Pais.toLowerCase(),ModalidadTodasac =>ModalidadTodasac.Email.toLowerCase()], ['asc','asc','asc']);
                      $scope.ModalidadTodasAerea=ModalidadTodasAerea;
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -11794,7 +11797,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
 
-                    ModalidadTodasAereaPasajero = _.sortBy(ModalidadTodasAereaPasajero, 'Aeropuerto','Pais','Email');
+                   // ModalidadTodasAereaPasajero = _.sortBy(ModalidadTodasAereaPasajero, 'Aeropuerto','Pais','Email');
+                    ModalidadTodasAereaPasajero=_.orderBy(ModalidadTodasAereaPasajero, [ModalidadTodasap => ModalidadTodasap.Aeropuerto.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Pais.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Email.toLowerCase()], ['asc','asc','asc']);
                     //$scope.ModalidadTodasAereaPasajero=ModalidadTodasAereaPasajero;
 
                      /////////////////////////////////Filtro////////////////////////////////
