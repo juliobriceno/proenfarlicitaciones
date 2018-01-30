@@ -972,10 +972,10 @@
                           <th class="text-center"><h6 style="font-size:13px;"><b>Estado</b></h6></th>
                         </tr>
 
-                             <tbody  ng-repeat="Usuario in Usuarios">
+                            <!-- <tbody  ng-repeat="Usuario in Usuarios">-->
 
-                        <tr>
-                            <td>
+                        <tr  ng-repeat="Usuario in Usuarios">
+                            <td class="text-center">
                               <div class="btn-group">
                                 <button class="btn btn-default" type="button">Acciones</button>
                                 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
@@ -1006,24 +1006,30 @@
                      <div class="" style="height: 150px;"><div class="row" ></div></div>
                 </div><!-- /.box-body -->
                 <br>
-                <div ng-show="Show50" class="box-body table-responsive no-padding">
+                <div ng-show="Show50" class="box-body table-responsive">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
                     <table class="table table-bordered">
                         <tr class="encabezadotabla">
-                          <th class="text-center" style="width:20%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                          <th class="text-center"><h6><b>Modalidades Diligenciadas</b></h6></th>
+                          <th class="text-center" style="width:35%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Modalidades Diligenciadas</b></h6></th>
                         </tr>
-                        <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
-                          <tr>
-                            <td>
-                              <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-primary"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Desbloquear</button></a>
-                              <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><i class="fa fa-handshake-o" aria-hidden="true"></i> Negociar</button></a>
+                      <!--  <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">-->
+                          <tr ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
+                            <td class="text-center">
+                              <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-primary btn-small"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Desbloquear</button></a>
+                              <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green btn-small"><i class="fa fa-handshake-o" aria-hidden="true"></i> Negociar</button></a>
                             </td>
                             <td>{{LiciModalidadProveedor.Modalidad}}</td>
                           </tr>
-                        
+
                     </table>
-                     <div class="" style="height: 150px;"><div class="row" ></div></div>
+                  </div>
+
+                    <div class="col-md-2"></div>
+
                 </div><!-- /.box-body -->
+                   <div class="" style="height: 150px;"><div class="row" ></div></div>
                 <!-- MAILBOX END -->
               </section><!-- /.content -->
             </aside><!-- /.right-side -->
