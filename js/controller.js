@@ -5436,6 +5436,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                     var Unobjeto={};
                     Data.ProveedorSeleccionado=false;
+                    Data.Modalidad=ModalidadConsolidado;
 
                 $loading.start('myloading');
                 $http({
@@ -12676,7 +12677,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
                     console.log($scope.ConsolidadoDatos);
 
-                    if ($scope.ConsolidadosDatos==[]) {
+                    if ($scope.ConsolidadosDatos !=[]) {
 
                     if (ModalidadConsolidado == 'Bodegajes') {
                       console.log('paso por aqui bodegajes');
@@ -13290,7 +13291,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        //$scope.groups = _.groupBy(ModalidadTodas, "Via");
 
                     //////// Aerea campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
-
+                        $scope.ModalidadTodasconOrden = ModalidadTodasconOrden.filter(function (el) {
+                        return (el["Tarifa % Advalorem/ FOB"] == 0)                        
+                      });
+                     console.log(ModalidadTodasconOrden);
 
                       ModalidadTodasconOrden = _.sortBy( ModalidadTodasconOrden, 'Via','["Tarifa % Advalorem/ FOB"]');
                       console.log(ModalidadTodasconOrden);
