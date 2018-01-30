@@ -80,7 +80,7 @@
 
 
     </head>
-    <body class="skin-blue"  ng-controller="ctrlProveedor">
+    <body class="skin-blue"  ng-controller="ctrlLicitacionConsolidadoDatos">
         <header>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -102,11 +102,11 @@
                     <i class="fa fa-envelope" aria-hidden="true"></i><span> Notificación a proveedores</span>
                   </a>
                 </li>
-                <li class="active">
-                  <a href="proveedores.html">
-                    <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
-                  </a>
-                </li>
+                <li >
+                    <a href="proveedores.html">
+                      <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
+                    </a>
+                  </li>
                 <li class="dropdown" >
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -118,10 +118,10 @@
                       <i class="fa fa-check" aria-hidden="true"></i>
                       <span>Seleccionar Proveedores</span>
                     </a></li>
-                     <li><a href="consolidado_datos.html">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                      <span>Consolidado de Datos</span>
-                    </a></li>
+                    <li class="active"><a href="consolidado_datos.html">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <span>Consolidado de Datos</span>
+                  </a></li>
 
                   </ul>
                 </li>
@@ -162,10 +162,10 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Proveedores
+                        Consolidado de Datos
                     </h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="#"><i class="fa fa-handshake-o" ></i>Proveedores</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-handshake-o" ></i>Consolidado de Datos</a></li>
                     </ol>
                 </section>
 
@@ -178,63 +178,20 @@
                           <!-- Content Header (Page header) -->
 
                           <!-- Main content -->
-                          <section class="content">
-                             <div class="pull-right" >
-                               <div class="form-group" style="margin-top:-10px;">
-                                  <a ng-click="GotoUser('');" ng-show="Show60" data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span> Nuevo Proveedor</button></a>
-                               </div>
-                             </div>
+                          <section class="content">                            
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="box box-solid" style="padding: 10px;">
                                         <div class="box-header">
                                           <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
 
-                                            <div class="col-md-3">
-                                              <div class="form-group" ng-show="Show90">
-                                                  <label>Proveedor</label>
-
-                                                  <ui-select ng-change="filterProveedores();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
-                                                    <ui-select-match placeholder="Proveedor">{{$select.selected.RazonSocial}}</ui-select-match>
-                                                    <ui-select-choices repeat="usuario in UsuariosSaved | filter: { RazonSocial: $select.search } ">
-                                                      <span ng-bind-html="usuario.RazonSocial | highlight: $select.search"></span>
-                                                    </ui-select-choices>
-                                                  </ui-select>
-
-                                              </div>
-                                               <!--<div class="form-group" ng-show="Show100">
-                                                  <label>Proveedor</label>
-
-                                                  <ui-select ng-change="filterProveedoresModalidad();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
-                                                    <ui-select-match placeholder="Proveedor">{{$select.selected.Email}}</ui-select-match>
-                                                    <ui-select-choices repeat="usuario in LicitacionModalidadesProveedores | filter: { Email: $select.search }">
-                                                      <span ng-bind-html="usuario.Email | highlight: $select.search"></span>
-                                                    </ui-select-choices>
-                                                  </ui-select>
-
-                                              </div>-->
+                                            <div class="col-md-3">                                             
                                               <div class="form-group" ng-show="Show70">
                                         <label>Modalidad</label>
                                         <select class="form-control" id="sel1"
                                         ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
                                         ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
                                       </div>
-                                            </div>
-
-                                            <div class="col-md-3" >
-                                              <label>Vistas</label>
-                                              <div class="dropdown">
-                                                <a href="" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                                                  <i class="fa fa-list" aria-hidden="true"></i>
-                                                  <span class="caret"></span>
-                                                </a>
-                                                <ul class="dropdown-menu float-right">
-                                                  <li ng-click="Showf1();"><a href="">Consolidación Datos</a></li>
-                                                  <li ng-click="Showf2();"><a href="">Información Proveedor</a></li>
-                                                  <li ng-click="Showf3();"><a href="">Datos Proveedor</a></li>
-                                                </ul><label>{{label}}</label>
-                                              </div>
-
                                             </div>
                                             <div>
                                             <div class="col-md-6 checkbox  ">
@@ -961,73 +918,7 @@
                     </div><!-- /.col (MAIN) -->
                   </div>
                 </div>
-<br><br>
-
-                <div ng-show="Show40" class="box-body table-responsive no-padding">
-                    <table class="table table-bordered">
-                        <tr class="encabezadotabla">
-                          <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Nit</b></h6></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Nombre Empresa</b></h6></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Contacto</b></h6></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Número Fijo</b></h6></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Email</b></h6></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Usuario Sistema</b></h6></th>
-                          <th class="text-center"><h6 style="font-size:13px;"><b>Estado</b></h6></th>
-                        </tr>
-
-                             <tbody  ng-repeat="Usuario in Usuarios">
-
-                        <tr>
-                            <td>
-                              <div class="btn-group">
-                                <button class="btn btn-default" type="button">Acciones</button>
-                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a href="#" ng-click="DeleteUser(Usuario.User);"><i  class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                  <li><a href="#" ng-click="GotoUser(Usuario.User);"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
-                                  <li><a href="#"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
-                                </ul>
-                              </div>
-
-                            </td>
-
-                 <td>{{Usuario.Nit}}</td>
-                 <td>{{Usuario.RazonSocial}}</td>
-                 <td>{{Usuario.Name}}</td>
-                <td>{{Usuario.Phone}}</td>
-                <td>{{Usuario.Email}}</td>
-                <td>{{Usuario.User}}</td>
-                <td>Activo</td>
-
-                        </tr>
-
-
-                    </table>
-                     <div class="" style="height: 150px;"><div class="row" ></div></div>
-                </div><!-- /.box-body -->
-                <br>
-                <div ng-show="Show50" class="box-body table-responsive no-padding">
-                    <table class="table table-bordered">
-                        <tr class="encabezadotabla">
-                          <th class="text-center" style="width:20%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                          <th class="text-center"><h6><b>Modalidades Diligenciadas</b></h6></th>
-                        </tr>
-                        <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
-                          <tr>
-                            <td>
-                              <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-primary"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Desbloquear</button></a>
-                              <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green"><i class="fa fa-handshake-o" aria-hidden="true"></i> Negociar</button></a>
-                            </td>
-                            <td>{{LiciModalidadProveedor.Modalidad}}</td>
-                          </tr>
-                        
-                    </table>
-                     <div class="" style="height: 150px;"><div class="row" ></div></div>
-                </div><!-- /.box-body -->
+                <br><br>
                 <!-- MAILBOX END -->
               </section><!-- /.content -->
             </aside><!-- /.right-side -->
@@ -1043,10 +934,6 @@
                                         </div>
                                         </div>
 
-
-
-
-
                                     </div><!-- /.box -->
                                 </div>
                             </div>
@@ -1057,104 +944,7 @@
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
-              <!-- Modales-->
-           <form name="FormProveedores">
-            <div class="modal fade" id="nuevoProveedor" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-              <div class="modal-dialog  modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <div class="titulo-modal">
-                      <h5 class="modal-title"><i class="fa fa-tasks" aria-hidden="true"></i> Nuevo Proveedor</h5>
-                    </div>
-                  </div><!--fin panel modal header-->
-                  <div class="modal-body ">
-                    <div class="well">
-                      <div class="margin-well fondomodal">
-                        <div class="row">
-                          <div class="titulo">
-                            <h5><i class="fa fa-pencil" aria-hidden="true"></i> <b>Información Empresa</b></h5>
-                          </div>
-                          <hr>
-                          <div class="col-md-6">
-                            <div class="form-group"  ng-class="{'has-error':FormProveedores.nit.$invalid && FormProveedores.nit.$dirty}">
-                              <label class="control-label" for="name">NIT:</label>
-                              <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
-                                <input ng-model="nit" class="form-control" type="number" placeholder= "NIT" name="nit" ng-required="true" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group"  ng-class="{'has-error':FormProveedores.nit.$invalid && FormProveedores.nit.$dirty}">
-                              <label class="control-label" for="name">Razón Social:</label>
-                              <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
-                                <input ng-model="razonsocial" class="form-control" type="text" placeholder= "razón social">
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group" ng-class="{'has-error':FormProveedores.username.$invalid && FormProveedores.username.$dirty}">
-                              <label class="control-label" for="name">Nombre Contacto:</label>
-                              <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                <input ng-model="username" id="Nombre" type="text" class="form-control" name="username" placeholder="Nombre Contacto" ng-required="true">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group" ng-class="{'has-error':FormProveedores.email.$invalid && FormProveedores.email.$dirty}">
-                              <label class="control-label" for="name">Dirección de correo:</label>
-                              <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-                                <input ng-model="email" id="Nombre" type="email" class="form-control" name="email" placeholder="Email" ng-required="true">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group" ng-class="{'has-error':FormProveedores.phone.$invalid && FormProveedores.phone.$dirty}">
-                              <label class="control-label" for="name">Contacto:</label>
-                              <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                <input ng-model="phone" ui-mask="(999) 999-9999 (Ext- 999)" type="text" class="form-control" name="phone" ng-required="true">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="well margin-well">
-                      <div class="row">
-                        <div class="titulo">
-                          <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información de la Cuenta</b></h5>
-                        </div>
-                        <hr>
-                        <div class="col-md-6">
-                          <div class="form-group" ng-class="{'has-error':FormProveedores.user.$invalid && FormProveedores.user.$dirty}">
-                            <label class="control-label" for="name">Usuario:</label>
-                            <div class="input-group">
-                              <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                              <input ng-model="user" class="form-control" type="text" name="user" placeholder="Usuario" ng-required="true">
-                            </div>
-                          </div>
-                        </div>
-                       </div>
-                    </div>
-
-                  </div><!--fin row5-->
-                  <div class="modal-footer">
-                      <button data-dismiss="modal" class="btn btn-default btn-opciones "><span class="glyphicon glyphicon-floppy-remove"></span> Cancelar</button>
-                      <button ng-click="SaveUser();" class="btn btn-green"><i class="glyphicon glyphicon-floppy-save"></i> Guardar</button>
-                  </div><!--fin modal footer-->
-                </div><!--fin well datos direccion-->
-              </div>
-
-            </div>  <!--fin panel modal body-->
-</form>
+              <!-- Modales-->     
 
         </div><!-- ./wrapper -->
 
