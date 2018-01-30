@@ -3397,6 +3397,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         // Ejecutará el guardar modalidades cada 5 segundos
                         $interval(UpdateModalidadesTime, 5000);
+
                          function UpdateModalidadesTime() {
                           if ($scope.UpdateData == false) {return 0}
                           $scope.UpdateData = false;
@@ -3419,6 +3420,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           });
 
                         }
+
+
+                        // Actualiza las modalidades para éste proveedores
+                      $scope.UpdateModalidades = function () {
+                        $scope.UpdateData = true;
+
+                       //  var Data = {};
+                       // // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+                       //
+                       //  Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
+                       //
+                       //
+                       //
+                       //  $http({
+                       //      method: 'POST',
+                       //      url: '/UpdateModalidadesProveedor',
+                       //      headers: { 'Content-Type': 'application/json' },
+                       //      data: Data
+                       //  }).then(function successCallback(response) {
+                       //      console.log('La data fue actualizada');
+                       //  }, function errorCallback(response) {
+                       //      console.log(response);
+                       //  });
+                      }
+
                           /*var Data = {};
                          // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
 
@@ -12633,7 +12659,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                     var Unobjeto={};
-               
+
                 $loading.start('myloading');
                 Data.ProveedorSeleccionado=ProveedorSeleccionado;
                 Data.Modalidad=ModalidadConsolidado;
@@ -19217,7 +19243,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             $scope.GetConsolidadoDatos();
 
          };
-       
+
             $scope.FiltroProveedorSeleccionado= function  (){
             if (ProveedorSeleccionado==false){
               ProveedorSeleccionado=true;
@@ -19228,8 +19254,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
               $scope.GetConsolidadoDatos()
             }
-           
-              
+
+
              $scope.FiltroSemaforo= function  (){
               if (ModalidadesSemaforo==false){
               ModalidadesSemaforo=true;
@@ -19240,9 +19266,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
               $scope.GetConsolidadoDatos()
             }
-           
-           
-        }])    
+
+
+        }])
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
