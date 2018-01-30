@@ -1600,23 +1600,37 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 
 });
 
+// function Ejecutar (){
+//   // Para traer únicamente los proveedores seleccionados
+//   MyMongo.Find('ProveedorSeleccionado', {} , function (result) {
+//       var ProveedoresSeleccionado = result;
+//       // Para saber qué proveedores le dieron finalizar licitación
+//       // Son los que tienen a menos una modalidad con Cerrado = true en LicitacionProveedor
+//       MyMongo.Find('LicitacionProveedor', {Cerrado: true} , function (result) {
+//         var ProveedoresLicitacionCerrada = result;
+//         MyMongo.Find('ModalidadesProveedor', {} , function (result) {
+//           var Data = {};
+//           Data.ConsolidadoDatos = result;
+//           console.log('YA');
+//           console.log(Data.ConsolidadoDatos);
+//         });
+//       });
+//   });
+// }
+//
+// Ejecutar();
+
 ////////////Consolidado de Datos/////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/GetConsolidadoDatos', function (req, res) {
 
-   //var Modalidad = req.body.Modalidad;
-
-     MyMongo.Find('ModalidadesProveedor', {} , function (result) {
-        var Data = {};
-         Data.ConsolidadoDatos = result;
-        res.end(JSON.stringify(Data));
-
-    }
-
-    );
+  MyMongo.Find('ModalidadesProveedor', {} , function (result) {
+    var Data = {};
+    Data.ConsolidadoDatos = result;
+    res.end(JSON.stringify(Data));
+  });
 
 });
-
 
 app.post('/ExportarExcelModalidad', function (req, res) {
 
@@ -1625,11 +1639,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
    var Modalidad2 = req.body.ModalidadesProveedor2;
    var Modalidad3 = req.body.ModalidadesProveedor3;
    console.log(Modalidad);
-  
-   
+
+
    var Data={};
- 
- 
+
+
     // Require library
     var xl = require('excel4node');
 
@@ -1637,37 +1651,37 @@ app.post('/ExportarExcelModalidad', function (req, res) {
     var wb = new xl.Workbook();
 
     // Add Worksheets to the workbook
-    if (NombreModalidad == 'Aduanas') { var ws2 = wb.addWorksheet('Aduanas');}   
+    if (NombreModalidad == 'Aduanas') { var ws2 = wb.addWorksheet('Aduanas');}
     if (NombreModalidad=='OTM'){var ws2 = wb.addWorksheet('OTM');}
     if (NombreModalidad=='MaritimasFCL'){var ws2 = wb.addWorksheet('MaritFCL');}
     if (NombreModalidad=='MaritimasLCL'){var ws2 = wb.addWorksheet('MaritLCL');}
 
-    if (NombreModalidad == 'Bodegajes') 
-        { 
+    if (NombreModalidad == 'Bodegajes')
+        {
             var ws2 = wb.addWorksheet('Aduanero');
             var ws3 = wb.addWorksheet('Maquinaria');
             var ws4 = wb.addWorksheet('MateriaPrima');
-        } 
+        }
 
-     if (NombreModalidad == 'Terrestre Nacional') 
-        { 
+     if (NombreModalidad == 'Terrestre Nacional')
+        {
             var ws2 = wb.addWorksheet('Turbo');
             var ws3 = wb.addWorksheet('Sencillo');
             var ws4 = wb.addWorksheet('Patineta');
-        }   
+        }
 
-     if (NombreModalidad == 'Terrestre Urbano') 
-        { 
+     if (NombreModalidad == 'Terrestre Urbano')
+        {
             var ws2 = wb.addWorksheet('Urbano');
             var ws3 = wb.addWorksheet('Viaje');
             var ws4 = wb.addWorksheet('Tonelada');
-        }   
+        }
 
-     if (NombreModalidad == 'Aereas') 
-        { 
+     if (NombreModalidad == 'Aereas')
+        {
             var ws2 = wb.addWorksheet('Aerea_Carguero');
             var ws3 = wb.addWorksheet('Aerea_Pasajero');
-        } 
+        }
 
     // Create a reusable style
     var style1 = wb.createStyle({
@@ -1678,8 +1692,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
         //numberFormat: '#,##0.00; (#,##0.00); -',
         numberFormat: '#,##0.00',
-        
-    });  
+
+    });
 
      var style = wb.createStyle({
         font: {
@@ -1689,9 +1703,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
         //numberFormat: '0,00.00; (0,000.00); -',
          numberFormat: '#,##0.00',
-    });  
+    });
 
-         
+
           var valor = '';
           var myProp = '_id';
           var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
@@ -1702,26 +1716,26 @@ app.post('/ExportarExcelModalidad', function (req, res) {
             {
           var fila = 1;
           var filabody = 1;
-          var col = 1; 
+          var col = 1;
                 console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
-              var Encabezados = Object.keys(modalid);              
+              var Encabezados = Object.keys(modalid);
               // Recorre cada encabezado
-              if (fila == 1){             
-                Encabezados.forEach(function(header) {              
-                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
                     header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {        
+                {
                   if (header =='Email'){
                     ws2.cell(1, 1).string(header).style(style1);
                     valor = modalid[header].toString();
@@ -1730,44 +1744,44 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }
                   else {
                     col = col + 1;
-                   ws2.cell(1, col).string(header).style(style1);          
+                   ws2.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
                             valor =parseFloat(0.00);
                             ws2.cell(2,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                              ws2.cell(2,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                             valor = modalid[header].toString();
                             ws2.cell(2,col).string(valor).style(style);
-                         
+
                        }
                     }
-                            
+
                   }
-                  }                  
+                  }
                 });
               }
               // Recorre cada registro
-             else { 
-                 Encabezados.forEach(function(header) {                  
-                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+             else {
+                 Encabezados.forEach(function(header) {
+                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {      
+                {
                 //console.log(modalid[header]);
                     if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
                             valor =parseFloat(0.00);
@@ -1775,62 +1789,62 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                            ws2.cell(fila+1,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                            col = col + 1;
                           ws2.cell(fila+1,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                          if (header =='Email')
                          {
                             valor = modalid[header].toString();
                             ws2.cell(fila+1,1).string(valor).style(style);
                          }
-                          else 
+                          else
                          {
                            valor = modalid[header].toString();
                             col = col + 1;
                             ws2.cell(fila+1,col).string(valor).style(style);
                          }
                        }
-                    } 
-                   // 
+                    }
+                   //
                 }
-               
+
                });
                   }
-            
+
               // Aumenta la fila
-              fila++   
+              fila++
               col=1;
             });
-         
-       ////////////////////////////Segunda Hoja////////////////////////////////  
+
+       ////////////////////////////Segunda Hoja////////////////////////////////
         if (NombreModalidad == 'Bodegajes' || NombreModalidad == 'Terrestre Nacional' || NombreModalidad == 'Terrestre Urbano')
-         {   
+         {
               fila=1;
-              col=1;  
+              col=1;
            console.log('no debe pasar por aqui aerea hoja 2');
              Modalidad2.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
-              var Encabezados = Object.keys(modalid);              
+              var Encabezados = Object.keys(modalid);
               // Recorre cada encabezado
-              if (fila == 1){             
-                Encabezados.forEach(function(header) {              
-                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
                     header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {        
+                {
                   if (header =='Email'){
                     ws3.cell(1, 1).string(header).style(style1);
                     valor = modalid[header].toString();
@@ -1839,44 +1853,44 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }
                   else {
                     col = col + 1;
-                   ws3.cell(1, col).string(header).style(style1);          
+                   ws3.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
                             valor =parseFloat(0.00);
                             ws3.cell(2,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                              ws3.cell(2,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                             valor = modalid[header].toString();
                             ws3.cell(2,col).string(valor).style(style);
-                         
+
                        }
                     }
-                            
+
                   }
-                  }                  
+                  }
                 });
               }
               // Recorre cada registro
-             else { 
-                 Encabezados.forEach(function(header) {                  
-                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+             else {
+                 Encabezados.forEach(function(header) {
+                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {      
+                {
                 //console.log(modalid[header]);
                     if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined' ) {
                             valor =parseFloat(0.00);
@@ -1884,42 +1898,42 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             ws3.cell(fila+1,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                            col = col + 1;
                            ws3.cell(fila+1,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                          if (header =='Email')
                          {
                             valor = modalid[header].toString();
                             ws3.cell(fila+1,1).string(valor).style(style);
                          }
-                          else 
+                          else
                          {
                            valor = modalid[header].toString();
                             col = col + 1;
                             ws3.cell(fila+1,col).string(valor).style(style);
                          }
                        }
-                    } 
-                   // 
+                    }
+                   //
                 }
-               
+
                });
                   }
-            
+
               // Aumenta la fila
-              fila++    
+              fila++
               col=1;
             });
-  
-    }
-              
 
-          //////////////////////////////////////////////Tercera Hoja////////////////////////////////  
+    }
+
+
+          //////////////////////////////////////////////Tercera Hoja////////////////////////////////
        if (NombreModalidad == 'Bodegajes' || NombreModalidad == 'Terrestre Nacional' || NombreModalidad == 'Terrestre Urbano')
              {
               fila=1;
@@ -1927,22 +1941,22 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                 console.log('no debe pasar por aqui aerea hoja 3');
              Modalidad3.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
-              var Encabezados = Object.keys(modalid);              
+              var Encabezados = Object.keys(modalid);
               // Recorre cada encabezado
-              if (fila == 1){             
-                Encabezados.forEach(function(header) {              
-                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada'  &&  header !='AduGAIIPintada'  &&  header !='Aeropuerto' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
                     header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {        
+                {
                   if (header =='Email'){
                     ws4.cell(1, 1).string(header).style(style1);
                     valor = modalid[header].toString();
@@ -1951,44 +1965,44 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }
                   else {
                     col = col + 1;
-                   ws4.cell(1, col).string(header).style(style1);          
+                   ws4.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined' ) {
                             valor =parseFloat(0.00);
                             ws4.cell(2,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                              ws4.cell(2,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                             valor = modalid[header].toString();
                             ws4.cell(2,col).string(valor).style(style);
-                         
+
                        }
                     }
-                            
+
                   }
-                  }                  
+                  }
                 });
               }
               // Recorre cada registro
-             else { 
-                 Encabezados.forEach(function(header) {                  
-                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+             else {
+                 Encabezados.forEach(function(header) {
+                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada'  &&  header !='Aeropuerto' && header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {      
+                {
                 //console.log(modalid[header]);
                     if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined' ) {
                             valor =parseFloat(0.00);
@@ -1996,41 +2010,41 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             ws4.cell(fila+1,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                            col = col + 1;
                            ws4.cell(fila+1,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                          if (header =='Email')
                          {
                             valor = modalid[header].toString();
                             ws4.cell(fila+1,1).string(valor).style(style);
                          }
-                          else 
+                          else
                          {
                            valor = modalid[header].toString();
                             col = col + 1;
                             ws4.cell(fila+1,col).string(valor).style(style);
                          }
                        }
-                    } 
-                   // 
+                    }
+                   //
                 }
-               
+
                });
                   }
-            
+
               // Aumenta la fila
-              fila++ 
-              filabody++    
+              fila++
+              filabody++
               col=1;
             });
-         } 
-         }  
-            
+         }
+         }
+
         else
         {
              ///////////////////////////////////////////////Aerea Primera Hoja /////////////////////////////////
@@ -2038,27 +2052,27 @@ app.post('/ExportarExcelModalidad', function (req, res) {
          if (NombreModalidad == 'Aereas')
 
             console.log('paso por aqui aerea hoja 1');
-         {          
-         fila=1;        
+         {
+         fila=1;
          col=5;
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
-              var Encabezados = Object.keys(modalid);              
+              var Encabezados = Object.keys(modalid);
               // Recorre cada encabezado
-              if (fila == 1){             
-                Encabezados.forEach(function(header) {              
-                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
                     header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {        
+                {
                   if (header =='Email'){
                     ws2.cell(1, 1).string(header).style(style1);
                     valor = modalid[header].toString();
@@ -2085,7 +2099,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                         console.log(header);
                         console.log(modalid[header]);
                     ws2.cell(1, 4).string(header).style(style1);
-                    
+
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -2096,14 +2110,14 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws2.cell(2,4).number(valor).style(style);
                              }
-                         
+
                       //console.log(header);
                   }
 
                 else if (header =='45')
                     {
                     ws2.cell(1, 5).string(header).style(style1);
-                    
+
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -2114,49 +2128,49 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws2.cell(2,5).number(valor).style(style);
                              }
-                         
+
                       //console.log(header);
                   }
                   else {
                     col = col + 1;
-                   ws2.cell(1, col).string(header).style(style1);          
+                   ws2.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
                             valor =parseFloat(0.00);
                             ws2.cell(2,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                              ws2.cell(2,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                             valor = modalid[header].toString();
                             ws2.cell(2,col).string(valor).style(style);
-                         
+
                        }
                     }
-                            
+
                   }
-                  }                  
+                  }
                 });
               }
               // Recorre cada registro
-             else { 
-                 Encabezados.forEach(function(header) {                  
-                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+             else {
+                 Encabezados.forEach(function(header) {
+                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada'  && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {      
+                {
                 //console.log(modalid[header]);
 
                     if (header =='Email')
@@ -2201,36 +2215,36 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(fila+1,5).number(valor).style(style);
                              }
                          }
-                     else 
+                     else
                          {
-                             if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') 
+                             if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined')
                             {
                             valor =parseFloat(0.00);
                             col = col + 1;
                             ws2.cell(fila+1,col).number(valor).style(style);
                             }
                              else
-                            { 
-                               if (pattern.test(modalid[header])){                         
-                               valor = parseFloat(modalid[header]); 
+                            {
+                               if (pattern.test(modalid[header])){
+                               valor = parseFloat(modalid[header]);
                                col = col + 1;
                               ws2.cell(fila+1,col).number(valor).style(style);
                                }
                               else
-                              { 
+                              {
                               valor = modalid[header].toString();
                               col = col + 1;
                               ws2.cell(fila+1,col).string(valor).style(style);
                               }
-                            }  
+                            }
                          }
-                   // 
+                   //
                 }
-               
+
                });
-                  }            
+                  }
               // Aumenta la fila
-              fila++  
+              fila++
               col=5;
             });
 
@@ -2239,22 +2253,22 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           /////////////////////////////////////////////////////Segunda Hoja Aerea //////////////////////////////
                 Modalidad2.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
-              var Encabezados = Object.keys(modalid);              
+              var Encabezados = Object.keys(modalid);
               // Recorre cada encabezado
-              if (fila == 1){             
-                Encabezados.forEach(function(header) {              
-                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
                     header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {        
+                {
                   if (header =='Email'){
                     ws3.cell(1, 1).string(header).style(style1);
                     valor = modalid[header].toString();
@@ -2279,7 +2293,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='Minima')
                     {
                     ws3.cell(1, 4).string(header).style(style1);
-                    
+
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -2290,14 +2304,14 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws3.cell(2,4).number(valor).style(style);
                              }
-                         
+
                       //console.log(header);
                   }
 
                      else if (header =='45')
                     {
                     ws3.cell(1, 5).string(header).style(style1);
-                    
+
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -2308,50 +2322,50 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws3.cell(2,5).number(valor).style(style);
                              }
-                         
+
                       //console.log(header);
                   }
 
                   else {
                     col = col + 1;
-                   ws3.cell(1, col).string(header).style(style1);          
+                   ws3.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
                             valor =parseFloat(0.00);
                             ws3.cell(2,col).number(valor).style(style);
                     }
                     else
-                    { 
-                       if (pattern.test(modalid[header])){                         
-                             valor = parseFloat(modalid[header]); 
+                    {
+                       if (pattern.test(modalid[header])){
+                             valor = parseFloat(modalid[header]);
                              ws3.cell(2,col).number(valor).style(style);
                        }
                        else
-                       { 
+                       {
                             valor = modalid[header].toString();
                             ws3.cell(2,col).string(valor).style(style);
-                         
+
                        }
                     }
-                            
+
                   }
-                  }                  
+                  }
                 });
               }
               // Recorre cada registro
-             else { 
-                 Encabezados.forEach(function(header) {                  
-                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' && 
+             else {
+                 Encabezados.forEach(function(header) {
+                if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada'  && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' && 
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' && 
+                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
-                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' && 
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
-                {      
+                {
                 //console.log(modalid[header]);
 
                     if (header =='Email')
@@ -2395,57 +2409,57 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws3.cell(fila+1,5).number(valor).style(style);
                              }
                          }
-                     else 
+                     else
                          {
-                             if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') 
+                             if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined')
                             {
                             valor =parseFloat(0.00);
                             col = col + 1;
                             ws3.cell(fila+1,col).number(valor).style(style);
                             }
                              else
-                            { 
-                               if (pattern.test(modalid[header])){                         
-                               valor = parseFloat(modalid[header]); 
+                            {
+                               if (pattern.test(modalid[header])){
+                               valor = parseFloat(modalid[header]);
                                col = col + 1;
                               ws3.cell(fila+1,col).number(valor).style(style);
                                }
                               else
-                              { 
+                              {
                               valor = modalid[header].toString();
                               col = col + 1;
                               ws3.cell(fila+1,col).string(valor).style(style);
                               }
-                            }  
+                            }
                          }
-                   // 
+                   //
                 }
-               
+
                });
-                  }            
+                  }
               // Aumenta la fila
-              fila++   
+              fila++
               col=5;
             });
-         }               
+         }
 
 
-        }      
+        }
 
 
 
         wb.writeToBuffer().then(function (buffer) {
           Data.ExcelBase64 = buffer.toString('base64');
           res.end(JSON.stringify(Data));
-       
+
         });
 
-           
 
-            
+
+
 console.log('Si va');
     //wb.write('Aduana.xlsx', res);
-        
+
   });
 
 
@@ -2956,7 +2970,7 @@ app.get('/GetTemplateAduana', function (req, res) {
         },
 
         numberFormat: '$#,##0.00; ($#,##0.00); -',
-        
+
     });
 
     // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
@@ -3670,7 +3684,7 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                     } else {
 
                       MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
-                      MyMongo.Insert('LicitacionProveedor', [{ Email: req.body.Email, Bloqueado: true, Modalidad: 'Bodegajes' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aduanas' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'OTM' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasFcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasLcl' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreNacional' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreUrbano' }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Areas' }], function (result) {
+                      MyMongo.Insert('LicitacionProveedor', [{ Email: req.body.Email, Bloqueado: true, Modalidad: 'Bodegajes', Cerrado: true }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aduanas', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'OTM', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasFcl', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasLcl', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreNacional', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreUrbano', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aereas', Cerrado: true  }], function (result) {
                         var Data = {};
                         Data.Result = 'ok';
                         res.end(JSON.stringify(Data))
@@ -3847,7 +3861,7 @@ app.post('/GetDesbloquearmodalidad', function (req, res) {
 
 // Funcionalidad para negociar modalidad de un proveedor
 app.post('/GetNegociarmodalidad', function (req, res) {
-  
+
   var mModalidad = req.body.Modalidad;
   var Modalidaddesbloquear= req.body.Modalidad;
   var mEmail = req.body.Email;
@@ -3864,7 +3878,7 @@ app.post('/GetNegociarmodalidad', function (req, res) {
     // Se aumenta la versión a la modalidad específica que se va a aumentar. OJO se asume que viene Version siempre (1 si es la primera vez)
     // por lo que hay que hacer un query para actualizar todas las anteriores y hacer los cambios para que cuando sea por primera vez coloque 1
     // en las versiones. En la lína inmediata de abajo se simulña que viene 1 eso no será así es sólo simulación
-    //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar    
+    //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar
     var newVersion = result[0][mModalidad].Version + 1;
     var mModalidadObject =  result[0][mModalidad];
 
@@ -3885,13 +3899,13 @@ app.post('/GetNegociarmodalidad', function (req, res) {
       MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
 
       }); // Fin actualizar la modalidad actual para agregar versión aumentada y vacía
-     
+
 
        if (mModalidad=='TerreNacional') {
         mupdate = {};
         mupdate['TerreNacionalSencillo'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
-        }); 
+        });
         mupdate = {};
         mupdate['TerreNacionalPatineta'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
@@ -3902,7 +3916,7 @@ app.post('/GetNegociarmodalidad', function (req, res) {
         mupdate = {};
         mupdate['TerreUrbanoViaje'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
-        }); 
+        });
         mupdate = {};
         mupdate['TerreUrbanoTonelada'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
@@ -3913,7 +3927,7 @@ app.post('/GetNegociarmodalidad', function (req, res) {
         mupdate = {};
         mupdate['AereaPasajero'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
-        }); 
+        });
        }
 
     });
@@ -3923,17 +3937,17 @@ console.log(req.body.Email);
 console.log(req.body.Modalidad);
    MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
              var Data = {};
-             res.end(JSON.stringify(Data)) 
+             res.end(JSON.stringify(Data))
        });
              // Fin de buscar todas las modalidad del proveedor que se pasó a la función
 });
 
 //////////////////////////////////////////////////// Modulo Seleccionar Proveedores //////////////////////////
 app.post('/GetSeleccionarProveedor', function (req, res) {
-  
+
  MyMongo.Find('LicitacionProveedor', { $and: [{ Modalidad: req.body.Modalidad } ,{Bloqueado:true}]}, function (result) {
            var Data = {};
-            Data.data= result;           
+            Data.data= result;
             res.end(JSON.stringify(Data));
 
      });
@@ -3941,23 +3955,23 @@ app.post('/GetSeleccionarProveedor', function (req, res) {
 });
 
 app.post('/GetProveedorSeleccionado', function (req, res) {
-  
+
  MyMongo.Find('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } , {Bloqueado:true} , {Seleccionado:true}] } , function (result) {
          if (result.length == 0){
 
             // MyMongo.Insert('ProveedorSeleccionado', { Email: req.body.Email, Modalidad: req.body.Modalidad }, function (result) {
              MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad,Bloqueado:true},{Seleccionado:true}, function (result) {
              var Data = {};
-             res.end(JSON.stringify(Data)) 
-             });          
+             res.end(JSON.stringify(Data))
+             });
          }
          else
          {
              MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad, Bloqueado:true},{Seleccionado:false}, function (result) {
             var Data = {};
-             res.end(JSON.stringify(Data)) 
+             res.end(JSON.stringify(Data))
 
-             });    
+             });
          }
 
      });

@@ -3276,7 +3276,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         $scope.FinalizarModalidadTodas = function (Email){
 
-
                           swal({
                               title: "Seguro de finalizar el proceso para todas las modalidades?",
                               text: "",
@@ -3287,6 +3286,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               closeOnConfirm: true
                           },
                           function () {
+
+                            // Al finalizar todas las modalidades coloca cero en los campos donde esté null y en blanco
+                            // de todas las modalidades
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.Aduana.Aduanas);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.Aerea.Aereas);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.Bodegajes.Aduanero);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.Bodegajes.Maquinaria);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.Bodegajes.MateriaPrima);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.Otm.Otms);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreNacional.TerresNacional);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreUrbano.TerresUrbano);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje);
+                            // Guarda Modalidades (OJO se debe mejorar ya que llama a guardar asíncrono y no se asehura)
+                            $scope.UpdateModalidades();
 
                             var Data = {};
                             Data.Email = localStorage.UserConnected;
@@ -3341,12 +3360,44 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           });
                         }
 
+                        //  Ésta función recibe un array recorre rodos los objetos del array y a cada propiedad
+                        // del objeto coloca cero por null -menos a las propiedades que se llamen
+                        // $$hashKey ó _id
+                        $scope.SetZeroInNull = function (object) {
+                          var intFila = 0;
+                          // Si es un array chequea cada fila, si es un objeto cada campo
+                          if (Array.isArray(object)){
+                            // Cada fila del array
+                            object.forEach(function(fila) {
+                              // Cada campo del objeto
+                              var Encabezados = Object.keys(fila);
+                              Encabezados.forEach(function(campo) {
+                                if (campo != '_id' && campo != '$$hashKey')
+                                  if (!fila[campo]){
+                                    object[intFila][campo] = 0;
+                                  }
+                              });
+                              intFila++
+                            });
+                          }
+                          else{
+                            var Encabezados = Object.keys(object);
+                            Encabezados.forEach(function(campo) {
+                              if (campo != '_id' && campo != '$$hashKey')
+                                if (!object[campo]){
+                                  object[campo] = 0;
+                                }
+                            });
+                          }
+                        }
+
                           // Actualiza las modalidades para éste proveedores
                         $scope.UpdateModalidades = function () {
                           var Data = {};
                          // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
 
                           Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
+
 
 
                           $http({
@@ -5159,7 +5210,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         })
 
         .controller('ctrlProveedor', ['$scope', '$http', '$loading', '$uibModal',  function ($scope, $http, $loading, $uibModal) {
-         
+
           // Llama a HTML Modal que permite cambiar passwor de la app
           $scope.ActiveUserModal = {};
           $scope.openChangePassword = function (size, parentSelector) {
@@ -5198,7 +5249,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   alert(response.statusText);
               });
           }
-        
+
          $scope.Show30 = true;
          $scope.Show40 = false;
          $scope.Show50 = false;
@@ -5222,7 +5273,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show11=false;
                         $scope.Show12=false;
                         $scope.Show13=false;
-        
+
            //////////////////////////////se agrego consolidado datos /////////////////////////////////////
 
             $scope.ModalidadesSemaforo=false;
@@ -5234,8 +5285,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                   $scope.GetConsolidadoDatos = function () {
                     var Data={};
-                    var ModalidadTodas = [];   
-                    var ModalidadTodasOtm = [];                   
+                    var ModalidadTodas = [];
+                    var ModalidadTodasOtm = [];
                     var ModalidadTodasT = [];
                     var ModalidadTodasTurbo = [];
                     var ModalidadTodasSencillo = [];
@@ -5380,15 +5431,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                           ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
-                    
+
 
                           //ModalidadTodasconOrdenBodegajeaduanero=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduanero=ModalidadTodasBodegajeaduanero;
                           ModalidadTodasconOrdenBodegajeaduanerotv=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduanerotv=ModalidadTodasBodegajeaduanero;
                           ModalidadTodasconOrdenBodegajeaduaneromaq=parseFloat(ModalidadTodasBodegajeaduanero);
-                          ModalidadTodasconOrdenBodegajeaduaneromaq=ModalidadTodasBodegajeaduanero;                          
-                          ModalidadTodasconOrdenBodegajeaduaneromin=parseFloat(ModalidadTodasBodegajeaduanero); 
+                          ModalidadTodasconOrdenBodegajeaduaneromaq=ModalidadTodasBodegajeaduanero;
+                          ModalidadTodasconOrdenBodegajeaduaneromin=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduaneromin=ModalidadTodasBodegajeaduanero;
                           ModalidadTodasconOrdenBodegajeaduanerootro=parseFloat(ModalidadTodasBodegajeaduanero);
                           ModalidadTodasconOrdenBodegajeaduanerootro=ModalidadTodasBodegajeaduanero;
@@ -5516,8 +5567,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         {
                           ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = [];
                         }
-                        }          
-                        ModalidadTodasBodegajeaduanero = _.orderBy(ModalidadTodasconOrdenBodegajeaduanero, [ModalidadBodeaduanero => ModalidadBodeaduanero.Email.toLowerCase()], ['asc']);               
+                        }
+                        ModalidadTodasBodegajeaduanero = _.orderBy(ModalidadTodasconOrdenBodegajeaduanero, [ModalidadBodeaduanero => ModalidadBodeaduanero.Email.toLowerCase()], ['asc']);
                         console.log(ModalidadTodasBodegajeaduanero);
                        // ModalidadTodasBodegajeaduanero= _.orderBy(Email,[user => user.name.toLowerCase()], ['desc'])
                         //ModalidadTodasBodegajeaduanero= _.sortBy(_.sortBy(ModalidadTodasconOrdenBodegajeaduanero,'Email'), (a,b)=>b-a);
@@ -5547,7 +5598,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var ModalidadTodasconOrdenBodegajeaduaneromaqmint=[];
                           var ModalidadDeUnProveedormaqfmmt=[];
                          var ModalidadTodasBodegajeaduaneromaqfmmt=[];
-                         var ModalidadTodasconOrdenBodegajeaduaneromaqfmmt=[];                         
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqfmmt=[];
                          var Unobjetomaqt ={};
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqt) {
                           ModalidadDeUnProveedormaqt = consbodegajemaqt.Bodegajes.Maquinaria;
@@ -5557,7 +5608,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjetomaqt.Email=consbodegajemaqt.Email;
                         ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
 
-                        
+
                         ModalidadTodasconOrdenBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
                         ModalidadTodasconOrdenBodegajeaduaneromaqmint=ModalidadTodasBodegajeaduaneromaqt;
                         ModalidadTodasconOrdenBodegajeaduaneromaqfmmt=ModalidadTodasBodegajeaduaneromaqt;
@@ -5680,9 +5731,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].AdumaqtfmmPintada = [];
                         }
                         }
-                          
+
                           //ModalidadTodasBodegajeaduaneromaqt= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqt,'Email');
-                          ModalidadTodasBodegajeaduaneromaqt = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqt, [ModalidadBodemaqt => ModalidadBodemaqt.Email.toLowerCase()], ['asc']);    
+                          ModalidadTodasBodegajeaduaneromaqt = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqt, [ModalidadBodemaqt => ModalidadBodemaqt.Email.toLowerCase()], ['asc']);
                           $scope.ModalidadTodasBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
                           console.log($scope.ModalidadTodasBodegajeaduaneromaqt);
 
@@ -5707,7 +5758,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var ModalidadTodasconOrdenBodegajeaduaneromaqminp=[];
                           var ModalidadDeUnProveedormaqfmmp=[];
                          var ModalidadTodasBodegajeaduaneromaqfmmp=[];
-                         var ModalidadTodasconOrdenBodegajeaduaneromaqfmmp=[];                         
+                         var ModalidadTodasconOrdenBodegajeaduaneromaqfmmp=[];
                          var Unobjetomaqp ={};
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqp) {
                           ModalidadDeUnProveedormaqp = consbodegajemaqp.Bodegajes.Maquinaria;
@@ -5717,7 +5768,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjetomaqp.Email=consbodegajemaqp.Email;
                         ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
 
-                        
+
                         ModalidadTodasconOrdenBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
                         ModalidadTodasconOrdenBodegajeaduaneromaqminp=ModalidadTodasBodegajeaduaneromaqp;
                         ModalidadTodasconOrdenBodegajeaduaneromaqfmmp=ModalidadTodasBodegajeaduaneromaqp;
@@ -5843,7 +5894,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                            //ModalidadTodasBodegajeaduaneromaqp= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqp,'Email');
-                           ModalidadTodasBodegajeaduaneromaqp = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqp, [ModalidadBodemaqp => ModalidadBodemaqp.Email.toLowerCase()], ['asc']);    
+                           ModalidadTodasBodegajeaduaneromaqp = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqp, [ModalidadBodemaqp => ModalidadBodemaqp.Email.toLowerCase()], ['asc']);
                           $scope.ModalidadTodasBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
                           console.log($scope.ModalidadTodasBodegajeaduaneromaqp);
                           console.log($scope.ModalidadesSemaforo);
@@ -5872,23 +5923,23 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadBodegaje = function () {            
+          $scope.ExportarExcelModalidadBodegaje = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodasBodegajeaduanero; 
-              Data.ModalidadesProveedor2=$scope.ModalidadTodasBodegajeaduaneromaqt; 
-              Data.ModalidadesProveedor3=$scope.ModalidadTodasBodegajeaduaneromaqp; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodasBodegajeaduanero;
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasBodegajeaduaneromaqt;
+              Data.ModalidadesProveedor3=$scope.ModalidadTodasBodegajeaduaneromaqp;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
                 url: '/ExportarExcelModalidad',
                 headers: { 'Content-Type': 'application/json' },
-                data: Data                
+                data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "Bodegaje.xlsx");
               //saveAs(urlbase64, "Report.xls");
                //$loading.finish('myloading');
@@ -5898,7 +5949,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           }
                      }
 
-                     
+
                      //////////////////////////////  Aduanas ////////////////////////
 
                     if (ModalidadConsolidado == 'Aduanas') {
@@ -6468,10 +6519,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                     // ModalidadTodas= _.sortBy(ModalidadTodas,'Via','Email');
-                   // ModalidadTodas = _.orderBy(ModalidadTodas, [Modalidadtoda => (Modalidadtoda.Via.toLowerCase())],[Modalidadtoda => (Modalidadtoda.Email.toLowerCase())],['asc'],['asc']);    
-                                              
-                   //ModalidadTodas= _.orderBy(ModalidadTodas, ["Email"], ["asc"]);  
-                   ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasadu => ModalidadTodasadu.Via.toLowerCase(),ModalidadTodasadu =>ModalidadTodasadu.Email.toLowerCase()], ['asc','asc']);              
+                   // ModalidadTodas = _.orderBy(ModalidadTodas, [Modalidadtoda => (Modalidadtoda.Via.toLowerCase())],[Modalidadtoda => (Modalidadtoda.Email.toLowerCase())],['asc'],['asc']);
+
+                   //ModalidadTodas= _.orderBy(ModalidadTodas, ["Email"], ["asc"]);
+                   ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasadu => ModalidadTodasadu.Via.toLowerCase(),ModalidadTodasadu =>ModalidadTodasadu.Email.toLowerCase()], ['asc','asc']);
 
                      console.log(ModalidadTodas);
                        ModalidadTodasRespaldoAD = ModalidadTodas;
@@ -6490,7 +6541,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.ModalidadesSemaforo == false);
                 });
                 console.log($scope.ModalidadTodas);
-               
+
 
           ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -6503,14 +6554,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             link.click();
             document.body.removeChild(link);
             delete link;
-          }        
+          }
 
-          $scope.ExportarExcelModalidadAduana = function () {            
+          $scope.ExportarExcelModalidadAduana = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodas; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodas;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -6519,7 +6570,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "Aduana.xlsx");
                //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
@@ -6546,7 +6597,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show7=false;
                         $scope.Show8=false;
                         $scope.Show9=false;
-                        $scope.Show10=false;                        
+                        $scope.Show10=false;
                         $scope.Show1111=false;
                          $scope.Show12=false;
                         $scope.Show13=false;
@@ -6559,31 +6610,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               consotmprov.Email = consotm.Email
                               ModalidadTodasOtm.push(consotmprov);
                               console.log(ModalidadTodasOtm);
-                              ModalidadTodasconOrden = ModalidadTodasOtm;                              
-                              ModalidadTodasconOrdenMinima = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenGA = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenGAII = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenGAIII = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenCA = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenCAII = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenCAIII = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenCPC = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenotros = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC4017 = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC401718 = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC4020 = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC4021 = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC4022 = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC4030 = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC20EST = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC40EST = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC20ESP = ModalidadTodasOtm;  
-                              ModalidadTodasconOrdenC40ESP = ModalidadTodasOtm;  
+                              ModalidadTodasconOrden = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenMinima = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenGA = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenGAII = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenGAIII = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenCA = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenCAII = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenCAIII = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenCPC = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenotros = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC4017 = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC401718 = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC4020 = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC4021 = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC4022 = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC4030 = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC20EST = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC40EST = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC20ESP = ModalidadTodasOtm;
+                              ModalidadTodasconOrdenC40ESP = ModalidadTodasOtm;
 
                             });
                         });
 
-                        ModalidadTodasOtm = _.sortBy(ModalidadTodasOtm, 'Destino','Origen');                        
+                        ModalidadTodasOtm = _.sortBy(ModalidadTodasOtm, 'Destino','Origen');
                          console.log(ModalidadTodasOtm);
 
                          ////////  Campo ["C 20 hasta 4-5 Ton"] //////////////////////////
@@ -7584,7 +7635,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
                         }
                         }
-                           ModalidadTodasOtm=_.orderBy(ModalidadTodasOtm, [ModalidadTodasotm => ModalidadTodasotm.Destino.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Origen.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Email.toLowerCase()], ['asc','asc','asc']);                
+                           ModalidadTodasOtm=_.orderBy(ModalidadTodasOtm, [ModalidadTodasotm => ModalidadTodasotm.Destino.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Origen.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Email.toLowerCase()], ['asc','asc','asc']);
 
               /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoExcel = ModalidadTodasOtm;
@@ -7633,12 +7684,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadOTM = function () {            
+          $scope.ExportarExcelModalidadOTM = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodasOtm; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodasOtm;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -7647,7 +7698,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "OTM.xlsx");
                //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
@@ -8301,12 +8352,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadMaritFCL = function () {            
+          $scope.ExportarExcelModalidadMaritFCL = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodas; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodas;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -8315,7 +8366,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "MaritimasFCL.xlsx");
               // $loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
@@ -8762,12 +8813,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadMaritLCL = function () {            
+          $scope.ExportarExcelModalidadMaritLCL = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodas; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodas;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -8776,7 +8827,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "MaritimasLCL.xlsx");
                //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
@@ -9258,10 +9309,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2020Pintada = [];
                         }
                         }
-                        
+
                        // ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
                         ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
-                        
+
                         $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
 
                         ////////////////////////////////Filtro////////////////////////////////
@@ -9287,14 +9338,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadTerrestreNacional = function () {            
+          $scope.ExportarExcelModalidadTerrestreNacional = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodasTerreNacionalTurbo; 
-              Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreNacionalSencillo; 
-              Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreNacionalPatineta; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodasTerreNacionalTurbo;
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreNacionalSencillo;
+              Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreNacionalPatineta;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -9303,7 +9354,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "TerrestreNacional.xlsx");
                //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
@@ -9667,7 +9718,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                         }
                         }
-                        
+
                         //ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
                         ModalidadTodasUrbano=_.orderBy(ModalidadTodasUrbano, [ModalidadTodastu => ModalidadTodastu.PuertoDestino.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.PaisOrigen.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.Email.toLowerCase()], ['asc','asc','asc']);
                           // ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
@@ -10236,7 +10287,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
                         }
                         }
-                      
+
                      // ModalidadTodasTerreUrbanoTonelada = _.sortBy(ModalidadTodasTerreUrbanoTonelada, 'PuertoDestino','PaisOrigen','Email');
                         ModalidadTodasTerreUrbanoTonelada=_.orderBy(ModalidadTodasTerreUrbanoTonelada, [ModalidadTodastut => ModalidadTodastut.PuertoDestino.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.PaisOrigen.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.Email.toLowerCase()], ['asc','asc','asc']);
                       $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
@@ -10265,14 +10316,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadTerrestreUrbano = function () {            
+          $scope.ExportarExcelModalidadTerrestreUrbano = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodasTerreUrbano; 
-              Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreUrbanoViaje; 
-              Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreUrbanoTonelada; 
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodasTerreUrbano;
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasTerreUrbanoViaje;
+              Data.ModalidadesProveedor3=$scope.ModalidadTodasTerreUrbanoTonelada;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -10281,7 +10332,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "TerrestreUrbano.xlsx");
                //$loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
@@ -10841,7 +10892,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                     ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                      ModalidadTodasconOrdenC4017AA = _.sortBy(ModalidadTodasconOrdenC4017AA ,'Aeropuerto','Pais',"['+100 + Fs/kg + Gastos Embarque']");
 
                        var contC4017=0;
@@ -10891,7 +10942,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                      ModalidadTodasconOrdenC401718AA = _.sortBy(ModalidadTodasconOrdenC401718AA ,'Aeropuerto','Pais',"['+300 + Fs/kg + Gastos Embarque']");
 
                        var contC401718=0;
@@ -10903,7 +10954,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                          else
                           {
-                         
+
                               if(( ModalidadTodasconOrdenC401718AA[i].Aeropuerto ==  ModalidadTodasconOrdenC401718AA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC401718AA[i].Pais ==  ModalidadTodasconOrdenC401718AA[i-1].Pais))
                               {
                                 if(parseFloat( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718AA[i-1]['+300 + Fs/kg + Gastos Embarque']))
@@ -10941,7 +10992,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                    ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                     ModalidadTodasconOrdenC4020AA = _.sortBy(ModalidadTodasconOrdenC4020AA ,'Aeropuerto','Pais',"['+500 + Fs/kg + Gastos Embarque']");
 
                        var contC4020=0;
@@ -10953,7 +11004,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                          else
                           {
-                         
+
                               if(( ModalidadTodasconOrdenC4020AA[i].Aeropuerto ==  ModalidadTodasconOrdenC4020AA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4020AA[i].Pais ==  ModalidadTodasconOrdenC4020AA[i-1].Pais))
                               {
                                 if(parseFloat( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4020AA[i-1]['+500 + Fs/kg + Gastos Embarque']))
@@ -10991,7 +11042,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         }
                          ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                       ModalidadTodasconOrdenC4021AA = _.sortBy(ModalidadTodasconOrdenC4021AA ,'Aeropuerto','Pais',"['+1000 + Fs/kg + Gastos Embarque']");
 
                        var contC4021=0;
@@ -11003,7 +11054,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                          else
                           {
-                         
+
                               if(( ModalidadTodasconOrdenC4021AA[i].Aeropuerto ==  ModalidadTodasconOrdenC4021AA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenC4021AA[i].Pais ==  ModalidadTodasconOrdenC4021AA[i-1].Pais))
                               {
                                 if(parseFloat( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4021AA[i-1]['+1000 + Fs/kg + Gastos Embarque']))
@@ -11059,11 +11110,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2021Pintada.length > 0 ||
                                 el.AduC2025Pintada.length > 0 ||
                                 el.AduC4015Pintada.length > 0 ||
-                                el.AduC4016Pintada.length > 0 ||  
-                                el.AduC4017Pintada.length > 0 ||  
-                                el.AduC401718Pintada.length > 0 || 
+                                el.AduC4016Pintada.length > 0 ||
+                                el.AduC4017Pintada.length > 0 ||
+                                el.AduC401718Pintada.length > 0 ||
                                 el.AduC4020Pintada.length > 0 ||
-                                el.AduC4021Pintada.length > 0 ||                              
+                                el.AduC4021Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
 
@@ -11599,7 +11650,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                         ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                      ModalidadTodasconOrdenC4017P = _.sortBy(ModalidadTodasconOrdenC4017P ,'Aeropuerto','Pais',"['+100 + Fs/kg']");
 
                        var contC4017P=0;
@@ -11649,7 +11700,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                      ModalidadTodasconOrdenC401718P = _.sortBy(ModalidadTodasconOrdenC401718P ,'Aeropuerto','Pais',"['+300 + Fs/kg']");
 
                        var contC401718P=0;
@@ -11697,8 +11748,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = [];
                         }
                         }
-                   ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////              
-                       
+                   ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
+
                      ModalidadTodasconOrdenC4020P = _.sortBy(ModalidadTodasconOrdenC4020P ,'Aeropuerto','Pais',"['+500 + Fs/kg']");
 
                        var contC4020P=0;
@@ -11746,9 +11797,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = [];
                         }
                         }
-                       
+
                      ////////// Campo ['+10000 + Fs/kg + Gastos Embarque']////////////////////////////
-                       
+
                       ModalidadTodasconOrdenC4021P = _.sortBy(ModalidadTodasconOrdenC4021P ,'Aeropuerto','Pais',"['+1000 + Fs/kg']");
 
                        var contC4021P=0;
@@ -11836,13 +11887,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             delete link;
           }
 
-          $scope.ExportarExcelModalidadAerea = function () {            
+          $scope.ExportarExcelModalidadAerea = function () {
 
-              Data = {};            
-              Data.ModalidadesProveedor=$scope.ModalidadTodasAerea; 
-              Data.ModalidadesProveedor2=$scope.ModalidadTodasAereaPasajero;             
+              Data = {};
+              Data.ModalidadesProveedor=$scope.ModalidadTodasAerea;
+              Data.ModalidadesProveedor2=$scope.ModalidadTodasAereaPasajero;
               Data.Modalidad=ModalidadConsolidado;
-           
+
             //$loading.start('myloading');
             $http({
                 method: 'POST',
@@ -11851,15 +11902,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 data: Data
             }).then(function successCallback(response) {
                console.log(response.data.ExcelBase64);
-               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;              
+               var urlbase64 = "data:application/vnd.ms-excel;base64,"+ response.data.ExcelBase64;
               downloadURI(urlbase64, "Aerea.xlsx");
               // $loading.finish('myloading');
               //saveAs(urlbase64, "Report.xls");
             }, function errorCallback(response) {
                 alert(response.statusText);
             });
-          }               
-             
+          }
+
            }
              $loading.finish('myloading');
 
@@ -11876,13 +11927,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          $scope.Usuario={};
          var VistaName='';
          var label="Consolidado Datos";
-        
+
          $scope.Showf1 = function () {
           VistaName = '';
            $scope.Show30 = true;
            $scope.Show40 = false;
            $scope.Show50 = false;
-           $scope.Show60=false;                    
+           $scope.Show60=false;
            $scope.Show70 = true;
            $scope.Show80 = true;
            $scope.Show90 = false;
@@ -11911,7 +11962,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Show30 = false;
            $scope.Show40 = true;
            $scope.Show50 = false;
-           $scope.Show60=true;                   
+           $scope.Show60=true;
            $scope.Show70 = false;
            $scope.Show80 = false;
            $scope.Show90 = true;
@@ -11966,7 +12017,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               $scope.GetConsolidadoDatos()
 
               }
- 
+
 
          // Variables de selectores
          $scope.UsuarioSel = {};
@@ -11975,12 +12026,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
            $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
            console.log($scope.UsuarioSel.selected.Name);
-           
+
            if (VistaName=='DatosProveedor')
            {
               $scope.GetProveedorModalidadName();
            }
-         } 
+         }
 
          // Modalidades para el filtro
          $scope.Modalidades = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
@@ -11997,7 +12048,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                data: Data
            }).then(function successCallback(response) {
               $loading.finish('myloading');
-              $scope.Usuarios = response.data.data             
+              $scope.Usuarios = response.data.data
               $scope.UsuariosSaved = response.data.data
            }, function errorCallback(response) {
                alert(response.statusText);
@@ -12144,16 +12195,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           }
 
           //////////////////////////////////////////Data Proveedor ////////////////////////////////////////
-          
-          /*  $scope.filterProveedoresModalidad = function(){ 
+
+          /*  $scope.filterProveedoresModalidad = function(){
                 $scope.GetProveedorModalidadName();
-           } */ 
+           } */
 
            $scope.GetProveedorModalidadName = function () {
                   var Data = {};
                   console.log('GetProveedorModalidadName');
                   console.log($scope.UsuarioSel.selected.RazonSocial);
-                  Data.RazonSocial = $scope.UsuarioSel.selected.RazonSocial; 
+                  Data.RazonSocial = $scope.UsuarioSel.selected.RazonSocial;
                   $loading.start('myloading');
                   $http({
                         method: 'POST',
@@ -12162,12 +12213,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          $scope.LicitacionModalidadProveedor = response.data.data; 
-                          console.log($scope.LicitacionModalidadProveedor);                         
+                          $scope.LicitacionModalidadProveedor = response.data.data;
+                          console.log($scope.LicitacionModalidadProveedor);
                        }, function errorCallback(response) {
                              console.log(response);
                         });
-                     } 
+                     }
 
              $scope.GetProveedoresModalidadesName = function () {
                   var Data = {};
@@ -12179,13 +12230,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          $scope.LicitacionModalidadesProveedores = response.data.data; 
-                          console.log($scope.LicitacionModalidadesProveedores);                         
+                          $scope.LicitacionModalidadesProveedores = response.data.data;
+                          console.log($scope.LicitacionModalidadesProveedores);
                        }, function errorCallback(response) {
                              console.log(response);
                         });
-                     } 
-            
+                     }
+
 
                   $scope.GetDesbloquearmodalidad = function (user,modalidad) {
                   var Data = {};
@@ -12201,8 +12252,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");  
-                          $scope.GetProveedorModalidadName();              
+                          swal("Licitaciones Proenfar", "Modalidad Desbloqueada.");
+                          $scope.GetProveedorModalidadName();
                        }, function errorCallback(response) {
                              console.log(response);
                         });
@@ -12223,12 +12274,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          swal("Licitaciones Proenfar", "Modalidad Negociada.");  
-                          $scope.GetProveedorModalidadName();              
+                          swal("Licitaciones Proenfar", "Modalidad Negociada.");
+                          $scope.GetProveedorModalidadName();
                        }, function errorCallback(response) {
                              console.log(response);
                         });
-                     }           
+                     }
 
 
        }])
@@ -12236,7 +12287,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 /////////////////////////////////////////////Seleccionr Proveedor //////////////////////////////////////////
 
        .controller('ctrlSeleccionarProveedor', ['$scope', '$http', '$loading', 'FileUploader', '$uibModal', function ($scope, $http, $loading, FileUploader, $uibModal) {
-        
+
          $scope.ActiveUserModal = {};
           $scope.openChangePassword = function (size, parentSelector) {
               $scope.ActiveUserModal = $scope.User;
@@ -12320,14 +12371,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          $scope.LicitacionModaProveedores = response.data.data; 
-                          $scope.LicitacionModaProveedores= _.orderBy($scope.LicitacionModaProveedores, [Licimodaprov => Licimodaprov.Email.toLowerCase()], ['asc']); 
-                          console.log($scope.LicitacionModaProveedores);      
-                                        
+                          $scope.LicitacionModaProveedores = response.data.data;
+                          $scope.LicitacionModaProveedores= _.orderBy($scope.LicitacionModaProveedores, [Licimodaprov => Licimodaprov.Email.toLowerCase()], ['asc']);
+                          console.log($scope.LicitacionModaProveedores);
+
                        }, function errorCallback(response) {
                              console.log(response);
                         });
-                     } 
+                     }
 
                       $scope.GetSeleccionarProveedor();
 
@@ -12341,11 +12392,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  url: '/GetProveedorSeleccionado',
                                  headers: { 'Content-Type': 'application/json' },
                                  data: Data
-                             }).then(function successCallback(response) {                                
+                             }).then(function successCallback(response) {
                                  $loading.finish('myloading');
                                 }, function errorCallback(response) {
                                  console.log(response);
-                             });                        
+                             });
 
                         }
 
