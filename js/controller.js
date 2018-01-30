@@ -727,7 +727,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
         }])
 
 
-        .controller('ctrlLicitacion', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
+        .controller('ctrlLicitacion', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader','$interval', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader,$interval) {
 
           // Llama a HTML Modal que permite cambiar passwor de la app
           $scope.ActiveUserModal = {};
@@ -3251,6 +3251,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  closeOnConfirm: true
                              },
                              function () {
+                               $scope.UpdateData = true;
+                               UpdateModalidadesTime();
 
                                var Data = {};
                                Data.Email = localStorage.UserConnected;
@@ -3286,6 +3288,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               closeOnConfirm: true
                           },
                           function () {
+                               $scope.UpdateData = true;
+                               UpdateModalidadesTime();
 
                             // Al finalizar todas las modalidades coloca cero en los campos donde esté null y en blanco
                             // de todas las modalidades
@@ -3391,9 +3395,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }
                         }
 
-                          // Actualiza las modalidades para éste proveedores
-                        $scope.UpdateModalidades = function () {
-                          var Data = {};
+                        // Ejecutará el guardar modalidades cada 5 segundos
+                        $interval(UpdateModalidadesTime, 5000);
+                         function UpdateModalidadesTime() {
+                          if ($scope.UpdateData == false) {return 0}
+                          $scope.UpdateData = false;
+                         var Data = {};
                          // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
 
                           Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
@@ -3410,8 +3417,31 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }, function errorCallback(response) {
                               console.log(response);
                           });
-                        }
 
+                        }
+                          /*var Data = {};
+                         // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+
+                          // Actualiza las modalidades para éste proveedores
+                        $scope.UpdateModalidades = function () {
+                          $scope.UpdateData = true;
+                          var Data = {};
+                         // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+
+                          Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
+
+
+
+                          $http({
+                              method: 'POST',
+                              url: '/UpdateModalidadesProveedor',
+                              headers: { 'Content-Type': 'application/json' },
+                              data: Data
+                          }).then(function successCallback(response) {
+                              console.log('La data fue actualizada');
+                          }, function errorCallback(response) {
+                              console.log(response);
+                          });*/
 
                         // Obtiene los valores de modalidades para éste proveedor
                         $scope.GetModalidadesProveedor = function () {
@@ -5379,6 +5409,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                     var Unobjeto={};
+                    Data.ProveedorSeleccionado=false;
 
                 $loading.start('myloading');
                 $http({
@@ -12244,6 +12275,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   Data.Modalidad=modalidad;
                   console.log(Data.Modalidad);
                   console.log(Data.Email);
+                 swal({
+                  title: "Seguro de Desbloquear Modalidad?",
+                  text: "",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: "Aceptar",
+                  closeOnConfirm: true
+              },
+              function () {
                   $loading.start('myloading');
                   $http({
                         method: 'POST',
@@ -12257,6 +12298,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        }, function errorCallback(response) {
                              console.log(response);
                         });
+                       });
                      }
 
 
@@ -12267,6 +12309,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   console.log(Data.Modalidad);
                   console.log(Data.Email);
                   $loading.start('myloading');
+                   swal({
+                  title: "Seguro de Negociar Modalidad?",
+                  text: "",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: "Aceptar",
+                  closeOnConfirm: true
+              },
+              function () {
                   $http({
                         method: 'POST',
                         url: '/GetNegociarmodalidad',
@@ -12279,7 +12331,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        }, function errorCallback(response) {
                              console.log(response);
                         });
+                       });
                      }
+
 
 
        }])
@@ -12410,7 +12464,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
   .controller('ctrlLicitacionConsolidadoDatos', ['$scope', '$http', '$loading', '$uibModal',  function ($scope, $http, $loading, $uibModal) {
 
           // Llama a HTML Modal que permite cambiar passwor de la app
-          $scope.ActiveUserModal = {};
+            $scope.ActiveUserModal = {};
           $scope.openChangePassword = function (size, parentSelector) {
               $scope.ActiveUserModal = $scope.User;
               var parentElem = parentSelector ?
@@ -12473,6 +12527,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show13=false;
 
            //////////////////////////////se agrego consolidado datos /////////////////////////////////////
+         var ProveedorSeleccionado=false;
+        var ModalidadesSemaforo=false;
 
           $scope.ModalidadesSemaforo=false;
 
@@ -12577,8 +12633,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                     var Unobjeto={};
-
+               
                 $loading.start('myloading');
+                Data.ProveedorSeleccionado=ProveedorSeleccionado;
+                Data.Modalidad=ModalidadConsolidado;
+                console.log(Data.ProveedorSeleccionado);
+                console.log(Data.Modalidad);
                 $http({
                     method: 'POST',
                     url: '/GetConsolidadoDatos',
@@ -12586,10 +12646,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     data: Data
                 }).then(function successCallback(response) {
                      $loading.finish('myloading');
+                     console.log(response);
                     $scope.ConsolidadoDatos = response.data.ConsolidadoDatos;
-                    ModalidadTodasRespaldoOTMExcel = response.data.ConsolidadoDatos;
                     console.log($scope.ConsolidadoDatos);
-                    console.log(ModalidadTodasRespaldoOTMExcel);
+
+                    if ($scope.ConsolidadosDatos==[]) {
 
                     if (ModalidadConsolidado == 'Bodegajes') {
                       console.log('paso por aqui bodegajes');
@@ -19110,6 +19171,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           }
 
            }
+         }
              $loading.finish('myloading');
 
        }, function errorCallback(response) {
@@ -19156,11 +19218,29 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
          };
        
-            $scope.FiltroS= function  (){
-              $scope.ModalidadesSemaforo == true;
+            $scope.FiltroProveedorSeleccionado= function  (){
+            if (ProveedorSeleccionado==false){
+              ProveedorSeleccionado=true;
+            }
+            else
+            {
+              ProveedorSeleccionado=false;
+            }
               $scope.GetConsolidadoDatos()
-
-              }
+            }
+           
+              
+             $scope.FiltroSemaforo= function  (){
+              if (ModalidadesSemaforo==false){
+              ModalidadesSemaforo=true;
+            }
+            else
+            {
+              ModalidadesSemaforo=false;
+            }
+              $scope.GetConsolidadoDatos()
+            }
+           
            
         }])    
 
