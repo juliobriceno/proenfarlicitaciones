@@ -166,7 +166,7 @@
                 <div class="box box-solid" style="padding: 10px;">
                   <div class="box-header">
                   </div>
-                  <hr>
+          
                   <div id="collapseTwo" class="panel-collapse collapse in">
                     <div class="panel-body">
                       <div class="row">
@@ -200,18 +200,16 @@
                   </div> <!-- /widget-header -->
                   <div class="box-body table-responsive no-padding">
                     <table class="table table-bordered">
-                      <tr>
+                      <tr  class="encabezadotabla">
                         <th class="text-center" style="width:4%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                        <th class="text-center"><h6><b>Requisitos</b></h6></th>
-                        <th class="text-center"><h6><b>Soportes</b></h6></th>
+                        <th class="text-center"><h6 style="font-size:13px;"><b>Requisitos</b></h6></th>
+                        <th class="text-center"><h6 style="font-size:13px;"><b>Soportes</b></h6></th>
                       </tr>
-                      <tbody  ng-repeat="Requisito in Requisitos">
-                        <tr>
-                          <td>
+                  <!--    <tbody  ng-repeat="Requisito in Requisitos">-->
+                        <tr ng-repeat="Requisito in Requisitos">
+                          <td   class="text-center" style="vertical-align: middle;">
                             <div class="btn-group">
-
                               <button ng-click="Deleterequisito(Requisito.Modalidad, Requisito.Requisitos);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
-
                             </div>
                           </td>
                           <td>{{Requisito.Requisitos}}</td>
