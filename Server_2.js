@@ -1630,58 +1630,27 @@ app.post('/GetConsolidadoDatos', function (req, res) {
     MyMongo.Find('ModalidadesProveedor', {} , function (result) {
       var Data = {};
       // Filtra sólo seleccionados
-       console.log('El ModalidadProveedor por cada proveedor');
       result = result.filter(function(el){
+        var ret = false;
         LicitacionProveedor.forEach(function(element) {
-
-            /*console.log('El ModalidadProveedor por cada proveedor');
-            console.log(el.Email);
-            console.log('Cada Licitacion Proveedor');
-            console.log(element);
-            console.log('La Modalidad que viene');
-            console.log(req.body.Modalidad);
-            console.log('Si viene mostrar o no seleccionados');
-            console.log(req.body.ProveedorSeleccionado);*/
-
             if (req.body.ProveedorSeleccionado == true){
-                console.log(element);
-                 console.log(el.Email);
-                console.log(element.Email) ; 
-                console.log(element.Cerrado);
-                console.log(element.Modalidad);
-                console.log(req.body.Modalidad);  
-                console.log(req.body.ProveedorSeleccionado);
-                console.log(element.Seleccionado);    
-            
               if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true){
-                return true;
-                console.log('seleccionado true');
+                ret = true;
               }
             }
             else{
-                console.log('seleccionado false antes del if'); 
-                console.log(el.Email);
-                console.log(element.Email) ; 
-                console.log(LicitacionProveedor.Cerrado);
-                console.log(LicitacionProveedor.Modalidad);
-                console.log(req.body.Modalidad);  
-                console.log(req.body.ProveedorSeleccionado);
-                console.log(element.Cerrado);    
-                console.log(element.Modalidad);   
               if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad){
-                return true;
-                console.log('seleccionado false despues del if');
+                ret = true;
               }
             }
         });
-        return false;
+        return ret;
       });
       var Data = {};
       Data.ConsolidadoDatos = result;
       res.end(JSON.stringify(Data));
-      console.log('Aqui:' + Data.ConsolidadoDatos);
       console.log(Data.ConsolidadoDatos);
-     
+
  });
   });
 
