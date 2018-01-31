@@ -1640,12 +1640,12 @@ app.post('/GetConsolidadoDatos', function (req, res) {
         var ret = false;
         LicitacionProveedor.forEach(function(element) {
             if (req.body.ProveedorSeleccionado == true){
-              if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true){
+              if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true && element.Diligenciada == true){
                 ret = true;
               }
             }
             else{
-              if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad){
+              if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Diligenciada == true){
                 ret = true;
               }
             }
@@ -3858,7 +3858,7 @@ app.post('/GetProveedorModalidadName', function (req, res) {
     var myUserProveedorModalidad =Data.ProveedorEmailModalidad.User;
 
 
-     MyMongo.Find('LicitacionProveedor', {Email:myUserProveedorModalidad} , function (result) {
+     MyMongo.Find('LicitacionProveedor', {Email: myUserProveedorModalidad, Diligenciada: true} , function (result) {
            var Data = {};
             Data.data= result;
             res.end(JSON.stringify(Data));
