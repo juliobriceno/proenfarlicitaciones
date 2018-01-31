@@ -405,6 +405,7 @@ app.post('/SaveUsuarioComplete', function (req, res) {
   MyMongo.Remove('Usuarios', { Email: req.body.Usuario.Email }, function (result) {
     MyMongo.Insert('Usuarios', req.body.Usuario, function (result) {
         if (result == 'Ok') {
+            req.session.user =req.Body.Usuario;
             var Data = {};
             Data.Result = 'Ok';
             res.end(JSON.stringify(Data))
@@ -549,7 +550,8 @@ app.post('/SaveUser', function (req, res) {
     }
 
     if (req.body.EditUser == '') {
-        MyMongo.Find('Usuarios', { User: req.body.User }, function (result) {
+        MyMongo.Find('Usuarios', {$or: [{User: req.body.UserName}, {Email: req.body.Email}]}, function (result) {
+        //MyMongo.Find('Usuarios', { User: req.body.User }, function (result) {
             if (result.length > 0) {
                 Data.Result = 'ex';
                 res.end(JSON.stringify(Data));
@@ -1623,6 +1625,10 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 ////////////Consolidado de Datos/////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/GetConsolidadoDatos', function (req, res) {
+
+  if (req.body.Modalidad =='Terrestre Nacional')   { req.body.Modalidad = 'TerrestreNacional';  }
+  if (req.body.Modalidad =='Terrestre Urbano')   { req.body.Modalidad = 'TerrestreUrbano';  }
+  //if (mModalidad =='TerrestreUrbano')   { mModalidad = 'TerreUrbano';  }
 
   // Para poder saber qué proveedores fueron marcados como seleccionados
   MyMongo.Find('LicitacionProveedor', {} , function (result) {
@@ -3678,7 +3684,7 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
     });
 
     ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
-    app.post('/GetFinalizarModalidadesTodas', function (req, res) {
+     app.post('/GetFinalizarModalidadesTodas', function (req, res) {
 
       jwtClient.authorize(function (err, tokens) {
 
@@ -3708,7 +3714,7 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                     } else {
 
                       MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
-                      MyMongo.Insert('LicitacionProveedor', [{ Email: req.body.Email, Bloqueado: true, Modalidad: 'Bodegajes', Cerrado: true }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aduanas', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'OTM', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasFcl', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'MaritimasLcl', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreNacional', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'TerrestreUrbano', Cerrado: true  }, { Email: req.body.Email, Bloqueado: true, Modalidad: 'Aereas', Cerrado: true  }], function (result) {
+                      MyMongo.Insert('LicitacionProveedor', req.body.lockObject, function (result) {
                         var Data = {};
                         Data.Result = 'ok';
                         res.end(JSON.stringify(Data))
