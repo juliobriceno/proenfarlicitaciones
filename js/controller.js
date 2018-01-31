@@ -8993,7 +8993,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenT.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenT.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0){
@@ -9004,13 +9004,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenT[i].PuertoDestino ==  ModalidadTodasconOrdenT[i-1].PuertoDestino) && ( ModalidadTodasconOrdenT[i].PaisOrigen ==  ModalidadTodasconOrdenT[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenT[i-1]["Turbo Standar (150Cajas)"]))
                                 {
                                   cont = cont  ;
@@ -9035,7 +9035,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -9075,8 +9075,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenT[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -9088,7 +9088,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinimaT.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinimaT.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0){
@@ -9099,13 +9099,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenMinimaT[i].PuertoDestino ==  ModalidadTodasconOrdenMinimaT[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinimaT[i].PaisOrigen ==  ModalidadTodasconOrdenMinimaT[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]) == parseFloat(ModalidadTodasconOrdenMinimaT[i-1]["Turbo Especial"]))
                                 {
                                   contmin = contmin  ;
@@ -9130,7 +9130,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -9170,8 +9170,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinimaT[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -9236,7 +9236,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAS.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAS.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0){
@@ -9247,13 +9247,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGAS[i].PuertoDestino ==  ModalidadTodasconOrdenGAS[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAS[i].PaisOrigen ==  ModalidadTodasconOrdenGAS[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGAS[i-1]["Sencillo Standar (150Cajas)"]))
                                 {
                                   contGA = contGA  ;
@@ -9278,7 +9278,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -9318,8 +9318,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAS[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                     ////////// Campo Sencillo Especial
@@ -9330,7 +9330,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAS.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAS.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0){
@@ -9341,13 +9341,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCAS[i].PuertoDestino ==  ModalidadTodasconOrdenCAS[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAS[i].PaisOrigen ==  ModalidadTodasconOrdenCAS[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]) == parseFloat(ModalidadTodasconOrdenCAS[i-1]["Sencillo Especial"]))
                                 {
                                   contCA = contCA  ;
@@ -9372,7 +9372,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -9412,8 +9412,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAS[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -9475,7 +9475,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i].Minimula>0){
@@ -9486,13 +9486,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i].Minimula>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i].Minimula>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i].Minimula) == parseFloat(ModalidadTodasconOrdenGA[i-1].Minimula))
                                 {
                                   contGA = contGA  ;
@@ -9517,7 +9517,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i].Minimula>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i].Minimula>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -9557,8 +9557,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -9570,7 +9570,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["Gran Danes"]>0){
@@ -9581,13 +9581,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PaisOrigen ==  ModalidadTodasconOrdenCA[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Gran Danes"]))
                                 {
                                   contCA = contCA  ;
@@ -9612,7 +9612,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -9652,8 +9652,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                        // ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
                         ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
@@ -9773,7 +9773,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0){
@@ -9784,13 +9784,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PaisOrigen ==  ModalidadTodasconOrden[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrden[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrden[i-1]["Turbo (150Cajas)"]))
                                 {
                                   cont = cont  ;
@@ -9815,7 +9815,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -9855,8 +9855,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -9868,7 +9868,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0){
@@ -9879,13 +9879,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenMinima[i].PuertoDestino ==  ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Turbo Especial (200Cajas)"]))
                                 {
                                   contmin = contmin  ;
@@ -9910,7 +9910,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -9950,8 +9950,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                   ////////// Campo ["Sencillo (240Cajas)"]///////////////////////////////
@@ -12708,7 +12708,6 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   Data.Modalidad=modalidad;
                   console.log(Data.Modalidad);
                   console.log(Data.Email);
-                  $loading.start('myloading');
                    swal({
                   title: "Seguro de Negociar Modalidad?",
                   text: "",
@@ -12719,6 +12718,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   closeOnConfirm: true
               },
               function () {
+                  $loading.start('myloading');
                   $http({
                         method: 'POST',
                         url: '/GetNegociarmodalidad',
@@ -13121,7 +13121,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanerotv.length-1; i++){
-                    if( ModalidadTodasconOrdenBodegajeaduanerotv[i].TarifaValor>0) {     
+                    if( ModalidadTodasconOrdenBodegajeaduanerotv[i].TarifaValor>0) {
                           if (i==0){
                             cont= cont + 1;
                             contnull=0;
@@ -13135,7 +13135,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                               else
                               {
-                                cont=cont + 1; 
+                                cont=cont + 1;
                                 contnull=0;                              }
                             }
                       }
@@ -13175,7 +13175,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromin.length-1; i++){
-                     if( ModalidadTodasconOrdenBodegajeaduaneromin[i].TarifaMinima>0) {  
+                     if( ModalidadTodasconOrdenBodegajeaduaneromin[i].TarifaMinima>0) {
                           if (i==0){
                             contmin= contmin + 1;
                             contnull=0;
@@ -13189,7 +13189,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                               else
                               {
-                                contmin=contmin + 1; 
+                                contmin=contmin + 1;
                                 contnull=0;                              }
                             }
                               }
@@ -13230,7 +13230,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contotro=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduanerootro.length-1; i++){
-                    if( ModalidadTodasconOrdenBodegajeaduanerootro[i].Otros>0) {  
+                    if( ModalidadTodasconOrdenBodegajeaduanerootro[i].Otros>0) {
                           if (i==0){
                             contotro= contotro + 1;
                             contnull=0;
@@ -13330,21 +13330,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmaqt=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqt.length-1; i++){
-                      if( ModalidadTodasconOrdenBodegajeaduaneromaqt[i].Tarifa>0) { 
+                      if( ModalidadTodasconOrdenBodegajeaduaneromaqt[i].Tarifa>0) {
                           if (i==0){
                             contmaqt= contmaqt + 1;
-                             contnull=0; 
+                             contnull=0;
                           }
                           else
                               {
                               if(parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqt[i].Tarifa) == parseFloat( ModalidadTodasconOrdenBodegajeaduaneromaqt[i-1].Tarifa))
                               {
                                 contmaqt= contmaqt;
-                                 contnull=0; 
+                                 contnull=0;
                               }
                               else
                               {
-                                contmaqt=contmaqt + 1;  
+                                contmaqt=contmaqt + 1;
                                  contnull=0;                             }
                             }
                         }
@@ -13384,7 +13384,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmaqmint=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqmint.length-1; i++){
-                        if( ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].TarifaMinima>0) { 
+                        if( ModalidadTodasconOrdenBodegajeaduaneromaqmint[i].TarifaMinima>0) {
                           if (i==0){
                             contmaqmint= contmaqmint + 1;
                             contnull=0;
@@ -13438,7 +13438,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmaqfmmt=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqfmmt.length-1; i++){
-                           if( ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].Fmm>0) { 
+                           if( ModalidadTodasconOrdenBodegajeaduaneromaqfmmt[i].Fmm>0) {
                           if (i==0){
                             contmaqfmmt= contmaqfmmt + 1;
                             var contnull=0;
@@ -13452,7 +13452,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                               else
                               {
-                                contmaqfmmt=contmaqfmmt + 1; 
+                                contmaqfmmt=contmaqfmmt + 1;
                                 var contnull=0;                              }
                             }
                             }
@@ -13535,7 +13535,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmaqp=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqp.length-1; i++){
-                          if( ModalidadTodasconOrdenBodegajeaduaneromaqp[i].Tarifa>0) { 
+                          if( ModalidadTodasconOrdenBodegajeaduaneromaqp[i].Tarifa>0) {
                           if (i==0){
                             contmaqp= contmaqp + 1;
                             var contnull=0;
@@ -13589,7 +13589,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmaqminp=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqminp.length-1; i++){
-                         if( ModalidadTodasconOrdenBodegajeaduaneromaqminp[i].TarifaMinima>0) { 
+                         if( ModalidadTodasconOrdenBodegajeaduaneromaqminp[i].TarifaMinima>0) {
                           if (i==0){
                             contmaqminp= contmaqminp + 1;
                             contnull=0;
@@ -13603,7 +13603,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                               else
                               {
-                                contmaqminp=contmaqminp + 1; 
+                                contmaqminp=contmaqminp + 1;
                                 contnull=0;                              }
                             }
                              }
@@ -13643,7 +13643,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmaqfmmp=0;
                      var contnull=0;
                         for (var i=0; i<= ModalidadTodasconOrdenBodegajeaduaneromaqfmmp.length-1; i++){
-                        if( ModalidadTodasconOrdenBodegajeaduaneromaqfmmp[i].Fmm>0) { 
+                        if( ModalidadTodasconOrdenBodegajeaduaneromaqfmmp[i].Fmm>0) {
                           if (i==0){
                             contmaqfmmp= contmaqfmmp + 1;
                             contnull=0;
@@ -13658,7 +13658,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                               else
                               {
-                                contmaqfmmp=contmaqfmmp + 1; 
+                                contmaqfmmp=contmaqfmmp + 1;
                                 contnull=0;                              }
                             }
                               }
@@ -13802,7 +13802,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        console.log(ModalidadTodas);
                        //$scope.groups = _.groupBy(ModalidadTodas, "Via");
 
-                    //////// Aerea campo ["Tarifa % Advalorem/ FOB"] //////////////////////////                     
+                    //////// Aerea campo ["Tarifa % Advalorem/ FOB"] //////////////////////////
 
                       //ModalidadTodasconOrden = _.sortBy( ModalidadTodasconOrden, 'Via','["Tarifa % Advalorem/ FOB"]');
                       //ModalidadTodasconOrden = _.orderBy(ModalidadTodasconOrden, [Modalidadadutar => Modalidadadutar.Via.toLowerCase(),Modalidadadutar => Modalidadadutar["Tarifa % Advalorem/ FOB"].parseFloat], ['asc','asc']);
@@ -13812,7 +13812,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont=0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]>0){
@@ -13823,13 +13823,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrden[i].Via == ModalidadTodasconOrden[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]>0 ) {      
+                           if (ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]) == parseFloat(ModalidadTodasconOrden[i-1]["Tarifa % Advalorem/ FOB"]))
                                 {
                                   cont= cont;
@@ -13854,7 +13854,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]>0 ) { 
+                                if (ModalidadTodasconOrden[i]["Tarifa % Advalorem/ FOB"]>0 ) {
                                   cont=1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -13894,8 +13894,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AdutarifaPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -13907,7 +13907,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin=0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinima[i].Minima>0){
@@ -13918,13 +13918,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenMinima[i].Via == ModalidadTodasconOrdenMinima[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinima[i].Minima>0 ) {      
+                           if (ModalidadTodasconOrdenMinima[i].Minima>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinima[i].Minima) == parseFloat(ModalidadTodasconOrdenMinima[i-1].Minima))
                                 {
                                   contmin= contmin;
@@ -13949,7 +13949,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinima[i].Minima>0 ) { 
+                                if (ModalidadTodasconOrdenMinima[i].Minima>0 ) {
                                   contmin=1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -13989,7 +13989,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduMinimaPintada = [];
                           console.log('balnco 2');
                         }
-                                                
+
                       }
 
 
@@ -14001,7 +14001,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA=0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]>0){
@@ -14012,13 +14012,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenGA[i].Via == ModalidadTodasconOrdenGA[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Gastos Adicionales"]))
                                 {
                                   contGA= contGA;
@@ -14043,7 +14043,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i]["Gastos Adicionales"]>0 ) {
                                   contGA=1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -14083,8 +14083,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduGAPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                     ////////// Campo ["Conceptos Adicionales"] ////////////////////////////////
@@ -14095,7 +14095,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA=0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]>0){
@@ -14106,13 +14106,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenCA[i].Via == ModalidadTodasconOrdenCA[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Conceptos Adicionales"]))
                                 {
                                   contCA= contCA;
@@ -14137,7 +14137,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["Conceptos Adicionales"]>0 ) {
                                   contCA=1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -14177,8 +14177,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduCAPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                       ////////// Campo ["Gastos Adicionales dos"] //////////////////////////////////////
@@ -14188,7 +14188,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII=0;
                      var contGAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]>0){
@@ -14199,13 +14199,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenGAII[i].Via == ModalidadTodasconOrdenGAII[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["Gastos Adicionales dos"]))
                                 {
                                   contGAII= contGAII;
@@ -14230,7 +14230,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAII[i]["Gastos Adicionales dos"]>0 ) {
                                   contGAII=1;
                                    console.log('via diferente');
                                    contGAIInull=0;
@@ -14270,8 +14270,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduGAIIPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                        ////////// Campo ["Conceptos Adicionales dos"]
 
@@ -14281,7 +14281,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII=0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]>0){
@@ -14292,13 +14292,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenCAII[i].Via == ModalidadTodasconOrdenCAII[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Conceptos Adicionales dos"]))
                                 {
                                   contCAII= contCAII;
@@ -14323,7 +14323,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAII[i]["Conceptos Adicionales dos"]>0 ) {
                                   contCAII=1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -14363,8 +14363,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduCAIIPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                       ////////// Campo ["Gastos Adicionales tres"]
 
@@ -14374,7 +14374,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII =0;
                      var contGAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]>0){
@@ -14385,13 +14385,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenGAIII[i].Via == ModalidadTodasconOrdenGAIII[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["Gastos Adicionales tres"]))
                                 {
                                   contGAIII = contGAIII ;
@@ -14416,7 +14416,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAIII[i]["Gastos Adicionales tres"]>0 ) {
                                   contGAIII =1;
                                    console.log('via diferente');
                                    contGAIIInull=0;
@@ -14456,8 +14456,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIII[i].AduGAIIIPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                    ////////// Campo ["Conceptos Adicionales tres"]
@@ -14468,7 +14468,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII =0;
                      var contCAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]>0){
@@ -14479,13 +14479,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenCAIII[i].Via == ModalidadTodasconOrdenCAIII[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Conceptos Adicionales tres"]))
                                 {
                                   contCAIII = contCAIII ;
@@ -14510,7 +14510,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAIII[i]["Conceptos Adicionales tres"]>0 ) {
                                   contCAIII =1;
                                    console.log('via diferente');
                                    contCAIIInull=0;
@@ -14550,8 +14550,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIII[i].AduCAIIIPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -14563,7 +14563,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC =0;
                      var contCPCnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0){
@@ -14574,13 +14574,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCPCnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenCPC[i].Via == ModalidadTodasconOrdenCPC[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0 ) {      
+                           if (ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Conceptos Adicionales tres"]))
                                 {
                                   contCPC = contCPC ;
@@ -14605,7 +14605,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0 ) { 
+                                if (ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0 ) {
                                   contCPC =1;
                                    console.log('via diferente');
                                    contCPCnull=0;
@@ -14645,8 +14645,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCPC[i].AduCPCPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                    ////////// Campo Otros////////////////////////////
@@ -14657,7 +14657,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contOTRO =0;
                      var contOTROnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenotros[i].Otros>0){
@@ -14668,13 +14668,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contOTROnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(ModalidadTodasconOrdenotros[i].Via == ModalidadTodasconOrdenotros[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenotros [i].Otros>0 ) {      
+                           if (ModalidadTodasconOrdenotros [i].Otros>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenotros[i].Otros) == parseFloat(ModalidadTodasconOrdenotros[i-1].Otros))
                                 {
                                   contOTRO = contOTRO ;
@@ -14699,7 +14699,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenotros[i].Otros>0 ) { 
+                                if (ModalidadTodasconOrdenotros[i].Otros>0 ) {
                                   contOTRO =1;
                                    console.log('via diferente');
                                    contOTROnull=0;
@@ -14739,8 +14739,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotros[i].AduotroPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -14871,7 +14871,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]>0){
@@ -14882,13 +14882,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20 hasta 4-5 Ton"]))
                                 {
                                   cont = cont ;
@@ -14913,7 +14913,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrden[i]["C 20 hasta 4-5 Ton"]>0 ) {
                                   cont =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -14953,8 +14953,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
               ////////////////// ["C 20 hasta 8 Ton"] ////////////////////////////////////
@@ -14965,7 +14965,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]>0){
@@ -14976,13 +14976,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["C 20 hasta 8 Ton"]))
                                 {
                                   contmin = contmin ;
@@ -15007,7 +15007,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinima[i]["C 20 hasta 8 Ton"]>0 ) {
                                   contmin =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -15047,8 +15047,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -15059,7 +15059,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]>0){
@@ -15070,13 +15070,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 20 hasta 10 Ton"]))
                                 {
                                   contGA = contGA ;
@@ -15101,7 +15101,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i]["C 20 hasta 10 Ton"]>0 ) {
                                   contGA =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -15141,8 +15141,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -15154,7 +15154,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]>0){
@@ -15165,13 +15165,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                            if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["C 20 hasta 17 Ton"]))
                                 {
                                   contCA = contCA ;
@@ -15196,7 +15196,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["C 20 hasta 17 Ton"]>0 ) {
                                   contCA =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -15236,8 +15236,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -15249,7 +15249,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII =0;
                      var contGAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]>0){
@@ -15260,13 +15260,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 20 hasta 19 Ton"]))
                                 {
                                   contGAII = contGAII ;
@@ -15291,7 +15291,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAII[i]["C 20 hasta 19 Ton"]>0 ) {
                                   contGAII =1;
                                    console.log('via diferente');
                                    contGAIInull=0;
@@ -15331,8 +15331,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -15343,7 +15343,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]>0){
@@ -15354,13 +15354,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["C 20 hasta 20 Ton"]))
                                 {
                                   contCAII = contCAII ;
@@ -15385,7 +15385,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAII[i]["C 20 hasta 20 Ton"]>0 ) {
                                   contCAII =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -15425,8 +15425,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                       ////////// Campo ["C 20 hasta 21 Ton"]
@@ -15437,7 +15437,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII =0;
                      var contGAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]>0){
@@ -15448,13 +15448,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenGAIII[i-1]["C 20 hasta 21 Ton"]))
                                 {
                                   contGAIII = contGAIII ;
@@ -15479,7 +15479,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAIII[i]["C 20 hasta 21 Ton"]>0 ) {
                                   contGAIII =1;
                                    console.log('via diferente');
                                    contGAIIInull=0;
@@ -15519,8 +15519,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                    ////////// Campo ["C 20 hasta 25 Ton"]
 
@@ -15530,7 +15530,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII  =0;
                      var contCAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]>0){
@@ -15541,13 +15541,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["C 20 hasta 25 Ton"]))
                                 {
                                   contCAIII  = contCAIII  ;
@@ -15572,7 +15572,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAIII[i]["C 20 hasta 25 Ton"]>0 ) {
                                   contCAIII  =1;
                                    console.log('via diferente');
                                    contCAIIInull=0;
@@ -15612,8 +15612,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIII [i].AduC2025Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
               /////////////////// ////////// Campo ["C 40 hasta 15 Ton"]  ////////////////////////////////////////////
@@ -15624,7 +15624,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC  =0;
                      var contCPCnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]>0){
@@ -15635,13 +15635,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCPCnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 40 hasta 15 Ton"]))
                                 {
                                   contCPC = contCPC  ;
@@ -15666,7 +15666,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenCPC[i]["C 40 hasta 15 Ton"]>0 ) {
                                   contCPC  =1;
                                    console.log('via diferente');
                                    contCPCnull=0;
@@ -15706,8 +15706,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCPC[i].AduC4015Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                    ////////// Campo ["C 40 hasta 16 Ton"]////////////////////////////
@@ -15718,7 +15718,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contOTRO  =0;
                      var contOTROnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]>0){
@@ -15729,13 +15729,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contOTROnull=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 hasta 16 Ton"]))
                                 {
                                   contOTRO = contOTRO  ;
@@ -15760,7 +15760,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenotros[i]["C 40 hasta 16 Ton"]>0 ) {
                                   contOTRO  =1;
                                    console.log('via diferente');
                                    contOTROnull=0;
@@ -15800,8 +15800,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -15813,7 +15813,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017  =0;
                      var contC4017null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]>0){
@@ -15824,13 +15824,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4017null=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40 hasta 17 Ton"]))
                                 {
                                   contC4017 = contC4017  ;
@@ -15855,7 +15855,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenC4017[i]["C 40 hasta 17 Ton"]>0 ) {
                                   contC4017  =1;
                                    console.log('via diferente');
                                    contC4017null=0;
@@ -15895,8 +15895,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -15908,7 +15908,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC401718  =0;
                      var contC401718null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC401718.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]>0){
@@ -15919,13 +15919,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC401718null=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]) == parseFloat(ModalidadTodasconOrdenC401718[i-1]["C 40 hasta 17-18 Ton"]))
                                 {
                                   contC401718 = contC401718  ;
@@ -15950,7 +15950,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenC401718[i]["C 40 hasta 17-18 Ton"]>0 ) {
                                   contC401718  =1;
                                    console.log('via diferente');
                                    contC401718null=0;
@@ -15990,8 +15990,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC401718[i].AduC401718Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -16003,7 +16003,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4020  =0;
                      var contC4020null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]>0){
@@ -16014,13 +16014,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4020null=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]) == parseFloat(ModalidadTodasconOrdenC4020[i-1]["C 40 hasta 20 Ton"]))
                                 {
                                   contC4020 = contC4020  ;
@@ -16045,7 +16045,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenC4020[i]["C 40 hasta 20 Ton"]>0 ) {
                                   contC4020  =1;
                                    console.log('via diferente');
                                    contC4020null=0;
@@ -16085,8 +16085,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -16098,7 +16098,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4021  =0;
                      var contC4021null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]>0){
@@ -16109,13 +16109,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4021null=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]) == parseFloat(ModalidadTodasconOrdenC4021[i-1]["C 40 hasta 21 Ton"]))
                                 {
                                   contC4021 = contC4021  ;
@@ -16140,7 +16140,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenC4021[i]["C 40 hasta 21 Ton"]>0 ) {
                                   contC4021  =1;
                                    console.log('via diferente');
                                    contC4021null=0;
@@ -16180,8 +16180,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                      ////////// Campo ["C 40 hasta 22 Ton"]////////////////////////////
@@ -16191,7 +16191,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4022  =0;
                      var contC4022null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]>0){
@@ -16202,13 +16202,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4022null=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]) == parseFloat(ModalidadTodasconOrdenC4022[i-1]["C 40 hasta 22 Ton"]))
                                 {
                                   contC4022 = contC4022  ;
@@ -16233,7 +16233,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenC4022[i]["C 40 hasta 22 Ton"]>0 ) {
                                   contC4022  =1;
                                    console.log('via diferente');
                                    contC4022null=0;
@@ -16273,8 +16273,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                        ////////// Campo ["C 40 hasta 30 Ton"]////////////////////////////
 
@@ -16284,7 +16284,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4030  =0;
                      var contC4030null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4030.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4030.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]>0){
@@ -16295,13 +16295,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4030null=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]>0 ) {      
+                           if (ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]) == parseFloat(ModalidadTodasconOrdenC4030[i-1]["C 40 hasta 30 Ton"]))
                                 {
                                   contC4030 = contC4030  ;
@@ -16326,7 +16326,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]>0 ) { 
+                                if (ModalidadTodasconOrdenC4030[i]["C 40 hasta 30 Ton"]>0 ) {
                                   contC4030  =1;
                                    console.log('via diferente');
                                    contC4030null=0;
@@ -16366,8 +16366,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4030[i].AduC4030Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -16379,7 +16379,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC20EST  =0;
                      var contC20ESTnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC20EST.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC20EST.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]>0){
@@ -16390,13 +16390,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC20ESTnull=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]>0 ) {      
+                           if (ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]) == parseFloat(ModalidadTodasconOrdenC20EST[i-1]["Devolucion 20$ estandar"]))
                                 {
                                   contC20EST = contC20EST  ;
@@ -16421,7 +16421,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]>0 ) { 
+                                if (ModalidadTodasconOrdenC20EST[i]["Devolucion 20$ estandar"]>0 ) {
                                   contC20EST  =1;
                                    console.log('via diferente');
                                    contC20ESTnull=0;
@@ -16461,8 +16461,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC20EST[i].AduC20ESTPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -16474,7 +16474,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC40EST  =0;
                      var contC40ESTnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC40EST.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC40EST.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]>0){
@@ -16485,13 +16485,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC40ESTnull=1;}
-                           }                       
+                           }
                          else
                           {
                             if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]>0 ) {      
+                           if (ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]) == parseFloat(ModalidadTodasconOrdenC40EST[i-1]["Devolucion 40$ estandar"]))
                                 {
                                   contC40EST = contC40EST  ;
@@ -16516,7 +16516,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]>0 ) { 
+                                if (ModalidadTodasconOrdenC40EST[i]["Devolucion 40$ estandar"]>0 ) {
                                   contC40EST  =1;
                                    console.log('via diferente');
                                    contC40ESTnull=0;
@@ -16556,8 +16556,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC40EST[i].AduC40ESTPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -16569,7 +16569,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC20ESP  =0;
                      var contC20ESPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC20ESP.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC20ESP.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]>0){
@@ -16580,13 +16580,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC20ESPnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]>0 ) {      
+                           if (ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]) == parseFloat(ModalidadTodasconOrdenC20ESP[i-1]["Devolucion 20$ expreso"]))
                                 {
                                   contC20ESP = contC20ESP  ;
@@ -16611,7 +16611,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]>0 ) { 
+                                if (ModalidadTodasconOrdenC20ESP[i]["Devolucion 20$ expreso"]>0 ) {
                                   contC20ESP  =1;
                                    console.log('via diferente');
                                    contC20ESPnull=0;
@@ -16651,8 +16651,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC20ESP[i].AduC20ESPPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -16664,7 +16664,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC40ESP  =0;
                      var contC40ESPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC40ESP.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC40ESP.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]>0){
@@ -16675,13 +16675,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC40ESPnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if((ModalidadTodasconOrden[i].Destino == ModalidadTodasconOrden[i-1].Destino) && (ModalidadTodasconOrden[i].Origen == ModalidadTodasconOrden[i-1].Origen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]>0 ) {      
+                           if (ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]) == parseFloat(ModalidadTodasconOrdenC40ESP[i-1]["Devolucion 40$ expreso"]))
                                 {
                                   contC40ESP = contC40ESP  ;
@@ -16706,7 +16706,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]>0 ) { 
+                                if (ModalidadTodasconOrdenC40ESP[i]["Devolucion 40$ expreso"]>0 ) {
                                   contC40ESP  =1;
                                    console.log('via diferente');
                                    contC40ESPnull=0;
@@ -16746,8 +16746,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC40ESP[i].AduC40ESPPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                            ModalidadTodasOtm=_.orderBy(ModalidadTodasOtm, [ModalidadTodasotm => ModalidadTodasotm.Destino.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Origen.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Email.toLowerCase()], ['asc','asc','asc']);
 
@@ -16885,7 +16885,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrden[i]["C 20"]>0){
@@ -16896,13 +16896,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrden[i]["C 20"]>0 ) {      
+                           if (ModalidadTodasconOrden[i]["C 20"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrden[i]["C 20"]) == parseFloat(ModalidadTodasconOrden[i-1]["C 20"]))
                                 {
                                   cont = cont  ;
@@ -16927,7 +16927,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrden[i]["C 20"]>0 ) { 
+                                if (ModalidadTodasconOrden[i]["C 20"]>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -16967,8 +16967,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
               ////////////////// ["Baf 20"] ////////////////////////////////////
 
@@ -16978,7 +16978,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinima[i]["Baf 20"]>0){
@@ -16989,13 +16989,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinima[i]["Baf 20"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinima[i]["Baf 20"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinima[i]["Baf 20"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Baf 20"]))
                                 {
                                   contmin = contmin  ;
@@ -17020,7 +17020,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinima[i]["Baf 20"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinima[i]["Baf 20"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -17060,8 +17060,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                   ////////// Campo ["C 40"]///////////////////////////////
@@ -17072,7 +17072,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i]["C 40"]>0){
@@ -17083,13 +17083,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i]["C 40"]>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i]["C 40"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i]["C 40"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["C 40"]))
                                 {
                                   contGA = contGA  ;
@@ -17114,7 +17114,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i]["C 40"]>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i]["C 40"]>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -17154,8 +17154,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                     ////////// Campo ["Baf 40"]
@@ -17166,7 +17166,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["Baf 40"]>0){
@@ -17177,13 +17177,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["Baf 40"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["Baf 40"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["Baf 40"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Baf 40"]))
                                 {
                                   contCA = contCA  ;
@@ -17208,7 +17208,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["Baf 40"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["Baf 40"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -17248,8 +17248,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                       ////////// Campo ["C 40HC"]
@@ -17260,7 +17260,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII  =0;
                      var contGAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAII[i]["C 40HC"]>0){
@@ -17271,13 +17271,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAII[i]["C 40HC"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAII[i]["C 40HC"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAII[i]["C 40HC"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["C 40HC"]))
                                 {
                                   contGAII = contGAII  ;
@@ -17302,7 +17302,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAII[i]["C 40HC"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAII[i]["C 40HC"]>0 ) {
                                   contGAII  =1;
                                    console.log('via diferente');
                                    contGAIInull=0;
@@ -17342,8 +17342,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                        ////////// Campo ["Baf 40HC"]
@@ -17354,7 +17354,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII  =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAII[i]["Baf 40HC"]>0){
@@ -17365,13 +17365,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAII[i]["Baf 40HC"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAII[i]["Baf 40HC"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAII[i]["Baf 40HC"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Baf 40HC"]))
                                 {
                                   contCAII = contCAII  ;
@@ -17396,7 +17396,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAII[i]["Baf 40HC"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAII[i]["Baf 40HC"]>0 ) {
                                   contCAII  =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -17436,8 +17436,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -17449,7 +17449,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII  =0;
                      var contGAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAIII[i].Naviera>0){
@@ -17460,13 +17460,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) {      
+                           if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat(ModalidadTodasconOrdenGAIII[i-1].Naviera))
                                 {
                                   contGAIII = contGAIII  ;
@@ -17491,7 +17491,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) { 
+                                if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) {
                                   contGAIII  =1;
                                    console.log('via diferente');
                                    contGAIIInull=0;
@@ -17531,8 +17531,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -17545,7 +17545,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII  =0;
                      var contCAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]>0){
@@ -17556,13 +17556,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCAIII[i-1]["Gastos Embarque"]))
                                 {
                                   contCAIII = contCAIII  ;
@@ -17587,7 +17587,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAIII[i]["Gastos Embarque"]>0 ) {
                                   contCAIII  =1;
                                    console.log('via diferente');
                                    contCAIIInull=0;
@@ -17627,8 +17627,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIII[i].AduC2025Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -17641,7 +17641,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC  =0;
                      var contCPCnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]>0){
@@ -17652,13 +17652,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCPCnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]>0 ) {      
+                           if (ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["C 20 + Baf 20 + Gastos Embarque"]))
                                 {
                                   contCPC = contCPC  ;
@@ -17683,7 +17683,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]>0 ) { 
+                                if (ModalidadTodasconOrdenCPC[i]["C 20 + Baf 20 + Gastos Embarque"]>0 ) {
                                   contCPC  =1;
                                    console.log('via diferente');
                                    contCPCnull=0;
@@ -17723,8 +17723,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCPC[i].AduC4015Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                    ////////// Campo ["C 40 + Baf 40 + Gastos Embarque"]////////////////////////////
@@ -17735,7 +17735,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contOTRO  =0;
                      var contOTROnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenotros.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]>0){
@@ -17746,13 +17746,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contOTROnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]>0 ) {      
+                           if (ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenotros[i-1]["C 40 + Baf 40 + Gastos Embarque"]))
                                 {
                                   contOTRO = contOTRO  ;
@@ -17777,7 +17777,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]>0 ) { 
+                                if (ModalidadTodasconOrdenotros[i]["C 40 + Baf 40 + Gastos Embarque"]>0 ) {
                                   contOTRO  =1;
                                    console.log('via diferente');
                                    contOTROnull=0;
@@ -17817,8 +17817,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotros[i].AduC4016Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                   ////////// ["C 40HC + Baf 40HC + Gastos Embarque"]////////////////////////////
@@ -17829,7 +17829,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017  =0;
                      var contC4017null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4017.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]>0){
@@ -17840,13 +17840,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4017null=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]>0 ) {      
+                           if (ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenC4017[i-1]["C 40HC + Baf 40HC + Gastos Embarque"]))
                                 {
                                   contC4017 = contC4017  ;
@@ -17871,7 +17871,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]>0 ) { 
+                                if (ModalidadTodasconOrdenC4017[i]["C 40HC + Baf 40HC + Gastos Embarque"]>0 ) {
                                   contC4017  =1;
                                    console.log('via diferente');
                                    contC4017null=0;
@@ -17911,8 +17911,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4017[i].AduC4017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                   /////////////////////////////////Filtro////////////////////////////////
@@ -18039,7 +18039,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrden[i].Minima>0){
@@ -18050,13 +18050,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                               if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrden[i].Minima>0 ) {      
+                           if (ModalidadTodasconOrden[i].Minima>0 ) {
                                 if(parseFloat(ModalidadTodasconOrden[i].Minima) == parseFloat(ModalidadTodasconOrden[i-1].Minima))
                                 {
                                   cont = cont  ;
@@ -18081,7 +18081,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrden[i].Minima>0 ) { 
+                                if (ModalidadTodasconOrden[i].Minima>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -18121,8 +18121,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -18134,7 +18134,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]>0){
@@ -18145,13 +18145,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["1-5 ton/M3"]))
                                 {
                                   contmin = contmin  ;
@@ -18176,7 +18176,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinima[i]["1-5 ton/M3"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -18216,8 +18216,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                   ////////// Campo ["5-8 ton/M3"]///////////////////////////////
 
@@ -18227,7 +18227,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]>0){
@@ -18238,13 +18238,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["5-8 ton/M3"]))
                                 {
                                   contGA = contGA  ;
@@ -18269,7 +18269,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i]["5-8 ton/M3"]>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -18309,8 +18309,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                     ////////// Campo ["8-12 ton/M3"]
@@ -18321,7 +18321,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]>0){
@@ -18332,13 +18332,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["8-12 ton/M3"]))
                                 {
                                   contCA = contCA  ;
@@ -18363,7 +18363,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["8-12 ton/M3"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -18403,8 +18403,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                       ////////// Campo ["12-18 ton/M3"]
@@ -18415,7 +18415,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII  =0;
                      var contGAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]>0){
@@ -18426,13 +18426,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["12-18 ton/M3"]))
                                 {
                                   contGAII = contGAII  ;
@@ -18457,7 +18457,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAII[i]["12-18 ton/M3"]>0 ) {
                                   contGAII  =1;
                                    console.log('via diferente');
                                    contGAIInull=0;
@@ -18497,8 +18497,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                        ////////// Campo ["Gastos Embarque"]
@@ -18509,7 +18509,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII  =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]>0){
@@ -18520,13 +18520,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]) == parseFloat(ModalidadTodasconOrdenCAII[i-1]["Gastos Embarque"]))
                                 {
                                   contCAII = contCAII  ;
@@ -18551,7 +18551,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAII[i]["Gastos Embarque"]>0 ) {
                                   contCAII  =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -18591,8 +18591,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAII[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -18604,7 +18604,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII  =0;
                      var contGAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAIII[i].Naviera>0){
@@ -18615,13 +18615,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PuertoOrigen ==  ModalidadTodasconOrden[i-1].PuertoOrigen) && ( ModalidadTodasconOrden[i].PaisDestino ==  ModalidadTodasconOrden[i-1].PaisDestino))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) {      
+                           if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAIII[i].Naviera) == parseFloat(ModalidadTodasconOrdenGAIII[i-1].Naviera))
                                 {
                                   contGAIII = contGAIII  ;
@@ -18646,7 +18646,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) { 
+                                if (ModalidadTodasconOrdenGAIII[i].Naviera>0 ) {
                                   contGAIII  =1;
                                    console.log('via diferente');
                                    contGAIIInull=0;
@@ -18686,8 +18686,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIII[i].AduC2021Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -18812,7 +18812,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenT.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenT.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0){
@@ -18823,13 +18823,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenT[i].PuertoDestino ==  ModalidadTodasconOrdenT[i-1].PuertoDestino) && ( ModalidadTodasconOrdenT[i].PaisOrigen ==  ModalidadTodasconOrdenT[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenT[i-1]["Turbo Standar (150Cajas)"]))
                                 {
                                   cont = cont  ;
@@ -18854,7 +18854,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenT[i]["Turbo Standar (150Cajas)"]>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -18894,11 +18894,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenT[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
-             
+
               ////////////////// ["Turbo Especial"] ////////////////////////////////////
 
                    ModalidadTodasconOrdenMinimaT= _.orderBy(ModalidadTodasconOrdenMinimaT,[Modalidadadtns => Modalidadadtns.PuertoDestino.toLowerCase(),Modalidadadtns => Modalidadadtns.PaisOrigen.toLowerCase(), Modalidadadtns => parseFloat(Modalidadadtns["Turbo Especial"],10)], ['asc','asc','asc']);
@@ -18907,7 +18907,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      //var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinimaT.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinimaT.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0){
@@ -18918,13 +18918,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenMinimaT[i].PuertoDestino ==  ModalidadTodasconOrdenMinimaT[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinimaT[i].PaisOrigen ==  ModalidadTodasconOrdenMinimaT[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]) == parseFloat(ModalidadTodasconOrdenMinimaT[i-1]["Turbo Especial"]))
                                 {
                                   contmin = contmin  ;
@@ -18949,7 +18949,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinimaT[i]["Turbo Especial"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -18989,8 +18989,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinimaT[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                          ModalidadTodasT=_.orderBy(ModalidadTodasT, [ModalidadTodastn => ModalidadTodastn.PuertoDestino.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.PaisOrigen.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.Email.toLowerCase()], ['asc','asc','asc']);
@@ -19053,7 +19053,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAS.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAS.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0){
@@ -19064,13 +19064,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGAS[i].PuertoDestino ==  ModalidadTodasconOrdenGAS[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAS[i].PaisOrigen ==  ModalidadTodasconOrdenGAS[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGAS[i-1]["Sencillo Standar (150Cajas)"]))
                                 {
                                   contGA = contGA  ;
@@ -19095,7 +19095,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAS[i]["Sencillo Standar (150Cajas)"]>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -19135,8 +19135,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAS[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                     ////////// Campo Sencillo Especial
@@ -19147,7 +19147,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAS.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAS.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0){
@@ -19158,13 +19158,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCAS[i].PuertoDestino ==  ModalidadTodasconOrdenCAS[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAS[i].PaisOrigen ==  ModalidadTodasconOrdenCAS[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]) == parseFloat(ModalidadTodasconOrdenCAS[i-1]["Sencillo Especial"]))
                                 {
                                   contCA = contCA  ;
@@ -19189,7 +19189,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAS[i]["Sencillo Especial"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -19229,8 +19229,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAS[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                         //ModalidadTodasTerreNacionalSencillo= _.sortBy(ModalidadTodasTerreNacionalSencillo,'PuertoDestino','PaisOrigen','Email');
@@ -19291,7 +19291,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i].Minimula>0){
@@ -19302,13 +19302,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i].Minimula>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i].Minimula>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i].Minimula) == parseFloat(ModalidadTodasconOrdenGA[i-1].Minimula))
                                 {
                                   contGA = contGA  ;
@@ -19333,7 +19333,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i].Minimula>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i].Minimula>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -19373,8 +19373,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -19386,7 +19386,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["Gran Danes"]>0){
@@ -19397,13 +19397,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PaisOrigen ==  ModalidadTodasconOrdenCA[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Gran Danes"]))
                                 {
                                   contCA = contCA  ;
@@ -19428,7 +19428,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["Gran Danes"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -19468,8 +19468,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                        // ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
@@ -19590,7 +19590,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrden.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0){
@@ -19601,13 +19601,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrden[i].PuertoDestino ==  ModalidadTodasconOrden[i-1].PuertoDestino) && ( ModalidadTodasconOrden[i].PaisOrigen ==  ModalidadTodasconOrden[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrden[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrden[i-1]["Turbo (150Cajas)"]))
                                 {
                                   cont = cont  ;
@@ -19632,7 +19632,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrden[i]["Turbo (150Cajas)"]>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -19672,8 +19672,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrden[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -19685,7 +19685,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinima.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0){
@@ -19696,13 +19696,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenMinima[i].PuertoDestino ==  ModalidadTodasconOrdenMinima[i-1].PuertoDestino) && ( ModalidadTodasconOrdenMinima[i].PaisOrigen ==  ModalidadTodasconOrdenMinima[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenMinima[i-1]["Turbo Especial (200Cajas)"]))
                                 {
                                   contmin = contmin  ;
@@ -19727,7 +19727,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinima[i]["Turbo Especial (200Cajas)"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -19767,8 +19767,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenMinima[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                   ////////// Campo ["Sencillo (240Cajas)"]///////////////////////////////
@@ -19779,7 +19779,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]>0){
@@ -19790,13 +19790,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGA[i].PuertoDestino ==  ModalidadTodasconOrdenGA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGA[i].PaisOrigen ==  ModalidadTodasconOrdenGA[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]) == parseFloat(ModalidadTodasconOrdenGA[i-1]["Sencillo (240Cajas)"]))
                                 {
                                   contGA = contGA  ;
@@ -19821,7 +19821,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenGA[i]["Sencillo (240Cajas)"]>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -19861,8 +19861,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGA[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -19874,7 +19874,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]>0){
@@ -19885,13 +19885,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCA[i].PuertoDestino ==  ModalidadTodasconOrdenCA[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCA[i].PaisOrigen ==  ModalidadTodasconOrdenCA[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]) == parseFloat(ModalidadTodasconOrdenCA[i-1]["Sencillo Especial (300Cajas)"]))
                                 {
                                   contCA = contCA  ;
@@ -19916,7 +19916,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenCA[i]["Sencillo Especial (300Cajas)"]>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -19956,8 +19956,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCA[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                       ////////// Campo ["C 40HC"] Minimula
 
@@ -19967,7 +19967,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAII[i].Minimula>0){
@@ -19978,13 +19978,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGAII[i].PuertoDestino ==  ModalidadTodasconOrdenGAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAII[i].PaisOrigen ==  ModalidadTodasconOrdenGAII[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAII[i].Minimula>0 ) {      
+                           if (ModalidadTodasconOrdenGAII[i].Minimula>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAII[i].Minimula) == parseFloat(ModalidadTodasconOrdenGAII[i-1].Minimula))
                                 {
                                   contCA = contCA  ;
@@ -20009,7 +20009,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAII[i].Minimula>0 ) { 
+                                if (ModalidadTodasconOrdenGAII[i].Minimula>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -20049,8 +20049,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                        ////////// Campo ["Gran Danes"]
@@ -20061,7 +20061,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII  =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAII.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAII[i]["Gran Danes"]>0){
@@ -20072,13 +20072,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGAII[i].PuertoDestino ==  ModalidadTodasconOrdenGAII[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAII[i].PaisOrigen ==  ModalidadTodasconOrdenGAII[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAII[i]["Gran Danes"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAII[i]["Gran Danes"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAII[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenGAII[i-1]["Gran Danes"]))
                                 {
                                   contCAII = contCAII  ;
@@ -20103,7 +20103,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAII[i]["Gran Danes"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAII[i]["Gran Danes"]>0 ) {
                                   contCAII  =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -20143,8 +20143,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAII[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                         //ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
@@ -20178,7 +20178,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               ModalidadTodasconOrdenMinimav = ModalidadTodasTerreUrbanoViaje;
                               ModalidadTodasconOrdenGAv = ModalidadTodasTerreUrbanoViaje;
                               ModalidadTodasconOrdenGAIIv = ModalidadTodasTerreUrbanoViaje;
-                              ModalidadTodasconOrdenGAIIIv = ModalidadTodasTerreUrbanoViaje;                                                
+                              ModalidadTodasconOrdenGAIIIv = ModalidadTodasTerreUrbanoViaje;
                               ModalidadTodasconOrdenCAv = ModalidadTodasTerreUrbanoViaje;
                               ModalidadTodasconOrdenCAIIv = ModalidadTodasTerreUrbanoViaje;
                               ModalidadTodasconOrdenCAIIIv = ModalidadTodasTerreUrbanoViaje;
@@ -20210,7 +20210,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIIIv  =0;
                      var contGAIIIvnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAIIIv.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAIIIv.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]>0){
@@ -20221,13 +20221,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIIIvnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenGAIIIv[i].PuertoDestino ==  ModalidadTodasconOrdenGAIIIv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenGAIIIv[i].PaisOrigen ==  ModalidadTodasconOrdenGAIIIv[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]) == parseFloat(ModalidadTodasconOrdenGAIIIv[i-1]["Turbo (150Cajas)"]))
                                 {
                                   contGAIIIv = contGAIIIv  ;
@@ -20252,7 +20252,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenGAIIIv[i]["Turbo (150Cajas)"]>0 ) {
                                   contGAIIIv  =1;
                                    console.log('via diferente');
                                    contGAIIIvnull=0;
@@ -20292,8 +20292,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIIIv[i].AduC2021vPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -20305,7 +20305,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII  =0;
                      var contCAIIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAIIIv.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAIIIv.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]>0){
@@ -20316,13 +20316,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIIInull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCAIIIv[i].PuertoDestino ==  ModalidadTodasconOrdenCAIIIv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCAIIIv[i].PaisOrigen ==  ModalidadTodasconOrdenCAIIIv[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]) == parseFloat(ModalidadTodasconOrdenCAIIIv[i-1]["Turbo Especial (200Cajas)"]))
                                 {
                                   contCAIII = contCAIII  ;
@@ -20347,7 +20347,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenCAIIIv[i]["Turbo Especial (200Cajas)"]>0 ) {
                                   contCAIII  =1;
                                    console.log('via diferente');
                                    contCAIIInull=0;
@@ -20387,8 +20387,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIIv[i].AduC2025vPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                           ////////// Campo ["Sencillo (240Cajas)"]
@@ -20400,7 +20400,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC  =0;
                      var contCPCnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCPCv.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCPCv.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]>0){
@@ -20411,13 +20411,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCPCnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenCPCv[i].PuertoDestino ==  ModalidadTodasconOrdenCPCv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenCPCv[i].PaisOrigen ==  ModalidadTodasconOrdenCPCv[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]) == parseFloat(ModalidadTodasconOrdenCPCv[i-1]["Sencillo (240Cajas)"]))
                                 {
                                   contCPC = contCPC  ;
@@ -20442,7 +20442,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenCPCv[i]["Sencillo (240Cajas)"]>0 ) {
                                   contCPC  =1;
                                    console.log('via diferente');
                                    contCPCnull=0;
@@ -20482,8 +20482,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCPCv[i].AduC4015vPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                    ////////// Campo ["Sencillo Especial (300Cajas)"]////////////////////////////
@@ -20494,7 +20494,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contOTRO  =0;
                      var contOTROnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenotrosv.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenotrosv.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]>0){
@@ -20505,13 +20505,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contOTROnull=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenotrosv[i].PuertoDestino ==  ModalidadTodasconOrdenotrosv[i-1].PuertoDestino) && ( ModalidadTodasconOrdenotrosv[i].PaisOrigen ==  ModalidadTodasconOrdenotrosv[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]>0 ) {      
+                           if (ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]) == parseFloat(ModalidadTodasconOrdenotrosv[i-1]["Sencillo Especial (300Cajas)"]))
                                 {
                                   contOTRO = contOTRO  ;
@@ -20536,7 +20536,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]>0 ) { 
+                                if (ModalidadTodasconOrdenotrosv[i]["Sencillo Especial (300Cajas)"]>0 ) {
                                   contOTRO  =1;
                                    console.log('via diferente');
                                    contOTROnull=0;
@@ -20576,8 +20576,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotrosv[i].AduC4016vPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                   ////////// Minimula////////////////////////////
@@ -20587,7 +20587,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017  =0;
                      var contC4017null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4017v.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4017v.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4017v[i].Minimula>0){
@@ -20598,13 +20598,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4017null=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenC4017v[i].PuertoDestino ==  ModalidadTodasconOrdenC4017v[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4017v[i].PaisOrigen ==  ModalidadTodasconOrdenC4017v[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4017v[i].Minimula>0 ) {      
+                           if (ModalidadTodasconOrdenC4017v[i].Minimula>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4017v[i].Minimula) == parseFloat(ModalidadTodasconOrdenC4017v[i-1].Minimula))
                                 {
                                   contC4017 = contC4017  ;
@@ -20629,7 +20629,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4017v[i].Minimula>0 ) { 
+                                if (ModalidadTodasconOrdenC4017v[i].Minimula>0 ) {
                                   contC4017  =1;
                                    console.log('via diferente');
                                    contC4017null=0;
@@ -20669,8 +20669,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4017v[i].AduC4017vPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                           ////////// ["Gran Danes"]////////////////////////////
@@ -20681,7 +20681,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017  =0;
                      var contC4017null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC401718v.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC401718v.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC401718v[i]["Gran Danes"]>0){
@@ -20692,13 +20692,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4017null=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenC401718v[i].PuertoDestino ==  ModalidadTodasconOrdenC401718v[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC401718v[i].PaisOrigen ==  ModalidadTodasconOrdenC401718v[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC401718v[i]["Gran Danes"]>0 ) {      
+                           if (ModalidadTodasconOrdenC401718v[i]["Gran Danes"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC401718v[i]["Gran Danes"]) == parseFloat(ModalidadTodasconOrdenC401718v[i-1]["Gran Danes"]))
                                 {
                                   contC4017 = contC4017  ;
@@ -20723,7 +20723,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC401718v[i]["Gran Danes"]>0 ) { 
+                                if (ModalidadTodasconOrdenC401718v[i]["Gran Danes"]>0 ) {
                                   contC4017  =1;
                                    console.log('via diferente');
                                    contC4017null=0;
@@ -20763,8 +20763,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC401718v[i].AduC401718vPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -20828,7 +20828,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4020  =0;
                      var contC4020null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4020.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4020[i].Turbo>0){
@@ -20839,13 +20839,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4020null=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenC4020[i].PuertoDestino ==  ModalidadTodasconOrdenC4020[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4020[i].PaisOrigen ==  ModalidadTodasconOrdenC4020[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4020[i].Turbo>0 ) {      
+                           if (ModalidadTodasconOrdenC4020[i].Turbo>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4020[i].Turbo) == parseFloat(ModalidadTodasconOrdenC4020[i-1].Turbo))
                                 {
                                   contC4020 = contC4020  ;
@@ -20870,7 +20870,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4020[i].Turbo>0 ) { 
+                                if (ModalidadTodasconOrdenC4020[i].Turbo>0 ) {
                                   contC4020  =1;
                                    console.log('via diferente');
                                    contC4020null=0;
@@ -20910,8 +20910,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4020[i].AduC4020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -20923,7 +20923,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4021  =0;
                      var contC4021null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4021.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4021[i].Sencillo>0){
@@ -20934,13 +20934,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4021null=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenC4021[i].PuertoDestino ==  ModalidadTodasconOrdenC4021[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4021[i].PaisOrigen ==  ModalidadTodasconOrdenC4021[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4021[i].Sencillo>0 ) {      
+                           if (ModalidadTodasconOrdenC4021[i].Sencillo>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4021[i].Sencillo) == parseFloat(ModalidadTodasconOrdenC4021[i-1].Sencillo))
                                 {
                                   contC4021 = contC4021  ;
@@ -20965,7 +20965,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4021[i].Sencillo>0 ) { 
+                                if (ModalidadTodasconOrdenC4021[i].Sencillo>0 ) {
                                   contC4021  =1;
                                    console.log('via diferente');
                                    contC4021null=0;
@@ -21005,8 +21005,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4021[i].AduC4021Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21018,7 +21018,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4022  =0;
                      var contC4022null=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenC4022.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenC4022[i].Tractomula>0){
@@ -21029,13 +21029,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contC4022null=1;}
-                           }                       
+                           }
                          else
                           {
                              if(( ModalidadTodasconOrdenC4022[i].PuertoDestino ==  ModalidadTodasconOrdenC4022[i-1].PuertoDestino) && ( ModalidadTodasconOrdenC4022[i].PaisOrigen ==  ModalidadTodasconOrdenC4022[i-1].PaisOrigen))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenC4022[i].Tractomula>0 ) {      
+                           if (ModalidadTodasconOrdenC4022[i].Tractomula>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenC4022[i].Tractomula) == parseFloat(ModalidadTodasconOrdenC4022[i-1].Tractomula))
                                 {
                                   contC4022 = contC4022  ;
@@ -21060,7 +21060,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenC4022[i].Tractomula>0 ) { 
+                                if (ModalidadTodasconOrdenC4022[i].Tractomula>0 ) {
                                   contC4022  =1;
                                    console.log('via diferente');
                                    contC4022null=0;
@@ -21100,8 +21100,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4022[i].AduC4022Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21221,7 +21221,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var cont  =0;
                      var contnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenAA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenAA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenAA[i].Minima>0){
@@ -21232,13 +21232,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenAA[i].Aeropuerto ==  ModalidadTodasconOrdenAA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenAA[i].Pais ==  ModalidadTodasconOrdenAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenAA[i].Minima>0 ) {      
+                           if (ModalidadTodasconOrdenAA[i].Minima>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenAA[i].Minima) == parseFloat(ModalidadTodasconOrdenAA[i-1].Minima))
                                 {
                                   cont = cont  ;
@@ -21263,7 +21263,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenAA[i].Minima>0 ) { 
+                                if (ModalidadTodasconOrdenAA[i].Minima>0 ) {
                                   cont  =1;
                                    console.log('via diferente');
                                    contnull=0;
@@ -21303,8 +21303,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenAA[i].AduC2045Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21316,7 +21316,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contmin  =0;
                      var contminnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinimaAA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinimaAA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinimaAA[i]["45"]>0){
@@ -21327,13 +21327,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenMinimaAA[i].Aeropuerto ==  ModalidadTodasconOrdenMinimaAA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenMinimaAA[i].Pais ==  ModalidadTodasconOrdenMinimaAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinimaAA[i]["45"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinimaAA[i]["45"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinimaAA[i]["45"]) == parseFloat(ModalidadTodasconOrdenMinimaAA[i-1]["45"]))
                                 {
                                   contmin = contmin  ;
@@ -21358,7 +21358,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinimaAA[i]["45"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinimaAA[i]["45"]>0 ) {
                                   contmin  =1;
                                    console.log('via diferente');
                                    contminnull=0;
@@ -21398,8 +21398,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenMinimaAA[i].AduC8Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21410,7 +21410,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGA  =0;
                      var contGAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAAA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAAA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAAA[i]['+100']>0){
@@ -21421,13 +21421,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenGAAA[i].Aeropuerto ==  ModalidadTodasconOrdenGAAA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAAA[i].Pais ==  ModalidadTodasconOrdenGAAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAAA[i]['+100']>0 ) {      
+                           if (ModalidadTodasconOrdenGAAA[i]['+100']>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAAA[i]['+100']) == parseFloat(ModalidadTodasconOrdenGAAA[i-1]['+100']))
                                 {
                                   contGA = contGA  ;
@@ -21452,7 +21452,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAAA[i]['+100']>0 ) { 
+                                if (ModalidadTodasconOrdenGAAA[i]['+100']>0 ) {
                                   contGA  =1;
                                    console.log('via diferente');
                                    contGAnull=0;
@@ -21492,8 +21492,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenGAAA[i].AduC2010Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21505,7 +21505,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCA  =0;
                      var contCAnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAAA.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAAA.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAAA[i]['+300']>0){
@@ -21516,13 +21516,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenCAAA[i].Aeropuerto ==  ModalidadTodasconOrdenCAAA[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAAA[i].Pais ==  ModalidadTodasconOrdenCAAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAAA[i]['+300']>0 ) {      
+                           if (ModalidadTodasconOrdenCAAA[i]['+300']>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAAA[i]['+300']) == parseFloat(ModalidadTodasconOrdenCAAA[i-1]['+300']))
                                 {
                                   contCA = contCA  ;
@@ -21547,7 +21547,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAAA[i]['+300']>0 ) { 
+                                if (ModalidadTodasconOrdenCAAA[i]['+300']>0 ) {
                                   contCA  =1;
                                    console.log('via diferente');
                                    contCAnull=0;
@@ -21587,8 +21587,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenCAAA[i].AduC2017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                       ////////// Campo ['+500']
@@ -21598,7 +21598,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAII  =0;
                      var contGAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenGAIIAA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIAA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenGAIIAA[i]['+500']>0){
@@ -21609,13 +21609,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenGAIIAA[i].Aeropuerto ==   ModalidadTodasconOrdenGAIIAA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenGAIIAA[i].Pais ==   ModalidadTodasconOrdenGAIIAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenGAIIAA[i]['+500']>0 ) {      
+                           if ( ModalidadTodasconOrdenGAIIAA[i]['+500']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenGAIIAA[i]['+500']) == parseFloat( ModalidadTodasconOrdenGAIIAA[i-1]['+500']))
                                 {
                                   contGAII = contGAII  ;
@@ -21640,7 +21640,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenGAIIAA[i]['+500']>0 ) { 
+                                if ( ModalidadTodasconOrdenGAIIAA[i]['+500']>0 ) {
                                   contGAII  =1;
                                    console.log('via diferente');
                                    contGAIInull=0;
@@ -21680,8 +21680,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIIAA[i].AduC2019Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                        ////////// Campo ['+1000']
@@ -21692,7 +21692,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAII  =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCAIIAA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIAA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenCAIIAA[i]['+1000']>0){
@@ -21703,13 +21703,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenCAIIAA[i].Aeropuerto ==   ModalidadTodasconOrdenCAIIAA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenCAIIAA[i].Pais ==   ModalidadTodasconOrdenCAIIAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenCAIIAA[i]['+1000']>0 ) {      
+                           if ( ModalidadTodasconOrdenCAIIAA[i]['+1000']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenCAIIAA[i]['+1000']) == parseFloat( ModalidadTodasconOrdenCAIIAA[i-1]['+1000']))
                                 {
                                   contCAII = contCAII  ;
@@ -21734,7 +21734,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenCAIIAA[i]['+1000']>0 ) { 
+                                if ( ModalidadTodasconOrdenCAIIAA[i]['+1000']>0 ) {
                                   contCAII  =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -21774,8 +21774,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIAA[i].AduC2020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                       ////////// Campo ["FS min"]
@@ -21786,7 +21786,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenGAIIIAA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIIAA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenGAIIIAA[i]["FS min"]>0){
@@ -21797,13 +21797,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenGAIIIAA[i].Aeropuerto ==   ModalidadTodasconOrdenGAIIIAA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenGAIIIAA[i].Pais ==   ModalidadTodasconOrdenGAIIIAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenGAIIIAA[i]["FS min"]>0 ) {      
+                           if ( ModalidadTodasconOrdenGAIIIAA[i]["FS min"]>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenGAIIIAA[i]["FS min"]) == parseFloat( ModalidadTodasconOrdenGAIIIAA[i-1]["FS min"]))
                                 {
                                   contGAIII= contGAIII ;
@@ -21828,7 +21828,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenGAIIIAA[i]["FS min"]>0 ) { 
+                                if ( ModalidadTodasconOrdenGAIIIAA[i]["FS min"]>0 ) {
                                   contGAIII =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -21868,8 +21868,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIIIAA[i].AduC2021Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21881,7 +21881,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIII =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIAA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIAA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenCAIIIAA[i]["Fs/kg"]>0){
@@ -21892,13 +21892,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenCAIIIAA[i].Aeropuerto ==   ModalidadTodasconOrdenCAIIIAA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenCAIIIAA[i].Pais ==   ModalidadTodasconOrdenCAIIIAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenCAIIIAA[i]["Fs/kg"]>0 ) {      
+                           if ( ModalidadTodasconOrdenCAIIIAA[i]["Fs/kg"]>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenCAIIIAA[i]["Fs/kg"]) == parseFloat( ModalidadTodasconOrdenCAIIIAA[i-1]["Fs/kg"]))
                                 {
                                   contCAIII= contCAIII ;
@@ -21923,7 +21923,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenCAIIIAA[i]["Fs/kg"]>0 ) { 
+                                if ( ModalidadTodasconOrdenCAIIIAA[i]["Fs/kg"]>0 ) {
                                   contCAIII =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -21963,8 +21963,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIIAA[i].AduC2025Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -21978,7 +21978,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIAA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIAA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenCAIIIAA[i]["Gastos Embarque"]>0){
@@ -21989,13 +21989,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenCAIIIAA[i].Aeropuerto ==   ModalidadTodasconOrdenCAIIIAA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenCAIIIAA[i].Pais ==   ModalidadTodasconOrdenCAIIIAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenCAIIIAA[i]["Gastos Embarque"]>0 ) {      
+                           if ( ModalidadTodasconOrdenCAIIIAA[i]["Gastos Embarque"]>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenCAIIIAA[i]["Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCAIIIAA[i-1]["Gastos Embarque"]))
                                 {
                                   contCPC= contCPC ;
@@ -22020,7 +22020,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenCAIIIAA[i]["Gastos Embarque"]>0 ) { 
+                                if ( ModalidadTodasconOrdenCAIIIAA[i]["Gastos Embarque"]>0 ) {
                                   contCPC =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -22060,8 +22060,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIIAA[i].AduC4015Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -22073,7 +22073,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contOTRO =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenotrosAA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenotrosAA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenotrosAA[i].Via>0){
@@ -22084,13 +22084,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenotrosAA[i].Aeropuerto ==   ModalidadTodasconOrdenotrosAA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenotrosAA[i].Pais ==   ModalidadTodasconOrdenotrosAA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenotrosAA[i].Via>0 ) {      
+                           if ( ModalidadTodasconOrdenotrosAA[i].Via>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenotrosAA[i].Via) == parseFloat( ModalidadTodasconOrdenotrosAA[i-1].Via))
                                 {
                                   contOTRO= contOTRO ;
@@ -22115,7 +22115,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenotrosAA[i].Via>0 ) { 
+                                if ( ModalidadTodasconOrdenotrosAA[i].Via>0 ) {
                                   contOTRO =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -22155,8 +22155,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotrosAA[i].AduC4016Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                     ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
@@ -22167,7 +22167,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017 =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4017AA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017AA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC4017AA[i]['+100 + Fs/kg + Gastos Embarque']>0){
@@ -22178,13 +22178,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC4017AA[i].Aeropuerto ==   ModalidadTodasconOrdenC4017AA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4017AA[i].Pais ==   ModalidadTodasconOrdenC4017AA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4017AA[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC4017AA[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC4017AA[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4017AA[i-1]['+100 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC4017= contC4017 ;
@@ -22209,7 +22209,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4017AA[i]['+100 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC4017AA[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC4017 =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -22249,8 +22249,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4017AA[i].AduC4017Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -22262,7 +22262,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC401718 =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC401718AA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718AA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']>0){
@@ -22273,13 +22273,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC401718AA[i].Aeropuerto ==   ModalidadTodasconOrdenC401718AA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC401718AA[i].Pais ==   ModalidadTodasconOrdenC401718AA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718AA[i-1]['+300 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC401718= contC401718 ;
@@ -22304,7 +22304,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC401718AA[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC401718 =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -22344,8 +22344,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC401718AA[i].AduC401718Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                    ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
@@ -22356,7 +22356,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4020 =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4020AA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC4020AA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']>0){
@@ -22367,13 +22367,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC4020AA[i].Aeropuerto ==   ModalidadTodasconOrdenC4020AA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4020AA[i].Pais ==   ModalidadTodasconOrdenC4020AA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4020AA[i-1]['+500 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC4020= contC4020 ;
@@ -22398,7 +22398,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC4020AA[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC4020 =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -22438,8 +22438,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4020AA[i].AduC4020Pintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                          ////////// Campo ['+1000 + Fs/kg + Gastos Embarque']////////////////////////////
@@ -22450,7 +22450,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4021 =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4021AA.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC4021AA.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']>0){
@@ -22461,13 +22461,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC4021AA[i].Aeropuerto ==   ModalidadTodasconOrdenC4021AA[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4021AA[i].Pais ==   ModalidadTodasconOrdenC4021AA[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4021AA[i-1]['+1000 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC4021= contC4021 ;
@@ -22492,7 +22492,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC4021AA[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC4021 =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -22532,8 +22532,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4021AA[i].AduC4021Pintada  = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -22607,7 +22607,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contP  =0;
                      var contPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenP.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenP.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenP[i].Minima>0){
@@ -22618,13 +22618,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contPnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenP[i].Aeropuerto ==  ModalidadTodasconOrdenP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenP[i].Pais ==  ModalidadTodasconOrdenP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenP[i].Minima>0 ) {      
+                           if (ModalidadTodasconOrdenP[i].Minima>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenP[i].Minima) == parseFloat(ModalidadTodasconOrdenP[i-1].Minima))
                                 {
                                   contP = contP  ;
@@ -22649,7 +22649,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenP[i].Minima>0 ) { 
+                                if (ModalidadTodasconOrdenP[i].Minima>0 ) {
                                   contP  =1;
                                    console.log('via diferente');
                                    contPnull=0;
@@ -22689,8 +22689,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenP[i].AduC2045PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -22702,7 +22702,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contminP  =0;
                      var contminPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenMinimaP.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenMinimaP.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenMinimaP[i]["45"]>0){
@@ -22713,13 +22713,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contminPnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenMinimaP[i].Aeropuerto ==  ModalidadTodasconOrdenMinimaP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenMinimaP[i].Pais ==  ModalidadTodasconOrdenMinimaP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenMinimaP[i]["45"]>0 ) {      
+                           if (ModalidadTodasconOrdenMinimaP[i]["45"]>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenMinimaP[i]["45"]) == parseFloat(ModalidadTodasconOrdenMinimaP[i-1]["45"]))
                                 {
                                   contminP = contminP  ;
@@ -22744,7 +22744,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenMinimaP[i]["45"]>0 ) { 
+                                if (ModalidadTodasconOrdenMinimaP[i]["45"]>0 ) {
                                   contminP  =1;
                                    console.log('via diferente');
                                    contminPnull=0;
@@ -22784,8 +22784,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenMinimaP[i].AduC8PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                    ////////// Campo ['+100'] ///////////////////////////////
                 ModalidadTodasconOrdenGAP   = _.orderBy(ModalidadTodasconOrdenGAP  , [Modalidadada100P => Modalidadada100P.Aeropuerto.toLowerCase(),Modalidadada100P => Modalidadada100P.Pais.toLowerCase(), Modalidadada100P => parseFloat(Modalidadada100P['+100'],10)], ['asc','asc','asc']);
@@ -22794,7 +22794,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAP  =0;
                      var contGAPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenGAP.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenGAP.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenGAP[i]['+100']>0){
@@ -22805,13 +22805,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAPnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenGAP[i].Aeropuerto ==  ModalidadTodasconOrdenGAP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenGAP[i].Pais ==  ModalidadTodasconOrdenGAP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenGAP[i]['+100']>0 ) {      
+                           if (ModalidadTodasconOrdenGAP[i]['+100']>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenGAP[i]['+100']) == parseFloat(ModalidadTodasconOrdenGAP[i-1]['+100']))
                                 {
                                   contGAP = contGAP  ;
@@ -22836,7 +22836,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenGAP[i]['+100']>0 ) { 
+                                if (ModalidadTodasconOrdenGAP[i]['+100']>0 ) {
                                   contGAP  =1;
                                    console.log('via diferente');
                                    contGAPnull=0;
@@ -22876,8 +22876,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenGAP[i].AduC2010PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -22889,7 +22889,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAP  =0;
                      var contCAPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<=ModalidadTodasconOrdenCAP.length-1; i++){                                           
+                       for (var i=0; i<=ModalidadTodasconOrdenCAP.length-1; i++){
                            if (i==0 )
                           {
                                if(ModalidadTodasconOrdenCAP[i]['+300']>0){
@@ -22900,13 +22900,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAPnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if(( ModalidadTodasconOrdenCAP[i].Aeropuerto ==  ModalidadTodasconOrdenCAP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenCAP[i].Pais ==  ModalidadTodasconOrdenCAP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCAP[i]['+300']>0 ) {      
+                           if (ModalidadTodasconOrdenCAP[i]['+300']>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenCAP[i]['+300']) == parseFloat(ModalidadTodasconOrdenCAP[i-1]['+300']))
                                 {
                                   contCAP = contCAP  ;
@@ -22931,7 +22931,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCAP[i]['+300']>0 ) { 
+                                if (ModalidadTodasconOrdenCAP[i]['+300']>0 ) {
                                   contCAP  =1;
                                    console.log('via diferente');
                                    contCAPnull=0;
@@ -22971,8 +22971,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasconOrdenCAP[i].AduC2017PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                       ////////// Campo ['+500']
 
@@ -22982,7 +22982,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIIP  =0;
                      var contGAIIPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenGAIIP.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIP.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenGAIIP[i]['+500']>0){
@@ -22993,13 +22993,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contGAIIPnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenGAIIP[i].Aeropuerto ==   ModalidadTodasconOrdenGAIIP[i-1].Aeropuerto) && (  ModalidadTodasconOrdenGAIIP[i].Pais ==   ModalidadTodasconOrdenGAIIP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenGAIIP[i]['+500']>0 ) {      
+                           if ( ModalidadTodasconOrdenGAIIP[i]['+500']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenGAIIP[i]['+500']) == parseFloat( ModalidadTodasconOrdenGAIIP[i-1]['+500']))
                                 {
                                   contGAIIP = contGAIIP  ;
@@ -23024,7 +23024,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenGAIIP[i]['+500']>0 ) { 
+                                if ( ModalidadTodasconOrdenGAIIP[i]['+500']>0 ) {
                                   contGAIIP  =1;
                                    console.log('via diferente');
                                    contGAIIPnull=0;
@@ -23064,8 +23064,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIIP[i].AduC2019PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                        ////////// Campo ['+1000']
 
@@ -23075,7 +23075,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIIP  =0;
                      var contCAIIPnull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCAIIP.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIP.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenCAIIP[i]['+1000']>0){
@@ -23086,13 +23086,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIIPnull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenCAIIP[i].Aeropuerto ==   ModalidadTodasconOrdenCAIIP[i-1].Aeropuerto) && (  ModalidadTodasconOrdenCAIIP[i].Pais ==   ModalidadTodasconOrdenCAIIP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenCAIIP[i]['+1000']>0 ) {      
+                           if ( ModalidadTodasconOrdenCAIIP[i]['+1000']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenCAIIP[i]['+1000']) == parseFloat( ModalidadTodasconOrdenCAIIP[i-1]['+1000']))
                                 {
                                   contCAIIP = contCAIIP  ;
@@ -23117,7 +23117,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenCAIIP[i]['+1000']>0 ) { 
+                                if ( ModalidadTodasconOrdenCAIIP[i]['+1000']>0 ) {
                                   contCAIIP  =1;
                                    console.log('via diferente');
                                    contCAIIPnull=0;
@@ -23157,8 +23157,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIP[i].AduC2020PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                       ////////// Campo ["FS min"]
 
@@ -23168,7 +23168,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIIIP =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenGAIIIP.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenGAIIIP.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenGAIIIP[i]["FS min"]>0){
@@ -23179,13 +23179,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenGAIIIP[i].Aeropuerto ==   ModalidadTodasconOrdenGAIIIP[i-1].Aeropuerto) && (  ModalidadTodasconOrdenGAIIIP[i].Pais ==   ModalidadTodasconOrdenGAIIIP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenGAIIIP[i]["FS min"]>0 ) {      
+                           if ( ModalidadTodasconOrdenGAIIIP[i]["FS min"]>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenGAIIIP[i]["FS min"]) == parseFloat( ModalidadTodasconOrdenGAIIIP[i-1]["FS min"]))
                                 {
                                   contGAIIIP= contGAIIIP ;
@@ -23210,7 +23210,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenGAIIIP[i]["FS min"]>0 ) { 
+                                if ( ModalidadTodasconOrdenGAIIIP[i]["FS min"]>0 ) {
                                   contGAIIIP =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23250,8 +23250,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenGAIIIP[i].AduC2021PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -23264,7 +23264,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCAIIIP =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIP.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenCAIIIP.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]>0){
@@ -23275,13 +23275,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenCAIIIP[i].Aeropuerto ==   ModalidadTodasconOrdenCAIIIP[i-1].Aeropuerto) && (  ModalidadTodasconOrdenCAIIIP[i].Pais ==   ModalidadTodasconOrdenCAIIIP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]>0 ) {      
+                           if ( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]) == parseFloat( ModalidadTodasconOrdenCAIIIP[i-1]["Fs/kg"]))
                                 {
                                   contCAIIIP= contCAIIIP ;
@@ -23306,7 +23306,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]>0 ) { 
+                                if ( ModalidadTodasconOrdenCAIIIP[i]["Fs/kg"]>0 ) {
                                   contCAIIIP =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23346,8 +23346,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCAIIIP[i].AduC2025PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
 
@@ -23359,7 +23359,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contCPC =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenCPCP.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenCPCP.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]>0){
@@ -23370,13 +23370,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenCPCP[i].Aeropuerto ==   ModalidadTodasconOrdenCPCP[i-1].Aeropuerto) && (  ModalidadTodasconOrdenCPCP[i].Pais ==   ModalidadTodasconOrdenCPCP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]>0 ) {      
+                           if ( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]) == parseFloat( ModalidadTodasconOrdenCPCP[i-1]["Gastos Embarque"]))
                                 {
                                   contCPC= contCPC ;
@@ -23401,7 +23401,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]>0 ) { 
+                                if ( ModalidadTodasconOrdenCPCP[i]["Gastos Embarque"]>0 ) {
                                   contCPC =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23441,8 +23441,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenCPCP[i].AduC4015PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                    ////////// Campo Via////////////////////////////
 
@@ -23452,7 +23452,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contOTROP =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenotrosP.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenotrosP.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenotrosP[i].Via>0){
@@ -23463,13 +23463,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenotrosP[i].Aeropuerto ==   ModalidadTodasconOrdenotrosP[i-1].Aeropuerto) && (  ModalidadTodasconOrdenotrosP[i].Pais ==   ModalidadTodasconOrdenotrosP[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenotrosP[i].Via>0 ) {      
+                           if ( ModalidadTodasconOrdenotrosP[i].Via>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenotrosP[i].Via) == parseFloat( ModalidadTodasconOrdenotrosP[i-1].Via))
                                 {
                                   contOTROP= contOTROP ;
@@ -23494,7 +23494,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenotrosP[i].Via>0 ) { 
+                                if ( ModalidadTodasconOrdenotrosP[i].Via>0 ) {
                                   contOTROP =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23534,8 +23534,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenotrosP[i].AduC4016PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                         ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
 
@@ -23545,7 +23545,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4017P =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4017P.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC4017P.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0){
@@ -23556,13 +23556,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC4017P[i].Aeropuerto ==   ModalidadTodasconOrdenC4017P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4017P[i].Pais ==   ModalidadTodasconOrdenC4017P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC4017P= contC4017P ;
@@ -23587,7 +23587,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC4017P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23627,8 +23627,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4017P[i].AduC4017PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
 
                ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
@@ -23639,7 +23639,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC401718P =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC401718P.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC401718P.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0){
@@ -23650,13 +23650,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC401718P[i].Aeropuerto ==   ModalidadTodasconOrdenC401718P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC401718P[i].Pais ==   ModalidadTodasconOrdenC401718P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC401718P= contC401718P ;
@@ -23681,7 +23681,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC401718P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23721,8 +23721,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC401718P[i].AduC401718PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                    ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
 
@@ -23732,7 +23732,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4020P =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4020P.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC4020P.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0){
@@ -23743,13 +23743,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC4020P[i].Aeropuerto ==   ModalidadTodasconOrdenC4020P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4020P[i].Pais ==   ModalidadTodasconOrdenC4020P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC4020P= contC4020P ;
@@ -23774,7 +23774,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC4020P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23814,8 +23814,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4020P[i].AduC4020PPintada = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                      ////////// Campo ['+10000 + Fs/kg + Gastos Embarque']////////////////////////////
 
@@ -23825,7 +23825,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contC4021P =0;
                      var contCAIInull=0;
                      var iultimo=0;
-                       for (var i=0; i<= ModalidadTodasconOrdenC4021P.length-1; i++){                                           
+                       for (var i=0; i<= ModalidadTodasconOrdenC4021P.length-1; i++){
                            if (i==0 )
                           {
                                if( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0){
@@ -23836,13 +23836,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                   else
                                  {contCAIInull=1;}
-                           }                       
+                           }
                          else
                           {
                                if((  ModalidadTodasconOrdenC4021P[i].Aeropuerto ==   ModalidadTodasconOrdenC4021P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4021P[i].Pais ==   ModalidadTodasconOrdenC4021P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {      
+                           if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {
                                 if(parseFloat( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg + Gastos Embarque']))
                                 {
                                   contC4021P= contC4021P ;
@@ -23867,7 +23867,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) { 
+                                if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {
                                   contC4021P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -23907,8 +23907,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenC4021P[i].AduC4021PPintada  = [];
                           console.log('balnco 2');
                         }
-                        
-                        
+
+
                       }
                    // ModalidadTodasAereaPasajero = _.sortBy(ModalidadTodasAereaPasajero, 'Aeropuerto','Pais','Email');
                     ModalidadTodasAereaPasajero=_.orderBy(ModalidadTodasAereaPasajero, [ModalidadTodasap => ModalidadTodasap.Aeropuerto.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Pais.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Email.toLowerCase()], ['asc','asc','asc']);
