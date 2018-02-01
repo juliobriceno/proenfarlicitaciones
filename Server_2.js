@@ -405,7 +405,7 @@ app.post('/SaveUsuarioComplete', function (req, res) {
   MyMongo.Remove('Usuarios', { Email: req.body.Usuario.Email }, function (result) {
     MyMongo.Insert('Usuarios', req.body.Usuario, function (result) {
         if (result == 'Ok') {
-            req.session.user =req.Body.Usuario;
+            req.session.user =req.body.Usuario;
             var Data = {};
             Data.Result = 'Ok';
             res.end(JSON.stringify(Data))
