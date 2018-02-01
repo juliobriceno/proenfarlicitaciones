@@ -2,29 +2,53 @@
 var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
 
 module.exports = {
-    Update: function Update(pcollection, id, set, callback) {
-        var mongodb = require('mongodb');
-        var MongoClient = mongodb.MongoClient;
-        var url = connString;
-        MongoClient.connect(url, function (err, db) {
-            if (err) {
-                console.log('Tremendo Error update!!!!');
-            }
-            else {
-                var collection = db.collection(pcollection);
-                var o_id = new mongodb.ObjectID(id);
-                collection.update({ "_id": o_id }, { $set: set }, function (err, result) {
-                    if (err) {
-                        console.log('Tremenda ERROR compadre update');
-                    }
-                    else {
-                        return callback('Ok');
-                    }
-                });
-                db.close();
-            }
-        });
-    },
+  Update: function Update(pcollection, id, set, callback) {
+      var mongodb = require('mongodb');
+      var MongoClient = mongodb.MongoClient;
+      var url = connString;
+      MongoClient.connect(url, function (err, db) {
+          if (err) {
+              console.log('Tremendo Error update!!!!');
+          }
+          else {
+              var collection = db.collection(pcollection);
+              var o_id = new mongodb.ObjectID(id);
+              collection.update({ "_id": o_id }, { $set: set }, function (err, result) {
+                  if (err) {
+                      console.log('Tremenda ERROR compadre update');
+                  }
+                  else {
+                      return callback('Ok');
+                  }
+              });
+              db.close();
+          }
+      });
+  },
+  Save: function Save(pcollection, criteria, set, callback) {
+      var mongodb = require('mongodb');
+      var MongoClient = mongodb.MongoClient;
+      var url = connString;
+      MongoClient.connect(url, function (err, db) {
+          if (err) {
+              console.log('Tremendo Error update!!!!');
+          }
+          else {
+              var collection = db.collection(pcollection);
+              delete set._id;
+              collection.update(criteria, set, { upsert: true }, function (err, result) {
+                  if (err) {
+                    console.log('Tremenda ERROR compadre update');
+                    console.log(err);
+                  }
+                  else {
+                      return callback('Ok');
+                  }
+              });
+              db.close();
+          }
+      });
+  },
     UpdateCriteria: function Update(pcollection, criteria, set, callback) {
         var mongodb = require('mongodb');
         var MongoClient = mongodb.MongoClient;
