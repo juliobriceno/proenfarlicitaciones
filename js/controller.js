@@ -1904,7 +1904,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }
                              /////////////Naviera////////////////////////////////////
-                             if( ( typeof maritimasfcl.Naviera == 'undefined' ) || pattern.test(maritimasfcl.Naviera)){
+                             filaNavierafcl=filaNavierafcl +1;
+                             /*if( ( typeof maritimasfcl.Naviera == 'undefined' ) || pattern.test(maritimasfcl.Naviera)){
                                   filaNavierafcl=filaNavierafcl +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                   // $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Naviera= data.MaritimasFcl.Naviera;
@@ -1916,7 +1917,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Naviera';
                                   $scope.erroresimportacion.push({fila: filaNavierafcl, campo:valor, error:'Valor NO numérico'});
                                  // $scope.AbrirModal(valor);
-                                 }
+                                 }*/
                             /////////////FrecuenciaSemanal////////////////////////////////////
                                 if(maritimasfcl["Frecuencia Semanal"]=='X') {
                                  maritimasfcl["Frecuencia Semanal"]=true;
@@ -2104,7 +2105,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }
                                    /////////////Naviera////////////////////////////////////
-                                if( ( typeof maritimaslcl.Naviera == 'undefined' ) || pattern.test(maritimaslcl.Naviera)){
+                                    filaNavieralcl=filaNavieralcl +1;
+                               /* if( ( typeof maritimaslcl.Naviera == 'undefined' ) || pattern.test(maritimaslcl.Naviera)){
                                    filaNavieralcl=filaNavieralcl +1;
                                    //$scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2115,7 +2117,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Naviera';
                                   $scope.erroresimportacion.push({fila: filaNavieralcl, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                           /////////////FrecuenciaLunes////////////////////////////////////
                                 if(maritimaslcl["Frecuencia Dia Lunes"]=='X') {
                                     maritimaslcl["Frecuencia Dia Lunes"]=true;
@@ -10423,7 +10425,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       ////////// Campo Naviera
 
-                     ModalidadTodasconOrdenGAIII   = _.orderBy(ModalidadTodasconOrdenGAIII  , [Modalidadadmfclnav => Modalidadadmfclnav.PuertoDestino.toLowerCase(),Modalidadadmfclnav => Modalidadadmfclnav.PuertoOrigen.toLowerCase(), Modalidadadmfclnav => Modalidadadmfclnav.PaisDestino.toLowerCase(), Modalidadadmfclnav => parseFloat(Modalidadadmfclnav.Naviera,10)], ['asc','asc','asc','asc']);
+                    /* ModalidadTodasconOrdenGAIII   = _.orderBy(ModalidadTodasconOrdenGAIII  , [Modalidadadmfclnav => Modalidadadmfclnav.PuertoDestino.toLowerCase(),Modalidadadmfclnav => Modalidadadmfclnav.PuertoOrigen.toLowerCase(), Modalidadadmfclnav => Modalidadadmfclnav.PaisDestino.toLowerCase(), Modalidadadmfclnav => parseFloat(Modalidadadmfclnav.Naviera,10)], ['asc','asc','asc','asc']);
            console.log(ModalidadTodasconOrdenGAIII  );
 
                      var contGAIII  =0;
@@ -10513,7 +10515,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                      }
+                      }*/
 
 
 
@@ -11578,7 +11580,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       ////////// Campo Naviera
 
-                  ModalidadTodasconOrdenGAIII   = _.orderBy(ModalidadTodasconOrdenGAIII  , [Modalidadadmlclnv => Modalidadadmlclnv.PuertoDestino.toLowerCase(),Modalidadadmlclnv => Modalidadadmlclnv.PuertoOrigen.toLowerCase(), Modalidadadmlclnv => Modalidadadmlclnv.PaisDestino.toLowerCase(), Modalidadadmlclnv => parseFloat(Modalidadadmlclnv.Naviera,10)], ['asc','asc','asc','asc']);
+                  /*ModalidadTodasconOrdenGAIII   = _.orderBy(ModalidadTodasconOrdenGAIII  , [Modalidadadmlclnv => Modalidadadmlclnv.PuertoDestino.toLowerCase(),Modalidadadmlclnv => Modalidadadmlclnv.PuertoOrigen.toLowerCase(), Modalidadadmlclnv => Modalidadadmlclnv.PaisDestino.toLowerCase(), Modalidadadmlclnv => parseFloat(Modalidadadmlclnv.Naviera,10)], ['asc','asc','asc','asc']);
            console.log(ModalidadTodasconOrdenGAIII  );
 
                      var contGAIII  =0;
@@ -11668,7 +11670,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                      }
+                      }*/
 
 
                         /////////////////////////////////Filtro////////////////////////////////
