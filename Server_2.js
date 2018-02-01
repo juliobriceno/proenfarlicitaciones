@@ -1411,12 +1411,20 @@ function getSheetValuesValidData(values) {
 
 // Actualiza los datos para modalidades por proveedor
 app.post('/UpdateModalidadesProveedor', function (req, res) {
-  MyMongo.Remove('ModalidadesProveedor', { Email: req.body.ModalidadesProveedor.Email }, function (result) {
-      MyMongo.Insert('ModalidadesProveedor', req.body.ModalidadesProveedor, function (result) {
-        var Data = {};
-        res.end(JSON.stringify(Data));
-      });
+
+  // Atom Update to avoid concurrency errors
+  MyMongo.Save('ModalidadesProveedor', {Email: req.body.ModalidadesProveedor.Email}, req.body.ModalidadesProveedor, function (result) {
+    var Data = {};
+    res.end(JSON.stringify(Data));
   });
+
+  // MyMongo.Remove('ModalidadesProveedor', { Email: req.body.ModalidadesProveedor.Email }, function (result) {
+  //     MyMongo.Insert('ModalidadesProveedor', req.body.ModalidadesProveedor, function (result) {
+  //       var Data = {};
+  //       res.end(JSON.stringify(Data));
+  //     });
+  // });
+
 });
 
 // Obtiene los datos para modalidades por proveedor
@@ -1767,7 +1775,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
-                    ws2.cell(1, 1).string(header).style(style1);
+                    ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
                       //console.log(header);
@@ -1876,7 +1884,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
-                    ws3.cell(1, 1).string(header).style(style1);
+                    ws3.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,1).string(valor).style(style);
                       //console.log(header);
@@ -1988,7 +1996,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
-                    ws4.cell(1, 1).string(header).style(style1);
+                    ws4.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,1).string(valor).style(style);
                       //console.log(header);
@@ -2104,7 +2112,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
-                    ws2.cell(1, 1).string(header).style(style1);
+                    ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
                       //console.log(header);
@@ -2300,7 +2308,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
-                    ws3.cell(1, 1).string(header).style(style1);
+                    ws3.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,1).string(valor).style(style);
                       //console.log(header);
