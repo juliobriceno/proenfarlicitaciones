@@ -1011,7 +1011,7 @@ body > .header .logo .icon {
 /* Checkbox and radio inputs */
 .checkbox,
 .radio {
-  padding-left: 0;
+  padding-right: 0;
 }
 /*
     Compenent: Progress bars

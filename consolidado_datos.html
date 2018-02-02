@@ -107,24 +107,28 @@
                       <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
                     </a>
                   </li>
-                <li class="dropdown" >
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                    <span>Licitación</span>
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="Seleccionar_proveedor.html">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                      <span>Seleccionar Proveedores</span>
+                  <li class="dropdown" >
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                      <span>Licitación</span>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="Seleccionar_proveedor.html">
+                        <i class="fa fa-angle-double-right"></i>
+                        Seleccionar Proveedores
+                      </a></li>
+                       <li><a href="consolidado_datos.html">
+                        <i class="fa fa-angle-double-right"></i>
+                        Consolidado de Datos
+                      </a></li>
+                      <li><a href="desbloquear_negociar.html">
+                      <i class="fa fa-angle-double-right"></i>
+                      Desbloquear y Negociar
                     </a></li>
-                    <li class="active"><a href="consolidado_datos.html">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                    <span>Consolidado de Datos</span>
-                  </a></li>
 
-                  </ul>
-                </li>
+                    </ul>
+                  </li>
                 <li >
                   <a href="usuarios.html">
                     <i class="fa fa-id-card" ></i>
@@ -179,14 +183,14 @@
 
                           <!-- Main content -->
                           <section class="content">
-                            
+
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="box box-solid" style="padding: 10px;">
                                         <div class="box-header">
                                           <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:back;padding-top: 10px;">
 
-                                            <div class="col-md-3">                                             
+                                            <div class="col-md-3">
                                               <div class="form-group" ng-show="Show70">
                                         <label>Modalidad</label>
                                         <select class="form-control" id="sel1"
@@ -195,24 +199,20 @@
                                       </div>
                                             </div>
                                             <div>
-                                            <div class="col-md-6 checkbox  ">
-                                              <div ng-show="Show80" class="col-lg-6 col-lg-push-6 col-md-6 col-md-push-0 col-sm-6 col-sm-push-0 col-xs-6 col-xs-push-0">
-                                                <div style="margin-top:25px;" class=" pull-left">
+                                            <div class="col-md-6 col-xs-8 checkbox  pull-right" >
+                                              <div ng-show="Show80" class="col-lg-4 col-lg-push-6 col-md-8 col-md-push-0 col-sm-6 col-sm-push-0 col-xs-6 col-xs-push-0">
+                                                <div style="margin-top:25px;" class=" ">
                                                   <input  type="checkbox" ng-click="FiltroProveedorSeleccionado();" ng-model="ProveedorSeleccionado">Proveedores Seleccionados
                                                 </div>
                                               </div>
-                                            </div>
-                                            </div>
-                                             <div>
-                                            <div class="col-md-6 checkbox  ">
-                                              <div ng-show="Show80" class="col-lg-6 col-lg-push-6 col-md-6 col-md-push-0 col-sm-6 col-sm-push-0 col-xs-6 col-xs-push-0">
-                                                <div style="margin-top:25px;" class=" pull-left">
-                                                  <input  type="checkbox" ng-click="FiltroSemaforo();" ng-model="ModalidadesSemaforo">Semaforo
+                                              <div ng-show="Show80" class="col-lg-4 col-lg-push-6 col-md-4 col-md-push-0 col-sm-6 col-sm-push-0 col-xs-6 col-xs-push-0">
+                                                <div style="margin-top:25px;" class="">
+                                                  <input  type="checkbox" ng-click="FiltroSemaforo();" ng-model="ModalidadesSemaforo">Semáforo
                                                 </div>
                                               </div>
                                             </div>
-
                                             </div>
+
 
 
                                          </div>
@@ -954,7 +954,7 @@
 
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
-              <!-- Modales-->     
+              <!-- Modales-->
 
         </div><!-- ./wrapper -->
 
