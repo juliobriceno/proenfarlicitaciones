@@ -2768,8 +2768,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaTimeca, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                  // $scope.AbrirModal(valor);
                                  }
-                            /////////////Via////////////////////////////////////
-                            if( ( typeof aereacarguero.Via == 'undefined' ) || pattern.test(aereacarguero.Via)){
+                            /////////////Naviera////////////////////////////////////
+                            if( ( typeof aereacarguero.Naviera == 'undefined' ) || pattern.test(aereacarguero.Naviera)){
                                   filaVia=filaVia +1;
                                   //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2778,7 +2778,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
                                 filaVia=filaVia +1;
                                   var valor='Via_Carguero';
-                                  $scope.erroresimportacion.push({fila: filaVia, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaVia, campo:naviera, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
                           /////////////FrecuenciaLunes////////////////////////////////////
@@ -3047,8 +3047,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.erroresimportacion.push({fila: filaTimepa, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                  // $scope.AbrirModal(valor);
                                  }
-                            /////////////Via////////////////////////////////////
-                            if( ( typeof aereapasajero.Via == 'undefined' ) || pattern.test(aereapasajero.Via)){
+                            /////////////Naviera////////////////////////////////////
+                            if( ( typeof aereapasajero.Naviera == 'undefined' ) || pattern.test(aereapasajero.Naviera)){
                                   filaTimeca=filaVia +1;
                                   //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -3057,7 +3057,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 {
                                 filaVia=filaVia +1;
                                   var valor='Via_Pasajero';
-                                  $scope.erroresimportacion.push({fila: filaVia, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaVia, campo:naviera, error:'Valor NO numérico'});
                                  // $scope.AbrirModal(valor);
                                  }
                            /////////////FrecuenciaLunes////////////////////////////////////
@@ -15047,9 +15047,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
 
 
-                   ////////// Campo Via////////////////////////////
+                   ////////// Campo Naviera////////////////////////////
 
-                  ModalidadTodasconOrdenotrosAA   = _.orderBy( ModalidadTodasconOrdenotrosAA  , [Modalidadadavia => Modalidadadavia.Aeropuerto.toLowerCase(),Modalidadadavia => Modalidadadavia.Pais.toLowerCase(), Modalidadadavia => parseFloat(Modalidadadavia.Via,10)], ['asc','asc','asc']);
+                 /* ModalidadTodasconOrdenotrosAA   = _.orderBy( ModalidadTodasconOrdenotrosAA  , [Modalidadadavia => Modalidadadavia.Aeropuerto.toLowerCase(),Modalidadadavia => Modalidadadavia.Pais.toLowerCase(), Modalidadadavia => parseFloat(Modalidadadavia.Naviera,10)], ['asc','asc','asc']);
            console.log( ModalidadTodasconOrdenotrosAA  );
 
                      var contOTRO =0;
@@ -15139,7 +15139,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                      }
+                      }*/
 
                     ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
 
@@ -16428,7 +16428,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
                    ////////// Campo Via////////////////////////////
 
-                  ModalidadTodasconOrdenotrosP = _.orderBy( ModalidadTodasconOrdenotrosP  , [ModalidadadaviaP => ModalidadadaviaP.Aeropuerto.toLowerCase(),ModalidadadaviaP => ModalidadadaviaP.Pais.toLowerCase(), ModalidadadaviaP => parseFloat(ModalidadadaviaP.Via,10)], ['asc','asc','asc']);
+                 /* ModalidadTodasconOrdenotrosP = _.orderBy( ModalidadTodasconOrdenotrosP  , [ModalidadadaviaP => ModalidadadaviaP.Aeropuerto.toLowerCase(),ModalidadadaviaP => ModalidadadaviaP.Pais.toLowerCase(), ModalidadadaviaP => parseFloat(ModalidadadaviaP.Via,10)], ['asc','asc','asc']);
            console.log( ModalidadTodasconOrdenotrosP);
 
                      var contOTROP =0;
@@ -16518,7 +16518,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                      }
+                      }*/
                         ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
 
                    ModalidadTodasconOrdenC4017P   = _.orderBy( ModalidadTodasconOrdenC4017P  , [Modalidadadasuma1P => Modalidadadasuma1P.Aeropuerto.toLowerCase(),Modalidadadasuma1P => Modalidadadasuma1P.Pais.toLowerCase(), Modalidadadasuma1P => parseFloat(Modalidadadasuma1P['+100 + Fs/kg + Gastos Embarque'],10)], ['asc','asc','asc']);
