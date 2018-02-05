@@ -1351,7 +1351,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionales//////////////////////////
-                             if( ( typeof aduana["Conceptos Adicionales"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales"])){
+                            filaConceptosAdicionales=filaConceptosAdicionales +1;
+                             /*if( ( typeof aduana["Conceptos Adicionales"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales"])){
                                    filaConceptosAdicionales=filaConceptosAdicionales +1;
                                    //$scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                   //$scope.$apply();
@@ -1362,7 +1363,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Conceptos Adicionales';
                                   $scope.erroresimportacion.push({fila: filaConceptosAdicionales, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                         //////////////////GastosAdicionalesdos//////////////////////////
                                 if( ( typeof aduana["Gastos Adicionales dos"] == 'undefined' ) || pattern.test(aduana["Gastos Adicionales dos"])){
                                   filaGastosAdicionalesdos=filaGastosAdicionalesdos +1;
@@ -1377,7 +1378,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionales2//////////////////////////
-                                if( ( typeof aduana["Conceptos Adicionales dos"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales dos"])){
+                            filaConceptosAdicionalesdos=filaConceptosAdicionalesdos +1;
+                                /*if( ( typeof aduana["Conceptos Adicionales dos"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales dos"])){
                                   filaConceptosAdicionalesdos=filaConceptosAdicionalesdos +1;
                                    //$scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1388,7 +1390,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Conceptos Adicionales dos';
                                   $scope.erroresimportacion.push({fila: filaConceptosAdicionalesdos, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                           //////////////////GastosAdicionalestres//////////////////////////
                                 if( ( typeof aduana["Gastos Adicionales tres"] == 'undefined' ) || pattern.test(aduana["Gastos Adicionales tres"])){
                                   filaGastosAdicionalestres=filaGastosAdicionalestres +1;
@@ -1403,7 +1405,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }
                             //////////////////ConceptosAdicionalestres//////////////////////////
-                                if( ( typeof aduana["Conceptos Adicionales tres"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales tres"])){
+                              filaConceptosAdicionalestres=filaConceptosAdicionalestres +1;
+                                /*if( ( typeof aduana["Conceptos Adicionales tres"] == 'undefined' ) || pattern.test(aduana["Conceptos Adicionales tres"])){
                                   filaConceptosAdicionalestres=filaConceptosAdicionalestres +1;
                                   // $scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1414,7 +1417,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Conceptos Adicionales tres';
                                   $scope.erroresimportacion.push({fila: filaConceptosAdicionalestres, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                             //////////////////CostoPlanificacionCaja//////////////////////////
                                 if( ( typeof aduana["Costo Planificacion Caja"] == 'undefined' ) || pattern.test(aduana["Costo Planificacion Caja"])){
                                    filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
@@ -2769,7 +2772,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  // $scope.AbrirModal(valor);
                                  }
                             /////////////Naviera////////////////////////////////////
-                            if( ( typeof aereacarguero.Naviera == 'undefined' ) || pattern.test(aereacarguero.Naviera)){
+                            filaVia=filaVia +1;
+                            /*if( ( typeof aereacarguero.Naviera == 'undefined' ) || pattern.test(aereacarguero.Naviera)){
                                   filaVia=filaVia +1;
                                   //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2780,7 +2784,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Via_Carguero';
                                   $scope.erroresimportacion.push({fila: filaVia, campo:naviera, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                           /////////////FrecuenciaLunes////////////////////////////////////
                                   if(aereacarguero["Frecuencia Dia Lunes"]=='X') {
                                    aereacarguero["Frecuencia Dia Lunes"]=true;
@@ -3048,7 +3052,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  // $scope.AbrirModal(valor);
                                  }
                             /////////////Naviera////////////////////////////////////
-                            if( ( typeof aereapasajero.Naviera == 'undefined' ) || pattern.test(aereapasajero.Naviera)){
+                            filaVia=filaVia +1;
+                            /*if( ( typeof aereapasajero.Naviera == 'undefined' ) || pattern.test(aereapasajero.Naviera)){
                                   filaTimeca=filaVia +1;
                                   //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -3059,7 +3064,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Via_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaVia, campo:naviera, error:'Valor NO numérico'});
                                  // $scope.AbrirModal(valor);
-                                 }
+                                 }*/
                            /////////////FrecuenciaLunes////////////////////////////////////
                                  if(aereapasajero["Frecuencia Dia Lunes"]=='X') {
                                    aereapasajero["Frecuencia Dia Lunes"]=true;

@@ -1411,20 +1411,12 @@ function getSheetValuesValidData(values) {
 
 // Actualiza los datos para modalidades por proveedor
 app.post('/UpdateModalidadesProveedor', function (req, res) {
-
-  // Atom Update to avoid concurrency errors
-  MyMongo.Save('ModalidadesProveedor', {Email: req.body.ModalidadesProveedor.Email}, req.body.ModalidadesProveedor, function (result) {
-    var Data = {};
-    res.end(JSON.stringify(Data));
+  MyMongo.Remove('ModalidadesProveedor', { Email: req.body.ModalidadesProveedor.Email }, function (result) {
+      MyMongo.Insert('ModalidadesProveedor', req.body.ModalidadesProveedor, function (result) {
+        var Data = {};
+        res.end(JSON.stringify(Data));
+      });
   });
-
-  // MyMongo.Remove('ModalidadesProveedor', { Email: req.body.ModalidadesProveedor.Email }, function (result) {
-  //     MyMongo.Insert('ModalidadesProveedor', req.body.ModalidadesProveedor, function (result) {
-  //       var Data = {};
-  //       res.end(JSON.stringify(Data));
-  //     });
-  // });
-
 });
 
 // Obtiene los datos para modalidades por proveedor
@@ -3123,7 +3115,7 @@ app.get('/GetTemplateMariFcl', function (req, res) {
             size: 12
         },
 
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        numberFormat: '#,##0.00; (#,##0.00); -',
 
     });
 
@@ -3200,7 +3192,7 @@ app.get('/GetTemplateMariLcl', function (req, res) {
             size: 12
         },
 
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        numberFormat: '#,##0.00; (#,##0.00); -',
 
     });
 
@@ -3271,7 +3263,7 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
             size: 12
         },
 
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        numberFormat: '#,##0.00; (#,##0.00); -',
 
     });
 
@@ -3350,7 +3342,7 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
             size: 12
         },
 
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        numberFormat: '#,##0.00; (#,##0.00); -',
 
     });
 
@@ -3440,7 +3432,7 @@ app.get('/GetTemplateAerea', function (req, res) {
             size: 12
         },
 
-        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        numberFormat: '#,##0.00; (#,##0.00); -',
 
     });
 
@@ -3462,7 +3454,7 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws8.cell(1, 11).string('Gastos Embarque').style(style);
         ws8.cell(1, 12).string('Observaciones').style(style);
         ws8.cell(1, 13).string('Lead Time (dias)').style(style);
-        ws8.cell(1, 14).string('Via').style(style);
+        ws8.cell(1, 14).string('Naviera').style(style);
         ws8.cell(1, 15).string('Frecuencia Dia Lunes').style(style);
         ws8.cell(1, 16).string('Frecuencia Dia Martes').style(style);
         ws8.cell(1, 17).string('Frecuencia Dia Miercoles').style(style);
@@ -3519,7 +3511,7 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws9.cell(1, 11).string('Gastos Embarque').style(style);
         ws9.cell(1, 12).string('Observaciones').style(style);
         ws9.cell(1, 13).string('Lead time (dias)').style(style);
-        ws9.cell(1, 14).string('Via').style(style);
+        ws9.cell(1, 14).string('Naviera').style(style);
         ws9.cell(1, 15).string('Frecuencia Dia Lunes').style(style);
         ws9.cell(1, 16).string('Frecuencia Dia Martes').style(style);
         ws9.cell(1, 17).string('Frecuencia Dia Miercoles').style(style);
