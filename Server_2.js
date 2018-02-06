@@ -4085,7 +4085,9 @@ app.get('/downloadanybyname', function (req, res) {
 
 });
 
-app.listen(9099);
+var server = app.listen(9099);
+
+server.timeout = 600000;
 
 function makeBody(to, from, subject, message) {
     var str = ["Content-Type: text/plain; charset=\"UTF-8\"\n",
