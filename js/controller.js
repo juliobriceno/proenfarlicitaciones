@@ -2472,7 +2472,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   }
                                 else
                                 {
-                                filaEstandartu=filaEstandartu +1;
+                                filaEstandartuvia=filaEstandartuvia +1;
                                   var valor='Turbo (150Cajas) Urbano Viaje';
                                   $scope.erroresimportacion.push({fila: filaEstandartuvia, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
@@ -7744,11 +7744,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      return (el.AdutarifaPintada.length > 0 ||
                           el.AduMinimaPintada.length > 0 ||
                           el.AduGAPintada.length > 0 ||
-                          el.AduCAPintada.length > 0 ||
+                          //el.AduCAPintada.length > 0 ||
                           el.AduGAIIPintada.length > 0 ||
-                          el.AduCAIIPintada.length > 0 ||
+                          //el.AduCAIIPintada.length > 0 ||
                           el.AduGAIIIPintada.length > 0 ||
-                          el.AduCAIIIPintada.length > 0 ||
+                          //el.AduCAIIIPintada.length > 0 ||
                           el.AduCPCPintada.length > 0 ||
                           el.AduotroPintada.length > 0 ||
                           $scope.ModalidadesSemaforo == false);
@@ -7852,7 +7852,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                          ////////  Campo ["C 20 hasta 4-5 Ton"] //////////////////////////
 
-                  ModalidadTodasconOrden  = _.orderBy(ModalidadTodasconOrden , [Modalidadotm2045 => Modalidadotm2045.Destino.toLowerCase(),Modalidadotm2045 => Modalidadotm2045.Origen.toLowerCase(),Modalidadotm2045 => parseFloat(Modalidadotm2045["C 20 hasta 4-5 Ton"],10)], ['asc','asc','asc']);
+                console.log(ModalidadTodasconOrden );
+                  ModalidadTodasconOrden  = _.orderBy(ModalidadTodasconOrden , [Modalidadotm2045 => Modalidadotm2045.Destino.toLowerCase(),Modalidadotm2045 => Modalidadotm2045.Origen.toLowerCase(),Modalidadotm2045 => parseFloat(Modalidadotm2045["C 20 hasta 4-5 Ton"],30)], ['asc','asc','asc']);
                       console.log(ModalidadTodasconOrden );
 
                      var cont =0;
@@ -10916,7 +10917,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2019Pintada.length > 0 ||
                                 el.AduC2020Pintada.length > 0 ||
                                 el.AduC2025Pintada.length > 0 ||
-                                el.AduC2021Pintada.length > 0 ||
+                                //el.AduC2021Pintada.length > 0 ||
                                 el.AduC4015Pintada.length > 0 ||
                                 el.AduC4016Pintada.length > 0 ||
                                 el.AduC4017Pintada.length > 0 ||
@@ -11690,7 +11691,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2017Pintada.length > 0 ||
                                 el.AduC2019Pintada.length > 0 ||
                                 el.AduC2020Pintada.length > 0 ||
-                                el.AduC2021Pintada.length > 0 ||
+                                //el.AduC2021Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
@@ -15542,7 +15543,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2021Pintada.length > 0 ||
                                 el.AduC2025Pintada.length > 0 ||
                                 el.AduC4015Pintada.length > 0 ||
-                                el.AduC4016Pintada.length > 0 ||
+                                //el.AduC4016Pintada.length > 0 ||
                                 el.AduC4017Pintada.length > 0 ||
                                 el.AduC401718Pintada.length > 0 ||
                                 el.AduC4020Pintada.length > 0 ||
@@ -16914,7 +16915,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 el.AduC2021PPintada.length > 0 ||
                                 el.AduC2025PPintada.length > 0 ||
                                 el.AduC4015PPintada.length > 0 ||
-                                el.AduC4016PPintada.length > 0 ||
+                                //el.AduC4016PPintada.length > 0 ||
                                 el.AduC4017PPintada.length > 0 ||
                                 el.AduC401718PPintada.length > 0 ||
                                 el.AduC4020PPintada.length > 0 ||
