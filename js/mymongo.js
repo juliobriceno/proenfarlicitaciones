@@ -3,8 +3,8 @@
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
 
 // Ambiente de pruebas -espejo de producción-
-var connString = 'mongodb://juliobricenoro:juliobricenoro@ds125588.mlab.com:25588/proenfar2';
-
+var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
+//var connString = 'mongodb://localhost:27017/licitaciones';
 
 module.exports = {
   Update: function Update(pcollection, id, set, callback) {

@@ -1625,6 +1625,7 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 ////////////Consolidado de Datos/////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/GetConsolidadoDatos', function (req, res) {
+    console.log("aqui 0");
 
   if (req.body.Modalidad =='Terrestre Nacional')   { req.body.Modalidad = 'TerrestreNacional';  }
   if (req.body.Modalidad =='Terrestre Urbano')   { req.body.Modalidad = 'TerrestreUrbano';  }
@@ -1633,29 +1634,47 @@ app.post('/GetConsolidadoDatos', function (req, res) {
   // Para poder saber qué proveedores fueron marcados como seleccionados
   MyMongo.Find('LicitacionProveedor', {} , function (result) {
     var LicitacionProveedor = result;
+     console.log("aqui lici");
+     console.log(result);
     MyMongo.Find('ModalidadesProveedor', {} , function (result) {
       var Data = {};
+       console.log("moda");
+       console.log(result);
+
       // Filtra sólo seleccionados
       result = result.filter(function(el){
         var ret = false;
         LicitacionProveedor.forEach(function(element) {
+            console.log("filter");
+            //console.log(element.Modalidad);
+               // console.log(req.body.Modalidad);
             if (req.body.ProveedorSeleccionado == true){
+                console.log("aqui 1");
               if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true && element.Diligenciada == true){
+                console.log("aqui 2");
                 ret = true;
               }
             }
             else{
+                console.log("aqui 3");
+                console.log(el.Email);
+                console.log(element.Email);
+                console.log(element.Cerrado);
+                console.log(element.Modalidad);
+                console.log(req.body.Modalidad);
+                console.log(element.Diligenciada);
               if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Diligenciada == true){
-                ret = true;
+                 ret = true;
+                 console.log("aqui 4");
               }
             }
         });
         return ret;
       });
       var Data = {};
-      Data.ConsolidadoDatos = result;
+      Data.ConsolidadoDatos = result;      
       res.end(JSON.stringify(Data));
-      console.log(Data.ConsolidadoDatos);
+      //console.log(Data.ConsolidadoDatos);
 
  });
   });
@@ -1684,7 +1703,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
     if (NombreModalidad == 'Aduanas') { var ws2 = wb.addWorksheet('Aduanas');}
     if (NombreModalidad=='OTM'){var ws2 = wb.addWorksheet('OTM');}
     if (NombreModalidad=='MaritimasFCL'){var ws2 = wb.addWorksheet('MaritFCL');}
-    if (NombreModalidad=='MaritimasLCL'){var ws2 = wb.addWorksheet('MaritLCL');}
+    if (NombreModalidad=='MaritimasLcl'){var ws2 = wb.addWorksheet('MaritLCL');}
 
     if (NombreModalidad == 'Bodegajes')
         {

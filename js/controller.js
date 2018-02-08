@@ -3053,6 +3053,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                             /////////////Naviera////////////////////////////////////
                             filaVia=filaVia +1;
+                            
                             /*if( ( typeof aereapasajero.Naviera == 'undefined' ) || pattern.test(aereapasajero.Naviera)){
                                   filaTimeca=filaVia +1;
                                   //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
@@ -3317,7 +3318,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.Bodegajes.Maquinaria, bBodegajes);
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.Bodegajes.MateriaPrima, bBodegajes);
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl, bMaritimasFcl);
-                            $scope.SetZeroInNull($scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl, bMaritimasFcl);
+                            $scope.SetZeroInNull($scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl, bMaritimasLcl);
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.Otm.Otms, bOtms);
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreNacional.TerresNacional, bTerrestreNacional);
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreNacionalPatineta.TerresNacionalPatineta, bTerrestreNacional);
@@ -10437,6 +10438,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      var contGAIII  =0;
                      var contGAIIInull=0;
                      var iultimo=0;
+
+
                        for (var i=0; i<=ModalidadTodasconOrdenGAIII.length-1; i++){
                            if (i==0 )
                           {
