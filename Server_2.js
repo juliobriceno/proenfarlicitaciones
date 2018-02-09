@@ -21,6 +21,11 @@ var Validador = require("./js/fiscalValidaciones.js");
 
 app.use(cookieParser());
 app.use(expressSession({ secret: '2828AAAA', resave: true, saveUninitialized: true }));
+// Para crear Log de App
+var fsLog = require('fs')
+  , Log = require('log')
+  , log = new Log('debug', fsLog.createWriteStream('licitacionesProenfar.log'));
+  // Fin Para crear Log de App
 
 app.use(function (req, res, next) {
     // Archivos estáticos si los devuelve
@@ -1411,12 +1416,20 @@ function getSheetValuesValidData(values) {
 
 // Actualiza los datos para modalidades por proveedor
 app.post('/UpdateModalidadesProveedor', function (req, res) {
-  MyMongo.Remove('ModalidadesProveedor', { Email: req.body.ModalidadesProveedor.Email }, function (result) {
+    // Atom Update to avoid concurrency errors
+    log.info('Guardando Modalidades');
+    log.info('Guardando Modalidades de:' + req.body.ModalidadesProveedor.Email);
+   MyMongo.Save('ModalidadesProveedor', {Email: req.body.ModalidadesProveedor.Email}, req.body.ModalidadesProveedor, function (result) {
+    var Data = {};
+    res.end(JSON.stringify(Data));
+  });
+
+   /*MyMongo.Remove('ModalidadesProveedor', { Email: req.body.ModalidadesProveedor.Email }, function (result) {
       MyMongo.Insert('ModalidadesProveedor', req.body.ModalidadesProveedor, function (result) {
         var Data = {};
         res.end(JSON.stringify(Data));
       });
-  });
+  });*/
 });
 
 // Obtiene los datos para modalidades por proveedor
@@ -3693,6 +3706,9 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
 
   ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
   app.post('/GetFinalizarModalidades', function (req, res) {
+     log.info('Finalizar Modalidad a Negociar');
+     log.info('Finalizar Modalidade  de :' + req.body.Email + 'en' + req.body.Modalidad);
+
 
                 MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
                 MyMongo.Insert('LicitacionProveedor', { Email: req.body.Email, Bloqueado: true, Modalidad: req.body.Modalidad }, function (result) {
@@ -3704,6 +3720,9 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
 
     ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
      app.post('/GetFinalizarModalidadesTodas', function (req, res) {
+         log.info('Finalizar Modalidad');
+         log.info('Finalizar Modalidad  de :' + req.body.Email);
+
 
       jwtClient.authorize(function (err, tokens) {
 
@@ -3900,6 +3919,9 @@ app.post('/GetProveedoresModalidadesName', function (req, res) {
 });
 
 app.post('/GetDesbloquearmodalidad', function (req, res) {
+     log.info('Desbloquear Modalidad');
+     log.info('Desbloquear Modalidades  de :' + req.body.Email);
+
 
       MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
             var Data = {};
@@ -3910,6 +3932,9 @@ app.post('/GetDesbloquearmodalidad', function (req, res) {
 
 // Funcionalidad para negociar modalidad de un proveedor
 app.post('/GetNegociarmodalidad', function (req, res) {
+
+    log.info('Guardando Modalidad a Negociar');
+    log.info('Guardando Modalidades a Negociar de :' + req.body.Email);
 
   var mModalidad = req.body.Modalidad;
   var Modalidaddesbloquear= req.body.Modalidad;

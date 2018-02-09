@@ -1,9 +1,9 @@
-//var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
+var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
 
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
 
 // Ambiente de pruebas -espejo de producción-
-var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
+//var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
 //var connString = 'mongodb://localhost:27017/licitaciones';
 
 module.exports = {
@@ -13,14 +13,16 @@ module.exports = {
       var url = connString;
       MongoClient.connect(url, function (err, db) {
           if (err) {
-              console.log('Tremendo Error update!!!!');
+              //console.log('Tremendo Error update!!!!');
+              log.error('Error en Update en tabla:' + pcollection +', Set: ' + JSON.stringify(set));
+
           }
           else {
               var collection = db.collection(pcollection);
               var o_id = new mongodb.ObjectID(id);
               collection.update({ "_id": o_id }, { $set: set }, function (err, result) {
                   if (err) {
-                      console.log('Tremenda ERROR compadre update');
+                       log.error('Error en Update en tabla:' + pcollection +', Set: ' + JSON.stringify(set));
                   }
                   else {
                       return callback('Ok');
