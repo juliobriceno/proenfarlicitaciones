@@ -702,16 +702,44 @@
                           </div>
 
                         <div class="tab-pane" id="contacto-modalidad">
-2
+                           <div class="box-body table-responsive no-padding">
+                                  <table class="table table-bordered">
+                                  <tr>
+                                    <th class="text-center"><h5><b>Modalidad</b></h5></th>
+                                    <th class="text-center"><h5><b>Nombre</b></h5></th>
+                                    <th class="text-center"><h5><b>Ciudad</b></h5></th>
+                                    <th class="text-center"><h5><b>Email</b></h5></th>
+                                    <th class="text-center"><h5><b>Cargo</b></h5></th>
+                                    <th class="text-center"><h5><b>Dirección</b></h5></th>
+                                    <th class="text-center"><h5><b>Teléfono Fijo + Ext</b></h5></th>
+                                    <th class="text-center"><h5><b>Celular</b></h5></th>
+
+                                  </tr>
+                                    <tr ng-repeat="contactomodalidades in contactosmodalidadesfiltered">
+
+                                      <td class="text-center">{{contactomodalidades.modalidadestext}}</td>
+                                      <td class="text-center">{{contactomodalidades.nombre}}</td>
+                                      <td class="text-center">{{contactomodalidades.ciudad}}</td>
+                                      <td class="text-center">{{contactomodalidades.email}}</td>
+                                      <td class="text-center">{{contactomodalidades.cargo}}</td>
+                                      <td class="text-center">{{contactomodalidades.direccion}}</td>
+                                      <td class="text-center">{{contactomodalidades.telefonofijo}}</td>
+                                      <td class="text-center">{{contactomodalidades.celular}}</td>
+
+                                    </tr>
+                                  </table>
+                            <div class="" style="height: 150px;"><div class="row" ></div></div>
+                        </div>
+
                         </div>
                       </div>
                     </div>
-</div>
+               </div>
               </div>
              </div>
             </div>  <!--fin panel modal body-->
             </div>
-          <div class="modal fade" id="contactomodalidad" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+          <div class="modal fade" id="contactomodalidad_old" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
               <div class="modal-dialog  modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">

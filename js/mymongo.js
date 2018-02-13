@@ -4,7 +4,7 @@ var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017
 
 // Ambiente de pruebas -espejo de producción-
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
-//var connString = 'mongodb://localhost:27017/licitaciones';
+//var connString = 'mongodb://localhost:27017/licitacionesProductivo';
 
 module.exports = {
   Update: function Update(pcollection, id, set, callback) {

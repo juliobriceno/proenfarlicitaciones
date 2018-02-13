@@ -3162,25 +3162,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                var sumatoriap=0;
                                 sumatoriap=parseFloat(aereapasajero["+100"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
-                                aereapasajero["+100 + Fs/kg + Gastos Embarque"] = sumatoriap;
+                                aereapasajero["+100 + Fs/kg"] = sumatoriap;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1p=0;
                                 sumatoria1p=parseFloat(aereapasajero["+300"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
-                                aereapasajero["+300 + Fs/kg + Gastos Embarque"] = sumatoria1p;
+                                aereapasajero["+300 + Fs/kg"] = sumatoria1p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2p=0;
                                 sumatoria2p=parseFloat(aereapasajero["+500"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
-                                aereapasajero["+500 + Fs/kg + Gastos Embarque"] = sumatoria2p;
+                                aereapasajero["+500 + Fs/kg"] = sumatoria2p;
                                //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3p=0;
                                sumatoria3p=parseFloat(aereapasajero["+1000"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
-                                aereapasajero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3p;
+                                aereapasajero["+1000 + Fs/kg"] = sumatoria3p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                         });
@@ -3491,7 +3491,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            Modali["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
                            Modali["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
                            Modali["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+1000 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
+                           Modali["+1000 + Fs/kg"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
+                           Modali["+100 + Fs/kg"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["+300 + Fs/kg"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["+500 + Fs/kg"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["+1000 + Fs/kg"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
                          
                            } 
                       
@@ -16691,7 +16695,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        for (var i=0; i<= ModalidadTodasconOrdenC4017P.length-1; i++){
                            if (i==0 )
                           {
-                               if( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0){
+                               if( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg']>0){
                                  contC4017P = contC4017P  + 1;
                                  console.log('i es o');
                                  console.log(contC4017P );
@@ -16705,8 +16709,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                if((  ModalidadTodasconOrdenC4017P[i].Aeropuerto ==   ModalidadTodasconOrdenC4017P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4017P[i].Pais ==   ModalidadTodasconOrdenC4017P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {
-                                if(parseFloat( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg + Gastos Embarque']))
+                           if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg']>0 ) {
+                                if(parseFloat( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4017P[i-1]['+100 + Fs/kg']))
                                 {
                                   contC4017P= contC4017P ;
                                   console.log('CPC mpo igual');
@@ -16730,7 +16734,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg + Gastos Embarque']>0 ) {
+                                if ( ModalidadTodasconOrdenC4017P[i]['+100 + Fs/kg']>0 ) {
                                   contC4017P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -16785,7 +16789,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        for (var i=0; i<= ModalidadTodasconOrdenC401718P.length-1; i++){
                            if (i==0 )
                           {
-                               if( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0){
+                               if( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg']>0){
                                  contC401718P = contC401718P  + 1;
                                  console.log('i es o');
                                  console.log(contC401718P );
@@ -16799,8 +16803,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                if((  ModalidadTodasconOrdenC401718P[i].Aeropuerto ==   ModalidadTodasconOrdenC401718P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC401718P[i].Pais ==   ModalidadTodasconOrdenC401718P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {
-                                if(parseFloat( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg + Gastos Embarque']))
+                           if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg']>0 ) {
+                                if(parseFloat( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC401718P[i-1]['+300 + Fs/kg']))
                                 {
                                   contC401718P= contC401718P ;
                                   console.log('CPC mpo igual');
@@ -16824,7 +16828,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg + Gastos Embarque']>0 ) {
+                                if ( ModalidadTodasconOrdenC401718P[i]['+300 + Fs/kg']>0 ) {
                                   contC401718P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -16878,7 +16882,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        for (var i=0; i<= ModalidadTodasconOrdenC4020P.length-1; i++){
                            if (i==0 )
                           {
-                               if( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0){
+                               if( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg']>0){
                                  contC4020P = contC4020P  + 1;
                                  console.log('i es o');
                                  console.log(contC4020P );
@@ -16892,8 +16896,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                if((  ModalidadTodasconOrdenC4020P[i].Aeropuerto ==   ModalidadTodasconOrdenC4020P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4020P[i].Pais ==   ModalidadTodasconOrdenC4020P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {
-                                if(parseFloat( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg + Gastos Embarque']))
+                           if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg']>0 ) {
+                                if(parseFloat( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4020P[i-1]['+500 + Fs/kg']))
                                 {
                                   contC4020P= contC4020P ;
                                   console.log('CPC mpo igual');
@@ -16917,7 +16921,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg + Gastos Embarque']>0 ) {
+                                if ( ModalidadTodasconOrdenC4020P[i]['+500 + Fs/kg']>0 ) {
                                   contC4020P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -16971,7 +16975,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        for (var i=0; i<= ModalidadTodasconOrdenC4021P.length-1; i++){
                            if (i==0 )
                           {
-                               if( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0){
+                               if( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']>0){
                                  contC4021P = contC4021P  + 1;
                                  console.log('i es o');
                                  console.log(contC4021P );
@@ -16985,8 +16989,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                if((  ModalidadTodasconOrdenC4021P[i].Aeropuerto ==   ModalidadTodasconOrdenC4021P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4021P[i].Pais ==   ModalidadTodasconOrdenC4021P[i-1].Pais))
                               {
                                 console.log('via igual');
-                           if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {
-                                if(parseFloat( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg + Gastos Embarque']))
+                           if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']>0 ) {
+                                if(parseFloat( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg ']))
                                 {
                                   contC4021P= contC4021P ;
                                   console.log('CPC mpo igual');
@@ -17010,7 +17014,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg + Gastos Embarque']>0 ) {
+                                if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg ']>0 ) {
                                   contC4021P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
