@@ -363,11 +363,11 @@
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa % Advalorem/ FOB</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Mínima</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Adicionales</b></h6></th>
-                                  <!--<th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales</b></h6></th>-->
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Adicionales dos</b></h6></th>
-                                  <!--<th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales dos</b></h6></th>-->
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales dos</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Adicionales tres</b></h6></th>
-                                  <!--<th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales tres</b></h6></th>-->
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Conceptos Adicionales tres</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Costo Plastificación Caja</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Otros</b></h6></th>
                                 </tr>
@@ -377,11 +377,11 @@
                                   <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]  | number:2}}</span></td>
                                   <td class="text-center"><span ng-class="Consadu.AduMinimaPintada">{{Consadu.Minima  | number:2}}</span></td>
                                   <td class="text-center"><span ng-class="Consadu.AduGAPintada">{{Consadu["Gastos Adicionales"]  | number:2}}</span></td>
-                                  <!--<td class="text-center"><span ng-class="Consadu.AduCAPintada">{{Consadu["Conceptos Adicionales"]  | number:2}}</span></td>-->
+                                  <td class="text-center">{{Consadu["Conceptos Adicionales"]}}</span></td>
                                   <td class="text-center"><span ng-class="Consadu.AduGAIIPintada">{{Consadu["Gastos Adicionales dos"]  | number:2}}</span></td>
-                                  <!--<td class="text-center"><span ng-class="Consadu.AduCAIIPintada">{{Consadu["Conceptos Adicionales dos"]  | number:2}}</span></td>-->
+                                 <td class="text-center">{{Consadu["Conceptos Adicionales dos"]}}</span></td>
                                   <td class="text-center"><span ng-class="Consadu.AduGAIIIPintada">{{Consadu["Gastos Adicionales tres"]  | number:2}}</span></td>
-                                  <!--<td class="text-center"><span ng-class="Consadu.AduCAIIIPintada">{{Consadu["Conceptos Adicionales tres"]  | number:2}}</span></td>-->
+                                  <td class="text-center">{{Consadu["Conceptos Adicionales tres"]}}</span></td>
                                   <td class="text-center"><span ng-class="Consadu.AduCPCPintada">{{Consadu["Costo Planificacion Caja"]  | number:2}}</span></td>
                                   <td class="text-center"><span  ng-class="Consadu.AduotroPintada">{{Consadu.Otros  | number:2}}</span></td>
                                 </tr>
@@ -485,7 +485,10 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>C 40HC</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Baf 40HC</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Gastos de Embarque</b></h6></th>
-                                <!--<th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>-->
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th> 
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time(días)</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Frecuencia</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>C 20 + Baf 20 + Gastos Embarque</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>C 40 + Baf 40 + Gastos Embarque</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>C 40HC + Baf 40HC + Gastos Embarque</b></h6></th>
@@ -502,7 +505,10 @@
                                 <td class="text-center"><span ng-class="MaritimaFcl.AduC2019Pintada">{{MaritimaFcl["C 40HC"]  | number:2}}</span></td>
                                 <td class="text-center"><span  ng-class="MaritimaFcl.AduC2020Pintada">{{MaritimaFcl["Baf 40HC"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="MaritimaFcl.AduC2025Pintada">{{MaritimaFcl["Gastos Embarque"]  | number:2}}</span></td>
-                               <!-- <td class="text-center"><span ng-class="MaritimaFcl.AduC2021Pintada">{{MaritimaFcl.Naviera  | number:2}}</span></td>-->
+                                 <td class="text-center">{{MaritimaFcl.Observaciones}}</span></td>
+                                  <td class="text-center">{{MaritimaFcl["Lead Time(dias)"]}}</span></td>
+                               <td class="text-center">{{MaritimaFcl.Naviera}}</span></td>
+                                <td class="text-center"><input ng-model='MaritimaFcl["Frecuencia Semanal"]'  type="checkbox"  ng-true-value="true" ng-false-value="false" ng-disabled="true" >S <input  ng-model='MaritimaFcl["Frecuencia Quincenal"]'   type="checkbox"  ng-true-value="true" ng-false-value="false" ng-disabled="true" >Q <input  ng-model='MaritimaFcl["Frecuencia Mensual"]'  type="checkbox" ng-true-value="true"   ng-false-value="false" ng-disabled="true" >M</td>
                                 <td class="text-center"><span ng-class="MaritimaFcl.AduC4015Pintada">{{MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="MaritimaFcl.AduC4016Pintada">{{MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="MaritimaFcl.AduC4017Pintada">{{MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]  | number:2}}</span></td>
@@ -537,7 +543,10 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>8-12 Ton/M3</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>12-18 Ton/M3</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Gastos de Embarque</b></h6></th>
-                                <!--<th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>-->
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Lead time(días)</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
+                                <th class="text-center" style="width:200px;"><h6><b>Frecuencia(d&iacute;as)</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaLcl in ModalidadTodas">
                                 <td>{{MaritimaLcl.Email}}</td>
@@ -550,7 +559,12 @@
                                 <td class="text-center"><span ng-class="MaritimaLcl.AduC2017Pintada">{{MaritimaLcl["8-12 ton/M3"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="MaritimaLcl.AduC2019Pintada">{{MaritimaLcl["12-18 ton/M3"]  | number:2}}</span></td>
                                 <td class="text-center"><span ng-class="MaritimaLcl.AduC2020Pintada">{{MaritimaLcl["Gastos Embarque"]  | number:2}}</span></td>
-                                <!--<td class="text-center"><span ng-class="MaritimaLcl.AduC2021Pintada">{{MaritimaLcl.Naviera  | number:2}}</span></td>-->
+                                <td class="text-center">{{MaritimaLcl.Observaciones}}</span></td>
+                                <td class="text-center">{{MaritimaLcl["Lead time(dias)"]}}</span></td>
+                                <td class="text-center"><span ng-class="MaritimaLcl.AduC2021Pintada">{{MaritimaLcl.Naviera}}</span></td>
+                                <td>
+                                 <input ng-model='MaritimaLcl["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true"  ng-false-value="false" ng-disabled="true">L<input  ng-model='MaritimaLcl["Frecuencia Dia Martes"]'  type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false" ng-disabled="true">M<input  ng-model='MaritimaLcl["Frecuencia Dia Miercoles"]'  type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false" ng-disabled="true">M<input  ng-model='MaritimaLcl["Frecuencia Dia Jueves"]'  type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false" ng-disabled="true">J<input  ng-model='MaritimaLcl["Frecuencia Dia Viernes"]'  type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false" ng-disabled="true">V<input  ng-model='MaritimaLcl["Frecuencia Dia Sabado"]' type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false" ng-disabled="true">S<input  ng-model='MaritimaLcl["Frecuencia Dia Domingo"]'  type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false" ng-disabled="true">D
+                                </td>
                               </tr>
                             </table>
                           </div>
@@ -831,7 +845,10 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>FS min</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Fs/kg</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
-                                                      <!--<th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>-->
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time (días)</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                                      <th class="text-center" style="width:200px;"><h6><b>Frecuencia(d&iacute;as)</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Ge</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Ge</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg + Ge</b></h6></th>
@@ -850,7 +867,12 @@
                                                       <td class="text-center"><span ng-class="Aerea.AduC2021Pintada">{{Aerea["FS min"]  | number:2}}</span></td>
                                                       <td class="text-center"><span ng-class="Aerea.AduC2025Pintada">{{Aerea["Fs/kg"]  | number:2}}</span></td>
                                                       <td class="text-center"><span ng-class="Aerea.AduC4015Pintada">{{Aerea["Gastos Embarque"]  | number:2}}</span></td>
-                                                      <!--<td class="text-center"><span ng-class="Aerea.AduC4016Pintada">{{Aerea.Via  | number:2}}</span></td>-->
+                                                      <td class="text-center">{{Aerea.Observaciones}}</span></td>
+                                                      <td class="text-center">{{Aerea["Lead Time (dias)"]}}</span></td>
+                                                      <td class="text-center">{{Aerea.Naviera}}</span></td>
+                                                       <td>
+                                                      <input ng-model='Aerea["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">L<input  ng-model='Aerea["Frecuencia Dia Martes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">M<input ng-model='Aerea["Frecuencia Dia Miercoles"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">M<input  ng-model='Aerea["Frecuencia Dia Jueves"]' type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false">J<input  ng-model='Aerea["Frecuencia Dia Viernes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">V<input  ng-model='Aerea["Frecuencia Dia Sabado"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">S<input  ng-model='Aerea["Frecuencia Dia Domingo"]' type="checkbox" ng-true-value="true" ng-disabled="true"  ng-false-value="false">D
+                                                   </td>
                                                       <td class="text-center"><span ng-class="Aerea.AduC4017Pintada">{{Aerea['+100 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
                                                       <td class="text-center"><span ng-class="Aerea.AduC401718Pintada">{{Aerea['+300 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
                                                       <td class="text-center"><span ng-class="Aerea.AduC4020Pintada">{{Aerea['+500 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
@@ -887,11 +909,14 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>FS min</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Fs/kg</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
-                                                      <!--<th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>-->
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg </b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg </b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg </b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg </b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time (días)</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                                      <th class="text-center" style="width:200px;"><h6><b>Frecuencia(d&iacute;as)</b></h6></th>                                                     
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg + Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Gastos Embarque</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
                                                       <td>{{Aereapasajero.Email}}</td>
@@ -906,11 +931,15 @@
                                                       <td class="text-center"><span ng-class="Aereapasajero.AduC2021PPintada">{{Aereapasajero["FS min"]  | number:2}}</span></td>
                                                       <td class="text-center"><span ng-class="Aereapasajero.AduC2025PPintada">{{Aereapasajero["Fs/kg"]  | number:2}}</span></td>
                                                       <td class="text-center"><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]| number:2}}</span></td>
-                                                      <!--<td class="text-center"><span ng-class="Aereapasajero.AduC4016PPintada">{{Aereapasajero.Via  | number:2}}</span></td>-->
-                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4017PPintada">{{Aereapasajero['+100 + Fs/kg']  | number:2}}</span></td>
-                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC401718PPintada">{{Aereapasajero['+300 + Fs/kg']  | number:2}}</span></td>
-                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4020PPintada">{{Aereapasajero['+500 + Fs/kg']  | number:2}}</span></td>
-                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4021PPintada">{{Aereapasajero['+1000 + Fs/kg']  | number:2}}</span></td>
+                                                      <td class="text-center">{{Aereapasajero.Observaciones}}</span></td>
+                                                      <td class="text-center">{{Aereapasajero['Lead time (dias)']}}</span></td>
+                                                      <td class="text-center">{{Aereapasajero.Via}}</span></td>
+                                                     <td>
+                                                      <input ng-model='AereaPasajero["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">L<input  ng-model='AereaPasajero["Frecuencia Dia Martes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">M<input  ng-model='AereaPasajero["Frecuencia Dia Miercoles"]' type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">M<input  ng-model='AereaPasajero["Frecuencia Dia Jueves"]' type="checkbox" ng-disabled="true" ng-true-value="true" ng-false-value="false">J<input  ng-model='AereaPasajero["Frecuencia Dia Viernes"]' type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">V<input  ng-model='AereaPasajero["Frecuencia Dia Sabado"]' type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">S<input  ng-model='AereaPasajero["Frecuencia Dia Domingo"]'type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">D  
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4017PPintada">{{Aereapasajero['+100 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC401718PPintada">{{Aereapasajero['+300 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4020PPintada">{{Aereapasajero['+500 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
+                                                      <td class="text-center"><span ng-class="Aereapasajero.AduC4021PPintada">{{Aereapasajero['+1000 + Fs/kg + Gastos Embarque']  | number:2}}</span></td>
                                                     </tr>
                                                   </table>
                                                 </div>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Proenfar::..</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <link rel="stylesheet" type="text/css" href="https://ptreesys.mx/sharedfiles/src/sweetalert.css">
+  <script src="https://ptreesys.mx/sharedfiles/src/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+  <script src="https://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+  <!-- bootstrap 3.3.7 -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <!-- font Awesome -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/estiloslistas.css" rel="stylesheet">
+  <!-- Angular Librerías -->
+  <script src="js/angular.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-animate.js"></script>
+  <script src="js/angular-sanitize.js"></script>
+  <script src="js/angular-bootstrap-toggle.min.js"></script>
+  <!-- Librería de controlador principal -->
+  <script src="js/controller.js"></script>
+  <!-- Lists -->
+  <script src="js/Lists.js"></script>
+  <!-- JQuery -->
+  <script src="js/jquery.js"></script>
+  <!-- Angular Librerías -->
+  <script src="js/angular-drag-and-drop-lists.js"></script>
+  <!-- Boostrap Angular Librerías -->
+  <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+  <!-- Código de Select Boostrap Angular -->
+  <!-- Código de Select Boostrap Angular -->
+  <script src="js/select.js"></script>
+  <link rel="stylesheet" href="css/select.css">
+
+  <!-- Librería de angular loading-->
+  <script src="js/spin.min.js"></script>
+  <script src="js/angular-loading.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/angular-loading.css" />
+  <!-- Librería de angular tags inputs-->
+  <link rel="stylesheet" href="css/ng-tags-input.min.css" />
+  <script src="js/ng-tags-input.min.js"></script>
+  <!--Librería de file upload-->
+  <script src="js/angular-file-upload.min.js"></script>
+  <!--Librería de boostrap toogle -->
+  <link href="css/angular-bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="js/angular-bootstrap-toggle.min.js"></script>
+  <!--Librería para xlsx -->
+  <script type="text/javascript" src="js/xlsx.core.min.js"></script>
+  <script type="text/javascript" src="js/angular-js-xlsx.js"></script>
+  <!--Librería para máscara números -->
+  <script type="text/javascript" src="js/mask.js"></script>
+</head>
+<body class="skin-blue"  ng-app="app" ng-controller="ctrlNuevoUsuario">
+
+  <form name="bookmarkFormProv">
+
+    <!-- header logo: style can be found in header.less -->
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#"><img src="img/logo-proenfar.png" class="img-responsive" alt="logo-proenfar" width="150" height="150" style="margin-top:-12px;"/></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="notificaciones.html">
+                  <i class="fa fa-envelope" aria-hidden="true"></i><span> Notificación a proveedores</span>
+                </a>
+              </li>
+              <li>
+                <a href="proveedores.html">
+                  <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
+                </a>
+              </li>
+              <li   class="active" >
+                <a href="usuarios.html">
+                  <i class="fa fa-id-card" ></i>
+                  <span>Usuarios</span>
+                </a>
+              </li>
+              <li class="dropdown" >
+                <a href="licitacion.html" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-cog" aria-hidden="true"></i>
+                  <span>Configuración</span>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="active"><a href="preguntas.html"><i class="fa fa-angle-double-right"></i>Administrar Preguntas</a></li>
+                  <li><a href="requisitos.html"><i class="fa fa-angle-double-right"></i>Administrar Requisitos</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span> Hola, {{UserNameConnected}} </span> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li ng-click="openChangePassword();"><a href="#"><i class="fa fa-key" aria-hidden="true"></i> Cambiar contraseña</a></li>
+                  <li ng-click="closeSession();"><a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+      <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Nuevo Usuario
+          </h1>
+          <ol class="breadcrumb">
+            <li ><a href="usuarios.html"><i class="fa fa-id-card" ></i>Usuarios</a></li>
+            <li class="active"><a href="#"><i class="fa fa-pencil"></i>Nuevo Usuario</a></li>
+          </ol>
+        </section>
+        <section class="content">
+          <div class="wrapper row-offcanvas row-offcanvas-left">
+            <div class="mailbox row">
+              <div class="col-xs-12">
+                <div class="box box-solid">
+                  <!-- Main content -->
+                  <form name="bookmarkForm">
+                    <section class="">
+                      <div class="modal-body ">
+
+                        <div class="well">
+                          <div class="margin-well fondomodal">
+                            <div class="row">
+                              <div class="titulo">
+                                <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información Personal</b></h5>
+                              </div>
+                              <hr>
+                              <div class="col-md-4">
+                                <div class="form-group" class="form-group" ng-class="{'has-error':bookmarkForm.nombre.$invalid && bookmarkForm.nombre.$dirty}">
+                                  <label class="control-label" for="name">Nombre:</label>
+                                  <div class="input-group">
+                                    <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i></span>
+                                    <input ng-model="username" id="Nombre" type="text" class="form-control" name="nombre"  ng-required="true" placeholder="Nombre">
+                                    <div ng-show="bookmarkForm.nombre.$touched && bookmarkForm.nombre.$invalid">
+                                      <!-- <span ng-show="bookmarkForm.nombre.required">Requerido></span>-->
+                                    </div>
+                                  </div><!--Fin input-group nombre-->
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group" ng-class="{'has-error':bookmarkForm.email.$invalid && bookmarkForm.email.$dirty}">
+                                  <label class="control-label" for="name">Correo:</label>
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                    <input ng-disabled="DisableEmail" ng-model="email" name="email" class="form-control" type="email" placeholder="Correo" ng-required="true">
+                                  </div><!--Fin input-group nombre-->
+                                </div>
+                              </div>
+                              <div class="col-md-4" >
+                                <div class="form-group">
+                                  <label class="control-label" for="perfil">Perfil:</label>
+                                  <div class="dropdown">
+                                    <select  ng-change="Searchperfil();" class="form-control" id="sel1"
+                                    ng-model="selectedPerfil"
+                                    ng-options="Perfil as Perfil.Name for Perfil in Perfiles"></select>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="well">
+                          <div class="margin-well fondomodal">
+                            <div class="row">
+                              <div class="titulo">
+                                <h5><i class="fa fa-pencil" aria-hidden="true"></i><b> Información de la Cuenta</b></h5>
+                              </div>
+                              <hr>
+                              <div class="col-md-4">
+                                <div class="form-group"  ng-class="{'has-error':bookmarkForm.user.$invalid && bookmarkForm.user.$dirty}">
+                                  <label class="control-label" for="user">Usuario:</label>
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    <input ng-model="user" class="form-control" type="text" name="user" ng-required="true" placeholder="Usuario">
+                                    <div ng-show="bookmarkForm.user.$touched && bookmarkForm.user.$invalid">
+                                      <!-- <span ng-show="bookmarkForm.user.required">Requerido></span>-->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <!-- MAILBOX END -->
+
+                        </section><!-- /.content -->
+                      </form>
+                      <div class="modal-footer">
+                        <button  ng-click="GoCancell();" dismiss="modal" class="btn btn-default btn-opciones "><span class="glyphicon glyphicon-floppy-remove"></span> Cancelar</button>
+                        <button ng-click="SaveUser();" dismiss="modal" class="btn btn-green"><i class="glyphicon glyphicon-floppy-save"></i> Guardar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </aside><!-- /.right-side -->
+
+
+        </div><!-- ./wrapper -->
+
+
+
+
+      </form>
+
+          <div dw-loading="myloading" dw-loading-options="{text: 'Cargando...'}"></div>
+          <!-- jQuery 2.0.2 -->
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+          <!-- Bootstrap -->
+          <script src="js/bootstrap.min.js" type="text/javascript"></script>
+          <!-- AdminLTE App -->
+          <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+    </body>
+    </html>

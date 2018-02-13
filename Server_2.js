@@ -1420,7 +1420,7 @@ app.post('/UpdateModalidadesProveedor', function (req, res) {
     log.info('Guardando Modalidades');
     log.info('Guardando Modalidades de:' + req.body.ModalidadesProveedor.Email);
    MyMongo.Save('ModalidadesProveedor', {Email: req.body.ModalidadesProveedor.Email}, req.body.ModalidadesProveedor, function (result) {
-    var Data = {};
+    var Data = {};   
     res.end(JSON.stringify(Data));
   });
 
@@ -1715,7 +1715,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
     // Add Worksheets to the workbook
     if (NombreModalidad == 'Aduanas') { var ws2 = wb.addWorksheet('Aduanas');}
     if (NombreModalidad=='OTM'){var ws2 = wb.addWorksheet('OTM');}
-    if (NombreModalidad=='MaritimasFCL'){var ws2 = wb.addWorksheet('MaritFCL');}
+    if (NombreModalidad=='MaritimasFcl'){var ws2 = wb.addWorksheet('MaritFCL');}
     if (NombreModalidad=='MaritimasLcl'){var ws2 = wb.addWorksheet('MaritLCL');}
 
     if (NombreModalidad == 'Bodegajes')
@@ -1790,13 +1790,13 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto' /*&& header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)'  && header !='Frecuencia'*/ && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
-                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Observaciones' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
                     ws2.cell(1, 1).string('Proveedor').style(style1);
@@ -1807,20 +1807,40 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else {
                     col = col + 1;
                    ws2.cell(1, col).string(header).style(style1);
-                   if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
+                   if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') { 
                             valor =parseFloat(0.00);
-                            ws2.cell(2,col).number(valor).style(style);
+                            ws2.cell(2,col).number(valor).style(style);                        
                     }
                     else
                     {
                        if (pattern.test(modalid[header])){
+
+                    if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                     {
+                        ws2.cell(2,col).string('').style(style);
+                     }
+                     else
+                     {
                              valor = parseFloat(modalid[header]);
                              ws2.cell(2,col).number(valor).style(style);
+                      }
                        }
                        else
                        {
+                        if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                     {
+                        ws2.cell(2,col).string('X').style(style);
+                     }
+                     else
+                     {
+
                             valor = modalid[header].toString();
                             ws2.cell(2,col).string(valor).style(style);
+                        }
 
                        }
                     }
@@ -1836,26 +1856,38 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Aeropuerto' && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' &&  header !='Frecuencia' &&*/ header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
-                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Observaciones' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                 //console.log(modalid[header]);
                     if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
+                        
                             valor =parseFloat(0.00);
                             col = col + 1;
                            ws2.cell(fila+1,col).number(valor).style(style);
+                       
                     }
                     else
                     {
                        if (pattern.test(modalid[header])){
-                             valor = parseFloat(modalid[header]);
+                         if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                        col = col + 1;
+                        ws2.cell(fila+1,col).string('').style(style);
+                        }
+                        else
+                        {
+                            valor = parseFloat(modalid[header]);
                            col = col + 1;
                           ws2.cell(fila+1,col).number(valor).style(style);
+                        }
                        }
                        else
                        {
@@ -1866,9 +1898,19 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                          }
                           else
                          {
+                             if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                     {
+                        col = col + 1;
+                            ws2.cell(fila+1,col).string('X').style(style);
+                     }
+                     else
+                     {
                            valor = modalid[header].toString();
                             col = col + 1;
                             ws2.cell(fila+1,col).string(valor).style(style);
+                        }
                          }
                        }
                     }
@@ -1899,13 +1941,13 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)'  && header !='Frecuencia' &&*/ header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
-                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Observaciones' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                   if (header =='Email'){
                     ws3.cell(1, 1).string('Proveedor').style(style1);
@@ -1917,19 +1959,39 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     col = col + 1;
                    ws3.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined') {
+
                             valor =parseFloat(0.00);
                             ws3.cell(2,col).number(valor).style(style);
+                       
                     }
                     else
                     {
                        if (pattern.test(modalid[header])){
+                          if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                        ws3.cell(2,col).string('').style(style);
+                        }
+                        else
+                        {
                              valor = parseFloat(modalid[header]);
                              ws3.cell(2,col).number(valor).style(style);
+                        }
                        }
                        else
                        {
+                         if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                         {
+                           ws3.cell(2,col).string('X').style(style);
+                         }
+                         else
+                         {
                             valor = modalid[header].toString();
                             ws3.cell(2,col).string(valor).style(style);
+                        }
 
                        }
                     }
@@ -1945,26 +2007,38 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Frecuencia' && */header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
-                    header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
+                    header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='Observaciones' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
                 //console.log(modalid[header]);
                     if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined' ) {
+
                             valor =parseFloat(0.00);
                             col = col + 1;
                             ws3.cell(fila+1,col).number(valor).style(style);
+                        
                     }
                     else
                     {
                        if (pattern.test(modalid[header])){
+                         if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                        col = col + 1;
+                           ws3.cell(fila+1,col).string('').style(style);
+                        }
+                        else
+                        {
                              valor = parseFloat(modalid[header]);
                            col = col + 1;
                            ws3.cell(fila+1,col).number(valor).style(style);
+                        }
                        }
                        else
                        {
@@ -1975,9 +2049,19 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                          }
                           else
                          {
+                             if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                             {
+                              col = col + 1;
+                            ws3.cell(fila+1,col).string('X').style(style);
+                             }
+                             else
+                             {
                            valor = modalid[header].toString();
                             col = col + 1;
                             ws3.cell(fila+1,col).string(valor).style(style);
+                        }
                          }
                        }
                     }
@@ -2011,9 +2095,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada'  &&  header !='AduGAIIPintada'  &&  header !='Aeropuerto' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && */header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
@@ -2029,19 +2113,39 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     col = col + 1;
                    ws4.cell(1, col).string(header).style(style1);
                    if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined' ) {
+                   
                             valor =parseFloat(0.00);
                             ws4.cell(2,col).number(valor).style(style);
+                        
                     }
                     else
                     {
                        if (pattern.test(modalid[header])){
+                         if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                        ws4.cell(2,col).string('').style(style)
+                        }
+                        else
+                        {
                              valor = parseFloat(modalid[header]);
                              ws4.cell(2,col).number(valor).style(style);
+                         }
                        }
                        else
                        {
+                        if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                          ws4.cell(2,col).string('X').style(style);
+                        }
+                        else
+                        {
                             valor = modalid[header].toString();
                             ws4.cell(2,col).string(valor).style(style);
+                        }
 
                        }
                     }
@@ -2057,9 +2161,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada'  &&  header !='Aeropuerto' && header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time(dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' &&*/ header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
@@ -2067,16 +2171,28 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                 {
                 //console.log(modalid[header]);
                     if (modalid[header] == null || modalid[header] == '' || modalid[header] == 'undefined' ) {
+                       
                             valor =parseFloat(0.00);
                             col = col + 1;
                             ws4.cell(fila+1,col).number(valor).style(style);
+                        
                     }
                     else
                     {
                        if (pattern.test(modalid[header])){
+                         if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                        col = col + 1;
+                           ws4.cell(fila+1,col).string('').style(style);
+                        }
+                        else
+                        {
                              valor = parseFloat(modalid[header]);
                            col = col + 1;
                            ws4.cell(fila+1,col).number(valor).style(style);
+                       }
                        }
                        else
                        {
@@ -2087,9 +2203,19 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                          }
                           else
                          {
+                            if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                            {
+                            col = col + 1;
+                            ws4.cell(fila+1,col).string('X').style(style);
+                            }
+                            else
+                            {
                            valor = modalid[header].toString();
                             col = col + 1;
                             ws4.cell(fila+1,col).string(valor).style(style);
+                        }
                          }
                        }
                     }
@@ -2128,8 +2254,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
                     header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
-                    header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    //header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    //header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
@@ -2203,13 +2329,31 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     else
                     {
                        if (pattern.test(modalid[header])){
+                         if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                         {
+                         ws2.cell(2,col).string('').style(style)
+                         }
+                         else
+                         {
                              valor = parseFloat(modalid[header]);
                              ws2.cell(2,col).number(valor).style(style);
+                         }
                        }
                        else
                        {
+                        if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                         header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                        header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                        {
+                            ws2.cell(2,col).string('X').style(style);
+                        }
+                        else
+                        {
                             valor = modalid[header].toString();
                             ws2.cell(2,col).string(valor).style(style);
+                        }
 
                        }
                     }
@@ -2225,9 +2369,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada'  && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada'  && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' &&*/ header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
@@ -2288,15 +2432,35 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                             {
                                if (pattern.test(modalid[header])){
+                                 if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                                header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                                header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                                 {
+                                col = col + 1;
+                              ws2.cell(fila+1,col).string('').style(style);
+                                 }
+                                else
+                                {
                                valor = parseFloat(modalid[header]);
                                col = col + 1;
                               ws2.cell(fila+1,col).number(valor).style(style);
                                }
+                               }
                               else
                               {
+                            if (header =='Frecuencia Mensual' || header =='Frecuencia Semanal' || header =='Frecuencia Quincenal' ||
+                                header =='Frecuencia Dia Lunes' || header =='Frecuencia Dia Martes' || header =='Frecuencia Dia Miercoles' || header =='Frecuencia Dia Jueves' || header =='Frecuencia Dia Viernes' ||
+                                header =='Frecuencia Dia Sabado' || header =='Frecuencia Dia Domingo' || header =='Frecuencia')
+                            {
+                             col = col + 1;
+                              ws2.cell(fila+1,col).string('X').style(style);
+                            }
+                            else
+                            {
                               valor = modalid[header].toString();
                               col = col + 1;
                               ws2.cell(fila+1,col).string(valor).style(style);
+                          }
                               }
                             }
                          }
@@ -2323,9 +2487,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' /*&& header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia'*/ && header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
@@ -2420,9 +2584,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
                     header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
                     header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
-                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada'  && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada'  && /*header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
                     header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
-                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' &&*/ header !='AdumaqtPintada' &&
                     header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
                     header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
@@ -3173,32 +3337,32 @@ app.get('/GetTemplateMariFcl', function (req, res) {
         ws4.cell(1, 14).string('Frecuencia Semanal').style(style);
         ws4.cell(1, 15).string('Frecuencia Quincenal').style(style);
         ws4.cell(1, 16).string('Frecuencia Mensual').style(style);
-        ws4.cell(1, 17).string('C 20 + Baf 20 + Gastos Embarque').style(style);
+        /*ws4.cell(1, 17).string('C 20 + Baf 20 + Gastos Embarque').style(style);
         ws4.cell(1, 18).string('C 40 + Baf 40 + Gastos Embarque').style(style);
-        ws4.cell(1, 19).string('C 40HC + Baf 40HC + Gastos Embarque').style(style);
+        ws4.cell(1, 19).string('C 40HC + Baf 40HC + Gastos Embarque').style(style);*/
 
 
         var col = 0;
-        var cel = 0;
+        //var cel = 0;
         MaritFcl.forEach(function(maritFcl){
         col = col + 1;
-        cel = col +1;
+       /* cel = col +1;
         var Dcell = 'D' + cel ;
         var Ecell = 'E' + cel;
         var Kcell = 'K' + cel;
         var Fcell = 'F' + cel;
         var Gcell = 'G' + cel;
         var Hcell = 'H' + cel;
-        var Icell = 'I' + cel;
+        var Icell = 'I' + cel;*/
         ws4.cell(col + 1, 1).string(maritFcl.PaisDestino).style(style);
         ws4.cell(col + 1, 2).string(maritFcl.PuertoOrigen).style(style);
         ws4.cell(col + 1, 3).string(maritFcl.PuertoDestino).style(style);
-        ws4.cell(col + 1, 14).string('').style(style);
+        /*ws4.cell(col + 1, 14).string('').style(style);
         ws4.cell(col + 1, 15).string('').style(style);
         ws4.cell(col + 1, 16).string('').style(style);
         ws4.cell(col + 1, 17).formula(Dcell+"+"+Ecell+"+"+Kcell).style(style);
         ws4.cell(col + 1, 18).formula(Fcell+"+"+Gcell+"+"+Kcell).style(style);
-        ws4.cell(col + 1, 19).formula(Hcell+"+"+Icell+"+"+Kcell).style(style);
+        ws4.cell(col + 1, 19).formula(Hcell+"+"+Icell+"+"+Kcell).style(style);*/
         });
 
 
@@ -3383,8 +3547,8 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
     ///////////////Terrestre Urbano///////////////////////////////
       MyMongo.Find('TerresUrbano', {}, function (result) {
           var TerrestUrbano= result;
-        ws7.cell(1, 1).string('PaisOrigen').style(style);
-        ws7.cell(1, 2).string('PuertoDestino').style(style);
+        ws7.cell(1, 1).string('Origen').style(style);
+        ws7.cell(1, 2).string('Destino').style(style);
         ws7.cell(1, 3).string('Turbo (150Cajas)').style(style);
         ws7.cell(1, 4).string('Turbo Especial (200Cajas)').style(style);
         ws7.cell(1, 5).string('Sencillo (240Cajas)').style(style);
@@ -3494,27 +3658,27 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws8.cell(1, 19).string('Frecuencia Dia Viernes').style(style);
         ws8.cell(1, 20).string('Frecuencia Dia Sabado').style(style);
         ws8.cell(1, 21).string('Frecuencia Dia Domingo').style(style);
-        ws8.cell(1, 22).string("+100 + Fs/kg + Gastos Embarque").style(style);
+        /*ws8.cell(1, 22).string("+100 + Fs/kg + Gastos Embarque").style(style);
         ws8.cell(1, 23).string("+300 + Fs/kg + Gastos Embarque").style(style);
         ws8.cell(1, 24).string("+500 + Fs/kg + Gastos Embarque").style(style);
-        ws8.cell(1, 25).string("+1000 + Fs/kg + Gastos Embarque").style(style);
+        ws8.cell(1, 25).string("+1000 + Fs/kg + Gastos Embarque").style(style);*/
 
 
 
         var col = 0;
-        var cel = 0;
+        //var cel = 0;
         AereasC.forEach(function(aereasc){
         col = col + 1;
-        cel = col +1;
+        /*cel = col +1;
         var Jcell = 'J' + cel ;
         var Ecell = 'E' + cel;
         var Kcell = 'K' + cel;
         var Fcell = 'F' + cel;
         var Gcell = 'G' + cel;
-        var Hcell = 'H' + cel;
+        var Hcell = 'H' + cel;*/
         ws8.cell(col + 1, 1).string(aereasc.Pais).style(style);
         ws8.cell(col + 1, 2).string(aereasc.Aeropuerto).style(style);
-        ws8.cell(col + 1, 15).string('').style(style);
+       /* ws8.cell(col + 1, 15).string('').style(style);
         ws8.cell(col + 1, 16).string('').style(style);
         ws8.cell(col + 1, 17).string('').style(style);
         ws8.cell(col + 1, 18).string('').style(style);
@@ -3524,7 +3688,7 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws8.cell(col + 1, 22).formula(Ecell+"+"+Jcell+"+"+Kcell).style(style);
         ws8.cell(col + 1, 23).formula(Fcell+"+"+Jcell+"+"+Kcell).style(style);
         ws8.cell(col + 1, 24).formula(Gcell+"+"+Jcell+"+"+Kcell).style(style);
-        ws8.cell(col + 1, 25).formula(Hcell+"+"+Jcell+"+"+Kcell).style(style);
+        ws8.cell(col + 1, 25).formula(Hcell+"+"+Jcell+"+"+Kcell).style(style);*/
         });
 
     ///////////////Aereas Pasajero///////////////////////////////
@@ -3551,26 +3715,26 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws9.cell(1, 19).string('Frecuencia Dia Viernes').style(style);
         ws9.cell(1, 20).string('Frecuencia Dia Sabado').style(style);
         ws9.cell(1, 21).string('Frecuencia Dia Domingo').style(style);
-        ws9.cell(1, 22).string("+100 + Fs/kg").style(style);
+        /*ws9.cell(1, 22).string("+100 + Fs/kg").style(style);
         ws9.cell(1, 23).string("+300 + Fs/kg").style(style);
         ws9.cell(1, 24).string("+500 + Fs/kg").style(style);
-        ws9.cell(1, 25).string("+1000 + Fs/kg").style(style);
+        ws9.cell(1, 25).string("+1000 + Fs/kg").style(style);*/
 
 
         var col = 0;
-        var cellp = 0;
+        //var cellp = 0;
         AereasP.forEach(function(aereasp){
         col = col + 1;
-        cellp = col + 1;
+       /* cellp = col + 1;
         var Jcellp = 'J' + cellp;
         var Ecellp = 'E' + cellp;
         var Kcellp = 'K' + cellp;
         var Fcellp = 'F' + cellp;
         var Gcellp = 'G' + cellp;
-        var Hcellp = 'H' + cellp;
+        var Hcellp = 'H' + cellp;*/
         ws9.cell(col + 1, 1).string(aereasp.Pais).style(style);
         ws9.cell(col + 1, 2).string(aereasp.Aeropuerto).style(style);
-        ws9.cell(col + 1, 15).string('').style(style);
+       /* ws9.cell(col + 1, 15).string('').style(style);
         ws9.cell(col + 1, 16).string('').style(style);
         ws9.cell(col + 1, 17).string('').style(style);
         ws9.cell(col + 1, 18).string('').style(style);
@@ -3580,7 +3744,7 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws9.cell(col + 1, 22).formula(Ecellp+"+"+Jcellp).style(style);
         ws9.cell(col + 1, 23).formula(Fcellp+"+"+Jcellp).style(style);
         ws9.cell(col + 1, 24).formula(Gcellp+"+"+Jcellp).style(style);
-        ws9.cell(col + 1, 25).formula(Hcellp+"+"+Jcellp).style(style);
+        ws9.cell(col + 1, 25).formula(Hcellp+"+"+Jcellp).style(style);*/
         });
 
     wb.write('Aereo.xlsx', res);
@@ -3965,6 +4129,11 @@ app.post('/GetNegociarmodalidad', function (req, res) {
       // Se crea un objeto para insertar nuevas OTMs CON IGUALES DATOS con nueva versión
       mModalidadObject.Version = newVersion;
 
+      /*console.log(newVersion);
+      
+      console.log(mModalidadObject);*/console.log(mModalidad);
+
+
       // Se actualiza modalidades proveedor de éste proveedor con la modalidad vacía y nueva version
 
       var mupdate = {};
@@ -3997,11 +4166,11 @@ app.post('/GetNegociarmodalidad', function (req, res) {
         });
        }
 
-        if (mModalidad=='Aerea') {
+        if (mModalidad=='Aerea') {       
         mupdate = {};
         mupdate['AereaPasajero'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
-        });
+        });       
        }
 
     });

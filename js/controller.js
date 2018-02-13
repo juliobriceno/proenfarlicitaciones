@@ -1036,6 +1036,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         }
 
+
                         // Mostrar modalidades mensjaes
 
                         ////////CRea Plantilla Excel /////////////////////////
@@ -1479,6 +1480,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaccuarentaquince=1;
                          var filaccuarentadiezyseis=1;
                          var filaccuarentadiezysiete =1;
+                         var filaccuarentadiezysiete2 =1;
                          var filaccuarentaveinte=1;
                          var filaccuarentaveinteyuno=1;
                          var filaccuarentaveinteydos=1;
@@ -1635,54 +1637,54 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                             //////////////////ccuarentaveinte/////////////////////////////////////////
                                if( ( typeof otm["C 40 hasta 17-18 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 17-18 Ton"])){
-                                  filaccuarentaveinte=filaccuarentaveinte +1;
+                                  filaccuarentadiezysiete2=filaccuarentadiezysiete2 +1;
                                     //$scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                   // $scope.$apply();
                                   }
                                 else
                                 {
-                                filaccuarentaveinte=filaccuarentaveinte +1;
+                                filaccuarentadiezysiete2=filaccuarentadiezysiete2 +1;
                                   var valor='C 40 hasta 17-18 Ton';
-                                  $scope.erroresimportacion.push({fila: filaccuarentaveinte, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaccuarentadiezysiete2, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
                              //////////////////ccuarentaveinteyuno//////////////////////////
                                if( ( typeof otm["C 40 hasta 20 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 20 Ton"])){
-                                  filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
+                                  filaccuarentaveinte=filaccuarentaveinte +1;
                                     //$scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
                                   }
                                 else
                                 {
-                                filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
+                                filaccuarentaveinte=filaccuarentaveinte +1;
                                   var valor='C 40 hasta 20 Ton';
-                                  $scope.erroresimportacion.push({fila: filaccuarentaveinteyuno, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaccuarentaveinte, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
                             //////////////////ccuarentaveinteydos/////////////////////////////////////////
                                 if( ( typeof otm["C 40 hasta 21 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 21 Ton"])){
-                                  filaccuarentaveinteydos=filaccuarentaveinteydos +1;
+                                  filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
                                    // $scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
                                   }
                                 else
                                 {
-                                filaccuarentaveinteydos=filaccuarentaveinteydos +1;
+                                filaccuarentaveinteyuno=filaccuarentaveinteyuno +1;
                                   var valor='C 40 hasta 21 Ton';
-                                  $scope.erroresimportacion.push({fila: filaccuarentaveinteydos, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaccuarentaveinteyuno, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
                            //////////////////ccuarentatreinta//////////////////////////
                                if( ( typeof otm["C 40 hasta 22 Ton"] == 'undefined' ) || pattern.test(otm["C 40 hasta 22 Ton"])){
-                                  filaccuarentatreinta=filaccuarentatreinta +1;
+                                  filaccuarentaveinteydos=filaccuarentaveinteydos +1;
                                     //$scope.ModalidadesProveedor.Otm.Otms= data.OTM;
                                    //$scope.$apply();
                                   }
                                 else
                                 {
-                                filaccuarentatreinta=filaccuarentatreinta +1;
+                                filaccuarentaveinteydos=filaccuarentaveinteydos +1;
                                   var valor='C 40 hasta 22 Ton';
-                                  $scope.erroresimportacion.push({fila: filaccuarentatreinta, campo:valor, error:'Valor NO numérico'});
+                                  $scope.erroresimportacion.push({fila: filaccuarentaveinteydos, campo:valor, error:'Valor NO numérico'});
                                  // $scope.AbrirModal(valor);
                                  }
                                    //////////////////ccuarentatreinta//////////////////////////
@@ -1893,7 +1895,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                             /////////////Time////////////////////////////////////
                             console.log(maritimasfcl["Lead Time(dias)"]);
-                             if( ( typeof maritimasfcl["Lead Time(dias)"] == 'undefined' ) || pattern.test(maritimasfcl["Lead Time(dias)"]) &&  maritimasfcl["Lead Time(dias)"] < 51 &&  maritimasfcl["Lead Time(dias)"] > 0){
+                             if( pattern.test(maritimasfcl["Lead Time(dias)"]) &&  maritimasfcl["Lead Time(dias)"] < 51 &&  maritimasfcl["Lead Time(dias)"] > 0){
                                    filaTimemf=filaTimemf +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Lead_TimeDias= data.MaritimasFcl.Lead_TimeDias;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
@@ -1960,28 +1962,29 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                            /////////////SUMATORIA C20 + Baf 20 + Ge////////////////////////////////////
                                 var sumatoria=0;
-                                sumatoria=maritimasfcl["C 20"] + maritimasfcl["Baf 20"] + maritimasfcl["Gastos Embarque"];
-                                maritimasfcl["C 20 + Baf 20 + Gastos Embarque"] = sumatoria;
+                                sumatoria=parseFloat(maritimasfcl["C 20"]) + parseFloat(maritimasfcl["Baf 20"]) + parseFloat(maritimasfcl["Gastos Embarque"]);
+                                maritimasfcl["C 20 + Baf 20 + Gastos Embarque"] = parseFloat(sumatoria);
+                                console.log(parseFloat(sumatoria));
                                 //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                 //$scope.$apply();
                            /////////////SUMATORIA C40 + Baf 40 + Ge////////////////////////////////////
                                 var sumatoria1=0;
-                                sumatoria1=maritimasfcl["C 40"] + maritimasfcl["Baf 40"]+ maritimasfcl["Gastos Embarque"];
+                                sumatoria1=parseFloat(maritimasfcl["C 40"]) + parseFloat(maritimasfcl["Baf 40"])+ parseFloat(maritimasfcl["Gastos Embarque"]);
                                 maritimasfcl["C 40 + Baf 40 + Gastos Embarque"] = sumatoria1;
                                 //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                 //$scope.$apply();
                            /////////////SUMATORIA C40HC + Baf 40HC + Ge////////////////////////////////////
                                 var sumatoria2=0;
-                                sumatoria2=maritimasfcl["C 40HC"] + maritimasfcl["Baf 40HC"] + maritimasfcl["Gastos Embarque"];
-                                maritimasfcl["C 40hc + Baf 40hc + Gastos Embarque"] = sumatoria2;
+                                sumatoria2=parseFloat(maritimasfcl["C 40HC"]) + parseFloat(maritimasfcl["Baf 40HC"]) + parseFloat(maritimasfcl["Gastos Embarque"]);
+                                maritimasfcl["C 40HC + Baf 40HC + Gastos Embarque"] = sumatoria2;
                                 //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
                                // $scope.$apply();
-                               //$scope.$apply();
+                               //$scope.$apply();*/
                               });
 
                       if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
-                          $scope.UpdateModalidades();
+                          $scope.UpdateModalidades(data.MaritimasFcl);
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -2095,7 +2098,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                                /////////Time////////////////////////////////////
-                                if( ( typeof maritimaslcl["Lead time(dias)"] == 'undefined' ) || pattern.test(maritimaslcl["Lead time(dias)"]) && maritimaslcl["Lead time(dias)"] < 51 && maritimaslcl["Lead time(dias)"] > 0){
+                                 if( pattern.test(maritimaslcl["Lead time(dias)"]) &&  maritimaslcl["Lead time(dias)"] < 51 &&  maritimaslcl["Lead time(dias)"] > 0){
                                    filaTimeml=filaTimeml +1;
                                  // $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2103,7 +2106,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaTimeml=filaTimeml +1;
-                                  var valor='Lead Time(dias)';
+                                  var valor='Lead time(dias)';
                                   $scope.erroresimportacion.push({fila: filaTimeml, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                   //$scope.AbrirModal(valor);
                                  }
@@ -2759,7 +2762,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                              /////////////Time////////////////////////////////////
-                              if( ( typeof aereacarguero["Lead Time (dias)"] == 'undefined' ) || pattern.test(aereacarguero["Lead Time (dias)"]) && aereacarguero["Lead Time (dias)"] < 51 && aereacarguero["Lead Time (dias)"] > 0 ){
+                              if( pattern.test(aereacarguero["Lead Time (dias)"]) && aereacarguero["Lead Time (dias)"] < 51 && aereacarguero["Lead Time (dias)"] > 0 ){
                                   filaTimeca=filaTimeca +1;
                                   //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2875,25 +2878,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                 var sumatoria=0;
-                                sumatoria=aereacarguero["+100"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                sumatoria=parseFloat(aereacarguero["+100"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
                                 aereacarguero["+100 + Fs/kg + Gastos Embarque"] = sumatoria;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1=0;
-                                sumatoria1=aereacarguero["+300"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                sumatoria1=parseFloat(aereacarguero["+300"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
                                 aereacarguero["+300 + Fs/kg + Gastos Embarque"] = sumatoria1;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2=0;
-                                sumatoria2=aereacarguero["+500"] + aereacarguero["Fs/kg"] + aereacarguero["Gastos Embarque"];
+                                sumatoria2=parseFloat(aereacarguero["+500"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
                                 aereacarguero["+500 + Fs/kg + Gastos Embarque"] = sumatoria2;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3=0;
-                                sumatoria3=aereacarguero["+1000"] + aereacarguero["Fs/kg"];
+                                sumatoria3=parseFloat(aereacarguero["+1000"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
                                 aereacarguero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                // $scope.$apply();
@@ -3039,7 +3042,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                             /////////////Time////////////////////////////////////
-                            if( ( typeof aereapasajero["Lead time (dias)"] == 'undefined' ) || pattern.test(aereapasajero["Lead time (dias)"]) && aereapasajero["Lead time (dias)"] < 51 && aereapasajero["Lead time (dias)"] > 0){
+                            if( pattern.test(aereapasajero["Lead time (dias)"]) && aereapasajero["Lead time (dias)"] < 51 && aereapasajero["Lead time (dias)"] > 0){
                                   filaTimepa=filaTimepa +1;
                                   //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -3157,27 +3160,27 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
-                                var sumatoriap=0;
-                                sumatoriap=aereapasajero["+100"] + aereapasajero["Fs/kg"];
-                                aereapasajero["+100 + Fs/kg"] = sumatoriap;
+                               var sumatoriap=0;
+                                sumatoriap=parseFloat(aereapasajero["+100"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                aereapasajero["+100 + Fs/kg + Gastos Embarque"] = sumatoriap;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1p=0;
-                                sumatoria1p=aereapasajero["+300"] + aereapasajero["Fs/kg"];
-                                aereapasajero["+300 + Fs/kg"] = sumatoria1p;
+                                sumatoria1p=parseFloat(aereapasajero["+300"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                aereapasajero["+300 + Fs/kg + Gastos Embarque"] = sumatoria1p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2p=0;
-                                sumatoria2p=aereapasajero["+500"] + aereapasajero["Fs/kg"];
-                                aereapasajero["+500 + Fs/kg"] = sumatoria2p;
+                                sumatoria2p=parseFloat(aereapasajero["+500"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                aereapasajero["+500 + Fs/kg + Gastos Embarque"] = sumatoria2p;
                                //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3p=0;
-                               sumatoria3p=aereapasajero["+1000"] + aereapasajero["Fs/kg"];
-                                aereapasajero["+1000 + Fs/kg"] = sumatoria3p;
+                               sumatoria3p=parseFloat(aereapasajero["+1000"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                aereapasajero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                         });
@@ -3185,7 +3188,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                           $scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
-                          $scope.UpdateModalidades();
+                          $scope.UpdateModalidades(data.Aerea_Carguero);
+                          $scope.UpdateModalidades(data.Aerea_Pasajero);
                           swal("Licitaciones Proenfar", "Finalizó la carga de datos.");
                           $scope.$apply();
                         }
@@ -3226,29 +3230,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             $loading.finish('myloading');
                           }
 
-                           $scope.sumamarit = function(MaritimaFcl){
-                           MaritimaFcl["C 20 + Baf 20 + Gastos Embarque"]= parseFloat(MaritimaFcl["C 20"]) + parseFloat(MaritimaFcl["Baf 20"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
-                           MaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]= parseFloat(MaritimaFcl["C 40"]) + parseFloat(MaritimaFcl["Baf 40"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
-                           MaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]= parseFloat(MaritimaFcl["C 40HC"]) + parseFloat(MaritimaFcl["Baf 40HC"]) + parseFloat(MaritimaFcl["Gastos Embarque"]);
-                           }
-
-                           $scope.sumaaerea = function(Aerea){
-                           Aerea["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+100"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           Aerea["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+300"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           Aerea["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+500"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           Aerea["+1000 + Fs/kg + Gastos Embarque"]= parseFloat(Aerea["+1000"]) + parseFloat(Aerea["Fs/kg"]) + parseFloat(Aerea["Gastos Embarque"]);
-                           }
-
-                           $scope.sumaaereapasaj = function(AereaPasajero){
-                           AereaPasajero["+100 + Fs/kg"]= parseFloat(AereaPasajero["+100"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           AereaPasajero["+300 + Fs/kg"]= parseFloat(AereaPasajero["+300"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           AereaPasajero["+500 + Fs/kg"]= parseFloat(AereaPasajero["+500"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           AereaPasajero["+1000 + Fs/kg"]= parseFloat(AereaPasajero["+1000"]) + parseFloat(AereaPasajero["Fs/kg"]);
-                           }
-
-                           $scope.FinalizarModalidad = function (Email){
+                          
 
 
+                          
+
+                           $scope.FinalizarModalidad = function (Email){  
                              swal({
                                  title: "Seguro de finalizar el proceso para la modalidad: " + $scope.ModalidadesMostrarActual + "?",
                                  text: "",
@@ -3327,7 +3314,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreUrbanoTonelada.TerresUrbanoTonelada, bTerrestreUrbano);
                             $scope.SetZeroInNull($scope.ModalidadesProveedor.TerreUrbanoViaje.TerresUrbanoViaje, bTerrestreUrbano);
                             // Guarda Modalidades (OJO se debe mejorar ya que llama a guardar asíncrono y no se asehura)
-                            $scope.UpdateModalidades();
+                            $scope.UpdateModalidadeslicitaciontodas();
 
                             // Objeto de bloqueo
                             var lockObject = [];
@@ -3344,7 +3331,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             var Data = {};
                             Data.Email = localStorage.UserConnected;
                             Data.lockObject = lockObject;
-
+                            console.log(lockObject);
+                            
                             $loading.start('myloading');
 
                              $http({
@@ -3359,6 +3347,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no ha cargado archivos necesarios para licitar.");
                                return 0
                              }
+                             else
+                             {
+                              $scope.Estatusproveedortodas=true;
+                             }
 
                               $scope.Estatusproveedor();
                               $loading.finish('myloading');
@@ -3370,7 +3362,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                      }
 
-                          $scope.Estatusproveedor = function(){
+                         $scope.Estatusproveedor = function(){
                              var Data = {};
                             Data.Email = localStorage.UserConnected;
                             Data.Modalidad = $scope.ModalidadesMostrarActual;
@@ -3388,7 +3380,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.EstatusproveedorModalidad = false;
                               }
                               else{
-                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;
+                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;                          
                               }
                           }, function errorCallback(response) {
                               console.log(response);
@@ -3440,10 +3432,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $interval(UpdateModalidadesTime, 5000);
 
                          function UpdateModalidadesTime() {
+                            console.log("paso por aqui updatemodalidad2");
                           if ($scope.UpdateData == false) {return 0}
                           $scope.UpdateData = false;
-                         var Data = {};
-                         // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+                         var Data = {};       // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+
+                             // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+                        
+
 
                           Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
 
@@ -3464,10 +3460,46 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                         // Actualiza las modalidades para éste proveedores
-                      $scope.UpdateModalidades = function () {
+                      $scope.UpdateModalidades = function (Modali) {
+                        console.log("paso por aqui updatemodalidad1");
+
+                        if ($scope.ModalidadesMostrarActual=='MaritimasFcl'){  
+                        //console.log(parseFloat(Modali["C 20"]));                    
+                            if (Modali["C 20"]=='' || Modali["C 20"]=='undefined') {Modali["C 20"]=parseFloat(0);}
+                            if (Modali["C 40"]=='') {Modali["C 40"]=parseFloat(0);}
+                            if (Modali["Baf 20"]=='' ) {Modali["Baf 20"]=parseFloat(0);}
+                            if (Modali["Baf 40"]=='') {Modali["Baf 40"]=parseFloat(0);}
+                            if (Modali["C 40HC"]=='') {Modali["C 40HC"]=parseFloat(0);}
+                            if (Modali["Baf 40HC"]=='') {Modali["Baf 40HC"]=parseFloat(0);}
+                            if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
+
+                           Modali["C 20 +Baf 20 + Gastos Embarque"]= parseFloat(Modali["C 20"]) + parseFloat(Modali["Baf 20"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["C 40 + Baf 40 + Gastos Embarque"]= parseFloat(Modali["C 40"]) + parseFloat(Modali["Baf 40"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["C 40HC + Baf 40HC + Gastos Embarque"]= parseFloat(Modali["C 40HC"]) + parseFloat(Modali["Baf 40HC"]) + parseFloat(Modali["Gastos Embarque"]);
+                           //console.log(parseFloat(Modali["C 20"]) + parseFloat(Modali["Baf 20"]) + parseFloat(Modali["Gastos Embarque"])); 
+                         }
+
+                          if ($scope.ModalidadesMostrarActual=='Aereas'){ 
+                            if (Modali["+100"]=='') {Modali["+100"]=parseFloat(0);}
+                            if (Modali["+300"]=='') {Modali["+300"]=parseFloat(0);}
+                            if (Modali["+500"]=='') {Modali["+500"]=parseFloat(0);}
+                            if (Modali["+1000"]=='') {Modali["+1000"]=parseFloat(0);}
+                            if (Modali["Fs/kg"]=='') {Modali["Fs/kg"]=parseFloat(0);}
+                            if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
+                           
+                           
+                           Modali["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                           Modali["+1000 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
+                         
+                           } 
+                      
+                      
                         $scope.UpdateData = true;
 
-                       //  var Data = {};
+                                               //  var Data = {};
+                        
                        // // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
                        //
                        //  Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
@@ -3509,6 +3541,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           }, function errorCallback(response) {
                               console.log(response);
                           });*/
+
+                          $scope.UpdateModalidadeslicitaciontodas = function() {
+                             $scope.UpdateData = true;
+                          }
 
                         // Obtiene los valores de modalidades para éste proveedor
                         $scope.GetModalidadesProveedor = function () {
@@ -5167,7 +5203,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      }
 
                      if (response.data.Result == 'ex') {
-                         swal("Licitaciones Proenfar", "Ya existe un usuario con el nombre de usuario suministrado.");
+                         swal("Licitaciones Proenfar", "Ya existe un usuario con ese correo.");
                          return 0;
                      }
                      if (localStorage.User == '') {
@@ -5308,7 +5344,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
          
 
-        .controller('ctrlProveedor', ['$scope', '$http', '$loading', '$uibModal',  function ($scope, $http, $loading, $uibModal) {
+        .controller('ctrlProveedor', ['$scope', '$http', '$loading', '$uibModal','FileUploader',  function ($scope, $http, $loading, $uibModal,FileUploader) {
 
           // Llama a HTML Modal que permite cambiar passwor de la app
           $scope.ActiveUserModal = {};
@@ -5361,10 +5397,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
            $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
            console.log($scope.UsuarioSel.selected.Name);
 
-           if (VistaName=='DatosProveedor')
+           /*if (VistaName=='DatosProveedor')
            {
               $scope.GetProveedorModalidadName();
-           }
+           }*/
          }
 
          // Modalidades para el filtro
@@ -5407,8 +5443,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
              $scope.phone = response.data.Usuario.Phone;
              $scope.nit = response.data.Usuario.Nit;
              $scope.razonsocial = response.data.Usuario.RazonSocial;
+            $scope.nrocelular = response.data.Usuario.NroCelular;
+             $scope.ciudad = response.data.Usuario.Ciudad;
+             $scope.direccion = response.data.Usuario.Direccion;
+             $scope.pagweb = response.data.Usuario.PagWeb;
+             $scope.replegal = response.data.Usuario.RepLegal;
+             $scope.cedreplegal = response.data.Usuario.CedRepLegal;
+             $scope.emailreplegal = response.data.Usuario.EmailRepLegal;
+             $scope.tlfreplegal = response.data.Usuario.TlfRepLegal;
+             $scope.celularreplegal = response.data.Usuario.CelularRepLegal;
+             $scope.repcomercial = response.data.Usuario.RepComercial;
+             $scope.emailrepcomercial = response.data.Usuario.EmailRepComercial;
+             $scope.tlfrepcomercial = response.data.Usuario.TlfRepComercialnombre;
+             $scope.celularrepcomercial = response.data.Usuario.CelularRepComercial;
+             $scope.coordinadoroperacion = response.data.Usuario.CoordinadorOperacion;
+             $scope.emailcoordinadoroperacion = response.data.Usuario.EmailCoordinadorOperacion;
+             $scope.tlfcoordinadoroperacion = response.data.Usuario.TlfCoordinadorOperacion;
+             $scope.celularcoordinadoroperacion = response.data.Usuario.CelularCoordinadorOperacion;
 
-             $loading.finish('myloading');
+              $loading.finish('myloading');
+
            }, function errorCallback(response) {
                alert(response.statusText);
            });
@@ -5528,6 +5582,104 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
           }
 
+
+////////////////////////////////////////////////Detalle provedor ///////////////////////////////
+          $scope.GotoUserdetalle = function (User) {
+            localStorage.LoginUser = User;
+            $('#detalleProveedor').modal('show');
+            if (localStorage.LoginUser != ''){
+              $scope.GetUsuarioProveedor();
+              $scope.GetUsuario();
+            }          
+          }
+
+           $scope.GetUsuario = function () {
+            var Data = {};
+            $loading.start('myloading');
+            // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+            Data.User = localStorage.LoginUser;
+            $http({
+                method: 'POST',
+                url: '/GetUsuario',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+                $loading.finish('myloading');
+                $scope.Proveedor = response.data.data[0];
+                $scope.ProveedorFilesdetalle = response.data.ProveedorFiles;
+                
+            }, function errorCallback(response) {
+                alert(response.statusText);
+            });
+          }
+          $scope.GetUsuario();
+
+          // Descarga el archivo
+          $scope.DownloadFileById = function (Id) {
+            window.location.href = '/downloadanybyid?fileid=' + Id;
+          }
+         
+ 
+          $scope.uploader = new FileUploader();
+          $scope.uploader.url = "/api/uploadFile";
+          $scope.uploader.onBeforeUploadItem = function (item) {
+              var Data = {};
+              Data.Nit = $scope.Nit;
+              Data.RazonSocial = $scope.RazonSocial;
+              item.formData.push(Data);
+          };
+          $scope.uploader.onSuccessItem = function (item, response) {
+              if ($scope.QuantityFiles == 1) {
+                  $scope.uploader.clearQueue();
+                  $loading.finish('myloading');
+                  // Los files guardados en Drive
+                  $scope.ProveedorFiles = response.ProveedorFiles;
+                  swal("Licitaciones Proenfar", "Los datos del proveedor fueron actualizados.");
+              }
+              $scope.QuantityFiles--;
+          }
+
+         
+
+        //////////////////////////////////Contacto Modalidad ///////////////////////////////////////
+            $scope.Gotocontactomodalidad = function (email) {
+            localStorage.ContactoPorModalidadEmail = email;
+             $('#contactomodalidad').modal('show');
+              if (localStorage.LoginUser != ''){
+              $scope.GetContactosPorModalidades();
+            }          
+          }
+          $scope.GetContactosPorModalidades = function () {
+            var Data = {};
+            Data.Proveedor = localStorage.LoginUser;
+            $http({
+                method: 'POST',
+                url: '/GetContactosPorModalidades',
+                headers: { 'Content-Type': 'application/json' },
+                data: Data
+            }).then(function successCallback(response) {
+              $scope.contactosmodalidades = response.data.contactosmodalidades;
+              $scope.contactosmodalidades.forEach(function(element) {
+                if (typeof element.modalidades != 'undefined'){
+                  element.modalidadestext = '';
+                  element.modalidades.forEach(function(modalidadinterna) {
+                    element.modalidadestext += modalidadinterna.modalidad.name + ' '
+                  });
+                }
+              });
+              $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
+            }, function errorCallback(response) {
+              alert(response.statusText);
+            });
+          }
+          $scope.GetContactosPorModalidades();
+          $scope.filtercontactos = function(){
+            $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
+            $scope.contactosmodalidadesfiltered = $scope.contactosmodalidadesfiltered.filter(function (el) {
+                return el.nombre.toUpperCase().indexOf($scope.strSerachContacto.toUpperCase()) > -1 || el.email.toUpperCase().indexOf($scope.strSerachContacto.toUpperCase()) > -1
+            })
+          }
+
        }])
 
 ////////////////////////////////////Desbloquear y Negociar ////////////////////////////////////////////////////
@@ -5624,7 +5776,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
              $scope.user = response.data.Usuario.User;
              $scope.phone = response.data.Usuario.Phone;
              $scope.nit = response.data.Usuario.Nit;
-             $scope.razonsocial = response.data.Usuario.RazonSocial;
+             $scope.razonsocial = response.data.Usuario.RazonSocial;            
 
              $loading.finish('myloading');
            }, function errorCallback(response) {
@@ -10313,7 +10465,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
                         if (contGAII ==2)
                         {
-                               ModalidadTodasconOrdenGAII[i].AduC201Pintada = ["label label-warning"];
+                               ModalidadTodasconOrdenGAII[i].AduC2019Pintada = ["label label-warning"];
                                console.log('amrillo');
                         }
                         if (contGAII ==3)
@@ -17529,6 +17681,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 localStorage.LoginUser = User;
                 window.location.href = '/nuevo_usuario.html';
             }
+
 
 
             $scope.GetUsuarios();
