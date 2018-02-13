@@ -4118,11 +4118,15 @@ app.post('/GetNegociarmodalidad', function (req, res) {
     // en las versiones. En la lína inmediata de abajo se simulña que viene 1 eso no será así es sólo simulación
     //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar
     var newVersion = result[0][mModalidad].Version + 1;
+    var ModalidadesProveedorRes = result;
+    var ModalidadesProveedorRes1 = result;
+    var ModalidadesProveedorResTU = result;
+    var ModalidadesProveedorResTUT = result;
     var mModalidadObject =  result[0][mModalidad];
 
-     MyMongo.Remove('ModalidadesProveedorRespaldo', { Email: req.body.Email } , function (result) {
-     });
-
+     //MyMongo.Remove('ModalidadesProveedorRespaldo', { Email: req.body.Email } , function (result) {
+     //});
+    delete result[0]._id;
     // Respalda la version de la modalidad anterior (Toda las modalidades del proveedor)
     MyMongo.Insert('ModalidadesProveedorRespaldo', result[0] , function (result) {
 
@@ -4130,7 +4134,7 @@ app.post('/GetNegociarmodalidad', function (req, res) {
       mModalidadObject.Version = newVersion;
 
       /*console.log(newVersion);
-      
+
       console.log(mModalidadObject);*/console.log(mModalidad);
 
 
@@ -4146,10 +4150,13 @@ app.post('/GetNegociarmodalidad', function (req, res) {
 
        if (mModalidad=='TerreNacional') {
         mupdate = {};
+        mModalidadObject = ModalidadesProveedorRes[0]['TerreNacionalSencillo'];
         mupdate['TerreNacionalSencillo'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
-        mupdate = {};
+    }
+       if (mModalidad=='TerreNacional') {
+        mModalidadObject = ModalidadesProveedorRes1[0]['TerreNacionalPatineta'];
         mupdate['TerreNacionalPatineta'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
@@ -4157,20 +4164,25 @@ app.post('/GetNegociarmodalidad', function (req, res) {
 
         if (mModalidad=='TerreUrbano') {
         mupdate = {};
+        mModalidadObject = ModalidadesProveedorResTU[0]['TerreUrbanoViaje'];
         mupdate['TerreUrbanoViaje'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
+    }
+    if (mModalidad=='TerreUrbano') {
         mupdate = {};
+        mModalidadObject = ModalidadesProveedorResTUT[0]['TerreUrbanoTonelada'];
         mupdate['TerreUrbanoTonelada'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
        }
 
-        if (mModalidad=='Aerea') {       
+        if (mModalidad=='Aerea') {
         mupdate = {};
+        mModalidadObject = ModalidadesProveedorRes[0]['AereaPasajero'];
         mupdate['AereaPasajero'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
-        });       
+        });
        }
 
     });
