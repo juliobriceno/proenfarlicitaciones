@@ -16686,7 +16686,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }*/
                         ////////// Campo ['+100 + Fs/kg + Gastos Embarque']////////////////////////////
 
-                   ModalidadTodasconOrdenC4017P   = _.orderBy( ModalidadTodasconOrdenC4017P  , [Modalidadadasuma1P => Modalidadadasuma1P.Aeropuerto.toLowerCase(),Modalidadadasuma1P => Modalidadadasuma1P.Pais.toLowerCase(), Modalidadadasuma1P => parseFloat(Modalidadadasuma1P['+100 + Fs/kg + Gastos Embarque'],10)], ['asc','asc','asc']);
+                   ModalidadTodasconOrdenC4017P   = _.orderBy( ModalidadTodasconOrdenC4017P  , [Modalidadadasuma1P => Modalidadadasuma1P.Aeropuerto.toLowerCase(),Modalidadadasuma1P => Modalidadadasuma1P.Pais.toLowerCase(), Modalidadadasuma1P => parseFloat(Modalidadadasuma1P['+100 + Fs/kg'],10)], ['asc','asc','asc']);
            console.log( ModalidadTodasconOrdenC4017P);
 
                      var contC4017P =0;
@@ -16780,7 +16780,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                ////////// Campo ['+300 + Fs/kg + Gastos Embarque']////////////////////////////
 
-                  ModalidadTodasconOrdenC401718P   = _.orderBy( ModalidadTodasconOrdenC401718P  , [Modalidadadasuma2P => Modalidadadasuma2P.Aeropuerto.toLowerCase(),Modalidadadasuma2P => Modalidadadasuma2P.Pais.toLowerCase(), Modalidadadasuma2P => parseFloat(Modalidadadasuma2P['+300 + Fs/kg + Gastos Embarque'],10)], ['asc','asc','asc']);
+                  ModalidadTodasconOrdenC401718P   = _.orderBy( ModalidadTodasconOrdenC401718P  , [Modalidadadasuma2P => Modalidadadasuma2P.Aeropuerto.toLowerCase(),Modalidadadasuma2P => Modalidadadasuma2P.Pais.toLowerCase(), Modalidadadasuma2P => parseFloat(Modalidadadasuma2P['+300 + Fs/kg'],10)], ['asc','asc','asc']);
            console.log( ModalidadTodasconOrdenC401718P);
 
                      var contC401718P =0;
@@ -16873,7 +16873,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
                    ////////// Campo ['+500 + Fs/kg + Gastos Embarque']////////////////////////////
 
-                     ModalidadTodasconOrdenC4020P   = _.orderBy( ModalidadTodasconOrdenC4020P  , [Modalidadadasuma3P => Modalidadadasuma3P.Aeropuerto.toLowerCase(),Modalidadadasuma3P => Modalidadadasuma3P.Pais.toLowerCase(), Modalidadadasuma3P => parseFloat(Modalidadadasuma3P['+500 + Fs/kg + Gastos Embarque'],10)], ['asc','asc','asc']);
+                     ModalidadTodasconOrdenC4020P   = _.orderBy( ModalidadTodasconOrdenC4020P  , [Modalidadadasuma3P => Modalidadadasuma3P.Aeropuerto.toLowerCase(),Modalidadadasuma3P => Modalidadadasuma3P.Pais.toLowerCase(), Modalidadadasuma3P => parseFloat(Modalidadadasuma3P['+500 + Fs/kg'],10)], ['asc','asc','asc']);
            console.log( ModalidadTodasconOrdenC4020P);
 
                      var contC4020P =0;
@@ -16965,9 +16965,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       }
                      ////////// Campo ['+10000 + Fs/kg + Gastos Embarque']////////////////////////////
-
-                       ModalidadTodasconOrdenC4021P = _.orderBy( ModalidadTodasconOrdenC4021P  , [Modalidadadasuma4P => Modalidadadasuma4P.Aeropuerto.toLowerCase(),Modalidadadasuma4P => Modalidadadasuma4P.Pais.toLowerCase(), Modalidadadasuma4P => parseFloat(Modalidadadasuma4P['+1000 + Fs/kg + Gastos Embarque'],10)], ['asc','asc','asc']);
-           console.log( ModalidadTodasconOrdenC4021P);
+  ModalidadTodasconOrdenC4021P   = _.orderBy(ModalidadTodasconOrdenC4021P, [Modalidadadasuma4P => Modalidadadasuma4P.Aeropuerto.toLowerCase(),Modalidadadasuma4P => Modalidadadasuma4P.Pais.toLowerCase(), Modalidadadasuma4P => parseFloat(Modalidadadasuma4P['+1000 + Fs/kg'],10)], ['asc','asc','asc']);
+           console.log( ModalidadTodasconOrdenC4021P  );
 
                      var contC4021P =0;
                      var contCAIInull=0;
@@ -16986,11 +16985,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            }
                          else
                           {
-                               if((  ModalidadTodasconOrdenC4021P[i].Aeropuerto ==   ModalidadTodasconOrdenC4021P[i-1].Aeropuerto) && (  ModalidadTodasconOrdenC4021P[i].Pais ==   ModalidadTodasconOrdenC4021P[i-1].Pais))
+                               if((ModalidadTodasconOrdenC4021P[i].Aeropuerto == ModalidadTodasconOrdenC4021P[i-1].Aeropuerto) && (ModalidadTodasconOrdenC4021P[i].Pais ==  ModalidadTodasconOrdenC4021P[i-1].Pais))
                               {
                                 console.log('via igual');
                            if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']>0 ) {
-                                if(parseFloat( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg ']))
+                                if(parseFloat(ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']) == parseFloat( ModalidadTodasconOrdenC4021P[i-1]['+1000 + Fs/kg']))
                                 {
                                   contC4021P= contC4021P ;
                                   console.log('CPC mpo igual');
@@ -17014,7 +17013,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if ( ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg ']>0 ) {
+                                if (ModalidadTodasconOrdenC4021P[i]['+1000 + Fs/kg']>0 ) {
                                   contC4021P =1;
                                    console.log('via diferente');
                                    contCAIInull=0;
@@ -17022,7 +17021,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
                                 else
                                 {
-                                contC4021P=0;
+                                contC402P1=0;
                                 contCAIInull=1;
                                 }
                               }
