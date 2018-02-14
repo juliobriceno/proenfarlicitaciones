@@ -246,8 +246,8 @@
                                   <li><a href="#" ng-click="DeleteUser(Usuario.User);"><i  class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
                                   <li><a href="#" ng-click="GotoUser(Usuario.User);"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
                                   <li><a href="#" ng-click="GotoUserdetalle(Usuario.User);"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
-                                  <li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
-                                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>
+                                  <!--<li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
+                                  <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>-->
                                 </ul>
                               </div>
 
@@ -432,7 +432,7 @@
                                     </div>
                                     <hr>
                                     <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.razonsocial.$invalid && FormProveedores.razonsocial.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Razón Social:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -441,7 +441,7 @@
                                   </div>
                                 </div>
                                      <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.nit.$invalid && FormProveedores.nit.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">NIT:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
@@ -450,7 +450,7 @@
                                   </div>
                                 </div>
                                  <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.username.$invalid && FormProveedores.username.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Nombre Contacto:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
@@ -461,7 +461,7 @@
                                   </div>
                                  <div class="row">
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.phone.$invalid && FormProveedores.phone.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Núm Teléfono fijo:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
@@ -470,7 +470,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.nrocelular.$invalid && FormProveedores.nrocelular.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Núm Celular:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
@@ -479,7 +479,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.email.$invalid && FormProveedores.email.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Correo eletrónico:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
@@ -490,7 +490,7 @@
                               </div>
                                <div class="row">
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.ciudad.invalid && FormProveedores.ciudad.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Ciudad:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -499,7 +499,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.direccion.invalid && FormProveedores.direccion.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Dirección:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
@@ -510,7 +510,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.pagweb.invalid && FormProveedores.pagweb.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Página Web:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-globe" aria-hidden="true"></i></span>
@@ -528,7 +528,7 @@
                                   </div>
                                   <hr>
                                    <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.replegal.invalid && FormProveedores.replegal.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Representante Legal:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -537,7 +537,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.cedreplegal.invalid && FormProveedores.cedreplegal.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Cédula Representante Legal:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
@@ -547,7 +547,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.emailreplegal.invalid && FormProveedores.emailreplegal.$dirty}">
+                                  <div class="form-group" 
                                     <label class="control-label" for="name">Email Representante Legal:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
@@ -558,8 +558,8 @@
                               </div>
                               <div class="row">
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.tlfreplegal.invalid && FormProveedores.tlfreplegal.$dirty}">
-                                    <label class="control-label" for="name">Telefono Representante Legal:</label>
+                                  <div class="form-group" >
+                                    <label class="control-label" for="name">Teléfono Representante Legal:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                       <input ng-model="tlfreplegal"  model-view-value="true" ui-mask="(999) 999-9999 (Ext- 9?9?9?9?9)" type="text" class="form-control" name="TlfRepLegal" ng-disabled="true">
@@ -567,7 +567,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-4">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.celularreplegal.invalid && FormProveedores.celularreplegal.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Celular Representante Legal:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
@@ -584,7 +584,7 @@
                                 </div>
                                 <hr>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.repcomercial.invalid && FormProveedores.repcomercial.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Representante Comercial:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -593,7 +593,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.emailrepcomercial.invalid && FormProveedores.emailrepcomercial.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Email Representante Comercial:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
@@ -602,8 +602,8 @@
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.tlfrepcomercial.invalid && FormProveedores.tlfrepcomercial.$dirty}">
-                                    <label class="control-label" for="name">Telefono Representante Comercial:</label>
+                                  <div class="form-group" >
+                                    <label class="control-label" for="name">Teléfono Representante Comercial:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                       <input  ng-model="tlfrepcomercial"  model-view-value="true" ui-mask="(999) 999-9999 (Ext- 9?9?9?9?9)" type="text" class="form-control" name="TlfRepComercialnombre" ng-disabled="true">
@@ -611,7 +611,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.celularrepcomercial.invalid && FormProveedores.celularrepcomercial.$dirty}">
+                                  <div class="form-group" >
                                     <label class="control-label" for="name">Celular Representante Comercial:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
@@ -628,7 +628,7 @@
                                 </div>
                                 <hr>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.coordinadoroperacion.invalid && FormProveedores.coordinadoroperacion.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Coordinador Operación:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -637,7 +637,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.emailcoordinadoroperacion.invalid && FormProveedores.emailcoordinadoroperacion.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Email Coordinador de Operación:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
@@ -646,8 +646,8 @@
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.tlfcoordinadoroperacion.invalid && FormProveedores.tlfcoordinadoroperacion.$dirty}">
-                                    <label class="control-label" for="name">Telefono Coordinador de Operaciones:</label>
+                                  <div class="form-group">
+                                    <label class="control-label" for="name">Teléfono Coordinador de Operaciones:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                       <input ng-model="tlfcoordinadoroperacion" id="Nombre"  model-view-value="true" ui-mask="(999) 999-9999 (Ext- 9?9?9?9?9)" type="text" class="form-control" ng-disabled="true">
@@ -655,7 +655,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group" ng-class="{'has-error':FormProveedores.celularcoordinadoroperacion.invalid && FormProveedores.celularcoordinadoroperacion.$dirty}">
+                                  <div class="form-group">
                                     <label class="control-label" for="name">Celular Coordinador de Operaciones:</label>
                                     <div class="input-group">
                                       <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>

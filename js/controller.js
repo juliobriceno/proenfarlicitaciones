@@ -417,7 +417,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               });
           }
 
-          $scope.Modalidades = [{name: 'Bodegaje'}, {name: 'Aduana'}, {name: 'OTM'}, {name: 'Maritimas FCL'}, {name: 'Maritimas LCL'}, {name: 'Terrestre Nacional'}, {name: 'Terrestre Urbano'}, {name: 'Aéreas'}];
+          $scope.Modalidades = [{name: 'Bodegaje'}, {name: 'Aduana'}, {name: 'OTM'}, {name: 'Maritimas FCL'}, {name: 'Maritimas LCL'}, {name: 'Terrestre Nacional'}, {name: 'Terrestre Urbano'}, {name: 'Aereas'}];
           $scope.AgregarModalidad = function(){
             var tmpContactoModalidad = $scope.contactomodalidad.modalidades.filter(function(el){
               return el.modalidad == $scope.contactomodalidad.modalidad;
@@ -478,7 +478,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             }
             if ($scope.contactomodalidad.modalidades.length == 0)
             {
-              swal("Licitaciones Proenfar", "El contacto debe tener a menos una modalidad.");
+              swal("Licitaciones Proenfar", "El contacto debe tener una modalidad.");
               return 0
             }
               var Data = {};
@@ -3341,7 +3341,26 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-
+                                Data.Email = localStorage.UserConnected;
+                                console.log(Data.Email);
+                               $http({
+                               method: 'POST',
+                               url: '/GetContactoModalidadProveedor',
+                              headers: { 'Content-Type': 'application/json' },
+                               data: Data
+                              }).then(function successCallback(response) {
+                              $scope.contactomodalidadproveedor = response.data.contactomodalidadproveedor;
+                            console.log($scope.contactomodalidadproveedor);
+                               if (typeof $scope.contactomodalidadproveedor == 'undefined' || typeof $scope.contactomodalidadproveedor.length==0 )
+                               {
+                                console.log('paso por aqui contactomodalidadproveedor');
+                                  $loading.finish('myloading');
+                               swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no se ha cargado Contactos por Modalidad para licitar.");
+                               return 0
+                               }
+                              else
+                              {                             
+                             console.log('paso por aqui  nofile');
                              if (response.data.Result == 'nofiles'){
                                $loading.finish('myloading');
                                swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no ha cargado archivos necesarios para licitar.");
@@ -3351,12 +3370,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              {
                               $scope.Estatusproveedortodas=true;
                              }
-
+                           }
                               $scope.Estatusproveedor();
                               $loading.finish('myloading');
                              }, function errorCallback(response) {
                               console.log(response);
                           });
+                           }, function errorCallback(response) {
+                               alert(response.statusText);
+                               });
 
                           });
 

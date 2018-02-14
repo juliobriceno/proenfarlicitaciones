@@ -1,10 +1,10 @@
-var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
+//var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
 
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
 
 // Ambiente de pruebas -espejo de producción-
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
-//var connString = 'mongodb://localhost:27017/licitacionesProductivo';
+var connString = 'mongodb://localhost:27017/licitacionesProductivo';
 
 module.exports = {
   Update: function Update(pcollection, id, set, callback) {

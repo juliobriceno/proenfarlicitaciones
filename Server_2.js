@@ -405,6 +405,16 @@ app.post('/GetContactoModalidad', function (req, res) {
   })
 });
 
+// Mafer para validar que al finalizar licitacion ddebe tener algun contacto cargado
+
+app.post('/GetContactoModalidadProveedor', function (req, res) {
+  MyMongo.Find('contactomodalidad', { Proveedor: req.body.Proveedor }, function (result) {
+    var Data = {};
+    Data.Result = 'Ok';
+    Data.contactomodalidadproveedor = result[0];
+    res.end(JSON.stringify(Data));
+  })
+});
 // Julio HOY
 app.post('/SaveUsuarioComplete', function (req, res) {
   MyMongo.Remove('Usuarios', { Email: req.body.Usuario.Email }, function (result) {
@@ -788,11 +798,23 @@ app.post('/GetUsuarioProveedor', function (req, res) {
   })
 });
 
+app.post('/GetUsuarioProveedordiligenciado', function (req, res) {
+  MyMongo.Find('Usuarios', { NombrePerfil: 'Proveedor' }, function (result) {
+    var Data = {};
+    Data.Result = 'Ok';
+    Data.data = result;
+    res.end(JSON.stringify(Data));
+  })
+});
+
 function convertDate(inputFormat) {
   function pad(s) { return (s < 10) ? '0' + s : s; }
   var d = new Date(inputFormat);
   return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
 }
+
+
+
 
 app.post('/EnviarEmailProveedores', function (req, res) {
 
@@ -3448,7 +3470,7 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
     var wb = new xl.Workbook();
 
     // Add Worksheets to the workbook
-    var ws6 = wb.addWorksheet('Terrestre_Nacional');
+    var ws6 = wb.addWorksheet('Terrestre_Nacional_Turbo');
     var ws7 = wb.addWorksheet('Terrestre_Nacional_Sencillo');
     var ws8 = wb.addWorksheet('Terrestre_Nacional_Patineta');
 
