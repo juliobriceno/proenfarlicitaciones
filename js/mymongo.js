@@ -4,7 +4,7 @@
 
 // Ambiente de pruebas -espejo de producción-
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
-var connString = 'mongodb://localhost:27017/licitacionesProductivo';
+var connString = 'mongodb://localhost:27017/proenfarlicitaciones';
 
 module.exports = {
   Update: function Update(pcollection, id, set, callback) {

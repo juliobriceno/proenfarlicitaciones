@@ -80,7 +80,7 @@
 
 
     </head>
-    <body class="skin-blue"  ng-controller="ctrlDesbloquearnegociar">
+    <body class="skin-blue"  ng-controller="ctrlProveedorModalidadVersion">
         <header>
         <nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -125,7 +125,11 @@
                     <li class="active"><a href="desbloquear_negociar.html">
                     <i class="fa fa-angle-double-right"></i>
                     <span>Desbloquear y Negociar</span>
-                  </a></li>                 
+                  </a></li>
+                  <li><a href="modalidad_version.html">
+                      <i class="fa fa-angle-double-right"></i>
+                      <span>Proveedor/modalidad/versiones</span>
+                    </a></li>
 
                   </ul>
                 </li>
@@ -166,10 +170,10 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Desbloquear y Negociar
+                        Proveedor/Modalidad/Version
                     </h1>
                     <ol class="breadcrumb">
-                        <li class="active"><a href="#"><i class="fa fa-handshake-o" ></i>Desbloquear y Negociar</a></li>
+                        <li class="active"><a href="#"><i class="fa fa-handshake-o" ></i>Proveedor/Modalidad/Version</a></li>
                     </ol>
                 </section>
 
@@ -191,6 +195,11 @@
                                         <div class="col-md-3">
                                           <div class="form-group">
                                            <label>Proveedor</label>
+                                            <ui-select ng-change="filterProveedores();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
+                                             <ui-select-match placeholder="Proveedor">{{$select.selected.RazonSocial}}</ui-select-match>
+                                             <ui-select-choices repeat="usuario in ProveedordiligenciadoSaved | filter: { RazonSocial: $select.search } ">
+                                              <span ng-bind-html="usuario.RazonSocial | highlight: $select.search"></span>
+                                              </ui-select-choices></ui-select> <label>Modalidad</label>
                                             <ui-select ng-change="filterProveedores();" ng-model="UsuarioSel.selected" theme="bootstrap" title="Escoge un proveedor">
                                              <ui-select-match placeholder="Proveedor">{{$select.selected.RazonSocial}}</ui-select-match>
                                              <ui-select-choices repeat="usuario in ProveedordiligenciadoSaved | filter: { RazonSocial: $select.search } ">

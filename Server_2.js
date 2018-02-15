@@ -413,6 +413,7 @@ app.post('/GetContactoModalidadProveedor', function (req, res) {
     Data.Result = 'Ok';
     Data.contactomodalidadproveedor = result[0];
     res.end(JSON.stringify(Data));
+    console.log( res.end(JSON.stringify(Data)));
   })
 });
 // Julio HOY
@@ -799,12 +800,39 @@ app.post('/GetUsuarioProveedor', function (req, res) {
 });
 
 app.post('/GetUsuarioProveedordiligenciado', function (req, res) {
-  MyMongo.Find('Usuarios', { NombrePerfil: 'Proveedor' }, function (result) {
-    var Data = {};
-    Data.Result = 'Ok';
-    Data.data = result;
-    res.end(JSON.stringify(Data));
-  })
+
+  // Para poder saber qué proveedores fueron marcados como seleccionados
+  MyMongo.Find('LicitacionProveedor', {} , function (result) {
+    var LicitacionProveedor = result;
+     console.log("aqui lici");
+     console.log(result);
+    MyMongo.Find('Usuarios', {} , function (result) {
+      var Data = {};
+       console.log("moda");
+       console.log(result);
+
+      // Filtra sólo seleccionados
+      result = result.filter(function(el){
+        var ret = false;
+        LicitacionProveedor.forEach(function(element) {
+            console.log("filter");
+            //console.log(element.Modalidad);
+               // console.log(req.body.Modalidad);                    
+              if (el.User == element.Email && element.Cerrado == true  && element.Diligenciada == true){
+                 ret = true;
+                 console.log("aqui 4");
+              }
+            
+        });
+        return ret;
+      });
+      var Data = {};
+      Data.proveedordiligenciado = result;      
+      res.end(JSON.stringify(Data));
+      console.log(Data.proveedordiligenciado);
+
+ });
+  });
 });
 
 function convertDate(inputFormat) {
@@ -3784,6 +3812,17 @@ app.post('/GetPreguntas', function (req, res) {
      MyMongo.Find('Preguntas', { Modalidad: req.body.Modalidad }, function (result) {
         var Data = {};
         Data.Preguntas = result;
+        res.end(JSON.stringify(Data));
+    }
+    );
+
+});
+
+app.post('/GetModalidadesProveedorSuma', function (req, res) {
+
+     MyMongo.Find('ModalidadesProveedor', { Email: req.body.Email }, function (result) {
+        var Data = {};
+        Data.data = result;
         res.end(JSON.stringify(Data));
     }
     );

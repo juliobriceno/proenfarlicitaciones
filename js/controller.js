@@ -3327,7 +3327,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             lockObject.push(bTerrestreUrbano);
                             lockObject.push(bAereas);
 
-
+                            var varmensaje =0;
                             var Data = {};
                             Data.Email = localStorage.UserConnected;
                             Data.lockObject = lockObject;
@@ -3341,7 +3341,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-                                Data.Email = localStorage.UserConnected;
+                                Data.Proveedor = localStorage.UserConnected;
                                 console.log(Data.Email);
                                $http({
                                method: 'POST',
@@ -3351,27 +3351,21 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }).then(function successCallback(response) {
                               $scope.contactomodalidadproveedor = response.data.contactomodalidadproveedor;
                             console.log($scope.contactomodalidadproveedor);
-                               if (typeof $scope.contactomodalidadproveedor == 'undefined' || typeof $scope.contactomodalidadproveedor.length==0 )
-                               {
-                                console.log('paso por aqui contactomodalidadproveedor');
-                                  $loading.finish('myloading');
-                               swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no se ha cargado Contactos por Modalidad para licitar.");
-                               return 0
-                               }
-                              else
-                              {                             
-                             console.log('paso por aqui  nofile');
-                             if (response.data.Result == 'nofiles'){
+                            
+                             if (response.data.Result == 'nofiles' || typeof $scope.contactomodalidadproveedor == 'undefined' || typeof $scope.contactomodalidadproveedor.length==0 ){
                                $loading.finish('myloading');
                                swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no ha cargado archivos necesarios para licitar.");
+                               $scope.Estatusproveedortodas=false;
+                               $scope.EstatusproveedorModalidad=false;
                                return 0
                              }
                              else
                              {
                               $scope.Estatusproveedortodas=true;
+                               $scope.Estatusproveedor();
                              }
-                           }
-                              $scope.Estatusproveedor();
+                           
+                             
                               $loading.finish('myloading');
                              }, function errorCallback(response) {
                               console.log(response);
@@ -3459,14 +3453,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.UpdateData = false;
                          var Data = {};       // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
 
-                             // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
-                        
+                             // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree                      
 
 
                           Data.ModalidadesProveedor = $scope.ModalidadesProveedor;
-
-
-
                           $http({
                               method: 'POST',
                               url: '/UpdateModalidadesProveedor',
@@ -3482,10 +3472,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                         // Actualiza las modalidades para éste proveedores
-                      $scope.UpdateModalidades = function (Modali) {
-                        console.log("paso por aqui updatemodalidad1");
+                      $scope.UpdateModalidades = function (Modali,submodalidad) {
+                       console.log("paso por aqui updatemodalidad1");
+                       console.log(submodalidad);
 
-                        if ($scope.ModalidadesMostrarActual=='MaritimasFcl'){  
+                        if ($scope.ModalidadesMostrarActual=='MaritimasFcl'){ 
+                        
                         //console.log(parseFloat(Modali["C 20"]));                    
                             if (Modali["C 20"]=='' || Modali["C 20"]=='undefined') {Modali["C 20"]=parseFloat(0);}
                             if (Modali["C 40"]=='') {Modali["C 40"]=parseFloat(0);}
@@ -3502,22 +3494,38 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          }
 
                           if ($scope.ModalidadesMostrarActual=='Aereas'){ 
+
+                            console.log(submodalidad);
+
+                            if (submodalidad=='carguero')
+                            {
                             if (Modali["+100"]=='') {Modali["+100"]=parseFloat(0);}
                             if (Modali["+300"]=='') {Modali["+300"]=parseFloat(0);}
                             if (Modali["+500"]=='') {Modali["+500"]=parseFloat(0);}
                             if (Modali["+1000"]=='') {Modali["+1000"]=parseFloat(0);}
                             if (Modali["Fs/kg"]=='') {Modali["Fs/kg"]=parseFloat(0);}
                             if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
-                           
-                           
-                           Modali["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+1000 + Fs/kg"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
-                           Modali["+100 + Fs/kg"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                               Modali["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                            Modali["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                            Modali["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                            Modali["+1000 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
+                            }
+
+
+                             if (submodalidad=='pasajero')
+                            {
+                            if (Modali["+100"]=='') {Modali["+100"]=parseFloat(0);}
+                            if (Modali["+300"]=='') {Modali["+300"]=parseFloat(0);}
+                            if (Modali["+500"]=='') {Modali["+500"]=parseFloat(0);}
+                            if (Modali["+1000"]=='') {Modali["+1000"]=parseFloat(0);}
+                            if (Modali["Fs/kg"]=='') {Modali["Fs/kg"]=parseFloat(0);}
+                            if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
+                          Modali["+100 + Fs/kg"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
                            Modali["+300 + Fs/kg"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
                            Modali["+500 + Fs/kg"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
                            Modali["+1000 + Fs/kg"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
+                             
+                            }
                          
                            } 
                       
@@ -5749,16 +5757,39 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               }, function errorCallback(response) {
                   alert(response.statusText);
               });
-          }         
+          }    
+
+          $     
 
          var editform= 0;
-         $scope.Usuario={};
+         $scope.Proveedordiligenciado={};
+
+           $scope.GetProveedordiligenciado = function () {
+           var Data = {};
+           $loading.start('myloading');
+           // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+           Data.Email = localStorage.User
+           $http({
+               method: 'POST',
+               url: '/GetUsuarioProveedordiligenciado',
+               headers: { 'Content-Type': 'application/json' },
+               data: Data
+           }).then(function successCallback(response) {
+              $loading.finish('myloading');
+              $scope.Proveedordiligenciado = response.data.proveedordiligenciado
+              $scope.ProveedordiligenciadoSaved = response.data.proveedordiligenciado
+           }, function errorCallback(response) {
+               alert(response.statusText);
+           });
+         }
+
+         $scope.GetProveedordiligenciado();
 
          // Variables de selectores
          $scope.UsuarioSel = {};
 
             $scope.filterProveedores = function(){
-           $scope.Usuarios = $scope.UsuariosSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
+           $scope.Proveedordiligenciado = $scope.ProveedordiligenciadoSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
            console.log($scope.UsuarioSel.selected.Name);
               $scope.GetProveedorModalidadName();
          }
@@ -5903,6 +5934,114 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
        }])
 
+////////////////////////////////////Proveedor Modalidad Version////////////////////////////////////////////////////
+
+  .controller('ctrlProveedorModalidadVersion', ['$scope', '$http', '$loading', '$uibModal',  function ($scope, $http, $loading, $uibModal) {
+
+          // Llama a HTML Modal que permite cambiar passwor de la app
+          $scope.ActiveUserModal = {};
+          $scope.openChangePassword = function (size, parentSelector) {
+              $scope.ActiveUserModal = $scope.User;
+              var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                  animation: $scope.animationsEnabled,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'modalchangepassword.html',
+                  controller: 'ModalInstanceCtrlChangePassword',
+                  controllerAs: '$ctrl',
+                  size: size,
+                  appendTo: parentElem,
+                  resolve: {
+                      ActiveUserModal: function () {
+                          return $scope.ActiveUserModal;
+                      }
+                  }
+              });
+          };
+          // Fin Llama a HTML Modal que permite cambiar passwor de la app
+
+          $scope.UserNameConnected = localStorage.UserNameConnected;
+
+          $scope.closeSession = function () {
+              $http({
+                  method: 'POST',
+                  url: '/closeSession',
+                  headers: { 'Content-Type': 'application/json' },
+                  data: {}
+              }).then(function successCallback(response) {
+                  window.location.href = '/index.html';
+              }, function errorCallback(response) {
+                  alert(response.statusText);
+              });
+          }    
+
+          $     
+
+         var editform= 0;
+         $scope.Proveedordiligenciado={};
+
+           $scope.GetProveedordiligenciado = function () {
+           var Data = {};
+           $loading.start('myloading');
+           // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+           Data.Email = localStorage.User
+           $http({
+               method: 'POST',
+               url: '/GetUsuarioProveedordiligenciado',
+               headers: { 'Content-Type': 'application/json' },
+               data: Data
+           }).then(function successCallback(response) {
+              $loading.finish('myloading');
+              $scope.Proveedordiligenciado = response.data.proveedordiligenciado
+              $scope.ProveedordiligenciadoSaved = response.data.proveedordiligenciado
+           }, function errorCallback(response) {
+               alert(response.statusText);
+           });
+         }
+
+         $scope.GetProveedordiligenciado();
+
+         // Variables de selectores
+         $scope.UsuarioSel = {};
+
+            $scope.filterProveedores = function(){
+           $scope.Proveedordiligenciado = $scope.ProveedordiligenciadoSaved.filter(function (el) { return el.Name.toUpperCase().includes($scope.UsuarioSel.selected.Name.toUpperCase()); })
+           console.log($scope.UsuarioSel.selected.Name);
+              $scope.GetProveedorModalidadName();
+         }
+
+
+         $scope.GetUsuariosProveedor = function () {
+           var Data = {};
+           $loading.start('myloading');
+           // Usuario o proveedor que se va a modificar viene del login, pero mientras se cree
+           Data.Email = localStorage.User
+           $http({
+               method: 'POST',
+               url: '/GetUsuarioProveedor',
+               headers: { 'Content-Type': 'application/json' },
+               data: Data
+           }).then(function successCallback(response) {
+              $loading.finish('myloading');
+              $scope.Usuarios = response.data.data
+              $scope.UsuariosSaved = response.data.data
+           }, function errorCallback(response) {
+               alert(response.statusText);
+           });
+         }
+
+        
+         $scope.GetUsuariosProveedor();
+
+         
+
+          
+
+
+       }])
+
 
 /////////////////////////////////////////////Seleccionr Proveedor //////////////////////////////////////////
 
@@ -5973,14 +6112,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           }
 
 
-        $scope.ModalidadesSelecProveedor = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFCL' }, { id: 4, Name: 'MaritimasLCL' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
+        $scope.ModalidadesSelecProveedor = [{ id: 0, Name: 'Bodegajes' }, { id: 1, Name: 'Aduanas' }, {id: 2, Name: 'OTM' }, { id: 3, Name: 'MaritimasFcl' }, { id: 4, Name: 'MaritimasLcl' }, { id: 5, Name: 'Terrestre Nacional' }, { id: 6, Name: 'Terrestre Urbano' },{ id: 7, Name: 'Aereas' }];
 
          $scope.selectedModalidadSelecProveedor = $scope.ModalidadesSelecProveedor[0];
 
            $scope.GetSeleccionarProveedor = function (user,modalidad) {
                   var Data = {};
                   //Data.Email= user;
-                  Data.Modalidad=$scope.selectedModalidadSelecProveedor.Name;
+                  if ($scope.selectedModalidadSelecProveedor.Name=='Terrestre Nacional')
+                  {
+                    Data.Modalidad='TerrestreNacional';
+                  }
+                  else if ($scope.selectedModalidadSelecProveedor.Name=='Terrestre Urbano')
+                  {
+                    Data.Modalidad='TerrestreUrbano';
+                  }
+                  else
+                  {
+                   Data.Modalidad=$scope.selectedModalidadSelecProveedor.Name; 
+                 }                  
                   console.log(Data.Modalidad);
                   //console.log(Data.Email);
                   $loading.start('myloading');
@@ -6679,7 +6829,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var ModalidadTodasconOrdenBodegajeaduaneromaqfmmp=[];
                          var Unobjetomaqp ={};
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqp) {
-                          ModalidadDeUnProveedormaqp = consbodegajemaqp.Bodegajes.Maquinaria;
+                          ModalidadDeUnProveedormaqp = consbodegajemaqp.Bodegajes.MateriaPrima;
                           Unobjetomaqp.Tarifa=ModalidadDeUnProveedormaqp.Tarifa;
                           Unobjetomaqp.TarifaMinima=ModalidadDeUnProveedormaqp.TarifaMinima;
                           Unobjetomaqp.Fmm=ModalidadDeUnProveedormaqp.Fmm;
@@ -7626,7 +7776,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       }
 
-                  /* ////////// Campo ["Conceptos Adicionales tres"]
+                   ////////// Campo ["Conceptos Adicionales tres"]
 
                      ModalidadTodasconOrdenCAIII = _.orderBy(ModalidadTodasconOrdenCAIII, [ModalidadaduCAIII => ModalidadaduCAIII.Via.toLowerCase(),ModalidadaduCAIII  => parseFloat(ModalidadaduCAIII["Conceptos Adicionales tres"],10)], ['asc','asc']);
                       console.log(ModalidadTodasconOrdenCAIII );
@@ -7718,12 +7868,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                      }*/
+                      }
 
 
                           ////////// Campo ["Costo Planificacion Caja"]
 
-                     ModalidadTodasconOrdenCPC  = _.orderBy(ModalidadTodasconOrdenCPC , [ModalidadaduCPC => ModalidadaduCPC.Via.toLowerCase(),ModalidadaduCPC => parseFloat(ModalidadaduCPC["Conceptos Adicionales tres"],10)], ['asc','asc']);
+                     ModalidadTodasconOrdenCPC  = _.orderBy(ModalidadTodasconOrdenCPC , [ModalidadaduCPC => ModalidadaduCPC.Via.toLowerCase(),ModalidadaduCPC => parseFloat(ModalidadaduCPC["Costo Planificacion Caja"],10)], ['asc','asc']);
                       console.log(ModalidadTodasconOrdenCPC );
 
                      var contCPC =0;
@@ -7732,7 +7882,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        for (var i=0; i<=ModalidadTodasconOrdenCPC.length-1; i++){
                            if (i==0 )
                           {
-                               if(ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0){
+                               if(ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]>0){
                                  contCPC = contCPC  + 1;
                                  console.log('i es o');
                                  console.log(contCPC );
@@ -7746,8 +7896,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              if(ModalidadTodasconOrdenCPC[i].Via == ModalidadTodasconOrdenCPC[i-1].Via)
                               {
                                 console.log('via igual');
-                           if (ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0 ) {
-                                if(parseFloat(ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Conceptos Adicionales tres"]))
+                           if (ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]>0 ) {
+                                if(parseFloat(ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]) == parseFloat(ModalidadTodasconOrdenCPC[i-1]["Costo Planificacion Caja"]))
                                 {
                                   contCPC = contCPC ;
                                   console.log('CPC mpo igual');
@@ -7771,7 +7921,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                              else
                               {
-                                if (ModalidadTodasconOrdenCPC[i]["Conceptos Adicionales tres"]>0 ) {
+                                if (ModalidadTodasconOrdenCPC[i]["Costo Planificacion Caja"]>0 ) {
                                   contCPC =1;
                                    console.log('via diferente');
                                    contCPCnull=0;
@@ -7844,14 +7994,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 if(parseFloat(ModalidadTodasconOrdenotros[i].Otros) == parseFloat(ModalidadTodasconOrdenotros[i-1].Otros))
                                 {
                                   contOTRO = contOTRO ;
-                                  console.log('CPC mpo igual');
+                                  console.log('otro mpo igual');
                                   console.log(contOTRO );
                                   contOTROnull=0;
                                 }
                                 else
                                 {
                                   contOTRO =contOTRO  + 1;
-                                  console.log('CPC mpo diferente');
+                                  console.log('otro mpo diferente');
                              console.log(contOTRO );
                              contOTROnull=0;
                                 }
