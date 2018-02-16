@@ -263,12 +263,14 @@
                                       <div class="col-md-12">
                                         <table class="table table-bordered">
                                           <tr  class="encabezadotabla">
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                             <th class="text-center"><h6  style="font-size:13px;"><b>Tarifa Valor/FOB<b></h6></th>
                                             <th class="text-center"><h6  style="font-size:13px;"><b>Tarifa Mínima<b></h6></th>
                                             <th class="text-center"><h6  style="font-size:13px;"><b>Otros</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
+                                            <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                             <td>{{BodegajeAduanero.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
@@ -290,12 +292,14 @@
                                       <div class="col-md-12">
                                         <table class="table table-bordered">
                                           <tr  class="encabezadotabla">
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                             <th class="text-center"><h6  style="font-size:13px;"><b>Proveedor<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa Mínima<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
+                                            <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                             <td>{{BodegajeAduaneromaq.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
@@ -317,12 +321,14 @@
                                       <div class="col-md-12">
                                         <table class="table table-bordered">
                                           <tr class="encabezadotabla">
+                                            <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa Mínima<b></h6></th>
                                             <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp ">
+                                            <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                             <td>{{BodegajeAduanermaqp.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
@@ -355,6 +361,7 @@
                           <div  class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                                 <tr class="encabezadotabla">
+                                  <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Tarifa % Advalorem/ FOB</b></h6></th>
@@ -369,6 +376,7 @@
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Otros</b></h6></th>
                                 </tr>
                                 <tr ng-repeat="Consadu in ModalidadTodas">
+                                  <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                   <td>{{Consadu.RazonSocial}}</td>
                                   <td>{{Consadu.Via}}</td>
                                   <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]  | number:2}}</span></td>
@@ -402,6 +410,7 @@
                           <div class="box-body table-responsive">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                               <tr  class="encabezadotabla">
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Origen</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -427,6 +436,7 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 40$ expreso</b></h6> </th>
                               </tr>
                               <tr ng-repeat="Otm in ModalidadTodasOtm">
+                                <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                 <td>{{Otm.RazonSocial}}</td>
                                 <td>{{Otm.Origen}}</td>
                                 <td>{{Otm.Destino}}</td>
@@ -471,6 +481,7 @@
                           <div class="box-body table-responsive no-padding">
                             <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                               <tr class="width-table encabezadotabla" ><!-- class="width-table">-->
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>País Destino</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Puerto Origen</b></h6></th>
@@ -491,6 +502,7 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>C 40HC + Baf 40HC + Gastos Embarque</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaFcl in ModalidadTodas">
+                                <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                 <td>{{MaritimaFcl.RazonSocial}}</td>
                                 <td>{{MaritimaFcl.PaisDestino}}</td>
                                 <td>{{MaritimaFcl.PuertoOrigen}}</td>
@@ -530,6 +542,7 @@
                           <div class="box-body table-responsive no-padding">
                             <table class="table table-bordered"   style="overflow-wrap: normal; white-space:pre;">
                               <tr class="width-table encabezadotabla" >
+                                <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>País Destino</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Puerto Origen</b></h6></th>
@@ -546,6 +559,7 @@
                                 <th class="text-center" style="width:200px;"><h6><b>Frecuencia(d&iacute;as)</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaLcl in ModalidadTodas">
+                                <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                 <td>{{MaritimaLcl.RazonSocial}}</td>
                                 <td>{{MaritimaLcl.PaisDestino}}</td>
                                 <td>{{MaritimaLcl.PuertoOrigen}}</td>
@@ -592,6 +606,7 @@
                                         <div class="col-md-12">
                                           <table class="table table-bordered">
                                             <tr class="encabezadotabla">
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -599,6 +614,7 @@
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Especial</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo">
+                                              <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                               <td>{{TerreNacional.RazonSocial}}</td>
                                               <td>{{TerreNacional.PaisOrigen}}</td>
                                               <td>{{TerreNacional.PuertoDestino}}</td>
@@ -622,6 +638,7 @@
                                         <div class="col-md-12">
                                           <table class="table table-bordered">
                                             <tr class="encabezadotabla">
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -629,6 +646,7 @@
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Especial</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo">
+                                              <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                               <td>{{TerreNacionalSencillo.RazonSocial}}</td>
                                               <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
                                               <td>{{TerreNacionalSencillo.PuertoDestino}}</td>
@@ -652,6 +670,7 @@
                                         <div class="col-md-12">
                                           <table class="table table-bordered">
                                             <tr class="encabezadotabla">
+                                              <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h></th>
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -659,6 +678,7 @@
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta">
+                                              <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                               <td>{{TerreNacionalPatineta.RazonSocial}}</td>
                                               <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
                                               <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
@@ -701,6 +721,7 @@
                                           <div class="col-md-12">
                                             <table class="table table-bordered">
                                               <tr class="encabezadotabla">
+                                                <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                                 <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -712,6 +733,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano">
+                                                    <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                   <td>{{TerreUrbano.RazonSocial}}</td>
                                                   <td>{{TerreUrbano.PaisOrigen}}</td>
                                                   <td>{{TerreUrbano.PuertoDestino}}</td>
@@ -739,6 +761,7 @@
                                             <div class="col-md-12">
                                               <table class="table table-bordered">
                                                 <tr class="encabezadotabla">
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Origen</b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -750,6 +773,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje">
+                                                  <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                   <td>{{TerreUrbanoViaje.RazonSocial}}</td>
                                                   <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
                                                   <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
@@ -777,6 +801,7 @@
                                             <div class="col-md-12">
                                               <table class="table table-bordered">
                                                 <tr class="encabezadotabla">
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Origen<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
@@ -785,6 +810,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Tractomula</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada">
+                                                  <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                   <td>{{TerreUrbanoTonelada.RazonSocial}}</td>
                                                   <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
                                                   <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
@@ -829,6 +855,7 @@
                                                 <div  class="table-responsive">
                                                   <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                                                     <tr class="encabezadotabla">
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>País</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Aeropuerto</b></h6></th>
@@ -851,6 +878,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Ge</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aerea in ModalidadTodasAerea">
+                                                      <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                       <td>{{Aerea.RazonSocial}}</td>
                                                       <td>{{Aerea.Pais}}</td>
                                                       <td>{{Aerea.Aeropuerto}}</td>
@@ -892,6 +920,7 @@
                                                 <div  class="table-responsive">
                                                   <table class="table table-bordered"  style="overflow-wrap: normal; white-space:pre;">
                                                     <tr class="encabezadotabla">
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Versión<b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>País</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Aeropuerto</b></h6></th>
@@ -914,6 +943,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Gastos Embarque</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
+                                                      <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                       <td>{{Aereapasajero.RazonSocial}}</td>
                                                       <td>{{Aereapasajero.Pais}}</td>
                                                       <td>{{Aereapasajero.Aeropuerto}}</td>

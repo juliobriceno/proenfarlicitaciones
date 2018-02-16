@@ -263,3 +263,8 @@ border-top-right-radius: 4px;
 .encabezadotabla .h6{
   font-size:13px;
 }
+
+.bg-morado{
+  background-color: #6b4671!important;
+  color: #ffffff !important;
+}
