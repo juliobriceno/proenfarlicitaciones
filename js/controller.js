@@ -6347,7 +6347,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjeto.Version = ModalidadDeUnProveedorVersion.Version;
 
 
-                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,RazonSocial:Unobjeto.RazonSocial,RazonSocial:Unobjeto.Version,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
+                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,RazonSocial:Unobjeto.RazonSocial,Version:Unobjeto.Version,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
 
 
