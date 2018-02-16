@@ -3271,7 +3271,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                         }
 
-                           $scope.FinalizarModalidadTodas = function (Email){
+    $scope.FinalizarModalidadTodas = function (Email){
 
                           swal({
                               title: "Seguro de finalizar el proceso para todas las modalidades?",
@@ -3332,7 +3332,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             Data.Email = localStorage.UserConnected;
                             Data.lockObject = lockObject;
                             console.log(lockObject);
-                            
+
                             $loading.start('myloading');
 
                              $http({
@@ -3341,35 +3341,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
-                                Data.Proveedor = localStorage.UserConnected;
-                                console.log(Data.Email);
-                               $http({
-                               method: 'POST',
-                               url: '/GetContactoModalidadProveedor',
-                              headers: { 'Content-Type': 'application/json' },
-                               data: Data
-                              }).then(function successCallback(response) {
-                              $scope.contactomodalidadproveedor = response.data.contactomodalidadproveedor;
-                            console.log($scope.contactomodalidadproveedor);
-                            
-                             if (response.data.Result == 'nofiles' || typeof $scope.contactomodalidadproveedor == 'undefined' || typeof $scope.contactomodalidadproveedor.length==0 ){
-                               $loading.finish('myloading');
-                               swal("Licitaciones Proenfar", "No puede cerrar la licitación por que no ha cargado archivos necesarios para licitar.");
-                               $scope.Estatusproveedortodas=false;
-                               $scope.EstatusproveedorModalidad=false;
-                               return 0
-                             }
-                             else
-                             {
-                              $scope.Estatusproveedortodas=true;
-                               $scope.Estatusproveedor();
-                             }
-                           
-                             
+
+
+                            if (response.data.Result == 'nofiles' || response.data.Result == 'nocontacts' ){
                               $loading.finish('myloading');
-                             }, function errorCallback(response) {
-                              console.log(response);
-                          });
+                              swal("Licitaciones Proenfar", "No es posible finalizar la licitación. Debe cargar archivos y contactos.");
+                              $scope.Estatusproveedortodas=false;
+                              $scope.EstatusproveedorModalidad=false;
+                              return 0
+                            }
+                            else
+                            {
+                              $scope.Estatusproveedortodas=true;
+                              $scope.Estatusproveedor();
+                            }
+
+
+                            $loading.finish('myloading');
+
                            }, function errorCallback(response) {
                                alert(response.statusText);
                                });
@@ -3476,59 +3465,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        console.log("paso por aqui updatemodalidad1");
                        console.log(submodalidad);
 
-                        if ($scope.ModalidadesMostrarActual=='MaritimasFcl'){ 
-                        
-                        //console.log(parseFloat(Modali["C 20"]));                    
-                            if (Modali["C 20"]=='' || Modali["C 20"]=='undefined') {Modali["C 20"]=parseFloat(0);}
-                            if (Modali["C 40"]=='') {Modali["C 40"]=parseFloat(0);}
-                            if (Modali["Baf 20"]=='' ) {Modali["Baf 20"]=parseFloat(0);}
-                            if (Modali["Baf 40"]=='') {Modali["Baf 40"]=parseFloat(0);}
-                            if (Modali["C 40HC"]=='') {Modali["C 40HC"]=parseFloat(0);}
-                            if (Modali["Baf 40HC"]=='') {Modali["Baf 40HC"]=parseFloat(0);}
-                            if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
-
-                           Modali["C 20 +Baf 20 + Gastos Embarque"]= parseFloat(Modali["C 20"]) + parseFloat(Modali["Baf 20"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["C 40 + Baf 40 + Gastos Embarque"]= parseFloat(Modali["C 40"]) + parseFloat(Modali["Baf 40"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["C 40HC + Baf 40HC + Gastos Embarque"]= parseFloat(Modali["C 40HC"]) + parseFloat(Modali["Baf 40HC"]) + parseFloat(Modali["Gastos Embarque"]);
-                           //console.log(parseFloat(Modali["C 20"]) + parseFloat(Modali["Baf 20"]) + parseFloat(Modali["Gastos Embarque"])); 
-                         }
-
-                          if ($scope.ModalidadesMostrarActual=='Aereas'){ 
-
-                            console.log(submodalidad);
-
-                            if (submodalidad=='carguero')
-                            {
-                            if (Modali["+100"]=='') {Modali["+100"]=parseFloat(0);}
-                            if (Modali["+300"]=='') {Modali["+300"]=parseFloat(0);}
-                            if (Modali["+500"]=='') {Modali["+500"]=parseFloat(0);}
-                            if (Modali["+1000"]=='') {Modali["+1000"]=parseFloat(0);}
-                            if (Modali["Fs/kg"]=='') {Modali["Fs/kg"]=parseFloat(0);}
-                            if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
-                               Modali["+100 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                            Modali["+300 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                            Modali["+500 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                            Modali["+1000 + Fs/kg + Gastos Embarque"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                            }
-
-
-                             if (submodalidad=='pasajero')
-                            {
-                            if (Modali["+100"]=='') {Modali["+100"]=parseFloat(0);}
-                            if (Modali["+300"]=='') {Modali["+300"]=parseFloat(0);}
-                            if (Modali["+500"]=='') {Modali["+500"]=parseFloat(0);}
-                            if (Modali["+1000"]=='') {Modali["+1000"]=parseFloat(0);}
-                            if (Modali["Fs/kg"]=='') {Modali["Fs/kg"]=parseFloat(0);}
-                            if (Modali["Gastos Embarque"]=='') {Modali["Gastos Embarque"]=parseFloat(0);}
-                          Modali["+100 + Fs/kg"]= parseFloat(Modali["+100"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+300 + Fs/kg"]= parseFloat(Modali["+300"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+500 + Fs/kg"]= parseFloat(Modali["+500"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);
-                           Modali["+1000 + Fs/kg"]= parseFloat(Modali["+1000"]) + parseFloat(Modali["Fs/kg"]) + parseFloat(Modali["Gastos Embarque"]);                          
-                             
-                            }
+                       
                          
-                           } 
-                      
                       
                         $scope.UpdateData = true;
 
@@ -6403,8 +6341,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjeto.TarifaMinima = ModalidadDeUnProveedor.TarifaMinima;
                           Unobjeto.Otros = ModalidadDeUnProveedor.Otros;
                           Unobjeto.Email = consbodegaje.Email;
+                          Unobjeto.RazonSocial = consbodegaje.RazonSocial;
 
-                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
+
+                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,RazonSocial:Unobjeto.RazonSocial,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
 
 
@@ -6629,7 +6569,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjetomaqt.TarifaMinima=ModalidadDeUnProveedormaqt.TarifaMinima;
                           Unobjetomaqt.Fmm=ModalidadDeUnProveedormaqt.Fmm;
                           Unobjetomaqt.Email=consbodegajemaqt.Email;
-                        ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
+                          Unobjetomaqt.RazonSocial=consbodegajemaqt.RazonSocial;
+                        ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,RazonSocial:Unobjetomaqt.RazonSocial,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
 
 
                         ModalidadTodasconOrdenBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
@@ -6834,7 +6775,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           Unobjetomaqp.TarifaMinima=ModalidadDeUnProveedormaqp.TarifaMinima;
                           Unobjetomaqp.Fmm=ModalidadDeUnProveedormaqp.Fmm;
                           Unobjetomaqp.Email=consbodegajemaqp.Email;
-                        ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
+                          Unobjetomaqp.RazonSocial=consbodegajemaqp.RazonSocial;
+                        ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,RazonSocial:Unobjetomaqp.RazonSocial,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
 
 
                         ModalidadTodasconOrdenBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
@@ -7096,7 +7038,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        angular.forEach($scope.ConsolidadoDatos, function(consaduana) {
                          ModalidadDeUnProveedorAD = consaduana.Aduana.Aduanas
                             angular.forEach(ModalidadDeUnProveedorAD, function(consaduanasprov) {
-                              consaduanasprov.Email = consaduana.Email
+                              consaduanasprov.Email = consaduana.Email,
+                              consaduanasprov.RazonSocial = consaduana.RazonSocial
                               ModalidadTodas.push(consaduanasprov);
                               ModalidadTodasconOrden = ModalidadTodas;
                               ModalidadTodasconOrdenMinima = ModalidadTodas;
@@ -8149,7 +8092,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         console.log(consotm);
                          ModalidadDeUnProveedorOTM = consotm.Otm.Otms
                             angular.forEach(ModalidadDeUnProveedorOTM, function(consotmprov) {
-                              consotmprov.Email = consotm.Email
+                              consotmprov.Email = consotm.Email,
+                              consotmprov.RazonSocial = consotm.RazonSocial
                               ModalidadTodasOtm.push(consotmprov);
                               console.log(ModalidadTodasOtm);
                               ModalidadTodasconOrden = ModalidadTodasOtm;
@@ -10164,7 +10108,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedor = consmaritfcl.MaritimaFcl.MaritimasFcl
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consmaritfclprov) {
-                              consmaritfclprov.Email = consmaritfcl.Email
+                              consmaritfclprov.Email = consmaritfcl.RazonSocial,
+                              consmaritfclprov.RazonSocial = consmaritfcl.RazonSocial
                               ModalidadTodas.push(consmaritfclprov);
                              ModalidadTodasconOrden = ModalidadTodas;
                               ModalidadTodasconOrdenMinima = ModalidadTodas;
@@ -11321,7 +11266,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedor = consmaritlcl.MaritimaLcl.MaritimasLcl
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consmaritlclprov) {
-                              consmaritlclprov.Email = consmaritlcl.Email
+                              consmaritlclprov.Email = consmaritlcl.Email,
+                              consmaritlclprov.RazonSocial = consmaritlcl.RazonSocial
                               ModalidadTodas.push(consmaritlclprov);
                              ModalidadTodasconOrden = ModalidadTodas;
                               ModalidadTodasconOrdenMinima = ModalidadTodas;
@@ -12092,7 +12038,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorTN = consterrenacional.TerreNacional.TerresNacional
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedorTN, function(consterrenacionalprov) {
-                              consterrenacionalprov.Email = consterrenacional.Email
+                              consterrenacionalprov.Email = consterrenacional.Email,
+                              consterrenacionalprov.RazonSocial = consterrenacional.RazonSocial
                               ModalidadTodasT.push(consterrenacionalprov);
                               ModalidadTodasconOrdenT = ModalidadTodasT;
                               ModalidadTodasconOrdenMinimaT = ModalidadTodasT;
@@ -12333,7 +12280,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorTNS = consterrenacionalsenc.TerreNacionalSencillo.TerresNacionalSencillo
                          console.log( ModalidadDeUnProveedorTNS);
                             angular.forEach(ModalidadDeUnProveedorTNS, function(consterrenacionalsencprov) {
-                              consterrenacionalsencprov.Email = consterrenacionalsenc.Email
+                              consterrenacionalsencprov.Email = consterrenacionalsenc.Email,
+                              consterrenacionalsencprov.RazonSocial = consterrenacionalsenc.RazonSocial
                               ModalidadTodasTerreNacionalSencillo.push(consterrenacionalsencprov);
                               ModalidadTodasconOrdenS = ModalidadTodasTerreNacionalSencillo;
                               ModalidadTodasconOrdenMinimaS =ModalidadTodasTerreNacionalSencillo;
@@ -12572,7 +12520,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorTNP = consterrenacionalpat.TerreNacionalPatineta.TerresNacionalPatineta
                          console.log( ModalidadDeUnProveedorTNP);
                             angular.forEach(ModalidadDeUnProveedorTNP, function(consterrenacionalpatprov) {
-                              consterrenacionalpatprov.Email = consterrenacionalpat.Email
+                              consterrenacionalpatprov.Email = consterrenacionalpat.Email,
+                              consterrenacionalpatprov.RazonSocial = consterrenacionalpat.RazonSocial
                               ModalidadTodasPatineta.push(consterrenacionalpatprov);
                               ModalidadTodasconOrden = ModalidadTodasPatineta;
                               ModalidadTodasconOrdenMinima = ModalidadTodasPatineta;
@@ -12872,7 +12821,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorTU = consterreurbano.TerreUrbano.TerresUrbano
                          console.log( ModalidadDeUnProveedorTU);
                             angular.forEach(ModalidadDeUnProveedorTU, function(consterreurbanoprov) {
-                              consterreurbanoprov.Email = consterreurbano.Email
+                              consterreurbanoprov.Email = consterreurbano.Email,
+                              consterreurbanoprov.RazonSocial = consterreurbano.RazonSocial
                               ModalidadTodasUrbano.push(consterreurbanoprov);
                                ModalidadTodasconOrden = ModalidadTodasUrbano;
                               ModalidadTodasconOrdenMinima = ModalidadTodasUrbano;
@@ -13490,7 +13440,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorTUV = consterreurbanoviaj.TerreUrbanoViaje.TerresUrbanoViaje
                          console.log( ModalidadDeUnProveedorTUV);
                             angular.forEach(ModalidadDeUnProveedorTUV, function(consterreurbanoviajprov) {
-                              consterreurbanoviajprov.Email = consterreurbanoviaj.Email
+                              consterreurbanoviajprov.Email = consterreurbanoviaj.Email,
+                              consterreurbanoviajprov.RazonSocial = consterreurbanoviaj.RazonSocial
                               ModalidadTodasTerreUrbanoViaje.push(consterreurbanoviajprov);
                               ModalidadTodasconOrdenv = ModalidadTodasTerreUrbanoViaje;
 
@@ -14109,7 +14060,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorTUT = consterreurbanoton.TerreUrbanoTonelada.TerresUrbanoTonelada
                          console.log( ModalidadDeUnProveedorTUT);
                             angular.forEach(ModalidadDeUnProveedorTUT, function(consterreurbanotonprov) {
-                              consterreurbanotonprov.Email = consterreurbanoton.Email
+                              consterreurbanotonprov.Email = consterreurbanoton.Email,
+                              consterreurbanotonprov.RazonSocial = consterreurbanoton.RazonSocial
                               ModalidadTodasTerreUrbanoTonelada.push(consterreurbanotonprov);
                              ModalidadTodasconOrden = ModalidadTodasTerreUrbanoTonelada;
                               ModalidadTodasconOrdenMinima = ModalidadTodasTerreUrbanoTonelada;
@@ -14502,7 +14454,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) {
                          ModalidadDeUnProveedorAA = consotm.Aerea.Aereas
                             angular.forEach(ModalidadDeUnProveedorAA, function(consotmprov) {
-                              consotmprov.Email = consotm.Email
+                              consotmprov.Email = consotm.Email,
+                              consotmprov.RazonSocial = consotm.RazonSocial
                               ModalidadTodasAerea.push(consotmprov);
                               ModalidadTodasconOrdenAA =ModalidadTodasAerea;
                               ModalidadTodasconOrdenMinimaAA = ModalidadTodasAerea;
@@ -15889,7 +15842,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        angular.forEach($scope.ConsolidadoDatos, function(consotm) {
                          ModalidadDeUnProveedorAP = consotm.AereaPasajero.AereasPasajeros
                             angular.forEach(ModalidadDeUnProveedorAP, function(consotmprov) {
-                              consotmprov.Email = consotm.Email
+                              consotmprov.Email = consotm.Email,
+                              consotmprov.RazonSocial = consotm.RazonSocial
                               ModalidadTodasAereaPasajero.push(consotmprov);
                               ModalidadTodasconOrdenP = ModalidadTodasAereaPasajero;
                               ModalidadTodasconOrdenMinimaP = ModalidadTodasAereaPasajero;

@@ -269,7 +269,7 @@
                                             <th class="text-center"><h6  style="font-size:13px;"><b>Otros</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
-                                            <td>{{BodegajeAduanero.Email}}</td>
+                                            <td>{{BodegajeAduanero.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaotroPintada">{{BodegajeAduanero.Otros | number:2}} </span></td>
@@ -296,7 +296,7 @@
                                             <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
-                                            <td>{{BodegajeAduaneromaq.Email}}</td>
+                                            <td>{{BodegajeAduaneromaq.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtfmmPintada">{{BodegajeAduaneromaq.Fmm  | number:2}}</span></td>
@@ -323,7 +323,7 @@
                                             <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp ">
-                                            <td>{{BodegajeAduanermaqp.Email}}</td>
+                                            <td>{{BodegajeAduanermaqp.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpfmmPintada">{{BodegajeAduanermaqp.Fmm  | number:2}}</span></td>
@@ -369,7 +369,7 @@
                                   <th class="text-center"><h6 style="font-size:13px;"><b>Otros</b></h6></th>
                                 </tr>
                                 <tr ng-repeat="Consadu in ModalidadTodas">
-                                  <td>{{Consadu.Email}}</td>
+                                  <td>{{Consadu.RazonSocial}}</td>
                                   <td>{{Consadu.Via}}</td>
                                   <td class="text-center"><span ng-class="Consadu.AdutarifaPintada">{{Consadu["Tarifa % Advalorem/ FOB"]  | number:2}}</span></td>
                                   <td class="text-center"><span ng-class="Consadu.AduMinimaPintada">{{Consadu.Minima  | number:2}}</span></td>
@@ -427,7 +427,7 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Devolución 40$ expreso</b></h6> </th>
                               </tr>
                               <tr ng-repeat="Otm in ModalidadTodasOtm">
-                                <td>{{Otm.Email}}</td>
+                                <td>{{Otm.RazonSocial}}</td>
                                 <td>{{Otm.Origen}}</td>
                                 <td>{{Otm.Destino}}</td>
                                 <td class="text-center"><span ng-class="Otm.AduC2045Pintada">{{Otm["C 20 hasta 4-5 Ton"]  | number:2}}</span></td>
@@ -491,7 +491,7 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>C 40HC + Baf 40HC + Gastos Embarque</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaFcl in ModalidadTodas">
-                                <td>{{MaritimaFcl.Email}}</td>
+                                <td>{{MaritimaFcl.RazonSocial}}</td>
                                 <td>{{MaritimaFcl.PaisDestino}}</td>
                                 <td>{{MaritimaFcl.PuertoOrigen}}</td>
                                 <td>{{MaritimaFcl.PuertoDestino}}</td>
@@ -546,7 +546,7 @@
                                 <th class="text-center" style="width:200px;"><h6><b>Frecuencia(d&iacute;as)</b></h6></th>
                               </tr>
                               <tr ng-repeat="MaritimaLcl in ModalidadTodas">
-                                <td>{{MaritimaLcl.Email}}</td>
+                                <td>{{MaritimaLcl.RazonSocial}}</td>
                                 <td>{{MaritimaLcl.PaisDestino}}</td>
                                 <td>{{MaritimaLcl.PuertoOrigen}}</td>
                                 <td>{{MaritimaLcl.PuertoDestino}}</td>
@@ -599,7 +599,7 @@
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Especial</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo">
-                                              <td>{{TerreNacional.Email}}</td>
+                                              <td>{{TerreNacional.RazonSocial}}</td>
                                               <td>{{TerreNacional.PaisOrigen}}</td>
                                               <td>{{TerreNacional.PuertoDestino}}</td>
                                               <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]  | number:2}}</span></td>
@@ -629,7 +629,7 @@
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Especial</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacionalSencillo in ModalidadTodasTerreNacionalSencillo">
-                                              <td>{{TerreNacionalSencillo.Email}}</td>
+                                              <td>{{TerreNacionalSencillo.RazonSocial}}</td>
                                               <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
                                               <td>{{TerreNacionalSencillo.PuertoDestino}}</td>
                                               <td class="text-center"><span  ng-class="TerreNacionalSencillo.AduC2010Pintada">{{TerreNacionalSencillo["Sencillo Standar (150Cajas)"]  | number:2}}</span></td>
@@ -659,7 +659,7 @@
                                               <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                             </tr>
                                             <tr ng-repeat="TerreNacionalPatineta in ModalidadTodasTerreNacionalPatineta">
-                                              <td>{{TerreNacionalPatineta.Email}}</td>
+                                              <td>{{TerreNacionalPatineta.RazonSocial}}</td>
                                               <td>{{TerreNacionalPatineta.PaisOrigen}}</td>
                                               <td>{{TerreNacionalPatineta.PuertoDestino}}</td>
                                               <td class="text-center"><span ng-class="TerreNacionalPatineta.AduC2019Pintada">{{TerreNacionalPatineta.Minimula  | number:2}}</span></td>
@@ -712,7 +712,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbano in ModalidadTodasTerreUrbano">
-                                                  <td>{{TerreUrbano.Email}}</td>
+                                                  <td>{{TerreUrbano.RazonSocial}}</td>
                                                   <td>{{TerreUrbano.PaisOrigen}}</td>
                                                   <td>{{TerreUrbano.PuertoDestino}}</td>
                                                   <td class="text-center"><span ng-class="TerreUrbano.AduC2045Pintada">{{TerreUrbano["Turbo (150Cajas)"]  | number:2}}</span></td>
@@ -750,7 +750,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Gran Danes</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoViaje in ModalidadTodasTerreUrbanoViaje">
-                                                  <td>{{TerreUrbanoViaje.Email}}</td>
+                                                  <td>{{TerreUrbanoViaje.RazonSocial}}</td>
                                                   <td>{{TerreUrbanoViaje.PaisOrigen}}</td>
                                                   <td>{{TerreUrbanoViaje.PuertoDestino}}</td>
                                                   <td class="text-center"><span ng-class="TerreUrbanoViaje.AduC2021vPintada">{{TerreUrbanoViaje["Turbo (150Cajas)"]  | number:2}}</span></td>
@@ -785,7 +785,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Tractomula</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada">
-                                                  <td>{{TerreUrbanoTonelada.Email}}</td>
+                                                  <td>{{TerreUrbanoTonelada.RazonSocial}}</td>
                                                   <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
                                                   <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
                                                   <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo  | number:2}}</span></td>
@@ -843,7 +843,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time (días)</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
                                                       <th class="text-center" style="width:200px;"><h6 style="font-size:13px;"><b>Frecuencia(d&iacute;as)</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Ge</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Ge</b></h6></th>
@@ -851,7 +851,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Ge</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aerea in ModalidadTodasAerea">
-                                                      <td>{{Aerea.Email}}</td>
+                                                      <td>{{Aerea.RazonSocial}}</td>
                                                       <td>{{Aerea.Pais}}</td>
                                                       <td>{{Aerea.Aeropuerto}}</td>
                                                       <td class="text-center"><span ng-class="Aerea.AduC2045Pintada">{{Aerea.Minima  | number:2}}</span></td>
@@ -906,7 +906,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time (días)</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
                                                       <th class="text-center" style="width:200px;"><h6 style="font-size:13px;"><b>Frecuencia(d&iacute;as)</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Gastos Embarque</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Gastos Embarque</b></h6></th>
@@ -914,7 +914,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Gastos Embarque</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
-                                                      <td>{{Aereapasajero.Email}}</td>
+                                                      <td>{{Aereapasajero.RazonSocial}}</td>
                                                       <td>{{Aereapasajero.Pais}}</td>
                                                       <td>{{Aereapasajero.Aeropuerto}}</td>
                                                       <td class="text-center"><span ng-class="Aereapasajero.AduC2045PPintada">{{Aereapasajero.Minima | number:2}}</span></td>

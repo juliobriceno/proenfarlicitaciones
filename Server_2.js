@@ -1688,59 +1688,122 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 ////////////Consolidado de Datos/////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/GetConsolidadoDatos', function (req, res) {
-    console.log("aqui 0");
 
   if (req.body.Modalidad =='Terrestre Nacional')   { req.body.Modalidad = 'TerrestreNacional';  }
   if (req.body.Modalidad =='Terrestre Urbano')   { req.body.Modalidad = 'TerrestreUrbano';  }
   //if (mModalidad =='TerrestreUrbano')   { mModalidad = 'TerreUrbano';  }
 
-  // Para poder saber qué proveedores fueron marcados como seleccionados
-  MyMongo.Find('LicitacionProveedor', {} , function (result) {
-    var LicitacionProveedor = result;
-     console.log("aqui lici");
-     console.log(result);
-    MyMongo.Find('ModalidadesProveedor', {} , function (result) {
-      var Data = {};
-       console.log("moda");
-       console.log(result);
+  // Buscas todos los proveedores. Ésto es para poner el name en consolidados
+  MyMongo.Find('Usuarios', {} , function (result) {
+    var ProveedoreesTodos = result;
 
-      // Filtra sólo seleccionados
-      result = result.filter(function(el){
-        var ret = false;
-        LicitacionProveedor.forEach(function(element) {
-            console.log("filter");
-            //console.log(element.Modalidad);
-               // console.log(req.body.Modalidad);
-            if (req.body.ProveedorSeleccionado == true){
-                console.log("aqui 1");
-              if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true && element.Diligenciada == true){
-                console.log("aqui 2");
-                ret = true;
+    // Para poder saber qué proveedores fueron marcados como seleccionados
+    MyMongo.Find('LicitacionProveedor', {} , function (result) {
+      var LicitacionProveedor = result;
+      MyMongo.Find('ModalidadesProveedor', {} , function (result) {
+        var Data = {};
+
+        // Filtra sólo seleccionados
+        result = result.filter(function(el){
+          var ret = false;
+          LicitacionProveedor.forEach(function(element) {
+              //console.log(element.Modalidad);
+                 // console.log(req.body.Modalidad);
+              if (req.body.ProveedorSeleccionado == true){
+                if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true && element.Diligenciada == true){
+                  ret = true;
+                }
               }
-            }
-            else{
-                console.log("aqui 3");
-                console.log(el.Email);
-                console.log(element.Email);
-                console.log(element.Cerrado);
-                console.log(element.Modalidad);
-                console.log(req.body.Modalidad);
-                console.log(element.Diligenciada);
-              if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Diligenciada == true){
-                 ret = true;
-                 console.log("aqui 4");
+              else{
+                if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Diligenciada == true){
+                   ret = true;
+                }
               }
-            }
+          });
+          return ret;
         });
-        return ret;
-      });
-      var Data = {};
-      Data.ConsolidadoDatos = result;      
-      res.end(JSON.stringify(Data));
-      //console.log(Data.ConsolidadoDatos);
 
- });
+        var Data = {};
+        Data.ConsolidadoDatos = result;
+
+        // Recorre todos los proveedores que quedaron para cambiar el Email por razón RazonSocial
+        Data.ConsolidadoDatos.forEach(function(ProveedorModalidad){
+          var ProveedorData = ProveedoreesTodos.filter(function(ProveedorFiltrado){
+            return ProveedorFiltrado.User ==  ProveedorModalidad.Email;
+          })
+          ProveedorModalidad.RazonSocial = ProveedorData[0].RazonSocial;
+        });
+        // Fin Recorre todos los proveedores que quedaron para cambiar el Email por razón RazonSocial
+
+        // Recorre todas las modalidades proveedor de todos los proveedor 
+      Data.ConsolidadoDatos.forEach(function(ModalidadProveedor) {
+        // Recorre de la modalidad del proveedor que se está recorriendo todas aéreas
+        ModalidadProveedor.Aerea.Aereas.forEach(function(ProveedorAerea) {
+
+            if (ProveedorAerea["+100"]=='') {ProveedorAerea["+100"]=parseFloat(0);}
+            if (ProveedorAerea["Gastos Embarque"]=='') {ProveedorAerea["Gastos Embarque"]=parseFloat(0);}
+            if (ProveedorAerea["+300"]=='') {ProveedorAerea["+300"]=parseFloat(0);}
+            if (ProveedorAerea["+500"]=='') {ProveedorAerea["+500"]=parseFloat(0);}
+            if (ProveedorAerea["+1000"]=='') {ProveedorAerea["+1000"]=parseFloat(0);}
+            if (ProveedorAerea["Fs/kg"]=='') {ProveedorAerea["Fs/kg"]=parseFloat(0);}
+           
+          // Por cada aérea de cada proveedor recalcula el campo de suma 
+
+          console.log(ProveedorAerea["FS min"]);
+          ProveedorAerea["+100 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+100"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
+          ProveedorAerea["+300 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+300"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
+          ProveedorAerea["+500 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+500"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
+          ProveedorAerea["+1000 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+1000"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
+        });
+
+        /////////////////////////Aerea Pasajero //////////////////////////////////////////
+         ModalidadProveedor.AereaPasajero.AereasPasajeros.forEach(function(ProveedorAereaPasajero) {
+
+            if (ProveedorAereaPasajero["+100"]=='') {ProveedorAereaPasajero["+100"]=parseFloat(0);}
+            if (ProveedorAereaPasajero["Gastos Embarque"]=='') {ProveedorAereaPasajero["Gastos Embarque"]=parseFloat(0);}
+            if (ProveedorAereaPasajero["+300"]=='') {ProveedorAereaPasajero["+300"]=parseFloat(0);}
+            if (ProveedorAereaPasajero["+500"]=='') {ProveedorAereaPasajero["+500"]=parseFloat(0);}
+            if (ProveedorAereaPasajero["+1000"]=='') {ProveedorAereaPasajero["+1000"]=parseFloat(0);}
+            if (ProveedorAereaPasajero["Fs/kg"]=='') {ProveedorAereaPasajero["Fs/kg"]=parseFloat(0);}
+           
+          // Por cada aérea de cada proveedor recalcula el campo de suma 
+
+          console.log(ProveedorAereaPasajero["FS min"]);
+          ProveedorAereaPasajero["+100 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAereaPasajero["+100"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
+          ProveedorAereaPasajero["+300 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAereaPasajero["+300"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
+          ProveedorAereaPasajero["+500 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAereaPasajero["+500"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
+          ProveedorAereaPasajero["+1000 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAereaPasajero["+1000"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
+        });
+
+          /////////////////////////Maritimas Fcl //////////////////////////////////////////
+         ModalidadProveedor.MaritimaFcl.MaritimasFcl.forEach(function(ProveedorMaritimaFcl) {
+
+            if (ProveedorMaritimaFcl["C 20"]=='' || ProveedorMaritimaFcl["C 20"]=='undefined') {ProveedorMaritimaFcl["C 20"]=parseFloat(0);}
+            if (ProveedorMaritimaFcl["C 40"]=='') {ProveedorMaritimaFcl["C 40"]=parseFloat(0);}
+            if (ProveedorMaritimaFcl["Baf 20"]=='' ) {ProveedorMaritimaFcl["Baf 20"]=parseFloat(0);}
+            if (ProveedorMaritimaFcl["Baf 40"]=='') {ProveedorMaritimaFcl["Baf 40"]=parseFloat(0);}
+            if (ProveedorMaritimaFcl["C 40HC"]=='') {ProveedorMaritimaFcl["C 40HC"]=parseFloat(0);}
+            if (ProveedorMaritimaFcl["Baf 40HC"]=='') {ProveedorMaritimaFcl["Baf 40HC"]=parseFloat(0);}
+            if (ProveedorMaritimaFcl["Gastos Embarque"]=='') {ProveedorMaritimaFcl["Gastos Embarque"]=parseFloat(0);}
+
+            ProveedorMaritimaFcl["C 20 +Baf 20 + Gastos Embarque"]= parseFloat(ProveedorMaritimaFcl["C 20"]) + parseFloat(ProveedorMaritimaFcl["Baf 20"]) + parseFloat(ProveedorMaritimaFcl["Gastos Embarque"]);
+            ProveedorMaritimaFcl["C 40 + Baf 40 + Gastos Embarque"]= parseFloat(ProveedorMaritimaFcl["C 40"]) + parseFloat(ProveedorMaritimaFcl["Baf 40"]) + parseFloat(ProveedorMaritimaFcl["Gastos Embarque"]);
+            ProveedorMaritimaFcl["C 40HC + Baf 40HC + Gastos Embarque"]= parseFloat(ProveedorMaritimaFcl["C 40HC"]) + parseFloat(ProveedorMaritimaFcl["Baf 40HC"]) + parseFloat(ProveedorMaritimaFcl["Gastos Embarque"]);
+        });
+
+
+      });
+      // Fin Recorre todas las modalidades proveedor de todos los proveedor
+
+        res.end(JSON.stringify(Data));
+        //console.log(Data.ConsolidadoDatos);
+
+   });
+    });
+
+
   });
+  // Fin Buscas todos los proveedores. Ésto es para poner el name en consolidados
 
 });
 
@@ -3943,56 +4006,71 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                  });
     });
 
-    ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
+ ///////////////////////////////Boton Finalizar Modalidad//////////////////////////////////////////////
      app.post('/GetFinalizarModalidadesTodas', function (req, res) {
-         log.info('Finalizar Modalidad');
-         log.info('Finalizar Modalidad  de :' + req.body.Email);
 
 
-      jwtClient.authorize(function (err, tokens) {
+       MyMongo.Find('contactomodalidad', { Proveedor: req.body.Email }, function (result) {
+         var Data = {};
+         if (result.length == 0){
+           Data.Result = 'nocontacts';
+           res.end(JSON.stringify(Data));
+           return 0;
+         }
 
-        // Busca o crea la carpeta para éste proveedor
-        MyDrive.createFolder(jwtClient, req.session.user.Nit + '_' + req.session.user.RazonSocial, '1q9EtO-3di6s8LhxIl8ybpfp6_e5w7tKI', function (err, files) {
-            MyDrive.createFolder(jwtClient, 'Documentos', files, function (err, files) {
-              // En la carpeta del proveedor debe haber a menos un file cargado
+         else {
 
-                  drive.files.list({
-                    auth: jwtClient,
-                    q:"'" + files + "' in parents",
-                    pageSize: 10,
-                    fields: "nextPageToken, files(id, name)"
-                  }, function(err, response) {
-                    if (err) {
-                      console.log('The API returned an error: ' + err);
-                      return;
-                    }
-                    var files = response.files;
+           log.info('Finalizar Modalidad');
+           log.info('Finalizar Modalidad  de :' + req.body.Email);
 
-                    if (files.length == 0) {
 
-                      var Data = {};
-                      Data.Result = 'nofiles';
-                      res.end(JSON.stringify(Data))
+        jwtClient.authorize(function (err, tokens) {
 
-                    } else {
+          // Busca o crea la carpeta para éste proveedor
+          MyDrive.createFolder(jwtClient, req.session.user.Nit + '_' + req.session.user.RazonSocial, '1q9EtO-3di6s8LhxIl8ybpfp6_e5w7tKI', function (err, files) {
+              MyDrive.createFolder(jwtClient, 'Documentos', files, function (err, files) {
+                // En la carpeta del proveedor debe haber a menos un file cargado
 
-                      MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
-                      MyMongo.Insert('LicitacionProveedor', req.body.lockObject, function (result) {
+                    drive.files.list({
+                      auth: jwtClient,
+                      q:"'" + files + "' in parents",
+                      pageSize: 10,
+                      fields: "nextPageToken, files(id, name)"
+                    }, function(err, response) {
+                      if (err) {
+                        console.log('The API returned an error: ' + err);
+                        return;
+                      }
+                      var files = response.files;
+
+                      if (files.length == 0) {
+
                         var Data = {};
-                        Data.Result = 'ok';
+                        Data.Result = 'nofiles';
                         res.end(JSON.stringify(Data))
-                       });
-                       });
 
-                    }
-                  });
+                      } else {
 
-              // Fin de búsqueda archivos fijos en el servidor drive
+                        MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
+                        MyMongo.Insert('LicitacionProveedor', req.body.lockObject, function (result) {
+                          var Data = {};
+                          Data.Result = 'ok';
+                          res.end(JSON.stringify(Data))
+                         });
+                         });
 
-            });
+                      }
+                    });
+
+                // Fin de búsqueda archivos fijos en el servidor drive
+
+              });
+          });
+
         });
 
-      });
+         }
+       })
 
     });
 
