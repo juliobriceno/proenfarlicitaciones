@@ -197,22 +197,19 @@
                                         ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
                                       </div>
                                             </div>
-                                            <div class="row">
-                                            <div>
-                                              <div class="col-xs-4 col-sm-4 col-md-4 checkbox pull-right  ">
-                                                <div ng-show="Show80" class="col-xs-12 col-sm-12 col-md-9">
-                                                  <div style="margin-top:25px;">
-                                                    <input  type="checkbox" ng-click="FiltroProveedorSeleccionado();" ng-model="ProveedorSeleccionado">Proveedores Seleccionados
+                                            <div class=" pull-right">
+                                                <div ng-show="Show80" class="col-xs-12 col-sm-12 col-md-8">
+                                                  <div style="margin-top:25px;" class="checkbox checkbox-success" >
+                                                    <input  id="checkbox1" type="checkbox" ng-click="FiltroProveedorSeleccionado();" ng-model="ProveedorSeleccionado"><label for="checkbox1">Proveedores Seleccionados
+                                                  </label>
                                                   </div>
                                                 </div>
-                                                <div ng-show="Show80" class="col-xs-12 col-sm-12 col-md-3 col-md-push-0">
-                                                  <div style="margin-top:25px;" >
-                                                    <input  type="checkbox" ng-click="FiltroSemaforo();" ng-model="ModalidadesSemaforo">Semaforo
+                                                <div ng-show="Show80" class="col-xs-12 col-sm-12 col-md-1 ">
+                                                  <div style="margin-top:25px;" class="checkbox checkbox-success">
+                                                    <input id="checkbox2" type="checkbox" ng-click="FiltroSemaforo();" ng-model="ModalidadesSemaforo"><label for="checkbox2">Semaforo</label>
                                                   </div>
                                                 </div>
                                               </div>
-                                            </div>
-                                            </div>
 
 
 
