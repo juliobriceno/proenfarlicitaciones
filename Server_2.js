@@ -4339,11 +4339,26 @@ console.log(req.body.Modalidad);
 //////////////////////////////////////////////////// Modulo Seleccionar Proveedores //////////////////////////
 app.post('/GetSeleccionarProveedor', function (req, res) {
 
+    // Buscas todos los proveedores. Ésto es para poner el name en consolidados
+  MyMongo.Find('Usuarios', {} , function (result) {
+    var ProveedoreesTodosSeleccionado = result;
+
  MyMongo.Find('LicitacionProveedor', { $and: [{ Modalidad: req.body.Modalidad } ,{Bloqueado:true},{Cerrado:true}]}, function (result) {
            var Data = {};
-            Data.data= result;
-            res.end(JSON.stringify(Data));
+            Data.SeleccionarProveedor= result;
 
+        // Recorre todos los proveedores que quedaron para cambiar el Email por razón RazonSocial
+        Data.SeleccionarProveedor.forEach(function(ProveedorModalidadSeleccionado){
+          var ProveedorData = ProveedoreesTodosSeleccionado.filter(function(ProveedorFiltradoSeleccionado){
+           return ProveedorFiltradoSeleccionado.User ==  ProveedorModalidadSeleccionado.Email;
+          })
+          ProveedorModalidadSeleccionado.RazonSocial = ProveedorData[0].RazonSocial;
+        });
+        // Fin Recorre todos los proveedores que quedaron para cambiar el Email por razón RazonSocial
+
+
+            res.end(JSON.stringify(Data));
+});
      });
 
 });
@@ -4361,7 +4376,7 @@ app.post('/GetProveedorSeleccionado', function (req, res) {
          }
          else
          {
-             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad, Bloqueado:true},{Seleccionado:false}, function (result) {
+           MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad, Bloqueado:true},{Seleccionado:false}, function (result) {
             var Data = {};
              res.end(JSON.stringify(Data))
 

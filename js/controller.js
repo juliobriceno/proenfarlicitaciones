@@ -6079,7 +6079,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         data: Data
                        }).then(function successCallback(response) {
                           $loading.finish('myloading');
-                          $scope.LicitacionModaProveedores = response.data.data;
+                          $scope.LicitacionModaProveedores = response.data.SeleccionarProveedor;
                           $scope.LicitacionModaProveedores= _.orderBy($scope.LicitacionModaProveedores, [Licimodaprov => Licimodaprov.Email.toLowerCase()], ['asc']);
                           console.log($scope.LicitacionModaProveedores);
 
@@ -6331,20 +6331,23 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       var ModalidadTodasconOrdenBodegajeaduaneromin=[];
 
                       var ModalidadTodasBodegajeaduanerootro=[];
+                      var ModalidadDeUnProveedorVersion=[];
                       var ModalidadTodasconOrdenBodegajeaduanerootro=[];
                       console.log($scope.ConsolidadoDatos);
 
                        angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) {
 
                           ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
+                          ModalidadDeUnProveedorVersion = consbodegaje.Bodegajes.Version;
                           Unobjeto.TarifaValor = ModalidadDeUnProveedor.TarifaValor;
                           Unobjeto.TarifaMinima = ModalidadDeUnProveedor.TarifaMinima;
                           Unobjeto.Otros = ModalidadDeUnProveedor.Otros;
                           Unobjeto.Email = consbodegaje.Email;
                           Unobjeto.RazonSocial = consbodegaje.RazonSocial;
+                          Unobjeto.Version = ModalidadDeUnProveedorVersion.Version;
 
 
-                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,RazonSocial:Unobjeto.RazonSocial,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
+                          ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,RazonSocial:Unobjeto.RazonSocial,RazonSocial:Unobjeto.Version,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
 
 
@@ -6562,15 +6565,18 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           var ModalidadDeUnProveedormaqfmmt=[];
                          var ModalidadTodasBodegajeaduaneromaqfmmt=[];
                          var ModalidadTodasconOrdenBodegajeaduaneromaqfmmt=[];
+                         var ModalidadDeUnProveedorselemaqt=[];
                          var Unobjetomaqt ={};
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqt) {
                           ModalidadDeUnProveedormaqt = consbodegajemaqt.Bodegajes.Maquinaria;
+                          ModalidadDeUnProveedorselemaqt = consbodegajemaqt.Bodegajes.Version;
                           Unobjetomaqt.Tarifa=ModalidadDeUnProveedormaqt.Tarifa;
                           Unobjetomaqt.TarifaMinima=ModalidadDeUnProveedormaqt.TarifaMinima;
                           Unobjetomaqt.Fmm=ModalidadDeUnProveedormaqt.Fmm;
                           Unobjetomaqt.Email=consbodegajemaqt.Email;
                           Unobjetomaqt.RazonSocial=consbodegajemaqt.RazonSocial;
-                        ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,RazonSocial:Unobjetomaqt.RazonSocial,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
+                          Unobjetomaqt.Version=ModalidadDeUnProveedorselemaqt.Version;
+                        ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,RazonSocial:Unobjetomaqt.RazonSocial,Version:Unobjetomaqt.Version,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
 
 
                         ModalidadTodasconOrdenBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
@@ -6769,14 +6775,18 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var ModalidadTodasBodegajeaduaneromaqfmmp=[];
                          var ModalidadTodasconOrdenBodegajeaduaneromaqfmmp=[];
                          var Unobjetomaqp ={};
+                         var ModalidadDeUnProveedorselecmaqp=[];
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqp) {
                           ModalidadDeUnProveedormaqp = consbodegajemaqp.Bodegajes.MateriaPrima;
+                           ModalidadDeUnProveedorselecmaqp = consbodegajemaqp.Bodegajes.Version;
                           Unobjetomaqp.Tarifa=ModalidadDeUnProveedormaqp.Tarifa;
                           Unobjetomaqp.TarifaMinima=ModalidadDeUnProveedormaqp.TarifaMinima;
                           Unobjetomaqp.Fmm=ModalidadDeUnProveedormaqp.Fmm;
                           Unobjetomaqp.Email=consbodegajemaqp.Email;
                           Unobjetomaqp.RazonSocial=consbodegajemaqp.RazonSocial;
-                        ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,RazonSocial:Unobjetomaqp.RazonSocial,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
+                           Unobjetomaqp.Version=ModalidadDeUnProveedorselecmaqp.Version;
+
+                        ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,RazonSocial:Unobjetomaqp.RazonSocial,Version:Unobjetomaqp.Version,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
 
 
                         ModalidadTodasconOrdenBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
@@ -7038,8 +7048,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        angular.forEach($scope.ConsolidadoDatos, function(consaduana) {
                          ModalidadDeUnProveedorAD = consaduana.Aduana.Aduanas
                             angular.forEach(ModalidadDeUnProveedorAD, function(consaduanasprov) {
-                              consaduanasprov.Email = consaduana.Email,
-                              consaduanasprov.RazonSocial = consaduana.RazonSocial
+                              consaduanasprov.Email = consaduana.Email,                              
+                              consaduanasprov.RazonSocial = consaduana.RazonSocial,
+                              consaduanasprov.Version = consaduana.Aduana.Version,
                               ModalidadTodas.push(consaduanasprov);
                               ModalidadTodasconOrden = ModalidadTodas;
                               ModalidadTodasconOrdenMinima = ModalidadTodas;
@@ -8093,7 +8104,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorOTM = consotm.Otm.Otms
                             angular.forEach(ModalidadDeUnProveedorOTM, function(consotmprov) {
                               consotmprov.Email = consotm.Email,
-                              consotmprov.RazonSocial = consotm.RazonSocial
+                              consotmprov.RazonSocial = consotm.RazonSocial,
+                              consotmprov.Version = consotm.Otm.Version
                               ModalidadTodasOtm.push(consotmprov);
                               console.log(ModalidadTodasOtm);
                               ModalidadTodasconOrden = ModalidadTodasOtm;
@@ -10109,7 +10121,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consmaritfclprov) {
                               consmaritfclprov.Email = consmaritfcl.RazonSocial,
-                              consmaritfclprov.RazonSocial = consmaritfcl.RazonSocial
+                              consmaritfclprov.RazonSocial = consmaritfcl.RazonSocial,
+                              consmaritfclprov.Version = consmaritfcl.MaritimaFcl.Version
                               ModalidadTodas.push(consmaritfclprov);
                              ModalidadTodasconOrden = ModalidadTodas;
                               ModalidadTodasconOrdenMinima = ModalidadTodas;
@@ -11267,7 +11280,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedor);
                             angular.forEach(ModalidadDeUnProveedor, function(consmaritlclprov) {
                               consmaritlclprov.Email = consmaritlcl.Email,
-                              consmaritlclprov.RazonSocial = consmaritlcl.RazonSocial
+                              consmaritlclprov.RazonSocial = consmaritlcl.RazonSocial,
+                              consmaritlclprov.Version = consmaritlcl.MaritimaLcl.Version
                               ModalidadTodas.push(consmaritlclprov);
                              ModalidadTodasconOrden = ModalidadTodas;
                               ModalidadTodasconOrdenMinima = ModalidadTodas;
@@ -12040,6 +12054,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             angular.forEach(ModalidadDeUnProveedorTN, function(consterrenacionalprov) {
                               consterrenacionalprov.Email = consterrenacional.Email,
                               consterrenacionalprov.RazonSocial = consterrenacional.RazonSocial
+                              consterrenacionalprov.Version = consterrenacional.TerreNacional.Version
                               ModalidadTodasT.push(consterrenacionalprov);
                               ModalidadTodasconOrdenT = ModalidadTodasT;
                               ModalidadTodasconOrdenMinimaT = ModalidadTodasT;
@@ -12281,7 +12296,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedorTNS);
                             angular.forEach(ModalidadDeUnProveedorTNS, function(consterrenacionalsencprov) {
                               consterrenacionalsencprov.Email = consterrenacionalsenc.Email,
-                              consterrenacionalsencprov.RazonSocial = consterrenacionalsenc.RazonSocial
+                              consterrenacionalsencprov.RazonSocial = consterrenacionalsenc.RazonSocial,
+                              consterrenacionalsencprov.Version = consterrenacionalsenc.TerreNacionalSencillo.Version
                               ModalidadTodasTerreNacionalSencillo.push(consterrenacionalsencprov);
                               ModalidadTodasconOrdenS = ModalidadTodasTerreNacionalSencillo;
                               ModalidadTodasconOrdenMinimaS =ModalidadTodasTerreNacionalSencillo;
@@ -12521,7 +12537,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedorTNP);
                             angular.forEach(ModalidadDeUnProveedorTNP, function(consterrenacionalpatprov) {
                               consterrenacionalpatprov.Email = consterrenacionalpat.Email,
-                              consterrenacionalpatprov.RazonSocial = consterrenacionalpat.RazonSocial
+                              consterrenacionalpatprov.RazonSocial = consterrenacionalpat.RazonSocial,
+                              consterrenacionalpatprov.Version = consterrenacionalpat.TerreNacionalPatineta.Version
                               ModalidadTodasPatineta.push(consterrenacionalpatprov);
                               ModalidadTodasconOrden = ModalidadTodasPatineta;
                               ModalidadTodasconOrdenMinima = ModalidadTodasPatineta;
@@ -12822,7 +12839,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedorTU);
                             angular.forEach(ModalidadDeUnProveedorTU, function(consterreurbanoprov) {
                               consterreurbanoprov.Email = consterreurbano.Email,
-                              consterreurbanoprov.RazonSocial = consterreurbano.RazonSocial
+                              consterreurbanoprov.RazonSocial = consterreurbano.RazonSocial,
+                              consterreurbanoprov.Version = consterreurbano.TerreUrbano.Version
                               ModalidadTodasUrbano.push(consterreurbanoprov);
                                ModalidadTodasconOrden = ModalidadTodasUrbano;
                               ModalidadTodasconOrdenMinima = ModalidadTodasUrbano;
@@ -13441,7 +13459,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedorTUV);
                             angular.forEach(ModalidadDeUnProveedorTUV, function(consterreurbanoviajprov) {
                               consterreurbanoviajprov.Email = consterreurbanoviaj.Email,
-                              consterreurbanoviajprov.RazonSocial = consterreurbanoviaj.RazonSocial
+                              consterreurbanoviajprov.RazonSocial = consterreurbanoviaj.RazonSocial,
+                              consterreurbanoviajprov.Version = consterreurbanoviaj.TerreUrbanoViaje.Version                            
+                              
                               ModalidadTodasTerreUrbanoViaje.push(consterreurbanoviajprov);
                               ModalidadTodasconOrdenv = ModalidadTodasTerreUrbanoViaje;
 
@@ -14061,7 +14081,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          console.log( ModalidadDeUnProveedorTUT);
                             angular.forEach(ModalidadDeUnProveedorTUT, function(consterreurbanotonprov) {
                               consterreurbanotonprov.Email = consterreurbanoton.Email,
-                              consterreurbanotonprov.RazonSocial = consterreurbanoton.RazonSocial
+                              consterreurbanotonprov.RazonSocial = consterreurbanoton.RazonSocial,
+                              consterreurbanotonprov.Version = consterreurbanoton.TerreUrbanoTonelada.Version 
                               ModalidadTodasTerreUrbanoTonelada.push(consterreurbanotonprov);
                              ModalidadTodasconOrden = ModalidadTodasTerreUrbanoTonelada;
                               ModalidadTodasconOrdenMinima = ModalidadTodasTerreUrbanoTonelada;
@@ -14455,7 +14476,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorAA = consotm.Aerea.Aereas
                             angular.forEach(ModalidadDeUnProveedorAA, function(consotmprov) {
                               consotmprov.Email = consotm.Email,
-                              consotmprov.RazonSocial = consotm.RazonSocial
+                              consotmprov.RazonSocial = consotm.RazonSocial,
+                              consotmprov.Version = consotm.Aerea.Version
                               ModalidadTodasAerea.push(consotmprov);
                               ModalidadTodasconOrdenAA =ModalidadTodasAerea;
                               ModalidadTodasconOrdenMinimaAA = ModalidadTodasAerea;
@@ -15843,7 +15865,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadDeUnProveedorAP = consotm.AereaPasajero.AereasPasajeros
                             angular.forEach(ModalidadDeUnProveedorAP, function(consotmprov) {
                               consotmprov.Email = consotm.Email,
-                              consotmprov.RazonSocial = consotm.RazonSocial
+                              consotmprov.RazonSocial = consotm.RazonSocial,
+                              consotmprov.Version = consotm.AereaPasajero.Version
                               ModalidadTodasAereaPasajero.push(consotmprov);
                               ModalidadTodasconOrdenP = ModalidadTodasAereaPasajero;
                               ModalidadTodasconOrdenMinimaP = ModalidadTodasAereaPasajero;
