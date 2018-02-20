@@ -150,41 +150,41 @@
                       </div>
                       <hr>
                       <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.RazonSocial.$invalid && bookmarkFormProv.RazonSocial.$dirty}">
                           <label class="control-label" for="name">Razón Social:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input ng-model="Proveedor.RazonSocial" id="Nombre" type="text" class="form-control" name="nombre" placeholder="Razón Social">
+                            <input ng-model="Proveedor.RazonSocial" id="Nombre" type="text" class="form-control" name="RazonSocial" placeholder="Razón Social" ng-required="true">
                           </div>
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.Nit.$invalid && bookmarkFormProv.Nit.$dirty}">
                           <label class="control-label" for="name">NIT:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-dot-circle-o" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.Nit" class="form-control" type="number" placeholder="NIT">
+                            <input ng-model="Proveedor.Nit" class="form-control" type="number" placeholder="NIT" ng-required="true">
                           </div>
                         </div>
 
                       </div>
                       <div class="col-md-4">
-                        <div class="form-group">
+                       <div class="form-group" ng-class="{'has-error':bookmarkFormProv.Name.$invalid && bookmarkFormProv.Name.$dirty}">
                           <label class="control-label" for="name">Nombre Contacto:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.Name" class="form-control" type="text" placeholder="Nombre contacto">
+                            <input ng-model="Proveedor.Name" class="form-control" type="text" placeholder="Nombre contacto" ng-required="true">
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <div class="form-group" >
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.Phone.$invalid && bookmarkFormProv.Name.$dirty}">
                           <label class="control-label" for="name">Núm Teléfono fijo:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.Phone" model-view-value="true" ui-mask="(999) 999-9999 (Ext- 9?9?9?9?9)" type="text" class="form-control" name="Phone" >
+                            <input ng-model="Proveedor.Phone" model-view-value="true" ui-mask="(999) 999-9999 (Ext- 9?9?9?9?9)" type="text" class="form-control" name="Phone" ng-required="true">
                           </div>
                         </div>
                       </div>
@@ -196,13 +196,13 @@
                             <input ng-model="Proveedor.NroCelular" ui-mask="(999) 999-9999" type="text" class="form-control" ng-required="true">
                           </div>
                         </div>
-                      </div>
+                      </div>                      
                       <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error':bookmarkFormProv.Email.$invalid && bookmarkFormProv.Email.$dirty}">
                           <label class="control-label" for="name">Correo eletrónico:</label>
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-                            <input ng-model="Proveedor.Email" class="form-control" type="text" placeholder="correo electrónico">
+                            <input ng-model="Proveedor.Email" class="form-control" type="text" placeholder="correo electrónico" ng-required="true">
                           </div>
                         </div>
                       </div>

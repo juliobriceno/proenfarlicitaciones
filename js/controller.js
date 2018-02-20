@@ -6136,7 +6136,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 $scope.ProveedorSeleccionado = function (Email){
                                var Data = {};
                                Data.Email = Email;
-                               Data.Modalidad = $scope.selectedModalidadSelecProveedor.Name;
+                   if ($scope.selectedModalidadSelecProveedor.Name=='Terrestre Nacional')
+                  {
+                    Data.Modalidad='TerrestreNacional';
+                  }
+                  else if ($scope.selectedModalidadSelecProveedor.Name=='Terrestre Urbano')
+                  {
+                    Data.Modalidad='TerrestreUrbano';
+                  }
+                  else
+                  {
+                   Data.Modalidad=$scope.selectedModalidadSelecProveedor.Name; 
+                 }
+                               //Data.Modalidad = $scope.selectedModalidadSelecProveedor.Name;
                                $loading.start('myloading');
                                 $http({
                                  method: 'POST',
