@@ -3230,10 +3230,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             $loading.finish('myloading');
                           }
 
-                          
 
 
-                          
 
                            $scope.FinalizarModalidad = function (Email){  
                              swal({
@@ -3346,14 +3344,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             if (response.data.Result == 'nofiles' || response.data.Result == 'nocontacts' ){
                               $loading.finish('myloading');
                               swal("Licitaciones Proenfar", "No es posible finalizar la licitación. Debe cargar archivos y contactos.");
-                              $scope.Estatusproveedortodas=false;
-                              $scope.EstatusproveedorModalidad=false;
+                              $scope.EstatusproveedorTodas=false;
                               return 0
                             }
                             else
                             {
-                              $scope.Estatusproveedortodas=true;
-                              $scope.Estatusproveedor();
+                              console.log('estatusproveedortrue');
+                              //$scope.Estatusproveedortodas=true;
+                              //$scope.Estatusproveedortodas = true; 
+                              //$scope.Estatusproveedortodas=true;
+                              $scope.Estatusproveedortodas();
                             }
 
 
@@ -3368,6 +3368,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      }
 
                          $scope.Estatusproveedor = function(){
+
                              var Data = {};
                             Data.Email = localStorage.UserConnected;
                             Data.Modalidad = $scope.ModalidadesMostrarActual;
@@ -3385,7 +3386,42 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   $scope.EstatusproveedorModalidad = false;
                               }
                               else{
-                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;                          
+                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;  
+                                $scope.EstatusproveedorModalidad = true;  
+                                //$scope.EstatusproveedorTodas = false;
+                                                       
+                              }
+                          }, function errorCallback(response) {
+                              console.log(response);
+                          });
+                        }
+
+                        $scope.Estatusproveedortodas = function(){
+                             var Data = {};
+                            Data.Email = localStorage.UserConnected;
+                            Data.Modalidad = $scope.ModalidadesMostrarActual;
+
+                            $loading.start('myloading');
+                             console.log('entro por aqui estatusproveedortodas')
+                             console.log($scope.EstatusproveedorTodas);
+                             $http({
+                              method: 'POST',
+                              url: '/GetEstatusproveedor',
+                              headers: { 'Content-Type': 'application/json' },
+                              data: Data
+                          }).then(function successCallback(response) {
+                              $loading.finish('myloading');
+                              if (typeof response.data.LicitacionProveedor == 'undefined'){
+                                  $scope.EstatusproveedorModalidad = false;
+                                  $scope.EstatusproveedoTodas = false;
+                              }
+                              else{
+                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;  
+                                $scope.EstatusproveedorModalidad = true; 
+                                $scope.EstatusproveedorTodas = true; 
+                                estatus=$scope.EstatusproveedorTodas;
+                                console.log(estatus);
+                                                       
                               }
                           }, function errorCallback(response) {
                               console.log(response);
@@ -3566,6 +3602,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             }).then(function successCallback(response) {
                             $loading.finish('myloading');
                             $scope.Estatusproveedor();
+                            $scope.Estatusproveedortodas();
                             $scope.Formulario = response.data.Formularios;
                            console.log($scope.Formulario.length);
                               if ($scope.Formulario.length == 0){
@@ -5562,6 +5599,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             if (localStorage.LoginUser != ''){
               $scope.GetUsuarioProveedor();
               $scope.GetUsuario();
+              $scope.GetContactosPorModalidades();
             }          
           }
 
@@ -5614,16 +5652,20 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          
 
         //////////////////////////////////Contacto Modalidad ///////////////////////////////////////
-            $scope.Gotocontactomodalidad = function (email) {
+           /* $scope.Gotocontactomodalidad = function (email) {
             localStorage.ContactoPorModalidadEmail = email;
+            console.log(email);
              $('#contactomodalidad').modal('show');
               if (localStorage.LoginUser != ''){
               $scope.GetContactosPorModalidades();
+              $scope.GetUsuario();
             }          
-          }
+          }*/
           $scope.GetContactosPorModalidades = function () {
             var Data = {};
-            Data.Proveedor = localStorage.LoginUser;
+            console.log($scope.user);
+            Data.Proveedor = localStorage.LoginUser; //localStorage.LoginUser;
+            console.log(Data.Proveedor);
             $http({
                 method: 'POST',
                 url: '/GetContactosPorModalidades',
@@ -5645,6 +5687,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             });
           }
           $scope.GetContactosPorModalidades();
+          $scope.GetUsuario();
           $scope.filtercontactos = function(){
             $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
             $scope.contactosmodalidadesfiltered = $scope.contactosmodalidadesfiltered.filter(function (el) {
@@ -5697,7 +5740,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
               });
           }    
 
-          $     
+             
 
          var editform= 0;
          $scope.Proveedordiligenciado={};

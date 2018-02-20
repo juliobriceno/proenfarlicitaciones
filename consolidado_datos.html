@@ -612,7 +612,7 @@
                                             </tr>
                                             <tr ng-repeat="TerreNacional in ModalidadTodasTerreNacionalTurbo">
                                               <td class="text-center"><small class="badge bg-morado" >{{TerreNacional.Version}}</small></td>
-                                              <td>1</td>
+                                              <td>{{TerreNacional.RazonSocial}}</td>
                                               <td>{{TerreNacional.PaisOrigen}}</td>
                                               <td>{{TerreNacional.PuertoDestino}}</td>
                                               <td class="text-center"><span ng-class="TerreNacional.AduC2045Pintada">{{TerreNacional["Turbo Standar (150Cajas)"]  | number:2}}</span></td>
@@ -807,8 +807,8 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Tractomula</b></h6></th>
                                                 </tr>
                                                 <tr ng-repeat="TerreUrbanoTonelada in ModalidadTodasTerreUrbanoTonelada">
-                                                  <td class="text-center"><small class="badge bg-morado" >{{TerreUrbanoViaje.Version}}</small></td>
-                                                  <td>{{TerreUrbanoViaje.RazonSocial}}</td>
+                                                  <td class="text-center"><small class="badge bg-morado" >{{TerreUrbanoTonelada.Version}}</small></td>
+                                                  <td>{{TerreUrbanoTonelada.RazonSocial}}</td>
                                                   <td>{{TerreUrbanoTonelada.PaisOrigen}}</td>
                                                   <td>{{TerreUrbanoTonelada.PuertoDestino}}</td>
                                                   <td class="text-center"><span ng-class="TerreUrbanoTonelada.AduC4020Pintada">{{TerreUrbanoTonelada.Turbo  | number:2}}</span></td>
