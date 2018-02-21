@@ -4607,12 +4607,12 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(2,5).number(valor).style(styleamarillo);
+                               ws2.cell(fila+1,5).number(valor).style(styleamarillo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(2,5).number(valor).style(styleamarillo);
+                              ws2.cell(fila+1,5).number(valor).style(styleamarillo);
                              }
                     }
                      else if (modalid['AduC8Pintada']=="label label-danger"){                     
@@ -6004,7 +6004,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Observaciones'){
                     ws2.cell(1, 11).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,12).string(valor).style(style);
+                    ws2.cell(2,11).string(valor).style(style);
                       //console.log(header);
                   }
                     if (header =='Lead time(dias)'){
@@ -7244,7 +7244,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+12,5).number(valor).style(style);
+                               ws2.cell(fila+1,5).number(valor).style(style);
                              }
                              else
                              {
@@ -13556,7 +13556,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2017Pintada']=="label label-warning") {           
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 7).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14141,7 +14141,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(2,2).number(valor).style(styleamarillo);
+                              ws3.cell(2,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2021vPintada']=="label label-danger") {                   
@@ -16853,18 +16853,18 @@ app.post('/GetSeleccionarProveedor', function (req, res) {
 
 app.post('/GetProveedorSeleccionado', function (req, res) {
 
- MyMongo.Find('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } , {Bloqueado:true} , {Seleccionado:true}] } , function (result) {
+ MyMongo.Find('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } , {Bloqueado:true} , {Seleccionado:true}, {Diligenciada:true}] } , function (result) {
          if (result.length == 0){
 
             // MyMongo.Insert('ProveedorSeleccionado', { Email: req.body.Email, Modalidad: req.body.Modalidad }, function (result) {
-             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad,Bloqueado:true},{Seleccionado:true}, function (result) {
+             MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad,Bloqueado:true, Diligenciada:true},{Seleccionado:true}, function (result) {
              var Data = {};
              res.end(JSON.stringify(Data))
              });
          }
          else
          {
-           MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad, Bloqueado:true},{Seleccionado:false}, function (result) {
+           MyMongo.UpdateCriteria('LicitacionProveedor', {Email: req.body.Email, Modalidad: req.body.Modalidad, Bloqueado:true, Diligenciada:true},{Seleccionado:false}, function (result) {
             var Data = {};
              res.end(JSON.stringify(Data))
 
