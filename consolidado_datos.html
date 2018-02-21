@@ -267,7 +267,7 @@
                                             <th class="text-center"><h6  style="font-size:13px;"><b>Otros</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanero in ModalidadTodasBodegajeaduanero">
-                                            <td class="text-center"><small class="badge bg-morado" >1</small></td>
+                                            <td class="text-center"><small class="badge bg-morado" >{{BodegajeAduanero.Version}}</small></td>
                                             <td>{{BodegajeAduanero.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaPintada">{{BodegajeAduanero.TarifaValor | number:2}} </span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanero.AdutarifaminPintada">{{BodegajeAduanero.TarifaMinima | number:2}}</span></td>
@@ -296,7 +296,7 @@
                                             <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduaneromaq in ModalidadTodasBodegajeaduaneromaqt">
-                                            <td class="text-center"><small class="badge bg-morado" >1</small></td>
+                                            <td class="text-center"><small class="badge bg-morado" >{{BodegajeAduaneromaq.Version}}</small></td>
                                             <td>{{BodegajeAduaneromaq.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtPintada">{{BodegajeAduaneromaq.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduaneromaq.AdumaqtminPintada">{{BodegajeAduaneromaq.TarifaMinima  | number:2}}</span></td>
@@ -325,7 +325,7 @@
                                             <th class="text-center"><h6 style="font-size:13px;"><b>FMM</b></h6></th>
                                           </tr>
                                           <tr ng-repeat="BodegajeAduanermaqp in ModalidadTodasBodegajeaduaneromaqp ">
-                                            <td class="text-center"><small class="badge bg-morado" >1</small></td>
+                                            <td class="text-center"><small class="badge bg-morado" >{{BodegajeAduanermaqp.Version}}</small></td>
                                             <td>{{BodegajeAduanermaqp.RazonSocial}}</td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpPintada">{{BodegajeAduanermaqp.Tarifa  | number:2}}</span></td>
                                             <td class="text-center"><span ng-class="BodegajeAduanermaqp.AdumaqpminPintada">{{BodegajeAduanermaqp.TarifaMinima  | number:2}}</span></td>

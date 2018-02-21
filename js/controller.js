@@ -6393,14 +6393,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        angular.forEach($scope.ConsolidadoDatos, function(consbodegaje) {
 
                           ModalidadDeUnProveedor = consbodegaje.Bodegajes.Aduanero;
-                          ModalidadDeUnProveedorVersion = consbodegaje.Bodegajes.Version;
                           Unobjeto.TarifaValor = ModalidadDeUnProveedor.TarifaValor;
                           Unobjeto.TarifaMinima = ModalidadDeUnProveedor.TarifaMinima;
                           Unobjeto.Otros = ModalidadDeUnProveedor.Otros;
                           Unobjeto.Email = consbodegaje.Email;
                           Unobjeto.RazonSocial = consbodegaje.RazonSocial;
-                          Unobjeto.Version = ModalidadDeUnProveedorVersion.Version;
-
+                          Unobjeto.Version = consbodegaje.Bodegajes.Version;
+                           console.log(UnObjeto.Version);
 
                           ModalidadTodasBodegajeaduanero.push({Email:Unobjeto.Email,RazonSocial:Unobjeto.RazonSocial,Version:Unobjeto.Version,TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
                           console.log( ModalidadTodasBodegajeaduanero);
@@ -6624,13 +6623,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var Unobjetomaqt ={};
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqt) {
                           ModalidadDeUnProveedormaqt = consbodegajemaqt.Bodegajes.Maquinaria;
-                          ModalidadDeUnProveedorselemaqt = consbodegajemaqt.Bodegajes.Version;
                           Unobjetomaqt.Tarifa=ModalidadDeUnProveedormaqt.Tarifa;
                           Unobjetomaqt.TarifaMinima=ModalidadDeUnProveedormaqt.TarifaMinima;
                           Unobjetomaqt.Fmm=ModalidadDeUnProveedormaqt.Fmm;
                           Unobjetomaqt.Email=consbodegajemaqt.Email;
                           Unobjetomaqt.RazonSocial=consbodegajemaqt.RazonSocial;
-                          Unobjetomaqt.Version=ModalidadDeUnProveedorselemaqt.Version;
+                          Unobjetomaqt.Version=consbodegajemaqt.Bodegajes.Version;
                         ModalidadTodasBodegajeaduaneromaqt.push({Email:Unobjetomaqt.Email,RazonSocial:Unobjetomaqt.RazonSocial,Version:Unobjetomaqt.Version,Tarifa:Unobjetomaqt.Tarifa, TarifaMinima:Unobjetomaqt.TarifaMinima, Fmm:Unobjetomaqt.Fmm});
 
 
@@ -6832,14 +6830,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var Unobjetomaqp ={};
                          var ModalidadDeUnProveedorselecmaqp=[];
                       angular.forEach($scope.ConsolidadoDatos, function(consbodegajemaqp) {
-                          ModalidadDeUnProveedormaqp = consbodegajemaqp.Bodegajes.MateriaPrima;
-                           ModalidadDeUnProveedorselecmaqp = consbodegajemaqp.Bodegajes.Version;
+                          ModalidadDeUnProveedormaqp = consbodegajemaqp.Bodegajes.MateriaPrima;                           
                           Unobjetomaqp.Tarifa=ModalidadDeUnProveedormaqp.Tarifa;
                           Unobjetomaqp.TarifaMinima=ModalidadDeUnProveedormaqp.TarifaMinima;
                           Unobjetomaqp.Fmm=ModalidadDeUnProveedormaqp.Fmm;
                           Unobjetomaqp.Email=consbodegajemaqp.Email;
                           Unobjetomaqp.RazonSocial=consbodegajemaqp.RazonSocial;
-                           Unobjetomaqp.Version=ModalidadDeUnProveedorselecmaqp.Version;
+                           Unobjetomaqp.Version=consbodegajemaqp.Bodegajes.Version;
 
                         ModalidadTodasBodegajeaduaneromaqp.push({Email:Unobjetomaqp.Email,RazonSocial:Unobjetomaqp.RazonSocial,Version:Unobjetomaqp.Version,Tarifa:Unobjetomaqp.Tarifa, TarifaMinima:Unobjetomaqp.TarifaMinima, Fmm:Unobjetomaqp.Fmm});
 
@@ -15974,27 +15971,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           {
                                if(( ModalidadTodasconOrdenP[i].Aeropuerto ==  ModalidadTodasconOrdenP[i-1].Aeropuerto) && ( ModalidadTodasconOrdenP[i].Pais ==  ModalidadTodasconOrdenP[i-1].Pais))
                               {
-                                console.log('via igual');
+                                
                            if (ModalidadTodasconOrdenP[i].Minima>0 ) {
                                 if(parseFloat(ModalidadTodasconOrdenP[i].Minima) == parseFloat(ModalidadTodasconOrdenP[i-1].Minima))
                                 {
-                                  contP = contP  ;
-                                  console.log('CPC mpo igual');
-                                  console.log(contP  );
+                                  contP = contP  ;                                 
                                   contPnull=0;
                                 }
                                 else
                                 {
                                   contP =contP  + 1;
-                                  console.log('CPC mpo diferente');
-                             console.log(contP);
+                                 
                              contPnull=0;
                                 }
                               }
                               else
                               {
                                 contPnull=1;
-                                 console.log(contP);
+                                 
                               }
 
                               }
@@ -16002,9 +15996,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               {
                                 if (ModalidadTodasconOrdenP[i].Minima>0 ) {
                                   contP  =1;
-                                   console.log('via diferente');
+                                   
                                    contPnull=0;
-                                  console.log(contP);
+                                  
                                 }
                                 else
                                 {
@@ -16018,7 +16012,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         if (contP ==1)
                         {
                               ModalidadTodasconOrdenP[i].AduC2045PPintada = ["label label-success"];
-                               console.log('verde');
+                               
                         }
                         if (contP ==2)
                         {

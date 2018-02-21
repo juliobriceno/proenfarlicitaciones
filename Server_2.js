@@ -5595,6 +5595,1007 @@ app.post('/ExportarExcelModalidad', function (req, res) {
               col=1;
             });
                 }
+//////////////////////////////////////////MritimasLcl
+
+ if (NombreModalidad == 'MaritimasLcl')
+                {
+                 var fila = 1;
+          var filabody = 1;
+          var col = 1;
+                console.log('no debe pasar por aqui aerea hoja 1');
+             Modalidad.forEach(function(modalid) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(modalid);
+              // Recorre cada encabezado
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id'  && header !='Aeropuerto' && header !='Email')
+                {
+                  if (header =='RazonSocial'){
+                    ws2.cell(1, 1).string('Proveedor').style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,1).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='PaisDestino'){
+                    ws2.cell(1, 2).string('PaisDestino').style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,2).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='PuertoOrigen'){
+                    ws2.cell(1, 3).string('PuertoOrigen').style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,3).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='PuertoDestino'){
+                    ws2.cell(1, 4).string('PuertoDestino').style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,4).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='Minima')
+                    {  
+                if (modalid['AduC2045Pintada']=="label label-success")
+                {
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(styleverde);
+                             }
+                    }
+                     else if (modalid['AduC2045Pintada']=="label label-warning")
+                {
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(styleamarillo);
+                             }
+                    }
+                     else if (modalid['AduC2045Pintada']=="label label-danger")
+                {
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  if (header =='1-5 ton/M3')
+                    { 
+                 if (modalid['AduC8Pintada']=="label label-success"){                     
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC8Pintada']=="label label-warning") {                    
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC8Pintada']=="label label-danger"){                     
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                     
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  if (header =='5-8 ton/M3')
+                    { 
+                  if (modalid['AduC2010Pintada']=="label label-success"){                      
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2010Pintada']=="label label-warning"){                      
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC2010Pintada']=="label label-danger"){                      
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                      
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(style);
+                             }
+                    }
+                   
+                  }
+                  if (header =='8-12 ton/M3')
+                    { 
+                if (modalid['AduC2017Pintada']=="label label-success"){                       
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(styleverde);
+                             }
+                    }
+                     else if (modalid['AduC2017Pintada']=="label label-warning"){                       
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(styleamarillo);
+                             }
+                    }
+                     else if (modalid['AduC2017Pintada']=="label label-danger"){                       
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(stylerojo);
+                             }
+                    }
+                    else{                       
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                   if (header =='12-18 ton/M3')
+                    {  
+                  if (modalid['AduC2019Pintada']=="label label-success"){                           
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2019Pintada']=="label label-warning"){                           
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC2019Pintada']=="label label-danger"){                           
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                           
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(style);
+                             }
+                    }
+                  }
+                   if (header =='Gastos Embarque')
+                    { 
+                 if (modalid['AduC2020Pintada']=="label label-success"){                     
+                    ws2.cell(1, 10).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2020Pintada']=="label label-warning"){                     
+                    ws2.cell(1, 10).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC2020Pintada']=="label label-danger"){                     
+                    ws2.cell(1, 10).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                     
+                    ws2.cell(1, 10).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(style);
+                             }
+                    }
+                  }
+                   
+                    if (header =='Observaciones'){
+                    ws2.cell(1, 11).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,12).string(valor).style(style);
+                      //console.log(header);
+                  }
+                    if (header =='Lead time(dias)'){
+                    ws2.cell(1, 12).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,12).string(valor).style(style);
+                      //console.log(header);
+                  }
+                   if (header =='Naviera'){
+                    ws2.cell(1, 13).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,13).string(valor).style(style);
+                      //console.log(header);
+                  }
+                  else if (header =='Frecuencia Dia Lunes')
+                    {
+                    ws2.cell(1, 14).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,14).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,14).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Martes')
+                    {
+                    ws2.cell(1, 15).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,15).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,15).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Miercoles')
+                    {
+                    ws2.cell(1, 16).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,16).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,16).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Jueves')
+                    {
+                    ws2.cell(1, 17).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,17).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,17).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Viernes')
+                    {
+                    ws2.cell(1, 18).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,18).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,18).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Sabado')
+                    {
+                    ws2.cell(1, 19).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,19).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,19).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Domingo')
+                    {
+                    ws2.cell(1, 20).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,20).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,20).string('X').style(style);
+                             }
+                  }
+                  if (header =='Version'){
+                    ws2.cell(1, 21).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,21).string(valor).style(style);                      //console.log(header);
+                  }
+                    
+                  }
+                });
+              }
+              // Recorre cada registro
+             else {
+                 Encabezados.forEach(function(header) {
+                if (header !='_id' &&  header !='Aeropuerto' && header !='Email')
+                {
+                //console.log(modalid[header]);
+                     if (header =='RazonSocial'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila + 1,1).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='PaisDestino'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,2).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='PuertoOrigen'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,3).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='PuertoDestino'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,4).string(valor).style(style);
+                      //console.log(header);
+                  }
+
+                  if (header =='Minima')
+                    {  
+                if (modalid['AduC2045Pintada']=="label label-success")
+                {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(styleverde);
+                             }
+                    }
+                     else if (modalid['AduC2045Pintada']=="label label-warning")
+                {
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(styleamarillo);
+                             }
+                    }
+                     else if (modalid['AduC2045Pintada']=="label label-danger")
+                {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  if (header =='1-5 ton/M3')
+                    { 
+                 if (modalid['AduC8Pintada']=="label label-success"){                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC8Pintada']=="label label-warning") {                    
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC8Pintada']=="label label-danger"){                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  if (header =='5-8 ton/M3')
+                    { 
+                  if (modalid['AduC2010Pintada']=="label label-success"){                      
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2010Pintada']=="label label-warning"){                      
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC2010Pintada']=="label label-danger"){                      
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                      
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(style);
+                             }
+                    }
+                   
+                  }
+                  if (header =='8-12 ton/M3')
+                    { 
+                if (modalid['AduC2017Pintada']=="label label-success"){                       
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(styleverde);
+                             }
+                    }
+                     else if (modalid['AduC2017Pintada']=="label label-warning"){                       
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(styleamarillo);
+                             }
+                    }
+                     else if (modalid['AduC2017Pintada']=="label label-danger"){                       
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(stylerojo);
+                             }
+                    }
+                    else{                       
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                   if (header =='12-18 ton/M3')
+                    {  
+                  if (modalid['AduC2019Pintada']=="label label-success"){                           
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2019Pintada']=="label label-warning"){                           
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC2019Pintada']=="label label-danger"){                           
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                           
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(style);
+                             }
+                    }
+                  }
+                   if (header =='Gastos Embarque')
+                    { 
+                 if (modalid['AduC2020Pintada']=="label label-success"){                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2020Pintada']=="label label-warning"){                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else if (modalid['AduC2020Pintada']=="label label-danger"){                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {                     
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(style);
+                             }
+                    }
+                  }
+                    if (header =='Observaciones'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,11).string(valor).style(style);
+                      //console.log(header);
+                  }
+                    if (header =='Lead time(dias)'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,12).string(valor).style(style);
+                      //console.log(header);
+                  }
+                   if (header =='Naviera'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,13).string(valor).style(style);
+                      //console.log(header);
+                  }
+                  else if (header =='Frecuencia Dia Lunes')
+                    {
+                    ws2.cell(1, 14).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,14).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,14).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Martes')
+                    {
+                    ws2.cell(1, 15).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,15).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,15).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Miercoles')
+                    {
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,16).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,16).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Jueves')
+                    {
+                    ws2.cell(1, 17).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,17).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,17).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Viernes')
+                    {
+                    ws2.cell(1, 18).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,18).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,18).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Sabado')
+                    {
+                    ws2.cell(1, 19).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,19).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,19).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Domingo')
+                    {
+                    ws2.cell(1, 20).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,20).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,20).string('X').style(style);
+                             }
+                  }
+                  if (header =='Version'){                  
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,21).string(valor).style(style);
+                      //console.log(header);
+                  }
+                   //
+                
+}
+               });
+                  }
+
+              // Aumenta la fila
+              fila++
+              col=1;
+            });
+                }
 ////////////////////////////////////////////////////////////Aduana ////////////////////
             if (NombreModalidad == 'Aduanas')
                 {
@@ -6484,9 +7485,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }                  
                    
                   if (header =='Version'){
-                    ws2.cell(1, 13).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,13).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila+1,13).string(valor).style(style);                      //console.log(header);
                   }
                 }
 
@@ -7708,7 +8708,3673 @@ app.post('/ExportarExcelModalidad', function (req, res) {
             });
                 } 
 
-                 ////////////////////////////////////////////////////Terrestre Nacional//////////////////////
+                 ////////////////////////////////////////////////////Aereas//////////////////////
+
+                  if (NombreModalidad == 'Aereas')
+                {
+                var fila = 1;
+          var filabody = 1;
+          var col = 1;
+          var stylecolor=style;
+                console.log('no debe pasar por aqui aerea hoja 1');
+             Modalidad.forEach(function(modalid) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(modalid);
+              // Recorre cada encabezado
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
+                    header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    //header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    //header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
+                    header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Email' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                {
+
+ if (header =='RazonSocial'){
+                    ws2.cell(1, 1).string('Proveedor').style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,1).string(valor).style(style);
+                      console.log('RazonSocial');
+                  }
+
+                  else if (header =='Pais'){
+                    ws2.cell(1, 2).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,2).string(valor).style(style);
+                      console.log('pais');
+                  }
+
+                  else if (header =='Aeropuerto'){
+                    ws2.cell(1, 3).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,3).string(valor).style(style);
+                      console.log('Aeropuerto');
+                  }
+
+                 else if (header =='Minima')
+                    {
+                if (modalid['AduC2045Pintada']=="label label-success"){
+                        
+                    ws2.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,4).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,4).number(valor).style(styleverde);
+                             }
+
+                    }
+                    else if (modalid['AduC2045Pintada']=="label label-warning"){
+                        
+                    ws2.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,4).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,4).number(valor).style(styleamarillo);
+                             }
+
+                    }
+                    else if (modalid['AduC2045Pintada']=="label label-danger"){
+                        
+                    ws2.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,4).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,4).number(valor).style(stylerojo);
+                             }
+
+                    }
+                    else{
+                        
+                    ws2.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,4).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,4).number(valor).style(style);
+                             }
+
+                    }
+                  }
+
+                  else if (header =='45')
+                    {
+                  if (modalid['AduC8Pintada']=="label label-success"){
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC8Pintada']=="label label-warning"){
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else if (modalid['AduC8Pintada']=="label label-danger"){
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(stylerojo);
+                             }
+                     }
+                     else{
+                    ws2.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,5).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,5).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                  else if (header =='+100')
+                    {
+                 if (modalid['AduC2010Pintada']=="label label-success"){
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(styleverde);
+                             }
+                       }
+                       else if (modalid['AduC2010Pintada']=="label label-warning"){
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(styleamarillo);
+                             }
+                       }
+                       else  if (modalid['AduC2010Pintada']=="label label-danger"){
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(stylerojo);
+                             }
+                       }
+                       else{
+                    ws2.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,6).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,6).number(valor).style(style);
+                             }
+                       }
+                  }
+ else if (header =='+300')
+                    {
+               if (modalid['AduC2017Pintada']=="label label-success"){
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC2017Pintada']=="label label-warning"){
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(styleamarillo);
+                             }
+                     }
+                      else if (modalid['AduC2017Pintada']=="label label-danger"){
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                    ws2.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,7).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,7).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                   else if (header =='+500')
+                    {
+                 if (modalid['AduC2019Pintada']=="label label-success"){
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2019Pintada']=="label label-warning"){
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC2019Pintada']=="label label-danger"){
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {
+                    ws2.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,8).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,8).number(valor).style(style);
+                             }
+                    }
+                  }
+
+
+                   else if (header =='+1000')
+                    {
+                if (modalid['AduC2020Pintada']=="label label-success"){
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(styleverde);
+                             }
+                      }
+                     else if (modalid['AduC2020Pintada']=="label label-warning"){
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(styleamarillo);
+                             }
+                      }
+                      else if (modalid['AduC2020Pintada']=="label label-danger"){
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(stylerojo);
+                             }
+                      }
+                      else{
+                    ws2.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,9).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,9).number(valor).style(style);
+                             }
+                      }
+                  }
+
+                   else if (header =='Fs/kg')
+                   {
+                 if (modalid['AduC2025Pintada']=="label label-success"){
+                    
+                         ws2.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(styleverde);
+                             }
+                     }
+                    else  if (modalid['AduC2025Pintada']=="label label-warning"){
+                    
+                         ws2.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else  if (modalid['AduC2025Pintada']=="label label-danger"){
+                    
+                         ws2.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                    
+                         ws2.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                  else if (header =='FS min')
+                    {
+                if (modalid['AduC2021Pintada']=="label label-success"){
+                    ws2.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,11).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,11).number(valor).style(styleverde);
+                             }
+                    }
+                   else   if (modalid['AduC2021Pintada']=="label label-warning"){
+                    ws2.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,11).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,11).number(valor).style(styleamarillo);
+                             }
+                    }
+                   else  if (modalid['AduC2021Pintada']=="label label-danger"){
+                    ws2.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,11).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,11).number(valor).style(stylerojo);
+                             }
+                    }
+                   else{
+                    ws2.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,11).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,11).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                   else if (header =='Gastos Embarque')
+                    {
+               if (modalid['AduC4015Pintada']=="label label-success"){
+                    ws2.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,12).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,12).number(valor).style(styleverde);
+                             }
+                    }
+                    else  if (modalid['AduC4015Pintada']=="label label-warning"){
+                    ws2.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,12).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,12).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC4015Pintada']=="label label-danger"){
+                    ws2.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,12).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,12).number(valor).style(stylerojo);
+                             }
+                    }
+                    else{
+                    ws2.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,12).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,12).number(valor).style(style);
+                             }
+                    }
+                  }
+                   else if (header =='Observaciones')
+                    {
+                    ws2.cell(1, 13).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws2.cell(2,13).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Lead Time (dias)')
+                    {
+                    ws2.cell(1, 14).string(header).style(style1);
+                     valor = modalid[header].toString();
+                    ws2.cell(2,14).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Naviera')
+                    {
+                    ws2.cell(1, 15).string(header).style(style1);
+                     valor = modalid[header].toString();
+                    ws2.cell(2,15).string(valor).style(style);                             
+                  }
+
+                   else if (header =='Frecuencia Dia Lunes')
+                    {
+                    ws2.cell(1, 16).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,16).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,16).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Martes')
+                    {
+                    ws2.cell(1, 17).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,17).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,17).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Miercoles')
+                    {
+                    ws2.cell(1, 18).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,18).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,18).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Jueves')
+                    {
+                    ws2.cell(1, 19).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,19).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,19).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Viernes')
+                    {
+                    ws2.cell(1, 20).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,20).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,20).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Sabado')
+                    {
+                    ws2.cell(1, 21).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,21).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,21).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Domingo')
+                    {
+                    ws2.cell(1, 22).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(2,22).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(2,22).string('X').style(style);
+                             }
+                  }
+
+                    else if (header =='+100 + Fs/kg + Gastos Embarque')
+                    {
+                if (modalid['AduC4017Pintada']=="label label-success"){
+                    ws2.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,23).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,23).number(valor).style(styleverde);
+                             }
+                        }
+                   else  if (modalid['AduC4017Pintada']=="label label-warning"){
+                    ws2.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,23).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,23).number(valor).style(styleamarillo);
+                             }
+                        }
+                     else    if (modalid['AduC4017Pintada']=="label label-danger"){
+                    ws2.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,23).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,23).number(valor).style(stylerojo);
+                             }
+                        }
+                       else {
+                    ws2.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,23).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,23).number(valor).style(style);
+                             }
+                        }
+                  }
+                   else if (header =='+300 + Fs/kg + Gastos Embarque')
+                    {
+               if (modalid['AduC401718Pintada']=="label label-success"){
+                    ws2.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,24).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,24).number(valor).style(styleverde);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718Pintada']=="label label-warning"){
+                    ws2.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,24).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,24).number(valor).style(styleamarillo);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718Pintada']=="label label-danger"){
+                    ws2.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,24).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,24).number(valor).style(stylerojo);
+                             }
+                    }
+                           
+              else{
+                    ws2.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,24).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,24).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+500 + Fs/kg + Gastos Embarque')
+                    {
+                 if (modalid['AduC4020Pintada']=="label label-success"){
+                    ws2.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,25).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,25).number(valor).style(styleverde);
+                             }
+                    }
+                        
+                else  if (modalid['AduC4020Pintada']=="label label-warning"){
+                    ws2.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,25).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,25).number(valor).style(styleamarillo);
+                             }
+                    }
+                        
+                 else if (modalid['AduC4020Pintada']=="label label-danger"){
+                    ws2.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,25).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,25).number(valor).style(stylerojo);
+                             }
+                    }
+                        
+                else {
+                    ws2.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,25).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,25).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+1000 + Fs/kg + Gastos Embarque')
+                    {
+                 if (modalid['AduC4021Pintada']=="label label-success"){
+                    ws2.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,26).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,26).number(valor).style(styleverde);
+                             }
+                        }
+                       else  if (modalid['AduC4021Pintada']=="label label-warning"){
+                    ws2.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,26).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,26).number(valor).style(styleamarillo);
+                             }
+                        }
+                        else if (modalid['AduC4021Pintada']=="label label-danger"){
+                    ws2.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,26).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,26).number(valor).style(stylerojo);
+                             }
+                        }
+                       else{
+                    ws2.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,26).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,26).number(valor).style(style);
+                             }
+                        }
+                  }
+                 
+
+                       else  (header =='Version')
+                    {
+                        ws2.cell(1, 27).string(header).style(style1);
+                         if (modalid[header] == null || modalid[header] == '')
+                      {
+                        ws2.cell(2,27).string('1').style(style); 
+                      }
+                      else
+                      {                         
+                      valor = modalid[header].toString();
+                    ws2.cell(2,27).string(valor).style(style);                             
+                  }
+              }
+                  
+                    
+                  }
+                });
+              }
+              // Recorre cada registro
+             else {
+                 Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
+                    header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    //header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    //header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
+                    header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Email' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                {
+                //console.log(modalid[header]);
+                     if (header =='RazonSocial'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,1).string(valor).style(style);
+                      console.log('RazonSocial');
+                  }
+
+                  else if (header =='Pais'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,2).string(valor).style(style);
+                      console.log('pais');
+                  }
+
+                  else if (header =='Aeropuerto'){
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,3).string(valor).style(style);
+                      console.log('Aeropuerto');
+                  }
+
+                 else if (header =='Minima')
+                    {
+                if (modalid['AduC2045Pintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,4).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,4).number(valor).style(styleverde);
+                             }
+
+                    }
+                    else if (modalid['AduC2045Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,4).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,4).number(valor).style(styleamarillo);
+                             }
+
+                    }
+                    else if (modalid['AduC2045Pintada']=="label label-danger"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,4).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,4).number(valor).style(stylerojo);
+                             }
+
+                    }
+                    else{
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,4).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,4).number(valor).style(style);
+                             }
+
+                    }
+                  }
+
+                  else if (header =='45')
+                    {
+                  if (modalid['AduC8Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC8Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else if (modalid['AduC8Pintada']=="label label-danger"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(stylerojo);
+                             }
+                     }
+                     else{if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,5).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,5).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                  else if (header =='+100')
+                    {
+                 if (modalid['AduC2010Pintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(styleverde);
+                             }
+                       }
+                       else if (modalid['AduC2010Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(styleamarillo);
+                             }
+                       }
+                       else  if (modalid['AduC2010Pintada']=="label label-danger"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(stylerojo);
+                             }
+                       }
+                       else{
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,6).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,6).number(valor).style(style);
+                             }
+                       }
+                  }
+                else if (header =='+300')
+                    {
+               if (modalid['AduC2017Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC2017Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(styleamarillo);
+                             }
+                     }
+                      else if (modalid['AduC2017Pintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,7).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,7).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                   else if (header =='+500')
+                    {
+                 if (modalid['AduC2019Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2019Pintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC2019Pintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,8).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,8).number(valor).style(style);
+                             }
+                    }
+                  }
+
+
+                   else if (header =='+1000')
+                    {
+                if (modalid['AduC2020Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(styleverde);
+                             }
+                      }
+                     else if (modalid['AduC2020Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(styleamarillo);
+                             }
+                      }
+                      else if (modalid['AduC2020Pintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(stylerojo);
+                             }
+                      }
+                      else{
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,9).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,9).number(valor).style(style);
+                             }
+                      }
+                  }
+  else if (header =='Fs/kg')
+{
+                 if (modalid['AduC2025Pintada']=="label label-success"){                    
+                       if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(styleverde);
+                             }
+                     }
+                    else  if (modalid['AduC2025Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else  if (modalid['AduC2025Pintada']=="label label-danger"){
+                    
+                       if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,10).number(valor).style(style);
+                             }
+                     }
+                  }
+
+
+                   else if (header =='FS min')
+                    {
+                if (modalid['AduC2021Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,11).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,11).number(valor).style(styleverde);
+                             }
+                    }
+                   else   if (modalid['AduC2021Pintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,11).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,11).number(valor).style(styleamarillo);
+                             }
+                    }
+                   else  if (modalid['AduC2021Pintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,11).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,11).number(valor).style(stylerojo);
+                             }
+                    }
+                   else{
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,11).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,11).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                   else if (header =='Gastos Embarque')
+                    {
+               if (modalid['AduC4015Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,12).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,12).number(valor).style(styleverde);
+                             }
+                    }
+                    else  if (modalid['AduC4015Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,12).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,12).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC4015Pintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,12).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,12).number(valor).style(stylerojo);
+                             }
+                    }
+                    else{
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,12).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,12).number(valor).style(style);
+                             }
+                    }
+                  }
+                   else if (header =='Observaciones')
+                    {
+                    valor = modalid[header].toString();
+                    ws2.cell(fila+1,13).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Lead Time (dias)')
+                    {
+                     valor = modalid[header].toString();
+                    ws2.cell(fila+1,14).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Naviera')
+                    {
+                     valor = modalid[header].toString();
+                    ws2.cell(fila+1,15).string(valor).style(style);                             
+                  }
+
+                   else if (header =='Frecuencia Dia Lunes')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,16).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,16).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Martes')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,17).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,17).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Miercoles')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,18).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,18).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Jueves')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,19).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,19).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Viernes')
+                    {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,20).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,20).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Sabado')
+                    {
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,21).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,21).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Domingo')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws2.cell(fila+1,22).string('').style(style);
+                             }
+                             else
+                             {
+                              ws2.cell(fila+1,22).string('X').style(style);
+                             }
+                  }
+
+                    else if (header =='+100 + Fs/kg + Gastos Embarque')
+                    {
+                if (modalid['AduC4017Pintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,23).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,23).number(valor).style(styleverde);
+                             }
+                        }
+                   else  if (modalid['AduC4017Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,23).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,23).number(valor).style(styleamarillo);
+                             }
+                        }
+                     else    if (modalid['AduC4017Pintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,23).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,23).number(valor).style(stylerojo);
+                             }
+                        }
+                       else {
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,23).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,23).number(valor).style(style);
+                             }
+                        }
+                  }
+                    else if (header =='+300 + Fs/kg + Gastos Embarque')
+                    {
+               if (modalid['AduC401718Pintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,24).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,24).number(valor).style(styleverde);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718Pintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,24).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,24).number(valor).style(styleamarillo);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718Pintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,24).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,24).number(valor).style(stylerojo);
+                             }
+                    }
+                           
+              else{
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,24).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,24).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+500 + Fs/kg + Gastos Embarque')
+                    {
+                 if (modalid['AduC4020Pintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,25).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,25).number(valor).style(styleverde);
+                             }
+                    }
+                        
+                else  if (modalid['AduC4020Pintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,25).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,25).number(valor).style(styleamarillo);
+                             }
+                    }
+                        
+                 else if (modalid['AduC4020Pintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,25).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,25).number(valor).style(stylerojo);
+                             }
+                    }
+                        
+                else {
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,25).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,25).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+1000 + Fs/kg + Gastos Embarque')
+                    {
+                 if (modalid['AduC4021Pintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,26).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,26).number(valor).style(styleverde);
+                             }
+                        }
+                       else  if (modalid['AduC4021Pintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,26).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,26).number(valor).style(styleamarillo);
+                             }
+                        }
+                        else if (modalid['AduC4021Pintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,26).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,26).number(valor).style(stylerojo);
+                             }
+                        }
+                       else{
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,26).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(fila+1,26).number(valor).style(style);
+                             }
+                        }
+                  }
+                 
+
+                       else  (header =='Version')
+                    {
+                        
+                         if (modalid[header] == null || modalid[header] == '')
+                      {
+                        ws2.cell(fila+1,27).string('1').style(style); 
+                      }
+                      else
+                      {                         
+                      valor = modalid[header].toString();
+                    ws2.cell(fila+1,27).string(valor).style(style);                             
+                  }
+              }                
+                    
+                   //
+                }
+
+               });
+                  }
+
+              // Aumenta la fila
+              fila++
+              col=1;
+            });
+////////////////////////////////segunda hoja///////////////
+
+             var fila = 1;
+          var filabody = 1;
+          var col = 1;
+          var stylecolor=style;
+                console.log('no debe pasar por aqui aerea hoja 1');
+             Modalidad2.forEach(function(modalid) {
+              // Si es primera fila se crea el encabezado
+              var Encabezados = Object.keys(modalid);
+              // Recorre cada encabezado
+              if (fila == 1){
+                Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
+                    header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    //header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    //header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
+                    header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Email' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                {
+
+                  if (header =='RazonSocial'){
+                    ws3.cell(1, 1).string('Proveedor').style(style1);
+                    valor = modalid[header].toString();
+                    ws3.cell(2,1).string(valor).style(style);
+                      console.log('RazonSocial');
+                  }
+
+                  else if (header =='Pais'){
+                    ws3.cell(1, 2).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws3.cell(2,2).string(valor).style(style);
+                      console.log('pais');
+                  }
+
+                  else if (header =='Aeropuerto'){
+                    ws3.cell(1, 3).string(header).style(style1);
+                    valor = modalid[header].toString()
+                    ws3.cell(2,3).string(valor).style(style);
+                      console.log('Aeropuerto');
+                  }
+
+                 else if (header =='Minima')
+                    {
+                if (modalid['AduC2045PPintada']=="label label-success"){
+                        
+                    ws3.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,4).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,4).number(valor).style(styleverde);
+                             }
+
+                    }
+                    else if (modalid['AduC2045PPintada']=="label label-warning"){
+                        
+                    ws3.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,4).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,4).number(valor).style(styleamarillo);
+                             }
+
+                    }
+                    else if (modalid['AduC2045PPintada']=="label label-danger"){
+                        
+                    ws3.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,4).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,4).number(valor).style(stylerojo);
+                             }
+
+                    }
+                    else{
+                        
+                    ws3.cell(1, 4).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,4).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,4).number(valor).style(style);
+                             }
+
+                    }
+                  }
+
+                else if (header =='45')
+                    {
+                  if (modalid['AduC8PPintada']=="label label-success"){
+                    ws3.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,5).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,5).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC8PPintada']=="label label-warning"){
+                    ws3.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,5).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,5).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else if (modalid['AduC8PPintada']=="label label-danger"){
+                    ws3.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,5).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,5).number(valor).style(stylerojo);
+                             }
+                     }
+                     else{
+                    ws3.cell(1, 5).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,5).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,5).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                  else if (header =='+100')
+                    {
+                 if (modalid['AduC2010PPintada']=="label label-success"){
+                    ws3.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,6).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,6).number(valor).style(styleverde);
+                             }
+                       }
+                       else if (modalid['AduC2010PPintada']=="label label-warning"){
+                    ws3.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,6).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,6).number(valor).style(styleamarillo);
+                             }
+                       }
+                       else  if (modalid['AduC2010PPintada']=="label label-danger"){
+                    ws3.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,6).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,6).number(valor).style(stylerojo);
+                             }
+                       }
+                       else{
+                    ws3.cell(1, 6).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,6).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,6).number(valor).style(style);
+                             }
+                       }
+                  }
+                 else if (header =='+300')
+                    {
+                 if (modalid['AduC2017PPintada']=="label label-success"){
+                    ws3.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,7).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,7).number(valor).style(styleverde);
+                             }
+                       }
+                       else if (modalid['AduC2017PPintada']=="label label-warning"){
+                    ws3.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,7).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,7).number(valor).style(styleamarillo);
+                             }
+                       }
+                       else  if (modalid['AduC2017PPintada']=="label label-danger"){
+                    ws3.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,7).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,7).number(valor).style(stylerojo);
+                             }
+                       }
+                       else{
+                    ws3.cell(1, 7).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,7).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,7).number(valor).style(style);
+                             }
+                       }
+                  }
+
+                   else if (header =='+500')
+                    {
+                 if (modalid['AduC2019PPintada ']=="label label-success"){
+                    ws3.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,8).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,8).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2019PPintada ']=="label label-warning"){
+                    ws3.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,8).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,8).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC2019PPintada ']=="label label-danger"){
+                    ws3.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,8).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,8).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {
+                    ws3.cell(1, 8).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,8).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,8).number(valor).style(style);
+                             }
+                    }
+                  }
+
+
+                   else if (header =='+1000')
+                    {
+                if (modalid['AduC2020PPintadaa']=="label label-success"){
+                    ws3.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,9).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,9).number(valor).style(styleverde);
+                             }
+                      }
+                     else if (modalid['AduC2020PPintada']=="label label-warning"){
+                    ws3.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,9).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,9).number(valor).style(styleamarillo);
+                             }
+                      }
+                      else if (modalid['AduC2020PPintada']=="label label-danger"){
+                    ws3.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,9).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,9).number(valor).style(stylerojo);
+                             }
+                      }
+                      else{
+                    ws3.cell(1, 9).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,9).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,9).number(valor).style(style);
+                             }
+                      }
+                  }
+
+                     else if (header =='Fs/kg')
+                     {
+                 if (modalid['AduC2025PPintada']=="label label-success"){
+                    
+                         ws3.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(styleverde);
+                             }
+                     }
+                    else  if (modalid['AduC2025PPintada']=="label label-warning"){
+                    
+                         ws3.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else  if (modalid['AduC2025PPintada']=="label label-danger"){
+                    
+                         ws3.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                    
+                         ws3.cell(1, 10).string(header).style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(style);
+                             }
+                     }
+                  }
+
+
+                   else if (header =='FS min')
+                    {
+                if (modalid['AduC2021PPintada']=="label label-success"){
+                    ws3.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,11).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,11).number(valor).style(styleverde);
+                             }
+                    }
+                   else   if (modalid['AduC2021PPintada']=="label label-warning"){
+                    ws3.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,11).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,11).number(valor).style(styleamarillo);
+                             }
+                    }
+                   else  if (modalid['AduC2021PPintada']=="label label-danger"){
+                    ws3.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,11).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,11).number(valor).style(stylerojo);
+                             }
+                    }
+                   else{
+                    ws3.cell(1, 11).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,11).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,11).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                   else if (header =='Gastos Embarque')
+                    {
+               if (modalid['AduC4015PPintada']=="label label-success"){
+                    ws3.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,12).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,12).number(valor).style(styleverde);
+                             }
+                    }
+                    else  if (modalid['AduC4015PPintada']=="label label-warning"){
+                    ws3.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,12).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,12).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC4015PPintada']=="label label-danger"){
+                    ws3.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,12).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,12).number(valor).style(stylerojo);
+                             }
+                    }
+                    else{
+                    ws3.cell(1, 12).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,12).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,12).number(valor).style(style);
+                             }
+                    }
+                  }
+                   else if (header =='Observaciones')
+                    {
+                    ws3.cell(1, 13).string(header).style(style1);
+                    valor = modalid[header].toString();
+                    ws3.cell(2,13).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Lead time (dias)')
+                    {
+                    ws3.cell(1, 14).string('Lead time (dias)').style(style1);
+                     valor = modalid[header].toString();
+                    ws3.cell(2,14).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Naviera')
+                    {
+                    ws3.cell(1, 15).string(header).style(style1);
+                     valor = modalid[header].toString();
+                    ws3.cell(2,15).string(valor).style(style);                             
+                  }
+
+                   else if (header =='Frecuencia Dia Lunes')
+                    {
+                    ws3.cell(1, 16).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,16).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,16).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Martes')
+                    {
+                    ws3.cell(1, 17).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,17).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,17).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Miercoles')
+                    {
+                    ws3.cell(1, 18).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,18).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,18).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Jueves')
+                    {
+                    ws3.cell(1, 19).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,19).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,19).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Viernes')
+                    {
+                    ws3.cell(1, 20).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,20).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,20).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Sabado')
+                    {
+                    ws3.cell(1, 21).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,21).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,21).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Domingo')
+                    {
+                    ws3.cell(1, 22).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(2,22).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(2,22).string('X').style(style);
+                             }
+                  }
+
+                    else if (header =='+100 + Fs/kg')
+                    {
+                if (modalid['AduC4017PPintada']=="label label-success"){
+                    ws3.cell(1, 23).string('+100 + Fs/kg + Gastos Embarque').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,23).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,23).number(valor).style(styleverde);
+                             }
+                        }
+                   else  if (modalid['AduC4017PPintada']=="label label-warning"){
+                    ws3.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,23).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,23).number(valor).style(styleamarillo);
+                             }
+                        }
+                     else    if (modalid['AduC4017PPintada']=="label label-danger"){
+                    ws3.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,23).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,23).number(valor).style(stylerojo);
+                             }
+                        }
+                       else {
+                    ws3.cell(1, 23).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,23).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,23).number(valor).style(style);
+                             }
+                        }
+                  }
+
+                      else if (header =='+300 + Fs/kg')
+                    {
+               if (modalid['AduC401718PPintada']=="label label-success"){
+                    ws3.cell(1, 24).string('+300 + Fs/kg + Gastos Embarque').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,24).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,24).number(valor).style(styleverde);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718PPintada']=="label label-warning"){
+                    ws3.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,24).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,24).number(valor).style(styleamarillo);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718PPintada']=="label label-danger"){
+                    ws3.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,24).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,24).number(valor).style(stylerojo);
+                             }
+                    }
+                           
+              else{
+                    ws3.cell(1, 24).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,24).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,24).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+500 + Fs/kg')
+                    {
+                 if (modalid['AduC4020PPintada']=="label label-success"){
+                    ws3.cell(1, 25).string('+500 + Fs/kg + Gastos Embarque').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,25).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,25).number(valor).style(styleverde);
+                             }
+                    }
+                        
+                else  if (modalid['AduC4020PPintada']=="label label-warning"){
+                    ws3.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,25).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,25).number(valor).style(styleamarillo);
+                             }
+                    }
+                        
+                 else if (modalid['AduC4020PPintada']=="label label-danger"){
+                    ws3.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,25).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,25).number(valor).style(stylerojo);
+                             }
+                    }
+                        
+                else {
+                    ws3.cell(1, 25).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,25).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,25).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+1000 + Fs/kg')
+                    {
+                 if (modalid['AduC4021PPintada']=="label label-success"){
+                    ws3.cell(1, 26).string('+1000 + Fs/kg + Gastos Embarque').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,26).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,26).number(valor).style(styleverde);
+                             }
+                        }
+                       else  if (modalid['AduC4021PPintada']=="label label-warning"){
+                    ws3.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,26).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,26).number(valor).style(styleamarillo);
+                             }
+                        }
+                        else if (modalid['AduC4021PPintada']=="label label-danger"){
+                    ws3.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,26).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,26).number(valor).style(stylerojo);
+                             }
+                        }
+                       else{
+                    ws3.cell(1, 26).string(header).style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,26).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,26).number(valor).style(style);
+                             }
+                        }
+                  }
+                 
+
+                       else  (header =='Version')
+                    {
+                        ws3.cell(1, 27).string(header).style(style1);
+                         if (modalid[header] == null || modalid[header] == '')
+                      {
+                        ws3.cell(2,27).string('1').style(style); 
+                      }
+                      else
+                      {                         
+                      valor = modalid[header].toString();
+                    ws3.cell(2,27).string(valor).style(style);                             
+                  }
+              }
+                  
+                    
+                  }
+                });
+              }
+              // Recorre cada registro
+             else {
+                 Encabezados.forEach(function(header) {
+                 if (header !='_id' && header !='AdutarifaPintada' && header !='AdutarifaminPintada' && header !='AdutarifaotroPintada' && header !='AduC2045Pintada' && header !='AduC8Pintada' && header !='AduC2010Pintada' && header !='AduC2017Pintada' && header !='AduC2019Pintada' && header !='AduC2020Pintada' &&
+                    header !='AduC2021Pintada' && header !='AduC2025Pintada' && header !='AduC4015Pintada' && header !='AduC4016Pintada' && header !='AduC4017Pintada' && header !='AduC401718Pintada' && header !='AduC4020Pintada' &&
+                    header !='AduC4021Pintada' && header !='AduC4022Pintada' && header !='AduC4030Pintada' && header !='AduC20ESTPintada' && header !='AduC40ESTPintada' && header !='AduC20ESPPintada' && header !='AduC40ESPPintada' &&
+                    header !='AdutarifaPintada' &&  header !='AduMinimaPintada' &&  header !='AduGAPintada' &&  header !='AduCAPintada' &&  header !='AduGAIIPintada' &&  header !='AduCAIIPintada' &&  header !='AduGAIIIPintada' &&
+                    header !='AduCAIIIPintada' &&  header !='AduCPCPintada' &&  header !='AduotroPintada' && header !='Frecuencia Mensual' && header !='Frecuencia Semanal' && header !='Frecuencia Quincenal' &&
+                    //header !='Frecuencia Dia Lunes' && header !='Frecuencia Dia Martes' && header !='Frecuencia Dia Miercoles' && header !='Frecuencia Dia Jueves' && header !='Frecuencia Dia Viernes' &&
+                    //header !='Frecuencia Dia Sabado' && header !='Frecuencia Dia Domingo' && header !='Lead Time (dias)' && header !='Lead time(dias)' && header !='Observaciones' && header !='Frecuencia' && header !='AdumaqtPintada' &&
+                    header !='AdumaqtminPintada' && header !='AdumaqtfmmPintada' && header !='AduC2021vPintada' && header !='AduC2025vPintada' && header !='AduC4015vPintada' && header !='AduC4016vPintada' && header !='AduC4017vPintada' && header !='AduC401718vPintada' &&
+                    header !='AduC2045PPintada' && header !='AduC8PPintada' && header !='AduC2010PPintada' && header !='AduC2017PPintada' && header !='AduC2019PPintada' && header !='AduC2020PPintada' &&
+                    header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
+                    header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Email' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
+                {
+                //console.log(modalid[header]);
+                        if (header =='RazonSocial'){
+                    valor = modalid[header].toString();
+                    ws3.cell(fila+1,1).string(valor).style(style);
+                      console.log('RazonSocial');
+                  }
+
+                  else if (header =='Pais'){
+                    valor = modalid[header].toString();
+                    ws3.cell(fila+1,2).string(valor).style(style);
+                      console.log('pais');
+                  }
+
+                  else if (header =='Aeropuerto'){
+                    valor = modalid[header].toString();
+                    ws3.cell(fila+1,3).string(valor).style(style);
+                      console.log('Aeropuerto');
+                  }
+
+                 else if (header =='Minima')
+                    {
+                if (modalid['AduC2045PPintada']=="label label-success"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,4).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,4).number(valor).style(styleverde);
+                             }
+
+                    }
+                    else if (modalid['AduC2045PPintada']=="label label-warning"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,4).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,4).number(valor).style(styleamarillo);
+                             }
+
+                    }
+                    else if (modalid['AduC2045PPintada']=="label label-danger"){
+                       if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,4).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,4).number(valor).style(stylerojo);
+                             }
+
+                    }
+                    else{
+                        if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(fila+1,4).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,4).number(valor).style(style);
+                             }
+
+                    }
+                  }
+
+                else if (header =='45')
+                    {
+                  if (modalid['AduC8PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,5).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,5).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC8PPintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,5).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,5).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else if (modalid['AduC8PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,5).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,5).number(valor).style(stylerojo);
+                             }
+                     }
+                     else{
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,5).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,5).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                  else if (header =='+100')
+                    {
+                 if (modalid['AduC2010PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,6).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,6).number(valor).style(styleverde);
+                             }
+                       }
+                       else if (modalid['AduC2010PPintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,6).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,6).number(valor).style(styleamarillo);
+                             }
+                       }
+                       else  if (modalid['AduC2010PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,6).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,6).number(valor).style(stylerojo);
+                             }
+                       }
+                       else{
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,6).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,6).number(valor).style(style);
+                             }
+                       }
+                  }
+                else if (header =='+300')
+                    {
+               if (modalid['AduC2017PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,7).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,7).number(valor).style(styleverde);
+                             }
+                     }
+                     else if (modalid['AduC2017PPintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,7).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,7).number(valor).style(styleamarillo);
+                             }
+                     }
+                      else if (modalid['AduC2017PPintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,7).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,7).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                    ws2.cell(1, 7).string(header).style(style1);
+                if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,7).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,7).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                   else if (header =='+500')
+                    {
+                 if (modalid['AduC2019PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,8).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,8).number(valor).style(styleverde);
+                             }
+                    }
+                    else if (modalid['AduC2019PPintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,8).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,8).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC2019PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,8).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,8).number(valor).style(stylerojo);
+                             }
+                    }
+                    else {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,8).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,8).number(valor).style(style);
+                             }
+                    }
+                  }
+
+
+                   else if (header =='+1000')
+                    {
+                if (modalid['AduC2020PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,9).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,9).number(valor).style(styleverde);
+                             }
+                      }
+                     else if (modalid['AduC2020PPintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,9).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,9).number(valor).style(styleamarillo);
+                             }
+                      }
+                      else if (modalid['AduC2020PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,9).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,9).number(valor).style(stylerojo);
+                             }
+                      }
+                      else{
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,9).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,9).number(valor).style(style);
+                             }
+                      }
+                  }
+
+                     else if (header =='Fs/kg')
+                     {
+                 if (modalid['AduC2025PPintada']=="label label-success"){
+                    
+                       if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,10).number(valor).style(styleverde);
+                             }
+                     }
+                    else  if (modalid['AduC2025PPintada']=="label label-warning"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,10).number(valor).style(styleamarillo);
+                             }
+                     }
+                    else  if (modalid['AduC2025PPintada']=="label label-danger"){
+                    
+                       if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,10).number(valor).style(stylerojo);
+                             }
+                     }
+                    else{
+                    
+                       if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,10).number(valor).style(style);
+                             }
+                     }
+                  }
+
+
+                   else if (header =='FS min')
+                    {
+                if (modalid['AduC2021PPintada']=="label label-success"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,11).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,11).number(valor).style(styleverde);
+                             }
+                    }
+                   else   if (modalid['AduC2021PPintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,11).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+12,11).number(valor).style(styleamarillo);
+                             }
+                    }
+                   else  if (modalid['AduC2021PPintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,11).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,11).number(valor).style(stylerojo);
+                             }
+                    }
+                   else{
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,11).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,11).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                   else if (header =='Gastos Embarque')
+                    {
+               if (modalid['AduC4015PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,12).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,12).number(valor).style(styleverde);
+                             }
+                    }
+                    else  if (modalid['AduC4015PPintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,12).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,12).number(valor).style(styleamarillo);
+                             }
+                    }
+                    else  if (modalid['AduC4015PPintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,12).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,12).number(valor).style(stylerojo);
+                             }
+                    }
+                    else{
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,12).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,12).number(valor).style(style);
+                             }
+                    }
+                  }
+                   else if (header =='Observaciones')
+                    {
+                    valor = modalid[header].toString();
+                    ws3.cell(fila+1,13).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Lead time (dias)')
+                    {
+                     valor = modalid[header].toString();
+                    ws3.cell(fila+1,14).string(valor).style(style);                             
+                  }
+
+                  else if (header =='Naviera')
+                    {
+                     valor = modalid[header].toString();
+                    ws3.cell(fila+1,15).string(valor).style(style);                             
+                  }
+
+                   else if (header =='Frecuencia Dia Lunes')
+                    {
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,16).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,16).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Martes')
+                    {
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,17).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,17).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Miercoles')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,18).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,18).string('X').style(style);
+                             }
+                  }
+
+                  else if (header =='Frecuencia Dia Jueves')
+                    {
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,19).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,19).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Viernes')
+                    {
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,20).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,20).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Sabado')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,21).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,21).string('X').style(style);
+                             }
+                  }
+
+                   else if (header =='Frecuencia Dia Domingo')
+                    {
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               ws3.cell(fila+1,22).string('').style(style);
+                             }
+                             else
+                             {
+                              ws3.cell(fila+1,22).string('X').style(style);
+                             }
+                  }
+
+                    else if (header =='+100 + Fs/kg')
+                    {
+                if (modalid['AduC4017PPintada']=="label label-success"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,23).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,23).number(valor).style(styleverde);
+                             }
+                        }
+                   else  if (modalid['AduC4017PPintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,23).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,23).number(valor).style(styleamarillo);
+                             }
+                        }
+                     else    if (modalid['AduC4017PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,23).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,23).number(valor).style(stylerojo);
+                             }
+                        }
+                       else {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,23).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,23).number(valor).style(style);
+                             }
+                        }
+                  }
+
+                      else if (header =='+300 + Fs/kg')
+                    {
+               if (modalid['AduC401718PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,24).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,24).number(valor).style(styleverde);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718PPintada']=="label label-warning"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,24).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,24).number(valor).style(styleamarillo);
+                             }
+                    }
+                           
+              else  if (modalid['AduC401718PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,24).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,24).number(valor).style(stylerojo);
+                             }
+                    }
+                           
+              else{
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,24).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,24).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+500 + Fs/kg')
+                    {
+                 if (modalid['AduC4020PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+12,25).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,25).number(valor).style(styleverde);
+                             }
+                    }
+                        
+                else  if (modalid['AduC4020PPintada']=="label label-warning"){
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,25).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,25).number(valor).style(styleamarillo);
+                             }
+                    }
+                        
+                 else if (modalid['AduC4020PPintada']=="label label-danger"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,25).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,25).number(valor).style(stylerojo);
+                             }
+                    }
+                        
+                else {
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,25).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,25).number(valor).style(style);
+                             }
+                    }
+                  }
+
+                  else if (header =='+1000 + Fs/kg')
+                    {
+                 if (modalid['AduC4021PPintada']=="label label-success"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,26).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,26).number(valor).style(styleverde);
+                             }
+                        }
+                       else  if (modalid['AduC4021PPintada']=="label label-warning"){
+                    if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,26).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,26).number(valor).style(styleamarillo);
+                             }
+                        }
+                        else if (modalid['AduC4021PPintada']=="label label-danger"){
+                   if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,26).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,26).number(valor).style(stylerojo);
+                             }
+                        }
+                       else{
+                     if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(fila+1,26).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(fila+1,26).number(valor).style(style);
+                             }
+                        }
+                  }
+                 
+
+                       else  (header =='Version')
+                    {
+                         if (modalid[header] == null || modalid[header] == '')
+                      {
+                        ws3.cell(fila+1,27).string('1').style(style); 
+                      }
+                      else
+                      {                         
+                      valor = modalid[header].toString();
+                    ws3.cell(fila+1,27).string(valor).style(style);                             
+                  }
+              } 
+                    
+                   //
+                }
+
+               });
+                  }
+
+              // Aumenta la fila
+              fila++
+              col=1;
+            });
+
+                } 
+
+          /////////////////////////////
+
+           ////////////////////////////////////////////////////Terrestre Nacional//////////////////////
 
                   if (NombreModalidad == 'Terrestre Nacional')
                 {
@@ -7776,7 +12442,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(2,2).number(valor).style(styleamarillo);
+                              ws2.cell(2,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2045Pintada']=="label label-danger") {                   
@@ -7852,7 +12518,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(2,3).number(valor).style(stylerojo);
+                              ws2.cell(2,5).number(valor).style(stylerojo);
                              }
                     }
                      else  {           
@@ -7929,7 +12595,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,2).number(valor).style(styleamarillo);
+                              ws2.cell(fila+1,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2045Pintada']=="label label-danger") {                   
@@ -7993,7 +12659,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,3).number(valor).style(stylerojo);
+                              ws2.cell(fila+1,5).number(valor).style(stylerojo);
                              }
                     }
                      else  {           
@@ -8089,7 +12755,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(2,2).number(valor).style(styleamarillo);
+                              ws3.cell(2,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2010Pintada']=="label label-danger") {                   
@@ -8163,7 +12829,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(2,3).number(valor).style(stylerojo);
+                              ws3.cell(2,5).number(valor).style(stylerojo);
                              }
                     }
                      else  {           
@@ -8239,7 +12905,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,2).number(valor).style(styleamarillo);
+                              ws3.cell(fila+1,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2010Pintada']=="label label-danger") {                   
@@ -8303,7 +12969,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,3).number(valor).style(stylerojo);
+                              ws3.cell(fila+1,5).number(valor).style(stylerojo);
                              }
                     }
                      else  {           
@@ -8400,7 +13066,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws4.cell(2,2).number(valor).style(styleamarillo);
+                              ws4.cell(2,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2019Pintada']=="label label-danger") {                   
@@ -8474,7 +13140,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws4.cell(2,3).number(valor).style(stylerojo);
+                              ws4.cell(2,5).number(valor).style(stylerojo);
                              }
                     }
                      else  {           
@@ -8550,7 +13216,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws4.cell(fila+1,2).number(valor).style(styleamarillo);
+                              ws4.cell(fila+1,4).number(valor).style(styleamarillo);
                              }
                     }
                    else  if  (modalid['AduC2019Pintada']=="label label-danger") {                   
@@ -8616,7 +13282,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws4.cell(fila+1,3).number(valor).style(stylerojo);
+                              ws4.cell(fila+1,5).number(valor).style(stylerojo);
                              }
                     }
                      else  {           
@@ -8932,7 +13598,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                   }
-                    if (header =='Minimula')
+                    if (header == 'Minimula')
                     {           
                  if  (modalid['AduC2019Pintada']=="label label-success") {           
                     ws2.cell(1, 8).string(header).style(style1);
@@ -9037,7 +13703,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws2.cell(1, 8).string(header).style(style1);
+                    ws2.cell(1, 9).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9366,7 +14032,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(2,9).number(valor).style(styleamarillo);
+                              ws2.cell(fila+1,9).number(valor).style(styleamarillo);
                              }
                     }
                      else if  (modalid['AduC2020Pintada']=="label label-danger") {           
@@ -10591,33 +15257,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
             });
                 } 
 
-
+                       /////////////////////////////
 
         
-
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
