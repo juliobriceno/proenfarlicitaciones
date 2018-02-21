@@ -1,11 +1,11 @@
 // var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
-var connString = 'mongodb://<dbuser>:<dbpassword>@ds239128.mlab.com:39128/proenfarproduction';
+//var connString = 'mongodb://<dbuser>:<dbpassword>@ds239128.mlab.com:39128/proenfarproduction';
 
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';
 
 // Ambiente de pruebas -espejo de producción-
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
-//var connString = 'mongodb://localhost:27017/proenfarlicitaciones';
+var connString = 'mongodb://localhost:27017/licitaciones';
 
 
 

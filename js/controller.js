@@ -6589,7 +6589,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           ModalidadTodasconOrdenBodegajeaduanerootro[i].AdutarifaotroPintada = [];
                         }
                         }
-                        ModalidadTodasBodegajeaduanero = _.orderBy(ModalidadTodasconOrdenBodegajeaduanero, [ModalidadBodeaduanero => ModalidadBodeaduanero.Email.toLowerCase()], ['asc']);
+                        ModalidadTodasBodegajeaduanero = _.orderBy(ModalidadTodasconOrdenBodegajeaduanero, [ModalidadBodeaduanero => ModalidadBodeaduanero.RazonSocial.toLowerCase()], ['asc']);
                         console.log(ModalidadTodasBodegajeaduanero);
                        // ModalidadTodasBodegajeaduanero= _.orderBy(Email,[user => user.name.toLowerCase()], ['desc'])
                         //ModalidadTodasBodegajeaduanero= _.sortBy(_.sortBy(ModalidadTodasconOrdenBodegajeaduanero,'Email'), (a,b)=>b-a);
@@ -6803,7 +6803,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                           //ModalidadTodasBodegajeaduaneromaqt= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqt,'Email');
-                          ModalidadTodasBodegajeaduaneromaqt = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqt, [ModalidadBodemaqt => ModalidadBodemaqt.Email.toLowerCase()], ['asc']);
+                          ModalidadTodasBodegajeaduaneromaqt = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqt, [ModalidadBodemaqt => ModalidadBodemaqt.RazonSocial.toLowerCase()], ['asc']);
                           $scope.ModalidadTodasBodegajeaduaneromaqt=ModalidadTodasBodegajeaduaneromaqt;
                           console.log($scope.ModalidadTodasBodegajeaduaneromaqt);
 
@@ -7015,7 +7015,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
                            //ModalidadTodasBodegajeaduaneromaqp= _.sortBy(ModalidadTodasconOrdenBodegajeaduaneromaqp,'Email');
-                           ModalidadTodasBodegajeaduaneromaqp = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqp, [ModalidadBodemaqp => ModalidadBodemaqp.Email.toLowerCase()], ['asc']);
+                           ModalidadTodasBodegajeaduaneromaqp = _.orderBy(ModalidadTodasconOrdenBodegajeaduaneromaqp, [ModalidadBodemaqp => ModalidadBodemaqp.RazonSocial.toLowerCase()], ['asc']);
                           $scope.ModalidadTodasBodegajeaduaneromaqp=ModalidadTodasBodegajeaduaneromaqp;
                           console.log($scope.ModalidadTodasBodegajeaduaneromaqp);
                           console.log($scope.ModalidadesSemaforo);
@@ -7787,7 +7787,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                    ////////// Campo ["Conceptos Adicionales tres"]
 
-                     ModalidadTodasconOrdenCAIII = _.orderBy(ModalidadTodasconOrdenCAIII, [ModalidadaduCAIII => ModalidadaduCAIII.Via.toLowerCase(),ModalidadaduCAIII  => parseFloat(ModalidadaduCAIII["Conceptos Adicionales tres"],10)], ['asc','asc']);
+                    /* ModalidadTodasconOrdenCAIII = _.orderBy(ModalidadTodasconOrdenCAIII, [ModalidadaduCAIII => ModalidadaduCAIII.Via.toLowerCase(),ModalidadaduCAIII  => parseFloat(ModalidadaduCAIII["Conceptos Adicionales tres"],10)], ['asc','asc']);
                       console.log(ModalidadTodasconOrdenCAIII );
 
                      var contCAIII =0;
@@ -7877,7 +7877,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         }
 
 
-                      }
+                      }*/
 
 
                           ////////// Campo ["Costo Planificacion Caja"]
@@ -8073,7 +8073,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                    // ModalidadTodas = _.orderBy(ModalidadTodas, [Modalidadtoda => (Modalidadtoda.Via.toLowerCase())],[Modalidadtoda => (Modalidadtoda.Email.toLowerCase())],['asc'],['asc']);
 
                    //ModalidadTodas= _.orderBy(ModalidadTodas, ["Email"], ["asc"]);
-                   ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasadu => ModalidadTodasadu.Via.toLowerCase(),ModalidadTodasadu =>ModalidadTodasadu.Email.toLowerCase()], ['asc','asc']);
+                   ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasadu => ModalidadTodasadu.Via.toLowerCase(),ModalidadTodasadu =>ModalidadTodasadu.RazonSocial.toLowerCase()], ['asc','asc']);
 
                      console.log(ModalidadTodas);
                        ModalidadTodasRespaldoAD = ModalidadTodas;
@@ -10077,7 +10077,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                       }
-                           ModalidadTodasOtm=_.orderBy(ModalidadTodasOtm, [ModalidadTodasotm => ModalidadTodasotm.Destino.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Origen.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Email.toLowerCase()], ['asc','asc','asc']);
+                           ModalidadTodasOtm=_.orderBy(ModalidadTodasOtm, [ModalidadTodasotm => ModalidadTodasotm.Destino.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.Origen.toLowerCase(),ModalidadTodasotm =>ModalidadTodasotm.RazonSocial.toLowerCase()], ['asc','asc','asc']);
 
               /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoExcel = ModalidadTodasOtm;
@@ -11248,7 +11248,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
 
                   /////////////////////////////////Filtro////////////////////////////////
-                       ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasmfcl => ModalidadTodasmfcl.PuertoDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PuertoOrigen.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PaisDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.Email.toLowerCase()], ['asc','asc','asc','asc']);
+                       ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasmfcl => ModalidadTodasmfcl.PuertoDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PuertoOrigen.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PaisDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.RazonSocial.toLowerCase()], ['asc','asc','asc','asc']);
                        //ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
                        console.log(ModalidadTodas);
                        ModalidadTodasRespaldo = ModalidadTodas;
@@ -12026,7 +12026,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                         /////////////////////////////////Filtro////////////////////////////////
-                       ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasmlcl => ModalidadTodasmlcl.PuertoDestino.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.PuertoOrigen.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.PaisDestino.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.Email.toLowerCase()], ['asc','asc','asc','asc']);
+                       ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasmlcl => ModalidadTodasmlcl.PuertoDestino.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.PuertoOrigen.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.PaisDestino.toLowerCase(),ModalidadTodasmlcl =>ModalidadTodasmlcl.RazonSocial.toLowerCase()], ['asc','asc','asc','asc']);
                       // ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
@@ -12329,7 +12329,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       }
 
-                         ModalidadTodasT=_.orderBy(ModalidadTodasT, [ModalidadTodastn => ModalidadTodastn.PuertoDestino.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.PaisOrigen.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.Email.toLowerCase()], ['asc','asc','asc']);
+                         ModalidadTodasT=_.orderBy(ModalidadTodasT, [ModalidadTodastn => ModalidadTodastn.PuertoDestino.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.PaisOrigen.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                          //ModalidadTodasT= _.sortBy(ModalidadTodasT,'PuertoDestino','PaisOrigen','Email');
                          $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodasT;
 
@@ -12572,7 +12572,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
 
                         //ModalidadTodasTerreNacionalSencillo= _.sortBy(ModalidadTodasTerreNacionalSencillo,'PuertoDestino','PaisOrigen','Email');
-                        ModalidadTodasTerreNacionalSencillo=_.orderBy(ModalidadTodasTerreNacionalSencillo, [ModalidadTodastns => ModalidadTodastns.PuertoDestino.toLowerCase(),ModalidadTodastns =>ModalidadTodastns.PaisOrigen.toLowerCase(),ModalidadTodastns =>ModalidadTodastns.Email.toLowerCase()], ['asc','asc','asc']);
+                        ModalidadTodasTerreNacionalSencillo=_.orderBy(ModalidadTodasTerreNacionalSencillo, [ModalidadTodastns => ModalidadTodastns.PuertoDestino.toLowerCase(),ModalidadTodastns =>ModalidadTodastns.PaisOrigen.toLowerCase(),ModalidadTodastns =>ModalidadTodastns.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreNacionalSencillo=ModalidadTodasTerreNacionalSencillo;
 
                     /////////////////////////////////Filtro////////////////////////////////
@@ -12813,7 +12813,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
 
                        // ModalidadTodasPatineta= _.sortBy(ModalidadTodasPatineta,'PuertoDestino','PaisOrigen','Email');
-                        ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
+                        ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.RazonSocial.toLowerCase()], ['asc','asc','asc']);
 
                         $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
 
@@ -13490,7 +13490,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       }
 
                         //ModalidadTodasUrbano= _.sortBy(ModalidadTodasUrbano,'PuertoDestino','PaisOrigen','Email');
-                        ModalidadTodasUrbano=_.orderBy(ModalidadTodasUrbano, [ModalidadTodastu => ModalidadTodastu.PuertoDestino.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.PaisOrigen.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.Email.toLowerCase()], ['asc','asc','asc']);
+                        ModalidadTodasUrbano=_.orderBy(ModalidadTodasUrbano, [ModalidadTodastu => ModalidadTodastu.PuertoDestino.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.PaisOrigen.toLowerCase(),ModalidadTodastu =>ModalidadTodastu.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                           // ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
@@ -14114,7 +14114,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                          //ModalidadTodasTerreUrbanoViaje= _.sortBy(ModalidadTodasTerreUrbanoViaje,'PuertoDestino','PaisOrigen','Email');
-                        ModalidadTodasTerreUrbanoViaje=_.orderBy(ModalidadTodasTerreUrbanoViaje, [ModalidadTodastuv => ModalidadTodastuv.PuertoDestino.toLowerCase(),ModalidadTodastuv =>ModalidadTodastuv.PaisOrigen.toLowerCase(),ModalidadTodastuv =>ModalidadTodastuv.Email.toLowerCase()], ['asc','asc','asc']);
+                        ModalidadTodasTerreUrbanoViaje=_.orderBy(ModalidadTodasTerreUrbanoViaje, [ModalidadTodastuv => ModalidadTodastuv.PuertoDestino.toLowerCase(),ModalidadTodastuv =>ModalidadTodastuv.PaisOrigen.toLowerCase(),ModalidadTodastuv =>ModalidadTodastuv.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreUrbanoViaje=ModalidadTodasTerreUrbanoViaje;
 
                     ////////////////////////////////Filtro////////////////////////////////
@@ -14453,7 +14453,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                      // ModalidadTodasTerreUrbanoTonelada = _.sortBy(ModalidadTodasTerreUrbanoTonelada, 'PuertoDestino','PaisOrigen','Email');
-                        ModalidadTodasTerreUrbanoTonelada=_.orderBy(ModalidadTodasTerreUrbanoTonelada, [ModalidadTodastut => ModalidadTodastut.PuertoDestino.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.PaisOrigen.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.Email.toLowerCase()], ['asc','asc','asc']);
+                        ModalidadTodasTerreUrbanoTonelada=_.orderBy(ModalidadTodasTerreUrbanoTonelada, [ModalidadTodastut => ModalidadTodastut.PuertoDestino.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.PaisOrigen.toLowerCase(),ModalidadTodastut =>ModalidadTodastut.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                       $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
 
                      ////////////////////////////////Filtro////////////////////////////////
@@ -15887,7 +15887,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
 
                      //ModalidadTodasAerea = _.sortBy(ModalidadTodasAerea, 'Aeropuerto','Pais','Email');
-                     ModalidadTodasAerea=_.orderBy(ModalidadTodasAerea, [ModalidadTodasac => ModalidadTodasac.Aeropuerto.toLowerCase(),ModalidadTodasac =>ModalidadTodasac.Pais.toLowerCase(),ModalidadTodasac =>ModalidadTodasac.Email.toLowerCase()], ['asc','asc','asc']);
+                     ModalidadTodasAerea=_.orderBy(ModalidadTodasAerea, [ModalidadTodasac => ModalidadTodasac.Aeropuerto.toLowerCase(),ModalidadTodasac =>ModalidadTodasac.Pais.toLowerCase(),ModalidadTodasac =>ModalidadTodasac.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                      $scope.ModalidadTodasAerea=ModalidadTodasAerea;
 
                      /////////////////////////////////Filtro////////////////////////////////
@@ -17261,7 +17261,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                       }
                    // ModalidadTodasAereaPasajero = _.sortBy(ModalidadTodasAereaPasajero, 'Aeropuerto','Pais','Email');
-                    ModalidadTodasAereaPasajero=_.orderBy(ModalidadTodasAereaPasajero, [ModalidadTodasap => ModalidadTodasap.Aeropuerto.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Pais.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Email.toLowerCase()], ['asc','asc','asc']);
+                    ModalidadTodasAereaPasajero=_.orderBy(ModalidadTodasAereaPasajero, [ModalidadTodasap => ModalidadTodasap.Aeropuerto.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.Pais.toLowerCase(),ModalidadTodasap =>ModalidadTodasap.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                     //$scope.ModalidadTodasAereaPasajero=ModalidadTodasAereaPasajero;
 
                      /////////////////////////////////Filtro////////////////////////////////
