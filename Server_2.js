@@ -10641,7 +10641,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(2,4).number(valor).style(style);
+                               ws3.cell(2,4).number(valor).style(style);
                              }
                              else
                              {
@@ -11595,7 +11595,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                         if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,4).number(valor).style(style);
+                               ws3.cell(fila+1,4).number(valor).style(style);
                              }
                              else
                              {
@@ -13116,7 +13116,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2020Pintada']=="label label-warning") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws4.cell(1, 5).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13149,7 +13149,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(2,5).number(valor).style(style);
+                               ws4.cell(2,5).number(valor).style(style);
                              }
                              else
                              {
@@ -13161,7 +13161,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                  
                   if (header =='Version'){
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws4.cell(1, 6).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,6).string(valor).style(style);                      //console.log(header);
                   }
@@ -13289,7 +13289,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                         if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,5).number(valor).style(style);
+                               ws4.cell(fila+1,5).number(valor).style(style);
                              }
                              else
                              {
@@ -14945,7 +14945,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC4021Pintada ']=="label label-warning") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws4.cell(1, 5).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14978,7 +14978,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(2,5).number(valor).style(style);
+                               ws4.cell(2,5).number(valor).style(style);
                              }
                              else
                              {
@@ -15005,7 +15005,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC4022Pintada']=="label label-warning") {           
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws4.cell(1, 6).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -15038,7 +15038,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(2,6).number(valor).style(style);
+                               ws4.cell(2,6).number(valor).style(style);
                              }
                              else
                              {
@@ -15178,7 +15178,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                         if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,5).number(valor).style(style);
+                               ws4.cell(fila+1,5).number(valor).style(style);
                              }
                              else
                              {
@@ -15230,7 +15230,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,6).number(valor).style(style);
+                               ws4.cell(fila+1,6).number(valor).style(style);
                              }
                              else
                              {
