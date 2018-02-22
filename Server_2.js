@@ -6689,7 +6689,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Minima')
                     {  
-                 if (modalid['AduMinimaPintadaaPintada']=="label label-success") {                     
+                 if (modalid['AduMinimaPintada']=="label label-success") {                     
                     ws2.cell(1, 4).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -6703,7 +6703,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(2,4).number(valor).style(styleverde);
                              }
                     }
-                    else  if (modalid['AduMinimaPintadaaPintada']=="label label-warning") {                     
+                    else  if (modalid['AduMinimaPintada']=="label label-warning") {                     
                     ws2.cell(1, 4).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -6717,7 +6717,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(2,4).number(valor).style(styleamarillo);
                              }
                     }
-                     else if (modalid['AduMinimaPintadaaPintada']=="label label-danger") {                     
+                     else if (modalid['AduMinimaPintada']=="label label-danger") {                     
                     ws2.cell(1, 4).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -15050,7 +15050,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                  
                   if (header =='Version'){
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws4.cell(1, 7).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,7).string(valor).style(style);                      //console.log(header);
                   }
