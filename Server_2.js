@@ -7152,7 +7152,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Minima')
                     {  
-                 if (modalid['AduMinimaPintadaaPintada']=="label label-success") {                     
+                 if (modalid['AduMinimaPintada']=="label label-success") {                     
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -7164,7 +7164,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(fila+1,4).number(valor).style(styleverde);
                              }
                     }
-                    else  if (modalid['AduMinimaPintadaaPintada']=="label label-warning") {                     
+                    else  if (modalid['AduMinimaPintada']=="label label-warning") {                     
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -7176,7 +7176,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(fila+1,4).number(valor).style(styleamarillo);
                              }
                     }
-                     else if (modalid['AduMinimaPintadaaPintada']=="label label-danger") {                     
+                     else if (modalid['AduMinimaPintada']=="label label-danger") {                     
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
