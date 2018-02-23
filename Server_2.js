@@ -5595,7 +5595,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
               col=1;
             });
                 }
-//////////////////////////////////////////MritimasLcl
+//////////////////////////////////////////MaritimasLcl
 
  if (NombreModalidad == 'MaritimasLcl')
                 {
@@ -6489,11 +6489,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,14).string('').style(style);
+                               ws2.cell(fila+1,14).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,14).string('X').style(style);
+                              ws2.cell(fila+1,14).string('X').style(style);
                              }
                   }
 
@@ -6503,11 +6503,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,15).string('').style(style);
+                               ws2.cell(fila+1,15).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,15).string('X').style(style);
+                              ws2.cell(fila+1,15).string('X').style(style);
                              }
                   }
 
@@ -6517,11 +6517,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,16).string('').style(style);
+                               ws2.cell(fila+1,16).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,16).string('X').style(style);
+                              ws2.cell(fila+1,16).string('X').style(style);
                              }
                   }
 
@@ -6531,11 +6531,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,17).string('').style(style);
+                               ws2.cell(fila+1,17).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,17).string('X').style(style);
+                              ws2.cell(fila+1,17).string('X').style(style);
                              }
                   }
 
@@ -6545,11 +6545,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,18).string('').style(style);
+                               ws2.cell(fila+1,18).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,18).string('X').style(style);
+                              ws2.cell(fila+1,18).string('X').style(style);
                              }
                   }
 
@@ -6559,11 +6559,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,19).string('').style(style);
+                               ws2.cell(fila+1,19).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,19).string('X').style(style);
+                              ws2.cell(fila+1,19).string('X').style(style);
                              }
                   }
 
@@ -6573,11 +6573,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
-                               ws2.cell(2,20).string('').style(style);
+                               ws2.cell(fila+1,20).string('').style(style);
                              }
                              else
                              {
-                              ws2.cell(2,20).string('X').style(style);
+                              ws2.cell(fila+1,20).string('X').style(style);
                              }
                   }
                   if (header =='Version'){                  
@@ -7014,7 +7014,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Otros')
                     {        
 
-                  if (modalid['AduCPCPintada']=="label label-success") {               
+                  if (modalid['AduotroPintada']=="label label-success") {               
                     ws2.cell(1, 12).string(header).style(style1);
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7027,7 +7027,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(2,12).number(valor).style(styleverde);
                              }
                     }
-                    if (modalid['AduCPCPintada']=="label label-warning") {               
+                    if (modalid['AduotroPintada']=="label label-warning") {               
                     ws2.cell(1, 12).string(header).style(style1);
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7040,7 +7040,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(2,12).number(valor).style(styleamarillo);
                              }
                     }
-                    if (modalid['AduCPCPintada']=="label label-danger") {               
+                    if (modalid['AduotroPintada']=="label label-danger") {               
                     ws2.cell(1, 12).string(header).style(style1);
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7432,9 +7432,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }
 
                     if (header =='Otros')
-                    {        
-
-                  if (modalid['AduCPCPintada']=="label label-success") {               
+                    {  
+                  if (modalid['AduotroPintada']=="label label-success") {               
                    if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -7446,7 +7445,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(fila+1,12).number(valor).style(styleverde);
                              }
                     }
-                    if (modalid['AduCPCPintada']=="label label-warning") {               
+                    if (modalid['AduotroPintada']=="label label-warning") {               
                      if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -7458,7 +7457,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws2.cell(fila+1,12).number(valor).style(styleamarillo);
                              }
                     }
-                    if (modalid['AduCPCPintada']=="label label-danger") {               
+                    if (modalid['AduotroPintada']=="label label-danger") {               
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -14251,7 +14250,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws3.cell(2,6).number(valor).style(styleverde);
                              }
                     }
-                    else  if  (modalid['AduC4015vPintadaa']=="label label-warning") {           
+                    else  if  (modalid['AduC4015vPintada']=="label label-warning") {           
                     ws3.cell(1, 6).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -14624,7 +14623,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws3.cell(fila+1,6).number(valor).style(styleverde);
                              }
                     }
-                    else  if  (modalid['AduC4015vPintadaa']=="label label-warning") {           
+                    else  if  (modalid['AduC4015vPintada']=="label label-warning") {           
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
