@@ -129,7 +129,7 @@ app.get('/auth/extgoogle', function (req, res) {
         req.session.startpage = 'solicitudes';
     }
     req.session.startpage = req.query.startpage;
-    console.log(req.session.startpage);
+    //console.log(req.session.startpage);
     res.redirect('/auth/google');
     res.end();
 });
@@ -177,7 +177,7 @@ app.post('/GetSolicitudes', function (req, res) {
     var url = 'mongodb://juliobricenoro:juliobricenoro@ds121464.mlab.com:21464/smartjobs'; // Después de la URL (Fija con puerto por defecto Mongo) viene la BD
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
+            //console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
         }
         else {
             var collection = db.collection('Solicitudes');
@@ -195,9 +195,9 @@ app.post('/GetSolicitudes', function (req, res) {
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 var Data = {};
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
                 } else if (result.length) {
-                    console.log('Found:', result);
+                    //console.log('Found:', result);
                     Data.Solicitudes = result;
                     Data.User = req.session.user[0];
                     res.end(JSON.stringify(Data));
@@ -205,7 +205,7 @@ app.post('/GetSolicitudes', function (req, res) {
                     Data.Solicitudes = [];
                     Data.User = req.session.user[0];
                     res.end(JSON.stringify(Data));
-                    console.log('No document(s) found with defined "find" criteria!');
+                    //console.log('No document(s) found with defined "find" criteria!');
                 }
             });
         }
@@ -214,7 +214,7 @@ app.post('/GetSolicitudes', function (req, res) {
 });
 
 app.post('/Ejemplo', function (req, res) {
-    console.log('Dale');
+    //console.log('Dale');
 });
 
 app.post('/UpdateComment', function (req, res) {
@@ -223,7 +223,7 @@ app.post('/UpdateComment', function (req, res) {
     var url = 'mongodb://juliobricenoro:juliobricenoro@ds121464.mlab.com:21464/smartjobs';
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
+            //console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
         }
         else {
             var Data = {};
@@ -240,7 +240,7 @@ app.post('/UpdateComment', function (req, res) {
             }
             collection.update({ "_id": o_id }, { $set: iSet }, function (err, result) {
                 if (err) {
-                    console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
+                    //console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
                 }
                 else {
                     Data.User = req.session.user[0];
@@ -260,13 +260,13 @@ app.post('/AddSolicitud', function (req, res) {
     var url = 'mongodb://juliobricenoro:juliobricenoro@ds121464.mlab.com:21464/smartjobs';
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
+            //console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
         }
         else {
             var collection = db.collection('Solicitudes');
             collection.insert({ Fecha: new Date(), Solicitud: req.body.Solicitud, Tipo: req.body.Tipo, Estatus: 'En Proceso', Usuario: req.body.ActiveUser, Nomina: req.body.Nomina, Periodo: req.body.Periodo, Empleado: req.body.Empleado, UltimoArchivoId: "SD", Comentarios: [{ "Fecha": new Date(), "LeidoAdmin": "No", "LeidoUser": "No", "Comentario": req.body.Solicitud, "Usuario": req.body.ActiveUser }] }, function (err, result) {
                 if (err) {
-                    console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
+                    //console.log('Se generó error. Debe haber guardado de Log y gestión en e cliente');
                 }
                 else {
                     MyMail.SendEmail("<b>Tienes una nueva solicitud!</b><p>", "juliob@ptree.com.mx", "Nueva solicitud");
@@ -413,7 +413,7 @@ app.post('/GetContactoModalidadProveedor', function (req, res) {
     Data.Result = 'Ok';
     Data.contactomodalidadproveedor = result[0];
     res.end(JSON.stringify(Data));
-    console.log( res.end(JSON.stringify(Data)));
+    //console.log( res.end(JSON.stringify(Data)));
   })
 });
 // Julio HOY
@@ -473,7 +473,7 @@ app.post('/api/uploadFile', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         var Data = {};
@@ -485,14 +485,14 @@ app.post('/api/uploadFile', function (req, res) {
             MyDrive.createFolder(jwtClient, 'Documentos', files, function (err, files) {
 
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
                 } else {
-                    console.log(files);
+                    //console.log(files);
 
                     if (err) {
-                        console.log(err);
+                        //console.log(err);
                     } else {
-                        console.log(files);
+                        //console.log(files);
                         FolderId = files;
 
                         var fileMetadata = {
@@ -510,7 +510,7 @@ app.post('/api/uploadFile', function (req, res) {
                             fields: 'id, webContentLink'
                         }, function (err, file) {
                             if (err) {
-                                console.log(err);
+                                //console.log(err);
                             }
 
                             else {
@@ -555,11 +555,11 @@ app.post('/SaveUser', function (req, res) {
 
     var Data = {};
 
-    console.log('Paso por aqui 1');
-    console.log(req.body.EditUser);
+    //console.log('Paso por aqui 1');
+    //console.log(req.body.EditUser);
 
     if (req.session.user.Perfil == 3){
-      console.log('Paso por aqui 2');
+      //console.log('Paso por aqui 2');
       Data.Result = 'noallow';
       res.end(JSON.stringify(Data));
       return 0;
@@ -720,7 +720,7 @@ app.post('/RecoverPassword', function (req, res) {
         }
         else {
 
-          console.log('tres');
+          //console.log('tres');
 
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -732,7 +732,7 @@ app.post('/RecoverPassword', function (req, res) {
             MyMongo.UpdateCriteria('Usuarios', { 'User': req.body.Usuario }, { 'Password': text }, function (result) {
                 if (result == 'Ok') {
 
-                  console.log('cuatro');
+                  //console.log('cuatro');
 
 
                     var msg = "<table style='max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;'><tr><td style='background-color: #fff; text-align: left; padding: 0;'><img width='20%' style='display:block; margin: 2% 3%' src=''></a></td></tr><tr><td style='padding: 0'></td></tr><tr><td style='background-color: #fff'><div style='color: #34495e; text-align: justify;font-family: sans-serif'><div style='color: #fff; margin: 0 0 5%; text-align:center; height: 120px; background-color: #3498db; padding: 4% 10% 2%; font-size: 23px;'><b>La nueva clave de su usuario para acceso al portal Licitaciones Proenfar es: <label>" + text + "</label> </b> <br><br><a href=''></a></b></div><p style='margin: 2%px; font-size: 15px; margin: 4% 10% 2%;'><br></p><div style='width: 100%;margin:20px 0; display: inline-block;text-align: center'></div><div style='width: 100%; text-align: center'><a style='text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db' href='http://licita.proenfar.com'>Ir al <b>Portal</b></a></div><p style='color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0; padding:20px 0 0;  background-color:#3498db; height: 30px'>Portal Licitaciones Proenfar.</p></div></td></tr></table>";
@@ -804,23 +804,23 @@ app.post('/GetUsuarioProveedordiligenciado', function (req, res) {
   // Para poder saber qué proveedores fueron marcados como seleccionados
   MyMongo.Find('LicitacionProveedor', {} , function (result) {
     var LicitacionProveedor = result;
-     console.log("aqui lici");
-     console.log(result);
+     //console.log("aqui lici");
+     //console.log(result);
     MyMongo.Find('Usuarios', {} , function (result) {
       var Data = {};
-       console.log("moda");
-       console.log(result);
+       //console.log("moda");
+       //console.log(result);
 
       // Filtra sólo seleccionados
       result = result.filter(function(el){
         var ret = false;
         LicitacionProveedor.forEach(function(element) {
-            console.log("filter");
-            //console.log(element.Modalidad);
-               // console.log(req.body.Modalidad);                    
+            //console.log("filter");
+            ////console.log(element.Modalidad);
+               // //console.log(req.body.Modalidad);                    
               if (el.User == element.Email && element.Cerrado == true  && element.Diligenciada == true){
                  ret = true;
-                 console.log("aqui 4");
+                 //console.log("aqui 4");
               }
             
         });
@@ -829,7 +829,7 @@ app.post('/GetUsuarioProveedordiligenciado', function (req, res) {
       var Data = {};
       Data.proveedordiligenciado = result;      
       res.end(JSON.stringify(Data));
-      console.log(Data.proveedordiligenciado);
+      //console.log(Data.proveedordiligenciado);
 
  });
   });
@@ -977,20 +977,20 @@ app.post('/EnviarEmailProveedores', function (req, res) {
             fields: "nextPageToken, files(id, name)"
           }, function(err, response) {
             if (err) {
-              console.log('The API returned an error: ' + err);
+              //console.log('The API returned an error: ' + err);
               return;
             }
             var files = response.files;
 
             if (files.length == 0) {
-              console.log('No files found aqui.');
+              //console.log('No files found aqui.');
 
               res.status(404)        // HTTP status 404: NotFound
               .send('No se encontró el archivo que busca. Puede que no haya sido cargado.');
               res.end();
 
             } else {
-              console.log('Files:');
+              //console.log('Files:');
 
               // Por cada archivo encontrado busca la metadata y lo agrega a los attachment
               var qtyFiles = files.length;
@@ -1023,7 +1023,7 @@ app.post('/EnviarEmailProveedores', function (req, res) {
                             if (err) console.log('Error during download', err);
                             else {
 
-                                 console.log(metadata);
+                                //console.log(metadata);
 
                                  var attachment =
                                      {   // binary buffer as an attachment
@@ -1037,7 +1037,7 @@ app.post('/EnviarEmailProveedores', function (req, res) {
 
 
                                  if (qtyFiles == 0){
-                                   console.log('Envío el correo y creó licitación');
+                                   //console.log('Envío el correo y creó licitación');
 
                                    MyMongo.Remove('LicitacionProveedor', { Email: element.User }, function (result) {
                                      MyMongo.Insert('LicitacionProveedor', { Email: element.User, Bloqueado: false }, function (result) {
@@ -1094,8 +1094,8 @@ app.post('/Login', function (req, res) {
     email = req.body.Usuario;
     password = req.body.Contrasena;
 
-    console.log(email);
-    console.log(password);
+    //console.log(email);
+    //console.log(password);
 
     MyMongo.Find('Usuarios', { $and: [{ "User": email }, { "Password": password }] }, function (result) {
 
@@ -1161,10 +1161,10 @@ app.post('/processNomina', function (req, res) {
         var condiciones = Validador;
         // Va a leer el excel file para extraer la data
         Parser.parse(newPath, constructor, condiciones, function (errores, data) {
-            console.log('1');
+            //console.log('1');
             if (errores) {
-                console.log('Viene a grabar 2');
-                console.log(errores)
+                //console.log('Viene a grabar 2');
+                //console.log(errores)
                 Data.Result = 'err'
                 Data.Errors = {
                     code: -1,
@@ -1181,7 +1181,7 @@ app.post('/processNomina', function (req, res) {
               }
 
               data.forEach(function(Nomina) {
-                console.log(Nomina);
+                //console.log(Nomina);
                 MyMongo.Remove('EmpleadosNomina', {Rfc: Nomina.Rfc}, function (result) {
                     MyMongo.Insert('EmpleadosNomina', Nomina, function (result) {
                       var ResponseData = 'Hace falta hacer una promesa para esperar por todas las respuestas antes de enviar ';
@@ -1191,7 +1191,7 @@ app.post('/processNomina', function (req, res) {
 
               Data.Result = 'ok'
               res.end(JSON.stringify(Data));
-              console.log(data);
+              //console.log(data);
 
             }
         });
@@ -1224,7 +1224,7 @@ app.post('/procesarTxtEmpleados', function (req, res) {
     }
 
     req.session.CurrentTxtEmpleados = lines;
-    console.log(req.session.CurrentTxtEmpleados);
+    //console.log(req.session.CurrentTxtEmpleados);
 
     res.status(200)
     res.send('ok');
@@ -1244,9 +1244,9 @@ app.post('/procesarpdfRecibo', function (req, res) {
     sampleFile = req.files.file;
 
     var fileName = sampleFile.name.split('.');
-    console.log(req.body.selectedNomina);
-    console.log(req.body.selectedPeriodo);
-    console.log(fileName[0]);
+    //console.log(req.body.selectedNomina);
+    //console.log(req.body.selectedPeriodo);
+    //console.log(fileName[0]);
 
     MyMongo.Find('EmpleadosNomina', { $and: [{ "Nomina": req.body.selectedNomina }, { "Periodo": req.body.selectedPeriodo }, { "Rfc": fileName[0] }] }, function (result)
     {
@@ -1274,12 +1274,12 @@ app.post('/procesarpdfRecibo', function (req, res) {
                   fields: 'id, webContentLink'
               }, function (err, file) {
                   if (err) {
-                      console.log(err);
+                      //console.log(err);
                   } else {
                       Data.Result = 'ok';
                       res.end(JSON.stringify(Data));
-                      console.log('File Id: ', file.id);
-                      console.log('weblink: ', file.webContentLink);
+                      //console.log('File Id: ', file.id);
+                      //console.log('weblink: ', file.webContentLink);
                   }
               });
 
@@ -1303,22 +1303,22 @@ app.post('/upload', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         var FolderId = '';
 
         MyDrive.createFolder(jwtClient, req.body.Empleado, '0BxzULAzVRMIhb2ZRcU5lRWlKVHc', function (err, files) {
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
                 } else {
-                    console.log(files);
+                    //console.log(files);
 
                     MyDrive.createFolder(jwtClient, req.body.Periodo, files, function (err, files) {
                         if (err) {
-                            console.log(err);
+                            //console.log(err);
                         } else {
-                            console.log(files);
+                            //console.log(files);
                             FolderId = files;
 
                             var fileMetadata = {
@@ -1336,17 +1336,17 @@ app.post('/upload', function (req, res) {
                                 fields: 'id, webContentLink'
                             }, function (err, file) {
                                 if (err) {
-                                    console.log(err);
+                                    //console.log(err);
                                 } else {
                                     res.status(200)
                                     res.send('ok');
                                     res.end();
-                                    console.log('File Id: ', file.id);
-                                    console.log('weblink: ', file.webContentLink);
+                                    //console.log('File Id: ', file.id);
+                                    //console.log('weblink: ', file.webContentLink);
 
                                     MyMongo.Update('Solicitudes', req.body._id, { UltimoArchivoId: file.id }, function (resp)
                                         {
-                                        console.log(res);
+                                        //console.log(res);
                                         return 0;
                                         }
                                     );
@@ -1370,7 +1370,7 @@ app.get('/download', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         var fileId = '0BxzULAzVRMIhVV94MTM2VmJxYXh1enVhRjJvdGw5aFZubnMw';
@@ -1381,7 +1381,7 @@ app.get('/download', function (req, res) {
             alt: 'media'
         })
     .on('end', function () {
-        console.log('Done');
+        //console.log('Done');
         var tempFile = './path/recibo';
         fs.readFile(tempFile, function (err, data) {
             res.contentType("application/pdf");
@@ -1389,7 +1389,7 @@ app.get('/download', function (req, res) {
         });
     })
     .on('error', function (err) {
-        console.log('Error during download', err);
+        //console.log('Error during download', err);
     })
     .pipe(dest);
 
@@ -1401,7 +1401,7 @@ app.get('/download2', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         var fileId = req.query.fileid;
@@ -1416,11 +1416,11 @@ app.get('/download2', function (req, res) {
             // I wrap this in a promise to handle the data
             if (err) console.log('Error during download', err);
             else {
-                console.log('Vale aquí está tu archivo de verga');
+                //console.log('Vale aquí está tu archivo de verga');
                 const fileType = require('file-type');
                 res.contentType(fileType(buffer).mime);
                 res.send(buffer);
-                console.log(buffer);
+                //console.log(buffer);
                 res.end();
             }
         });
@@ -1433,7 +1433,7 @@ app.post('/GetEmpleadoFileId', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         MyMongo.Find('Solicitudes', { $and: [{ "Nomina": req.body.Nomina }, { "Periodo": req.body.Periodo }, { "Empleado": req.body.Empleado }] }, function (result)
@@ -1490,7 +1490,7 @@ app.post('/GetModalidadesProveedor', function (req, res) {
     MyMongo.Find('ModalidadesProveedor', { Email: req.body.Email }, function (result) {
       if (result.length == 0){
 
-         console.log('poraqui');
+         //console.log('poraqui');
 
         // Las Aduanas
         MyMongo.Find('Aduanas', {}, function (result) {
@@ -1676,8 +1676,8 @@ app.post('/GetModalidadesProveedor', function (req, res) {
 //         MyMongo.Find('ModalidadesProveedor', {} , function (result) {
 //           var Data = {};
 //           Data.ConsolidadoDatos = result;
-//           console.log('YA');
-//           console.log(Data.ConsolidadoDatos);
+//           //console.log('YA');
+//           //console.log(Data.ConsolidadoDatos);
 //         });
 //       });
 //   });
@@ -1693,6 +1693,9 @@ app.post('/GetConsolidadoDatos', function (req, res) {
   if (req.body.Modalidad =='Terrestre Urbano')   { req.body.Modalidad = 'TerrestreUrbano';  }
   //if (mModalidad =='TerrestreUrbano')   { mModalidad = 'TerreUrbano';  }
 
+  MyMongo.Find('Usuarios', { Name: req.body.EditUser }, function (result) {
+  var perfilusuario=result[0].Perfil;
+   console.log(perfilusuario);
   // Buscas todos los proveedores. Ésto es para poner el name en consolidados
   MyMongo.Find('Usuarios', {} , function (result) {
     var ProveedoreesTodos = result;
@@ -1707,9 +1710,9 @@ app.post('/GetConsolidadoDatos', function (req, res) {
         result = result.filter(function(el){
           var ret = false;
           LicitacionProveedor.forEach(function(element) {
-              //console.log(element.Modalidad);
-                 // console.log(req.body.Modalidad);
-              if (req.body.ProveedorSeleccionado == true){
+              ////console.log(element.Modalidad);
+                 // //console.log(req.body.Modalidad);
+              if (req.body.ProveedorSeleccionado ==true  || perfilusuario==2){
                 if (el.Email == element.Email && element.Cerrado == true && element.Modalidad == req.body.Modalidad && element.Seleccionado == true && element.Diligenciada == true){
                   ret = true;
                 }
@@ -1749,7 +1752,7 @@ app.post('/GetConsolidadoDatos', function (req, res) {
            
           // Por cada aérea de cada proveedor recalcula el campo de suma 
 
-          console.log(ProveedorAerea["FS min"]);
+         // //console.log(ProveedorAerea["FS min"]);
           ProveedorAerea["+100 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+100"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
           ProveedorAerea["+300 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+300"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
           ProveedorAerea["+500 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+500"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
@@ -1768,7 +1771,7 @@ app.post('/GetConsolidadoDatos', function (req, res) {
            
           // Por cada aérea de cada proveedor recalcula el campo de suma 
 
-          console.log(ProveedorAereaPasajero["FS min"]);
+          ////console.log(ProveedorAereaPasajero["FS min"]);
           ProveedorAereaPasajero["+100 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+100"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
           ProveedorAereaPasajero["+300 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+300"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
           ProveedorAereaPasajero["+500 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+500"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
@@ -1796,7 +1799,8 @@ app.post('/GetConsolidadoDatos', function (req, res) {
       // Fin Recorre todas las modalidades proveedor de todos los proveedor
 
         res.end(JSON.stringify(Data));
-        //console.log(Data.ConsolidadoDatos);
+          console.log(perfilusuario);
+        ////console.log(Data.ConsolidadoDatos);
 
    });
     });
@@ -1804,6 +1808,7 @@ app.post('/GetConsolidadoDatos', function (req, res) {
 
   });
   // Fin Buscas todos los proveedores. Ésto es para poner el name en consolidados
+});
 
 });
 
@@ -1813,7 +1818,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
    var Modalidad = req.body.ModalidadesProveedor;
    var Modalidad2 = req.body.ModalidadesProveedor2;
    var Modalidad3 = req.body.ModalidadesProveedor3;
-   console.log(Modalidad);
+   ////console.log(Modalidad);
 
 
    var Data={};
@@ -1948,7 +1953,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                 var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -1961,34 +1966,34 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisDestino'){
                     ws2.cell(1, 2).string('PaisDestino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoOrigen'){
                     ws2.cell(1, 3).string('PuertoOrigen').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws2.cell(1, 4).string('PuertoDestino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,4).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
               
                   if (header =='C 20')
                     {    
                     if (modalid['AduC2045Pintada']=="label label-success"){                 
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 20').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2002,7 +2007,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }                    
                      else if (modalid['AduC2045Pintada']=="label label-warning"){                 
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 20').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2016,7 +2021,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2045Pintada']=="label label-danger"){                 
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 20').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2030,7 +2035,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else {                 
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 20').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2108,7 +2113,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='C 40')
                     {    
                if (modalid['AduC2010Pintada']=="label label-success"){                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 40').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2122,7 +2127,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                else if (modalid['AduC2010Pintada']=="label label-warning"){                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 40').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2136,7 +2141,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if (modalid['AduC2010Pintada']=="label label-danger"){                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 40').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2150,7 +2155,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else {                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 40').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2228,7 +2233,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='C 40HC')
                     {    
                  if (modalid['AduC2019Pintada']=="label label-success"){                  
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T40 HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2242,7 +2247,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2019Pintada']=="label label-warning"){                  
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T40 HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2256,7 +2261,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2019Pintada']=="label label-danger"){                  
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T40 HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2270,7 +2275,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else {                  
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T40 HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2288,7 +2293,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    if (header =='Baf 40HC')
                     { 
                  if (modalid['AduC2020Pintada']=="label label-success"){                      
-                    ws2.cell(1, 10).string(header).style(style1);
+                    ws2.cell(1, 10).string('Baf 40HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2302,7 +2307,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2020Pintada']=="label label-warning"){                      
-                    ws2.cell(1, 10).string(header).style(style1);
+                    ws2.cell(1, 10).string('Baf 40HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2316,7 +2321,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2020Pintada']=="label label-danger"){                      
-                    ws2.cell(1, 10).string(header).style(style1);
+                    ws2.cell(1, 10).string('Baf 40HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2330,7 +2335,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else {                      
-                    ws2.cell(1, 10).string(header).style(style1);
+                    ws2.cell(1, 10).string('Baf 40HQ').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2408,19 +2413,19 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 12).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,12).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Lead Time(dias)'){
                     ws2.cell(1, 13).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,13).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Naviera'){
                     ws2.cell(1, 14).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,14).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Frecuencia Semanal')
                       {                      
@@ -2465,7 +2470,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='C 20 + Baf 20 + Gastos Embarque')
                      {   
                    if (modalid['AduC4015Pintada']=="label label-success"){                     
-                    ws2.cell(1, 18).string(header).style(style1);
+                    ws2.cell(1, 18).string('T 20 + Baf 20 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2479,7 +2484,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC4015Pintada']=="label label-warning"){                     
-                    ws2.cell(1, 18).string(header).style(style1);
+                    ws2.cell(1, 18).string('T 20 + Baf 20 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2493,7 +2498,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if (modalid['AduC4015Pintada']=="label label-danger"){                     
-                    ws2.cell(1, 18).string(header).style(style1);
+                    ws2.cell(1, 18).string('T 20 + Baf 20 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2507,7 +2512,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else{                     
-                    ws2.cell(1, 18).string(header).style(style1);
+                    ws2.cell(1, 18).string('T 20 + Baf 20 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2525,7 +2530,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    if (header =='C 40 + Baf 40 + Gastos Embarque')
                      { 
                     if (modalid['AduC4016Pintada']=="label label-success"){                      
-                    ws2.cell(1, 19).string(header).style(style1);
+                    ws2.cell(1, 19).string('T 40 + Baf 40 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2539,7 +2544,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  if (modalid['AduC4016Pintada']=="label label-warning"){                      
-                    ws2.cell(1, 19).string(header).style(style1);
+                    ws2.cell(1, 19).string('T 40 + Baf 40 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2553,7 +2558,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if (modalid['AduC4016Pintada']=="label label-danger"){                      
-                    ws2.cell(1, 19).string(header).style(style1);
+                    ws2.cell(1, 19).string('T 40 + Baf 40 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2567,7 +2572,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {                      
-                    ws2.cell(1, 19).string(header).style(style1);
+                    ws2.cell(1, 19).string('T 40 + Baf 40 + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2584,7 +2589,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    else if (header =='C 40HC + Baf 40HC + Gastos Embarque')
                      { 
                   if (modalid['AduC4017Pintada']=="label label-success"){                       
-                    ws2.cell(1, 20).string(header).style(style1);
+                    ws2.cell(1, 20).string('T40 HQ + Baf 40HQ + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2598,7 +2603,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC4017Pintada']=="label label-warning"){                       
-                    ws2.cell(1, 20).string(header).style(style1);
+                    ws2.cell(1, 20).string('T40 HQ + Baf 40HQ + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2612,7 +2617,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC4017Pintada']=="label label-danger"){                       
-                    ws2.cell(1, 20).string(header).style(style1);
+                    ws2.cell(1, 20).string('T40 HQ + Baf 40HQ + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2626,7 +2631,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else{                       
-                    ws2.cell(1, 20).string(header).style(style1);
+                    ws2.cell(1, 20).string('T40 HQ + Baf 40HQ + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -2643,7 +2648,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 21).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,21).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,21).string(valor).style(style);                      ////console.log(header);
                   } 
                   }
                 });
@@ -2653,29 +2658,29 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto' && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila + 1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisDestino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoOrigen'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,4).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='C 20')
@@ -3044,17 +3049,17 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Observaciones'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,12).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Lead Time(dias)'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,13).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Naviera'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,14).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Frecuencia Semanal')
                       {                      
@@ -3246,7 +3251,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws2.cell(fila+1,21).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila+1,21).string(valor).style(style);                      ////console.log(header);
                   }
                    //
                 }
@@ -3264,7 +3269,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -3277,21 +3282,21 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Origen'){
                     ws2.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Destino'){
                     ws2.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                  
@@ -4503,7 +4508,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 24).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,24).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,24).string(valor).style(style);                      ////console.log(header);
                   }
                     
                  
@@ -4515,23 +4520,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto'  && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Origen'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Destino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                  
@@ -5582,7 +5587,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws2.cell(fila+1,24).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila+1,24).string(valor).style(style);                      ////console.log(header);
                   }
                    //
                 }
@@ -5602,7 +5607,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -5615,28 +5620,28 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisDestino'){
                     ws2.cell(1, 2).string('PaisDestino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoOrigen'){
                     ws2.cell(1, 3).string('PuertoOrigen').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws2.cell(1, 4).string('PuertoDestino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,4).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Minima')
@@ -6005,19 +6010,19 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 11).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,11).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Lead time(dias)'){
                     ws2.cell(1, 12).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,12).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                    if (header =='Naviera'){
                     ws2.cell(1, 13).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,13).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                   else if (header =='Frecuencia Dia Lunes')
                     {
@@ -6119,7 +6124,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 21).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,21).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,21).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -6130,29 +6135,29 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' &&  header !='Aeropuerto' && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila + 1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisDestino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoOrigen'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,4).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Minima')
@@ -6471,17 +6476,17 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Observaciones'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,11).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                     if (header =='Lead time(dias)'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,12).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                    if (header =='Naviera'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,13).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                   else if (header =='Frecuencia Dia Lunes')
                     {
@@ -6583,7 +6588,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){                  
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,21).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                    //
                 
@@ -6602,7 +6607,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -6615,14 +6620,14 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Via'){
                     ws2.cell(1, 2).string('Vía').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Tarifa % Advalorem/ FOB')
@@ -6750,7 +6755,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Gastos Adicionales')
                     { 
                 if (modalid['AduGAPintada']=="label label-success") {                      
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Gastos Adicionales 1').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6764,7 +6769,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      if (modalid['AduGAPintada']=="label label-warning") {                      
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Gastos Adicionales 1').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6778,7 +6783,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if (modalid['AduGAPintada']=="label label-danger") {                      
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Gastos Adicionales 1').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6792,7 +6797,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else   {                      
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Gastos Adicionales 1').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6809,16 +6814,16 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Conceptos Adicionales')
                     {                      
-                   ws2.cell(1, 6).string(header).style(style1);
+                   ws2.cell(1, 6).string('Conceptos Adicionales 1').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,6).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Gastos Adicionales dos')
                     { 
                   if (modalid['AduGAIIPintada']=="label label-success") {                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Gastos Adicionales 2').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6832,7 +6837,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduGAIIPintada']=="label label-warning") {                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Gastos Adicionales 2').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6846,7 +6851,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if (modalid['AduGAIIPintada']=="label label-danger") {                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Gastos Adicionales 2').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6860,7 +6865,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  {                     
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Gastos Adicionales 2').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6877,16 +6882,16 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                    if (header =='Conceptos Adicionales dos')
                     {                      
-                   ws2.cell(1, 8).string(header).style(style1);
+                   ws2.cell(1, 8).string('Conceptos Adicionales 2').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,8).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                   
                    if (header =='Gastos Adicionales tres')
                     {  
                 if (modalid['AduGAIIIPintada']=="label label-success") {                      
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('Gastos Adicionales 3').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6900,7 +6905,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  if (modalid['AduGAIIIPintada']=="label label-warning") {                      
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('Gastos Adicionales 3').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6914,7 +6919,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                       else if (modalid['AduGAIIIPintada']=="label label-danger") {                      
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('Gastos Adicionales 3').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6928,7 +6933,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else {                      
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('Gastos Adicionales 3').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6945,10 +6950,10 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Conceptos Adicionales tres')
                     {                      
-                   ws2.cell(1, 10).string(header).style(style1);
+                   ws2.cell(1, 10).string('Conceptos Adicionales 3').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,10).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                     if (header =='Costo Planificacion Caja')
@@ -7071,7 +7076,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 13).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,13).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,13).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -7082,17 +7087,17 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header && header !='Aeropuerto' && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Via'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                    
@@ -7258,7 +7263,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     {                      
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,6).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Gastos Adicionales dos')
@@ -7317,7 +7322,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     {                      
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,8).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
                   
                    if (header =='Gastos Adicionales tres')
@@ -7376,7 +7381,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     {                      
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,10).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                     if (header =='Costo Planificacion Caja')
@@ -7485,7 +7490,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws2.cell(fila+1,13).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila+1,13).string(valor).style(style);                      ////console.log(header);
                   }
                 }
 
@@ -7505,7 +7510,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var filabody = 1;
           var col = 1;
           var stylecolor=style;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -7520,13 +7525,13 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='TarifaValor')
                     { 
                 if  (modalid['AdutarifaPintada']=="label label-success") {                   
-                    ws2.cell(1, 2).string(header).style(style1);                    
+                    ws2.cell(1, 2).string('Tarifa Valor FOB').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7540,8 +7545,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if  (modalid['AdutarifaPintada']=="label label-warning") {                   
-                    ws2.cell(1, 2).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 2).string('Tarifa Valor FOB').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7555,8 +7560,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  if  (modalid['AdutarifaPintada']=="label label-danger") {                   
-                    ws2.cell(1, 2).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 2).string('Tarifa Valor FOB').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7570,8 +7575,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else {                   
-                    ws2.cell(1, 2).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 2).string('Tarifa Valor FOB').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7591,7 +7596,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='TarifaMinima')
                     {           
                  if  (modalid['AdutarifaminPintada']=="label label-success") {           
-                    ws2.cell(1, 3).string(header).style(style1);
+                    ws2.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7605,7 +7610,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AdutarifaminPintada']=="label label-warning") {           
-                    ws2.cell(1, 3).string(header).style(style1);
+                    ws2.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7619,7 +7624,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AdutarifaminPintada']=="label label-danger") {           
-                    ws2.cell(1, 3).string(header).style(style1);
+                    ws2.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7633,7 +7638,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws2.cell(1, 3).string(header).style(style1);
+                    ws2.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7713,7 +7718,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 5).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,5).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,5).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -7724,11 +7729,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto' && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila + 1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                  
@@ -7892,7 +7897,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws2.cell(fila + 1,5).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila + 1,5).string(valor).style(style);                      ////console.log(header);
                   }
                     
                    //
@@ -7910,7 +7915,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad2.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -7923,13 +7928,13 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws3.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                    if (header =='Tarifa')
                     { 
                 if  (modalid['AdumaqtPintada']=="label label-success") {                   
-                    ws3.cell(1, 2).string(header).style(style1);                    
+                    ws3.cell(1, 2).string('Tarifa Valor FOB').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7943,7 +7948,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if  (modalid['AdumaqtPintada']=="label label-warning") {                   
-                    ws3.cell(1, 2).string(header).style(style1);
+                    ws3.cell(1, 2).string('Tarifa Valor FOB').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -7957,7 +7962,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  if  (modalid['AdumaqtPintada']=="label label-danger") {                   
-                    ws3.cell(1, 2).string(header).style(style1);
+                    ws3.cell(1, 2).string('Tarifa Valor FOB').style(style1);
                    
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -7972,7 +7977,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else {                   
-                    ws3.cell(1, 2).string(header).style(style1);
+                    ws3.cell(1, 2).string('Tarifa Valor FOB').style(style1);
                    
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -7993,7 +7998,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='TarifaMinima')
                     {           
                  if  (modalid['AdumaqtminPintada']=="label label-success") {           
-                    ws3.cell(1, 3).string(header).style(style1);
+                    ws3.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8007,7 +8012,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AdumaqtminPintada']=="label label-warning") {           
-                    ws3.cell(1, 3).string(header).style(style1);
+                    ws3.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8021,7 +8026,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AdumaqtminPintada']=="label label-danger") {           
-                    ws3.cell(1, 3).string(header).style(style1);
+                    ws3.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8035,7 +8040,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws3.cell(1, 3).string(header).style(style1);
+                    ws3.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8115,7 +8120,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws3.cell(1, 5).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws3.cell(2,5).string(valor).style(style);                      //console.log(header);
+                    ws3.cell(2,5).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -8126,11 +8131,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id'  && header !='Aeropuerto' &&  header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws3.cell(fila + 1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Tarifa')
@@ -8290,7 +8295,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws3.cell(fila + 1,5).string(valor).style(style);                      //console.log(header);
+                    ws3.cell(fila + 1,5).string(valor).style(style);                      ////console.log(header);
                   }
 
                  
@@ -8310,7 +8315,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
       var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad3.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -8323,7 +8328,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws4.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                  
@@ -8394,7 +8399,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='TarifaMinima')
                     {           
                  if  (modalid['AdumaqpminPintada']=="label label-success") {           
-                     ws4.cell(1, 3).string(header).style(style1);
+                     ws4.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8408,7 +8413,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AdumaqpminPintada']=="label label-warning") {           
-                     ws4.cell(1, 3).string(header).style(style1);
+                     ws4.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8422,7 +8427,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AdumaqpminPintada']=="label label-danger") {           
-                     ws4.cell(1, 3).string(header).style(style1);
+                     ws4.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8436,7 +8441,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                     ws4.cell(1, 3).string(header).style(style1);
+                     ws4.cell(1, 3).string('Tarifa Minima').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8516,7 +8521,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                      ws4.cell(1, 5).string(header).style(style1);
                     valor = modalid[header].toString();
-                     ws4.cell(2,5).string(valor).style(style);                      //console.log(header);
+                     ws4.cell(2,5).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -8527,11 +8532,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto'  && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws4.cell(fila + 1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                  
@@ -8693,7 +8698,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws4.cell(fila + 1,5).string(valor).style(style);                      //console.log(header);
+                    ws4.cell(fila + 1,5).string(valor).style(style);                      ////console.log(header);
                   }
                    //
                 }
@@ -8715,7 +8720,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var filabody = 1;
           var col = 1;
           var stylecolor=style;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -8739,21 +8744,21 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      console.log('RazonSocial');
+                      //console.log('RazonSocial');
                   }
 
                   else if (header =='Pais'){
                     ws2.cell(1, 2).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      console.log('pais');
+                      //console.log('pais');
                   }
 
                   else if (header =='Aeropuerto'){
                     ws2.cell(1, 3).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,3).string(valor).style(style);
-                      console.log('Aeropuerto');
+                      //console.log('Aeropuerto');
                   }
 
                  else if (header =='Minima')
@@ -8827,7 +8832,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='45')
                     {
                   if (modalid['AduC8Pintada']=="label label-success"){
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8841,7 +8846,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                      else if (modalid['AduC8Pintada']=="label label-warning"){
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8855,7 +8860,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                     else if (modalid['AduC8Pintada']=="label label-danger"){
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8869,7 +8874,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                      else{
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8887,7 +8892,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+100')
                     {
                  if (modalid['AduC2010Pintada']=="label label-success"){
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8901,7 +8906,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else if (modalid['AduC2010Pintada']=="label label-warning"){
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8915,7 +8920,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else  if (modalid['AduC2010Pintada']=="label label-danger"){
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8929,7 +8934,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else{
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8943,10 +8948,10 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                   }
- else if (header =='+300')
+                else if (header =='+300')
                     {
                if (modalid['AduC2017Pintada']=="label label-success"){
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8960,7 +8965,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                      else if (modalid['AduC2017Pintada']=="label label-warning"){
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8974,7 +8979,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                       else if (modalid['AduC2017Pintada']=="label label-danger"){
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -8988,7 +8993,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                     else{
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9006,7 +9011,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    else if (header =='+500')
                     {
                  if (modalid['AduC2019Pintada']=="label label-success"){
-                    ws2.cell(1, 8).string(header).style(style1);
+                    ws2.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9020,7 +9025,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2019Pintada']=="label label-warning"){
-                    ws2.cell(1, 8).string(header).style(style1);
+                    ws2.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9034,7 +9039,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if (modalid['AduC2019Pintada']=="label label-danger"){
-                    ws2.cell(1, 8).string(header).style(style1);
+                    ws2.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9048,7 +9053,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else {
-                    ws2.cell(1, 8).string(header).style(style1);
+                    ws2.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9067,7 +9072,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    else if (header =='+1000')
                     {
                 if (modalid['AduC2020Pintada']=="label label-success"){
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9081,7 +9086,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                       }
                      else if (modalid['AduC2020Pintada']=="label label-warning"){
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9095,7 +9100,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                       }
                       else if (modalid['AduC2020Pintada']=="label label-danger"){
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9109,7 +9114,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                       }
                       else{
-                    ws2.cell(1, 9).string(header).style(style1);
+                    ws2.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9128,68 +9133,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    {
                  if (modalid['AduC2025Pintada']=="label label-success"){
                     
-                         ws2.cell(1, 10).string(header).style(style1);
+                         ws2.cell(1, 11).string('FS/Kg').style(style1);
                         if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws2.cell(2,10).number(valor).style(styleverde);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws2.cell(2,10).number(valor).style(styleverde);
-                             }
-                     }
-                    else  if (modalid['AduC2025Pintada']=="label label-warning"){
-                    
-                         ws2.cell(1, 10).string(header).style(style1);
-                        if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws2.cell(2,10).number(valor).style(styleamarillo);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws2.cell(2,10).number(valor).style(styleamarillo);
-                             }
-                     }
-                    else  if (modalid['AduC2025Pintada']=="label label-danger"){
-                    
-                         ws2.cell(1, 10).string(header).style(style1);
-                        if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws2.cell(2,10).number(valor).style(stylerojo);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws2.cell(2,10).number(valor).style(stylerojo);
-                             }
-                     }
-                    else{
-                    
-                         ws2.cell(1, 10).string(header).style(style1);
-                        if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws2.cell(2,10).number(valor).style(style);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws2.cell(2,10).number(valor).style(style);
-                             }
-                     }
-                  }
-
-                  else if (header =='FS min')
-                    {
-                if (modalid['AduC2021Pintada']=="label label-success"){
-                    ws2.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws2.cell(2,11).number(valor).style(styleverde);
@@ -9199,11 +9144,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws2.cell(2,11).number(valor).style(styleverde);
                              }
-                    }
-                   else   if (modalid['AduC2021Pintada']=="label label-warning"){
-                    ws2.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                     }
+                    else  if (modalid['AduC2025Pintada']=="label label-warning"){
+                    
+                         ws2.cell(1, 11).string('FS/Kg').style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws2.cell(2,11).number(valor).style(styleamarillo);
@@ -9213,11 +9158,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws2.cell(2,11).number(valor).style(styleamarillo);
                              }
-                    }
-                   else  if (modalid['AduC2021Pintada']=="label label-danger"){
-                    ws2.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                     }
+                    else  if (modalid['AduC2025Pintada']=="label label-danger"){
+                    
+                         ws2.cell(1, 11).string('FS/Kg').style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws2.cell(2,11).number(valor).style(stylerojo);
@@ -9227,11 +9172,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws2.cell(2,11).number(valor).style(stylerojo);
                              }
-                    }
-                   else{
-                    ws2.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                     }
+                    else{
+                    
+                         ws2.cell(1, 11).string('FS/Kg').style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws2.cell(2,11).number(valor).style(style);
@@ -9240,6 +9185,66 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              {
                               valor = parseFloat(modalid[header]);
                               ws2.cell(2,11).number(valor).style(style);
+                             }
+                     }
+                  }
+
+                  else if (header =='FS min')
+                    {
+                if (modalid['AduC2021Pintada']=="label label-success"){
+                    ws2.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(styleverde);
+                             }
+                    }
+                   else   if (modalid['AduC2021Pintada']=="label label-warning"){
+                    ws2.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                    }
+                   else  if (modalid['AduC2021Pintada']=="label label-danger"){
+                    ws2.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(stylerojo);
+                             }
+                    }
+                   else{
+                    ws2.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws2.cell(2,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws2.cell(2,10).number(valor).style(style);
                              }
                     }
                   }
@@ -9425,7 +9430,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     else if (header =='+100 + Fs/kg + Gastos Embarque')
                     {
                 if (modalid['AduC4017Pintada']=="label label-success"){
-                    ws2.cell(1, 23).string(header).style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9439,7 +9444,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                    else  if (modalid['AduC4017Pintada']=="label label-warning"){
-                    ws2.cell(1, 23).string(header).style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9453,7 +9458,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                      else    if (modalid['AduC4017Pintada']=="label label-danger"){
-                    ws2.cell(1, 23).string(header).style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9467,7 +9472,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else {
-                    ws2.cell(1, 23).string(header).style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9484,7 +9489,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    else if (header =='+300 + Fs/kg + Gastos Embarque')
                     {
                if (modalid['AduC401718Pintada']=="label label-success"){
-                    ws2.cell(1, 24).string(header).style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9499,7 +9504,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718Pintada']=="label label-warning"){
-                    ws2.cell(1, 24).string(header).style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9514,7 +9519,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718Pintada']=="label label-danger"){
-                    ws2.cell(1, 24).string(header).style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9529,7 +9534,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else{
-                    ws2.cell(1, 24).string(header).style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9547,7 +9552,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+500 + Fs/kg + Gastos Embarque')
                     {
                  if (modalid['AduC4020Pintada']=="label label-success"){
-                    ws2.cell(1, 25).string(header).style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9562,7 +9567,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else  if (modalid['AduC4020Pintada']=="label label-warning"){
-                    ws2.cell(1, 25).string(header).style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9577,7 +9582,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                  else if (modalid['AduC4020Pintada']=="label label-danger"){
-                    ws2.cell(1, 25).string(header).style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9592,7 +9597,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else {
-                    ws2.cell(1, 25).string(header).style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9610,7 +9615,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+1000 + Fs/kg + Gastos Embarque')
                     {
                  if (modalid['AduC4021Pintada']=="label label-success"){
-                    ws2.cell(1, 26).string(header).style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9624,7 +9629,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else  if (modalid['AduC4021Pintada']=="label label-warning"){
-                    ws2.cell(1, 26).string(header).style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9638,7 +9643,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                         else if (modalid['AduC4021Pintada']=="label label-danger"){
-                    ws2.cell(1, 26).string(header).style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9652,7 +9657,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else{
-                    ws2.cell(1, 26).string(header).style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9701,23 +9706,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Email' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,1).string(valor).style(style);
-                      console.log('RazonSocial');
+                      //console.log('RazonSocial');
                   }
 
                   else if (header =='Pais'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      console.log('pais');
+                      //console.log('pais');
                   }
 
                   else if (header =='Aeropuerto'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,3).string(valor).style(style);
-                      console.log('Aeropuerto');
+                      //console.log('Aeropuerto');
                   }
 
                  else if (header =='Minima')
@@ -10040,24 +10045,24 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,10).number(valor).style(styleverde);
+                               ws2.cell(fila+1,11).number(valor).style(styleverde);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,10).number(valor).style(styleverde);
+                              ws2.cell(fila+1,11).number(valor).style(styleverde);
                              }
                      }
                     else  if (modalid['AduC2025Pintada']=="label label-warning"){
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,10).number(valor).style(styleamarillo);
+                               ws2.cell(fila+1,11).number(valor).style(styleamarillo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,10).number(valor).style(styleamarillo);
+                              ws2.cell(fila+1,11).number(valor).style(styleamarillo);
                              }
                      }
                     else  if (modalid['AduC2025Pintada']=="label label-danger"){
@@ -10065,24 +10070,24 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,10).number(valor).style(stylerojo);
+                               ws2.cell(fila+1,11).number(valor).style(stylerojo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,10).number(valor).style(stylerojo);
+                              ws2.cell(fila+1,11).number(valor).style(stylerojo);
                              }
                      }
                     else{
                      if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,10).number(valor).style(style);
+                               ws2.cell(fila+1,11).number(valor).style(style);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,10).number(valor).style(style);
+                              ws2.cell(fila+1,11).number(valor).style(style);
                              }
                      }
                   }
@@ -10094,48 +10099,48 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,11).number(valor).style(styleverde);
+                               ws2.cell(fila+1,10).number(valor).style(styleverde);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,11).number(valor).style(styleverde);
+                              ws2.cell(fila+1,10).number(valor).style(styleverde);
                              }
                     }
                    else   if (modalid['AduC2021Pintada']=="label label-warning"){
                    if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,11).number(valor).style(styleamarillo);
+                               ws2.cell(fila+1,10).number(valor).style(styleamarillo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,11).number(valor).style(styleamarillo);
+                              ws2.cell(fila+1,10).number(valor).style(styleamarillo);
                              }
                     }
                    else  if (modalid['AduC2021Pintada']=="label label-danger"){
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,11).number(valor).style(stylerojo);
+                               ws2.cell(fila+1,10).number(valor).style(stylerojo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,11).number(valor).style(stylerojo);
+                              ws2.cell(fila+1,10).number(valor).style(stylerojo);
                              }
                     }
                    else{
                      if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(fila+1,11).number(valor).style(style);
+                               ws2.cell(fila+1,10).number(valor).style(style);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(fila+1,11).number(valor).style(style);
+                              ws2.cell(fila+1,10).number(valor).style(style);
                              }
                     }
                   }
@@ -10542,7 +10547,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var filabody = 1;
           var col = 1;
           var stylecolor=style;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad2.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -10566,21 +10571,21 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws3.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,1).string(valor).style(style);
-                      console.log('RazonSocial');
+                      //console.log('RazonSocial');
                   }
 
                   else if (header =='Pais'){
                     ws3.cell(1, 2).string(header).style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,2).string(valor).style(style);
-                      console.log('pais');
+                      //console.log('pais');
                   }
 
                   else if (header =='Aeropuerto'){
                     ws3.cell(1, 3).string(header).style(style1);
                     valor = modalid[header].toString()
                     ws3.cell(2,3).string(valor).style(style);
-                      console.log('Aeropuerto');
+                      //console.log('Aeropuerto');
                   }
 
                  else if (header =='Minima')
@@ -10654,7 +10659,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                 else if (header =='45')
                     {
                   if (modalid['AduC8PPintada']=="label label-success"){
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10668,7 +10673,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                      else if (modalid['AduC8PPintada']=="label label-warning"){
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10682,7 +10687,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                     else if (modalid['AduC8PPintada']=="label label-danger"){
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10696,7 +10701,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                      }
                      else{
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('T 45').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10714,7 +10719,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+100')
                     {
                  if (modalid['AduC2010PPintada']=="label label-success"){
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10728,7 +10733,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else if (modalid['AduC2010PPintada']=="label label-warning"){
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10742,7 +10747,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else  if (modalid['AduC2010PPintada']=="label label-danger"){
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10756,7 +10761,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else{
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('T 100').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10773,7 +10778,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  else if (header =='+300')
                     {
                  if (modalid['AduC2017PPintada']=="label label-success"){
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10787,7 +10792,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else if (modalid['AduC2017PPintada']=="label label-warning"){
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10801,7 +10806,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else  if (modalid['AduC2017PPintada']=="label label-danger"){
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10815,7 +10820,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                        }
                        else{
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('T 300').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10833,7 +10838,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    else if (header =='+500')
                     {
                  if (modalid['AduC2019PPintada ']=="label label-success"){
-                    ws3.cell(1, 8).string(header).style(style1);
+                    ws3.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10847,7 +10852,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else if (modalid['AduC2019PPintada ']=="label label-warning"){
-                    ws3.cell(1, 8).string(header).style(style1);
+                    ws3.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10861,7 +10866,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if (modalid['AduC2019PPintada ']=="label label-danger"){
-                    ws3.cell(1, 8).string(header).style(style1);
+                    ws3.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10875,7 +10880,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else {
-                    ws3.cell(1, 8).string(header).style(style1);
+                    ws3.cell(1, 8).string('T 500').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10894,7 +10899,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    else if (header =='+1000')
                     {
                 if (modalid['AduC2020PPintadaa']=="label label-success"){
-                    ws3.cell(1, 9).string(header).style(style1);
+                    ws3.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10908,7 +10913,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                       }
                      else if (modalid['AduC2020PPintada']=="label label-warning"){
-                    ws3.cell(1, 9).string(header).style(style1);
+                    ws3.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10922,7 +10927,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                       }
                       else if (modalid['AduC2020PPintada']=="label label-danger"){
-                    ws3.cell(1, 9).string(header).style(style1);
+                    ws3.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10936,7 +10941,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                       }
                       else{
-                    ws3.cell(1, 9).string(header).style(style1);
+                    ws3.cell(1, 9).string('T 1000').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -10955,69 +10960,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                      {
                  if (modalid['AduC2025PPintada']=="label label-success"){
                     
-                         ws3.cell(1, 10).string(header).style(style1);
+                         ws3.cell(1, 11).string('FS/Kg').style(style1);
                         if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws3.cell(2,10).number(valor).style(styleverde);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws3.cell(2,10).number(valor).style(styleverde);
-                             }
-                     }
-                    else  if (modalid['AduC2025PPintada']=="label label-warning"){
-                    
-                         ws3.cell(1, 10).string(header).style(style1);
-                        if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws3.cell(2,10).number(valor).style(styleamarillo);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws3.cell(2,10).number(valor).style(styleamarillo);
-                             }
-                     }
-                    else  if (modalid['AduC2025PPintada']=="label label-danger"){
-                    
-                         ws3.cell(1, 10).string(header).style(style1);
-                        if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws3.cell(2,10).number(valor).style(stylerojo);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws3.cell(2,10).number(valor).style(stylerojo);
-                             }
-                     }
-                    else{
-                    
-                         ws3.cell(1, 10).string(header).style(style1);
-                        if (modalid[header] == null || modalid[header] == '')
-                             {
-                               valor =parseFloat(0.00);
-                               ws3.cell(2,10).number(valor).style(style);
-                             }
-                             else
-                             {
-                              valor = parseFloat(modalid[header]);
-                              ws3.cell(2,10).number(valor).style(style);
-                             }
-                     }
-                  }
-
-
-                   else if (header =='FS min')
-                    {
-                if (modalid['AduC2021PPintada']=="label label-success"){
-                    ws3.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws3.cell(2,11).number(valor).style(styleverde);
@@ -11027,11 +10971,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws3.cell(2,11).number(valor).style(styleverde);
                              }
-                    }
-                   else   if (modalid['AduC2021PPintada']=="label label-warning"){
-                    ws3.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                     }
+                    else  if (modalid['AduC2025PPintada']=="label label-warning"){
+                    
+                         ws3.cell(1, 11).string('FS/Kg').style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws3.cell(2,11).number(valor).style(styleamarillo);
@@ -11041,11 +10985,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws3.cell(2,11).number(valor).style(styleamarillo);
                              }
-                    }
-                   else  if (modalid['AduC2021PPintada']=="label label-danger"){
-                    ws3.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                     }
+                    else  if (modalid['AduC2025PPintada']=="label label-danger"){
+                    
+                         ws3.cell(1, 11).string('FS/Kg').style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws3.cell(2,11).number(valor).style(stylerojo);
@@ -11055,11 +10999,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               valor = parseFloat(modalid[header]);
                               ws3.cell(2,11).number(valor).style(stylerojo);
                              }
-                    }
-                   else{
-                    ws3.cell(1, 11).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                     }
+                    else{
+                    
+                         ws3.cell(1, 11).string('FS/Kg').style(style1);
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
                                ws3.cell(2,11).number(valor).style(style);
@@ -11068,6 +11012,67 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              {
                               valor = parseFloat(modalid[header]);
                               ws3.cell(2,11).number(valor).style(style);
+                             }
+                     }
+                  }
+
+
+                   else if (header =='FS min')
+                    {
+                if (modalid['AduC2021PPintada']=="label label-success"){
+                    ws3.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(styleverde);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(styleverde);
+                             }
+                    }
+                   else   if (modalid['AduC2021PPintada']=="label label-warning"){
+                    ws3.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(styleamarillo);
+                             }
+                    }
+                   else  if (modalid['AduC2021PPintada']=="label label-danger"){
+                    ws3.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(stylerojo);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(stylerojo);
+                             }
+                    }
+                   else{
+                    ws3.cell(1, 10).string('FS Min').style(style1);
+
+                            if (modalid[header] == null || modalid[header] == '')
+                             {
+                               valor =parseFloat(0.00);
+                               ws3.cell(2,10).number(valor).style(style);
+                             }
+                             else
+                             {
+                              valor = parseFloat(modalid[header]);
+                              ws3.cell(2,10).number(valor).style(style);
                              }
                     }
                   }
@@ -11253,7 +11258,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     else if (header =='+100 + Fs/kg')
                     {
                 if (modalid['AduC4017PPintada']=="label label-success"){
-                    ws3.cell(1, 23).string('+100 + Fs/kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11267,7 +11272,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                    else  if (modalid['AduC4017PPintada']=="label label-warning"){
-                    ws3.cell(1, 23).string(header).style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11281,7 +11286,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                      else    if (modalid['AduC4017PPintada']=="label label-danger"){
-                    ws3.cell(1, 23).string(header).style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11295,7 +11300,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else {
-                    ws3.cell(1, 23).string(header).style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11313,7 +11318,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                       else if (header =='+300 + Fs/kg')
                     {
                if (modalid['AduC401718PPintada']=="label label-success"){
-                    ws3.cell(1, 24).string('+300 + Fs/kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11328,7 +11333,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718PPintada']=="label label-warning"){
-                    ws3.cell(1, 24).string(header).style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11343,7 +11348,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718PPintada']=="label label-danger"){
-                    ws3.cell(1, 24).string(header).style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11358,7 +11363,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else{
-                    ws3.cell(1, 24).string(header).style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11376,7 +11381,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+500 + Fs/kg')
                     {
                  if (modalid['AduC4020PPintada']=="label label-success"){
-                    ws3.cell(1, 25).string('+500 + Fs/kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11391,7 +11396,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else  if (modalid['AduC4020PPintada']=="label label-warning"){
-                    ws3.cell(1, 25).string(header).style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11406,7 +11411,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                  else if (modalid['AduC4020PPintada']=="label label-danger"){
-                    ws3.cell(1, 25).string(header).style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11421,7 +11426,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else {
-                    ws3.cell(1, 25).string(header).style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11439,7 +11444,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+1000 + Fs/kg')
                     {
                  if (modalid['AduC4021PPintada']=="label label-success"){
-                    ws3.cell(1, 26).string('+1000 + Fs/kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11453,7 +11458,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else  if (modalid['AduC4021PPintada']=="label label-warning"){
-                    ws3.cell(1, 26).string(header).style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11467,7 +11472,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                         else if (modalid['AduC4021PPintada']=="label label-danger"){
-                    ws3.cell(1, 26).string(header).style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11481,7 +11486,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else{
-                    ws3.cell(1, 26).string(header).style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11530,23 +11535,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     header !='AduC2021PPintada' && header !='AduC2025PPintada' && header !='AduC4015PPintada' && header !='AduC4016PPintada' && header !='AduC4017PPintada' && header !='AduC401718PPintada' && header !='AduC4020PPintada' &&
                     header !='AduC4021PPintada' && header !='AdumaqpPintada' && header !='Email' && header !='AdumaqpminPintada' && header !='AdumaqpfmmPintada')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                         if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,1).string(valor).style(style);
-                      console.log('RazonSocial');
+                      //console.log('RazonSocial');
                   }
 
                   else if (header =='Pais'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,2).string(valor).style(style);
-                      console.log('pais');
+                      //console.log('pais');
                   }
 
                   else if (header =='Aeropuerto'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,3).string(valor).style(style);
-                      console.log('Aeropuerto');
+                      //console.log('Aeropuerto');
                   }
 
                  else if (header =='Minima')
@@ -11746,8 +11751,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws3.cell(fila+1,7).number(valor).style(stylerojo);
                              }
                      }
-                    else{
-                    ws2.cell(1, 7).string(header).style(style1);
+                    else{                   
                 if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
@@ -11873,24 +11877,24 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,10).number(valor).style(styleverde);
+                               ws3.cell(fila+1,11).number(valor).style(styleverde);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,10).number(valor).style(styleverde);
+                              ws3.cell(fila+1,11).number(valor).style(styleverde);
                              }
                      }
                     else  if (modalid['AduC2025PPintada']=="label label-warning"){
                      if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,10).number(valor).style(styleamarillo);
+                               ws3.cell(fila+1,11).number(valor).style(styleamarillo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,10).number(valor).style(styleamarillo);
+                              ws3.cell(fila+1,11).number(valor).style(styleamarillo);
                              }
                      }
                     else  if (modalid['AduC2025PPintada']=="label label-danger"){
@@ -11898,12 +11902,12 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,10).number(valor).style(stylerojo);
+                               ws3.cell(fila+1,11).number(valor).style(stylerojo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,10).number(valor).style(stylerojo);
+                              ws3.cell(fila+1,11).number(valor).style(stylerojo);
                              }
                      }
                     else{
@@ -11911,12 +11915,12 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                        if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,10).number(valor).style(style);
+                               ws3.cell(fila+1,11).number(valor).style(style);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,10).number(valor).style(style);
+                              ws3.cell(fila+1,11).number(valor).style(style);
                              }
                      }
                   }
@@ -11928,48 +11932,48 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                      if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,11).number(valor).style(styleverde);
+                               ws3.cell(fila+1,10).number(valor).style(styleverde);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,11).number(valor).style(styleverde);
+                              ws3.cell(fila+1,10).number(valor).style(styleverde);
                              }
                     }
                    else   if (modalid['AduC2021PPintada']=="label label-warning"){
                    if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,11).number(valor).style(styleamarillo);
+                               ws3.cell(fila+1,10).number(valor).style(styleamarillo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+12,11).number(valor).style(styleamarillo);
+                              ws3.cell(fila+1,10).number(valor).style(styleamarillo);
                              }
                     }
                    else  if (modalid['AduC2021PPintada']=="label label-danger"){
                    if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,11).number(valor).style(stylerojo);
+                               ws3.cell(fila+1,10).number(valor).style(stylerojo);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,11).number(valor).style(stylerojo);
+                              ws3.cell(fila+1,10).number(valor).style(stylerojo);
                              }
                     }
                    else{
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+1,11).number(valor).style(style);
+                               ws3.cell(fila+1,10).number(valor).style(style);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws3.cell(fila+1,11).number(valor).style(style);
+                              ws3.cell(fila+1,10).number(valor).style(style);
                              }
                     }
                   }
@@ -12243,7 +12247,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws3.cell(fila+12,25).number(valor).style(styleverde);
+                               ws3.cell(fila+1,25).number(valor).style(styleverde);
                              }
                              else
                              {
@@ -12381,7 +12385,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var filabody = 1;
           var col = 1;
           var stylecolor=style;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -12396,27 +12400,27 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     ws2.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws2.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo Standar (150Cajas)')
                     { 
                 if  (modalid['AduC2045Pintada']=="label label-success") {                   
-                    ws2.cell(1, 4).string(header).style(style1);                    
+                    ws2.cell(1, 4).string('Turbo Standard (150 Cajas)').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12430,8 +12434,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if  (modalid['AduC2045Pintada']=="label label-warning") {                   
-                    ws2.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 4).string('Turbo Standard (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12445,8 +12449,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  if  (modalid['AduC2045Pintada']=="label label-danger") {                   
-                    ws2.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 4).string('Turbo Standard (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12460,8 +12464,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else {                   
-                    ws2.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 4).string('Turbo Standard (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12479,7 +12483,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Turbo Especial')
                     {           
                  if  (modalid['AduC8Pintada']=="label label-success") {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (210 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12493,7 +12497,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC8Pintada']=="label label-warning") {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (210 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12507,7 +12511,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC8Pintada']=="label label-danger") {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (210 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12521,7 +12525,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (210 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12540,7 +12544,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 6).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,6).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,6).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -12551,23 +12555,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto' && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                     if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo Standar (150Cajas)')
@@ -12678,7 +12682,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws2.cell(fila+1,6).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila+1,6).string(valor).style(style);                      ////console.log(header);
                   }
                     
                    //
@@ -12696,7 +12700,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad2.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -12710,27 +12714,27 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws3.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     ws3.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws3.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Sencillo Standar (150Cajas)')
                     { 
                 if  (modalid['AduC2010Pintada']=="label label-success") {                   
-                    ws3.cell(1, 4).string(header).style(style1);                    
+                    ws3.cell(1, 4).string('Sencillo Standard (150Cajas)').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12744,7 +12748,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if  (modalid['AduC2010Pintada']=="label label-warning") {                   
-                    ws3.cell(1, 4).string(header).style(style1);
+                    ws3.cell(1, 4).string('Sencillo Standard (150Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12758,7 +12762,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  if  (modalid['AduC2010Pintada']=="label label-danger") {                   
-                    ws3.cell(1, 4).string(header).style(style1);                    
+                    ws3.cell(1, 4).string('Sencillo Standard (150Cajas)').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12772,7 +12776,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else {                   
-                    ws3.cell(1, 4).string(header).style(style1);
+                    ws3.cell(1, 4).string('Sencillo Standard (150Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12790,7 +12794,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Sencillo Especial')
                     {           
                  if  (modalid['AduC2017Pintada']=="label label-success") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12804,7 +12808,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2017Pintada']=="label label-warning") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12818,7 +12822,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC2017Pintada']=="label label-danger") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12832,7 +12836,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -12851,7 +12855,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws3.cell(1, 6).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws3.cell(2,6).string(valor).style(style);                      //console.log(header);
+                    ws3.cell(2,6).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -12862,23 +12866,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id'  && header !='Aeropuerto' &&  header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                    if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Sencillo Standar (150Cajas)')
@@ -12988,7 +12992,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws3.cell(fila+1,6).string(valor).style(style);                      //console.log(header);
+                    ws3.cell(fila+1,6).string(valor).style(style);                      ////console.log(header);
                   }
 
                  
@@ -13008,7 +13012,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
       var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad3.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -13021,21 +13025,21 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws4.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     ws4.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws4.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Minimula')
@@ -13162,7 +13166,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws4.cell(1, 6).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws4.cell(2,6).string(valor).style(style);                      //console.log(header);
+                    ws4.cell(2,6).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -13173,23 +13177,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto'  && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws4.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     valor = modalid[header].toString();
                     ws4.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws4.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Minimula')
@@ -13247,9 +13251,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   }                  
 
                   if (header =='Gran Danes')
-                    {           
+                    {          
                  if  (modalid['AduC2020Pintada']=="label label-success") {           
-                    if (modalid[header] == null || modalid[header] == '')
+                    if (modalid[header] == null || modalid[header] == '' || typeof modalid[header]=='undefined' || typeof modalid[header]=='undefined')
                              {
                                valor =parseFloat(0.00);
                                ws4.cell(fila+1,5).number(valor).style(styleverde);
@@ -13261,7 +13265,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2020Pintada']=="label label-warning") {           
-                    if (modalid[header] == null || modalid[header] == '')
+                    if (modalid[header] == null || modalid[header] == '' || typeof modalid[header]=='undefined')
                              {
                                valor =parseFloat(0.00);
                                ws4.cell(fila+1,5).number(valor).style(styleamarillo);
@@ -13273,7 +13277,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC2020Pintada']=="label label-danger") {           
-                    if (modalid[header] == null || modalid[header] == '')
+                    if (modalid[header] == null || modalid[header] == '' || typeof modalid[header]=='undefined')
                              {
                                valor =parseFloat(0.00);
                                ws4.cell(fila+1,5).number(valor).style(stylerojo);
@@ -13285,7 +13289,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                        if (modalid[header] == null || modalid[header] == '')
+                        if (modalid[header] == null || modalid[header] == '' || typeof modalid[header]=='undefined')
                              {
                                valor =parseFloat(0.00);
                                ws4.cell(fila+1,5).number(valor).style(style);
@@ -13301,7 +13305,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws4.cell(fila+1,6).string(valor).style(style);                      //console.log(header);
+                    ws4.cell(fila+1,6).string(valor).style(style);                      ////console.log(header);
                   }
                    //
                 }
@@ -13325,7 +13329,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var filabody = 1;
           var col = 1;
           var stylecolor=style;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -13340,27 +13344,27 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     ws2.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws2.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws2.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo (150Cajas)')
                     { 
                 if  (modalid['AduC2045Pintada']=="label label-success") {                   
-                    ws2.cell(1, 4).string(header).style(style1);                    
+                    ws2.cell(1, 4).string('Turbo (150 Cajas)').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13374,8 +13378,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if  (modalid['AduC2045Pintada']=="label label-warning") {                   
-                    ws2.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 4).string('Turbo (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13389,8 +13393,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  if  (modalid['AduC2045Pintada']=="label label-danger") {                   
-                    ws2.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 4).string('Turbo (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13404,8 +13408,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else {                   
-                    ws2.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws2.cell(1, 4).string('Turbo (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13423,7 +13427,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Turbo Especial (200Cajas)')
                     {           
                  if  (modalid['AduC8Pintada']=="label label-success") {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13437,7 +13441,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC8Pintada']=="label label-warning") {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13451,7 +13455,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC8Pintada']=="label label-danger") {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13465,7 +13469,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws2.cell(1, 5).string(header).style(style1);
+                    ws2.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13482,7 +13486,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Sencillo (240Cajas)')
                     {           
                  if  (modalid['AduC2010Pintada']=="label label-success") {           
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13496,7 +13500,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2010Pintada']=="label label-warning") {           
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13510,7 +13514,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC2010Pintada']=="label label-danger") {           
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13524,7 +13528,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws2.cell(1, 6).string(header).style(style1);
+                    ws2.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13541,7 +13545,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    if (header =='Sencillo Especial (300Cajas)')
                     {           
                  if  (modalid['AduC2017Pintada']=="label label-success") {           
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13555,7 +13559,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2017Pintada']=="label label-warning") {           
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13569,7 +13573,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC2017Pintada']=="label label-danger") {           
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13583,7 +13587,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws2.cell(1, 7).string(header).style(style1);
+                    ws2.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -13721,7 +13725,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws2.cell(1, 10).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws2.cell(2,10).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(2,10).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -13732,23 +13736,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto' && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                     if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws2.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo (150Cajas)')
@@ -14063,7 +14067,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws2.cell(fila+1,10).string(valor).style(style);                      //console.log(header);
+                    ws2.cell(fila+1,10).string(valor).style(style);                      ////console.log(header);
                   }
                     
                    //
@@ -14081,7 +14085,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
           var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad2.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -14095,27 +14099,27 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws3.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     ws3.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws3.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws3.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo (150Cajas)')
                     { 
                 if  (modalid['AduC2021vPintada']=="label label-success") {                   
-                    ws3.cell(1, 4).string(header).style(style1);                    
+                    ws3.cell(1, 4).string('Turbo (150 Cajas)').style(style1);                    
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14129,8 +14133,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else if  (modalid['AduC2021vPintada']=="label label-warning") {                   
-                    ws3.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws3.cell(1, 4).string('Turbo (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14144,8 +14148,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  if  (modalid['AduC2021vPintada']=="label label-danger") {                   
-                    ws3.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws3.cell(1, 4).string('Turbo (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14159,8 +14163,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else {                   
-                    ws3.cell(1, 4).string(header).style(style1);
-                    console.log(stylecolor);
+                    ws3.cell(1, 4).string('Turbo (150 Cajas)').style(style1);
+                    //console.log(stylecolor);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14178,7 +14182,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Turbo Especial (200Cajas)')
                     {           
                  if  (modalid['AduC2025vPintada']=="label label-success") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14192,7 +14196,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC2025vPintada']=="label label-warning") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14206,7 +14210,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC2025vPintada']=="label label-danger") {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14220,7 +14224,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws3.cell(1, 5).string(header).style(style1);
+                    ws3.cell(1, 5).string('Turbo Especial (200 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14237,7 +14241,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Sencillo (240Cajas)')
                     {           
                  if  (modalid['AduC4015vPintada']=="label label-success") {           
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14251,7 +14255,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC4015vPintada']=="label label-warning") {           
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14265,7 +14269,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC4015vPintada']=="label label-danger") {           
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14279,7 +14283,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws3.cell(1, 6).string(header).style(style1);
+                    ws3.cell(1, 6).string('Sencillo (240 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14296,7 +14300,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                    if (header =='Sencillo Especial (300Cajas)')
                     {           
                  if  (modalid['AduC4016vPintada']=="label label-success") {           
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14310,7 +14314,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if  (modalid['AduC4016vPintada']=="label label-warning") {           
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14324,7 +14328,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if  (modalid['AduC4016vPintada']=="label label-danger") {           
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14338,7 +14342,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else  {           
-                    ws3.cell(1, 7).string(header).style(style1);
+                    ws3.cell(1, 7).string('Sencillo Especial (300 Cajas)').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -14476,7 +14480,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws3.cell(1, 10).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws3.cell(2,10).string(valor).style(style);                      //console.log(header);
+                    ws3.cell(2,10).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -14487,23 +14491,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id'  && header !='Aeropuerto' &&  header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                       if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws3.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo (150Cajas)')
@@ -14818,7 +14822,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws3.cell(fila+1,10).string(valor).style(style);                      //console.log(header);
+                    ws3.cell(fila+1,10).string(valor).style(style);                      ////console.log(header);
                   }
                  
                    //
@@ -14837,7 +14841,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
       var fila = 1;
           var filabody = 1;
           var col = 1;
-                console.log('no debe pasar por aqui aerea hoja 1');
+                //console.log('no debe pasar por aqui aerea hoja 1');
              Modalidad3.forEach(function(modalid) {
               // Si es primera fila se crea el encabezado
               var Encabezados = Object.keys(modalid);
@@ -14850,21 +14854,21 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws4.cell(1, 1).string('Proveedor').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     ws4.cell(1, 2).string('Origen').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     ws4.cell(1, 3).string('Destino').style(style1);
                     valor = modalid[header].toString();
                     ws4.cell(2,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo')
@@ -15051,7 +15055,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   if (header =='Version'){
                     ws4.cell(1, 7).string(header).style(style1);
                     valor = modalid[header].toString();
-                    ws4.cell(2,7).string(valor).style(style);                      //console.log(header);
+                    ws4.cell(2,7).string(valor).style(style);                      ////console.log(header);
                   }
                     
                   }
@@ -15062,23 +15066,23 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  Encabezados.forEach(function(header) {
                 if (header !='_id' && header !='Aeropuerto'  && header !='Email')
                 {
-                //console.log(modalid[header]);
+                ////console.log(modalid[header]);
                      if (header =='RazonSocial'){
                     valor = modalid[header].toString();
                     ws4.cell(fila+1,1).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PaisOrigen'){
                     valor = modalid[header].toString();
                     ws4.cell(fila+1,2).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='PuertoDestino'){
                     valor = modalid[header].toString();
                     ws4.cell(fila+1,3).string(valor).style(style);
-                      //console.log(header);
+                      ////console.log(header);
                   }
 
                   if (header =='Turbo')
@@ -15242,7 +15246,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                  
                   if (header =='Version'){
                     valor = modalid[header].toString();
-                    ws4.cell(fila+1,7).string(valor).style(style);                      //console.log(header);
+                    ws4.cell(fila+1,7).string(valor).style(style);                      ////console.log(header);
                   }
                    //
                 }
@@ -15271,7 +15275,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
 
 
-console.log('Si va');
+//console.log('Si va');
     //wb.write('Aduana.xlsx', res);
 
   });
@@ -15323,7 +15327,7 @@ app.post('/GetEmpleadosNomina', function (req, res) {
     Data.Empleados = Empleados;
     Data.tEmpleados = sheetEmpleados;
     Data.User = req.session.user[0];
-    console.log(req.body.EditUser);
+    //console.log(req.body.EditUser);
     if (req.body.EditUser != '') {
         MyMongo.Find('Usuarios', { Email: req.body.EditUser }, function (result) {
             Data.Usuario = result[0];
@@ -15410,8 +15414,8 @@ app.post('/ReadGoogleSheet', function (req, res) {
   }
   jwtClient.authorize(function (err, tokens) {
       if (err) {
-          console.log('Error autenticacion');
-          return console.log(err);
+          //console.log('Error autenticacion');
+          return //console.log(err);
       }
       else {
         var surl = req.body.url;
@@ -15443,7 +15447,7 @@ app.post('/ReadGoogleSheet', function (req, res) {
                   var Fila = 1;
 
                   sheetEmpleados.forEach(function (nominaempleado) {
-                    console.log(nominaempleado);
+                    //console.log(nominaempleado);
                     Fila++;
 
                     var CuentaValidada = false;
@@ -15588,7 +15592,7 @@ app.post('/ReadGoogleSheet', function (req, res) {
                           }
 
                           Periodo = nominaempleado['PROYECTO/Nomina'] + '@' + nominaempleado['RFC'] + '@' + mes(nominaempleado['PERIODO DE PAGO']) + DiaInicio + ano + '-' + mes(nominaempleado['PERIODO DE PAGO']) + DiaFin + ano;
-                          console.log(Periodo);
+                          //console.log(Periodo);
                           lnominaempleado.PeriodoFile = Periodo;
                           empleados.push(lnominaempleado);
                         }
@@ -15654,7 +15658,7 @@ app.post('/ReadGoogleSheet', function (req, res) {
                         var searchEmployeeInTxt = req.session.CurrentTxtEmpleados.filter(function (el){
                           return el.RFC == Nomina.Rfc && el.VALIDO == 'V'
                         })
-                        console.log(searchEmployeeInTxt);
+                        //console.log(searchEmployeeInTxt);
                         if (searchEmployeeInTxt.length == 0){
                           Nomina.RfcValido = false;
 
@@ -15669,7 +15673,7 @@ app.post('/ReadGoogleSheet', function (req, res) {
                           Nomina.RfcValido = true;
                         }
 
-                        console.log(Nomina);
+                        //console.log(Nomina);
                         MyMongo.Remove('EmpleadosNomina', { $and: [{ Nomina: Nomina.Nomina }, { Rfc: Nomina.Rfc }, { Periodo: Nomina.Periodo }] }, function (result) {
                             MyMongo.Insert('EmpleadosNomina', Nomina, function (result) {
                               var ResponseData = 'Hace falta hacer una promesa para esperar por todas las respuestas antes de enviar ';
@@ -15750,10 +15754,10 @@ app.get('/GetTemplateBodegaje', function (req, res) {
 
     // Busqueda Node ADoN3iVumhUgWasJoJsNbaSVd6cAHRcfcu0zK0CKQWuAAUKmjRRDQEB4SAIMcGnigfnh
     ///////////////Bodegajes////////////////////////////
-        ws.cell(1, 1).string('Tarifa Valor/FOB').style(style);
+        ws.cell(1, 1).string('Tarifa Valor FOB').style(style);
         ws.cell(1, 2).string('Tarifa Minima').style(style);
         ws.cell(1, 3).string('Otros').style(style);
-        ws1.cell(1, 1).string('Tarifa').style(style);
+        ws1.cell(1, 1).string('Tarifa Valor FOB').style(style);
         ws1.cell(1, 2).string('Tarifa Minima').style(style);
         ws1.cell(1, 3).string('FMM').style(style);
         ws2.cell(1, 1).string('Tarifa').style(style);
@@ -15798,12 +15802,12 @@ app.get('/GetTemplateAduana', function (req, res) {
         ws2.cell(1, 1).string('Via').style(style);
         ws2.cell(1, 2).string("Tarifa % Advalorem/ FOB").style(style);
         ws2.cell(1, 3).string('Minima').style(style);
-        ws2.cell(1, 4).string('Gastos Adicionales').style(style);
-        ws2.cell(1, 5).string('Conceptos Adicionales').style(style);
-        ws2.cell(1, 6).string('Gastos Adicionales dos').style(style);
-        ws2.cell(1, 7).string('Conceptos Adicionales dos').style(style);
-        ws2.cell(1, 8).string('Gastos Adicionales tres').style(style);
-        ws2.cell(1, 9).string('Conceptos Adicionales tres').style(style);
+        ws2.cell(1, 4).string('Gastos Adicionales 1').style(style);
+        ws2.cell(1, 5).string('Conceptos Adicionales 1').style(style);
+        ws2.cell(1, 6).string('Gastos Adicionales 2').style(style);
+        ws2.cell(1, 7).string('Conceptos Adicionales 2').style(style);
+        ws2.cell(1, 8).string('Gastos Adicionales 3').style(style);
+        ws2.cell(1, 9).string('Conceptos Adicionales 3').style(style);
         ws2.cell(1, 10).string('Costo Planificacion Caja').style(style);
         ws2.cell(1, 11).string('Otros').style(style);
         ws2.cell(col + 1, 1 ).string(aduana.Via).style(style);
@@ -15912,12 +15916,12 @@ app.get('/GetTemplateMariFcl', function (req, res) {
         ws4.cell(1, 1).string('PaisDestino').style(style);
         ws4.cell(1, 2).string('PuertoOrigen').style(style);
         ws4.cell(1, 3).string('PuertoDestino').style(style);
-        ws4.cell(1, 4).string('C 20').style(style);
+        ws4.cell(1, 4).string('T 20').style(style);
         ws4.cell(1, 5).string('Baf 20').style(style);
-        ws4.cell(1, 6).string('C 40').style(style);
+        ws4.cell(1, 6).string('T 40').style(style);
         ws4.cell(1, 7).string('Baf 40').style(style);
-        ws4.cell(1, 8).string('C 40HC').style(style);
-        ws4.cell(1, 9).string('Baf 40HC').style(style);
+        ws4.cell(1, 8).string('T40 HQ').style(style);
+        ws4.cell(1, 9).string('Baf 40HQ').style(style);
         ws4.cell(1, 10).string('Observaciones').style(style);
         ws4.cell(1, 11).string('Gastos Embarque').style(style);
         ws4.cell(1, 12).string('Lead Time(dias)').style(style);
@@ -16058,8 +16062,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
           var TerrestNacional= result;
         ws6.cell(1, 1).string('PaisOrigen').style(style);
         ws6.cell(1, 2).string('PuertoDestino').style(style);
-        ws6.cell(1, 3).string('Turbo Standar (150Cajas)').style(style);
-        ws6.cell(1, 4).string('Turbo Especial').style(style);
+        ws6.cell(1, 3).string('Turbo Standard (150 Cajas)').style(style);
+        ws6.cell(1, 4).string('Turbo Especial (210 Cajas)').style(style);
 
         var col = 0
         TerrestNacional.forEach(function(terrestnacional){
@@ -16072,8 +16076,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
           var TerrestNacionalSencillo= result;
         ws7.cell(1, 1).string('PaisOrigen').style(style);
         ws7.cell(1, 2).string('PuertoDestino').style(style);
-        ws7.cell(1, 3).string('Sencillo Standar (150Cajas)').style(style);
-        ws7.cell(1, 4).string('Sencillo Especial').style(style);
+        ws7.cell(1, 3).string('Sencillo Standard (240 Cajas)').style(style);
+        ws7.cell(1, 4).string('Sencillo Especial (300 Cajas)').style(style);
 
         var col = 0
         TerrestNacionalSencillo.forEach(function(terrestnacionalsencillo){
@@ -16137,10 +16141,10 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
           var TerrestUrbano= result;
         ws7.cell(1, 1).string('Origen').style(style);
         ws7.cell(1, 2).string('Destino').style(style);
-        ws7.cell(1, 3).string('Turbo (150Cajas)').style(style);
-        ws7.cell(1, 4).string('Turbo Especial (200Cajas)').style(style);
-        ws7.cell(1, 5).string('Sencillo (240Cajas)').style(style);
-        ws7.cell(1, 6).string('Sencillo Especial (300Cajas)').style(style);
+        ws7.cell(1, 3).string('Turbo (150 Cajas)').style(style);
+        ws7.cell(1, 4).string('Turbo Especial (200 Cajas)').style(style);
+        ws7.cell(1, 5).string('Sencillo (240 Cajas)').style(style);
+        ws7.cell(1, 6).string('Sencillo Especial (300 Cajas)').style(style);
         ws7.cell(1, 7).string('Minimula').style(style);
         ws7.cell(1, 8).string('Gran Danes').style(style);
 
@@ -16154,12 +16158,12 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
   ///////////////Terrestre Urbano Viaje///////////////////////////////
       MyMongo.Find('TerresUrbanoViaje', {}, function (result) {
           var TerrestUrbanoViaje= result;
-         ws8.cell(1, 1).string('PaisOrigen').style(style);
-        ws8.cell(1, 2).string('PuertoDestino').style(style);
-        ws8.cell(1, 3).string('Turbo (150Cajas)').style(style);
-        ws8.cell(1, 4).string('Turbo Especial (200Cajas)').style(style);
-        ws8.cell(1, 5).string('Sencillo (240Cajas)').style(style);
-        ws8.cell(1, 6).string('Sencillo Especial (300Cajas)').style(style);
+         ws8.cell(1, 1).string('Origen').style(style);
+        ws8.cell(1, 2).string('Destino').style(style);
+        ws8.cell(1, 3).string('Turbo (150 Cajas)').style(style);
+        ws8.cell(1, 4).string('Turbo Especial (200 Cajas)').style(style);
+        ws8.cell(1, 5).string('Sencillo (240 Cajas)').style(style);
+        ws8.cell(1, 6).string('Sencillo Especial (300 Cajas)').style(style);
         ws8.cell(1, 7).string('Minimula').style(style);
         ws8.cell(1, 8).string('Gran Danes').style(style);
 
@@ -16177,8 +16181,8 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
         var col = 0
         TerrestUrbanoTonelada.forEach(function(terresturbanotonelada){
         col = col + 1;
-        ws9.cell(1, 1).string('PaisOrigen').style(style);
-        ws9.cell(1, 2).string('PuertoDestino').style(style);
+        ws9.cell(1, 1).string('Origen').style(style);
+        ws9.cell(1, 2).string('Destino').style(style);
         ws9.cell(1, 3).string('Turbo').style(style);
         ws9.cell(1, 4).string('Sencillo').style(style);
         ws9.cell(1, 5).string('Tractomula').style(style);
@@ -16228,13 +16232,13 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws8.cell(1, 1).string('Pais').style(style);
         ws8.cell(1, 2).string('Aeropuerto').style(style);
         ws8.cell(1, 3).string('Minima').style(style);
-        ws8.cell(1, 4).string("45").style(style);
-        ws8.cell(1, 5).string("+100").style(style);
-        ws8.cell(1, 6).string("+300").style(style);
-        ws8.cell(1, 7).string("+500").style(style);
-        ws8.cell(1, 8).string("+1000").style(style);
-        ws8.cell(1, 9).string('FS min').style(style);
-        ws8.cell(1, 10).string('Fs/kg').style(style);
+        ws8.cell(1, 4).string("T 45").style(style);
+        ws8.cell(1, 5).string("T 100").style(style);
+        ws8.cell(1, 6).string("T 300").style(style);
+        ws8.cell(1, 7).string("T 500").style(style);
+        ws8.cell(1, 8).string("T 1000").style(style);
+        ws8.cell(1, 9).string('FS Min').style(style);
+        ws8.cell(1, 10).string('FS/Kg').style(style);
         ws8.cell(1, 11).string('Gastos Embarque').style(style);
         ws8.cell(1, 12).string('Observaciones').style(style);
         ws8.cell(1, 13).string('Lead Time (dias)').style(style);
@@ -16285,13 +16289,13 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws9.cell(1, 1).string('Pais').style(style);
         ws9.cell(1, 2).string('Aeropuerto').style(style);
         ws9.cell(1, 3).string('Minima').style(style);
-        ws9.cell(1, 4).string("45").style(style);
-        ws9.cell(1, 5).string("+100").style(style);
-        ws9.cell(1, 6).string("+300").style(style);
-        ws9.cell(1, 7).string("+500").style(style);
-        ws9.cell(1, 8).string("+1000").style(style);
-        ws9.cell(1, 9).string('FS min').style(style);
-        ws9.cell(1, 10).string('Fs/kg').style(style);
+        ws9.cell(1, 4).string("T 45").style(style);
+        ws9.cell(1, 5).string("T 100").style(style);
+        ws9.cell(1, 6).string("T 300").style(style);
+        ws9.cell(1, 7).string("T 500").style(style);
+        ws9.cell(1, 8).string("T 1000").style(style);
+        ws9.cell(1, 9).string('FS Min').style(style);
+        ws9.cell(1, 10).string('FS/Kg').style(style);
         ws9.cell(1, 11).string('Gastos Embarque').style(style);
         ws9.cell(1, 12).string('Observaciones').style(style);
         ws9.cell(1, 13).string('Lead time (dias)').style(style);
@@ -16368,7 +16372,7 @@ app.post('/GetModalidadesProveedorSuma', function (req, res) {
 });
 
 app.post('/SavePreguntas', function (req,res) {
-     console.log("por aqui pasosavepregutasserver2");
+     //console.log("por aqui pasosavepregutasserver2");
     MyMongo.Insert('Preguntas', { Modalidad: req.body.Modalidad, Preguntas: req.body.Preguntas, Respuestas: req.body.Respuestas }, function (result) {
         if (result == 'Ok') {
             var Data = {};
@@ -16392,6 +16396,21 @@ app.post('/Deletepregunta', function (req, res) {
 
 });
 
+app.post('/UpdatePreguntas', function (req, res) {
+
+     MyMongo.Remove('Preguntas', { $and:[{ Modalidad: req.body.Modalidad }, { Preguntas: req.body.Preguntaold }]}, function (result) {
+
+    MyMongo.Insert('Preguntas', { Modalidad: req.body.Modalidad, Preguntas: req.body.Preguntas, Respuestas: req.body.Respuestas }, function (result) {
+            var Data = {};
+            Data.Result = 'Ok';
+            res.end(JSON.stringify(Data))          
+       
+    }
+    );
+     }
+    );
+})
+
 ////////////Requisitos y Soportes///////////////
 
 app.post('/GetRequisitos', function (req, res) {
@@ -16406,7 +16425,7 @@ app.post('/GetRequisitos', function (req, res) {
 });
 
 app.post('/SaveRequisitos', function (req,res) {
-     console.log("por aqui pasosavepregutasserver2");
+     //console.log("por aqui pasosavepregutasserver2");
     MyMongo.Insert('Requisitos', { Modalidad: req.body.Modalidad, Requisitos: req.body.Requisitos, Soportes: req.body.Soportes }, function (result) {
         if (result == 'Ok') {
             var Data = {};
@@ -16430,12 +16449,28 @@ app.post('/Deleterequisito', function (req, res) {
 
 });
 
+app.post('/UpdateRequisitos', function (req, res) {
+
+     MyMongo.Remove('Requisitos', { $and:[{ Modalidad: req.body.Modalidad }, { Requisitos: req.body.Requisitoold }]}, function (result) {
+
+    MyMongo.Insert('Requisitos', { Modalidad: req.body.Modalidad, Requisitos: req.body.Requisitos, Soportes: req.body.Soportes }, function (result) {
+            
+            var Data = {};
+            Data.Result = 'Ok';
+            res.end(JSON.stringify(Data))          
+       
+    }
+    );
+     }
+    );
+})
+
 ////////////////////////Requiitos  Preguntas  y Ayuda Cargar en Cuentas proveedor y licitacion
 
 app.post('/GetFormularioVisto', function (req, res) {
 
      MyMongo.Find('FormularioVisto', { Formulario: req.body.Formulario, User: req.body.User }, function (result) {
-        console.log(result.length);
+        //console.log(result.length);
         var Data = {};
         Data.Formularios = result;
         res.end(JSON.stringify(Data));
@@ -16447,9 +16482,9 @@ app.post('/GetFormularioVisto', function (req, res) {
 app.post('/GetAceptarRequisitocuenta', function (req, res) {
 
      MyMongo.Find('Requisitos', { Modalidad: req.body.Modalidad }, function (result) {
-        console.log(result.length);
+        //console.log(result.length);
            if (result.length > 0){
-            console.log('paso por aqui GetAceptarRequisitocuenta');
+            //console.log('paso por aqui GetAceptarRequisitocuenta');
               MyMongo.Insert('FormularioVisto',{Formulario: req.body.Formulario, Visto:"X", User: req.body.User }, function (result) {
               var Data = {};
               res.end(JSON.stringify(Data))
@@ -16513,7 +16548,7 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                       fields: "nextPageToken, files(id, name)"
                     }, function(err, response) {
                       if (err) {
-                        console.log('The API returned an error: ' + err);
+                        //console.log('The API returned an error: ' + err);
                         return;
                       }
                       var files = response.files;
@@ -16567,7 +16602,7 @@ app.post('/deletefilebyid', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         var fileId = req.body.fileid;
@@ -16621,7 +16656,7 @@ app.get('/downloadanybyid', function (req, res) {
 
     jwtClient.authorize(function (err, tokens) {
         if (err) {
-            return console.log(err);
+            return //console.log(err);
         }
 
         var fileId = req.query.fileid;
@@ -16666,7 +16701,7 @@ app.get('/downloadanybyid', function (req, res) {
 
 //////////////////////////////Vista Datos Proveedor ////////////////////////////////
 app.post('/GetProveedorModalidadName', function (req, res) {
-    console.log(req.body.RazonSocial);
+    //console.log(req.body.RazonSocial);
 
     MyMongo.Find('Usuarios', { RazonSocial: req.body.RazonSocial }, function (result) {
     var Data = {};
@@ -16677,10 +16712,26 @@ app.post('/GetProveedorModalidadName', function (req, res) {
      MyMongo.Find('LicitacionProveedor', {Email: myUserProveedorModalidad, Diligenciada: true} , function (result) {
            var Data = {};
             Data.data= result;
-            res.end(JSON.stringify(Data));
+            //var myModalidad = Data.data.Modalidad;
+            //console.log(myModalidad);
+           
+
+         MyMongo.Find('ModalidadesProveedor', {Email: myUserProveedorModalidad} , function (result) {
+           
+           Data.ModalidadVersion= result;
+
+            MyMongo.Find('ModalidadesProveedorRespaldo', {Email: myUserProveedorModalidad} , function (result) {
+           
+            Data.ModalidadVersionRespaldo= result;
+            var myModalidadVersionRespaldo= Data.ModalidadVersionRespaldo.myModalalidad;
+
+             res.end(JSON.stringify(Data));
+
+});
+
        });
 
-
+});
       })
 
 });
@@ -16691,7 +16742,7 @@ app.post('/GetProveedoresModalidadesName', function (req, res) {
            var Data = {};
             Data.data= result;
             res.end(JSON.stringify(Data));
-            console.log(Data.data);
+            //console.log(Data.data);
        });
 
 });
@@ -16748,9 +16799,9 @@ app.post('/GetNegociarmodalidad', function (req, res) {
       // Se crea un objeto para insertar nuevas OTMs CON IGUALES DATOS con nueva versión
       mModalidadObject.Version = newVersion;
 
-      /*console.log(newVersion);
+      /*//console.log(newVersion);
 
-      console.log(mModalidadObject);*/console.log(mModalidad);
+      //console.log(mModalidadObject);*///console.log(mModalidad);
 
 
       // Se actualiza modalidades proveedor de éste proveedor con la modalidad vacía y nueva version
@@ -16814,8 +16865,8 @@ app.post('/GetNegociarmodalidad', function (req, res) {
     });
 
   });
-console.log(req.body.Email);
-console.log(req.body.Modalidad);
+//console.log(req.body.Email);
+//console.log(req.body.Modalidad);
    MyMongo.Remove('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad } ] }, function (result) {
              var Data = {};
              res.end(JSON.stringify(Data))
@@ -16890,20 +16941,20 @@ app.get('/downloadanybyname', function (req, res) {
         fields: "nextPageToken, files(id, name)"
       }, function(err, response) {
         if (err) {
-          console.log('The API returned an error: ' + err);
+          //console.log('The API returned an error: ' + err);
           return;
         }
         var files = response.files;
 
         if (files.length == 0) {
-          console.log('No files found aqui.');
+          //console.log('No files found aqui.');
 
           res.status(404)        // HTTP status 404: NotFound
           .send('No se encontró el archivo que busca. Puede que no haya sido cargado.');
           res.end();
 
         } else {
-          console.log('Files:');
+          //console.log('Files:');
 
           FileId = files[0].id;
 
@@ -16929,7 +16980,7 @@ app.get('/downloadanybyname', function (req, res) {
                       if (err) console.log('Error during download', err);
                       else {
 
-                           console.log(metadata);
+                           //console.log(metadata);
 
                           res.setHeader('Content-disposition', 'attachment; filename=' + metadata.name);
                           res.setHeader('Content-type', metadata.mimeType);
@@ -17031,4 +17082,4 @@ function Connect() {
 
 }
 
-console.log("Running at Port 9099 Ok");
+//console.log("Running at Port 9099 Ok");

@@ -1,4 +1,5 @@
-var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
+//var connString = 'mongodb://licitacionesApp:239ffyyiu8564hkJhfgf@127.0.0.1:27017/licitaciones';
+var connString = 'mongodb://juliobricenoro:juliobricenoro@ds151508.mlab.com:51508/proenfar01032018';
 //var connString = 'mongodb://<dbuser>:<dbpassword>@ds239128.mlab.com:39128/proenfarproduction';
 
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229465.mlab.com:29465/proenfar';

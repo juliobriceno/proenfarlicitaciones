@@ -96,14 +96,9 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li>
-                  <a href="notificaciones.html">
-                    <i class="fa fa-envelope" aria-hidden="true"></i><span> Notificación a proveedores</span>
-                  </a>
-                </li>
+              <ul class="nav navbar-nav">              
                 <li >
-                    <a href="proveedores.html">
+                    <a href="proveedor_logistica.html">
                       <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
                     </a>
                   </li>
@@ -113,44 +108,13 @@
                     <span>Licitación</span>
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="Seleccionar_proveedor.html">
-                      <i class="fa fa-angle-double-right"></i>
-                      <span>Seleccionar Proveedores</span>
-                    </a></li>
-                    <li class="active"><a href="consolidado_datos.html">
+                  <ul class="dropdown-menu">                    
+                    <li class="active"><a href="consolidado_dato_logistica.html">
                     <i class="fa fa-angle-double-right"></i>
                     <span>Consolidado de Datos</span>
-                  </a></li>
-                   <li><a href="desbloquear_negociar.html">
-                  <i class="fa fa-angle-double-right"></i>
-                  Desbloquear y Negociar
-                </a></li>
-                  <li><a href="comparador_versiones.html">
-                    <i class="fa fa-angle-double-right"></i>
-                    <span>Comparador de Versiones</span>
-                  </a></li>  
-                
+                  </a></li>     
                   </ul>
-                </li>
-                <li >
-                  <a href="usuarios.html">
-                    <i class="fa fa-id-card" ></i>
-                    <span>Usuarios</span>
-                  </a>
-                </li>
-                <li class="dropdown" >
-                  <a href="licitacion.html" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-cog" aria-hidden="true"></i>
-                    <span>Configuración</span>
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li class="active"><a href="preguntas.html"><i class="fa fa-angle-double-right"></i>Administrar Preguntas</a></li>
-                    <li><a href="requisitos.html"><i class="fa fa-angle-double-right"></i>Administrar Requisitos</a></li>
-                  </ul>
-                </li>
-
+                </li>    
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -201,23 +165,7 @@
                                         ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
                                         ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
                                       </div>
-                                            </div>
-                                            <div class=" pull-right">
-                                                <div ng-show="Show80" class="col-xs-12 col-sm-12 col-md-8">
-                                                  <div style="margin-top:25px;" class="checkbox checkbox-success" >
-                                                    <input  id="checkbox1" type="checkbox" ng-click="FiltroProveedorSeleccionado();" ng-model="ProveedorSeleccionado"><label for="checkbox1">Proveedores Seleccionados
-                                                  </label>
-                                                  </div>
-                                                </div>
-                                                <div ng-show="Show80" class="col-xs-12 col-sm-12 col-md-1 ">
-                                                  <div style="margin-top:25px;" class="checkbox checkbox-success">
-                                                    <input id="checkbox2" type="checkbox" ng-click="FiltroSemaforo();" ng-model="ModalidadesSemaforo"><label for="checkbox2">Semaforo</label>
-                                                  </div>
-                                                </div>
-                                              </div>
-
-
-
+                                            </div>   
                                          </div>
 
 
@@ -492,7 +440,7 @@
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Baf 20</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>T 40</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Baf 40</b></h6></th>
-                                <th class="text-center"><h6 style="font-size:13px;"><b>T40 HQ</b></h6></th>
+                                <th class="text-center"><h6 style="font-size:13px;"><b>T 40HQ</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Baf 40HQ</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Gastos de Embarque</b></h6></th>
                                 <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
@@ -767,7 +715,7 @@
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Proveedor<b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Origen</b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Destino</b></h6></th>
-                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo (150 Cajas) </b></h6></th>
+                                                  <th class="text-center"><h6 style="font-size:13px;"><b>Turbo (150 cajas) </b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Turbo Especial (200 Cajas)</b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo (240 Cajas)</b></h6></th>
                                                   <th class="text-center"><h6 style="font-size:13px;"><b>Sencillo Especial (300 Cajas)</b></h6></th>
@@ -880,7 +828,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Ge</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aerea in ModalidadTodasAerea">
-                                                      <td class="text-center"><small class="badge bg-morado" >{{Aerea.Version}}</small></td>
+                                                      <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                       <td>{{Aerea.RazonSocial}}</td>
                                                       <td>{{Aerea.Pais}}</td>
                                                       <td>{{Aerea.Aeropuerto}}</td>
@@ -945,7 +893,7 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Gastos Embarque</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
-                                                      <td class="text-center"><small class="badge bg-morado" >{{Aereapasajero.Version}}</small></td>
+                                                      <td class="text-center"><small class="badge bg-morado" >1</small></td>
                                                       <td>{{Aereapasajero.RazonSocial}}</td>
                                                       <td>{{Aereapasajero.Pais}}</td>
                                                       <td>{{Aereapasajero.Aeropuerto}}</td>

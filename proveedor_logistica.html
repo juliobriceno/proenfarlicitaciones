@@ -97,13 +97,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li>
-                  <a href="notificaciones.html">
-                    <i class="fa fa-envelope" aria-hidden="true"></i><span> Notificación a proveedores</span>
-                  </a>
-                </li>
                 <li class="active">
-                  <a href="proveedores.html">
+                  <a href="proveedor_logistica.html">
                     <i class="fa fa-handshake-o" ></i><span> Proveedores</span>
                   </a>
                 </li>
@@ -113,44 +108,13 @@
                     <span>Licitación</span>
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="Seleccionar_proveedor.html">
-                      <i class="fa fa-angle-double-right"></i>
-                      Seleccionar Proveedores
-                    </a></li>
-                     <li><a href="consolidado_datos.html">
+                  <ul class="dropdown-menu">                   
+                     <li><a href="consolidado_dato_logistica.html">
                       <i class="fa fa-angle-double-right"></i>
                       Consolidado de Datos
-                    </a></li>
-                    <li><a href="desbloquear_negociar.html">
-                    <i class="fa fa-angle-double-right"></i>
-                    Desbloquear y Negociar
-                  </a></li>
-                    <li><a href="comparador_versiones.html">
-                    <i class="fa fa-angle-double-right"></i>
-                    <span>Comparador de Versiones</span>
-                  </a></li>  
-
+                    </a></li>                 
                   </ul>
                 </li>
-                <li >
-                  <a href="usuarios.html">
-                    <i class="fa fa-id-card" ></i>
-                    <span>Usuarios</span>
-                  </a>
-                </li>
-                <li class="dropdown">
-                  <a href="licitacion.html" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-cog" aria-hidden="true"></i>
-                    <span>Configuración</span>
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li class="active"><a href="preguntas.html"><i class="fa fa-angle-double-right"></i>Administrar Preguntas</a></li>
-                    <li><a href="requisitos.html"><i class="fa fa-angle-double-right"></i>Administrar Requisitos</a></li>
-                  </ul>
-                </li>
-
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -186,12 +150,7 @@
                           <!-- Content Header (Page header) -->
 
                           <!-- Main content -->
-                          <section class="content">
-                             <div class="pull-right" >
-                               <div class="form-group" style="margin-top:-10px;">
-                                  <a ng-click="GotoUser('');"  data-toggle="modal"><button class="btn btn-green"><span class="fa fa-plus-circle"></span> Nuevo Proveedor</button></a>
-                               </div>
-                             </div>
+                          <section class="content">                            
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="box box-solid" style="padding: 10px;">
@@ -208,8 +167,7 @@
                                                     </ui-select-choices>
                                                   </ui-select>
                                               </div>
-                                            </div>
-                                        
+                                            </div>                                           
                                          </div>
                                         </div><!-- /.box-header -->
                                         <br><br>
@@ -232,9 +190,7 @@
                                 <button class="btn btn-default" type="button">Acciones</button>
                                 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                  <li><a href="#" ng-click="DeleteUser(Usuario.User);"><i  class="fa fa-trash btn-rojo" aria-hidden="true"></i> Eliminar</a></li>
-                                  <li><a href="#" ng-click="GotoUser(Usuario.User);"><i class="glyphicon glyphicon-edit btn-naranja" aria-hidden="true"></i>Editar</a></li>
+                                <ul class="dropdown-menu">                                  
                                   <li><a href="#" ng-click="GotoUserdetalle(Usuario.User);"><i class="fa fa-eye btn-azul" aria-hidden="true"></i>Detalles</a></li>
                                   <!--<li><a href="#"><i class="fa fa-check btn-verde " aria-hidden="true"></i>Aprobar</a></li>
                                   <li><a href="#"><i class="fa fa-line-chart btn-azulito" aria-hidden="true"></i>Revisar</a></li>-->

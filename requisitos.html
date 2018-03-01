@@ -193,7 +193,8 @@
                           </div>
                         </div>
                         <div class="col-md-2">
-                            <button ng-click="SaveRequisitos();" class="btn btn-green"  style="margin-top:35%;margin-left:10%;"><i class="fa fa-check-circle" aria-hidden="true"></i> Agregar</button>
+                            <button ng-click="Editrequisito();" class="btn btn-green" ng-show="showbuttonAceptarReq" style="margin-top:35%;margin-left:10%;"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
+                             <button ng-click="SaveRequisitos();" class="btn btn-green" ng-show="showbuttonAgregarReq" style="margin-top:35%;margin-left:10%;"><i class="fa fa-check-circle" aria-hidden="true"></i> Agregar</button>
                         </div>
                       </div>
                     </div>
@@ -213,6 +214,7 @@
                         <tr ng-repeat="Requisito in Requisitos">
                           <td   class="text-center" style="vertical-align: middle;">
                             <div class="btn-group">
+                               <button ng-click="Editarrequisito(Requisito.Requisitos, Requisito.Soportes);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
                               <button ng-click="Deleterequisito(Requisito.Modalidad, Requisito.Requisitos);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
                             </div>
                           </td>

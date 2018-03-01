@@ -195,7 +195,7 @@
                                         <div class="row">
                                           <div class="col-md-4">
                                             <div class="form-group">
-                                              <label class="control-label" for="name">Tarifa Valor/FOB:</label>
+                                              <label class="control-label" for="name">Tarifa Valor FOB:</label>
                                               <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
                                                 <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Aduanero.TarifaValor" type="text" ng-disabled="EstatusproveedorModalidad" angular-currency="options2" variable-options="true" class="form-control">
@@ -235,7 +235,7 @@
                                         <div class="row">
                                           <div class="col-md-4">
                                             <div class="form-group">
-                                              <label class="control-label" for="name">Tarifa:</label>
+                                              <label class="control-label" for="name">Tarifa Valor FOB:</label>
                                               <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-money" aria-hidden="true"></i></span>
                                                 <input ng-blur="UpdateModalidades();" ng-model="ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa" type="text" ng-disabled="EstatusproveedorModalidad" angular-currency="options2" variable-options="true" class="form-control" type="text" placeholder="%(0.00)">
@@ -346,12 +346,12 @@
                                     <th class="text-center"><h6><b>Vía</b></h6></th>
                                     <th class="text-center"><h6><b>Tarifa % Advalorem/ FOB</b></h6></th>
                                     <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                    <th class="text-center"><h6><b>Gastos Adicionales</b></h6></th>
-                                    <th class="text-center"><h6><b>Conceptos Adicionales</b></h6></th>
-                                    <th class="text-center"><h6><b>Gastos Adicionales dos</b></h6></th>
-                                    <th class="text-center"><h6><b>Conceptos Adicionales dos</b></h6></th>
-                                    <th class="text-center"><h6><b>Gastos Adicionales tres</b></h6></th>
-                                    <th class="text-center"><h6><b>Conceptos Adicionales tres</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Adicionales 1</b></h6></th>
+                                    <th class="text-center"><h6><b>Conceptos Adicionales 1</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Adicionales 2</b></h6></th>
+                                    <th class="text-center"><h6><b>Conceptos Adicionales 2</b></h6></th>
+                                    <th class="text-center"><h6><b>Gastos Adicionales 3</b></h6></th>
+                                    <th class="text-center"><h6><b>Conceptos Adicionales 3</b></h6></th>
                                     <th class="text-center"><h6><b>Costo Plastificación Caja</b></h6></th>
                                     <th class="text-center"><h6><b>Otros</b></h6></th>
                                   </tr>
@@ -422,13 +422,13 @@
                                     <th class="text-center"><h6><b>País</b></h6></th>
                                     <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
                                     <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                    <th class="text-center"><h6><b>45</b></h6></th>
-                                    <th class="text-center"><h6><b>'+100</b></h6></th>
-                                    <th class="text-center"><h6><b>'+300</b></h6></th>
-                                    <th class="text-center"><h6><b>'+500</b></h6></th>
-                                    <th class="text-center"><h6><b>'+1000</b></h6></th>
-                                    <th class="text-center"><h6><b>FS min</b></h6></th>
-                                    <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                    <th class="text-center"><h6><b>T 45</b></h6></th>
+                                    <th class="text-center"><h6><b>T 100</b></h6></th>
+                                    <th class="text-center"><h6><b>T 300</b></h6></th>
+                                    <th class="text-center"><h6><b>T 500</b></h6></th>
+                                    <th class="text-center"><h6><b>T 1000</b></h6></th>
+                                    <th class="text-center"><h6><b>FS Min</b></h6></th>
+                                    <th class="text-center"><h6><b>FS/Kg</b></h6></th>
                                     <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
                                     <th class="text-center"><h6><b>Observaciones</b></h6></th>
                                     <th class="text-center"><h6><b>Lead Time (días)</b></h6></th>
@@ -484,13 +484,13 @@
                                     <th class="text-center"><h6><b>País</b></h6></th>
                                     <th class="text-center"><h6><b>Aeropuerto</b></h6></th>
                                     <th class="text-center"><h6><b>Mínima</b></h6></th>
-                                    <th class="text-center"><h6><b>45</b></h6></th>
-                                    <th class="text-center"><h6><b>'+100</b></h6></th>
-                                    <th class="text-center"><h6><b>'+300</b></h6></th>
-                                    <th class="text-center"><h6><b>'+500</b></h6></th>
-                                    <th class="text-center"><h6><b>'+1000</b></h6></th>
-                                    <th class="text-center"><h6><b>FS min</b></h6></th>
-                                    <th class="text-center"><h6><b>Fs/kg</b></h6></th>
+                                    <th class="text-center"><h6><b>T 45</b></h6></th>
+                                    <th class="text-center"><h6><b>T 100</b></h6></th>
+                                    <th class="text-center"><h6><b>T 300</b></h6></th>
+                                    <th class="text-center"><h6><b>T 500</b></h6></th>
+                                    <th class="text-center"><h6><b>T 1000</b></h6></th>
+                                    <th class="text-center"><h6><b>FS Min</b></h6></th>
+                                    <th class="text-center"><h6><b>FS/Kg</b></h6></th>
                                     <th class="text-center"><h6><b>Gastos Embarque</b></h6></th>
                                     <th class="text-center"><h6><b>Observaciones</b></h6></th>
                                     <th class="text-center"><h6><b>Lead Time (días)</b></h6></th>
@@ -673,12 +673,12 @@
                                       <th class="text-center"><h6><b>País Destino</b></h6></th>
                                       <th class="text-center"><h6><b>Puerto Origen</b></h6></th>
                                       <th class="text-center"><h6><b>Puerto Destino</b></h6></th>
-                                      <th class="text-center"><h6><b>C 20</b></h6></th>
+                                      <th class="text-center"><h6><b>T 20</b></h6></th>
                                       <th class="text-center"><h6><b>Baf 20</b></h6></th>
-                                      <th class="text-center"><h6><b>C 40</b></h6></th>
+                                      <th class="text-center"><h6><b>T 40</b></h6></th>
                                       <th class="text-center"><h6><b>Baf 40</b></h6></th>
-                                      <th class="text-center"><h6><b>C 40HC</b></h6></th>
-                                      <th class="text-center"><h6><b>Baf 40HC</b></h6></th>
+                                      <th class="text-center"><h6><b>T40 HQ</b></h6></th>
+                                      <th class="text-center"><h6><b>Baf 40HQ</b></h6></th>
                                       <th class="text-center"><h6><b>Gastos de Embarque</b></h6></th>
                                       <th class="text-center"><h6><b>Observaciones</b></h6></th>
                                       <th class="text-center"><h6><b>Lead Time(d&iacute;as)</b></h6></th>
@@ -842,8 +842,8 @@
                                   <tr>
                                     <th class="text-center"><h6><b>Origen<b></h6></th>
                                       <th class="text-center"><h6><b>Destino</b></h6></th>
-                                      <th class="text-center"><h6><b>Turbo Standar (150 cajas) </b></h6></th>
-                                      <th class="text-center"><h6><b>Turbo Especial</b></h6></th>
+                                      <th class="text-center"><h6><b>Turbo Standard (150 Cajas) </b></h6></th>
+                                      <th class="text-center"><h6><b>Turbo Especial (210 Cajas) </b></h6></th>
                                     </tr>
                                     <tr ng-repeat="TerreNacional in ModalidadesProveedor.TerreNacional.TerresNacional">
                                       <td>{{TerreNacional.PaisOrigen}}</td>
@@ -865,8 +865,8 @@
                                     <tr>
                                       <th class="text-center"><h6><b>Origen<b></h6></th>
                                         <th class="text-center"><h6><b>Destino</b></h6></th>
-                                        <th class="text-center"><h6><b>Sencillo Standar (150 cajas) </b></h6></th>
-                                        <th class="text-center"><h6><b>Sencillo Especial</b></h6></th>
+                                        <th class="text-center"><h6><b>Sencillo Standard (240 Cajas) </b></h6></th>
+                                        <th class="text-center"><h6><b>Sencillo Especial (300 Cajas) </b></h6></th>
                                       </tr>
                                       <tr ng-repeat="TerreNacionalSencillo in ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo">
                                         <td>{{TerreNacionalSencillo.PaisOrigen}}</td>
