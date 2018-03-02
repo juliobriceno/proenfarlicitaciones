@@ -114,6 +114,10 @@
                   <i class="fa fa-angle-double-right"></i>
                   Desbloquear y Negociar
                 </a></li>
+                <li><a href="comparador_versiones.html">
+                <i class="fa fa-angle-double-right"></i>
+                <span>Comparador de Versiones</span>
+              </a></li>
 
                 </ul>
               </li>
@@ -165,15 +169,15 @@
         <!-- Main content -->
         <section class="content">
           <div class="wrapper row-offcanvas row-offcanvas-left">
-            <div class="row">
+            <div class="">
               <div class="col-xs-12">
                 <div class="box box-solid" style="padding: 10px;">
                   <div class="box-header">
                   </div>
 
                   <div id="collapseTwo" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      <div class="row">
+                    <div class="">
+                      <div class="row" style="padding:10px;">
                         <div class="col-md-5">
                           <div class="form-group">
                             <label class="control-label" for="preg">Requisitos Mínimos:</label>
@@ -199,31 +203,33 @@
                       </div>
                     </div>
                   </div>
-                  <div class="widget-header">
-                   <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Requisitos y Soportes</label>
 
-                  </div> <!-- /widget-header -->
-                  <div class="box-body table-responsive no-padding">
-                    <table class="table table-bordered">
-                      <tr  class="encabezadotabla">
-                        <th class="text-center" style="width:4%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                        <th class="text-center"><h6 style="font-size:13px;"><b>Requisitos</b></h6></th>
-                        <th class="text-center"><h6 style="font-size:13px;"><b>Soportes</b></h6></th>
-                      </tr>
-                  <!--    <tbody  ng-repeat="Requisito in Requisitos">-->
-                        <tr ng-repeat="Requisito in Requisitos">
-                          <td   class="text-center" style="vertical-align: middle;">
-                            <div class="btn-group">
-                               <button ng-click="Editarrequisito(Requisito.Requisitos, Requisito.Soportes);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
-                              <button ng-click="Deleterequisito(Requisito.Modalidad, Requisito.Requisitos);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
-                            </div>
-                          </td>
-                          <td>{{Requisito.Requisitos}}</td>
-                          <td>{{Requisito.Soportes}}</td>
+                  <div style="padding:10px;">
+                    <div class="widget-header" style="">
+                     <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Requisitos y Soportes</label>
+
+                    </div> <!-- /widget-header -->
+                    <div class="box-body table-responsive no-padding">
+                      <table class="table table-bordered">
+                        <tr  class="encabezadotabla">
+                          <th class="text-center" style="width:7%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Requisitos</b></h6></th>
+                          <th class="text-center"><h6 style="font-size:13px;"><b>Soportes</b></h6></th>
                         </tr>
-                      </table>
-                      <div class="" style="height: 150px;"><div class="row" ></div></div>
-                    </div><!-- /.box-body -->
+                    <!--    <tbody  ng-repeat="Requisito in Requisitos">-->
+                          <tr ng-repeat="Requisito in Requisitos">
+                            <td   class="text-center" style="vertical-align: middle;">
+                                 <button ng-click="Editarrequisito(Requisito.Requisitos, Requisito.Soportes);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
+                                <button ng-click="Deleterequisito(Requisito.Modalidad, Requisito.Requisitos);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+                            </td>
+                            <td>{{Requisito.Requisitos}}</td>
+                            <td>{{Requisito.Soportes}}</td>
+                          </tr>
+                        </table>
+                        <div class="" style="height: 150px;"><div class="row" ></div></div>
+                      </div><!-- /.box-body -->
+                  </div>
+
                   </div><!-- /.box-header -->
 
                 </div>

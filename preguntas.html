@@ -113,6 +113,10 @@
                   <i class="fa fa-angle-double-right"></i>
                   Desbloquear y Negociar
                 </a></li>
+                <li><a href="comparador_versiones.html">
+                <i class="fa fa-angle-double-right"></i>
+                <span>Comparador de Versiones</span>
+              </a></li>
 
                 </ul>
               </li>
@@ -163,13 +167,13 @@
         <!-- Main content -->
         <section class="content">
           <div class="wrapper row-offcanvas row-offcanvas-left ">
-            <div class="row ">
+            <div class=" ">
               <div class="col-xs-12">
                 <div class="box box-solid" style="padding: 10px;">
 
                   <div id="collapseTwo" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      <div class="row">
+                    <div >
+                      <div class="row" style="padding:10px;">
                         <div class="col-md-5">
                           <div class="form-group" >
                             <label class="control-label" for="preg">Preguntas:</label>
@@ -188,38 +192,42 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-2"> 
+                        <div class="col-md-2">
                         <button ng-click="Editpregunta();" class="btn btn-green" ng-show="showbuttonAceptar" style="margin-top:35%;margin-left:10%;"><i class="fa fa-check-circle" aria-hidden="true"></i> Aceptar</button>
                             <button ng-click="SavePreguntas();" class="btn btn-green" ng-show="showbuttonAgregar" style="margin-top:35%;margin-left:10%;"><i class="fa fa-check-circle" aria-hidden="true"></i> Agregar</button>
                             </div>
                       </div>
                     </div>
                   </div>
-                  <div class="widget-header">
-                   <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Preguntas y Respuestas</label>
 
-                  </div> <!-- /widget-header -->
-                  <div class="box-body table-responsive no-padding">
-                    <table class="table table-bordered">
-                      <tr  class="encabezadotabla">
-                        <th class="text-center" style="width:4%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                        <th  class="text-center"><h6 style="font-size:13px;"><b>Preguntas</b></h6></th>
-                        <th  class="text-center"><h6 style="font-size:13px;"><b>Respuestas</b></h6></th>
-                      </tr>
-                      <!--<tbody  ng-repeat="Pregunta in Preguntas">-->
-                        <tr  ng-repeat="Pregunta in Preguntas">
-                          <td   class="text-center" style="vertical-align: middle;">
-                            <div class="btn-group" >
-                              <button ng-click="Editarpregunta(Pregunta.Preguntas, Pregunta.Respuestas, Pregunta._id);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
-                              <button ng-click="Deletepregunta(Pregunta.Modalidad, Pregunta.Preguntas);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
-                            </div>
-                          </td>
-                          <td>{{Pregunta.Preguntas}}</td>
-                          <td>{{Pregunta.Respuestas}}</td>
+                  <div  style="padding:10px;">
+                    <div class="widget-header">
+                     <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Preguntas y Respuestas</label>
+
+                    </div> <!-- /widget-header -->
+                    <div class="box-body table-responsive no-padding"  >
+                      <table class="table table-bordered">
+                        <tr  class="encabezadotabla">
+                          <th class="text-center" style="width:7%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                          <th  class="text-center"><h6 style="font-size:13px;"><b>Preguntas</b></h6></th>
+                          <th  class="text-center"><h6 style="font-size:13px;"><b>Respuestas</b></h6></th>
                         </tr>
-                      </table>
-                      <div  style="height: 150px;"><div class="row" ></div></div>
-                    </div><!-- /.box-body -->
+                        <!--<tbody  ng-repeat="Pregunta in Preguntas">-->
+                          <tr  ng-repeat="Pregunta in Preguntas">
+                            <td   class="text-center" style="vertical-align: middle;">
+
+                                <button ng-click="Editarpregunta(Pregunta.Preguntas, Pregunta.Respuestas, Pregunta._id);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
+                                <button ng-click="Deletepregunta(Pregunta.Modalidad, Pregunta.Preguntas);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+
+                            </td>
+                            <td>{{Pregunta.Preguntas}}</td>
+                            <td>{{Pregunta.Respuestas}}</td>
+                          </tr>
+                        </table>
+                        <div  style="height: 150px;"><div class="row" ></div></div>
+                      </div><!-- /.box-body -->
+                  </div>
+
                   </div><!-- /.box-header -->
 
                 </div>

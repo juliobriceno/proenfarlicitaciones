@@ -129,7 +129,7 @@
                     <li><a href="comparador_versiones.html">
                     <i class="fa fa-angle-double-right"></i>
                     <span>Comparador de Versiones</span>
-                  </a></li>  
+                  </a></li>
 
                   </ul>
                 </li>
@@ -205,34 +205,36 @@
                                             </div>
                                          </div>
                                         </div><!-- /.box-header -->
+                                        <br><br>
+                                        <div  class="box-body table-responsive">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
+                                        <table class="table table-bordered">
+                                        <tr class="encabezadotabla">
+                                        <th class="text-center" style="width:35%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                                      <th class="text-center"><h6 style="font-size:13px;"><b>Modalidades Diligenciadas</b></h6></th>
+                                       </tr>
+                           <!--  <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">-->
+                                     <tr ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
+                                     <td class="text-center">
+                                     <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-primary btn-small"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Desbloquear</button></a>
+                                     <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green btn-small"><i class="fa fa-handshake-o" aria-hidden="true"></i> Negociar</button></a>
+                                    </td>
+                                    <td>{{LiciModalidadProveedor.Modalidad}}</td>
+                                   </tr>
+
+                                   </table>
+                                   </div>
+
+                                    <div class="col-md-2"></div>
+
+                                   </div><!-- /.box-body -->
                                         </div><!-- /.box -->
                                        </div><!-- /.col (MAIN) -->
                                       </div>
                                        </div>
 
-                                   <div  class="box-body table-responsive">
-                                   <div class="col-md-2"></div>
-                                   <div class="col-md-8">
-                                   <table class="table table-bordered">
-                                   <tr class="encabezadotabla">
-                                   <th class="text-center" style="width:35%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                                 <th class="text-center"><h6 style="font-size:13px;"><b>Modalidades Diligenciadas</b></h6></th>
-                                  </tr>
-                      <!--  <tbody  ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">-->
-                                <tr ng-repeat="LiciModalidadProveedor in LicitacionModalidadProveedor">
-                                <td class="text-center">
-                                <a ng-click="GetDesbloquearmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-primary btn-small"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Desbloquear</button></a>
-                                <a ng-click="GetNegociarmodalidad(LiciModalidadProveedor.Email,LiciModalidadProveedor.Modalidad);" data-toggle="modal"><button class="btn btn-green btn-small"><i class="fa fa-handshake-o" aria-hidden="true"></i> Negociar</button></a>
-                               </td>
-                               <td>{{LiciModalidadProveedor.Modalidad}}</td>
-                              </tr>
 
-                              </table>
-                              </div>
-
-                               <div class="col-md-2"></div>
-
-                              </div><!-- /.box-body -->
                               <div class="" style="height: 150px;"><div class="row" ></div></div>
                 <!-- MAILBOX END -->
                               </section><!-- /.content -->

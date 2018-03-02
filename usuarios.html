@@ -101,6 +101,10 @@
                 <i class="fa fa-angle-double-right"></i>
                 Desbloquear y Negociar
               </a></li>
+              <li><a href="comparador_versiones.html">
+              <i class="fa fa-angle-double-right"></i>
+              <span>Comparador de Versiones</span>
+            </a></li>
 
               </ul>
             </li>
@@ -149,10 +153,11 @@
 
       <section class="content">
           <div class="wrapper row-offcanvas row-offcanvas-left">
-        <div class="box box-solid" >
+
+<div class="content">
           <div class="row" >
-            <div class="col-xs-12" >
-              <div class="" style="padding: 10px;">
+            <div class="col-xs-12"  >
+            <div  class="box box-solid" style="padding: 10px;" >
                 <div class="box-header">
                   <div class="row" style="background:#4e43501a; margin-left:-10px;margin-right:-10px;margin-top:-10px;color:black;padding-top: 10px;">
                     <div class="col-md-4">
@@ -168,39 +173,44 @@
                     </div>
                   </div>
                 </div>
-              </div>
+                <br>
+                <div class="row"  style="padding:10px;">
+                  <div class="col-md-12">
+                    <div class="widget-header">
+                      <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Lista de Usuarios</label>
+
+                    </div> <!-- /widget-header -->
+                    <div class="box-body table-responsive no-padding">
+                      <table class="table table-bordered">
+                        <tr class="table-encabezado">
+                          <th class="text-center" style="width:6%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                          <th class="text-center"><h6><b>Nombre</b></h6></th>
+                          <th class="text-center"><h6><b>E-mail</b></h6></th>
+                          <th class="text-center"><h6><b>Perfil</b></h6></th>
+                        </tr>
+                        <tbody  ng-repeat="Usuario in Usuarios">
+                          <tr>
+                            <td  class="text-center">
+                              <button title="Editar usuario" ng-click="GotoUser(Usuario.User);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
+                              <button title="Eliminar usuario" ng-click="DeleteUser(Usuario.User);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
+                            </td>
+                            <td>{{Usuario.Name}}</td>
+                            <td>{{Usuario.Email}}</td>
+                            <td>{{Usuario.NombrePerfil}}</td>
+                          </tr>
+                        </table>
+                      <br><br><br>
+                      </div>
+                    </div>
+                  </div><!-- /.box-body -->
+            </div>
+
+
             </div>
           </div>
-          <div class="row"  style="padding:10px;">
-            <div class="col-md-12">
-              <div class="widget-header">
-                <label style="margin-left:10px;"><i class="fa fa-list" aria-hidden="true"></i> Lista de Usuarios</label>
-
-              </div> <!-- /widget-header -->
-              <div class="box-body table-responsive no-padding">
-                <table class="table table-bordered">
-                  <tr class="table-encabezado">
-                    <th class="text-center" style="width:6%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
-                    <th class="text-center"><h6><b>Nombre</b></h6></th>
-                    <th class="text-center"><h6><b>E-mail</b></h6></th>
-                    <th class="text-center"><h6><b>Perfil</b></h6></th>
-                  </tr>
-                  <tbody  ng-repeat="Usuario in Usuarios">
-                    <tr>
-                      <td  class="text-center">
-                        <button title="Editar usuario" ng-click="GotoUser(Usuario.User);" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></button>
-                        <button title="Eliminar usuario" ng-click="DeleteUser(Usuario.User);" class="btn btn-danger btn-xs" ><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
-                      </td>
-                      <td>{{Usuario.Name}}</td>
-                      <td>{{Usuario.Email}}</td>
-                      <td>{{Usuario.NombrePerfil}}</td>
-                    </tr>
-                  </table>
-                <br><br><br>
-                </div>
-              </div>
-            </div><!-- /.box-body -->
           </div>
+
+
           </div>
           <!-- MAILBOX END -->
         </section><!-- /.content -->
