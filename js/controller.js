@@ -6210,9 +6210,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         var  ModalidadDeUnProveedorap=[];
                         var  ModalidadDeUnProveedormaq=[];
                         var  ModalidadDeUnProveedormat=[];
-                        var ModalidadDeUnProveedorBodegaje=[];
+                        
                         var ModalidadDeUnProveedorBodegajemateriaprima=[];
                         var ModalidadDeUnProveedorBodegajemaquinaria=[];
+                        var ModalidadDeUnProveedorBodegajeres=[];
+                        var ModalidadDeUnProveedorBodegajemateriaprimares=[];
+                        var ModalidadDeUnProveedorBodegajemaquinariares=[];
+                        var ModalidadDeUnProveedorBodegaje=[];
 
                           var  ModalidadDeUnProveedorres=[];
                        var  ModalidadDeUnProveedortnsres=[];
@@ -6226,6 +6230,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                    var ModalidadVersion='';
                    var MyVersionres=0;
                    var ModalidadVersionres='';
+                   var ModalidadSubmodalidad='';
                     $scope.Show30 = true;
          $scope.Show40 = false;
          $scope.Show50 = false;
@@ -6233,9 +6238,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
          $scope.Show70 = true;
          $scope.Show80 = true;
          $scope.Show90 = false;
-                        $scope.Show1=true;
-                        $scope.Show20=true;
-                        $scope.Show111=true;
+                        $scope.Show1=false;
+                        $scope.Show20=false;
+                        $scope.Show111=false;
                         $scope.Show2=false;
                         $scope.Show3=false;
                         $scope.Show4=false;
@@ -6362,6 +6367,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         $scope.Show1111=false;
                          $scope.Show12=false;
                         $scope.Show13=false;
+                        ModalidadSubmodalidad='Aduanas';
                       console.log('entro aqui');
                     angular.forEach($scope.LicitacionModalidadProveedorVersion, function(consaduana) {
                         ModalidadDeUnProveedor=consaduana.Aduana.Aduanas;
@@ -6369,7 +6375,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          }); 
 
                     angular.forEach($scope.LicitacionModalidadProveedorVersionRespaldo, function(consaduanares) {
-                        ModalidadDeUnProveedorres=consaduanares.Aduana.Aduanas;
+                        ModalidadDeUnProveedorres=consaduanares.Aduana;
                         MyVersionres= consaduanares.Aduana.Version;  
                          }); 
 
@@ -6546,8 +6552,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                    console.log(version);
 
 
-console.log(MyVersion);
-console.log(version);
+                    console.log(MyVersion);
+                    console.log(version);
                    if (MyVersion==version){
                     $scope.ModalidadesTodasversion=ModalidadDeUnProveedor;
                     $scope.ModalidadesTodasversiontns=ModalidadDeUnProveedortns;
@@ -6564,8 +6570,336 @@ console.log(version);
                       console.log( $scope.ModalidadesTodasversionap);
                    }
                    else{
-                    $scope.ModalidadesTodasversion=[];
+
+
+                        var LaModalidadQueEs=[];
+                      console.log( $scope.LicitacionModalidadProveedorVersionRespaldo);
+               ///////////////////bodegaje//////////////////////////////////
+                if (ModalidadVersion=='Bodegajes'){
+                  var Unobjeto={};
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.Bodegajes.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }                    
+                     });
+                   var ModalidadDeUnProveedorBodegajeres=[];
+                   var ModalidadDeUnProveedorBodegajemateriaprimares=[];
+                   var  ModalidadDeUnProveedorBodegajemaquinariares=[];
+
+                  angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                    ModalidadDeUnProveedorres=consaduanares.Aduanero;
+                    console.log(ModalidadDeUnProveedorres);
+                    if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                      Unobjeto.TarifaValor = ModalidadDeUnProveedorres.TarifaValor;
+                         Unobjeto.TarifaMinima = ModalidadDeUnProveedorres.TarifaMinima;
+                         Unobjeto.Otros = ModalidadDeUnProveedorres.Otros;
+                        ModalidadDeUnProveedorBodegajeres.push({TarifaValor:Unobjeto.TarifaValor, TarifaMinima:Unobjeto.TarifaMinima,Otros:Unobjeto.Otros});
+                        //$scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }    
+                      
+                     ModalidadDeUnProveedormatres=consaduanares.MateriaPrima;
+                      if(typeof  ModalidadDeUnProveedormatres!= 'undefined'){
+                         Unobjeto.Tarifa = ModalidadDeUnProveedormatres.Tarifa;
+                         Unobjeto.TarifaMinima = ModalidadDeUnProveedormatres.TarifaMinima;
+                         Unobjeto.Fmm = ModalidadDeUnProveedormatres.Fmm;
+                          ModalidadDeUnProveedorBodegajemateriaprimares.push({Tarifa:Unobjeto.Tarifa, TarifaMinima:Unobjeto.TarifaMinima,Fmm:Unobjeto.Fmm});
+                         }
+
+                        ModalidadDeUnProveedormaqres=consaduanares.Maquinaria;
+                         if(typeof  ModalidadDeUnProveedormaqres!= 'undefined'){
+                         Unobjeto.Tarifa = ModalidadDeUnProveedormaqres.Tarifa;
+                         Unobjeto.TarifaMinima = ModalidadDeUnProveedormaqres.TarifaMinima;
+                         Unobjeto.Fmm = ModalidadDeUnProveedormaqres.Fmm;
+                        ModalidadDeUnProveedorBodegajemaquinariares.push({Tarifa:Unobjeto.Tarifa, TarifaMinima:Unobjeto.TarifaMinima,Fmm:Unobjeto.Fmm});
+                        }
+                    $scope.ModalidadesTodasversionbodegaje=ModalidadDeUnProveedorBodegajeres;
+                    $scope.ModalidadesTodasversionbodegajemateriaprima=ModalidadDeUnProveedorBodegajemateriaprimares;
+                    $scope.ModalidadesTodasversionbodegajemaquinaria=ModalidadDeUnProveedorBodegajemaquinariares;
+
+
+
+
+
+                    });
+                    }
+
+       ///////////////////////////////aduana /////////////////////////
+               if (ModalidadVersion=='Aduanas'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.Aduana.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.Aduanas; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                 }
+                ////////////////////////////////////OTM/////////////////////////////////
+                  if (ModalidadVersion=='OTM'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.Otm.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.Otms; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                 }
+
+                  ////////////////////////////////////MaritimasFcl/////////////////////////////////
+                  if (ModalidadVersion=='MaritimasFcl'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.MaritimaFcl.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.MaritimasFcl; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                 }
+                 //////////////////////////MaritimasLcl/////////////////////////////
+
+                    if (ModalidadVersion=='MaritimasLcl'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.MaritimaLcl.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.MaritimasLcl; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                 }
+               //////////////////////////Terrestre Nacional/////////////////////////////
+
+                    if (ModalidadVersion=='TerrestreNacional'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.TerreNacional.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.TerresNacional; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                    /////////////////////Terrestre Nacional Sencillo ///////////////////////////
+                    angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.TerreNacionalSencillo.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedortnsres=consaduanares.TerresNacionalSencillo; 
+                              console.log(ModalidadDeUnProveedortnsres) ; 
+
+                              if(typeof  ModalidadDeUnProveedortnsres!= 'undefined'){
+                        $scope.ModalidadesTodasversiontns=ModalidadDeUnProveedortnsres;
+                              }                           
+                      
+                          });
+
+                    /////////////////////Terrestre Nacional Patineta ///////////////////////////
+                    angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.TerreNacionalPatineta.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedortnpres=consaduanares.TerresNacionalPatineta; 
+                              console.log(ModalidadDeUnProveedortnpres) ; 
+
+                              if(typeof  ModalidadDeUnProveedortnpres!= 'undefined'){
+                        $scope.ModalidadesTodasversiontnp=ModalidadDeUnProveedortnpres;
+                              }                           
+                      
+                          });
+                 }
+
+                   //////////////////////////Terrestre Urbano/////////////////////////////
+
+                    if (ModalidadVersion=='TerrestreUrbano'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.TerreUrbano.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.TerresUrbano; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                    /////////////////////Terrestre Urbano Viaje ///////////////////////////
+                    angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.TerreUrbanoViaje.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedortuvres=consaduanares.TerresUrbanoViaje; 
+                              console.log(ModalidadDeUnProveedortuvres) ; 
+
+                              if(typeof  ModalidadDeUnProveedortuvres!= 'undefined'){
+                        $scope.ModalidadesTodasversiontuv=ModalidadDeUnProveedortuvres;
+                              }                           
+                      
+                          });
+
+                    /////////////////////Terrestre Urbano Tonelada ///////////////////////////
+                    angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.TerreUrbanoTonelada.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedortutres=consaduanares.TerresUrbanoTonelada; 
+                              console.log(ModalidadDeUnProveedortutres) ; 
+
+                              if(typeof  ModalidadDeUnProveedortutres!= 'undefined'){
+                        $scope.ModalidadesTodasversiontut=ModalidadDeUnProveedortutres;
+                              }                           
+                      
+                          });
+                 }
+
+                      //////////////////////////Aerea/////////////////////////////
+
+                    if (ModalidadVersion=='Aereas'){
+                 //ModalidadesProveedorRespaldo.ForEach(Elemento)
+                   angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.Aerea.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorres=consaduanares.Aereas; 
+                              console.log(ModalidadDeUnProveedorres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorres!= 'undefined'){
+                        $scope.ModalidadesTodasversion=ModalidadDeUnProveedorres;
+                              }                           
+                      
+                          });
+                    /////////////////////Aerea Pasajero ///////////////////////////
+                    angular.forEach( $scope.LicitacionModalidadProveedorVersionRespaldo, function(elemento) {
+                  if (elemento.AereaPasajero.Version == version){
+                    console.log('entro aqui elemnto');
+                      LaModalidadQueEs = elemento;
+                      console.log(LaModalidadQueEs);
+                       }
+                    
+                     });
+                      console.log(LaModalidadQueEs);
+
+                   angular.forEach(LaModalidadQueEs, function(consaduanares) {
+                              ModalidadDeUnProveedorapres=consaduanares.AereasPasajeros; 
+                              console.log(ModalidadDeUnProveedorapres) ; 
+
+                              if(typeof  ModalidadDeUnProveedorapres!= 'undefined'){
+                        $scope.ModalidadesTodasversionap=ModalidadDeUnProveedorapres;
+                              }                           
+                      
+                          });
+                   
+                 }
+
                    }
+                  
+
                  }
 }
 
@@ -6573,11 +6907,6 @@ console.log(version);
                              console.log(response);
                         });
                      }
- 
-   
-                 
-          
-
 
        }])
 
@@ -12663,6 +12992,7 @@ console.log(version);
 
 
                           var ModalidadTodasT=[];
+                          var VersionTerre={};
                        angular.forEach($scope.ConsolidadoDatos, function(consterrenacional) {
                          ModalidadDeUnProveedorTN = consterrenacional.TerreNacional.TerresNacional
                          console.log( ModalidadDeUnProveedor);
@@ -12670,6 +13000,7 @@ console.log(version);
                               consterrenacionalprov.Email = consterrenacional.Email,
                               consterrenacionalprov.RazonSocial = consterrenacional.RazonSocial
                               consterrenacionalprov.Version = consterrenacional.TerreNacional.Version
+                              VersionTerre=consterrenacional.TerreNacional.Version;
                               ModalidadTodasT.push(consterrenacionalprov);
                               ModalidadTodasconOrdenT = ModalidadTodasT;
                               ModalidadTodasconOrdenMinimaT = ModalidadTodasT;
@@ -13153,7 +13484,7 @@ console.log(version);
                             angular.forEach(ModalidadDeUnProveedorTNP, function(consterrenacionalpatprov) {
                               consterrenacionalpatprov.Email = consterrenacionalpat.Email,
                               consterrenacionalpatprov.RazonSocial = consterrenacionalpat.RazonSocial,
-                              consterrenacionalpatprov.Version = consterrenacionalpat.TerreNacionalPatineta.Version
+                              consterrenacionalpatprov.Version = VersionTerre//consterrenacionalpat.TerreNacionalPatineta.Version
                               ModalidadTodasPatineta.push(consterrenacionalpatprov);
                               ModalidadTodasconOrden = ModalidadTodasPatineta;
                               ModalidadTodasconOrdenMinima = ModalidadTodasPatineta;
