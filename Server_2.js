@@ -6489,10 +6489,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                       ////console.log(header);
                   }
                   else if (header =='Frecuencia Dia Lunes')
-                    {
-                    ws2.cell(1, 14).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                    {if (modalid[header] == null || modalid[header] == '')
                              {
                                ws2.cell(fila+1,14).string('').style(style);
                              }
@@ -6504,9 +6501,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                    else if (header =='Frecuencia Dia Martes')
                     {
-                    ws2.cell(1, 15).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                ws2.cell(fila+1,15).string('').style(style);
                              }
@@ -6518,8 +6513,6 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   else if (header =='Frecuencia Dia Miercoles')
                     {
-                    ws2.cell(1, 6).string(header).style(style1);
-
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                ws2.cell(fila+1,16).string('').style(style);
@@ -6532,7 +6525,6 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   else if (header =='Frecuencia Dia Jueves')
                     {
-                    ws2.cell(1, 17).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6546,9 +6538,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                    else if (header =='Frecuencia Dia Viernes')
                     {
-                    ws2.cell(1, 18).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                ws2.cell(fila+1,18).string('').style(style);
                              }
@@ -6560,9 +6550,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                    else if (header =='Frecuencia Dia Sabado')
                     {
-                    ws2.cell(1, 19).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                        if (modalid[header] == null || modalid[header] == '')
                              {
                                ws2.cell(fila+1,19).string('').style(style);
                              }
@@ -6574,9 +6562,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                    else if (header =='Frecuencia Dia Domingo')
                     {
-                    ws2.cell(1, 20).string(header).style(style1);
-
-                            if (modalid[header] == null || modalid[header] == '')
+                    
+                    if (modalid[header] == null || modalid[header] == '')
                              {
                                ws2.cell(fila+1,20).string('').style(style);
                              }
@@ -6802,12 +6789,12 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                             if (modalid[header] == null || modalid[header] == '')
                              {
                                valor =parseFloat(0.00);
-                               ws2.cell(2,5).number(valor).style(stylerojo);
+                               ws2.cell(2,5).number(valor).style(style);
                              }
                              else
                              {
                               valor = parseFloat(modalid[header]);
-                              ws2.cell(2,5).number(valor).style(stylerojo);
+                              ws2.cell(2,5).number(valor).style(style);
                              }
                     }
                   }
@@ -14933,7 +14920,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   if (header =='Sencillo')
                     {           
-                 if  (modalid['AduC4021Pintada ']=="label label-success") {           
+                 if  (modalid['AduC4021Pintada']=="label label-success") {           
                     ws4.cell(1, 5).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -14947,7 +14934,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws4.cell(2,5).number(valor).style(styleverde);
                              }
                     }
-                    else  if  (modalid['AduC4021Pintada ']=="label label-warning") {           
+                    else  if  (modalid['AduC4021Pintada']=="label label-warning") {           
                     ws4.cell(1, 5).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -14961,7 +14948,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                               ws4.cell(2,5).number(valor).style(styleamarillo);
                              }
                     }
-                     else if  (modalid['AduC4021Pintada ']=="label label-danger") {           
+                     else if  (modalid['AduC4021Pintada']=="label label-danger") {           
                     ws4.cell(1, 5).string(header).style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
@@ -15808,7 +15795,7 @@ app.get('/GetTemplateAduana', function (req, res) {
         ws2.cell(1, 7).string('Conceptos Adicionales 2').style(style);
         ws2.cell(1, 8).string('Gastos Adicionales 3').style(style);
         ws2.cell(1, 9).string('Conceptos Adicionales 3').style(style);
-        ws2.cell(1, 10).string('Costo Planificacion Caja').style(style);
+        ws2.cell(1, 10).string('Costo Plastificacion Caja').style(style);
         ws2.cell(1, 11).string('Otros').style(style);
         ws2.cell(col + 1, 1 ).string(aduana.Via).style(style);
         });
@@ -16060,8 +16047,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
 ///////////////Terrestre Nacional///////////////////////////////
       MyMongo.Find('TerresNacional', {}, function (result) {
           var TerrestNacional= result;
-        ws6.cell(1, 1).string('PaisOrigen').style(style);
-        ws6.cell(1, 2).string('PuertoDestino').style(style);
+        ws6.cell(1, 1).string('Origen').style(style);
+        ws6.cell(1, 2).string('Destino').style(style);
         ws6.cell(1, 3).string('Turbo Standard (150 Cajas)').style(style);
         ws6.cell(1, 4).string('Turbo Especial (210 Cajas)').style(style);
 
@@ -16074,8 +16061,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
 ///////////////Terrestre NacionalSencillo///////////////////////////////
       MyMongo.Find('TerresNacionalSencillo', {}, function (result) {
           var TerrestNacionalSencillo= result;
-        ws7.cell(1, 1).string('PaisOrigen').style(style);
-        ws7.cell(1, 2).string('PuertoDestino').style(style);
+        ws7.cell(1, 1).string('Origen').style(style);
+        ws7.cell(1, 2).string('Destino').style(style);
         ws7.cell(1, 3).string('Sencillo Standard (240 Cajas)').style(style);
         ws7.cell(1, 4).string('Sencillo Especial (300 Cajas)').style(style);
 
@@ -16089,8 +16076,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
 ///////////////Terrestre NacionalPatineta///////////////////////////////
       MyMongo.Find('TerresNacionalPatineta', {}, function (result) {
           var TerrestNacionalPatineta= result;
-        ws8.cell(1, 1).string('PaisOrigen').style(style);
-        ws8.cell(1, 2).string('PuertoDestino').style(style);
+        ws8.cell(1, 1).string('Origen').style(style);
+        ws8.cell(1, 2).string('Destino').style(style);
         ws8.cell(1, 3).string('Minimula').style(style);
         ws8.cell(1, 4).string('Gran Danes').style(style);
 

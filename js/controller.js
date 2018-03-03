@@ -1279,7 +1279,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      ////////////////////////////Bodegajes_Maquinaria ////////////////////////////////////////////
                          angular.forEach(data.Maquinaria , function(maquinaria) {
                            if( ( typeof maquinaria["Tarifa Valor FOB"] == 'undefined' ) || pattern.test(maquinaria["Tarifa Valor FOB"])){
-                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = maquinaria.Tarifa;
+                            $scope.ModalidadesProveedor.Bodegajes.Maquinaria.Tarifa = maquinaria["Tarifa Valor FOB"];
                                   //$scope.$apply();
 
                                 }
@@ -1523,7 +1523,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }*/
                             //////////////////CostoPlanificacionCaja//////////////////////////
-                                if( ( typeof aduana["Costo Planificacion Caja"] == 'undefined' ) || pattern.test(aduana["Costo Planificacion Caja"])){
+                                if( ( typeof aduana["Costo Plastificacion Caja"] == 'undefined' ) || pattern.test(aduana["Costo Plastificacion Caja"])){
                                    filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
                                    //$scope.ModalidadesProveedor.Aduana.Aduanas= data.Aduanas;
                                    //$scope.$apply();
@@ -1531,10 +1531,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 else
                                 {
                                 filaCostoPlanificacionCaja=filaCostoPlanificacionCaja +1;
-                                  var valor='Costo Planificacion Caja';
+                                  var valor='Costo Plastificacion Caja';
                                   $scope.erroresimportacion.push({fila: filaCostoPlanificacionCaja, campo:valor, error:'Valor NO numérico'});
                                   //$scope.AbrirModal(valor);
                                  }
+                                  aduana["Costo Planificacion Caja"] = aduana["Costo Plastificacion Caja"];
+                              delete aduana["Costo Plastificacion Caja"];
                             //////////////////Otros/////////////////////////////////////////
                              if( ( typeof aduana.Otros == 'undefined' ) || pattern.test(aduana.Otros)){
                                    filaOtros=filaOtros +1;
@@ -2006,7 +2008,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                             /////////////Time////////////////////////////////////
                             console.log(maritimasfcl["Lead Time(dias)"]);
-                             if( pattern.test(maritimasfcl["Lead Time(dias)"]) &&  maritimasfcl["Lead Time(dias)"] < 51 &&  maritimasfcl["Lead Time(dias)"] > 0){
+                             filaTimemf=filaTimemf +1;
+                             /*if( pattern.test(maritimasfcl["Lead Time(dias)"]) &&  maritimasfcl["Lead Time(dias)"] < 51 &&  maritimasfcl["Lead Time(dias)"] > 0){
                                    filaTimemf=filaTimemf +1;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl.Lead_TimeDias= data.MaritimasFcl.Lead_TimeDias;
                                    //$scope.ModalidadesProveedor.MaritimaFcl.MaritimasFcl= data.MaritimasFcl;
@@ -2018,7 +2021,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Lead Time(dias)';
                                   $scope.erroresimportacion.push({fila: filaTimemf, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                              /////////////Naviera////////////////////////////////////
                              filaNavierafcl=filaNavierafcl +1;
                              /*if( ( typeof maritimasfcl.Naviera == 'undefined' ) || pattern.test(maritimasfcl.Naviera)){
@@ -2209,7 +2212,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                                /////////Time////////////////////////////////////
-                                 if( pattern.test(maritimaslcl["Lead time(dias)"]) &&  maritimaslcl["Lead time(dias)"] < 51 &&  maritimaslcl["Lead time(dias)"] > 0){
+                                filaTimeml=filaTimeml +1;
+                                /* if( pattern.test(maritimaslcl["Lead time(dias)"]) &&  maritimaslcl["Lead time(dias)"] < 51 &&  maritimaslcl["Lead time(dias)"] > 0){
                                    filaTimeml=filaTimeml +1;
                                  // $scope.ModalidadesProveedor.MaritimaLcl.MaritimasLcl= data.MaritimasLcl;
                                    //$scope.$apply();
@@ -2220,7 +2224,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Lead time(dias)';
                                   $scope.erroresimportacion.push({fila: filaTimeml, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                   //$scope.AbrirModal(valor);
-                                 }
+                                 }*/
                                    /////////////Naviera////////////////////////////////////
                                     filaNavieralcl=filaNavieralcl +1;
                                /* if( ( typeof maritimaslcl.Naviera == 'undefined' ) || pattern.test(maritimaslcl.Naviera)){
@@ -2389,8 +2393,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  terrestrenacional["Turbo Especial"] = terrestrenacional["Turbo Especial (210 Cajas)"];
                                  delete terrestrenacional["Turbo Especial (210 Cajas)"];
 
-                        });
+                                 terrestrenacional["PaisOrigen"] = terrestrenacional["Origen"];
+                                 delete terrestrenacional["Origen"];
 
+                                terrestrenacional["PuertoDestino"] = terrestrenacional["Destino"];
+                                delete terrestrenacional["Destino"];
+
+                        });        
 
                    ///////////////////Terrestre Nacional Sencillo////////////////////////////////////////////
                          var filaEstandarnasen=1;
@@ -2428,8 +2437,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                                   terrestrenacionalsencillo["Sencillo Especial"] = terrestrenacionalsencillo["Sencillo Especial (300 Cajas)"];
                                   delete terrestrenacionalsencillo["Sencillo Especial (300 Cajas)"];
-                        });
 
+                             terrestrenacionalsencillo["PaisOrigen"] = terrestrenacionalsencillo["Origen"];
+                              delete terrestrenacionalsencillo["Origen"];
+
+                            terrestrenacionalsencillo["PuertoDestino"] = terrestrenacionalsencillo["Destino"];
+                              delete terrestrenacionalsencillo["Destino"];
+                        });
                      ///////////////////Terrestre Nacional Patineta////////////////////////////////////////////
                          var filaEstandarnapat=1;
                          var filaEspecialnapat=1;
@@ -2463,7 +2477,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   //$scope.AbrirModal(valor);
                                  }
 
-                             });
+                                 terrestrenacionalpatineta["PaisOrigen"] = terrestrenacionalpatineta["Origen"];
+                              delete terrestrenacionalpatineta["Origen"];
+
+                            terrestrenacionalpatineta["PuertoDestino"] = terrestrenacionalpatineta["Destino"];
+                              delete terrestrenacionalpatineta["Destino"];
+
+                             });                             
+
+
 
                         if ($scope.erroresimportacion.length == 0){
                           $scope.ModalidadesProveedor.TerreNacionalSencillo.TerresNacionalSencillo= data.Terrestre_Nacional_Sencillo;
@@ -2919,7 +2941,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                              /////////////Time////////////////////////////////////
-                              if( pattern.test(aereacarguero["Lead Time (dias)"]) && aereacarguero["Lead Time (dias)"] < 51 && aereacarguero["Lead Time (dias)"] > 0 ){
+                             filaTimeca=filaTimeca +1;
+                             /* if( pattern.test(aereacarguero["Lead Time (dias)"]) && aereacarguero["Lead Time (dias)"] < 51 && aereacarguero["Lead Time (dias)"] > 0 ){
                                   filaTimeca=filaTimeca +1;
                                   //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
@@ -2930,7 +2953,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Lead Time (dias)_Carguero';
                                   $scope.erroresimportacion.push({fila: filaTimeca, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                  // $scope.AbrirModal(valor);
-                                 }
+                                 }*/
                             /////////////Naviera////////////////////////////////////
                             filaVia=filaVia +1;
                             /*if( ( typeof aereacarguero.Naviera == 'undefined' ) || pattern.test(aereacarguero.Naviera)){
@@ -3213,7 +3236,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                    //$scope.$apply();
 
                             /////////////Time////////////////////////////////////
-                            if( pattern.test(aereapasajero["Lead time (dias)"]) && aereapasajero["Lead time (dias)"] < 51 && aereapasajero["Lead time (dias)"] > 0){
+                            filaTimepa=filaTimepa +1;
+                            /*if( pattern.test(aereapasajero["Lead time (dias)"]) && aereapasajero["Lead time (dias)"] < 51 && aereapasajero["Lead time (dias)"] > 0){
                                   filaTimepa=filaTimepa +1;
                                   //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                    //$scope.$apply();
@@ -3224,7 +3248,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   var valor='Lead Time (dias)_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaTimepa, campo:valor, error:'Debe ser un número entre 1 y 50'});
                                  // $scope.AbrirModal(valor);
-                                 }
+                                 }*/
                             /////////////Naviera////////////////////////////////////
                             filaVia=filaVia +1;
                             
@@ -5637,15 +5661,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
              $scope.cedreplegal = response.data.Usuario.CedRepLegal;
              $scope.emailreplegal = response.data.Usuario.EmailRepLegal;
              $scope.tlfreplegal = response.data.Usuario.TlfRepLegal;
-             $scope.celularreplegal = response.data.Usuario.CelularRepLegal;
+             $scope.celularreplegal = response.data.Usuario.CelRepLegal;
              $scope.repcomercial = response.data.Usuario.RepComercial;
              $scope.emailrepcomercial = response.data.Usuario.EmailRepComercial;
              $scope.tlfrepcomercial = response.data.Usuario.TlfRepComercialnombre;
              $scope.celularrepcomercial = response.data.Usuario.CelularRepComercial;
              $scope.coordinadoroperacion = response.data.Usuario.CoordinadorOperacion;
              $scope.emailcoordinadoroperacion = response.data.Usuario.EmailCoordinadorOperacion;
-             $scope.tlfcoordinadoroperacion = response.data.Usuario.TlfCoordinadorOperacion;
-             $scope.celularcoordinadoroperacion = response.data.Usuario.CelularCoordinadorOperacion;
+             $scope.tlfcoordinadoroperacion = response.data.Usuario.TelefonoCoordinadorOpe;
+             $scope.celularcoordinadoroperacion = response.data.Usuario.CelularCoordinadorOper;
              $scope.perfilusuario=response.data.Usuario.Perfil;
 
               $loading.finish('myloading');
