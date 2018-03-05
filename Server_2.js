@@ -416,6 +416,7 @@ app.post('/GetContactoModalidadProveedor', function (req, res) {
     //console.log( res.end(JSON.stringify(Data)));
   })
 });
+  
 // Julio HOY
 app.post('/SaveUsuarioComplete', function (req, res) {
   MyMongo.Remove('Usuarios', { Email: req.body.Usuario.Email }, function (result) {
@@ -16770,12 +16771,17 @@ app.post('/GetNegociarmodalidad', function (req, res) {
     // en las versiones. En la lína inmediata de abajo se simulña que viene 1 eso no será así es sólo simulación
     //result[0][req.body.Modalidad].Version = 1;  // No va es EJEMPLO  Ojo lo cambias por la modalidad que viene Negociar
     var newVersion = result[0][mModalidad].Version + 1;
+    var newVersiontnt = result[0][mModalidad].Version + 1;
     var ModalidadesProveedorRes = result;
     var ModalidadesProveedorRes1 = result;
     var ModalidadesProveedorResTU = result;
     var ModalidadesProveedorResTUT = result;
     var ModalidadesProveedorResAP = result;
     var mModalidadObject =  result[0][mModalidad];
+    var mModalidadObjecttnt =  result[0][mModalidad];
+    var mModalidadObjecttu =  result[0][mModalidad];
+    var mModalidadObjecttut =  result[0][mModalidad];
+    var mModalidadObjectap =  result[0][mModalidad];
 
      //MyMongo.Remove('ModalidadesProveedorRespaldo', { Email: req.body.Email } , function (result) {
      //});
@@ -16803,51 +16809,56 @@ app.post('/GetNegociarmodalidad', function (req, res) {
 
        if (mModalidad=='TerreNacional') {
         mupdate = {};
+        mModalidadObject=ModalidadesProveedorRes[0]['TerreNacionalSencillo'];  
         newVersion = ModalidadesProveedorRes[0]['TerreNacionalSencillo'].Version + 1;
         mModalidadObject.Version = newVersion;
-        mModalidadObject = ModalidadesProveedorRes[0]['TerreNacionalSencillo'];
         mupdate['TerreNacionalSencillo'] = mModalidadObject;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
     }
        if (mModalidad=='TerreNacional') {
+
         mupdate = {};
+        mModalidadObjecttnt=ModalidadesProveedorRes1[0]['TerreNacionalPatineta'];
         newVersion = ModalidadesProveedorRes1[0]['TerreNacionalPatineta'].Version + 1;
-        mModalidadObject.Version = newVersion;
-        mModalidadObject = ModalidadesProveedorRes1[0]['TerreNacionalPatineta'];
-        mupdate['TerreNacionalPatineta'] = mModalidadObject;
+        mModalidadObjecttnt.Version = newVersion;
+        mupdate['TerreNacionalPatineta'] = mModalidadObjecttnt;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
+
        }
 
         if (mModalidad=='TerreUrbano') {
         mupdate = {};
+        mModalidadObjecttu=ModalidadesProveedorResTU[0]['TerreUrbanoViaje'];
         newVersion = ModalidadesProveedorResTU[0]['TerreUrbanoViaje'].Version + 1;
-        mModalidadObject.Version = newVersion;
-        mModalidadObject = ModalidadesProveedorResTU[0]['TerreUrbanoViaje'];
-        mupdate['TerreUrbanoViaje'] = mModalidadObject;
+        mModalidadObjecttu.Version = newVersion;
+        mupdate['TerreUrbanoViaje'] = mModalidadObjecttu;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
     }
     if (mModalidad=='TerreUrbano') {
         mupdate = {};
+        mModalidadObjecttut=ModalidadesProveedorResTU[0]['TerreUrbanoTonelada'];
         newVersion = ModalidadesProveedorResTU[0]['TerreUrbanoTonelada'].Version + 1;
-        mModalidadObject.Version = newVersion;
-        mModalidadObject = ModalidadesProveedorResTU[0]['TerreUrbanoTonelada'];
-        mupdate['TerreUrbanoTonelada'] = mModalidadObject;
+        mModalidadObjecttut.Version = newVersion;
+       // mModalidadObject = ModalidadesProveedorResTU[0]['TerreUrbanoTonelada'];
+        mupdate['TerreUrbanoTonelada'] = mModalidadObjecttut;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
        }
 
         if (mModalidad=='Aerea') {
         mupdate = {};
-        newVersion = ModalidadesProveedorResAP[0]['AereaPasajero'].Version + 1;
-        mModalidadObject.Version = newVersion;
-        mModalidadObject = ModalidadesProveedorResAP[0]['AereaPasajero'];
-        mupdate['AereaPasajero'] = mModalidadObject;
+        mModalidadObjectap=ModalidadesProveedorRes[0]['AereaPasajero'];
+        newVersion = ModalidadesProveedorRes[0]['AereaPasajero'].Version + 1;
+        mModalidadObjectap.Version = newVersion;
+        mupdate['AereaPasajero'] = mModalidadObjectap;
         MyMongo.UpdateCriteria('ModalidadesProveedor', {Email: mEmail}, mupdate, function (result) {
         });
-       }
+    }
+
+      
 
     });
 

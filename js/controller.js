@@ -669,10 +669,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
           $scope.GetContactosPorModalidades();
           $scope.filtercontactos = function(){
             $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
+            $scope.filter
             $scope.contactosmodalidadesfiltered = $scope.contactosmodalidadesfiltered.filter(function (el) {
                 return el.nombre.toUpperCase().indexOf($scope.strSerachContacto.toUpperCase()) > -1 || el.email.toUpperCase().indexOf($scope.strSerachContacto.toUpperCase()) > -1
             })
           }
+
           $scope.DeleteContacto = function (Email) {
             swal({
               title: "Seguro de  eliminar el contacto?",
