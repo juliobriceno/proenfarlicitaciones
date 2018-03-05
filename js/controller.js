@@ -13510,7 +13510,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             angular.forEach(ModalidadDeUnProveedorTNP, function(consterrenacionalpatprov) {
                               consterrenacionalpatprov.Email = consterrenacionalpat.Email,
                               consterrenacionalpatprov.RazonSocial = consterrenacionalpat.RazonSocial,
-                              consterrenacionalpatprov.Version = VersionTerre//consterrenacionalpat.TerreNacionalPatineta.Version
+                              consterrenacionalpatprov.Version = consterrenacionalpat.TerreNacionalPatineta.Version
                               ModalidadTodasPatineta.push(consterrenacionalpatprov);
                               ModalidadTodasconOrden = ModalidadTodasPatineta;
                               ModalidadTodasconOrdenMinima = ModalidadTodasPatineta;
