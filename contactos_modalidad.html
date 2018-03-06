@@ -66,6 +66,7 @@
         <!--Mensajes -->
         <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
         <script src="js/sweetalert.min.js"></script>
+        <script src='ngMask.min.js'></script>
 
     </head>
     <body class="skin-blue"  ng-controller="ctrlContactosModalidad">
@@ -200,8 +201,8 @@
                                       <td class="text-center">{{contactomodalidades.email}}</td>
                                       <td class="text-center" >{{contactomodalidades.cargo}}</td>
                                       <td class="text-center">{{contactomodalidades.direccion}}</td>
-                                      <td class="text-center">{{contactomodalidades.telefonofijo || phoneNumber}}</td>
-                                      <td class="text-center">{{contactomodalidades.celular}}</td>
+                                      <td class="text-center"><input  type="text" ui-mask="{{ myMask(contactomodalidades.telefonofijo)}}" ng-model="contactomodalidades.telefonofijo" ng-disabled=true></td>
+                                      <td class="text-center"><input  type="text" ui-mask="{{ myMaskCel(contactomodalidades.celular)}}" ng-model="contactomodalidades.celular" ng-disabled=true></td>
                                       <td class="text-center">{{contactomodalidades.modalidadestext}}</td>
                                     </tr>
                                   </table>

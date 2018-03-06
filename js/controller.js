@@ -662,6 +662,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }
               });
               $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
+
+
             }, function errorCallback(response) {
               alert(response.statusText);
             });
@@ -703,6 +705,24 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
             });
           }
+
+      $scope.myMask = function(isPhone) {
+        console.log(isPhone);
+     if (isPhone)
+    return '(999) 999-9999 ext. ?9?9?9'
+    else
+    return '(999) 999-9999'
+}
+
+      $scope.myMaskCel = function(isPhone) {
+        console.log(isPhone);
+     if (isPhone)
+    return '(999) 999-9999'
+    else
+    return '(999) 999-9999'
+}
+
+
         }])
 
         .controller('ctrlLogin', ['$scope', '$http', '$uibModal', '$log', '$document', '$loading', 'FileUploader', function ($scope, $http, $uibModal, $log, $document, $loading, FileUploader) {
@@ -7517,6 +7537,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasBodegajeaduanero;
                        $scope.ModalidadTodasBodegajeaduanero= ModalidadTodasBodegajeaduanero;
+                       $scope.ModalidadTodasBodegajeaduaneroCopia=$scope.ModalidadTodasBodegajeaduanero;
                        console.log(ModalidadTodasRespaldo);
                       console.log($scope.ModalidadesSemaforo);
                        $scope.ModalidadTodasBodegajeaduanero = ModalidadTodasRespaldo.filter(function (el) {
@@ -7726,6 +7747,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasBodegajeaduaneromaqt;
                        $scope.ModalidadTodasBodegajeaduaneromaqt= ModalidadTodasBodegajeaduaneromaqt;
+                       $scope.ModalidadTodasBodegajeaduaneromaqtCopia=$scope.ModalidadTodasBodegajeaduaneromaqt;
                        console.log(ModalidadTodasRespaldo);
                        $scope.ModalidadTodasBodegajeaduaneromaqt = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AdumaqtPintada.length > 0 ||
@@ -7938,6 +7960,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasBodegajeaduaneromaqp;
                        $scope.ModalidadTodasBodegajeaduaneromaqp= ModalidadTodasBodegajeaduaneromaqp;
+                       $scope.ModalidadTodasBodegajeaduaneromaqpCopia=$scope.ModalidadTodasBodegajeaduaneromaqp;
                        console.log(ModalidadTodasRespaldo);
                        $scope.ModalidadTodasBodegajeaduaneromaqp = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AdumaqpPintada.length > 0 ||
@@ -7945,6 +7968,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  el.AdumaqpfmmPintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
+
+              $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodasBodegajeaduanero = $scope.ModalidadTodasBodegajeaduaneroCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                $scope.ModalidadTodasBodegajeaduaneromaqt = $scope.ModalidadTodasBodegajeaduaneromaqtCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                $scope.ModalidadTodasBodegajeaduaneromaqp = $scope.ModalidadTodasBodegajeaduaneromaqpCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
+              
 
          ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -8989,7 +9019,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                    //ModalidadTodas= _.orderBy(ModalidadTodas, ["Email"], ["asc"]);
                    ModalidadTodas=_.orderBy(ModalidadTodas, [ModalidadTodasadu => ModalidadTodasadu.Via.toLowerCase(),ModalidadTodasadu =>ModalidadTodasadu.RazonSocial.toLowerCase()], ['asc','asc']);
-
+                    $scope.ModalidadTodasCopia=ModalidadTodas;
                      console.log(ModalidadTodas);
                        ModalidadTodasRespaldoAD = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
@@ -9007,7 +9037,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           $scope.ModalidadesSemaforo == false);
                 });
                 console.log($scope.ModalidadTodas);
+                 $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodas = $scope.ModalidadTodasCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
 
+               
 
           ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -10998,6 +11032,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        ModalidadTodasRespaldoExcel = ModalidadTodasOtm;
                        ModalidadTodasRespaldo = ModalidadTodasOtm;
                        $scope.ModalidadTodasOtm= ModalidadTodasOtm;
+                       $scope.ModalidadTodasOtmCopia=$scope.ModalidadTodasOtm;
 
                        $scope.ModalidadTodasOtm = ModalidadTodasRespaldo.filter(function (el) {
                          return (
@@ -11026,6 +11061,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodasOtm);
+                $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodasOtm = $scope.ModalidadTodasOtmCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
                  //$loading.finish('myloading');
 
                  ///////////////////////////Crea plantilla para exportar a excel ////////////////
@@ -12168,6 +12206,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                        console.log(ModalidadTodas);
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
+                       $scope.ModalidadTodasMfcl=ModalidadTodas;
                        $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AduC2045Pintada.length > 0 ||
                                 el.AduC8Pintada.length > 0 ||
@@ -12183,6 +12222,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
+                $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodas = $scope.ModalidadTodasMfcl.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
+                 
                  //$loading.finish('myloading');
 
                            ///////////////////////////Crea plantilla para exportar a excel ////////////////
@@ -12945,6 +12988,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       // ModalidadTodas= _.sortBy(ModalidadTodas,'PuertoDestino','PuertoOrigen','PaisDestino','Email');
                        ModalidadTodasRespaldo = ModalidadTodas;
                        $scope.ModalidadTodas= ModalidadTodas;
+                       $scope.ModalidadTodasMlcl= ModalidadTodas;
                        $scope.ModalidadTodas = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AduC2045Pintada.length > 0 ||
                                  el.AduC8Pintada.length > 0 ||
@@ -12956,6 +13000,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                 console.log($scope.ModalidadTodas);
+                $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodas = $scope.ModalidadTodasMlcl.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
+               
                  //$loading.finish('myloading');
 
                                         ///////////////////////////Crea plantilla para exportar a excel ////////////////
@@ -13249,17 +13297,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          ModalidadTodasT=_.orderBy(ModalidadTodasT, [ModalidadTodastn => ModalidadTodastn.PuertoDestino.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.PaisOrigen.toLowerCase(),ModalidadTodastn =>ModalidadTodastn.RazonSocial.toLowerCase()], ['asc','asc','asc']);
                          //ModalidadTodasT= _.sortBy(ModalidadTodasT,'PuertoDestino','PaisOrigen','Email');
                          $scope.ModalidadTodasTerreNacionalTurbo=ModalidadTodasT;
+                        
 
 
                           /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoT = ModalidadTodasT;
                        $scope.ModalidadTodasTerreNacionalTurbo= ModalidadTodasT;
+                       $scope.ModalidadTodasTerreNacionalTurboCopia= $scope.ModalidadTodasTerreNacionalTurbo;
                        $scope.ModalidadTodasTerreNacionalTurbo = ModalidadTodasRespaldoT.filter(function (el) {
                          return (el.AduC2045Pintada.length > 0 ||
                                  el.AduC8Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
-                console.log($scope.ModalidadTodasT);
+                console.log($scope.ModalidadTodasT);            
 
                        //Terrestre Nacional Sencillo
 
@@ -13495,15 +13545,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasTerreNacionalSencillo;
                        $scope.ModalidadTodasTerreNacionalSencillo= ModalidadTodasTerreNacionalSencillo;
+                       $scope.ModalidadTodasTerreNacionalSencilloCopia= $scope.ModalidadTodasTerreNacionalSencillo;
                        $scope.ModalidadTodasTerreNacionalSencillo = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AduC2010Pintada.length > 0 ||
                                  el.AduC2017Pintada.length > 0 ||
                                 $scope.ModalidadesSemaforo == false);
                       });
 
-
-
-                        //Terrestre Nacional Patineta
+                         //Terrestre Nacional Patineta
                         angular.forEach($scope.ConsolidadoDatos, function(consterrenacionalpat) {
                          ModalidadDeUnProveedorTNP = consterrenacionalpat.TerreNacionalPatineta.TerresNacionalPatineta
                          console.log( ModalidadDeUnProveedorTNP);
@@ -13733,6 +13782,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.RazonSocial.toLowerCase()], ['asc','asc','asc']);
 
                         $scope.ModalidadTodasTerreNacionalPatineta=ModalidadTodasPatineta;
+                        $scope.ModalidadTodasTerreNacionalPatinetaCopia=$scope.ModalidadTodasTerreNacionalPatineta;
 
                         ////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasPatineta;
@@ -13743,6 +13793,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                          //$loading.finish('myloading');
+                $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodasTerreNacionalTurbo = $scope.ModalidadTodasTerreNacionalTurboCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                $scope.ModalidadTodasTerreNacionalSencillo = $scope.ModalidadTodasTerreNacionalSencilloCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                $scope.ModalidadTodasTerreNacionalPatineta = $scope.ModalidadTodasTerreNacionalPatinetaCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
 
            ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -14411,9 +14466,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           // ModalidadTodasPatineta=_.orderBy(ModalidadTodasPatineta, [ModalidadTodastnp => ModalidadTodastnp.PuertoDestino.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.PaisOrigen.toLowerCase(),ModalidadTodastnp =>ModalidadTodastnp.Email.toLowerCase()], ['asc','asc','asc']);
                         $scope.ModalidadTodasTerreUrbano=ModalidadTodasUrbano;
 
+
                            ////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldo = ModalidadTodasUrbano;
                         $scope.ModalidadTodasTerreUrbano= ModalidadTodasUrbano;
+                        $scope.ModalidadTodasTerreUrbanoCopia=$scope.ModalidadTodasTerreUrbano;
                         $scope.ModalidadTodasTerreUrbano = ModalidadTodasRespaldo.filter(function (el) {
                          return (el.AduC2045Pintada.length > 0 ||
                                  el.AduC8Pintada.length > 0 ||
@@ -15037,6 +15094,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                     ////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoTUV = ModalidadTodasTerreUrbanoViaje;
                         $scope.ModalidadTodasTerreUrbanoViaje= ModalidadTodasTerreUrbanoViaje;
+                        $scope.ModalidadTodasTerreUrbanoViajeCopia= $scope.ModalidadTodasTerreUrbanoViaje;
                         $scope.ModalidadTodasTerreUrbanoViaje = ModalidadTodasRespaldoTUV.filter(function (el) {
                          return (el.AduC2021vPintada.length > 0 ||
                                  el.AduC2025vPintada.length > 0 ||
@@ -15376,6 +15434,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      ////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoTUT = ModalidadTodasTerreUrbanoTonelada;
                         $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
+                         $scope.ModalidadTodasTerreUrbanoToneladaCopia= $scope.ModalidadTodasTerreUrbanoToneladaonelada;
                         $scope.ModalidadTodasTerreUrbanoTonelada = ModalidadTodasRespaldoTUT.filter(function (el) {
                          return (el.AduC4020Pintada.length > 0 ||
                                  el.AduC4021Pintada.length > 0 ||
@@ -15383,6 +15442,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                          //$loading.finish('myloading');
+
+                $scope.SearchUserProveedor = function () {
+                $scope.ModalidadTodasTerreUrbano = $scope.ModalidadTodasTerreUrbanoCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                $scope.ModalidadTodasTerreUrbanoViaje = $scope.ModalidadTodasTerreUrbanoViajeCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                $scope.ModalidadTodasTerreUrbanoTonelada = $scope.ModalidadTodasTerreUrbanoToneladaCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+            };
+
 
                              ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -16810,6 +16876,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoAA = ModalidadTodasAerea;
                        $scope.ModalidadTodasAerea= ModalidadTodasAerea;
+                       $scope.ModalidadTodasAereaCopia= $scope.ModalidadTodasAerea;
                        console.log(ModalidadTodasRespaldoAA);
                        $scope.ModalidadTodasAerea = ModalidadTodasRespaldoAA.filter(function (el) {
                          return (el.AduC2045Pintada.length > 0 ||
@@ -18181,6 +18248,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      /////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoAP = ModalidadTodasAereaPasajero;
                        $scope.ModalidadTodasAereaPasajero= ModalidadTodasAereaPasajero;
+                       $scope.ModalidadTodasAereaPasajeroCopia=$scope.ModalidadTodasAereaPasajero;
                        $scope.ModalidadTodasAereaPasajero = ModalidadTodasRespaldoAP.filter(function (el) {
                          return (el.AduC2045PPintada.length > 0 ||
                                  el.AduC8PPintada.length > 0 ||
@@ -18199,6 +18267,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 $scope.ModalidadesSemaforo == false);
                       });
                         //$loading.finish('myloading');
+
+               $scope.SearchUserProveedor = function () {
+                 $scope.ModalidadTodasAerea =  $scope.ModalidadTodasAereaCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+                 $scope.ModalidadTodasAereaPasajero = $scope.ModalidadTodasAereaPasajeroCopia.filter(function (el) { return el.RazonSocial.toUpperCase().includes($scope.SearchText.toUpperCase()); })
+              
+            };
 
                             ///////////////////////////Crea plantilla para exportar a excel ////////////////
           //////////////////////////////////////Exportar a Excel////////////////////////////////////////
@@ -18773,7 +18847,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   return 0;
               }
               swal({
-                  title: "Seguro de querer eliminar el usuario?",
+                   title: "Seguro de querer eliminar el usuario?",
                   text: "",
                   type: "warning",
                   showCancelButton: true,

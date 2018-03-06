@@ -165,7 +165,17 @@
                                         ng-model="selectedModalidadConsolidado" ng-change="GetConsolidadoDatos();"
                                         ng-options="ModalidadConsolidado as ModalidadConsolidado.Name for ModalidadConsolidado in ModalidadesConsolidado"></select>
                                       </div>
-                                            </div>   
+                                            </div>  
+                                            <div class="pull-left"> 
+                                        <div class="form-group">
+                                        <label>Buscar Proveedor</label>
+                                         <div class="input-group">
+                                         <input  class="form-control" ng-change="SearchUserProveedor();" type="text" ng-model="SearchText" >
+                                        <span class="input-group-btn">
+                                        </span>
+                                        </div>
+                                        </div>
+                                         </div> 
                                          </div>
 
 
