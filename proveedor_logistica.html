@@ -669,8 +669,8 @@
                                       <td class="text-center">{{contactomodalidades.email}}</td>
                                       <td class="text-center">{{contactomodalidades.cargo}}</td>
                                       <td class="text-center">{{contactomodalidades.direccion}}</td>
-                                      <td class="text-center">{{contactomodalidades.telefonofijo}}</td>
-                                      <td class="text-center">{{contactomodalidades.celular}}</td>
+                                       <td class="text-center"><input  type="text" ui-mask="{{ myMask(contactomodalidades.telefonofijo)}}" ng-model="contactomodalidades.telefonofijo" ng-disabled=true></td>
+                                        <td class="text-center"><input  type="text" ui-mask="{{ myMaskCel(contactomodalidades.celular)}}" ng-model="contactomodalidades.celular" ng-disabled=true></td>
 
                                     </tr>
                                   </table>

@@ -662,6 +662,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 }
               });
               $scope.contactosmodalidadesfiltered = $scope.contactosmodalidades;
+              console.log($scope.contactosmodalidadesfiltered);
 
 
             }, function errorCallback(response) {
@@ -706,10 +707,10 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
             });
           }
 
-      $scope.myMask = function(isPhone) {
+     $scope.myMask = function(isPhone) {
         console.log(isPhone);
      if (isPhone)
-    return '(999) 999-9999 ext. ?9?9?9'
+    return '(999) 999-9999 ext. ?9?9?9?9?9'
     else
     return '(999) 999-9999'
 }
@@ -5921,6 +5922,22 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                 return el.nombre.toUpperCase().indexOf($scope.strSerachContacto.toUpperCase()) > -1 || el.email.toUpperCase().indexOf($scope.strSerachContacto.toUpperCase()) > -1
             })
           }
+
+          $scope.myMask = function(isPhone) {
+        console.log(isPhone);
+            if (isPhone)
+            return '(999) 999-9999 ext. ?9?9?9?9?9'
+            else
+             return '(999) 999-9999'
+         }
+
+      $scope.myMaskCel = function(isPhone) {
+        console.log(isPhone);
+      if (isPhone)
+       return '(999) 999-9999'
+       else
+    return '(999) 999-9999'
+}
 
        }])
 
