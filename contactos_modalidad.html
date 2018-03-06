@@ -170,7 +170,7 @@
                                 <div class="box-body table-responsive no-padding">
                                   <table class="table table-bordered">
                                   <tr>
-                                    <th class="text-center" style="width:12%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
+                                    <th class="text-center" style="width:10%;vertical-align: middle;"><i class="fa fa-cogs" aria-hidden="true"></i></th>
                                     <th class="text-center"><h5><b>Nombre</b></h5></th>
                                     <th class="text-center"><h5><b>Ciudad</b></h5></th>
                                     <th class="text-center"><h5><b>Email</b></h5></th>
@@ -201,8 +201,8 @@
                                       <td class="text-center">{{contactomodalidades.email}}</td>
                                       <td class="text-center" >{{contactomodalidades.cargo}}</td>
                                       <td class="text-center">{{contactomodalidades.direccion}}</td>
-                                      <td class="text-center"><input  type="text" ui-mask="{{ myMask(contactomodalidades.telefonofijo)}}" ng-model="contactomodalidades.telefonofijo" ng-disabled=true></td>
-                                      <td class="text-center"><input  type="text" ui-mask="{{ myMaskCel(contactomodalidades.celular)}}" ng-model="contactomodalidades.celular" ng-disabled=true></td>
+                                      <td class="text-center"><input style="border:none !important; background-color:transparent;" class="text-center" type="text" ui-mask="{{ myMask(contactomodalidades.telefonofijo)}}" ng-model="contactomodalidades.telefonofijo" ng-disabled=true></td>
+                                      <td class="text-center"><input style="border:none !important; background-color:transparent;"  class="text-center"  type="text" ui-mask="{{ myMaskCel(contactomodalidades.celular)}}" ng-model="contactomodalidades.celular" ng-disabled=true></td>
                                       <td class="text-center">{{contactomodalidades.modalidadestext}}</td>
                                     </tr>
                                   </table>
