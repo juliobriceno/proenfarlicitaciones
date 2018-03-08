@@ -1147,6 +1147,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                           // Actualiza si puede editar la modalidad actualizada
                           $scope.Estatusproveedor();
+                          $scope.EstatusproveedorTodas();
 
                         }
 
@@ -3562,7 +3563,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             if (response.data.Result == 'nofiles' || response.data.Result == 'nocontacts' ){
                               $loading.finish('myloading');
                               swal("Licitaciones Proenfar", "No es posible finalizar la licitación. Debe cargar archivos y contactos.");
-                              $scope.EstatusproveedorTodas=false;
+                              $scope.EstatusproveedorModalidadTodas=false;
                               return 0
                             }
                             else
@@ -3571,7 +3572,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               //$scope.Estatusproveedortodas=true;
                               //$scope.Estatusproveedortodas = true; 
                               //$scope.Estatusproveedortodas=true;
-                              $scope.Estatusproveedortodas();
+                              $scope.EstatusproveedorModalidadtodas=true;
                             }
 
 
@@ -3614,7 +3615,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           });
                         }
 
-                        $scope.Estatusproveedortodas = function(){
+                        $scope.EstatusproveedorTodas = function(){
                              var Data = {};
                             Data.Email = localStorage.UserConnected;
                             Data.Modalidad = $scope.ModalidadesMostrarActual;
@@ -3624,21 +3625,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              console.log($scope.EstatusproveedorTodas);
                              $http({
                               method: 'POST',
-                              url: '/GetEstatusproveedor',
+                              url: '/GetEstatusproveedorTodas',
                               headers: { 'Content-Type': 'application/json' },
                               data: Data
                           }).then(function successCallback(response) {
                               $loading.finish('myloading');
                               if (typeof response.data.LicitacionProveedor == 'undefined'){
-                                  $scope.EstatusproveedorModalidad = false;
-                                  $scope.EstatusproveedoTodas = false;
+                                  $scope.EstatusproveedorModalidadTodas = false;
+                                  console.log('undefined');
                               }
                               else{
-                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Bloqueado;  
-                                $scope.EstatusproveedorModalidad = true; 
-                                $scope.EstatusproveedorTodas = true; 
-                                estatus=$scope.EstatusproveedorTodas;
-                                console.log(estatus);
+                                $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Diligenciada;  
+                                $scope.EstatusproveedorModalidadTodas = true;                                
+                                console.log(bloqueada);
                                                        
                               }
                           }, function errorCallback(response) {
@@ -3820,7 +3819,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                             }).then(function successCallback(response) {
                             $loading.finish('myloading');
                             $scope.Estatusproveedor();
-                            $scope.Estatusproveedortodas();
+                            $scope.EstatusproveedorTodas();
                             $scope.Formulario = response.data.Formularios;
                            console.log($scope.Formulario.length);
                               if ($scope.Formulario.length == 0){
@@ -15451,7 +15450,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      ////////////////////////////////Filtro////////////////////////////////
                        ModalidadTodasRespaldoTUT = ModalidadTodasTerreUrbanoTonelada;
                         $scope.ModalidadTodasTerreUrbanoTonelada= ModalidadTodasTerreUrbanoTonelada;
-                         $scope.ModalidadTodasTerreUrbanoToneladaCopia= $scope.ModalidadTodasTerreUrbanoToneladaonelada;
+                        $scope.ModalidadTodasTerreUrbanoToneladaCopia= $scope.ModalidadTodasTerreUrbanoTonelada;
                         $scope.ModalidadTodasTerreUrbanoTonelada = ModalidadTodasRespaldoTUT.filter(function (el) {
                          return (el.AduC4020Pintada.length > 0 ||
                                  el.AduC4021Pintada.length > 0 ||

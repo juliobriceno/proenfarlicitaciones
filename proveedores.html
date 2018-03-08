@@ -247,7 +247,7 @@
                                            <td>{{Usuario.Nit}}</td>
                                            <td>{{Usuario.RazonSocial}}</td>
                                            <td>{{Usuario.Name}}</td>
-                                          <td>{{Usuario.Phone}}</td>
+                                           <td class="text-center"><input style="border:none !important; background-color:transparent;" class="text-center" type="text" ui-mask="{{ myMask(Usuario.Phone)}}" ng-model="Usuario.Phone" ng-disabled=true></td>
                                           <td>{{Usuario.Email}}</td>
                                           <td>{{Usuario.User}}</td>
                                           <td>Activo</td>
@@ -716,8 +716,8 @@
                                       <td class="text-center">{{contactomodalidades.email}}</td>
                                       <td class="text-center">{{contactomodalidades.cargo}}</td>
                                       <td class="text-center">{{contactomodalidades.direccion}}</td>
-                                      <td class="text-center">{{contactomodalidades.telefonofijo}}</td>
-                                      <td class="text-center">{{contactomodalidades.celular}}</td>
+                                      <td class="text-center"><input style="border:none !important; background-color:transparent;" class="text-center" type="text" ui-mask="{{ myMask(contactomodalidades.telefonofijo)}}" ng-model="contactomodalidades.telefonofijo" ng-disabled=true></td>
+                                      <td class="text-center"><input style="border:none !important; background-color:transparent;" class="text-center" type="text" ui-mask="{{ myMaskCel(contactomodalidades.celular)}}" ng-model="contactomodalidades.celular" ng-disabled=true></td>
 
                                     </tr>
                                   </table>

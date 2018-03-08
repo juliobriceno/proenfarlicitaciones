@@ -6947,7 +6947,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     if (header =='Costo Planificacion Caja')
                     {  
                if (modalid['AduCPCPintada']=="label label-success") {                       
-                    ws2.cell(1, 11).string(header).style(style1);
+                    ws2.cell(1, 11).string('Costo Plastificacion Caja').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6961,7 +6961,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                     else  if (modalid['AduCPCPintada']=="label label-warning") {                       
-                    ws2.cell(1, 11).string(header).style(style1);
+                    ws2.cell(1, 11).string('Costo Plastificacion Caja').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6975,7 +6975,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                      else if (modalid['AduCPCPintada']=="label label-danger") {                       
-                    ws2.cell(1, 11).string(header).style(style1);
+                    ws2.cell(1, 11).string('Costo Plastificacion Caja').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -6989,7 +6989,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                     }
                    else  {                       
-                    ws2.cell(1, 11).string(header).style(style1);
+                    ws2.cell(1, 11).string('Costo Plastificacion Caja').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -16583,6 +16583,18 @@ app.post('/GetEstatusproveedor', function (req, res) {
        });
 
 });
+
+app.post('/GetEstatusproveedorTodas', function (req, res) {
+
+     MyMongo.Find('LicitacionProveedor', { $and: [ { Email: req.body.Email }, { Modalidad: req.body.Modalidad }, {Diligenciada:true} ] } , function (result) {
+           var Data = {};
+            Data.LicitacionProveedor= result[0];
+            res.end(JSON.stringify(Data));
+
+       });
+
+});
+
 
 
 
