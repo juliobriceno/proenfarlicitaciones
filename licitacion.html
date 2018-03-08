@@ -439,7 +439,7 @@
                                     <th class="text-center"><h6><b>T 500 + FS/Kg + Ge</b></h6></th>
                                     <th class="text-center"><h6><b>T 1000 + FS/Kg + Ge</b></h6></th>-->
                                   </tr>
-                                  <tr ng-repeat="Aerea in ModalidadesProveedor.Aerea.Aereas">
+                                  <tr ng-repeat="Aerea in ModalidadesProveedor.Aerea.Aereas | orderBy:['Aeropuerto','Pais']:false">
                                     <td>{{Aerea.Pais}}</td>
                                     <td>{{Aerea.Aeropuerto}}</td>
                                     <td><input   ng-model="Aerea.Minima" class="form-control" type="text" angular-currency="options2" ng-disabled="EstatusproveedorModalidad" variable-options="true" placeholder=""></td>
@@ -501,7 +501,7 @@
                                     <th class="text-center"><h6><b>T 500 + FS/Kg </b></h6></th>
                                     <th class="text-center"><h6><b>T 1000 + FS/Kg </b></h6></th>-->
                                   </tr>
-                                  <tr ng-repeat="AereaPasajero in ModalidadesProveedor.AereaPasajero.AereasPasajeros">
+                                  <tr ng-repeat="AereaPasajero in ModalidadesProveedor.AereaPasajero.AereasPasajeros | orderBy:['Aeropuerto','Pais']:false">
                                     <td>{{AereaPasajero.Pais}}</td>
                                     <td>{{AereaPasajero.Aeropuerto}}</td>
                                     <td><input ng-blur="UpdateModalidades(AereaPasajero,'pasajero');" ng-model="AereaPasajero.Minima" class="form-control" type="text" ng-disabled="EstatusproveedorModalidad" angular-currency="options2" variable-options="true" placeholder=""></td>
@@ -688,7 +688,7 @@
                                       <th class="text-center"><h6><b>C40 + Baf 40 + Ge</b></h6></th>
                                       <th class="text-center"><h6><b>C40 HC + Baf 40 HC + Ge</b></h6></th>-->
                                     </tr>
-                                    <tr ng-repeat="MaritimaFcl in ModalidadesProveedor.MaritimaFcl.MaritimasFcl">
+                                    <tr ng-repeat="MaritimaFcl in ModalidadesProveedor.MaritimaFcl.MaritimasFcl | orderBy:['PuertoDestino']:false">
                                       <td>{{MaritimaFcl.PaisDestino}}</td>
                                       <td>{{MaritimaFcl.PuertoOrigen}}</td>
                                       <td>{{MaritimaFcl.PuertoDestino}}</td>
