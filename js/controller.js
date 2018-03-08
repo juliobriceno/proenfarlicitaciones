@@ -3573,6 +3573,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               //$scope.Estatusproveedortodas = true; 
                               //$scope.Estatusproveedortodas=true;
                               $scope.EstatusproveedorModalidadtodas=true;
+                              $scope.EstatusproveedorTodas();
                             }
 
 
@@ -3636,8 +3637,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                               }
                               else{
                                 $scope.EstatusproveedorModalidad = response.data.LicitacionProveedor.Diligenciada;  
-                                $scope.EstatusproveedorModalidadTodas = true;                                
-                                console.log(bloqueada);
+                                $scope.EstatusproveedorModalidadTodas = true;                               
+                              
                                                        
                               }
                           }, function errorCallback(response) {
