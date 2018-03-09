@@ -7,7 +7,7 @@ var connString = 'mongodb://<dbuser>:<dbpassword>@ds239128.mlab.com:39128/proenf
 // Ambiente de pruebas -espejo de producción-
 //var connString = 'mongodb://juliobricenoro:juliobricenoro@ds229468.mlab.com:29468/licitaciones';
 
-//var connString = 'mongodb://localhost:27017/licitacionesProduccion';
+//var connString = 'mongodb://localhost:27017/licitacionesPRODUCCION';
 
 
 

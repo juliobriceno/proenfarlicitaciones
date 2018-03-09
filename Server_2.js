@@ -18,6 +18,7 @@ var RedisStore = require('connect-redis')(expressSession)
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 var Parser = require("./js/parser.js");
 var Validador = require("./js/fiscalValidaciones.js");
+var Mysort =require("./js/lodash.min.js")
 
 app.use(cookieParser());
 app.use(expressSession({ secret: '2828AAAA', resave: true, saveUninitialized: true }));
@@ -15783,8 +15784,9 @@ app.get('/GetTemplateAduana', function (req, res) {
     ///////////////Aduana///////////////////////////////
       MyMongo.Find('Aduanas', {}, function (result) {
           var Aduana = result;
-
-         var col = 0
+        var AduanaOrden= Aduana;
+        Aduana= Mysort.sortBy(AduanaOrden,'Via'); 
+                var col = 0
        Aduana.forEach(function(aduana){
         col = col + 1;
         ws2.cell(1, 1).string('Via').style(style);
@@ -15835,6 +15837,8 @@ app.get('/GetTemplateOTM', function (req, res) {
    ///////////////OTM///////////////////////////////
       MyMongo.Find('Otms', {}, function (result) {
           var OTm = result;
+        var OTmOrden= OTm;
+        OTm= Mysort.sortBy(OTmOrden,'Destino','Origen');
         ws3.cell(1, 1).string('Origen').style(style);
         ws3.cell(1, 2).string('Destino').style(style);
         ws3.cell(1, 3).string('C 20 hasta 4-5 Ton').style(style);
@@ -15900,7 +15904,10 @@ app.get('/GetTemplateMariFcl', function (req, res) {
     ///////////////Maritimasfcl///////////////////////////////
       MyMongo.Find('MaritimasFcl', {}, function (result) {
           var MaritFcl= result;
-
+           var MaritFclOrden= MaritFcl;
+        MaritFcl= Mysort.sortBy(MaritFclOrden,'PuertoDestino','PuertoOrigen','PaisDestino');
+        //MaritFcl=_.orderBy(MaritFcl, [ModalidadTodasmfcl => ModalidadTodasmfcl.PuertoDestino.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PuertoOrigen.toLowerCase(),ModalidadTodasmfcl =>ModalidadTodasmfcl.PaisDestino.toLowerCase()], ['asc','asc','asc']);
+          //MaritFcl.sort(sortBy('PuertoDestino', 'PuertoOrigen','PaisDestino'));
         ws4.cell(1, 1).string('PaisDestino').style(style);
         ws4.cell(1, 2).string('PuertoOrigen').style(style);
         ws4.cell(1, 3).string('PuertoDestino').style(style);
@@ -15924,7 +15931,9 @@ app.get('/GetTemplateMariFcl', function (req, res) {
 
         var col = 0;
         //var cel = 0;
-        MaritFcl.forEach(function(maritFcl){
+        MaritFcl.forEach(function(maritFcl){  
+        var MaritFclOrden= maritFcl;
+        MaritFclOrden= Mysort.sortBy(MaritFclOrden,'PuertoDestino','PuertoOrigen','PaisDestino','Email');         
         col = col + 1;
        /* cel = col +1;
         var Dcell = 'D' + cel ;
@@ -15945,8 +15954,9 @@ app.get('/GetTemplateMariFcl', function (req, res) {
         ws4.cell(col + 1, 19).formula(Hcell+"+"+Icell+"+"+Kcell).style(style);*/
         });
 
-
+//worksheetOrder(wb);
     wb.write('MaritimasFCL.xlsx', res);
+
         });
   });
 
@@ -15977,6 +15987,8 @@ app.get('/GetTemplateMariLcl', function (req, res) {
    ///////////////MaritimasLcl///////////////////////////////
       MyMongo.Find('MaritimasLcl', {}, function (result) {
           var MaritLcl= result;
+        var MaritLclOrden= MaritLcl;
+        MaritLcl= Mysort.sortBy(MaritLclOrden,'PuertoDestino','PuertoOrigen','PaisDestino');
         ws5.cell(1, 1).string('PaisDestino').style(style);
         ws5.cell(1, 2).string('PuertoOrigen').style(style);
         ws5.cell(1, 3).string('PuertoDestino').style(style);
@@ -16048,6 +16060,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
 ///////////////Terrestre Nacional///////////////////////////////
       MyMongo.Find('TerresNacional', {}, function (result) {
           var TerrestNacional= result;
+          var TerrestNacionalOrden= TerrestNacional;
+        TerrestNacional= Mysort.sortBy(TerrestNacionalOrden,'Destino','Origen');
         ws6.cell(1, 1).string('Origen').style(style);
         ws6.cell(1, 2).string('Destino').style(style);
         ws6.cell(1, 3).string('Turbo Standard (150 Cajas)').style(style);
@@ -16062,6 +16076,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
 ///////////////Terrestre NacionalSencillo///////////////////////////////
       MyMongo.Find('TerresNacionalSencillo', {}, function (result) {
           var TerrestNacionalSencillo= result;
+          var TerrestNacionalSencilloOrden= TerrestNacionalSencillo;
+        TerrestNacionalSencillo= Mysort.sortBy(TerrestNacionalSencilloOrden,'Destino','Origen');
         ws7.cell(1, 1).string('Origen').style(style);
         ws7.cell(1, 2).string('Destino').style(style);
         ws7.cell(1, 3).string('Sencillo Standard (240 Cajas)').style(style);
@@ -16077,6 +16093,8 @@ app.get('/GetTemplateTerreNacional', function (req, res) {
 ///////////////Terrestre NacionalPatineta///////////////////////////////
       MyMongo.Find('TerresNacionalPatineta', {}, function (result) {
           var TerrestNacionalPatineta= result;
+          var TerrestNacionalPatinetaOrden= TerrestNacionalPatineta;
+        TerrestNacionalPatineta= Mysort.sortBy(TerrestNacionalPatinetaOrden,'Destino','Origen');
         ws8.cell(1, 1).string('Origen').style(style);
         ws8.cell(1, 2).string('Destino').style(style);
         ws8.cell(1, 3).string('Minimula').style(style);
@@ -16127,6 +16145,8 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
     ///////////////Terrestre Urbano///////////////////////////////
       MyMongo.Find('TerresUrbano', {}, function (result) {
           var TerrestUrbano= result;
+          var TerrestUrbanoOrden= TerrestUrbano;
+        TerrestUrbano= Mysort.sortBy(TerrestUrbanoOrden,'Destino','Origen');
         ws7.cell(1, 1).string('Origen').style(style);
         ws7.cell(1, 2).string('Destino').style(style);
         ws7.cell(1, 3).string('Turbo (150 Cajas)').style(style);
@@ -16146,6 +16166,8 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
   ///////////////Terrestre Urbano Viaje///////////////////////////////
       MyMongo.Find('TerresUrbanoViaje', {}, function (result) {
           var TerrestUrbanoViaje= result;
+           var TerrestUrbanoViajeOrden= TerrestUrbanoViaje;
+        TerrestUrbanoViaje= Mysort.sortBy(TerrestUrbanoViajeOrden,'Destino','Origen');
          ws8.cell(1, 1).string('Origen').style(style);
         ws8.cell(1, 2).string('Destino').style(style);
         ws8.cell(1, 3).string('Turbo (150 Cajas)').style(style);
@@ -16165,6 +16187,8 @@ app.get('/GetTemplateTerreUrbano', function (req, res) {
     ///////////////Terrestre Urbano Tonelada///////////////////////////////
       MyMongo.Find('TerresUrbanoTonelada', {}, function (result) {
           var TerrestUrbanoTonelada= result;
+          var TerrestUrbanoToneladaOrden= TerrestUrbanoTonelada;
+        TerrestUrbanoTonelada= Mysort.sortBy(TerrestUrbanoToneladaOrden,'Destino','Origen')
 
         var col = 0
         TerrestUrbanoTonelada.forEach(function(terresturbanotonelada){
@@ -16217,6 +16241,8 @@ app.get('/GetTemplateAerea', function (req, res) {
    ///////////////Aereas Crguero///////////////////////////////
       MyMongo.Find('Aereas', {}, function (result) {
           var AereasC= result;
+         var AereasCOrden= AereasC;
+        AereasC= Mysort.sortBy(AereasCOrden,'Aeropuerto','Pais'); 
         ws8.cell(1, 1).string('Pais').style(style);
         ws8.cell(1, 2).string('Aeropuerto').style(style);
         ws8.cell(1, 3).string('Minima').style(style);
@@ -16274,6 +16300,8 @@ app.get('/GetTemplateAerea', function (req, res) {
     ///////////////Aereas Pasajero///////////////////////////////
       MyMongo.Find('AereasPasajeros', {}, function (result) {
           var AereasP= result;
+          var AereasPOrden= AereasP;
+        AereasP= Mysort.sortBy(AereasPOrden,'Aeropuerto','Pais'); 
         ws9.cell(1, 1).string('Pais').style(style);
         ws9.cell(1, 2).string('Aeropuerto').style(style);
         ws9.cell(1, 3).string('Minima').style(style);
