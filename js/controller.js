@@ -1453,7 +1453,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          NombreColumnaDeUnaModalidad=[];
 
 
-                         NombreColumnaDeUnaModalidad = ['Via','Tarifa % Advalorem/ FOB', 'Minima','Gastos Adicionales 1','Conceptos Adicionales 1','Gastos Adicionales 2','Conceptos Adicionales 2','Gastos Adicionales 3','Conceptos Adicionales 3','Costo Plastificacion Caja','Otros'];
+                         NombreColumnaDeUnaModalidad = ['Via','Tarifa % Advalorem/ FOB', 'Minima','Gastos Adicionales 1','Gastos Adicionales 2',
+                                                       'Gastos Adicionales 3','Costo Plastificacion Caja','Otros'];
                         var modalidadaduana=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanas);
                         if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanas)==false); {                           
 
@@ -2207,7 +2208,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          NombreColumnaDeUnaModalidad=[];
                              
                         NombreColumnaDeUnaModalidad = ['PaisDestino','PuertoOrigen','PuertoDestino','Minima', '1-5 ton/M3', '5-8 ton/M3','8-12 ton/M3','12-18 ton/M3',
-                                                      'Gastos Embarque','Observaciones','Lead time(dias)','Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles',
+                                                      'Gastos Embarque','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles',
                                                       'Frecuencia Dia Jueves','Frecuencia Dia Viernes','Frecuencia Dia Sabado','Frecuencia Dia Domingo'];
                          
                       
@@ -2935,8 +2936,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaFrecuenciaac=1;
                          NombreColumnaDeUnaModalidad=[];
                              
-                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque','Observaciones','Lead Time (dias)',
-                                                       'Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes','Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
+                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque',
+                                                       'Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
+                                                       'Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
                       
                         var modalidadaerea=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero);
                         if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero)==false); {
@@ -3238,8 +3240,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaFrecuenciaaap=1;
                          NombreColumnaDeUnaModalidad=[];
                              
-                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque','Observaciones','Lead time (dias)',
-                                                       'Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes','Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
+                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque',
+                                                       'Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
+                                                       'Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
                       
                         var modalidadaereapasajero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero);
                         if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero)==false); {
