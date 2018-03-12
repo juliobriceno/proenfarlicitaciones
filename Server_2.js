@@ -16550,10 +16550,33 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
            log.info('Finalizar Modalidad  de :' + req.body.Email);
 
 
-        jwtClient.authorize(function (err, tokens) {
+       MyMongo.Find('proveedorfiles', { User: req.body.Email }, function (result) {
+          var Data = {};
+          if (result.length == 0) {
+
+                        var Data = {};
+                        Data.Result = 'nofiles';
+                        res.end(JSON.stringify(Data))
+
+                      } else {
+
+                        MyMongo.Remove('LicitacionProveedor', { Email: req.body.Email }, function (result) {
+                        MyMongo.Insert('LicitacionProveedor', req.body.lockObject, function (result) {
+                          var Data = {};
+                          Data.Result = 'ok';
+                          res.end(JSON.stringify(Data))
+                         });
+                         });
+
+                      }
+
+       });
+
+
+       /* jwtClient.authorize(function (err, tokens) {
 
           // Busca o crea la carpeta para éste proveedor
-          MyDrive.createFolder(jwtClient, req.session.user.Nit + '_' + req.session.user.RazonSocial, '1q9EtO-3di6s8LhxIl8ybpfp6_e5w7tKI', function (err, files) {
+         MyDrive.createFolder(jwtClient, req.session.user.Nit + '_' + req.session.user.RazonSocial, '1q9EtO-3di6s8LhxIl8ybpfp6_e5w7tKI', function (err, files) {
               MyDrive.createFolder(jwtClient, 'Documentos', files, function (err, files) {
                 // En la carpeta del proveedor debe haber a menos un file cargado
 
@@ -16591,9 +16614,9 @@ app.post('/GetAceptarAyudacarga', function (req, res) {
                 // Fin de búsqueda archivos fijos en el servidor drive
 
               });
-          });
+          });*
 
-        });
+        });*/
 
          }
        })
