@@ -281,7 +281,8 @@ app.post('/AddSolicitud', function (req, res) {
 
 app.post('/GetUsuarios', function (req, res) {
 
-    MyMongo.Find('Usuarios', {}, function (result) {
+   MyMongo.Find('Usuarios', { Perfil: {$in: [1,2] }}, function (result) {   
+   //MyMongo.Find('Usuarios', { $and: [{ "Perfil": 1 }, { "Perfil": 2 }] }, function (result) {
         var Data = {};
         Data.Usuarios = result;
         res.end(JSON.stringify(Data));
@@ -15275,7 +15276,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 app.post('/GetEmpleadosData', function (req, res) {
 
 
-                var Data = {};
+        var Data = {};
 
       MyMongo.Find('Usuarios', { User: req.body.EditUser }, function (result) {
        Data.Usuario = result[0];

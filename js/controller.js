@@ -5523,18 +5523,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                      $scope.email = response.data.Usuario.Email;
                      $scope.password = response.data.Usuario.Password;
                      $scope.user = response.data.Usuario.User;
+                     
                      $scope.selectedPerfil = $scope.Perfiles.filter(function (el) { return el.id == response.data.Usuario.Perfil })[0];
-                     console.log($scope.selectedPerfil);
-
-
-                          if ($scope.selectedPerfil.Perfil == 3) {
-                           $scope.Show1 = false;
-                           $scope.Show2 = true;
-                           $scope.nit = response.data.Usuario.Nit;
-                           $scope.phone = response.data.Usuario.Phone;
-                           }
-
+                     console.log($scope.selectedPerfil);             
+ 
                    }
+                   
                  $loading.finish('myloading');
                }, function errorCallback(response) {
                    alert(response.statusText);
