@@ -1250,21 +1250,32 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
                          var pattern2 = /^-?(\d+\.?\d*)$|(\d*\.?\d+)$/;
                          var NombreColumnaDeUnaModalidad= [];
+                         var headers = [];
+                         var encabezado=[];
                          //var SeConsigioElCampo=false;
 
 
                          workbook.SheetNames.forEach(function(sheetName) {
-                         var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {raw: true});
+                         var roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {raw: true});                         
                              if(roa.length) result[sheetName] = roa;
-                                 });
+                              });   
+                         
+
                          var exceljson = JSON.stringify(result, 2, 2);
-                         var data = angular.fromJson(exceljson);
+                         var data = angular.fromJson(exceljson);                                           
                          console.log(data);
+                        // Get headers.
+                      
+                
+
+
                  ////////////////////////////Bodegajes_Aduanero ////////////////////////////////////////////
                       if($scope.ModalidadesMostrarActual=='Bodegajes'){
+                        encabezado = Encabezados(workbook, 'Aduanero');
+                        console.log(encabezado);
                         NombreColumnaDeUnaModalidad = ['Tarifa Valor FOB', 'Tarifa Minima', 'Otros'];
-                        var modalidadaduanero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero);
-                            if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero)==false); { 
+                        var modalidadaduanero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero,encabezado);
+                            if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero,encabezado)==false); { 
                             //console.log(SeConsigioElCampo)
                          
                          
@@ -1308,13 +1319,17 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                            });
                         }
                         
+                        
                       
                          
                      ////////////////////////////Bodegajes_Maquinaria ////////////////////////////////////////////
                      NombreColumnaDeUnaModalidad=[];
+                     encabezado=[];
+                     encabezado = Encabezados(workbook, 'Maquinaria');
+                     console.log(encabezado);
                      NombreColumnaDeUnaModalidad = ['Tarifa Valor FOB', 'Tarifa Minima', 'FMM'];
-                        var modalidadmaquinaria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria);
-                            if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria)==false); { 
+                        var modalidadmaquinaria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria,encabezado);
+                            if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria,encabezado)==false); { 
                      
                          angular.forEach(data.Maquinaria , function(maquinaria) {                          
                            if( ( typeof maquinaria["Tarifa Valor FOB"] == 'undefined' ) || pattern.test(maquinaria["Tarifa Valor FOB"])){
@@ -1354,13 +1369,17 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
 
                              });
-                       }
-                     //}
+                       
+                     }
 
                      ////////////////////////////Bodegajes_Materia_Prima ////////////////////////////////////////////
+                     NombreColumnaDeUnaModalidad=[];
+                     encabezado=[];
+                     encabezado = Encabezados(workbook, 'Materia_Prima');
+                     console.log(encabezado);
                     NombreColumnaDeUnaModalidad = ['Tarifa', 'Tarifa Minima', 'FMM'];                    
-                        var modalidadmateria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima);
-                       if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima)==false); { 
+                        var modalidadmateria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima,encabezado);
+                       if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima,encabezado)==false); { 
                          angular.forEach(data.Materia_Prima , function(materiaprima) {
                           //////////////////////valida si es numerico o null ///////////////
                            if( ( typeof materiaprima.Tarifa == 'undefined' ) || pattern.test(materiaprima.Tarifa)){
@@ -1431,7 +1450,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                     }
 
-                        /*else if (SeConsigioElCampo==false){      
+                        /*else if (SeConsigioElCampo==false){*/ 
+                          /*if (typeof data.Materia_Prima=='undefined' || typeof data.Materia_Prima=='undefined')     
+                             { 
                               swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
                               $loading.finish('myloading');
                               return 0;
@@ -1451,12 +1472,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaCostoPlanificacionCaja=1;
                          var filaOtros=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Aduanas');
 
-
-                         NombreColumnaDeUnaModalidad = ['Via','Tarifa % Advalorem/ FOB', 'Minima','Gastos Adicionales 1','Gastos Adicionales 2',
-                                                       'Gastos Adicionales 3','Costo Plastificacion Caja','Otros'];
-                        var modalidadaduana=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanas);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanas)==false); {                           
+                         NombreColumnaDeUnaModalidad = ['Via','Tarifa % Advalorem/ FOB', 'Minima','Gastos Adicionales 1','Conceptos Adicionales 1','Gastos Adicionales 2',
+                                                       'Conceptos Adicionales 2','Gastos Adicionales 3','Conceptos Adicionales 3','Costo Plastificacion Caja','Otros'];
+                        var modalidadaduana=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanas,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanas,encabezado)==false); {                           
 
                            angular.forEach(data.Aduanas , function(aduana) {
                              /////////////Tarifa////////////////////////////////////
@@ -1656,13 +1678,14 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filadevolucionveinteexpreso=1;
                          var filadevolucioncuarentaexpreso=1;
                         NombreColumnaDeUnaModalidad=[];
-
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'OTM');
 
                          NombreColumnaDeUnaModalidad = ['Origen','Destino', 'C 20 hasta 4-5 Ton','C 20 hasta 8 Ton','C 20 hasta 10 Ton','C 20 hasta 17 Ton','C 20 hasta 19 Ton','C 20 hasta 20 Ton',
                                                         'C 20 hasta 21 Ton','C 20 hasta 25 Ton','C 40 hasta 15 Ton','C 40 hasta 16 Ton','C 40 hasta 17 Ton','C 40 hasta 17-18 Ton','C 40 hasta 20 Ton','C 40 hasta 21 Ton',
                                                         'C 40 hasta 22 Ton','C 40 hasta 30 Ton','Devolucion 20$ estandar','Devolucion 40$ estandar','Devolucion 20$ expreso','Devolucion 40$ expreso'];
-                        var modalidadotm=ValidarColumnas(NombreColumnaDeUnaModalidad,data.OTM);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.OTM)==false); { 
+                        var modalidadotm=ValidarColumnas(NombreColumnaDeUnaModalidad,data.OTM,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.OTM,encabezado)==false); { 
 
                            
                            angular.forEach(data.OTM , function(otm) {
@@ -1963,13 +1986,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          SeConsigioElCampo=false;
                          console.log(data.MaritimasFcl);
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'MaritimasFcl');
                              
-                       NombreColumnaDeUnaModalidad = ['PaisDestino','PuertoOrigen','PuertoDestino','T 20', 'Baf 20', 'T 40','Baf 40','T40 HQ','Baf 40HQ',
-                                                      'Gastos Embarque','Frecuencia Semanal','Frecuencia Quincenal','Frecuencia Mensual'];
+                       NombreColumnaDeUnaModalidad = ['PaisDestino','PuertoOrigen','PuertoDestino','T 20', 'Baf 20', 'T 40','Baf 40','T40 HQ','Baf 40HQ','Observaciones',
+                                                      'Gastos Embarque','Lead Time(dias)','Naviera','Frecuencia Semanal','Frecuencia Quincenal','Frecuencia Mensual'];
                          
                       
-                        var modalidadfcl=ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasFcl);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasFcl)==false); {
+                        var modalidadfcl=ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasFcl,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasFcl,encabezado)==false); {
 
                            angular.forEach(data.MaritimasFcl , function(maritimasfcl) {   
                              /////////////C20////////////////////////////////////
@@ -2206,14 +2231,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaNavieralcl=1;
                          var filaFrecuencialcl=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'MaritimasLcl');
                              
                         NombreColumnaDeUnaModalidad = ['PaisDestino','PuertoOrigen','PuertoDestino','Minima', '1-5 ton/M3', '5-8 ton/M3','8-12 ton/M3','12-18 ton/M3',
-                                                      'Gastos Embarque','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles',
+                                                      'Gastos Embarque','Observaciones','Lead time(dias)','Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles',
                                                       'Frecuencia Dia Jueves','Frecuencia Dia Viernes','Frecuencia Dia Sabado','Frecuencia Dia Domingo'];
                          
                       
-                        var modalidadlcl=ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasLcl);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasLcl)==false); {
+                        var modalidadlcl=ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasLcl,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.MaritimasLcl,encabezado)==false); {
 
                            angular.forEach(data.MaritimasLcl , function(maritimaslcl) {
 
@@ -2447,11 +2474,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaEstandarna=1;
                          var filaEspecialna=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Terrestre_Nacional_Turbo');
                              
                         NombreColumnaDeUnaModalidad = ['Origen','Destino','Turbo Standard (150 Cajas)', 'Turbo Especial (210 Cajas)'];                         
                       
-                        var modalidadterre=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Turbo);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Turbo)==false); {
+                        var modalidadterre=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Turbo,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Turbo,encabezado)==false); {
 
                            angular.forEach(data.Terrestre_Nacional_Turbo, function(terrestrenacional) {
 
@@ -2502,11 +2531,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaEstandarnasen=1;
                          var filaEspecialnasen=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Terrestre_Nacional_Sencillo');
                              
                         NombreColumnaDeUnaModalidad = ['Origen','Destino','Sencillo Standard (240 Cajas)', 'Sencillo Especial (300 Cajas)'];                         
                       
-                        var modalidadterresencillo=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Sencillo);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Sencillo)==false); {
+                        var modalidadterresencillo=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Sencillo,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Sencillo,encabezado)==false); {
 
                            angular.forEach(data.Terrestre_Nacional_Sencillo, function(terrestrenacionalsencillo) {
                              /////////////Sencillo_240Cajass////////////////////////////////////
@@ -2552,11 +2583,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaEstandarnapat=1;
                          var filaEspecialnapat=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Terrestre_Nacional_Patineta');
                              
                          NombreColumnaDeUnaModalidad = ['Origen','Destino','Minimula', 'Gran Danes'];                         
                       
-                        var modalidadterrepatineta=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Patineta);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Patineta)==false); {
+                        var modalidadterrepatineta=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Patineta,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Nacional_Patineta,encabezado)==false); {
 
                            angular.forEach(data.Terrestre_Nacional_Patineta, function(terrestrenacionalpatineta) {
                              /////////////Minimula////////////////////////////////////
@@ -2626,11 +2659,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaEspecialtumini=1;
                          var filaEspecialtugran=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Terrestre_Urbano_Dia');
                              
                          NombreColumnaDeUnaModalidad = ['Origen','Destino','Turbo (150 Cajas)', 'Turbo Especial (200 Cajas)','Sencillo (240 Cajas)','Sencillo Especial (300 Cajas)','Minimula','Gran Danes'];                         
                       
-                        var modalidadterreurbano=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Dia);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Dia)==false); {
+                        var modalidadterreurbano=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Dia,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Dia,encabezado)==false); {
 
 
                            angular.forEach(data.Terrestre_Urbano_Dia, function(terrestreurbano) {
@@ -2735,11 +2770,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaEspecialtuminivia=1;
                          var filaEspecialtugranvia=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Terrestre_Urbano_Viaje');
                              
                          NombreColumnaDeUnaModalidad = ['Origen','Destino','Turbo (150 Cajas)', 'Turbo Especial (200 Cajas)','Sencillo (240 Cajas)','Sencillo Especial (300 Cajas)','Minimula','Gran Danes'];                         
                       
-                        var modalidadterreurbanoviaje=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Viaje);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Viaje)==false); {
+                        var modalidadterreurbanoviaje=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Viaje,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Viaje,encabezado)==false); {
 
 
                            angular.forEach(data.Terrestre_Urbano_Viaje, function(terrestreurbanoviaje) {
@@ -2844,11 +2881,13 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaEspecialtugranviatone=1;
                          var filaEspecialtutracto=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Terrestre_Urbano_Tonelada');
                              
                          NombreColumnaDeUnaModalidad = ['Origen','Destino','Turbo', 'Sencillo','Tractomula'];                         
                       
-                        var modalidadterreurbanotonelada=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Tonelada);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Tonelada)==false); {
+                        var modalidadterreurbanotonelada=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Tonelada,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Terrestre_Urbano_Tonelada,encabezado)==false); {
 
 
                            angular.forEach(data.Terrestre_Urbano_Tonelada, function(terrestreurbanotonelada) {
@@ -2935,13 +2974,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaVia=1;
                          var filaFrecuenciaac=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Aerea_Carguero');
                              
-                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque',
-                                                       'Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
-                                                       'Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
+                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque','Observaciones',
+                                                       'Lead Time (dias)','Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves',
+                                                       'Frecuencia Dia Viernes','Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
                       
-                        var modalidadaerea=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero)==false); {
+                        var modalidadaerea=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero,encabezado)==false); {
 
                            angular.forEach(data.Aerea_Carguero, function(aereacarguero) {
                              /////////////Minima////////////////////////////////////
@@ -3239,13 +3280,15 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var filaVia=1;
                          var filaFrecuenciaaap=1;
                          NombreColumnaDeUnaModalidad=[];
+                         encabezado=[];
+                         encabezado = Encabezados(workbook, 'Aerea_Pasajero');
                              
-                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque',
-                                                       'Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
+                         NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque','Observaciones',
+                                                       'Lead time (dias)','Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
                                                        'Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
                       
-                        var modalidadaereapasajero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero);
-                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero)==false); {
+                        var modalidadaereapasajero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero,encabezado);
+                        if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero,encabezado)==false); {
 
                            angular.forEach(data.Aerea_Pasajero, function(aereapasajero) {
                              /////////////Minima////////////////////////////////////
@@ -3557,11 +3600,36 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                   
                         $loading.finish('myloading');  
 
-                      function ValidarColumnas(ColumnasArray,Modalidad) {
-                                // Bandera para ver si saliço algo mal por cada campo
+
+                      function Encabezados(workbook, LaHojaATrabajar) {
+                          headers=[];
+                          console.log(LaHojaATrabajar);
+                          var sheet = workbook.Sheets[LaHojaATrabajar];
+                          console.log(sheet);
+                          var range = XLSX.utils.decode_range(sheet['!ref']);
+                          var C, R = range.s.r;
+                          /* start in the first row */
+                         /* walk every column in the range */
+                        for (C = range.s.c; C <= range.e.c; ++C) {
+                        var cell = sheet[XLSX.utils.encode_cell({c: C, r: R})];
+                        /* find the cell in the first row */
+
+                         var hdr = "UNKNOWN " + C; // <-- replace with your desired default
+                         if (cell && cell.t) {
+                          hdr = XLSX.utils.format_cell(cell);
+                          }
+                        headers.push(hdr);
+                         }
+                         return headers;
+                      }
+
+                      function ValidarColumnas(ColumnasArray,Modalidad,Header) {
+                            // Bandera para ver si saliço algo mal por cada campo
                          var AlgoMalo = false;
-                         var NroColumnasArray=ColumnasArray.length;
+                         NroColumnasArray=ColumnasArray.length;
+                         NroColumnExcel=Header.length;   
                          console.log(NroColumnasArray);
+                         console.log(NroColumnExcel);
                          console.log(Modalidad);
 
                          // Los campos a validar En éste ejemplo de Bodegajes Aduana sn éstos campos los que deberían venir del excel
@@ -3569,28 +3637,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          // Recorre cada campo a validar
                          ColumnasArray.forEach(function(CadaCampoDeUnaModalidad){
                           if (typeof Modalidad !='undefined'){
+                            var SeConsigioElCampo = false;
+
 
                             // Recorre cada fila que vino en el excel que escogió el usuario
-                            Modalidad.forEach(function(CadaFilaHojaAduanaExcel){
-                              // A cada fila del excel de usuario le saca cada columna y las recorre
-                              var LosNombreDeColumnaDeCadaFilaDelExcel = Object.keys(CadaFilaHojaAduanaExcel);
-                              var NroColumnExcel=LosNombreDeColumnaDeCadaFilaDelExcel.length;
-                              console.log(NroColumnExcel);
-                              // Recorre cada columna de cada fila del excel de usuario
-                               var SeConsigioElCampo = false;
-                               if (NroColumnasArray<=NroColumnExcel){
-                              LosNombreDeColumnaDeCadaFilaDelExcel.forEach(function(CadaColumna){
-                                 // Ve si por cala columna de cada fila del excel de usuario están todas y cada una de las columans
-                                 // de array que se espera para ésta modalidad. Si no consigue una error
-                                  if (CadaCampoDeUnaModalidad == CadaColumna){
+                            Header.forEach(function(CadaFilaHojaAduanaExcel){
+                               
+                               if (NroColumnasArray==NroColumnExcel){ 
+                                  if (CadaCampoDeUnaModalidad == CadaFilaHojaAduanaExcel){ //CadaColumna){
+                                    console.log(CadaCampoDeUnaModalidad);
+                                    console.log(CadaFilaHojaAduanaExcel);
                                     SeConsigioElCampo = true;
                                   }
-                              })
+                              //})
                             }
+                            })
                               if (SeConsigioElCampo == false){
                                 AlgoMalo = true;
                               }
-                            })
+                            
                           }
                           else
                           {
@@ -3694,7 +3759,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                              var bTerrestreNacional = { Email: localStorage.UserConnected, Bloqueado: true, Modalidad: 'TerrestreNacional', Cerrado: true, Diligenciada: false  };
                              var bTerrestreUrbano = { Email: localStorage.UserConnected, Bloqueado: true, Modalidad: 'TerrestreUrbano', Cerrado: true, Diligenciada: false  };
                              var bAereas = { Email: localStorage.UserConnected, Bloqueado: true, Modalidad: 'Aereas', Cerrado: true, Diligenciada: false  };
-
+                              console.log('Paso or aqui cero');
+                              console.log(bTerrestreNacional);
                             // Al finalizar todas las modalidades coloca cero en los campos donde esté null y en blanco
                             // de todas las modalidades. Adicional la función verifica en las modalidades si hubo inserción de datos
                             // para ponerlo como diligenciadas
@@ -3836,6 +3902,9 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         // $$hashKey ó _id
                             $scope.SetZeroInNull = function (object, lockobject) {
                             var intFila = 0;
+                            console.log('entro aqui SetZeroInNull');
+                            console.log(object);
+                            console.log(lockobject);
                           // Si es un array chequea cada fila, si es un objeto cada campo
                             if (Array.isArray(object)){
                             // Cada fila del array
