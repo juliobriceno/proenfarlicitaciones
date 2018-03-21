@@ -1250,8 +1250,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          var pattern = /^\d+(\.\d+)?$/; ///^\d+$/;
                          var pattern2 = /^-?(\d+\.?\d*)$|(\d*\.?\d+)$/;
                          var NombreColumnaDeUnaModalidad= [];
+                         var NombreColumnaDeUnaModalidadMaquinaria= [];
+                         var NombreColumnaDeUnaModalidadMateriPrima= [];
                          var headers = [];
                          var encabezado=[];
+                         var encabezadomaquinaria=[];
+                         var encabezadomateriaprima=[];
                          //var SeConsigioElCampo=false;
 
 
@@ -1268,16 +1272,32 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                       
                 
 
-
-                 ////////////////////////////Bodegajes_Aduanero ////////////////////////////////////////////
+                  ///////////////////////////////Bodegajes ///////////////////////////////////
+                 
                       if($scope.ModalidadesMostrarActual=='Bodegajes'){
+
                         encabezado = Encabezados(workbook, 'Aduanero');
-                        console.log(encabezado);
+                        
                         NombreColumnaDeUnaModalidad = ['Tarifa Valor FOB', 'Tarifa Minima', 'Otros'];
-                        var modalidadaduanero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero,encabezado);
-                            if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero,encabezado)==false); { 
+                        var modalidadaduanero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aduanero,encabezado);//
+                        //console.log(modalidadaduanero);
+                        ////////////maquinaria
+                        encabezadomaquinaria = Encabezados(workbook, 'Maquinaria');
+                        NombreColumnaDeUnaModalidadMaquinaria = ['Tarifa Valor FOB', 'Tarifa Minima', 'FMM'];
+                        var modalidadmaquinaria=ValidarColumnas(NombreColumnaDeUnaModalidadMaquinaria,data.Maquinaria,encabezadomaquinaria);
+                        //console.log(modalidadmaquinaria);
+                        /////////materia prima
+                        encabezadomateriaprima = Encabezados(workbook, 'Materia_Prima');
+                        NombreColumnaDeUnaModalidadMateriPrima = ['Tarifa', 'Tarifa Minima', 'FMM'];                    
+                        var modalidadmateria=ValidarColumnas(NombreColumnaDeUnaModalidadMateriPrima,data.Materia_Prima,encabezadomateriaprima);
+                       // console.log(modalidadmateria);
+                       
+
+                   if (modalidadaduanero==false && modalidadmaquinaria==false && modalidadmateria==false) { 
+                    console.log('entro aqui todos false');
                             //console.log(SeConsigioElCampo)
-                         
+                        
+                       ////////////////////////////Bodegajes_Aduanero //////////////////////////////////////////// 
                          
                           angular.forEach(data.Aduanero, function(aduanero) {
                         ////////////////////////////valida si es numerico o null ///////////////
@@ -1317,19 +1337,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
 
                            });
-                        }
+                        //}
                         
                         
                       
                          
                      ////////////////////////////Bodegajes_Maquinaria ////////////////////////////////////////////
-                     NombreColumnaDeUnaModalidad=[];
-                     encabezado=[];
-                     encabezado = Encabezados(workbook, 'Maquinaria');
-                     console.log(encabezado);
-                     NombreColumnaDeUnaModalidad = ['Tarifa Valor FOB', 'Tarifa Minima', 'FMM'];
-                        var modalidadmaquinaria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria,encabezado);
-                            if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria,encabezado)==false); { 
+                     //NombreColumnaDeUnaModalidad=[];
+                     //encabezado=[];
+                     //encabezado = Encabezados(workbook, 'Maquinaria');
+                     //console.log(encabezado);
+                     //NombreColumnaDeUnaModalidad = ['Tarifa Valor FOB', 'Tarifa Minima', 'FMM'];
+                       // var modalidadmaquinaria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria,encabezado);
+                           // if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Maquinaria,encabezado)==false); { 
                      
                          angular.forEach(data.Maquinaria , function(maquinaria) {                          
                            if( ( typeof maquinaria["Tarifa Valor FOB"] == 'undefined' ) || pattern.test(maquinaria["Tarifa Valor FOB"])){
@@ -1370,16 +1390,16 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
 
                              });
                        
-                     }
+                     //}
 
                      ////////////////////////////Bodegajes_Materia_Prima ////////////////////////////////////////////
-                     NombreColumnaDeUnaModalidad=[];
-                     encabezado=[];
-                     encabezado = Encabezados(workbook, 'Materia_Prima');
-                     console.log(encabezado);
-                    NombreColumnaDeUnaModalidad = ['Tarifa', 'Tarifa Minima', 'FMM'];                    
-                        var modalidadmateria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima,encabezado);
-                       if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima,encabezado)==false); { 
+                    // NombreColumnaDeUnaModalidad=[];
+                     //encabezado=[];
+                     //encabezado = Encabezados(workbook, 'Materia_Prima');
+                     //console.log(encabezado);
+                   //NombreColumnaDeUnaModalidad = ['Tarifa', 'Tarifa Minima', 'FMM'];                    
+                       // var modalidadmateria=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima,encabezado);
+                       //if (ValidarColumnas(NombreColumnaDeUnaModalidad,data.Materia_Prima,encabezado)==false); { 
                          angular.forEach(data.Materia_Prima , function(materiaprima) {
                           //////////////////////valida si es numerico o null ///////////////
                            if( ( typeof materiaprima.Tarifa == 'undefined' ) || pattern.test(materiaprima.Tarifa)){
@@ -1419,7 +1439,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 }
 
                              });
-                       }  
+                       } 
+
                                         
 
                       //}
@@ -3606,6 +3627,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                           console.log(LaHojaATrabajar);
                           var sheet = workbook.Sheets[LaHojaATrabajar];
                           console.log(sheet);
+                          if (typeof sheet !='undefined'){
                           var range = XLSX.utils.decode_range(sheet['!ref']);
                           var C, R = range.s.r;
                           /* start in the first row */
@@ -3621,9 +3643,12 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                         headers.push(hdr);
                          }
                          return headers;
+                       }
                       }
 
                       function ValidarColumnas(ColumnasArray,Modalidad,Header) {
+
+                       if (typeof Modalidad !='undefined'){
                             // Bandera para ver si saliço algo mal por cada campo
                          var AlgoMalo = false;
                          NroColumnasArray=ColumnasArray.length;
@@ -3636,7 +3661,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          //var LosNombreDeColumnaDeCadaCampoDeUnaModalidad = ['Tarifa Valor FOB', 'Tarifa Minima',  'Otros'];
                          // Recorre cada campo a validar
                          ColumnasArray.forEach(function(CadaCampoDeUnaModalidad){
-                          if (typeof Modalidad !='undefined'){
+                          //if (typeof Modalidad !='undefined'){
                             var SeConsigioElCampo = false;
 
 
@@ -3656,17 +3681,19 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                 AlgoMalo = true;
                               }
                             
-                          }
-                          else
+                          //}
+                          
+                         })
+                       }
+                         else
                           {
                             AlgoMalo = true;
                           }
-                         })
 
                          if (AlgoMalo == true){
                            $loading.finish('myloading');
                            swal("Licitaciones Proenfar", "La plantilla no corresponde a esta modalidad.");
-                           return;
+                           return AlgoMalo;
                          }
                          return AlgoMalo;
                                         
