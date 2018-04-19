@@ -830,12 +830,14 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time (días)</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía-Aerolínea</b></h6></th>
                                                       <th class="text-center" style="width:200px;"><h6 style="font-size:13px;"><b>Frecuencia(d&iacute;as)</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Ge</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Ge</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg + Ge</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Ge</b></h6></th>
+                                                      <!--
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Ge</b></h6></th>-->
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aerea in ModalidadTodasAerea">
                                                       <td class="text-center"><small class="badge bg-morado" >1</small></td>
@@ -895,12 +897,12 @@
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Gastos Embarque</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Observaciones</b></h6></th>
                                                       <th class="text-center"><h6 style="font-size:13px;"><b>Lead Time (días)</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Naviera</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>Vía-Aerolínea</b></h6></th>
                                                       <th class="text-center" style="width:200px;"><h6 style="font-size:13px;"><b>Frecuencia(d&iacute;as)</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg + Gastos Embarque</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg + Gastos Embarque</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg + Gastos Embarque</b></h6></th>
-                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg + Gastos Embarque</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 100 + FS/Kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 300 + FS/Kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 500 + FS/Kg</b></h6></th>
+                                                      <th class="text-center"><h6 style="font-size:13px;"><b>T 1000 + FS/Kg</b></h6></th>
                                                     </tr>
                                                     <tr ng-repeat="Aereapasajero in ModalidadTodasAereaPasajero">
                                                       <td class="text-center"><small class="badge bg-morado" >1</small></td>
@@ -918,7 +920,7 @@
                                                       <td class="text-center"><span ng-class="Aereapasajero.AduC4015PPintada">{{Aereapasajero["Gastos Embarque"]| number:2}}</span></td>
                                                       <td class="text-center">{{Aereapasajero.Observaciones}}</span></td>
                                                       <td class="text-center">{{Aereapasajero['Lead time (dias)']}}</span></td>
-                                                      <td class="text-center">{{Aereapasajero.Via}}</span></td>
+                                                      <td class="text-center">{{Aereapasajero.Naviera}}</span></td>
                                                      <td class="text-center"><input ng-model='AereaPasajero["Frecuencia Dia Lunes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">L<input  ng-model='AereaPasajero["Frecuencia Dia Martes"]' type="checkbox" ng-true-value="true" ng-disabled="true" ng-false-value="false">M<input  ng-model='AereaPasajero["Frecuencia Dia Miercoles"]' type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">X<input  ng-model='AereaPasajero["Frecuencia Dia Jueves"]' type="checkbox" ng-disabled="true" ng-true-value="true" ng-false-value="false">J<input  ng-model='AereaPasajero["Frecuencia Dia Viernes"]' type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">V<input  ng-model='AereaPasajero["Frecuencia Dia Sabado"]' type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">S<input  ng-model='AereaPasajero["Frecuencia Dia Domingo"]'type="checkbox" ng-disabled="true"  ng-true-value="true" ng-false-value="false">D
                                                      </td>
                                                       <td class="text-center"><span ng-class="Aereapasajero.AduC4017PPintada">{{Aereapasajero['+100 + Fs/kg']  | number:2}}</span></td>

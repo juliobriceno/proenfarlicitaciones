@@ -1756,10 +1756,15 @@ app.post('/GetConsolidadoDatos', function (req, res) {
           // Por cada aérea de cada proveedor recalcula el campo de suma 
 
          // //console.log(ProveedorAerea["FS min"]);
-          ProveedorAerea["+100 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+100"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
+          /*ProveedorAerea["+100 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+100"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
           ProveedorAerea["+300 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+300"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
           ProveedorAerea["+500 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+500"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
-          ProveedorAerea["+1000 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+1000"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);
+          ProveedorAerea["+1000 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+1000"]) + parseFloat(ProveedorAerea["Fs/kg"]) + parseFloat(ProveedorAerea["Gastos Embarque"]);*/
+          ProveedorAerea["+100 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+100"]) + parseFloat(ProveedorAerea["Fs/kg"]);
+          ProveedorAerea["+300 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+300"]) + parseFloat(ProveedorAerea["Fs/kg"]);
+          ProveedorAerea["+500 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+500"]) + parseFloat(ProveedorAerea["Fs/kg"]);
+          ProveedorAerea["+1000 + Fs/kg + Gastos Embarque"] = parseFloat(ProveedorAerea["+1000"]) + parseFloat(ProveedorAerea["Fs/kg"]);
+
         });
 
         /////////////////////////Aerea Pasajero //////////////////////////////////////////
@@ -1775,10 +1780,14 @@ app.post('/GetConsolidadoDatos', function (req, res) {
           // Por cada aérea de cada proveedor recalcula el campo de suma 
 
           ////console.log(ProveedorAereaPasajero["FS min"]);
-          ProveedorAereaPasajero["+100 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+100"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
+          /*ProveedorAereaPasajero["+100 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+100"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
           ProveedorAereaPasajero["+300 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+300"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
           ProveedorAereaPasajero["+500 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+500"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
-          ProveedorAereaPasajero["+1000 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+1000"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);
+          ProveedorAereaPasajero["+1000 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+1000"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]) + parseFloat(ProveedorAereaPasajero["Gastos Embarque"]);*/
+           ProveedorAereaPasajero["+100 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+100"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]);
+          ProveedorAereaPasajero["+300 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+300"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]);
+          ProveedorAereaPasajero["+500 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+500"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]);
+          ProveedorAereaPasajero["+1000 + Fs/kg"] = parseFloat(ProveedorAereaPasajero["+1000"]) + parseFloat(ProveedorAereaPasajero["Fs/kg"]);
         });
 
           /////////////////////////Maritimas Fcl //////////////////////////////////////////
@@ -9312,9 +9321,9 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     ws2.cell(2,14).string(valor).style(style);                             
                   }
 
-                  else if (header =='Naviera')
+                   else if (header =='Naviera') //else if (header =='Naviera')
                     {
-                    ws2.cell(1, 15).string(header).style(style1);
+                    ws2.cell(1, 15).string('Vía-Aerolínea').style(style1);
                      valor = modalid[header].toString();
                     ws2.cell(2,15).string(valor).style(style);                             
                   }
@@ -9417,10 +9426,12 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                   }
 
-                    else if (header =='+100 + Fs/kg + Gastos Embarque')
+                    //else if (header =='+100 + Fs/kg + Gastos Embarque')
+                     else if (header =='+100 + Fs/kg + Gastos Embarque')
                     {
                 if (modalid['AduC4017Pintada']=="label label-success"){
-                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg').style(style1);
+                    //ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9434,7 +9445,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                    else  if (modalid['AduC4017Pintada']=="label label-warning"){
-                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9448,7 +9459,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                      else    if (modalid['AduC4017Pintada']=="label label-danger"){
-                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9462,7 +9473,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else {
-                    ws2.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9476,10 +9487,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                   }
+                   //else if (header =='+300 + Fs/kg + Gastos Embarque')
                    else if (header =='+300 + Fs/kg + Gastos Embarque')
                     {
                if (modalid['AduC401718Pintada']=="label label-success"){
-                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9494,7 +9506,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718Pintada']=="label label-warning"){
-                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9509,7 +9521,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718Pintada']=="label label-danger"){
-                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9524,7 +9536,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else{
-                    ws2.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9539,10 +9551,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                   }
 
+                  //else if (header =='+500 + Fs/kg + Gastos Embarque')
                   else if (header =='+500 + Fs/kg + Gastos Embarque')
                     {
                  if (modalid['AduC4020Pintada']=="label label-success"){
-                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9557,7 +9570,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else  if (modalid['AduC4020Pintada']=="label label-warning"){
-                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9572,7 +9585,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                  else if (modalid['AduC4020Pintada']=="label label-danger"){
-                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9587,7 +9600,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else {
-                    ws2.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9602,10 +9615,11 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                   }
 
-                  else if (header =='+1000 + Fs/kg + Gastos Embarque')
+                 // else if (header =='+1000 + Fs/kg + Gastos Embarque')
+                    else if (header =='+1000 + Fs/kg + Gastos Embarque')
                     {
                  if (modalid['AduC4021Pintada']=="label label-success"){
-                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9619,7 +9633,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else  if (modalid['AduC4021Pintada']=="label label-warning"){
-                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9633,7 +9647,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                         else if (modalid['AduC4021Pintada']=="label label-danger"){
-                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -9647,7 +9661,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else{
-                    ws2.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws2.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11142,7 +11156,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
 
                   else if (header =='Naviera')
                     {
-                    ws3.cell(1, 15).string(header).style(style1);
+                    ws3.cell(1, 15).string('Vía-Aerolínea').style(style1);
                      valor = modalid[header].toString();
                     ws3.cell(2,15).string(valor).style(style);                             
                   }
@@ -11248,7 +11262,8 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     else if (header =='+100 + Fs/kg')
                     {
                 if (modalid['AduC4017PPintada']=="label label-success"){
-                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    //ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11262,7 +11277,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                    else  if (modalid['AduC4017PPintada']=="label label-warning"){
-                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11276,7 +11291,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                      else    if (modalid['AduC4017PPintada']=="label label-danger"){
-                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11290,7 +11305,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else {
-                    ws3.cell(1, 23).string('T 100 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 23).string('T 100 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11308,7 +11323,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                       else if (header =='+300 + Fs/kg')
                     {
                if (modalid['AduC401718PPintada']=="label label-success"){
-                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11323,7 +11338,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718PPintada']=="label label-warning"){
-                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11338,7 +11353,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else  if (modalid['AduC401718PPintada']=="label label-danger"){
-                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11353,7 +11368,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                            
               else{
-                    ws3.cell(1, 24).string('T 300 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 24).string('T 300 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11371,7 +11386,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+500 + Fs/kg')
                     {
                  if (modalid['AduC4020PPintada']=="label label-success"){
-                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11386,7 +11401,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else  if (modalid['AduC4020PPintada']=="label label-warning"){
-                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11401,7 +11416,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                  else if (modalid['AduC4020PPintada']=="label label-danger"){
-                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11416,7 +11431,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                     }
                         
                 else {
-                    ws3.cell(1, 25).string('T 500 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 25).string('T 500 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11434,7 +11449,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                   else if (header =='+1000 + Fs/kg')
                     {
                  if (modalid['AduC4021PPintada']=="label label-success"){
-                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11448,7 +11463,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else  if (modalid['AduC4021PPintada']=="label label-warning"){
-                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11462,7 +11477,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                         else if (modalid['AduC4021PPintada']=="label label-danger"){
-                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -11476,7 +11491,7 @@ app.post('/ExportarExcelModalidad', function (req, res) {
                              }
                         }
                        else{
-                    ws3.cell(1, 26).string('T 1000 + FS/Kg + Gastos Embarque').style(style1);
+                    ws3.cell(1, 26).string('T 1000 + FS/Kg').style(style1);
 
                             if (modalid[header] == null || modalid[header] == '')
                              {
@@ -16257,7 +16272,8 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws8.cell(1, 11).string('Gastos Embarque').style(style);
         ws8.cell(1, 12).string('Observaciones').style(style);
         ws8.cell(1, 13).string('Lead Time (dias)').style(style);
-        ws8.cell(1, 14).string('Naviera').style(style);
+        //ws8.cell(1, 14).string('Naviera').style(style);
+        ws8.cell(1, 14).string('Vía-Aerolínea').style(style);
         ws8.cell(1, 15).string('Frecuencia Dia Lunes').style(style);
         ws8.cell(1, 16).string('Frecuencia Dia Martes').style(style);
         ws8.cell(1, 17).string('Frecuencia Dia Miercoles').style(style);
@@ -16316,7 +16332,8 @@ app.get('/GetTemplateAerea', function (req, res) {
         ws9.cell(1, 11).string('Gastos Embarque').style(style);
         ws9.cell(1, 12).string('Observaciones').style(style);
         ws9.cell(1, 13).string('Lead time (dias)').style(style);
-        ws9.cell(1, 14).string('Naviera').style(style);
+        //ws9.cell(1, 14).string('Naviera').style(style);
+        ws9.cell(1, 14).string('Vía-Aerolínea').style(style);
         ws9.cell(1, 15).string('Frecuencia Dia Lunes').style(style);
         ws9.cell(1, 16).string('Frecuencia Dia Martes').style(style);
         ws9.cell(1, 17).string('Frecuencia Dia Miercoles').style(style);

@@ -2999,7 +2999,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          encabezado = Encabezados(workbook, 'Aerea_Carguero');
                              
                          NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque','Observaciones',
-                                                       'Lead Time (dias)','Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves',
+                                                       'Lead Time (dias)','Vía-Aerolínea','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves',
                                                        'Frecuencia Dia Viernes','Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
                       
                         var modalidadaerea=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Carguero,encabezado);
@@ -3158,9 +3158,11 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }*/
                             /////////////Naviera////////////////////////////////////
                             filaVia=filaVia +1;
+                             aereacarguero["Naviera"] = aereacarguero["Vía-Aerolínea"];
+                                  delete aereacarguero["Vía-Aerolínea"];
                             /*if( ( typeof aereacarguero.Naviera == 'undefined' ) || pattern.test(aereacarguero.Naviera)){
                                   filaVia=filaVia +1;
-                                  //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
+                                  //$scope.ModalidadesProveedor.<Aerea.Aereas= data.Aerea_Carguero;
                                    //$scope.$apply();
                                   }
                                 else
@@ -3260,25 +3262,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                 var sumatoria=0;
-                                sumatoria=parseFloat(aereacarguero["+100"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
+                                sumatoria=parseFloat(aereacarguero["+100"]) + parseFloat(aereacarguero["Fs/kg"]);
                                 aereacarguero["+100 + Fs/kg + Gastos Embarque"] = sumatoria;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1=0;
-                                sumatoria1=parseFloat(aereacarguero["+300"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
+                                sumatoria1=parseFloat(aereacarguero["+300"]) + parseFloat(aereacarguero["Fs/kg"]);
                                 aereacarguero["+300 + Fs/kg + Gastos Embarque"] = sumatoria1;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2=0;
-                                sumatoria2=parseFloat(aereacarguero["+500"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
+                                sumatoria2=parseFloat(aereacarguero["+500"]) + parseFloat(aereacarguero["Fs/kg"]);
                                 aereacarguero["+500 + Fs/kg + Gastos Embarque"] = sumatoria2;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3=0;
-                                sumatoria3=parseFloat(aereacarguero["+1000"]) + parseFloat(aereacarguero["Fs/kg"]) + parseFloat(aereacarguero["Gastos Embarque"]);
+                                sumatoria3=parseFloat(aereacarguero["+1000"]) + parseFloat(aereacarguero["Fs/kg"]);
                                 aereacarguero["+1000 + Fs/kg + Gastos Embarque"] = sumatoria3;
                                 //$scope.ModalidadesProveedor.Aerea.Aereas= data.Aerea_Carguero;
                                // $scope.$apply();
@@ -3305,7 +3307,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                          encabezado = Encabezados(workbook, 'Aerea_Pasajero');
                              
                          NombreColumnaDeUnaModalidad = ['Pais','Aeropuerto','Minima', 'T 45','T 100','T 300','T 500','T 1000','FS Min','FS/Kg','Gastos Embarque','Observaciones',
-                                                       'Lead time (dias)','Naviera','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
+                                                       'Lead time (dias)','Vía-Aerolínea','Frecuencia Dia Lunes','Frecuencia Dia Martes','Frecuencia Dia Miercoles','Frecuencia Dia Jueves','Frecuencia Dia Viernes',
                                                        'Frecuencia Dia Sabado','Frecuencia Dia Domingo'];                         
                       
                         var modalidadaereapasajero=ValidarColumnas(NombreColumnaDeUnaModalidad,data.Aerea_Pasajero,encabezado);
@@ -3464,7 +3466,8 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }*/
                             /////////////Naviera////////////////////////////////////
                             filaVia=filaVia +1;
-                            
+                             aereapasajero["Naviera"] = aereapasajero["Vía-Aerolínea"];
+                                 delete aereapasajero["Vía-Aerolínea"];
                             /*if( ( typeof aereapasajero.Naviera == 'undefined' ) || pattern.test(aereapasajero.Naviera)){
                                   filaTimeca=filaVia +1;
                                   //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
@@ -3472,7 +3475,7 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                   }
                                 else
                                 {
-                                filaVia=filaVia +1;
+                                filaVia=filaVia +1N;
                                   var valor='Via_Pasajero';
                                   $scope.erroresimportacion.push({fila: filaVia, campo:naviera, error:'Valor NO numérico'});
                                  // $scope.AbrirModal(valor);
@@ -3569,25 +3572,25 @@ angular.module('Solicitudes', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angul
                                  }
                            /////////////Sumatoria_T100_FS_Ge////////////////////////////////////
                                var sumatoriap=0;
-                                sumatoriap=parseFloat(aereapasajero["+100"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                sumatoriap=parseFloat(aereapasajero["+100"]) + parseFloat(aereapasajero["Fs/kg"]);
                                 aereapasajero["+100 + Fs/kg"] = sumatoriap;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T300_FS_Ge////////////////////////////////////
                                 var sumatoria1p=0;
-                                sumatoria1p=parseFloat(aereapasajero["+300"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                sumatoria1p=parseFloat(aereapasajero["+300"]) + parseFloat(aereapasajero["Fs/kg"]);
                                 aereapasajero["+300 + Fs/kg"] = sumatoria1p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                            /////////////Sumatoria_T500_FS_Ge////////////////////////////////////
                                 var sumatoria2p=0;
-                                sumatoria2p=parseFloat(aereapasajero["+500"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                                sumatoria2p=parseFloat(aereapasajero["+500"]) + parseFloat(aereapasajero["Fs/kg"]);
                                 aereapasajero["+500 + Fs/kg"] = sumatoria2p;
                                //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
                             /////////////Sumatoria_T1000_FS_Ge////////////////////////////////////
                                 var sumatoria3p=0;
-                               sumatoria3p=parseFloat(aereapasajero["+1000"]) + parseFloat(aereapasajero["Fs/kg"]) + parseFloat(aereapasajero["Gastos Embarque"]);
+                               sumatoria3p=parseFloat(aereapasajero["+1000"]) + parseFloat(aereapasajero["Fs/kg"]);
                                 aereapasajero["+1000 + Fs/kg"] = sumatoria3p;
                                 //$scope.ModalidadesProveedor.AereaPasajero.AereasPasajeros= data.Aerea_Pasajero;
                                 //$scope.$apply();
